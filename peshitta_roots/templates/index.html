@@ -9,7 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Syriac&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="{{ url_for('index', lang='en' if lang == 'es' else 'es', q=query or '') }}" class="lang-toggle">{{ t.lang_toggle }}</a>
+    <div class="top-controls">
+        <a href="{{ url_for('index', lang='en' if lang == 'es' else 'es', q=query or '') }}" class="lang-toggle">{{ t.lang_toggle }}</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">☀️</button>
+    </div>
 
     <div class="container">
         <header>
@@ -35,47 +38,84 @@
 
         <!-- Search -->
         <div class="search-section">
-            <label for="root-input">{{ t.search_label }}</label>
-            <form method="GET" action="{{ url_for('index') }}">
-                <input type="hidden" name="lang" value="{{ lang }}">
-                <div class="search-row">
-                    <div class="autocomplete-wrapper">
-                        <input type="text" id="root-input" name="q" value="{{ query or '' }}"
-                               placeholder="{{ t.search_placeholder }}" autocomplete="off">
-                        <div id="autocomplete-list" class="autocomplete-list"></div>
+            <div class="search-tabs">
+                <button class="search-tab active" id="tab-root" onclick="switchTab('root')">{{ t.search_tab_root }}</button>
+                <button class="search-tab" id="tab-cognate" onclick="switchTab('cognate')">{{ t.search_tab_cognate }}</button>
+            </div>
+
+            <!-- Root search panel -->
+            <div id="panel-root" class="search-panel">
+                <form method="GET" action="{{ url_for('index') }}">
+                    <input type="hidden" name="lang" value="{{ lang }}">
+                    <div class="search-row">
+                        <div class="autocomplete-wrapper">
+                            <input type="text" id="root-input" name="q" value="{{ query or '' }}"
+                                   placeholder="{{ t.search_placeholder }}" autocomplete="off">
+                            <div id="autocomplete-list" class="autocomplete-list"></div>
+                        </div>
+                        <button type="submit">{{ t.search_button }}</button>
                     </div>
-                    <button type="submit">{{ t.search_button }}</button>
+                </form>
+                <p class="search-help">
+                    {{ t.search_help }}
+                    <a href="#" id="translit-toggle" class="translit-toggle" data-show="{{ t.search_help_show }}" data-hide="{{ t.search_help_hide }}" onclick="event.preventDefault(); var tbl=document.getElementById('translit-table'); var isHidden = tbl.style.display === 'none'; tbl.style.display = isHidden ? 'grid' : 'none'; this.textContent = isHidden ? this.dataset.hide : this.dataset.show;">{{ t.search_help_show }}</a>
+                </p>
+                <div id="translit-table" class="translit-table" style="display:none;">
+                    <div class="tt-cell"><span class="tt-syriac">ܐ</span><span class="tt-latin">A</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܒ</span><span class="tt-latin">B</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܓ</span><span class="tt-latin">G</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܕ</span><span class="tt-latin">D</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܗ</span><span class="tt-latin">H</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܘ</span><span class="tt-latin">W</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܙ</span><span class="tt-latin">Z</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܚ</span><span class="tt-latin">KH</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܛ</span><span class="tt-latin">T</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܝ</span><span class="tt-latin">Y</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܟ</span><span class="tt-latin">K</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܠ</span><span class="tt-latin">L</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܡ</span><span class="tt-latin">M</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܢ</span><span class="tt-latin">N</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܣ</span><span class="tt-latin">S</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܥ</span><span class="tt-latin">E / O</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܦ</span><span class="tt-latin">P</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܨ</span><span class="tt-latin">TS</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܩ</span><span class="tt-latin">Q</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܪ</span><span class="tt-latin">R</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܫ</span><span class="tt-latin">SH</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܬ</span><span class="tt-latin">TH</span></div>
                 </div>
-            </form>
-            <p class="search-help">
-                {{ t.search_help }}
-                <a href="#" id="translit-toggle" class="translit-toggle" data-show="{{ t.search_help_show }}" data-hide="{{ t.search_help_hide }}" onclick="event.preventDefault(); var tbl=document.getElementById('translit-table'); var isHidden = tbl.style.display === 'none'; tbl.style.display = isHidden ? 'grid' : 'none'; this.textContent = isHidden ? this.dataset.hide : this.dataset.show;">{{ t.search_help_show }}</a>
-            </p>
-            <div id="translit-table" class="translit-table" style="display:none;">
-                <div class="tt-cell"><span class="tt-syriac">ܐ</span><span class="tt-latin">A</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܒ</span><span class="tt-latin">B</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܓ</span><span class="tt-latin">G</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܕ</span><span class="tt-latin">D</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܗ</span><span class="tt-latin">H</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܘ</span><span class="tt-latin">W</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܙ</span><span class="tt-latin">Z</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܚ</span><span class="tt-latin">KH</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܛ</span><span class="tt-latin">T</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܝ</span><span class="tt-latin">Y</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܟ</span><span class="tt-latin">K</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܠ</span><span class="tt-latin">L</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܡ</span><span class="tt-latin">M</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܢ</span><span class="tt-latin">N</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܣ</span><span class="tt-latin">S</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܥ</span><span class="tt-latin">E / O</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܦ</span><span class="tt-latin">P</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܨ</span><span class="tt-latin">TS</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܩ</span><span class="tt-latin">Q</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܪ</span><span class="tt-latin">R</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܫ</span><span class="tt-latin">SH</span></div>
-                <div class="tt-cell"><span class="tt-syriac">ܬ</span><span class="tt-latin">TH</span></div>
+            </div>
+
+            <!-- Cognate word search panel -->
+            <div id="panel-cognate" class="search-panel" style="display:none;">
+                <form method="GET" action="{{ url_for('index') }}">
+                    <input type="hidden" name="lang" value="{{ lang }}">
+                    <div class="search-row">
+                        <input type="text" id="cognate-input" name="cw" value="{{ cognate_word or '' }}"
+                               placeholder="{{ t.cognate_search_placeholder }}" class="cognate-input" autocomplete="off">
+                        <button type="submit">{{ t.cognate_search_button }}</button>
+                    </div>
+                </form>
+                <p class="search-help">{{ t.cognate_search_help }}</p>
+            </div>
+
+            <a href="{{ url_for('browse', lang=lang) }}" class="browse-link">{{ t.browse_link }} &rarr;</a>
+        </div>
+
+        {% if disambiguation %}
+        <div class="search-section">
+            <p><strong>{{ t.cognate_multiple_results }}</strong></p>
+            <div class="disambiguation">
+                {% for item in disambiguation %}
+                <a href="{{ url_for('index', lang=lang, q=item.root_translit) }}" class="disambiguation-item">
+                    <span class="syriac">{{ item.root_syriac }}</span>
+                    <span class="ac-translit">{{ item.root_translit }}</span>
+                    {% if item.gloss %}<span class="text-muted">— {{ item.gloss }}</span>{% endif %}
+                </a>
+                {% endfor %}
             </div>
         </div>
+        {% endif %}
 
         {% if error %}
         <div class="error">{{ error }}</div>
@@ -118,7 +158,7 @@
                             <tr>
                                 <td class="syriac">{{ match.form }}</td>
                                 <td class="translit-cell"><div class="translit-academic">{{ match.transliteration_academic }}</div><div class="translit-simple">{{ match.transliteration }}</div></td>
-                                <td class="gloss-cell">{{ match.gloss }}</td>
+                                <td class="gloss-cell">{{ match.gloss }}{% if match.stem %} <span class="stem-badge">{{ match.stem }}</span>{% endif %}</td>
                                 <td class="refs">
                                     {% for ref in match.references[:20] %}
                                     <span class="ref-link" data-ref="{{ ref }}" data-form="{{ match.form }}" onclick="showVerse(this)">{{ translate_ref(ref) }}</span>
@@ -198,7 +238,7 @@
         {% endif %}
 
         <footer>
-            <div class="footer-line">By Jossi Fresco, inspired by <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
+            <div class="footer-line">{{ 'Por Jossi Fresco, inspirado por' if lang == 'es' else 'By Jossi Fresco, inspired by' }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
             <div class="footer-links">
                 <a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> MIT License
                 <span class="footer-sep">|</span>
@@ -223,6 +263,29 @@
     </div>
 
     <script>
+    // --- Search tab switching ---
+    function switchTab(tab) {
+        var rootPanel = document.getElementById('panel-root');
+        var cognatePanel = document.getElementById('panel-cognate');
+        var rootTab = document.getElementById('tab-root');
+        var cognateTab = document.getElementById('tab-cognate');
+        if (tab === 'root') {
+            rootPanel.style.display = '';
+            cognatePanel.style.display = 'none';
+            rootTab.classList.add('active');
+            cognateTab.classList.remove('active');
+        } else {
+            rootPanel.style.display = 'none';
+            cognatePanel.style.display = '';
+            cognateTab.classList.add('active');
+            rootTab.classList.remove('active');
+        }
+    }
+    // Auto-select cognate tab if a cognate word was submitted
+    {% if cognate_word %}
+    switchTab('cognate');
+    {% endif %}
+
     function showVerse(el) {
         var ref = el.getAttribute('data-ref');
         var form = el.getAttribute('data-form');
@@ -391,6 +454,42 @@
             acList.innerHTML = '';
         }
     });
+
+    // --- Dark Mode ---
+    (function() {
+        var toggle = document.getElementById('theme-toggle');
+        var html = document.documentElement;
+
+        function getTheme() {
+            var stored = localStorage.getItem('theme');
+            if (stored) return stored;
+            return 'light';
+        }
+
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
+
+        // Apply saved/system theme on load
+        applyTheme(getTheme());
+
+        toggle.addEventListener('click', function() {
+            var current = html.getAttribute('data-theme') || 'light';
+            var next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+        });
+
+        // Listen for system theme changes
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        }
+    })();
     </script>
 </body>
 </html>

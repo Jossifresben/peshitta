@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="{{ 'es' if lang == 'es' else 'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ t.browse_title }} - {{ t.app_title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Syriac&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="top-controls">
+        <a href="{{ url_for('index', lang='en' if lang == 'es' else 'es') }}" class="lang-toggle">{{ t.lang_toggle }}</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">☀️</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>{{ t.browse_title }}</h1>
+            <p><a href="{{ url_for('index', lang=lang) }}" style="color: var(--accent-gold); text-decoration: none;">&larr; {{ t.app_title }}</a></p>
+        </header>
+
+        <div class="browse-pagination">
+            {% if page > 1 %}
+            <a href="{{ url_for('browse', lang=lang, page=page-1) }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
+            {% endif %}
+            <span class="browse-page-info">{{ t.browse_page_of.replace('{page}', page|string).replace('{total}', total_pages|string) }} ({{ total }} {{ t.browse_root|lower }}{{ 's' if lang == 'en' else '' }})</span>
+            {% if page < total_pages %}
+            <a href="{{ url_for('browse', lang=lang, page=page+1) }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
+            {% endif %}
+        </div>
+
+        <div class="panel">
+            <div class="panel-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ t.browse_root }}</th>
+                            <th>{{ t.browse_translit }}</th>
+                            <th>{{ t.browse_gloss }}</th>
+                            <th>{{ t.browse_forms }}</th>
+                            <th>{{ t.browse_occurrences }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for root in roots %}
+                        <tr>
+                            <td class="syriac"><a href="{{ url_for('index', lang=lang, q=root.translit) }}" style="text-decoration: none; color: inherit;">{{ root.root }}</a></td>
+                            <td><a href="{{ url_for('index', lang=lang, q=root.translit) }}" class="ac-translit" style="text-decoration: none;">{{ root.translit }}</a></td>
+                            <td class="gloss-cell">{{ root.gloss }}</td>
+                            <td>{{ root.forms }}</td>
+                            <td><span class="count-badge">{{ root.occurrences }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="browse-pagination">
+            {% if page > 1 %}
+            <a href="{{ url_for('browse', lang=lang, page=page-1) }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
+            {% endif %}
+            <span class="browse-page-info">{{ t.browse_page_of.replace('{page}', page|string).replace('{total}', total_pages|string) }}</span>
+            {% if page < total_pages %}
+            <a href="{{ url_for('browse', lang=lang, page=page+1) }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
+            {% endif %}
+        </div>
+
+        <footer>
+            <div class="footer-line">{{ 'Por Jossi Fresco, inspirado por' if lang == 'es' else 'By Jossi Fresco, inspired by' }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
+            <div class="footer-links">
+                <a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> MIT License
+                <span class="footer-sep">|</span>
+                <a href="{{ 'https://somosunodigital.com/es/' if lang == 'es' else 'https://somosunodigital.com' }}" target="_blank" rel="noopener">somosunodigital.com</a>
+                <span class="footer-sep">|</span>
+                <a href="https://cosmicoach.com" target="_blank" rel="noopener">cosmicoach.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+    // --- Dark Mode ---
+    (function() {
+        var toggle = document.getElementById('theme-toggle');
+        var html = document.documentElement;
+
+        function getTheme() {
+            var stored = localStorage.getItem('theme');
+            if (stored) return stored;
+            return 'light';
+        }
+
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
+
+        applyTheme(getTheme());
+
+        toggle.addEventListener('click', function() {
+            var current = html.getAttribute('data-theme') || 'light';
+            var next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+        });
+
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        }
+    })();
+    </script>
+</body>
+</html>

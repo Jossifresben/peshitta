@@ -4,7 +4,7 @@ import json
 import os
 from dataclasses import dataclass, field
 
-from .characters import transliterate_syriac
+from .characters import transliterate_syriac, detect_script, strip_diacritics
 
 
 @dataclass
@@ -33,6 +33,11 @@ class CognateLookup:
         self.data_dir = data_dir
         self._cognates: dict[str, CognateEntry] = {}
         self._syriac_to_key: dict[str, str] = {}
+        # Reverse indexes for cognate word lookup
+        self._hebrew_word_to_keys: dict[str, list[str]] = {}
+        self._hebrew_translit_to_keys: dict[str, list[str]] = {}
+        self._arabic_word_to_keys: dict[str, list[str]] = {}
+        self._arabic_translit_to_keys: dict[str, list[str]] = {}
         self._loaded = False
 
     def load(self) -> None:
@@ -81,6 +86,31 @@ class CognateLookup:
             if root_syriac:
                 self._syriac_to_key[root_syriac] = key
 
+            # Build reverse indexes
+            for hw in hebrew_words:
+                hw_stripped = strip_diacritics(hw.word).strip()
+                if hw_stripped:
+                    self._hebrew_word_to_keys.setdefault(hw_stripped, [])
+                    if key not in self._hebrew_word_to_keys[hw_stripped]:
+                        self._hebrew_word_to_keys[hw_stripped].append(key)
+                hw_translit = hw.transliteration.lower().strip()
+                if hw_translit:
+                    self._hebrew_translit_to_keys.setdefault(hw_translit, [])
+                    if key not in self._hebrew_translit_to_keys[hw_translit]:
+                        self._hebrew_translit_to_keys[hw_translit].append(key)
+
+            for aw in arabic_words:
+                aw_stripped = strip_diacritics(aw.word).strip()
+                if aw_stripped:
+                    self._arabic_word_to_keys.setdefault(aw_stripped, [])
+                    if key not in self._arabic_word_to_keys[aw_stripped]:
+                        self._arabic_word_to_keys[aw_stripped].append(key)
+                aw_translit = aw.transliteration.lower().strip()
+                if aw_translit:
+                    self._arabic_translit_to_keys.setdefault(aw_translit, [])
+                    if key not in self._arabic_translit_to_keys[aw_translit]:
+                        self._arabic_translit_to_keys[aw_translit].append(key)
+
         self._loaded = True
 
     def lookup(self, root_syriac: str) -> CognateEntry | None:
@@ -111,6 +141,43 @@ class CognateLookup:
                     return self._cognates[key]
 
         return None
+
+    def lookup_by_cognate_word(self, word: str) -> list[CognateEntry]:
+        """Look up Syriac roots by a Hebrew or Arabic cognate word.
+
+        Accepts:
+          - Hebrew script (כתב)
+          - Arabic script (كتب)
+          - Latin transliteration (katav, kataba)
+
+        Returns a list of matching CognateEntry objects.
+        """
+        self.load()
+        word = word.strip()
+        if not word:
+            return []
+
+        script = detect_script(word)
+        found_keys: list[str] = []
+
+        if script == 'hebrew':
+            stripped = strip_diacritics(word)
+            found_keys = self._hebrew_word_to_keys.get(stripped, [])
+        elif script == 'arabic':
+            stripped = strip_diacritics(word)
+            found_keys = self._arabic_word_to_keys.get(stripped, [])
+        else:
+            # Latin transliteration — search both Hebrew and Arabic indexes
+            low = word.lower()
+            heb_keys = self._hebrew_translit_to_keys.get(low, [])
+            ar_keys = self._arabic_translit_to_keys.get(low, [])
+            seen = set()
+            for k in heb_keys + ar_keys:
+                if k not in seen:
+                    found_keys.append(k)
+                    seen.add(k)
+
+        return [self._cognates[k] for k in found_keys if k in self._cognates]
 
     def has_cognates(self, root_syriac: str) -> bool:
         """Check if cognates exist for a given root."""

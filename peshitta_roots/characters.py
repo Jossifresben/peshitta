@@ -269,3 +269,38 @@ def parse_root_input(user_input: str) -> str | None:
 def syriac_consonants_of(word: str) -> str:
     """Extract only the Syriac consonant characters from a word."""
     return ''.join(ch for ch in word if ch in SYRIAC_CONSONANTS)
+
+
+def detect_script(text: str) -> str:
+    """Detect the script of the input text.
+
+    Returns 'hebrew', 'arabic', 'syriac', or 'latin'.
+    """
+    for ch in text:
+        cp = ord(ch)
+        if 0x0590 <= cp <= 0x05FF:
+            return 'hebrew'
+        if 0x0600 <= cp <= 0x06FF or 0xFB50 <= cp <= 0xFDFF or 0xFE70 <= cp <= 0xFEFF:
+            return 'arabic'
+        if 0x0700 <= cp <= 0x074F:
+            return 'syriac'
+    return 'latin'
+
+
+def strip_diacritics(text: str) -> str:
+    """Remove Hebrew niqqud and Arabic tashkil diacritics from text.
+
+    Hebrew niqqud: U+0591–U+05BD, U+05BF, U+05C1–U+05C2, U+05C4–U+05C5, U+05C7
+    Arabic tashkil: U+064B–U+065F, U+0670, U+06D6–U+06DC, U+06DF–U+06E4, U+06E7–U+06E8
+    """
+    result = []
+    for ch in text:
+        cp = ord(ch)
+        # Skip Hebrew niqqud
+        if 0x0591 <= cp <= 0x05BD or cp == 0x05BF or cp in (0x05C1, 0x05C2, 0x05C4, 0x05C5, 0x05C7):
+            continue
+        # Skip Arabic tashkil
+        if 0x064B <= cp <= 0x065F or cp == 0x0670:
+            continue
+        result.append(ch)
+    return ''.join(result)

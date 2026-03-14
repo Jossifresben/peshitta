@@ -80,8 +80,10 @@ def index():
     book_names = _i18n[lang].get('book_names', {})
 
     query = request.args.get('q', '').strip()
+    cognate_word = request.args.get('cw', '').strip()
     error = None
     result = None
+    disambiguation = None
 
     # Stats
     stats = _Namespace({
@@ -89,6 +91,48 @@ def index():
         'words': _corpus.total_words(),
         'unique': _corpus.total_unique(),
     })
+
+    # Handle cognate word lookup
+    if cognate_word and not query:
+        cw_results = _cognate_lookup.lookup_by_cognate_word(cognate_word)
+        if len(cw_results) == 1:
+            # Single match — redirect to root search
+            root_syriac = cw_results[0].root_syriac
+            root_translit = transliterate_syriac(root_syriac).upper()
+            # Build dash-separated form
+            parts = []
+            i = 0
+            while i < len(root_translit):
+                if i + 1 < len(root_translit) and root_translit[i:i+2] in ('SH', 'KH', 'TH', 'TS'):
+                    parts.append(root_translit[i:i+2])
+                    i += 2
+                else:
+                    parts.append(root_translit[i])
+                    i += 1
+            query = '-'.join(parts)
+        elif len(cw_results) > 1:
+            # Multiple matches — show disambiguation
+            disambiguation = []
+            for entry in cw_results:
+                root_translit = transliterate_syriac(entry.root_syriac).upper()
+                parts = []
+                i = 0
+                while i < len(root_translit):
+                    if i + 1 < len(root_translit) and root_translit[i:i+2] in ('SH', 'KH', 'TH', 'TS'):
+                        parts.append(root_translit[i:i+2])
+                        i += 2
+                    else:
+                        parts.append(root_translit[i])
+                        i += 1
+                dash_form = '-'.join(parts)
+                gloss = entry.gloss_es if lang == 'es' else entry.gloss_en
+                disambiguation.append({
+                    'root_syriac': entry.root_syriac,
+                    'root_translit': dash_form,
+                    'gloss': gloss,
+                })
+        else:
+            error = t.cognate_no_results
 
     if query:
         # Parse user input
@@ -118,6 +162,7 @@ def index():
                         'transliteration_academic': transliterate_syriac_academic(m.form),
                         'transliteration': m.transliteration,
                         'gloss': _glosser.gloss(m.form, root_syriac, lang),
+                        'stem': _glosser.get_stem(m.form, root_syriac),
                         'count': m.count,
                         'references': m.references,
                     })
@@ -157,7 +202,9 @@ def index():
     return render_template('index.html',
                            t=t, lang=lang, query=query,
                            error=error, result=result, stats=stats,
-                           translate_ref=translate_ref)
+                           translate_ref=translate_ref,
+                           cognate_word=cognate_word,
+                           disambiguation=disambiguation)
 
 
 @app.route('/api/verse')
@@ -233,6 +280,108 @@ def api_suggest():
                 break
 
     return jsonify(results)
+
+
+def _translit_to_dash(root_syriac: str) -> str:
+    """Convert a Syriac root to dash-separated Latin form (e.g., K-TH-B)."""
+    translit = transliterate_syriac(root_syriac).upper()
+    parts = []
+    i = 0
+    while i < len(translit):
+        if i + 1 < len(translit) and translit[i:i+2] in ('SH', 'KH', 'TH', 'TS'):
+            parts.append(translit[i:i+2])
+            i += 2
+        else:
+            parts.append(translit[i])
+            i += 1
+    return '-'.join(parts)
+
+
+@app.route('/api/roots')
+def api_roots():
+    """Return a paginated list of all roots sorted by frequency."""
+    _init()
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 50, type=int)
+    per_page = min(per_page, 100)  # cap at 100
+
+    all_roots = _extractor.get_all_roots()
+    total = len(all_roots)
+    total_pages = (total + per_page - 1) // per_page
+
+    start = (page - 1) * per_page
+    end = start + per_page
+    page_roots = all_roots[start:end]
+
+    roots_data = []
+    for entry in page_roots:
+        dash_form = _translit_to_dash(entry.root)
+        gloss = ''
+        cognate_entry = _cognate_lookup.lookup(entry.root)
+        if cognate_entry:
+            gloss = cognate_entry.gloss_en
+        if not gloss:
+            gloss = _extractor.get_root_gloss(entry.root)
+        roots_data.append({
+            'root': entry.root,
+            'translit': dash_form,
+            'forms': len(entry.matches),
+            'occurrences': entry.total_occurrences,
+            'gloss': gloss,
+        })
+
+    return jsonify({
+        'page': page,
+        'per_page': per_page,
+        'total': total,
+        'total_pages': total_pages,
+        'roots': roots_data,
+    })
+
+
+@app.route('/browse')
+def browse():
+    """Browse all roots with pagination."""
+    _init()
+    lang = request.args.get('lang', 'es')
+    if lang not in _i18n:
+        lang = 'es'
+    t = _Namespace(_i18n[lang])
+
+    page = request.args.get('page', 1, type=int)
+    per_page = 50
+
+    all_roots = _extractor.get_all_roots()
+    total = len(all_roots)
+    total_pages = (total + per_page - 1) // per_page
+    page = max(1, min(page, total_pages))
+
+    start = (page - 1) * per_page
+    end = start + per_page
+    page_roots = all_roots[start:end]
+
+    roots_data = []
+    for entry in page_roots:
+        dash_form = _translit_to_dash(entry.root)
+        gloss = ''
+        cognate_entry = _cognate_lookup.lookup(entry.root)
+        if cognate_entry:
+            gloss = cognate_entry.gloss_es if lang == 'es' else cognate_entry.gloss_en
+        if not gloss:
+            gloss = _extractor.get_root_gloss(entry.root)
+        roots_data.append({
+            'root': entry.root,
+            'translit': dash_form,
+            'forms': len(entry.matches),
+            'occurrences': entry.total_occurrences,
+            'gloss': gloss,
+        })
+
+    return render_template('browse.html',
+                           t=t, lang=lang,
+                           roots=roots_data,
+                           page=page, total_pages=total_pages,
+                           total=total)
 
 
 def create_app():

@@ -75,6 +75,50 @@ SUFFIX_GLOSSES = {
 }
 
 
+def detect_verb_stem(prefixes_removed: list[str], stem: str, root_syriac: str) -> str | None:
+    """Detect the Syriac verb stem based on prefix heuristics.
+
+    Returns stem name or None if uncertain.
+    Possible stems: Peal, Ethpeel, Pael, Ethpaal, Aphel, Ettaphal
+    """
+    verbal_prefixes = set()
+    for p in prefixes_removed:
+        # Only consider verbal prefixes, not proclitics
+        if p in VERBAL_PREFIX_GLOSSES:
+            verbal_prefixes.add(p)
+
+    # ܐܫܬ (Eshtaphal / Ettaphal)
+    if '\u0710\u072B\u072C' in verbal_prefixes:
+        return 'Ettaphal'
+
+    # ܐܬ (Ethpeel or Ethpaal)
+    if '\u0710\u072C' in verbal_prefixes:
+        # Without vowels we can't distinguish Ethpeel from Ethpaal
+        # Use Ethpeel as default (more common)
+        return 'Ethpeel'
+
+    # ܐ alone (could be Aphel causative or 1s imperfect)
+    # Only label as Aphel if the stem still contains root consonants
+    # and it's not just a short imperfect form
+    if '\u0710' in verbal_prefixes:
+        stem_consonants = syriac_consonants_of(stem)
+        root_consonants = syriac_consonants_of(root_syriac)
+        if stem_consonants == root_consonants:
+            return 'Aphel'
+
+    # ܡ prefix (participle — can be any stem, but often Peal)
+    # Don't label a stem for participles — they're marked [ptcp] already
+
+    # No verbal prefix and form is just the root (± state markers) → Peal
+    if not verbal_prefixes:
+        stem_consonants = syriac_consonants_of(stem)
+        root_consonants = syriac_consonants_of(root_syriac)
+        if stem_consonants == root_consonants:
+            return 'Peal'
+
+    return None
+
+
 class WordGlosser:
     """Composes word-level glosses from root meaning + affix semantics."""
 
@@ -155,6 +199,18 @@ class WordGlosser:
                     parts.append(val)
 
         return ''.join(parts)
+
+    def get_stem(self, form: str, root_syriac: str) -> str | None:
+        """Return the verb stem label for a word form, or None if uncertain."""
+        if form in self._overrides:
+            return None  # Override words are typically particles, not verbs
+
+        candidates = generate_candidate_stems(form)
+        best = self._find_best_parse(candidates, root_syriac)
+        if best is None:
+            return None
+
+        return detect_verb_stem(best.prefixes_removed, best.stem, root_syriac)
 
     def _find_best_parse(self, candidates, root_syriac: str):
         """Find the StrippingResult whose stem consonants best match the root.
