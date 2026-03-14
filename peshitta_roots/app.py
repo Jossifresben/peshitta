@@ -9,6 +9,7 @@ from .characters import parse_root_input, transliterate_syriac, transliterate_sy
 from .corpus import PeshittaCorpus
 from .extractor import RootExtractor
 from .cognates import CognateLookup
+from .glosser import WordGlosser
 
 app = Flask(__name__)
 
@@ -16,6 +17,7 @@ app = Flask(__name__)
 _corpus: PeshittaCorpus | None = None
 _extractor: RootExtractor | None = None
 _cognate_lookup: CognateLookup | None = None
+_glosser: WordGlosser | None = None
 _i18n: dict = {}
 _initialized = False
 
@@ -32,7 +34,7 @@ def _get_csv_path():
 
 
 def _init():
-    global _corpus, _extractor, _cognate_lookup, _i18n, _initialized
+    global _corpus, _extractor, _cognate_lookup, _glosser, _i18n, _initialized
     if _initialized:
         return
 
@@ -54,6 +56,9 @@ def _init():
     # Load cognates
     _cognate_lookup = CognateLookup(data_dir)
     _cognate_lookup.load()
+
+    # Initialize word glosser
+    _glosser = WordGlosser(_cognate_lookup, _extractor, data_dir)
 
     _initialized = True
 
@@ -112,6 +117,7 @@ def index():
                         'form': m.form,
                         'transliteration_academic': transliterate_syriac_academic(m.form),
                         'transliteration': m.transliteration,
+                        'gloss': _glosser.gloss(m.form, root_syriac, lang),
                         'count': m.count,
                         'references': m.references,
                     })

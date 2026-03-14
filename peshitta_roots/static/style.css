@@ -157,6 +157,13 @@ header p {
     color: #666;
 }
 
+.gloss-cell {
+    font-size: 0.9em;
+    color: #555;
+    font-style: italic;
+    max-width: 150px;
+}
+
 /* Error message */
 .error {
     background: #fde8e8;

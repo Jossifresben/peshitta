@@ -109,6 +109,7 @@
                             <tr>
                                 <th>{{ t.results_form }}</th>
                                 <th>{{ t.results_translit }}</th>
+                                <th>{{ t.results_gloss }}</th>
                                 <th>{{ t.results_refs }}</th>
                             </tr>
                         </thead>
@@ -117,6 +118,7 @@
                             <tr>
                                 <td class="syriac">{{ match.form }}</td>
                                 <td class="translit-cell"><div class="translit-academic">{{ match.transliteration_academic }}</div><div class="translit-simple">{{ match.transliteration }}</div></td>
+                                <td class="gloss-cell">{{ match.gloss }}</td>
                                 <td class="refs">
                                     {% for ref in match.references[:20] %}
                                     <span class="ref-link" data-ref="{{ ref }}" data-form="{{ match.form }}" onclick="showVerse(this)">{{ translate_ref(ref) }}</span>
