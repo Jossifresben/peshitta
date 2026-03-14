@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="{{ 'es' if lang == 'es' else 'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ t.app_title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Syriac&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="{{ url_for('index', lang='en' if lang == 'es' else 'es', q=query or '') }}" class="lang-toggle">{{ t.lang_toggle }}</a>
+
+    <div class="container">
+        <header>
+            <h1>{{ t.app_title }}</h1>
+            <p>{{ t.app_subtitle }}</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">{{ stats.roots }}</div>
+                <div class="stat-label">{{ t.stats_total_roots }}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">{{ '{:,}'.format(stats.words) }}</div>
+                <div class="stat-label">{{ t.stats_total_words }}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">{{ '{:,}'.format(stats.unique) }}</div>
+                <div class="stat-label">{{ t.stats_unique_forms }}</div>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="search-section">
+            <label for="root-input">{{ t.search_label }}</label>
+            <form method="GET" action="{{ url_for('index') }}">
+                <input type="hidden" name="lang" value="{{ lang }}">
+                <div class="search-row">
+                    <div class="autocomplete-wrapper">
+                        <input type="text" id="root-input" name="q" value="{{ query or '' }}"
+                               placeholder="{{ t.search_placeholder }}" autocomplete="off">
+                        <div id="autocomplete-list" class="autocomplete-list"></div>
+                    </div>
+                    <button type="submit">{{ t.search_button }}</button>
+                </div>
+            </form>
+            <p class="search-help">
+                {{ t.search_help }}
+                <a href="#" id="translit-toggle" class="translit-toggle" data-show="{{ t.search_help_show }}" data-hide="{{ t.search_help_hide }}" onclick="event.preventDefault(); var tbl=document.getElementById('translit-table'); var isHidden = tbl.style.display === 'none'; tbl.style.display = isHidden ? 'grid' : 'none'; this.textContent = isHidden ? this.dataset.hide : this.dataset.show;">{{ t.search_help_show }}</a>
+            </p>
+            <div id="translit-table" class="translit-table" style="display:none;">
+                <div class="tt-cell"><span class="tt-syriac">ܐ</span><span class="tt-latin">A</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܒ</span><span class="tt-latin">B</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܓ</span><span class="tt-latin">G</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܕ</span><span class="tt-latin">D</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܗ</span><span class="tt-latin">H</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܘ</span><span class="tt-latin">W</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܙ</span><span class="tt-latin">Z</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܚ</span><span class="tt-latin">KH</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܛ</span><span class="tt-latin">T</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܝ</span><span class="tt-latin">Y</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܟ</span><span class="tt-latin">K</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܠ</span><span class="tt-latin">L</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܡ</span><span class="tt-latin">M</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܢ</span><span class="tt-latin">N</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܣ</span><span class="tt-latin">S</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܥ</span><span class="tt-latin">E / O</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܦ</span><span class="tt-latin">P</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܨ</span><span class="tt-latin">TS</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܩ</span><span class="tt-latin">Q</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܪ</span><span class="tt-latin">R</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܫ</span><span class="tt-latin">SH</span></div>
+                <div class="tt-cell"><span class="tt-syriac">ܬ</span><span class="tt-latin">TH</span></div>
+            </div>
+        </div>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if result %}
+        <div class="results-section">
+            <!-- Root header -->
+            <div class="root-header">
+                <div class="root-header-top">
+                    <span class="root-syriac">{{ result.root }}</span>
+                    <span class="root-latin">{{ result.root_translit }}</span>
+                </div>
+                {% if result.gloss %}
+                <div class="root-meaning">{{ result.gloss }}</div>
+                {% endif %}
+                <div class="root-header-nav">
+                    <a href="#section-peshitta" class="nav-btn">{{ t.results_peshitta }}</a>
+                    <a href="#section-hebrew" class="nav-btn">{{ t.results_hebrew }}</a>
+                    <a href="#section-arabic" class="nav-btn">{{ t.results_arabic }}</a>
+                </div>
+            </div>
+
+            <!-- Peshitta occurrences -->
+            <div id="section-peshitta" class="panel">
+                <div class="panel-header">{{ t.results_peshitta }}</div>
+                <div class="panel-body">
+                    {% if result.matches %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ t.results_form }}</th>
+                                <th>{{ t.results_translit }}</th>
+                                <th>{{ t.results_refs }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for match in result.matches %}
+                            <tr>
+                                <td class="syriac">{{ match.form }}</td>
+                                <td class="translit-cell"><div class="translit-academic">{{ match.transliteration_academic }}</div><div class="translit-simple">{{ match.transliteration }}</div></td>
+                                <td class="refs">
+                                    {% for ref in match.references[:20] %}
+                                    <span class="ref-link" data-ref="{{ ref }}" data-form="{{ match.form }}" onclick="showVerse(this)">{{ translate_ref(ref) }}</span>
+                                    {% endfor %}
+                                    {% if match.references|length > 20 %}
+                                    <span class="ref-more">... +{{ match.references|length - 20 }}</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p class="no-results">{{ t.no_results }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Hebrew cognates -->
+            <div id="section-hebrew" class="panel">
+                <div class="panel-header">{{ t.results_hebrew }}</div>
+                <div class="panel-body">
+                    {% if result.hebrew %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ t.results_word }}</th>
+                                <th>{{ t.results_translit }}</th>
+                                <th>{{ t.results_meaning }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for word in result.hebrew %}
+                            <tr>
+                                <td class="hebrew">{{ word.word }}</td>
+                                <td class="translit">{{ word.transliteration }}</td>
+                                <td>{{ word.meaning }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p class="no-results">{{ t.no_cognates_hebrew }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Arabic cognates -->
+            <div id="section-arabic" class="panel">
+                <div class="panel-header">{{ t.results_arabic }}</div>
+                <div class="panel-body">
+                    {% if result.arabic %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ t.results_word }}</th>
+                                <th>{{ t.results_translit }}</th>
+                                <th>{{ t.results_meaning }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for word in result.arabic %}
+                            <tr>
+                                <td class="arabic">{{ word.word }}</td>
+                                <td class="translit">{{ word.transliteration }}</td>
+                                <td>{{ word.meaning }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p class="no-results">{{ t.no_cognates_arabic }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <footer>
+            Khabouris Peshitta Triliteral Root Finder &mdash; Syriac NT (Traditional 22-book canon)
+        </footer>
+    </div>
+
+    <!-- Verse Modal -->
+    <div id="verse-modal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-ref" id="modal-ref"></div>
+            <div class="modal-syriac" id="modal-syriac"></div>
+            <div class="modal-translit" id="modal-translit-academic"></div>
+            <div class="modal-translit" id="modal-translit"></div>
+            <div class="modal-translation" id="modal-translation"></div>
+            <div class="modal-loading" id="modal-loading">Loading...</div>
+        </div>
+    </div>
+
+    <script>
+    function showVerse(el) {
+        var ref = el.getAttribute('data-ref');
+        var form = el.getAttribute('data-form');
+        var modal = document.getElementById('verse-modal');
+        var refEl = document.getElementById('modal-ref');
+        var syriacEl = document.getElementById('modal-syriac');
+        var translitAcademicEl = document.getElementById('modal-translit-academic');
+        var translitEl = document.getElementById('modal-translit');
+        var translationEl = document.getElementById('modal-translation');
+        var loadingEl = document.getElementById('modal-loading');
+
+        // Show modal with loading state
+        refEl.textContent = el.textContent;
+        syriacEl.innerHTML = '';
+        translitAcademicEl.innerHTML = '';
+        translitEl.innerHTML = '';
+        translationEl.textContent = '';
+        loadingEl.style.display = 'block';
+        modal.classList.add('active');
+
+        // Fetch verse text
+        var lang = '{{ lang }}';
+        fetch('/api/verse?ref=' + encodeURIComponent(ref) + '&lang=' + lang)
+            .then(function(resp) { return resp.json(); })
+            .then(function(data) {
+                loadingEl.style.display = 'none';
+                if (data.error) {
+                    syriacEl.textContent = data.error;
+                } else {
+                    // Build Syriac line with highlighted word
+                    var syriacParts = [];
+                    var academicParts = [];
+                    var translitParts = [];
+                    for (var i = 0; i < data.words.length; i++) {
+                        var w = data.words[i];
+                        var wt = data.words_translit[i];
+                        var wa = data.words_translit_academic[i];
+                        if (w === form) {
+                            syriacParts.push('<span class="hl">' + escHtml(w) + '</span>');
+                            academicParts.push('<span class="hl">' + escHtml(wa) + '</span>');
+                            translitParts.push('<span class="hl">' + escHtml(wt) + '</span>');
+                        } else {
+                            syriacParts.push(escHtml(w));
+                            academicParts.push(escHtml(wa));
+                            translitParts.push(escHtml(wt));
+                        }
+                    }
+                    syriacEl.innerHTML = syriacParts.join(' ');
+                    translitAcademicEl.innerHTML = academicParts.join(' ');
+                    translitEl.innerHTML = translitParts.join(' ');
+                    // Show translation
+                    var translation = (lang === 'es') ? data.translation_es : data.translation_en;
+                    if (translation) {
+                        translationEl.textContent = translation;
+                    }
+                }
+            })
+            .catch(function() {
+                loadingEl.style.display = 'none';
+                syriacEl.textContent = 'Error loading verse';
+            });
+    }
+
+    function escHtml(str) {
+        var d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
+    function closeModal(event) {
+        if (event && event.target !== document.getElementById('verse-modal')) return;
+        document.getElementById('verse-modal').classList.remove('active');
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.getElementById('verse-modal').classList.remove('active');
+            document.getElementById('autocomplete-list').innerHTML = '';
+        }
+    });
+
+    // --- Autocomplete ---
+    var rootInput = document.getElementById('root-input');
+    var acList = document.getElementById('autocomplete-list');
+    var acTimeout = null;
+
+    // Block manual dash entry
+    rootInput.addEventListener('keydown', function(e) {
+        if (e.key === '-') {
+            e.preventDefault();
+        }
+    });
+
+    // Auto-insert dash after a consonant letter (handle digraphs SH, KH, TH, TS)
+    rootInput.addEventListener('input', function(e) {
+        var v = this.value.toUpperCase();
+        // Don't auto-dash if user just deleted something
+        if (e.inputType && e.inputType.indexOf('delete') !== -1) {
+            this.value = v;
+            fetchSuggestions(v);
+            return;
+        }
+        // Check if we should insert a dash
+        // Strip trailing dashes for analysis
+        var clean = v.replace(/-+$/, '');
+        var parts = clean.split('-').filter(function(p) { return p.length > 0; });
+        var last = parts[parts.length - 1] || '';
+        // Count completed consonant parts (excluding the current one being typed)
+        var completedParts = parts.length - (last.length > 0 ? 1 : 0);
+        // A complete consonant token: single letter (not S,K,T that could start digraph) or digraph
+        var digraphs = ['SH', 'KH', 'TH', 'TS'];
+        var digraphStarts = ['S', 'K', 'T'];
+        var isComplete = (last.length === 2 && digraphs.indexOf(last) !== -1) ||
+                         (last.length === 1 && digraphStarts.indexOf(last) === -1);
+        var isInvalidDigraph = (last.length === 2 && digraphs.indexOf(last) === -1);
+        // Don't add dash after the 3rd consonant
+        if (isComplete && completedParts < 2) {
+            this.value = v + '-';
+        } else if (isInvalidDigraph && completedParts < 2) {
+            // Two letters but not a valid digraph -> treat first as consonant, insert dash before second
+            var newParts = parts.slice(0, -1).concat([last[0], last[1]]);
+            // Only add trailing dash if we still have fewer than 3 parts
+            var fixed = newParts.join('-');
+            if (newParts.length < 3) fixed += '-';
+            this.value = fixed;
+        } else {
+            this.value = v;
+        }
+        fetchSuggestions(this.value.replace(/-+$/, ''));
+    });
+
+    function fetchSuggestions(prefix) {
+        clearTimeout(acTimeout);
+        if (!prefix) {
+            acList.innerHTML = '';
+            return;
+        }
+        acTimeout = setTimeout(function() {
+            fetch('/api/suggest?prefix=' + encodeURIComponent(prefix))
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    acList.innerHTML = '';
+                    if (!data.length) return;
+                    for (var i = 0; i < data.length; i++) {
+                        var item = document.createElement('div');
+                        item.className = 'autocomplete-item';
+                        item.innerHTML = '<span class="ac-syriac">' + escHtml(data[i].root) + '</span> '
+                            + '<span class="ac-translit">' + escHtml(data[i].translit) + '</span> '
+                            + '<span class="ac-count">(' + data[i].count + ')</span>';
+                        item.setAttribute('data-value', data[i].translit);
+                        item.addEventListener('click', function() {
+                            rootInput.value = this.getAttribute('data-value');
+                            acList.innerHTML = '';
+                            rootInput.closest('form').submit();
+                        });
+                        acList.appendChild(item);
+                    }
+                });
+        }, 150);
+    }
+
+    // Hide autocomplete on outside click
+    document.addEventListener('click', function(e) {
+        if (!rootInput.contains(e.target) && !acList.contains(e.target)) {
+            acList.innerHTML = '';
+        }
+    });
+    </script>
+</body>
+</html>
