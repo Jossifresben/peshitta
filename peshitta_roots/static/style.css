@@ -885,10 +885,63 @@ footer a:hover {
 
     .panel-body {
         padding: 10px 12px;
+        overflow-x: auto;
     }
 
-    table {
-        min-width: 400px;
+    /* Card layout for Peshitta occurrences table on mobile */
+    .peshitta-table thead {
+        display: none;
+    }
+
+    .peshitta-table,
+    .peshitta-table tbody,
+    .peshitta-table tr,
+    .peshitta-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .peshitta-table tr {
+        border-bottom: 1px solid var(--border);
+        padding: 10px 0;
+    }
+
+    .peshitta-table tr:last-child {
+        border-bottom: none;
+    }
+
+    .peshitta-table td {
+        padding: 2px 0;
+        text-align: left;
+        border: none;
+    }
+
+    .peshitta-table td.syriac {
+        font-size: 1.4em;
+        display: inline;
+        margin-right: 10px;
+    }
+
+    .peshitta-table td.translit-cell {
+        display: inline;
+        font-size: 0.9em;
+    }
+
+    .peshitta-table td.gloss-cell {
+        display: block;
+        color: var(--text-secondary);
+        font-style: italic;
+        padding: 2px 0;
+    }
+
+    .peshitta-table td.refs {
+        display: block;
+        padding-top: 4px;
+    }
+
+    /* Other tables keep horizontal scroll */
+    table:not(.peshitta-table) {
+        min-width: 300px;
     }
 
     th, td {
