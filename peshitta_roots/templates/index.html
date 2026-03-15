@@ -257,10 +257,9 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <div class="modal-ref" id="modal-ref"></div>
-            <div class="modal-syriac" id="modal-syriac"></div>
-            <div class="modal-translit" id="modal-translit-academic"></div>
-            <div class="modal-translit" id="modal-translit"></div>
-            <div class="modal-translation" id="modal-translation"></div>
+            <button class="modal-nav-arrow" id="nav-prev" onclick="navigateVerse(-1)" disabled>&#9650;</button>
+            <div id="modal-verses-container"></div>
+            <button class="modal-nav-arrow" id="nav-next" onclick="navigateVerse(1)" disabled>&#9660;</button>
             <div class="modal-loading" id="modal-loading">Loading...</div>
         </div>
     </div>
@@ -289,67 +288,152 @@
     switchTab('cognate');
     {% endif %}
 
+    // --- Verse modal state ---
+    var modalVerses = [];    // array of verse data objects, in order
+    var originalRef = '';    // the ref the user originally clicked
+    var highlightForm = ''; // the word to highlight
+    var modalLang = '{{ lang }}';
+    var MAX_VERSES = 4;
+
     function showVerse(el) {
         var ref = el.getAttribute('data-ref');
-        var form = el.getAttribute('data-form');
-        var modal = document.getElementById('verse-modal');
-        var refEl = document.getElementById('modal-ref');
-        var syriacEl = document.getElementById('modal-syriac');
-        var translitAcademicEl = document.getElementById('modal-translit-academic');
-        var translitEl = document.getElementById('modal-translit');
-        var translationEl = document.getElementById('modal-translation');
-        var loadingEl = document.getElementById('modal-loading');
+        highlightForm = el.getAttribute('data-form');
+        originalRef = ref;
+        modalVerses = [];
 
-        // Show modal with loading state
-        refEl.textContent = el.textContent;
-        syriacEl.innerHTML = '';
-        translitAcademicEl.innerHTML = '';
-        translitEl.innerHTML = '';
-        translationEl.textContent = '';
+        var modal = document.getElementById('verse-modal');
+        var loadingEl = document.getElementById('modal-loading');
+        document.getElementById('modal-verses-container').innerHTML = '';
+        document.getElementById('modal-ref').textContent = el.textContent;
         loadingEl.style.display = 'block';
         modal.classList.add('active');
 
-        // Fetch verse text
-        var lang = '{{ lang }}';
-        fetch('/api/verse?ref=' + encodeURIComponent(ref) + '&lang=' + lang)
+        fetchVerse(ref, function(data) {
+            loadingEl.style.display = 'none';
+            if (data.error) {
+                document.getElementById('modal-verses-container').textContent = data.error;
+                return;
+            }
+            modalVerses.push(data);
+            renderModalVerses();
+        });
+    }
+
+    function fetchVerse(ref, callback) {
+        fetch('/api/verse?ref=' + encodeURIComponent(ref) + '&lang=' + modalLang)
             .then(function(resp) { return resp.json(); })
-            .then(function(data) {
-                loadingEl.style.display = 'none';
-                if (data.error) {
-                    syriacEl.textContent = data.error;
-                } else {
-                    // Build Syriac line with highlighted word
-                    var syriacParts = [];
-                    var academicParts = [];
-                    var translitParts = [];
-                    for (var i = 0; i < data.words.length; i++) {
-                        var w = data.words[i];
-                        var wt = data.words_translit[i];
-                        var wa = data.words_translit_academic[i];
-                        if (w === form) {
-                            syriacParts.push('<span class="hl">' + escHtml(w) + '</span>');
-                            academicParts.push('<span class="hl">' + escHtml(wa) + '</span>');
-                            translitParts.push('<span class="hl">' + escHtml(wt) + '</span>');
-                        } else {
-                            syriacParts.push(escHtml(w));
-                            academicParts.push(escHtml(wa));
-                            translitParts.push(escHtml(wt));
-                        }
-                    }
-                    syriacEl.innerHTML = syriacParts.join(' ');
-                    translitAcademicEl.innerHTML = academicParts.join(' ');
-                    translitEl.innerHTML = translitParts.join(' ');
-                    // Show translation
-                    var translation = (lang === 'es') ? data.translation_es : data.translation_en;
-                    if (translation) {
-                        translationEl.textContent = translation;
-                    }
-                }
-            })
+            .then(callback)
             .catch(function() {
-                loadingEl.style.display = 'none';
-                syriacEl.textContent = 'Error loading verse';
+                callback({error: 'Error loading verse'});
             });
+    }
+
+    function navigateVerse(direction) {
+        if (modalVerses.length >= MAX_VERSES) return;
+        var targetRef;
+        if (direction === -1) {
+            // Load previous: use prev_ref of the first verse
+            targetRef = modalVerses[0].prev_ref;
+        } else {
+            // Load next: use next_ref of the last verse
+            targetRef = modalVerses[modalVerses.length - 1].next_ref;
+        }
+        if (!targetRef) return;
+
+        var btn = (direction === -1) ? document.getElementById('nav-prev') : document.getElementById('nav-next');
+        btn.disabled = true;
+
+        fetchVerse(targetRef, function(data) {
+            if (data.error) return;
+            if (direction === -1) {
+                modalVerses.unshift(data);
+            } else {
+                modalVerses.push(data);
+            }
+            renderModalVerses();
+        });
+    }
+
+    function renderModalVerses() {
+        var container = document.getElementById('modal-verses-container');
+        container.innerHTML = '';
+
+        // Build reference range header
+        var firstRef = modalVerses[0].reference;
+        var lastRef = modalVerses[modalVerses.length - 1].reference;
+        var refText = formatRefRange(firstRef, lastRef);
+        document.getElementById('modal-ref').textContent = refText;
+
+        // Render each verse
+        for (var v = 0; v < modalVerses.length; v++) {
+            if (v > 0) {
+                var hr = document.createElement('hr');
+                hr.className = 'verse-separator';
+                container.appendChild(hr);
+            }
+            var data = modalVerses[v];
+            var isOriginal = (data.reference === originalRef);
+            var block = document.createElement('div');
+            block.className = 'verse-block';
+
+            // Syriac line
+            var syriacDiv = document.createElement('div');
+            syriacDiv.className = 'modal-syriac';
+            syriacDiv.innerHTML = buildWordLine(data.words, isOriginal);
+            block.appendChild(syriacDiv);
+
+            // Academic transliteration
+            var acadDiv = document.createElement('div');
+            acadDiv.className = 'modal-translit';
+            acadDiv.innerHTML = buildWordLine(data.words_translit_academic, isOriginal, data.words);
+            block.appendChild(acadDiv);
+
+            // Simple transliteration
+            var translitDiv = document.createElement('div');
+            translitDiv.className = 'modal-translit';
+            translitDiv.innerHTML = buildWordLine(data.words_translit, isOriginal, data.words);
+            block.appendChild(translitDiv);
+
+            // Translation
+            var transDiv = document.createElement('div');
+            transDiv.className = 'modal-translation';
+            var translation = (modalLang === 'es') ? data.translation_es : data.translation_en;
+            if (translation) transDiv.textContent = translation;
+            block.appendChild(transDiv);
+
+            container.appendChild(block);
+        }
+
+        // Update arrow states
+        var prevBtn = document.getElementById('nav-prev');
+        var nextBtn = document.getElementById('nav-next');
+        prevBtn.disabled = (modalVerses.length >= MAX_VERSES || !modalVerses[0].prev_ref);
+        nextBtn.disabled = (modalVerses.length >= MAX_VERSES || !modalVerses[modalVerses.length - 1].next_ref);
+    }
+
+    function buildWordLine(words, isOriginal, syriacWords) {
+        // syriacWords is optional — used for transliteration lines to match highlight by syriac form
+        var parts = [];
+        for (var i = 0; i < words.length; i++) {
+            var matchWord = syriacWords ? syriacWords[i] : words[i];
+            if (isOriginal && matchWord === highlightForm) {
+                parts.push('<span class="hl">' + escHtml(words[i]) + '</span>');
+            } else {
+                parts.push(escHtml(words[i]));
+            }
+        }
+        return parts.join(' ');
+    }
+
+    function formatRefRange(firstRef, lastRef) {
+        if (firstRef === lastRef) return firstRef;
+        // Extract verse numbers: "Book Ch:V"
+        var lastColon = lastRef.lastIndexOf(':');
+        var lastVerse = lastRef.substring(lastColon + 1);
+        var firstColon = firstRef.lastIndexOf(':');
+        var firstVerse = firstRef.substring(firstColon + 1);
+        var bookChapter = firstRef.substring(0, firstColon);
+        return bookChapter + ':' + firstVerse + '-' + lastVerse;
     }
 
     function escHtml(str) {

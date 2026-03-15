@@ -632,6 +632,36 @@ th {
     border-bottom: 2px solid var(--highlight-border);
 }
 
+/* === Modal navigation arrows === */
+.modal-nav-arrow {
+    display: block;
+    margin: 0 auto;
+    background: none;
+    border: none;
+    font-size: 1.4em;
+    cursor: pointer;
+    color: var(--accent);
+    padding: 6px 24px;
+    transition: color 0.15s, opacity 0.15s;
+}
+.modal-nav-arrow:hover:not(:disabled) {
+    color: var(--text-primary);
+}
+.modal-nav-arrow:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+/* Verse blocks inside modal */
+.verse-block {
+    margin: 10px 0;
+}
+.verse-separator {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 14px 0;
+}
+
 /* === Autocomplete === */
 .autocomplete-wrapper {
     position: relative;

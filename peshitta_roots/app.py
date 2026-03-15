@@ -228,6 +228,10 @@ def api_verse():
     translation_en = _corpus.get_verse_translation(ref, 'en')
     translation_es = _corpus.get_verse_translation(ref, 'es')
 
+    # Adjacent verse references for modal navigation
+    prev_ref = _corpus.get_adjacent_ref(ref, -1)
+    next_ref = _corpus.get_adjacent_ref(ref, +1)
+
     return jsonify({
         'reference': ref,
         'syriac': syriac_text,
@@ -237,6 +241,8 @@ def api_verse():
         'words_translit_academic': words_translit_academic,
         'translation_en': translation_en,
         'translation_es': translation_es,
+        'prev_ref': prev_ref,
+        'next_ref': next_ref,
     })
 
 

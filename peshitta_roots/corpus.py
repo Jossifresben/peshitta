@@ -105,6 +105,35 @@ class PeshittaCorpus:
         self.load()
         return self._verses.get(reference)
 
+    def get_adjacent_ref(self, reference: str, direction: int) -> str | None:
+        """Return the reference for an adjacent verse (direction: -1 or +1).
+
+        Returns None if the adjacent verse doesn't exist or would cross
+        chapter boundaries.
+        """
+        self.load()
+        # Parse "Book Chapter:Verse" — book may contain spaces (e.g., "1 Corinthians")
+        last_space = reference.rfind(' ')
+        if last_space == -1:
+            return None
+        book_part = reference[:last_space]
+        chv_part = reference[last_space + 1:]
+        if ':' not in chv_part:
+            return None
+        ch_str, v_str = chv_part.split(':', 1)
+        try:
+            chapter = int(ch_str)
+            verse = int(v_str)
+        except ValueError:
+            return None
+        new_verse = verse + direction
+        if new_verse < 1:
+            return None  # don't cross chapter boundaries
+        new_ref = f"{book_part} {chapter}:{new_verse}"
+        if new_ref in self._verses:
+            return new_ref
+        return None
+
     def get_verse_translation(self, reference: str, lang: str) -> str:
         """Return a verse translation (en or es) from translations.json."""
         if self._translations is None:
