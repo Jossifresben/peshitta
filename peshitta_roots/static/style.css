@@ -113,14 +113,120 @@ header p {
     font-size: 1.1em;
 }
 
-/* Top controls: lang toggle + dark mode */
-.top-controls {
-    position: absolute;
-    top: 15px;
-    right: 20px;
+/* Sticky header */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--bg-page);
     display: flex;
-    gap: 8px;
+    justify-content: flex-end;
     align-items: center;
+    padding: 10px 20px;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Settings button + dropdown */
+.settings-wrapper {
+    position: relative;
+}
+
+.settings-toggle {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+.settings-toggle:hover {
+    background: var(--accent-dark);
+}
+
+.settings-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px var(--shadow);
+    padding: 10px;
+    min-width: 180px;
+    z-index: 300;
+}
+
+.settings-dropdown.open {
+    display: block;
+}
+
+.settings-label {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    padding: 0 6px;
+}
+
+.settings-option {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    color: var(--text-primary);
+    text-align: left;
+}
+
+.settings-option:hover {
+    background: var(--bg-ref);
+}
+
+.settings-option.active {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Tooltips */
+.stat-item[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+.stat-item[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-dark);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.78em;
+    font-weight: normal;
+    font-style: normal;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 50;
+}
+
+.stat-item[data-tooltip]:hover::after {
+    opacity: 1;
 }
 
 .lang-toggle, .theme-toggle {
@@ -878,12 +984,15 @@ footer a:hover {
         padding: 12px;
     }
 
-    .top-controls {
-        position: static;
-        display: flex;
+    .sticky-header {
         justify-content: center;
-        gap: 8px;
-        margin-bottom: 10px;
+        padding: 8px 12px;
+    }
+
+    .stat-item[data-tooltip]::after {
+        white-space: normal;
+        max-width: 200px;
+        text-align: center;
     }
 
     header {

@@ -9,8 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Syriac&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="top-controls">
+    <div class="sticky-header">
         <a href="{{ url_for('index', lang='en' if lang == 'es' else 'es', q=query or '') }}" class="lang-toggle">{{ t.lang_toggle }}</a>
+        <div class="settings-wrapper">
+            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}">&#9881;</button>
+            <div class="settings-dropdown" id="settings-dropdown">
+                <div class="settings-label">{{ t.settings_script }}</div>
+                <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
+                <button class="settings-option{% if script == 'hebrew' %} active{% endif %}" data-script="hebrew">{{ t.settings_hebrew }}</button>
+                <button class="settings-option{% if script == 'arabic' %} active{% endif %}" data-script="arabic">{{ t.settings_arabic }}</button>
+            </div>
+        </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">☀️</button>
     </div>
 
@@ -22,15 +31,15 @@
 
         <!-- Stats -->
         <div class="stats-bar">
-            <div class="stat-item">
+            <div class="stat-item" data-tooltip="{{ t.tooltip_roots }}">
                 <div class="stat-value">{{ stats.roots }}</div>
                 <div class="stat-label">{{ t.stats_total_roots }}</div>
             </div>
-            <div class="stat-item">
+            <div class="stat-item" data-tooltip="{{ t.tooltip_words }}">
                 <div class="stat-value">{{ '{:,}'.format(stats.words) }}</div>
                 <div class="stat-label">{{ t.stats_total_words }}</div>
             </div>
-            <div class="stat-item">
+            <div class="stat-item" data-tooltip="{{ t.tooltip_unique }}">
                 <div class="stat-value">{{ '{:,}'.format(stats.unique) }}</div>
                 <div class="stat-label">{{ t.stats_unique_forms }}</div>
             </div>
@@ -157,7 +166,7 @@
                             {% for match in result.matches %}
                             <tr>
                                 <td class="syriac">{{ match.form }}</td>
-                                <td class="translit-cell"><div class="translit-academic">{{ match.transliteration_academic }}</div><div class="translit-simple">{{ match.transliteration }}</div></td>
+                                <td class="translit-cell"><div class="translit-academic">{{ match.transliteration_academic }}</div><div class="translit-simple{% if script == 'hebrew' %} hebrew{% elif script == 'arabic' %} arabic{% endif %}">{{ match.transliteration }}</div></td>
                                 <td class="gloss-cell">{{ match.gloss }}{% if match.stem %} <span class="stem-badge">{{ match.stem }}</span>{% endif %}</td>
                                 <td class="refs">
                                     {% for ref in match.references[:20] %}
@@ -327,8 +336,10 @@
         });
     }
 
+    var currentScript = '{{ script }}';
+
     function fetchVerse(ref, callback) {
-        fetch('/api/verse?ref=' + encodeURIComponent(ref) + '&lang=' + modalLang)
+        fetch('/api/verse?ref=' + encodeURIComponent(ref) + '&lang=' + modalLang + '&script=' + currentScript)
             .then(function(resp) { return resp.json(); })
             .then(callback)
             .catch(function() {
@@ -399,9 +410,17 @@
             acadDiv.innerHTML = buildWordLine(data.words_translit_academic, isOriginal, data.words);
             block.appendChild(acadDiv);
 
-            // Simple transliteration
+            // Simple transliteration (script-aware)
             var translitDiv = document.createElement('div');
             translitDiv.className = 'modal-translit';
+            if (currentScript === 'hebrew' || currentScript === 'arabic') {
+                translitDiv.style.direction = 'rtl';
+                translitDiv.style.textAlign = 'right';
+                translitDiv.style.fontFamily = currentScript === 'hebrew'
+                    ? "'Noto Sans Hebrew', 'David', 'Times New Roman', serif"
+                    : "'Noto Sans Arabic', 'Traditional Arabic', 'Times New Roman', serif";
+                translitDiv.style.fontSize = '1.2em';
+            }
             translitDiv.innerHTML = buildWordLine(data.words_translit, isOriginal, data.words);
             block.appendChild(translitDiv);
 
@@ -588,6 +607,47 @@
             acList.innerHTML = '';
         }
     });
+
+    // --- Settings dropdown ---
+    (function() {
+        var toggle = document.getElementById('settings-toggle');
+        var dropdown = document.getElementById('settings-dropdown');
+        var options = dropdown.querySelectorAll('.settings-option');
+
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+
+        options.forEach(function(opt) {
+            opt.addEventListener('click', function() {
+                var script = this.getAttribute('data-script');
+                localStorage.setItem('script', script);
+                // Update URL with script param and reload
+                var url = new URL(window.location.href);
+                url.searchParams.set('script', script);
+                window.location.href = url.toString();
+            });
+        });
+
+        document.addEventListener('click', function() {
+            dropdown.classList.remove('open');
+        });
+        dropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // On page load, apply stored script preference if no param in URL
+        var urlParams = new URLSearchParams(window.location.search);
+        if (!urlParams.has('script')) {
+            var stored = localStorage.getItem('script');
+            if (stored && stored !== 'latin') {
+                urlParams.set('script', stored);
+                var newUrl = window.location.pathname + '?' + urlParams.toString() + window.location.hash;
+                window.location.replace(newUrl);
+            }
+        }
+    })();
 
     // --- Dark Mode ---
     (function() {

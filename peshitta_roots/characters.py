@@ -180,6 +180,85 @@ SYRIAC_TO_ACADEMIC = {
 }
 
 
+# --- Syriac -> Hebrew script ---
+SYRIAC_TO_HEBREW = {
+    '\u0710': '\u05D0',  # ܐ -> א Alef
+    '\u0712': '\u05D1',  # ܒ -> ב Bet
+    '\u0713': '\u05D2',  # ܓ -> ג Gimel
+    '\u0715': '\u05D3',  # ܕ -> ד Dalet
+    '\u0717': '\u05D4',  # ܗ -> ה He
+    '\u0718': '\u05D5',  # ܘ -> ו Vav
+    '\u0719': '\u05D6',  # ܙ -> ז Zayin
+    '\u071A': '\u05D7',  # ܚ -> ח Het
+    '\u071B': '\u05D8',  # ܛ -> ט Tet
+    '\u071D': '\u05D9',  # ܝ -> י Yod
+    '\u071F': '\u05DB',  # ܟ -> כ Kaf
+    '\u0720': '\u05DC',  # ܠ -> ל Lamed
+    '\u0721': '\u05DE',  # ܡ -> מ Mem
+    '\u0722': '\u05E0',  # ܢ -> נ Nun
+    '\u0723': '\u05E1',  # ܣ -> ס Samekh
+    '\u0725': '\u05E2',  # ܥ -> ע Ayin
+    '\u0726': '\u05E4',  # ܦ -> פ Pe
+    '\u0728': '\u05E6',  # ܨ -> צ Tsadi
+    '\u0729': '\u05E7',  # ܩ -> ק Qof
+    '\u072A': '\u05E8',  # ܪ -> ר Resh
+    '\u072B': '\u05E9',  # ܫ -> ש Shin
+    '\u072C': '\u05EA',  # ܬ -> ת Tav
+}
+
+# --- Syriac -> Arabic script ---
+SYRIAC_TO_ARABIC = {
+    '\u0710': '\u0627',  # ܐ -> ا Alif
+    '\u0712': '\u0628',  # ܒ -> ب Ba
+    '\u0713': '\u062C',  # ܓ -> ج Jim
+    '\u0715': '\u062F',  # ܕ -> د Dal
+    '\u0717': '\u0647',  # ܗ -> ه Ha
+    '\u0718': '\u0648',  # ܘ -> و Waw
+    '\u0719': '\u0632',  # ܙ -> ز Zay
+    '\u071A': '\u062D',  # ܚ -> ح Ha
+    '\u071B': '\u0637',  # ܛ -> ط Ta
+    '\u071D': '\u064A',  # ܝ -> ي Ya
+    '\u071F': '\u0643',  # ܟ -> ك Kaf
+    '\u0720': '\u0644',  # ܠ -> ل Lam
+    '\u0721': '\u0645',  # ܡ -> م Mim
+    '\u0722': '\u0646',  # ܢ -> ن Nun
+    '\u0723': '\u0633',  # ܣ -> س Sin
+    '\u0725': '\u0639',  # ܥ -> ع Ayn
+    '\u0726': '\u0641',  # ܦ -> ف Fa
+    '\u0728': '\u0635',  # ܨ -> ص Sad
+    '\u0729': '\u0642',  # ܩ -> ق Qaf
+    '\u072A': '\u0631',  # ܪ -> ر Ra
+    '\u072B': '\u0634',  # ܫ -> ش Shin
+    '\u072C': '\u062A',  # ܬ -> ت Ta
+}
+
+
+def transliterate_syriac_to_hebrew(text: str) -> str:
+    """Convert Syriac Unicode text to Hebrew script."""
+    result = []
+    for ch in text:
+        if ch in SYRIAC_TO_HEBREW:
+            result.append(SYRIAC_TO_HEBREW[ch])
+        elif ch == ' ':
+            result.append(' ')
+        elif ch == '-':
+            result.append('-')
+    return ''.join(result)
+
+
+def transliterate_syriac_to_arabic(text: str) -> str:
+    """Convert Syriac Unicode text to Arabic script."""
+    result = []
+    for ch in text:
+        if ch in SYRIAC_TO_ARABIC:
+            result.append(SYRIAC_TO_ARABIC[ch])
+        elif ch == ' ':
+            result.append(' ')
+        elif ch == '-':
+            result.append('-')
+    return ''.join(result)
+
+
 def transliterate_syriac_academic(text: str) -> str:
     """Convert Syriac Unicode text to academic/scholarly transliteration."""
     result = []

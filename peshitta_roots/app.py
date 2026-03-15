@@ -5,7 +5,8 @@ import os
 
 from flask import Flask, render_template, request, jsonify
 
-from .characters import parse_root_input, transliterate_syriac, transliterate_syriac_academic
+from .characters import (parse_root_input, transliterate_syriac, transliterate_syriac_academic,
+                         transliterate_syriac_to_hebrew, transliterate_syriac_to_arabic)
 from .corpus import PeshittaCorpus
 from .extractor import RootExtractor
 from .cognates import CognateLookup
@@ -63,6 +64,15 @@ def _init():
     _initialized = True
 
 
+def _get_translit_fn(script: str):
+    """Return the transliteration function for the given script preference."""
+    if script == 'hebrew':
+        return transliterate_syriac_to_hebrew
+    elif script == 'arabic':
+        return transliterate_syriac_to_arabic
+    return transliterate_syriac
+
+
 class _Namespace:
     """Simple namespace to pass translations to templates."""
     def __init__(self, d):
@@ -81,6 +91,10 @@ def index():
 
     query = request.args.get('q', '').strip()
     cognate_word = request.args.get('cw', '').strip()
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic'):
+        script = 'latin'
+    translit_fn = _get_translit_fn(script)
     error = None
     result = None
     disambiguation = None
@@ -157,10 +171,15 @@ def index():
             matches = []
             if root_entry:
                 for m in root_entry.matches:
+                    # Use script-specific transliteration
+                    if script == 'latin':
+                        translit_display = m.transliteration
+                    else:
+                        translit_display = translit_fn(m.form)
                     matches.append({
                         'form': m.form,
                         'transliteration_academic': transliterate_syriac_academic(m.form),
-                        'transliteration': m.transliteration,
+                        'transliteration': translit_display,
                         'gloss': _glosser.gloss(m.form, root_syriac, lang),
                         'stem': _glosser.get_stem(m.form, root_syriac),
                         'count': m.count,
@@ -204,7 +223,8 @@ def index():
                            error=error, result=result, stats=stats,
                            translate_ref=translate_ref,
                            cognate_word=cognate_word,
-                           disambiguation=disambiguation)
+                           disambiguation=disambiguation,
+                           script=script)
 
 
 @app.route('/api/verse')
@@ -221,8 +241,14 @@ def api_verse():
 
     # Build word-level arrays for highlighting
     words = syriac_text.split()
-    words_translit = [transliterate_syriac(w) for w in words]
     words_translit_academic = [transliterate_syriac_academic(w) for w in words]
+
+    # Script-specific transliteration
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic'):
+        script = 'latin'
+    translit_fn = _get_translit_fn(script)
+    words_translit = [translit_fn(w) for w in words]
 
     lang = request.args.get('lang', 'es')
     if lang not in _i18n:
@@ -246,7 +272,7 @@ def api_verse():
         'reference': ref,
         'reference_display': ref_display,
         'syriac': syriac_text,
-        'transliteration': transliterate_syriac(syriac_text),
+        'transliteration': ' '.join(words_translit),
         'words': words,
         'words_translit': words_translit,
         'words_translit_academic': words_translit_academic,
@@ -254,6 +280,7 @@ def api_verse():
         'translation_es': translation_es,
         'prev_ref': prev_ref,
         'next_ref': next_ref,
+        'script': script,
     })
 
 
@@ -364,6 +391,10 @@ def browse():
     if lang not in _i18n:
         lang = 'es'
     t = _Namespace(_i18n[lang])
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic'):
+        script = 'latin'
+    translit_fn = _get_translit_fn(script)
 
     page = request.args.get('page', 1, type=int)
     per_page = 50
@@ -380,6 +411,10 @@ def browse():
     roots_data = []
     for entry in page_roots:
         dash_form = _translit_to_dash(entry.root)
+        if script != 'latin':
+            translit_display = translit_fn(entry.root)
+        else:
+            translit_display = dash_form
         gloss = ''
         cognate_entry = _cognate_lookup.lookup(entry.root)
         if cognate_entry:
@@ -388,7 +423,8 @@ def browse():
             gloss = _extractor.get_root_gloss(entry.root)
         roots_data.append({
             'root': entry.root,
-            'translit': dash_form,
+            'translit': translit_display,
+            'translit_key': dash_form,
             'forms': len(entry.matches),
             'occurrences': entry.total_occurrences,
             'gloss': gloss,
@@ -398,7 +434,7 @@ def browse():
                            t=t, lang=lang,
                            roots=roots_data,
                            page=page, total_pages=total_pages,
-                           total=total)
+                           total=total, script=script)
 
 
 def create_app():

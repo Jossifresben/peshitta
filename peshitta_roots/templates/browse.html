@@ -9,8 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Syriac&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="top-controls">
+    <div class="sticky-header">
         <a href="{{ url_for('index', lang='en' if lang == 'es' else 'es') }}" class="lang-toggle">{{ t.lang_toggle }}</a>
+        <div class="settings-wrapper">
+            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}">&#9881;</button>
+            <div class="settings-dropdown" id="settings-dropdown">
+                <div class="settings-label">{{ t.settings_script }}</div>
+                <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
+                <button class="settings-option{% if script == 'hebrew' %} active{% endif %}" data-script="hebrew">{{ t.settings_hebrew }}</button>
+                <button class="settings-option{% if script == 'arabic' %} active{% endif %}" data-script="arabic">{{ t.settings_arabic }}</button>
+            </div>
+        </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">☀️</button>
     </div>
 
@@ -45,8 +54,8 @@
                     <tbody>
                         {% for root in roots %}
                         <tr>
-                            <td class="syriac"><a href="{{ url_for('index', lang=lang, q=root.translit) }}#results" style="text-decoration: none; color: inherit;">{{ root.root }}</a></td>
-                            <td><a href="{{ url_for('index', lang=lang, q=root.translit) }}#results" class="ac-translit" style="text-decoration: none;">{{ root.translit }}</a></td>
+                            <td class="syriac"><a href="{{ url_for('index', lang=lang, q=root.translit_key) }}#results" style="text-decoration: none; color: inherit;">{{ root.root }}</a></td>
+                            <td class="{% if script == 'hebrew' %}hebrew{% elif script == 'arabic' %}arabic{% else %}ac-translit{% endif %}"><a href="{{ url_for('index', lang=lang, q=root.translit_key) }}#results" style="text-decoration: none; color: inherit;">{{ root.translit }}</a></td>
                             <td class="gloss-cell">{{ root.gloss }}</td>
                             <td>{{ root.forms }}</td>
                             <td><span class="count-badge">{{ root.occurrences }}</span></td>
@@ -83,6 +92,45 @@
     </div>
 
     <script>
+    // --- Settings dropdown ---
+    (function() {
+        var toggle = document.getElementById('settings-toggle');
+        var dropdown = document.getElementById('settings-dropdown');
+        var options = dropdown.querySelectorAll('.settings-option');
+
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+
+        options.forEach(function(opt) {
+            opt.addEventListener('click', function() {
+                var script = this.getAttribute('data-script');
+                localStorage.setItem('script', script);
+                var url = new URL(window.location.href);
+                url.searchParams.set('script', script);
+                window.location.href = url.toString();
+            });
+        });
+
+        document.addEventListener('click', function() {
+            dropdown.classList.remove('open');
+        });
+        dropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        var urlParams = new URLSearchParams(window.location.search);
+        if (!urlParams.has('script')) {
+            var stored = localStorage.getItem('script');
+            if (stored && stored !== 'latin') {
+                urlParams.set('script', stored);
+                var newUrl = window.location.pathname + '?' + urlParams.toString() + window.location.hash;
+                window.location.replace(newUrl);
+            }
+        }
+    })();
+
     // --- Dark Mode ---
     (function() {
         var toggle = document.getElementById('theme-toggle');
