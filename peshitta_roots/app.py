@@ -102,6 +102,10 @@ class _Namespace:
         self.__dict__.update(d)
 
 
+# Eager init for gunicorn --preload
+_init()
+
+
 @app.route('/')
 def index():
     _init()
