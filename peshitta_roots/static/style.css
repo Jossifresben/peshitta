@@ -1398,6 +1398,16 @@ footer a:hover {
 }
 
 /* === Help page === */
+.help-back-link {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.help-back-link:hover {
+    color: var(--accent-dark);
+    text-decoration: underline;
+}
+
 .help-content {
     max-width: 800px;
     margin: 0 auto;
