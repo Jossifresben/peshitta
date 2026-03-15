@@ -13,8 +13,8 @@
         <div class="lang-wrapper">
             <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language"><span class="material-symbols-outlined">captive_portal</span></button>
             <div class="lang-dropdown" id="lang-dropdown">
-                <a href="{{ url_for('browse_roots', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}">ES</a>
-                <a href="{{ url_for('browse_roots', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}">EN</a>
+                <a href="{{ url_for('browse', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}">ES</a>
+                <a href="{{ url_for('browse', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}">EN</a>
             </div>
         </div>
         <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
