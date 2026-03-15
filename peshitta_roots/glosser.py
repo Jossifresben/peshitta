@@ -75,7 +75,7 @@ SUFFIX_GLOSSES = {
 }
 
 
-def detect_verb_stem(prefixes_removed: list[str], stem: str, root_syriac: str) -> str | None:
+def detect_verb_stem(prefixes_removed: list[str], suffixes_removed: list[str], stem: str, root_syriac: str) -> str | None:
     """Detect the Syriac verb stem based on prefix heuristics.
 
     Returns stem name or None if uncertain.
@@ -110,11 +110,44 @@ def detect_verb_stem(prefixes_removed: list[str], stem: str, root_syriac: str) -
     # Don't label a stem for participles — they're marked [ptcp] already
 
     # No verbal prefix and form is just the root (± state markers) → Peal
+    # BUT only if the suffixes are verbal (not nominal state markers)
     if not verbal_prefixes:
         stem_consonants = syriac_consonants_of(stem)
         root_consonants = syriac_consonants_of(root_syriac)
         if stem_consonants == root_consonants:
-            return 'Peal'
+            # Check if any suffix indicates a noun/adjective (not a verb)
+            nominal_suffixes = {
+                '\u0718\u072C\u0710',   # ܘܬܐ abstract noun
+                '\u0718\u072C\u0717',   # ܘܬܗ abstract + 3ms
+                '\u072C\u0710',         # ܬܐ feminine noun
+                '\u0710',               # ܐ emphatic state (noun marker)
+                '\u071D\u0722',         # ܝܢ plural (noun)
+            }
+            # Verbal suffixes that DO indicate a verb
+            verbal_suffixes = {
+                '\u072C\u0718\u0722',   # ܬܘܢ 2mp
+                '\u072C\u071D\u0722',   # ܬܝܢ 2fp
+                '\u071D\u072C\u0717',   # ܝܬܗ 3ms obj
+                '\u0722\u0722',         # ܢܢ 1cp
+                '\u0722\u071D',         # ܢܝ 1s obj
+                '\u072C',              # ܬ perfect
+                '\u0718',              # ܘ 3mp perfect
+            }
+            has_nominal = any(s in nominal_suffixes for s in suffixes_removed)
+            has_verbal = any(s in verbal_suffixes for s in suffixes_removed)
+
+            # If it has nominal suffixes and no verbal ones, it's a noun
+            if has_nominal and not has_verbal:
+                return None
+            # If it has verbal suffixes → Peal verb
+            if has_verbal:
+                return 'Peal'
+            # Bare root with no suffixes — only label Peal if there are
+            # no proclitics either (pure bare form = likely 3ms perfect)
+            if not suffixes_removed and not prefixes_removed:
+                return 'Peal'
+            # With proclitics but no suffixes → ambiguous (noun or verb)
+            return None
 
     return None
 
@@ -210,7 +243,7 @@ class WordGlosser:
         if best is None:
             return None
 
-        return detect_verb_stem(best.prefixes_removed, best.stem, root_syriac)
+        return detect_verb_stem(best.prefixes_removed, best.suffixes_removed, best.stem, root_syriac)
 
     def _find_best_parse(self, candidates, root_syriac: str):
         """Find the StrippingResult whose stem consonants best match the root.

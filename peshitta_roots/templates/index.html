@@ -45,7 +45,7 @@
 
             <!-- Root search panel -->
             <div id="panel-root" class="search-panel">
-                <form method="GET" action="{{ url_for('index') }}">
+                <form method="GET" action="{{ url_for('index') }}#results">
                     <input type="hidden" name="lang" value="{{ lang }}">
                     <div class="search-row">
                         <div class="autocomplete-wrapper">
@@ -88,7 +88,7 @@
 
             <!-- Cognate word search panel -->
             <div id="panel-cognate" class="search-panel" style="display:none;">
-                <form method="GET" action="{{ url_for('index') }}">
+                <form method="GET" action="{{ url_for('index') }}#results">
                     <input type="hidden" name="lang" value="{{ lang }}">
                     <div class="search-row">
                         <input type="text" id="cognate-input" name="cw" value="{{ cognate_word or '' }}"
@@ -122,7 +122,7 @@
         {% endif %}
 
         {% if result %}
-        <div class="results-section">
+        <div id="results" class="results-section">
             <!-- Root header -->
             <div class="root-header">
                 <div class="root-header-top">
