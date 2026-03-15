@@ -448,13 +448,20 @@
             var data = modalVerses[v];
             // Syriac text
             lines.push(data.words.join(' '));
+            lines.push('');
             // Academic transliteration
             lines.push(data.words_translit_academic.join(' '));
+            lines.push('');
             // Simple transliteration
             lines.push(data.words_translit.join(' '));
+            lines.push('');
             // Translation
             var translation = (modalLang === 'es') ? data.translation_es : data.translation_en;
-            if (translation) lines.push(translation);
+            if (translation) {
+                lines.push(translation);
+                lines.push('');
+            }
+            lines.push('---');
             lines.push('');
         }
         var text = lines.join('\n').trim();
