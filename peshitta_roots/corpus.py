@@ -30,7 +30,7 @@ class PeshittaCorpus:
         self._occurrences: dict[str, list[WordOccurrence]] = {}
         self._all_words: list[WordOccurrence] = []
         self._verses: dict[str, str] = {}  # reference -> syriac text
-        self._translations: dict | None = None  # lazy-loaded from translations.json
+        self._translations: dict[str, dict] = {}  # lang -> {ref: text}, lazy-loaded per language
         self._loaded = False
 
     def load(self) -> None:
@@ -185,16 +185,15 @@ class PeshittaCorpus:
         return None
 
     def get_verse_translation(self, reference: str, lang: str) -> str:
-        """Return a verse translation (en or es) from translations.json."""
-        if self._translations is None:
-            translations_path = os.path.join(
+        """Return a verse translation from per-language translation files."""
+        if lang not in self._translations:
+            lang_path = os.path.join(
                 os.path.dirname(os.path.dirname(__file__)),
-                'data', 'translations.json'
+                'data', f'translations_{lang}.json'
             )
-            if os.path.exists(translations_path):
-                with open(translations_path, 'r', encoding='utf-8') as f:
-                    self._translations = json.load(f)
+            if os.path.exists(lang_path):
+                with open(lang_path, 'r', encoding='utf-8') as f:
+                    self._translations[lang] = json.load(f)
             else:
-                self._translations = {}
-        entry = self._translations.get(reference, {})
-        return entry.get(lang, '')
+                self._translations[lang] = {}
+        return self._translations.get(lang, {}).get(reference, '')
