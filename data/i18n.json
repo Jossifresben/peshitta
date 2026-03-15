@@ -49,6 +49,7 @@
     "browse_page_of": "Página {page} de {total}",
     "gloss_label": "Significado de la raíz",
     "translation_label": "Traducción",
+    "modal_loading": "Cargando...",
     "book_names": {
       "Matthew": "Mateo",
       "Mark": "Marcos",
@@ -124,6 +125,7 @@
     "browse_page_of": "Page {page} of {total}",
     "gloss_label": "Root meaning",
     "translation_label": "Translation",
+    "modal_loading": "Loading...",
     "book_names": {
       "Matthew": "Matthew",
       "Mark": "Mark",

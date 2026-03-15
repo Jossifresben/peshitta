@@ -161,7 +161,7 @@
                                 <td class="gloss-cell">{{ match.gloss }}{% if match.stem %} <span class="stem-badge">{{ match.stem }}</span>{% endif %}</td>
                                 <td class="refs">
                                     {% for ref in match.references[:20] %}
-                                    <span class="ref-link" data-ref="{{ ref }}" data-form="{{ match.form }}" onclick="showVerse(this)">{{ translate_ref(ref) }}</span>
+                                    <span class="ref-link" data-ref="{{ ref }}" data-form="{{ match.form }}" data-root="{{ result.root }}" data-root-translit="{{ result.root_translit }}" onclick="showVerse(this)">{{ translate_ref(ref) }}</span>
                                     {% endfor %}
                                     {% if match.references|length > 20 %}
                                     <span class="ref-more">... +{{ match.references|length - 20 }}</span>
@@ -260,7 +260,7 @@
             <button class="modal-nav-arrow" id="nav-prev" onclick="navigateVerse(-1)" disabled>&#9650;</button>
             <div id="modal-verses-container"></div>
             <button class="modal-nav-arrow" id="nav-next" onclick="navigateVerse(1)" disabled>&#9660;</button>
-            <div class="modal-loading" id="modal-loading">Loading...</div>
+            <div class="modal-loading" id="modal-loading">{{ t.modal_loading }}</div>
         </div>
     </div>
 
@@ -295,11 +295,18 @@
     var modalLang = '{{ lang }}';
     var MAX_VERSES = 4;
 
+    var modalRootLabel = '';  // root label for modal header
+
     function showVerse(el) {
         var ref = el.getAttribute('data-ref');
         highlightForm = el.getAttribute('data-form');
         originalRef = ref;
         modalVerses = [];
+
+        // Capture root info for display
+        var rootSyriac = el.getAttribute('data-root') || '';
+        var rootTranslit = el.getAttribute('data-root-translit') || '';
+        modalRootLabel = rootSyriac ? (rootSyriac + ' (' + rootTranslit + ')') : '';
 
         var modal = document.getElementById('verse-modal');
         var loadingEl = document.getElementById('modal-loading');
@@ -362,6 +369,9 @@
         var firstDisplay = modalVerses[0].reference_display;
         var lastDisplay = modalVerses[modalVerses.length - 1].reference_display;
         var refText = formatRefRange(firstDisplay, lastDisplay);
+        if (modalRootLabel) {
+            refText = modalRootLabel + '  ·  ' + refText;
+        }
         document.getElementById('modal-ref').textContent = refText;
 
         // Render each verse
