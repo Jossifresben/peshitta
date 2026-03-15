@@ -791,6 +791,19 @@ footer {
     margin-bottom: 6px;
 }
 
+.footer-repo {
+    margin-bottom: 6px;
+}
+
+.footer-repo a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.footer-repo a:hover {
+    text-decoration: underline;
+}
+
 .footer-links {
     display: flex;
     justify-content: center;

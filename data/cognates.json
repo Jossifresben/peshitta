@@ -7326,6 +7326,2333 @@
           "meaning_en": "shield"
         }
       ]
+    },
+    "q-y-m": {
+      "root_syriac": "ܩܝܡ",
+      "gloss_es": "levantarse, estar de pie",
+      "gloss_en": "stand, rise",
+      "hebrew": [
+        {
+          "word": "קוּם",
+          "transliteration": "qum",
+          "meaning_es": "levantarse",
+          "meaning_en": "to rise"
+        },
+        {
+          "word": "קִיּוּם",
+          "transliteration": "qiyum",
+          "meaning_es": "existencia",
+          "meaning_en": "existence"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "قَامَ",
+          "transliteration": "qāma",
+          "meaning_es": "levantarse",
+          "meaning_en": "to stand"
+        }
+      ]
+    },
+    "q-r-y": {
+      "root_syriac": "ܩܪܝ",
+      "gloss_es": "llamar, leer",
+      "gloss_en": "call, read",
+      "hebrew": [
+        {
+          "word": "קָרָא",
+          "transliteration": "qara",
+          "meaning_es": "llamar",
+          "meaning_en": "to call"
+        },
+        {
+          "word": "מִקְרָא",
+          "transliteration": "miqra",
+          "meaning_es": "lectura",
+          "meaning_en": "reading"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "قَرَأَ",
+          "transliteration": "qaraʾa",
+          "meaning_es": "leer",
+          "meaning_en": "to read"
+        }
+      ]
+    },
+    "m-l-y": {
+      "root_syriac": "ܡܠܝ",
+      "gloss_es": "llenar",
+      "gloss_en": "fill",
+      "hebrew": [
+        {
+          "word": "מָלֵא",
+          "transliteration": "male",
+          "meaning_es": "lleno",
+          "meaning_en": "full"
+        },
+        {
+          "word": "מִלֵּא",
+          "transliteration": "mille",
+          "meaning_es": "llenar",
+          "meaning_en": "to fill"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "مَلَأَ",
+          "transliteration": "malaʾa",
+          "meaning_es": "llenar",
+          "meaning_en": "to fill"
+        }
+      ]
+    },
+    "p-g-r": {
+      "root_syriac": "ܦܓܪ",
+      "gloss_es": "cuerpo",
+      "gloss_en": "body",
+      "hebrew": [
+        {
+          "word": "פֶּגֶר",
+          "transliteration": "peger",
+          "meaning_es": "cadáver",
+          "meaning_en": "corpse"
+        }
+      ],
+      "arabic": []
+    },
+    "y-th-r": {
+      "root_syriac": "ܝܬܪ",
+      "gloss_es": "quedar, sobrar",
+      "gloss_en": "remain, be left over",
+      "hebrew": [
+        {
+          "word": "יָתַר",
+          "transliteration": "yatar",
+          "meaning_es": "sobrar",
+          "meaning_en": "to remain"
+        },
+        {
+          "word": "יֶתֶר",
+          "transliteration": "yeter",
+          "meaning_es": "resto",
+          "meaning_en": "remainder"
+        }
+      ],
+      "arabic": []
+    },
+    "k-a-p": {
+      "root_syriac": "ܟܐܦ",
+      "gloss_es": "roca, piedra",
+      "gloss_en": "rock, stone",
+      "hebrew": [
+        {
+          "word": "כֵּף",
+          "transliteration": "kef",
+          "meaning_es": "roca",
+          "meaning_en": "rock"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "كَهْف",
+          "transliteration": "kahf",
+          "meaning_es": "cueva",
+          "meaning_en": "cave"
+        }
+      ]
+    },
+    "q-d-m": {
+      "root_syriac": "ܩܕܡ",
+      "gloss_es": "antes, frente, preceder",
+      "gloss_en": "before, front, precede",
+      "hebrew": [
+        {
+          "word": "קָדַם",
+          "transliteration": "qadam",
+          "meaning_es": "preceder",
+          "meaning_en": "to precede"
+        },
+        {
+          "word": "קֶדֶם",
+          "transliteration": "qedem",
+          "meaning_es": "antiguo",
+          "meaning_en": "ancient"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "قَدَّمَ",
+          "transliteration": "qaddama",
+          "meaning_es": "presentar",
+          "meaning_en": "to present"
+        },
+        {
+          "word": "قَدِيم",
+          "transliteration": "qadīm",
+          "meaning_es": "antiguo",
+          "meaning_en": "ancient"
+        }
+      ]
+    },
+    "r-m-y": {
+      "root_syriac": "ܪܡܝ",
+      "gloss_es": "lanzar, arrojar",
+      "gloss_en": "throw, cast",
+      "hebrew": [
+        {
+          "word": "רָמָה",
+          "transliteration": "rama",
+          "meaning_es": "lanzar",
+          "meaning_en": "to throw"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "رَمَى",
+          "transliteration": "ramā",
+          "meaning_es": "lanzar",
+          "meaning_en": "to throw"
+        }
+      ]
+    },
+    "T-w-b": {
+      "root_syriac": "ܛܘܒ",
+      "gloss_es": "bueno, bienaventurado",
+      "gloss_en": "good, blessed",
+      "hebrew": [
+        {
+          "word": "טוֹב",
+          "transliteration": "tov",
+          "meaning_es": "bueno",
+          "meaning_en": "good"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "طَابَ",
+          "transliteration": "ṭāba",
+          "meaning_es": "ser bueno",
+          "meaning_en": "to be good"
+        },
+        {
+          "word": "طَيِّب",
+          "transliteration": "ṭayyib",
+          "meaning_es": "bueno",
+          "meaning_en": "good"
+        }
+      ]
+    },
+    "a-th-r": {
+      "root_syriac": "ܐܬܪ",
+      "gloss_es": "lugar, tierra",
+      "gloss_en": "place, land",
+      "hebrew": [
+        {
+          "word": "אֲתַר",
+          "transliteration": "atar",
+          "meaning_es": "lugar",
+          "meaning_en": "place"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "أَثَر",
+          "transliteration": "athar",
+          "meaning_es": "huella",
+          "meaning_en": "trace"
+        }
+      ]
+    },
+    "b-s-r": {
+      "root_syriac": "ܒܣܪ",
+      "gloss_es": "carne",
+      "gloss_en": "flesh, meat",
+      "hebrew": [
+        {
+          "word": "בָּשָׂר",
+          "transliteration": "basar",
+          "meaning_es": "carne",
+          "meaning_en": "flesh"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "بَشَرَة",
+          "transliteration": "bashara",
+          "meaning_es": "piel",
+          "meaning_en": "skin"
+        },
+        {
+          "word": "بَشَر",
+          "transliteration": "bashar",
+          "meaning_es": "humanidad",
+          "meaning_en": "humanity"
+        }
+      ]
+    },
+    "k-a-n": {
+      "root_syriac": "ܟܐܢ",
+      "gloss_es": "justo, recto",
+      "gloss_en": "just, righteous",
+      "hebrew": [
+        {
+          "word": "כֵּן",
+          "transliteration": "ken",
+          "meaning_es": "honesto",
+          "meaning_en": "honest"
+        }
+      ],
+      "arabic": []
+    },
+    "s-y-m": {
+      "root_syriac": "ܣܝܡ",
+      "gloss_es": "poner, colocar",
+      "gloss_en": "place, put",
+      "hebrew": [
+        {
+          "word": "שִׂים",
+          "transliteration": "sim",
+          "meaning_es": "poner",
+          "meaning_en": "to put"
+        }
+      ],
+      "arabic": []
+    },
+    "l-kh-m": {
+      "root_syriac": "ܠܚܡ",
+      "gloss_es": "pan, luchar",
+      "gloss_en": "bread, fight",
+      "hebrew": [
+        {
+          "word": "לֶחֶם",
+          "transliteration": "lekhem",
+          "meaning_es": "pan",
+          "meaning_en": "bread"
+        },
+        {
+          "word": "לָחַם",
+          "transliteration": "lakham",
+          "meaning_es": "luchar",
+          "meaning_en": "to fight"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "لَحْم",
+          "transliteration": "laḥm",
+          "meaning_es": "carne",
+          "meaning_en": "meat"
+        }
+      ]
+    },
+    "r-b-y": {
+      "root_syriac": "ܪܒܝ",
+      "gloss_es": "grande, mucho, rabí",
+      "gloss_en": "great, many, rabbi",
+      "hebrew": [
+        {
+          "word": "רַב",
+          "transliteration": "rav",
+          "meaning_es": "grande",
+          "meaning_en": "great"
+        },
+        {
+          "word": "רַבִּי",
+          "transliteration": "rabbi",
+          "meaning_es": "mi maestro",
+          "meaning_en": "my master"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "رَبّ",
+          "transliteration": "rabb",
+          "meaning_es": "señor",
+          "meaning_en": "lord"
+        },
+        {
+          "word": "رَبِيع",
+          "transliteration": "rabīʿ",
+          "meaning_es": "primavera",
+          "meaning_en": "spring"
+        }
+      ]
+    },
+    "r-y-m": {
+      "root_syriac": "ܪܝܡ",
+      "gloss_es": "ser alto, exaltar",
+      "gloss_en": "be high, exalt",
+      "hebrew": [
+        {
+          "word": "רוּם",
+          "transliteration": "rum",
+          "meaning_es": "elevar",
+          "meaning_en": "to be high"
+        },
+        {
+          "word": "רָם",
+          "transliteration": "ram",
+          "meaning_es": "alto",
+          "meaning_en": "high"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "رَامَ",
+          "transliteration": "rāma",
+          "meaning_es": "desear",
+          "meaning_en": "to desire"
+        }
+      ]
+    },
+    "q-l-l": {
+      "root_syriac": "ܩܠܠ",
+      "gloss_es": "voz, sonido",
+      "gloss_en": "voice, sound",
+      "hebrew": [
+        {
+          "word": "קוֹל",
+          "transliteration": "qol",
+          "meaning_es": "voz",
+          "meaning_en": "voice"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "قَالَ",
+          "transliteration": "qāla",
+          "meaning_es": "decir",
+          "meaning_en": "to say"
+        }
+      ]
+    },
+    "kh-T-y": {
+      "root_syriac": "ܚܛܝ",
+      "gloss_es": "pecar",
+      "gloss_en": "sin",
+      "hebrew": [
+        {
+          "word": "חָטָא",
+          "transliteration": "khata",
+          "meaning_es": "pecar",
+          "meaning_en": "to sin"
+        },
+        {
+          "word": "חֵטְא",
+          "transliteration": "khet",
+          "meaning_es": "pecado",
+          "meaning_en": "sin"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "خَطَأ",
+          "transliteration": "khaṭaʾ",
+          "meaning_es": "error",
+          "meaning_en": "mistake"
+        }
+      ]
+    },
+    "T-l-y": {
+      "root_syriac": "ܛܠܝ",
+      "gloss_es": "niño, joven",
+      "gloss_en": "child, youth",
+      "hebrew": [
+        {
+          "word": "טַלֶּה",
+          "transliteration": "taleh",
+          "meaning_es": "cordero",
+          "meaning_en": "lamb"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "طِفْل",
+          "transliteration": "ṭifl",
+          "meaning_es": "niño",
+          "meaning_en": "child"
+        }
+      ]
+    },
+    "e-w-l": {
+      "root_syriac": "ܥܘܠ",
+      "gloss_es": "entrar",
+      "gloss_en": "enter",
+      "hebrew": [
+        {
+          "word": "עוֹל",
+          "transliteration": "ol",
+          "meaning_es": "yugo",
+          "meaning_en": "yoke"
+        }
+      ],
+      "arabic": []
+    },
+    "y-m-n": {
+      "root_syriac": "ܝܡܢ",
+      "gloss_es": "mano derecha",
+      "gloss_en": "right hand",
+      "hebrew": [
+        {
+          "word": "יָמִין",
+          "transliteration": "yamin",
+          "meaning_es": "derecha",
+          "meaning_en": "right"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "يَمِين",
+          "transliteration": "yamīn",
+          "meaning_es": "derecha",
+          "meaning_en": "right"
+        }
+      ]
+    },
+    "T-w-r": {
+      "root_syriac": "ܛܘܪ",
+      "gloss_es": "montaña",
+      "gloss_en": "mountain",
+      "hebrew": [
+        {
+          "word": "צוּר",
+          "transliteration": "tsur",
+          "meaning_es": "roca",
+          "meaning_en": "rock"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "طُور",
+          "transliteration": "ṭūr",
+          "meaning_es": "montaña",
+          "meaning_en": "mountain"
+        }
+      ]
+    },
+    "y-q-r": {
+      "root_syriac": "ܝܩܪ",
+      "gloss_es": "honor, pesado",
+      "gloss_en": "honor, heavy",
+      "hebrew": [
+        {
+          "word": "יָקָר",
+          "transliteration": "yaqar",
+          "meaning_es": "precioso",
+          "meaning_en": "precious"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "وَقَارَ",
+          "transliteration": "waqāra",
+          "meaning_es": "dignidad",
+          "meaning_en": "dignity"
+        }
+      ]
+    },
+    "k-y-l": {
+      "root_syriac": "ܟܝܠ",
+      "gloss_es": "medir",
+      "gloss_en": "measure",
+      "hebrew": [],
+      "arabic": [
+        {
+          "word": "كَالَ",
+          "transliteration": "kāla",
+          "meaning_es": "medir",
+          "meaning_en": "to measure"
+        }
+      ]
+    },
+    "a-l-p": {
+      "root_syriac": "ܐܠܦ",
+      "gloss_es": "aprender, enseñar; mil",
+      "gloss_en": "learn, teach; thousand",
+      "hebrew": [
+        {
+          "word": "אֶלֶף",
+          "transliteration": "elef",
+          "meaning_es": "mil",
+          "meaning_en": "thousand"
+        },
+        {
+          "word": "אָלַף",
+          "transliteration": "alaf",
+          "meaning_es": "enseñar",
+          "meaning_en": "to teach"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "أَلْف",
+          "transliteration": "alf",
+          "meaning_es": "mil",
+          "meaning_en": "thousand"
+        }
+      ]
+    },
+    "k-s-y": {
+      "root_syriac": "ܟܣܝ",
+      "gloss_es": "cubrir, ocultar",
+      "gloss_en": "cover, hide",
+      "hebrew": [
+        {
+          "word": "כָּסָה",
+          "transliteration": "kasa",
+          "meaning_es": "cubrir",
+          "meaning_en": "to cover"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "كَسَا",
+          "transliteration": "kasā",
+          "meaning_es": "vestir",
+          "meaning_en": "to clothe"
+        }
+      ]
+    },
+    "s-k-l": {
+      "root_syriac": "ܣܟܠ",
+      "gloss_es": "entender, ser necio",
+      "gloss_en": "understand, be foolish",
+      "hebrew": [
+        {
+          "word": "שָׂכַל",
+          "transliteration": "sakal",
+          "meaning_es": "entender",
+          "meaning_en": "to understand"
+        },
+        {
+          "word": "סָכָל",
+          "transliteration": "sakal",
+          "meaning_es": "necio",
+          "meaning_en": "fool"
+        }
+      ],
+      "arabic": []
+    },
+    "sh-r-y": {
+      "root_syriac": "ܫܪܝ",
+      "gloss_es": "comenzar, habitar, soltar",
+      "gloss_en": "begin, dwell, loosen",
+      "hebrew": [
+        {
+          "word": "שָׁרָה",
+          "transliteration": "shara",
+          "meaning_es": "morar",
+          "meaning_en": "to dwell"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "شَرَعَ",
+          "transliteration": "sharaʿa",
+          "meaning_es": "comenzar",
+          "meaning_en": "to begin"
+        }
+      ]
+    },
+    "b-e-y": {
+      "root_syriac": "ܒܥܝ",
+      "gloss_es": "buscar, pedir",
+      "gloss_en": "seek, ask",
+      "hebrew": [
+        {
+          "word": "בָּעָה",
+          "transliteration": "baa",
+          "meaning_es": "buscar",
+          "meaning_en": "to seek"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "بَغَى",
+          "transliteration": "baghā",
+          "meaning_es": "desear",
+          "meaning_en": "to desire"
+        }
+      ]
+    },
+    "s-n-q": {
+      "root_syriac": "ܣܢܩ",
+      "gloss_es": "necesitar",
+      "gloss_en": "need",
+      "hebrew": [],
+      "arabic": []
+    },
+    "m-r-e": {
+      "root_syriac": "ܡܪܥ",
+      "gloss_es": "enfermo, enfermedad",
+      "gloss_en": "sick, disease",
+      "hebrew": [],
+      "arabic": [
+        {
+          "word": "مَرِضَ",
+          "transliteration": "mariḍa",
+          "meaning_es": "enfermarse",
+          "meaning_en": "to be sick"
+        }
+      ]
+    },
+    "s-e-r": {
+      "root_syriac": "ܣܥܪ",
+      "gloss_es": "hacer, visitar, cabello",
+      "gloss_en": "do, visit, hair",
+      "hebrew": [
+        {
+          "word": "שֵׂעָר",
+          "transliteration": "sear",
+          "meaning_es": "cabello",
+          "meaning_en": "hair"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "شَعْر",
+          "transliteration": "shaʿr",
+          "meaning_es": "cabello",
+          "meaning_en": "hair"
+        }
+      ]
+    },
+    "d-n-kh": {
+      "root_syriac": "ܕܢܚ",
+      "gloss_es": "brillar, amanecer",
+      "gloss_en": "shine, dawn",
+      "hebrew": [],
+      "arabic": []
+    },
+    "k-r-k": {
+      "root_syriac": "ܟܪܟ",
+      "gloss_es": "rodear, ciudad",
+      "gloss_en": "surround, city",
+      "hebrew": [
+        {
+          "word": "כָּרַךְ",
+          "transliteration": "karakh",
+          "meaning_es": "envolver",
+          "meaning_en": "to wrap"
+        }
+      ],
+      "arabic": []
+    },
+    "p-r-e": {
+      "root_syriac": "ܦܪܥ",
+      "gloss_es": "pagar, dar fruto",
+      "gloss_en": "repay, bear fruit",
+      "hebrew": [
+        {
+          "word": "פָּרַע",
+          "transliteration": "para",
+          "meaning_es": "pagar",
+          "meaning_en": "to pay"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "فَرَعَ",
+          "transliteration": "faraʿa",
+          "meaning_es": "ramificar",
+          "meaning_en": "to branch"
+        }
+      ]
+    },
+    "sh-w-th": {
+      "root_syriac": "ܫܘܬ",
+      "gloss_es": "igual, digno",
+      "gloss_en": "equal, worthy",
+      "hebrew": [
+        {
+          "word": "שָׁוָה",
+          "transliteration": "shava",
+          "meaning_es": "ser igual",
+          "meaning_en": "to be equal"
+        }
+      ],
+      "arabic": []
+    },
+    "n-kh-r": {
+      "root_syriac": "ܢܟܪ",
+      "gloss_es": "extranjero, extraño",
+      "gloss_en": "foreign, strange",
+      "hebrew": [
+        {
+          "word": "נָכְרִי",
+          "transliteration": "nokhri",
+          "meaning_es": "extranjero",
+          "meaning_en": "foreign"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "نَكِرَ",
+          "transliteration": "nakira",
+          "meaning_es": "desconocer",
+          "meaning_en": "to not recognize"
+        }
+      ]
+    },
+    "e-n-y": {
+      "root_syriac": "ܥܢܝ",
+      "gloss_es": "responder",
+      "gloss_en": "answer",
+      "hebrew": [
+        {
+          "word": "עָנָה",
+          "transliteration": "ana",
+          "meaning_es": "responder",
+          "meaning_en": "to answer"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "عَنَى",
+          "transliteration": "ʿanā",
+          "meaning_es": "significar",
+          "meaning_en": "to mean"
+        }
+      ]
+    },
+    "ts-l-y": {
+      "root_syriac": "ܨܠܝ",
+      "gloss_es": "orar, crucificar",
+      "gloss_en": "pray, crucify",
+      "hebrew": [
+        {
+          "word": "צָלָה",
+          "transliteration": "tsala",
+          "meaning_es": "asar",
+          "meaning_en": "to roast"
+        },
+        {
+          "word": "צְלִיבָה",
+          "transliteration": "tsliva",
+          "meaning_es": "crucifixión",
+          "meaning_en": "crucifixion"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "صَلَّى",
+          "transliteration": "ṣallā",
+          "meaning_es": "orar",
+          "meaning_en": "to pray"
+        }
+      ]
+    },
+    "kh-r-p": {
+      "root_syriac": "ܚܪܦ",
+      "gloss_es": "reprochar, invierno",
+      "gloss_en": "reproach, winter",
+      "hebrew": [
+        {
+          "word": "חָרַף",
+          "transliteration": "kharaf",
+          "meaning_es": "reprochar",
+          "meaning_en": "to reproach"
+        },
+        {
+          "word": "חֹרֶף",
+          "transliteration": "khoref",
+          "meaning_es": "invierno",
+          "meaning_en": "winter"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "خَرِيف",
+          "transliteration": "kharīf",
+          "meaning_es": "otoño",
+          "meaning_en": "autumn"
+        }
+      ]
+    },
+    "d-m-kh": {
+      "root_syriac": "ܕܡܟ",
+      "gloss_es": "dormir",
+      "gloss_en": "sleep",
+      "hebrew": [],
+      "arabic": []
+    },
+    "sh-l-y": {
+      "root_syriac": "ܫܠܝ",
+      "gloss_es": "callar, cesar",
+      "gloss_en": "be quiet, cease",
+      "hebrew": [
+        {
+          "word": "שָׁלָה",
+          "transliteration": "shala",
+          "meaning_es": "estar tranquilo",
+          "meaning_en": "to be at ease"
+        }
+      ],
+      "arabic": []
+    },
+    "k-n-y": {
+      "root_syriac": "ܟܢܝ",
+      "gloss_es": "reunir, llamar",
+      "gloss_en": "gather, call by name",
+      "hebrew": [
+        {
+          "word": "כָּנָה",
+          "transliteration": "kana",
+          "meaning_es": "dar título",
+          "meaning_en": "to give title"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "كَنَى",
+          "transliteration": "kanā",
+          "meaning_es": "llamar",
+          "meaning_en": "to surname"
+        }
+      ]
+    },
+    "s-m-k": {
+      "root_syriac": "ܣܡܟ",
+      "gloss_es": "apoyar, reclinarse, ordenar",
+      "gloss_en": "support, lean, ordain",
+      "hebrew": [
+        {
+          "word": "סָמַךְ",
+          "transliteration": "samakh",
+          "meaning_es": "apoyar",
+          "meaning_en": "to support"
+        }
+      ],
+      "arabic": []
+    },
+    "kh-w-y": {
+      "root_syriac": "ܚܘܝ",
+      "gloss_es": "mostrar, declarar",
+      "gloss_en": "show, declare",
+      "hebrew": [
+        {
+          "word": "חָוָה",
+          "transliteration": "khava",
+          "meaning_es": "mostrar",
+          "meaning_en": "to show"
+        }
+      ],
+      "arabic": []
+    },
+    "z-w-g": {
+      "root_syriac": "ܙܘܓ",
+      "gloss_es": "par, casar",
+      "gloss_en": "pair, marry",
+      "hebrew": [
+        {
+          "word": "זוּג",
+          "transliteration": "zug",
+          "meaning_es": "par",
+          "meaning_en": "pair"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "زَوْج",
+          "transliteration": "zawj",
+          "meaning_es": "esposo, par",
+          "meaning_en": "spouse, pair"
+        }
+      ]
+    },
+    "b-kh-r": {
+      "root_syriac": "ܒܟܪ",
+      "gloss_es": "primogénito",
+      "gloss_en": "firstborn",
+      "hebrew": [
+        {
+          "word": "בְּכוֹר",
+          "transliteration": "bekhor",
+          "meaning_es": "primogénito",
+          "meaning_en": "firstborn"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "بِكْر",
+          "transliteration": "bikr",
+          "meaning_es": "primogénito",
+          "meaning_en": "firstborn"
+        }
+      ]
+    },
+    "g-d-l": {
+      "root_syriac": "ܓܕܠ",
+      "gloss_es": "crecer, ser grande",
+      "gloss_en": "grow, be great",
+      "hebrew": [
+        {
+          "word": "גָּדַל",
+          "transliteration": "gadal",
+          "meaning_es": "crecer",
+          "meaning_en": "to grow"
+        },
+        {
+          "word": "גָּדוֹל",
+          "transliteration": "gadol",
+          "meaning_es": "grande",
+          "meaning_en": "great"
+        }
+      ],
+      "arabic": []
+    },
+    "sh-w-y": {
+      "root_syriac": "ܫܘܝ",
+      "gloss_es": "ser igual, digno",
+      "gloss_en": "be equal, worthy",
+      "hebrew": [
+        {
+          "word": "שָׁוָה",
+          "transliteration": "shava",
+          "meaning_es": "ser igual",
+          "meaning_en": "to be equal"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "سَوَّى",
+          "transliteration": "sawwā",
+          "meaning_es": "igualar",
+          "meaning_en": "to equalize"
+        }
+      ]
+    },
+    "ts-b-y": {
+      "root_syriac": "ܨܒܝ",
+      "gloss_es": "desear, querer",
+      "gloss_en": "wish, desire",
+      "hebrew": [
+        {
+          "word": "צָבָה",
+          "transliteration": "tsava",
+          "meaning_es": "desear",
+          "meaning_en": "to desire"
+        }
+      ],
+      "arabic": []
+    },
+    "g-b-y": {
+      "root_syriac": "ܓܒܝ",
+      "gloss_es": "elegir, escoger",
+      "gloss_en": "choose, elect",
+      "hebrew": [],
+      "arabic": [
+        {
+          "word": "جَبَى",
+          "transliteration": "jabā",
+          "meaning_es": "recolectar",
+          "meaning_en": "to collect"
+        }
+      ]
+    },
+    "n-sh-a": {
+      "root_syriac": "ܢܫܐ",
+      "gloss_es": "mujeres",
+      "gloss_en": "women",
+      "hebrew": [
+        {
+          "word": "נָשִׁים",
+          "transliteration": "nashim",
+          "meaning_es": "mujeres",
+          "meaning_en": "women"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "نِسَاء",
+          "transliteration": "nisāʾ",
+          "meaning_es": "mujeres",
+          "meaning_en": "women"
+        }
+      ]
+    },
+    "r-sh-y": {
+      "root_syriac": "ܪܫܝ",
+      "gloss_es": "malvado",
+      "gloss_en": "wicked",
+      "hebrew": [
+        {
+          "word": "רָשָׁע",
+          "transliteration": "rasha",
+          "meaning_es": "malvado",
+          "meaning_en": "wicked"
+        }
+      ],
+      "arabic": []
+    },
+    "kh-z-q": {
+      "root_syriac": "ܚܙܩ",
+      "gloss_es": "ser fuerte, ceñir",
+      "gloss_en": "be strong, gird",
+      "hebrew": [
+        {
+          "word": "חָזַק",
+          "transliteration": "khazaq",
+          "meaning_es": "ser fuerte",
+          "meaning_en": "to be strong"
+        }
+      ],
+      "arabic": []
+    },
+    "e-th-r": {
+      "root_syriac": "ܥܬܪ",
+      "gloss_es": "rico",
+      "gloss_en": "rich",
+      "hebrew": [
+        {
+          "word": "עָשַׁר",
+          "transliteration": "ashar",
+          "meaning_es": "ser rico",
+          "meaning_en": "to be rich"
+        }
+      ],
+      "arabic": []
+    },
+    "s-kh-r": {
+      "root_syriac": "ܣܟܪ",
+      "gloss_es": "cerrar",
+      "gloss_en": "close, shut",
+      "hebrew": [
+        {
+          "word": "סָגַר",
+          "transliteration": "sagar",
+          "meaning_es": "cerrar",
+          "meaning_en": "to close"
+        }
+      ],
+      "arabic": []
+    },
+    "kh-b-r": {
+      "root_syriac": "ܚܒܪ",
+      "gloss_es": "compañero, unir",
+      "gloss_en": "companion, join",
+      "hebrew": [
+        {
+          "word": "חָבֵר",
+          "transliteration": "khaver",
+          "meaning_es": "amigo",
+          "meaning_en": "friend"
+        },
+        {
+          "word": "חִבֵּר",
+          "transliteration": "khiber",
+          "meaning_es": "unir",
+          "meaning_en": "to join"
+        }
+      ],
+      "arabic": []
+    },
+    "p-l-sh": {
+      "root_syriac": "ܦܠܫ",
+      "gloss_es": "trabajar, servir",
+      "gloss_en": "work, serve",
+      "hebrew": [],
+      "arabic": []
+    },
+    "n-w-n": {
+      "root_syriac": "ܢܘܢ",
+      "gloss_es": "pez",
+      "gloss_en": "fish",
+      "hebrew": [
+        {
+          "word": "נוּן",
+          "transliteration": "nun",
+          "meaning_es": "pez",
+          "meaning_en": "fish"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "نُون",
+          "transliteration": "nūn",
+          "meaning_es": "pez",
+          "meaning_en": "fish"
+        }
+      ]
+    },
+    "kh-sh-kh": {
+      "root_syriac": "ܚܫܟ",
+      "gloss_es": "oscuridad",
+      "gloss_en": "darkness",
+      "hebrew": [
+        {
+          "word": "חֹשֶׁךְ",
+          "transliteration": "khoshekh",
+          "meaning_es": "oscuridad",
+          "meaning_en": "darkness"
+        }
+      ],
+      "arabic": []
+    },
+    "g-r-sh": {
+      "root_syriac": "ܓܪܫ",
+      "gloss_es": "expulsar, divorciar",
+      "gloss_en": "drive out, divorce",
+      "hebrew": [
+        {
+          "word": "גֵּרֵשׁ",
+          "transliteration": "geresh",
+          "meaning_es": "expulsar",
+          "meaning_en": "to drive out"
+        }
+      ],
+      "arabic": []
+    },
+    "n-ts-r": {
+      "root_syriac": "ܢܨܪ",
+      "gloss_es": "Nazaret, guardar",
+      "gloss_en": "Nazareth, guard",
+      "hebrew": [
+        {
+          "word": "נָצַר",
+          "transliteration": "natsar",
+          "meaning_es": "guardar",
+          "meaning_en": "to guard"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "نَصَرَ",
+          "transliteration": "naṣara",
+          "meaning_es": "ayudar",
+          "meaning_en": "to help"
+        }
+      ]
+    },
+    "kh-r-th": {
+      "root_syriac": "ܚܪܬ",
+      "gloss_es": "fin, último",
+      "gloss_en": "end, last",
+      "hebrew": [
+        {
+          "word": "אַחֲרִית",
+          "transliteration": "akharit",
+          "meaning_es": "fin",
+          "meaning_en": "end"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "آخِر",
+          "transliteration": "ākhir",
+          "meaning_es": "último",
+          "meaning_en": "last"
+        }
+      ]
+    },
+    "sh-b-y": {
+      "root_syriac": "ܫܒܝ",
+      "gloss_es": "cautivo",
+      "gloss_en": "captive",
+      "hebrew": [
+        {
+          "word": "שְׁבִי",
+          "transliteration": "shvi",
+          "meaning_es": "cautiverio",
+          "meaning_en": "captivity"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "سَبَى",
+          "transliteration": "sabā",
+          "meaning_es": "capturar",
+          "meaning_en": "to capture"
+        }
+      ]
+    },
+    "q-n-y": {
+      "root_syriac": "ܩܢܝ",
+      "gloss_es": "adquirir, poseer",
+      "gloss_en": "acquire, possess",
+      "hebrew": [
+        {
+          "word": "קָנָה",
+          "transliteration": "qana",
+          "meaning_es": "comprar",
+          "meaning_en": "to buy"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "قَنَى",
+          "transliteration": "qanā",
+          "meaning_es": "adquirir",
+          "meaning_en": "to acquire"
+        }
+      ]
+    },
+    "y-b-l": {
+      "root_syriac": "ܝܒܠ",
+      "gloss_es": "traer, llevar",
+      "gloss_en": "bring, carry",
+      "hebrew": [
+        {
+          "word": "יָבַל",
+          "transliteration": "yaval",
+          "meaning_es": "llevar",
+          "meaning_en": "to carry"
+        }
+      ],
+      "arabic": []
+    },
+    "th-kh-l": {
+      "root_syriac": "ܬܟܠ",
+      "gloss_es": "confiar",
+      "gloss_en": "trust, rely",
+      "hebrew": [],
+      "arabic": [
+        {
+          "word": "تَوَكَّلَ",
+          "transliteration": "tawakkala",
+          "meaning_es": "confiar",
+          "meaning_en": "to trust"
+        }
+      ]
+    },
+    "sh-kh-r": {
+      "root_syriac": "ܫܟܪ",
+      "gloss_es": "emborracharse",
+      "gloss_en": "be drunk",
+      "hebrew": [
+        {
+          "word": "שָׁכַר",
+          "transliteration": "shakhar",
+          "meaning_es": "emborracharse",
+          "meaning_en": "to be drunk"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "سَكِرَ",
+          "transliteration": "sakira",
+          "meaning_es": "emborracharse",
+          "meaning_en": "to be drunk"
+        }
+      ]
+    },
+    "r-kh-ts": {
+      "root_syriac": "ܪܚܨ",
+      "gloss_es": "lavar",
+      "gloss_en": "wash",
+      "hebrew": [
+        {
+          "word": "רָחַץ",
+          "transliteration": "rakhats",
+          "meaning_es": "lavar",
+          "meaning_en": "to wash"
+        }
+      ],
+      "arabic": []
+    },
+    "kh-t-m": {
+      "root_syriac": "ܚܬܡ",
+      "gloss_es": "sellar",
+      "gloss_en": "seal",
+      "hebrew": [
+        {
+          "word": "חָתַם",
+          "transliteration": "khatam",
+          "meaning_es": "sellar",
+          "meaning_en": "to seal"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "خَتَمَ",
+          "transliteration": "khatama",
+          "meaning_es": "sellar",
+          "meaning_en": "to seal"
+        }
+      ]
+    },
+    "t-e-n": {
+      "root_syriac": "ܛܥܢ",
+      "gloss_es": "cargar, llevar",
+      "gloss_en": "carry, bear",
+      "hebrew": [
+        {
+          "word": "טָעַן",
+          "transliteration": "taan",
+          "meaning_es": "cargar",
+          "meaning_en": "to load"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "طَعَنَ",
+          "transliteration": "ṭaʿana",
+          "meaning_es": "apuñalar",
+          "meaning_en": "to stab"
+        }
+      ]
+    },
+    "sh-t-q": {
+      "root_syriac": "ܫܬܩ",
+      "gloss_es": "callar",
+      "gloss_en": "be silent",
+      "hebrew": [
+        {
+          "word": "שָׁתַק",
+          "transliteration": "shataq",
+          "meaning_es": "callar",
+          "meaning_en": "to be silent"
+        }
+      ],
+      "arabic": []
+    },
+    "z-e-r": {
+      "root_syriac": "ܙܥܪ",
+      "gloss_es": "pequeño, poco",
+      "gloss_en": "small, few",
+      "hebrew": [
+        {
+          "word": "זָעֵר",
+          "transliteration": "zaer",
+          "meaning_es": "pequeño",
+          "meaning_en": "small"
+        }
+      ],
+      "arabic": []
+    },
+    "y-r-kh": {
+      "root_syriac": "ܝܪܚ",
+      "gloss_es": "mes",
+      "gloss_en": "month",
+      "hebrew": [
+        {
+          "word": "יֶרַח",
+          "transliteration": "yerakh",
+          "meaning_es": "mes",
+          "meaning_en": "month"
+        }
+      ],
+      "arabic": []
+    },
+    "kh-l-q": {
+      "root_syriac": "ܚܠܩ",
+      "gloss_es": "afeitar, porción",
+      "gloss_en": "shave, portion",
+      "hebrew": [
+        {
+          "word": "חָלַק",
+          "transliteration": "khalaq",
+          "meaning_es": "dividir",
+          "meaning_en": "to divide"
+        },
+        {
+          "word": "חֵלֶק",
+          "transliteration": "kheleq",
+          "meaning_es": "porción",
+          "meaning_en": "portion"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "خَلَقَ",
+          "transliteration": "khalaqa",
+          "meaning_es": "crear",
+          "meaning_en": "to create"
+        }
+      ]
+    },
+    "r-g-sh": {
+      "root_syriac": "ܪܓܫ",
+      "gloss_es": "sentir, percibir",
+      "gloss_en": "feel, perceive",
+      "hebrew": [
+        {
+          "word": "רָגַשׁ",
+          "transliteration": "ragash",
+          "meaning_es": "agitarse",
+          "meaning_en": "to rage"
+        }
+      ],
+      "arabic": []
+    },
+    "s-b-e": {
+      "root_syriac": "ܣܒܥ",
+      "gloss_es": "saciarse, lleno",
+      "gloss_en": "be satisfied, full",
+      "hebrew": [
+        {
+          "word": "שָׂבַע",
+          "transliteration": "sava",
+          "meaning_es": "saciarse",
+          "meaning_en": "to be satisfied"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "شَبِعَ",
+          "transliteration": "shabiʿa",
+          "meaning_es": "saciarse",
+          "meaning_en": "to be satisfied"
+        }
+      ]
+    },
+    "kh-l-ts": {
+      "root_syriac": "ܚܠܨ",
+      "gloss_es": "librar, rescatar",
+      "gloss_en": "deliver, rescue",
+      "hebrew": [
+        {
+          "word": "חָלַץ",
+          "transliteration": "khalats",
+          "meaning_es": "rescatar",
+          "meaning_en": "to rescue"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "خَلَّصَ",
+          "transliteration": "khallaṣa",
+          "meaning_es": "librar",
+          "meaning_en": "to deliver"
+        }
+      ]
+    },
+    "kh-p-y": {
+      "root_syriac": "ܚܦܝ",
+      "gloss_es": "cubrir, lavar",
+      "gloss_en": "cover, wash",
+      "hebrew": [
+        {
+          "word": "חָפָה",
+          "transliteration": "khafa",
+          "meaning_es": "cubrir",
+          "meaning_en": "to cover"
+        }
+      ],
+      "arabic": []
+    },
+    "e-q-r": {
+      "root_syriac": "ܥܩܪ",
+      "gloss_es": "desarraigar, estéril",
+      "gloss_en": "uproot, barren",
+      "hebrew": [
+        {
+          "word": "עָקַר",
+          "transliteration": "aqar",
+          "meaning_es": "desarraigar",
+          "meaning_en": "to uproot"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "عَقَرَ",
+          "transliteration": "ʿaqara",
+          "meaning_es": "esterilizar",
+          "meaning_en": "to make barren"
+        }
+      ]
+    },
+    "sh-p-e": {
+      "root_syriac": "ܫܦܥ",
+      "gloss_es": "desbordar, abundar",
+      "gloss_en": "overflow, abound",
+      "hebrew": [
+        {
+          "word": "שָׁפַע",
+          "transliteration": "shafa",
+          "meaning_es": "abundar",
+          "meaning_en": "to abound"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "شَفَعَ",
+          "transliteration": "shafaʿa",
+          "meaning_es": "interceder",
+          "meaning_en": "to intercede"
+        }
+      ]
+    },
+    "ts-kh-y": {
+      "root_syriac": "ܨܚܝ",
+      "gloss_es": "tener sed",
+      "gloss_en": "thirst",
+      "hebrew": [
+        {
+          "word": "צָמֵא",
+          "transliteration": "tsame",
+          "meaning_es": "tener sed",
+          "meaning_en": "to thirst"
+        }
+      ],
+      "arabic": []
+    },
+    "n-s-y": {
+      "root_syriac": "ܢܣܝ",
+      "gloss_es": "probar, tentar",
+      "gloss_en": "test, try",
+      "hebrew": [
+        {
+          "word": "נִסָּה",
+          "transliteration": "nissa",
+          "meaning_es": "probar",
+          "meaning_en": "to test"
+        }
+      ],
+      "arabic": []
+    },
+    "kh-l-sh": {
+      "root_syriac": "ܚܠܫ",
+      "gloss_es": "ser débil",
+      "gloss_en": "be weak",
+      "hebrew": [
+        {
+          "word": "חָלַשׁ",
+          "transliteration": "khalash",
+          "meaning_es": "ser débil",
+          "meaning_en": "to be weak"
+        }
+      ],
+      "arabic": []
+    },
+    "sh-kh-p": {
+      "root_syriac": "ܫܟܒ",
+      "gloss_es": "acostarse, dormir",
+      "gloss_en": "lie down, sleep",
+      "hebrew": [
+        {
+          "word": "שָׁכַב",
+          "transliteration": "shakhav",
+          "meaning_es": "acostarse",
+          "meaning_en": "to lie down"
+        }
+      ],
+      "arabic": []
+    },
+    "e-r-b": {
+      "root_syriac": "ܥܪܒ",
+      "gloss_es": "mezclar, garantizar, oeste",
+      "gloss_en": "mix, pledge, west",
+      "hebrew": [
+        {
+          "word": "עָרַב",
+          "transliteration": "arav",
+          "meaning_es": "mezclar",
+          "meaning_en": "to mix"
+        },
+        {
+          "word": "מַעֲרָב",
+          "transliteration": "maarav",
+          "meaning_es": "oeste",
+          "meaning_en": "west"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "غَرْب",
+          "transliteration": "gharb",
+          "meaning_es": "oeste",
+          "meaning_en": "west"
+        }
+      ]
+    },
+    "n-q-p": {
+      "root_syriac": "ܢܩܦ",
+      "gloss_es": "seguir, rodear",
+      "gloss_en": "follow, go around",
+      "hebrew": [
+        {
+          "word": "נָקַף",
+          "transliteration": "naqaf",
+          "meaning_es": "rodear",
+          "meaning_en": "to surround"
+        }
+      ],
+      "arabic": []
+    },
+    "sh-l-h": {
+      "root_syriac": "ܫܠܗ",
+      "gloss_es": "desvestir, quitar",
+      "gloss_en": "strip, take off",
+      "hebrew": [
+        {
+          "word": "שָׁלָה",
+          "transliteration": "shala",
+          "meaning_es": "sacar",
+          "meaning_en": "to draw out"
+        }
+      ],
+      "arabic": []
+    },
+    "q-l-s": {
+      "root_syriac": "ܩܠܣ",
+      "gloss_es": "alabar, burlarse",
+      "gloss_en": "praise, mock",
+      "hebrew": [
+        {
+          "word": "קִלֵּס",
+          "transliteration": "qiles",
+          "meaning_es": "alabar",
+          "meaning_en": "to praise"
+        }
+      ],
+      "arabic": []
+    },
+    "q-sh-y": {
+      "root_syriac": "ܩܫܝ",
+      "gloss_es": "duro, difícil",
+      "gloss_en": "hard, difficult",
+      "hebrew": [
+        {
+          "word": "קָשֶׁה",
+          "transliteration": "qashe",
+          "meaning_es": "duro",
+          "meaning_en": "hard"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "قَاسِي",
+          "transliteration": "qāsī",
+          "meaning_es": "duro",
+          "meaning_en": "hard"
+        }
+      ]
+    },
+    "n-kh-sh": {
+      "root_syriac": "ܢܚܫ",
+      "gloss_es": "cobre, serpiente",
+      "gloss_en": "copper, serpent",
+      "hebrew": [
+        {
+          "word": "נָחָשׁ",
+          "transliteration": "nakhash",
+          "meaning_es": "serpiente",
+          "meaning_en": "serpent"
+        },
+        {
+          "word": "נְחֹשֶׁת",
+          "transliteration": "nekhoshet",
+          "meaning_es": "cobre",
+          "meaning_en": "copper"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "نُحَاس",
+          "transliteration": "nuḥās",
+          "meaning_es": "cobre",
+          "meaning_en": "copper"
+        }
+      ]
+    },
+    "ts-d-q": {
+      "root_syriac": "ܨܕܩ",
+      "gloss_es": "ser justo",
+      "gloss_en": "be righteous",
+      "hebrew": [
+        {
+          "word": "צָדַק",
+          "transliteration": "tsadaq",
+          "meaning_es": "ser justo",
+          "meaning_en": "to be righteous"
+        },
+        {
+          "word": "צֶדֶק",
+          "transliteration": "tsedeq",
+          "meaning_es": "justicia",
+          "meaning_en": "justice"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "صَدَقَ",
+          "transliteration": "ṣadaqa",
+          "meaning_es": "ser veraz",
+          "meaning_en": "to be truthful"
+        }
+      ]
+    },
+    "kh-n-q": {
+      "root_syriac": "ܚܢܩ",
+      "gloss_es": "estrangular, ahogar",
+      "gloss_en": "strangle, choke",
+      "hebrew": [
+        {
+          "word": "חָנַק",
+          "transliteration": "khanaq",
+          "meaning_es": "estrangular",
+          "meaning_en": "to strangle"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "خَنَقَ",
+          "transliteration": "khanaqa",
+          "meaning_es": "estrangular",
+          "meaning_en": "to strangle"
+        }
+      ]
+    },
+    "m-z-g": {
+      "root_syriac": "ܡܙܓ",
+      "gloss_es": "mezclar",
+      "gloss_en": "mix",
+      "hebrew": [
+        {
+          "word": "מָזַג",
+          "transliteration": "mazag",
+          "meaning_es": "mezclar",
+          "meaning_en": "to mix"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "مَزَجَ",
+          "transliteration": "mazaja",
+          "meaning_es": "mezclar",
+          "meaning_en": "to mix"
+        }
+      ]
+    },
+    "p-kh-m": {
+      "root_syriac": "ܦܚܡ",
+      "gloss_es": "carbón",
+      "gloss_en": "charcoal",
+      "hebrew": [
+        {
+          "word": "פֶּחָם",
+          "transliteration": "pekham",
+          "meaning_es": "carbón",
+          "meaning_en": "charcoal"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "فَحْم",
+          "transliteration": "faḥm",
+          "meaning_es": "carbón",
+          "meaning_en": "charcoal"
+        }
+      ]
+    },
+    "sh-m-n": {
+      "root_syriac": "ܫܡܢ",
+      "gloss_es": "grasa, aceite",
+      "gloss_en": "fat, oil",
+      "hebrew": [
+        {
+          "word": "שֶׁמֶן",
+          "transliteration": "shemen",
+          "meaning_es": "aceite",
+          "meaning_en": "oil"
+        },
+        {
+          "word": "שָׁמֵן",
+          "transliteration": "shamen",
+          "meaning_es": "gordo",
+          "meaning_en": "fat"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "سَمْن",
+          "transliteration": "samn",
+          "meaning_es": "mantequilla",
+          "meaning_en": "butter"
+        }
+      ]
+    },
+    "r-e-m": {
+      "root_syriac": "ܪܥܡ",
+      "gloss_es": "trueno",
+      "gloss_en": "thunder",
+      "hebrew": [
+        {
+          "word": "רַעַם",
+          "transliteration": "raam",
+          "meaning_es": "trueno",
+          "meaning_en": "thunder"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "رَعَدَ",
+          "transliteration": "raʿada",
+          "meaning_es": "tronar",
+          "meaning_en": "to thunder"
+        }
+      ]
+    },
+    "kh-m-r": {
+      "root_syriac": "ܚܡܪ",
+      "gloss_es": "vino, burro",
+      "gloss_en": "wine, donkey",
+      "hebrew": [
+        {
+          "word": "חֲמוֹר",
+          "transliteration": "khamor",
+          "meaning_es": "burro",
+          "meaning_en": "donkey"
+        },
+        {
+          "word": "חֶמֶר",
+          "transliteration": "khemer",
+          "meaning_es": "vino",
+          "meaning_en": "wine"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "خَمْر",
+          "transliteration": "khamr",
+          "meaning_es": "vino",
+          "meaning_en": "wine"
+        },
+        {
+          "word": "حِمَار",
+          "transliteration": "ḥimār",
+          "meaning_es": "burro",
+          "meaning_en": "donkey"
+        }
+      ]
+    },
+    "g-n-z": {
+      "root_syriac": "ܓܢܙ",
+      "gloss_es": "tesoro, esconder",
+      "gloss_en": "treasure, hide",
+      "hebrew": [
+        {
+          "word": "גָּנַז",
+          "transliteration": "ganaz",
+          "meaning_es": "esconder",
+          "meaning_en": "to hide"
+        },
+        {
+          "word": "גְּנִיזָה",
+          "transliteration": "geniza",
+          "meaning_es": "depósito",
+          "meaning_en": "storehouse"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "كَنْز",
+          "transliteration": "kanz",
+          "meaning_es": "tesoro",
+          "meaning_en": "treasure"
+        }
+      ]
+    },
+    "kh-r-m": {
+      "root_syriac": "ܚܪܡ",
+      "gloss_es": "anatema, consagrar, destruir",
+      "gloss_en": "ban, devote, destroy",
+      "hebrew": [
+        {
+          "word": "חֵרֶם",
+          "transliteration": "kherem",
+          "meaning_es": "anatema",
+          "meaning_en": "ban"
+        },
+        {
+          "word": "חָרַם",
+          "transliteration": "kharam",
+          "meaning_es": "destruir",
+          "meaning_en": "to destroy"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "حَرَّمَ",
+          "transliteration": "ḥarrama",
+          "meaning_es": "prohibir",
+          "meaning_en": "to forbid"
+        },
+        {
+          "word": "حَرَام",
+          "transliteration": "ḥarām",
+          "meaning_es": "prohibido",
+          "meaning_en": "forbidden"
+        }
+      ]
+    },
+    "r-p-a": {
+      "root_syriac": "ܪܦܐ",
+      "gloss_es": "sanar",
+      "gloss_en": "heal",
+      "hebrew": [
+        {
+          "word": "רָפָא",
+          "transliteration": "rafa",
+          "meaning_es": "sanar",
+          "meaning_en": "to heal"
+        }
+      ],
+      "arabic": []
+    },
+    "g-l-z": {
+      "root_syriac": "ܓܠܙ",
+      "gloss_es": "esquilar, cortar",
+      "gloss_en": "shear, cut",
+      "hebrew": [
+        {
+          "word": "גָּזַז",
+          "transliteration": "gazaz",
+          "meaning_es": "esquilar",
+          "meaning_en": "to shear"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "جَزَّ",
+          "transliteration": "jazza",
+          "meaning_es": "cortar",
+          "meaning_en": "to cut"
+        }
+      ]
+    },
+    "m-sh-r": {
+      "root_syriac": "ܡܫܪ",
+      "gloss_es": "campamento",
+      "gloss_en": "camp",
+      "hebrew": [
+        {
+          "word": "מַחֲנֶה",
+          "transliteration": "makhaneh",
+          "meaning_es": "campamento",
+          "meaning_en": "camp"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "مُعَسْكَر",
+          "transliteration": "muʿaskar",
+          "meaning_es": "campamento",
+          "meaning_en": "camp"
+        }
+      ]
+    },
+    "e-z-l": {
+      "root_syriac": "ܥܙܠ",
+      "gloss_es": "hilar, perezoso",
+      "gloss_en": "spin, lazy",
+      "hebrew": [
+        {
+          "word": "עָצֵל",
+          "transliteration": "atsel",
+          "meaning_es": "perezoso",
+          "meaning_en": "lazy"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "عَزَلَ",
+          "transliteration": "ʿazala",
+          "meaning_es": "aislar",
+          "meaning_en": "to isolate"
+        }
+      ]
+    },
+    "r-q-d": {
+      "root_syriac": "ܪܩܕ",
+      "gloss_es": "bailar",
+      "gloss_en": "dance",
+      "hebrew": [
+        {
+          "word": "רָקַד",
+          "transliteration": "raqad",
+          "meaning_es": "bailar",
+          "meaning_en": "to dance"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "رَقَصَ",
+          "transliteration": "raqaṣa",
+          "meaning_es": "bailar",
+          "meaning_en": "to dance"
+        }
+      ]
+    },
+    "p-sh-q": {
+      "root_syriac": "ܦܫܩ",
+      "gloss_es": "interpretar, explicar",
+      "gloss_en": "interpret, explain",
+      "hebrew": [
+        {
+          "word": "פָּשַׁק",
+          "transliteration": "pashaq",
+          "meaning_es": "extender",
+          "meaning_en": "to spread"
+        }
+      ],
+      "arabic": []
+    },
+    "ts-l-m": {
+      "root_syriac": "ܨܠܡ",
+      "gloss_es": "imagen",
+      "gloss_en": "image",
+      "hebrew": [
+        {
+          "word": "צֶלֶם",
+          "transliteration": "tselem",
+          "meaning_es": "imagen",
+          "meaning_en": "image"
+        }
+      ],
+      "arabic": []
+    },
+    "q-b-r": {
+      "root_syriac": "ܩܒܪ",
+      "gloss_es": "enterrar, sepulcro",
+      "gloss_en": "bury, grave",
+      "hebrew": [
+        {
+          "word": "קָבַר",
+          "transliteration": "qavar",
+          "meaning_es": "enterrar",
+          "meaning_en": "to bury"
+        },
+        {
+          "word": "קֶבֶר",
+          "transliteration": "qever",
+          "meaning_es": "tumba",
+          "meaning_en": "grave"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "قَبْر",
+          "transliteration": "qabr",
+          "meaning_es": "tumba",
+          "meaning_en": "grave"
+        }
+      ]
+    },
+    "sh-q-y": {
+      "root_syriac": "ܫܩܝ",
+      "gloss_es": "dar de beber, regar",
+      "gloss_en": "give to drink, irrigate",
+      "hebrew": [
+        {
+          "word": "שָׁקָה",
+          "transliteration": "shaqa",
+          "meaning_es": "dar de beber",
+          "meaning_en": "to give drink"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "سَقَى",
+          "transliteration": "saqā",
+          "meaning_es": "regar",
+          "meaning_en": "to irrigate"
+        }
+      ]
+    },
+    "g-m-l": {
+      "root_syriac": "ܓܡܠ",
+      "gloss_es": "camello, retribuir",
+      "gloss_en": "camel, repay",
+      "hebrew": [
+        {
+          "word": "גָּמָל",
+          "transliteration": "gamal",
+          "meaning_es": "retribuir",
+          "meaning_en": "to repay"
+        },
+        {
+          "word": "גָּמָל",
+          "transliteration": "gamal",
+          "meaning_es": "camello",
+          "meaning_en": "camel"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "جَمَل",
+          "transliteration": "jamal",
+          "meaning_es": "camello",
+          "meaning_en": "camel"
+        }
+      ]
+    },
+    "kh-l-b": {
+      "root_syriac": "ܚܠܒ",
+      "gloss_es": "leche",
+      "gloss_en": "milk",
+      "hebrew": [
+        {
+          "word": "חָלָב",
+          "transliteration": "khalav",
+          "meaning_es": "leche",
+          "meaning_en": "milk"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "حَلِيب",
+          "transliteration": "ḥalīb",
+          "meaning_es": "leche",
+          "meaning_en": "milk"
+        }
+      ]
+    },
+    "t-kh-n": {
+      "root_syriac": "ܛܚܢ",
+      "gloss_es": "moler",
+      "gloss_en": "grind",
+      "hebrew": [
+        {
+          "word": "טָחַן",
+          "transliteration": "takhan",
+          "meaning_es": "moler",
+          "meaning_en": "to grind"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "طَحَنَ",
+          "transliteration": "ṭaḥana",
+          "meaning_es": "moler",
+          "meaning_en": "to grind"
+        }
+      ]
+    },
+    "sh-r-b": {
+      "root_syriac": "ܫܪܒ",
+      "gloss_es": "tribu, generación",
+      "gloss_en": "tribe, generation",
+      "hebrew": [],
+      "arabic": [
+        {
+          "word": "شَرِبَ",
+          "transliteration": "shariba",
+          "meaning_es": "beber",
+          "meaning_en": "to drink"
+        }
+      ]
+    },
+    "kh-b-sh": {
+      "root_syriac": "ܚܒܫ",
+      "gloss_es": "encarcelar",
+      "gloss_en": "imprison",
+      "hebrew": [
+        {
+          "word": "חָבַשׁ",
+          "transliteration": "khavash",
+          "meaning_es": "atar",
+          "meaning_en": "to bind"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "حَبَسَ",
+          "transliteration": "ḥabasa",
+          "meaning_es": "encarcelar",
+          "meaning_en": "to imprison"
+        }
+      ]
+    },
+    "e-d-l": {
+      "root_syriac": "ܥܕܠ",
+      "gloss_es": "reprender, culpar",
+      "gloss_en": "rebuke, blame",
+      "hebrew": [],
+      "arabic": [
+        {
+          "word": "عَدَلَ",
+          "transliteration": "ʿadala",
+          "meaning_es": "ser justo",
+          "meaning_en": "to be just"
+        }
+      ]
+    },
+    "q-r-sh": {
+      "root_syriac": "ܩܪܫ",
+      "gloss_es": "congelar, ser frío",
+      "gloss_en": "congeal, be cold",
+      "hebrew": [
+        {
+          "word": "קָרַשׁ",
+          "transliteration": "qarash",
+          "meaning_es": "congelar",
+          "meaning_en": "to congeal"
+        }
+      ],
+      "arabic": []
+    },
+    "sh-g-r": {
+      "root_syriac": "ܫܓܪ",
+      "gloss_es": "enviar, encender",
+      "gloss_en": "send, kindle",
+      "hebrew": [],
+      "arabic": []
+    },
+    "z-y-n": {
+      "root_syriac": "ܙܝܢ",
+      "gloss_es": "arma",
+      "gloss_en": "weapon, arm",
+      "hebrew": [
+        {
+          "word": "זַיִן",
+          "transliteration": "zayin",
+          "meaning_es": "arma",
+          "meaning_en": "weapon"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "زَيْن",
+          "transliteration": "zayn",
+          "meaning_es": "adorno",
+          "meaning_en": "adornment"
+        }
+      ]
+    },
+    "g-n-y": {
+      "root_syriac": "ܓܢܝ",
+      "gloss_es": "jardín",
+      "gloss_en": "garden",
+      "hebrew": [
+        {
+          "word": "גַּן",
+          "transliteration": "gan",
+          "meaning_es": "jardín",
+          "meaning_en": "garden"
+        },
+        {
+          "word": "גַּנָּה",
+          "transliteration": "ganna",
+          "meaning_es": "jardín",
+          "meaning_en": "garden"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "جَنَّة",
+          "transliteration": "janna",
+          "meaning_es": "jardín/paraíso",
+          "meaning_en": "garden/paradise"
+        }
+      ]
+    },
+    "kh-q-l": {
+      "root_syriac": "ܚܩܠ",
+      "gloss_es": "campo",
+      "gloss_en": "field",
+      "hebrew": [],
+      "arabic": [
+        {
+          "word": "حَقْل",
+          "transliteration": "ḥaql",
+          "meaning_es": "campo",
+          "meaning_en": "field"
+        }
+      ]
     }
   }
 }
