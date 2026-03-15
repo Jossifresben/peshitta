@@ -16,8 +16,15 @@
             <div class="settings-dropdown" id="settings-dropdown">
                 <div class="settings-label">{{ t.settings_script }}</div>
                 <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
+                <button class="settings-option{% if script == 'syriac' %} active{% endif %}" data-script="syriac">{{ t.settings_syriac }}</button>
                 <button class="settings-option{% if script == 'hebrew' %} active{% endif %}" data-script="hebrew">{{ t.settings_hebrew }}</button>
                 <button class="settings-option{% if script == 'arabic' %} active{% endif %}" data-script="arabic">{{ t.settings_arabic }}</button>
+                <div class="settings-divider"></div>
+                <div class="settings-label">{{ t.settings_translation }}</div>
+                <button class="settings-option{% if trans == 'en' %} active{% endif %}" data-trans="en">{{ t.settings_trans_en }}</button>
+                <button class="settings-option{% if trans == 'es' %} active{% endif %}" data-trans="es">{{ t.settings_trans_es }}</button>
+                <button class="settings-option{% if trans == 'he' %} active{% endif %}" data-trans="he">{{ t.settings_trans_he }}</button>
+                <button class="settings-option{% if trans == 'ar' %} active{% endif %}" data-trans="ar">{{ t.settings_trans_ar }}</button>
             </div>
         </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">☀️</button>
@@ -54,7 +61,7 @@
                     <tbody>
                         {% for root in roots %}
                         <tr>
-                            <td class="syriac"><a href="{{ url_for('index', lang=lang, q=root.translit_key) }}#results" style="text-decoration: none; color: inherit;">{{ root.root }}</a></td>
+                            <td class="syriac"><a href="{{ url_for('index', lang=lang, q=root.translit_key) }}#results" style="text-decoration: none; color: inherit;">{{ root.root }} <span class="root-latin" dir="ltr">{{ root.translit_key }}</span></a></td>
                             <td class="{% if script == 'hebrew' %}hebrew{% elif script == 'arabic' %}arabic{% else %}ac-translit{% endif %}"><a href="{{ url_for('index', lang=lang, q=root.translit_key) }}#results" style="text-decoration: none; color: inherit;">{{ root.translit }}</a></td>
                             <td class="gloss-cell">{{ root.gloss }}</td>
                             <td>{{ root.forms }}</td>
@@ -105,10 +112,16 @@
 
         options.forEach(function(opt) {
             opt.addEventListener('click', function() {
-                var script = this.getAttribute('data-script');
-                localStorage.setItem('script', script);
                 var url = new URL(window.location.href);
-                url.searchParams.set('script', script);
+                var scriptVal = this.getAttribute('data-script');
+                var transVal = this.getAttribute('data-trans');
+                if (scriptVal) {
+                    localStorage.setItem('script', scriptVal);
+                    url.searchParams.set('script', scriptVal);
+                } else if (transVal) {
+                    localStorage.setItem('trans', transVal);
+                    url.searchParams.set('trans', transVal);
+                }
                 window.location.href = url.toString();
             });
         });
@@ -121,13 +134,24 @@
         });
 
         var urlParams = new URLSearchParams(window.location.search);
+        var needsRedirect = false;
         if (!urlParams.has('script')) {
-            var stored = localStorage.getItem('script');
-            if (stored && stored !== 'latin') {
-                urlParams.set('script', stored);
-                var newUrl = window.location.pathname + '?' + urlParams.toString() + window.location.hash;
-                window.location.replace(newUrl);
+            var storedScript = localStorage.getItem('script');
+            if (storedScript && storedScript !== 'latin') {
+                urlParams.set('script', storedScript);
+                needsRedirect = true;
             }
+        }
+        if (!urlParams.has('trans')) {
+            var storedTrans = localStorage.getItem('trans');
+            if (storedTrans) {
+                urlParams.set('trans', storedTrans);
+                needsRedirect = true;
+            }
+        }
+        if (needsRedirect) {
+            var newUrl = window.location.pathname + '?' + urlParams.toString() + window.location.hash;
+            window.location.replace(newUrl);
         }
     })();
 

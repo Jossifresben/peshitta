@@ -76,6 +76,8 @@ def _get_translit_fn(script: str):
         return transliterate_syriac_to_hebrew
     elif script == 'arabic':
         return transliterate_syriac_to_arabic
+    elif script == 'syriac':
+        return transliterate_syriac_academic
     return transliterate_syriac
 
 
@@ -113,8 +115,11 @@ def index():
     query = request.args.get('q', '').strip()
     cognate_word = request.args.get('cw', '').strip()
     script = request.args.get('script', 'latin')
-    if script not in ('latin', 'hebrew', 'arabic'):
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
         script = 'latin'
+    trans = request.args.get('trans', lang)
+    if trans not in ('en', 'es', 'he', 'ar'):
+        trans = lang
     translit_fn = _get_translit_fn(script)
     error = None
     result = None
@@ -223,7 +228,7 @@ def index():
                            translate_ref=translate_ref,
                            cognate_word=cognate_word,
                            disambiguation=disambiguation,
-                           script=script)
+                           script=script, trans=trans)
 
 
 @app.route('/api/verse')
@@ -244,7 +249,7 @@ def api_verse():
 
     # Script-specific transliteration
     script = request.args.get('script', 'latin')
-    if script not in ('latin', 'hebrew', 'arabic'):
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
         script = 'latin'
     translit_fn = _get_translit_fn(script)
     words_translit = [translit_fn(w) for w in words]
@@ -254,6 +259,8 @@ def api_verse():
         lang = 'es'
     translation_en = _corpus.get_verse_translation(ref, 'en')
     translation_es = _corpus.get_verse_translation(ref, 'es')
+    translation_he = _corpus.get_verse_translation(ref, 'he')
+    translation_ar = _corpus.get_verse_translation(ref, 'ar')
 
     # Adjacent verse references for modal navigation
     prev_ref = _corpus.get_adjacent_ref(ref, -1)
@@ -277,6 +284,8 @@ def api_verse():
         'words_translit_academic': words_translit_academic,
         'translation_en': translation_en,
         'translation_es': translation_es,
+        'translation_he': translation_he,
+        'translation_ar': translation_ar,
         'prev_ref': prev_ref,
         'next_ref': next_ref,
         'script': script,
@@ -365,8 +374,11 @@ def browse():
         lang = 'es'
     t = _Namespace(_i18n[lang])
     script = request.args.get('script', 'latin')
-    if script not in ('latin', 'hebrew', 'arabic'):
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
         script = 'latin'
+    trans = request.args.get('trans', lang)
+    if trans not in ('en', 'es', 'he', 'ar'):
+        trans = lang
     translit_fn = _get_translit_fn(script)
 
     page = request.args.get('page', 1, type=int)
@@ -407,7 +419,135 @@ def browse():
                            t=t, lang=lang,
                            roots=roots_data,
                            page=page, total_pages=total_pages,
-                           total=total, script=script)
+                           total=total, script=script, trans=trans)
+
+
+@app.route('/read')
+def read():
+    """Interlinear chapter reader."""
+    _init()
+    lang = request.args.get('lang', 'es')
+    if lang not in _i18n:
+        lang = 'es'
+    t = _Namespace(_i18n[lang])
+    book_names = _i18n[lang].get('book_names', {})
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
+        script = 'latin'
+    translit_fn = _get_translit_fn(script)
+    trans = request.args.get('trans', lang)
+    if trans not in ('en', 'es', 'he', 'ar'):
+        trans = lang
+
+    books = _corpus.get_books()
+    book = request.args.get('book', books[0][0] if books else 'Matthew')
+    # Find max chapter for selected book
+    max_chapter = 1
+    for b_name, b_max in books:
+        if b_name == book:
+            max_chapter = b_max
+            break
+    chapter = request.args.get('chapter', 1, type=int)
+    chapter = max(1, min(chapter, max_chapter))
+
+    # Get chapter verses
+    chapter_verses = _corpus.get_chapter_verses(book, chapter)
+
+    verses_data = []
+    for verse_num, ref, syriac_text in chapter_verses:
+        words_data = []
+        for w in syriac_text.split():
+            root = _extractor.lookup_word_root(w)
+            root_translit = _translit_to_dash(root) if root else None
+            words_data.append({
+                'syriac': w,
+                'translit': translit_fn(w),
+                'has_root': root is not None,
+                'root': root,
+                'root_translit': root_translit,
+            })
+
+        translation = _corpus.get_verse_translation(ref, trans)
+        if not translation:
+            translation = _corpus.get_verse_translation(ref, 'en')
+
+        verses_data.append({
+            'number': verse_num,
+            'reference': ref,
+            'words': words_data,
+            'translation': translation,
+        })
+
+    # Build books JSON for JS navigation
+    books_json = json.dumps([{'name': b, 'chapters': c} for b, c in books])
+
+    # Prev/next chapter
+    prev_chapter = chapter - 1 if chapter > 1 else None
+    next_chapter = chapter + 1 if chapter < max_chapter else None
+
+    return render_template('read.html',
+                           t=t, lang=lang, script=script, trans=trans,
+                           books=books, book=book,
+                           chapter=chapter, max_chapter=max_chapter,
+                           verses=verses_data,
+                           book_names=book_names,
+                           books_json=books_json,
+                           prev_chapter=prev_chapter,
+                           next_chapter=next_chapter)
+
+
+@app.route('/api/word-root')
+def api_word_root():
+    """Return root info for a given word form."""
+    _init()
+    form = request.args.get('form', '').strip()
+    if not form:
+        return jsonify({'error': 'Missing form parameter'}), 400
+
+    lang = request.args.get('lang', 'es')
+    if lang not in _i18n:
+        lang = 'es'
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
+        script = 'latin'
+    translit_fn = _get_translit_fn(script)
+
+    root = _extractor.lookup_word_root(form)
+    if root is None:
+        return jsonify({'error': 'No root found'}), 404
+
+    root_entry = _extractor.lookup_root(root)
+    cognate_entry = _cognate_lookup.lookup(root)
+
+    gloss = ''
+    if cognate_entry:
+        gloss = cognate_entry.gloss_es if lang == 'es' else cognate_entry.gloss_en
+    if not gloss:
+        gloss = _extractor.get_root_gloss(root)
+
+    matches = []
+    if root_entry:
+        for m in root_entry.matches:
+            if script == 'latin':
+                translit_display = m.transliteration
+            else:
+                translit_display = translit_fn(m.form)
+            matches.append({
+                'form': m.form,
+                'transliteration': translit_display,
+                'gloss': _glosser.gloss(m.form, root, lang),
+                'stem': _glosser.get_stem(m.form, root),
+                'count': m.count,
+                'references': m.references[:20],
+            })
+
+    return jsonify({
+        'form': form,
+        'root': root,
+        'root_translit': _translit_to_dash(root),
+        'gloss': gloss,
+        'matches': matches,
+    })
 
 
 def create_app():

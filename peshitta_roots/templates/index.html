@@ -16,8 +16,15 @@
             <div class="settings-dropdown" id="settings-dropdown">
                 <div class="settings-label">{{ t.settings_script }}</div>
                 <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
+                <button class="settings-option{% if script == 'syriac' %} active{% endif %}" data-script="syriac">{{ t.settings_syriac }}</button>
                 <button class="settings-option{% if script == 'hebrew' %} active{% endif %}" data-script="hebrew">{{ t.settings_hebrew }}</button>
                 <button class="settings-option{% if script == 'arabic' %} active{% endif %}" data-script="arabic">{{ t.settings_arabic }}</button>
+                <div class="settings-divider"></div>
+                <div class="settings-label">{{ t.settings_translation }}</div>
+                <button class="settings-option{% if trans == 'en' %} active{% endif %}" data-trans="en">{{ t.settings_trans_en }}</button>
+                <button class="settings-option{% if trans == 'es' %} active{% endif %}" data-trans="es">{{ t.settings_trans_es }}</button>
+                <button class="settings-option{% if trans == 'he' %} active{% endif %}" data-trans="he">{{ t.settings_trans_he }}</button>
+                <button class="settings-option{% if trans == 'ar' %} active{% endif %}" data-trans="ar">{{ t.settings_trans_ar }}</button>
             </div>
         </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">☀️</button>
@@ -109,6 +116,8 @@
             </div>
 
             <a href="{{ url_for('browse', lang=lang) }}" class="browse-link">{{ t.browse_link }} &rarr;</a>
+            <span style="color: var(--text-muted); margin: 0 8px;">|</span>
+            <a href="{{ url_for('read', lang=lang) }}" class="browse-link">{{ t.read_link }} &rarr;</a>
         </div>
 
         {% if disambiguation %}
@@ -302,7 +311,7 @@
     var modalVerses = [];    // array of verse data objects, in order
     var originalRef = '';    // the ref the user originally clicked
     var highlightForm = ''; // the word to highlight
-    var modalLang = '{{ lang }}';
+    var modalLang = '{{ trans }}';
     var MAX_VERSES = 4;
 
     var modalRootLabel = '';  // root label for modal header
@@ -410,24 +419,31 @@
             acadDiv.innerHTML = buildWordLine(data.words_translit_academic, isOriginal, data.words);
             block.appendChild(acadDiv);
 
-            // Simple transliteration (script-aware)
-            var translitDiv = document.createElement('div');
-            translitDiv.className = 'modal-translit';
-            if (currentScript === 'hebrew' || currentScript === 'arabic') {
-                translitDiv.style.direction = 'rtl';
-                translitDiv.style.textAlign = 'right';
-                translitDiv.style.fontFamily = currentScript === 'hebrew'
-                    ? "'Noto Sans Hebrew', 'David', 'Times New Roman', serif"
-                    : "'Noto Sans Arabic', 'Traditional Arabic', 'Times New Roman', serif";
-                translitDiv.style.fontSize = '1.2em';
+            // Simple transliteration (script-aware) — skip if syriac (same as academic)
+            if (currentScript !== 'syriac') {
+                var translitDiv = document.createElement('div');
+                translitDiv.className = 'modal-translit';
+                if (currentScript === 'hebrew' || currentScript === 'arabic') {
+                    translitDiv.style.direction = 'rtl';
+                    translitDiv.style.textAlign = 'right';
+                    translitDiv.style.fontFamily = currentScript === 'hebrew'
+                        ? "'Noto Sans Hebrew', 'David', 'Times New Roman', serif"
+                        : "'Noto Sans Arabic', 'Traditional Arabic', 'Times New Roman', serif";
+                    translitDiv.style.fontSize = '1.2em';
+                }
+                translitDiv.innerHTML = buildWordLine(data.words_translit, isOriginal, data.words);
+                block.appendChild(translitDiv);
             }
-            translitDiv.innerHTML = buildWordLine(data.words_translit, isOriginal, data.words);
-            block.appendChild(translitDiv);
 
             // Translation
             var transDiv = document.createElement('div');
             transDiv.className = 'modal-translation';
-            var translation = (modalLang === 'es') ? data.translation_es : data.translation_en;
+            if (modalLang === 'he' || modalLang === 'ar') {
+                transDiv.style.direction = 'rtl';
+                transDiv.style.textAlign = 'right';
+                transDiv.style.fontStyle = 'normal';
+            }
+            var translation = data['translation_' + modalLang] || data.translation_en;
             if (translation) transDiv.textContent = translation;
             block.appendChild(transDiv);
 
@@ -475,7 +491,7 @@
             lines.push(data.words_translit.join(' '));
             lines.push('');
             // Translation
-            var translation = (modalLang === 'es') ? data.translation_es : data.translation_en;
+            var translation = data['translation_' + modalLang] || data.translation_en;
             if (translation) {
                 lines.push(translation);
                 lines.push('');
@@ -621,11 +637,16 @@
 
         options.forEach(function(opt) {
             opt.addEventListener('click', function() {
-                var script = this.getAttribute('data-script');
-                localStorage.setItem('script', script);
-                // Update URL with script param and reload
                 var url = new URL(window.location.href);
-                url.searchParams.set('script', script);
+                var scriptVal = this.getAttribute('data-script');
+                var transVal = this.getAttribute('data-trans');
+                if (scriptVal) {
+                    localStorage.setItem('script', scriptVal);
+                    url.searchParams.set('script', scriptVal);
+                } else if (transVal) {
+                    localStorage.setItem('trans', transVal);
+                    url.searchParams.set('trans', transVal);
+                }
                 window.location.href = url.toString();
             });
         });
@@ -637,15 +658,26 @@
             e.stopPropagation();
         });
 
-        // On page load, apply stored script preference if no param in URL
+        // On page load, apply stored preferences if no param in URL
         var urlParams = new URLSearchParams(window.location.search);
+        var needsRedirect = false;
         if (!urlParams.has('script')) {
-            var stored = localStorage.getItem('script');
-            if (stored && stored !== 'latin') {
-                urlParams.set('script', stored);
-                var newUrl = window.location.pathname + '?' + urlParams.toString() + window.location.hash;
-                window.location.replace(newUrl);
+            var storedScript = localStorage.getItem('script');
+            if (storedScript && storedScript !== 'latin') {
+                urlParams.set('script', storedScript);
+                needsRedirect = true;
             }
+        }
+        if (!urlParams.has('trans')) {
+            var storedTrans = localStorage.getItem('trans');
+            if (storedTrans) {
+                urlParams.set('trans', storedTrans);
+                needsRedirect = true;
+            }
+        }
+        if (needsRedirect) {
+            var newUrl = window.location.pathname + '?' + urlParams.toString() + window.location.hash;
+            window.location.replace(newUrl);
         }
     })();
 

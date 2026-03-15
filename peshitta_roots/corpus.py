@@ -100,6 +100,56 @@ class PeshittaCorpus:
         self.load()
         return len(self._occurrences)
 
+    def get_books(self) -> list[tuple[str, int]]:
+        """Return ordered list of (book_name, max_chapter) tuples."""
+        self.load()
+        if not hasattr(self, '_books_cache'):
+            books_order: dict[str, tuple[int, int]] = {}  # book -> (order, max_ch)
+            for occ in self._all_words:
+                if occ.book not in books_order:
+                    books_order[occ.book] = (occ.position, occ.chapter)
+                else:
+                    _, cur_max = books_order[occ.book]
+                    if occ.chapter > cur_max:
+                        books_order[occ.book] = (books_order[occ.book][0], occ.chapter)
+            # Sort by first appearance in corpus
+            # Use the CSV row order: parse book_order from the first occurrence
+            book_list = []
+            seen = set()
+            for occ in self._all_words:
+                if occ.book not in seen:
+                    seen.add(occ.book)
+                    _, max_ch = books_order[occ.book]
+                    book_list.append((occ.book, max_ch))
+            self._books_cache = book_list
+        return self._books_cache
+
+    def get_chapter_verses(self, book: str, chapter: int) -> list[tuple[int, str, str]]:
+        """Return list of (verse_number, reference, syriac_text) for a chapter."""
+        self.load()
+        results = []
+        for ref, text in self._verses.items():
+            # Parse reference: "Book Chapter:Verse"
+            last_space = ref.rfind(' ')
+            if last_space == -1:
+                continue
+            book_part = ref[:last_space]
+            if book_part != book:
+                continue
+            chv = ref[last_space + 1:]
+            if ':' not in chv:
+                continue
+            ch_str, v_str = chv.split(':', 1)
+            try:
+                ch = int(ch_str)
+                v = int(v_str)
+            except ValueError:
+                continue
+            if ch == chapter:
+                results.append((v, ref, text))
+        results.sort(key=lambda x: x[0])
+        return results
+
     def get_verse_text(self, reference: str) -> str | None:
         """Return the Syriac text for a given verse reference."""
         self.load()

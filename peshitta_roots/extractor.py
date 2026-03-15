@@ -47,6 +47,8 @@ class RootExtractor:
         self._stopwords: set[str] = set()
         # Pre-computed root index: root -> RootEntry
         self._root_index: dict[str, RootEntry] = {}
+        # Word -> root mapping (built during build_index)
+        self._word_to_root: dict[str, str] = {}
         self._built = False
 
     def load_data(self) -> None:
@@ -170,6 +172,8 @@ class RootExtractor:
             if root is None:
                 continue
 
+            self._word_to_root[word] = root
+
             # Get all occurrences of this word
             occurrences = self.corpus.get_occurrences(word)
             refs = [occ.reference for occ in occurrences]
@@ -220,6 +224,11 @@ class RootExtractor:
         """Return the number of unique roots found."""
         self.build_index()
         return len(self._root_index)
+
+    def lookup_word_root(self, word: str) -> str | None:
+        """Return the Syriac root for a given word form, or None."""
+        self.build_index()
+        return self._word_to_root.get(word)
 
     def get_root_gloss(self, root_syriac: str) -> str:
         """Return the English gloss for a root from known_roots.json."""
