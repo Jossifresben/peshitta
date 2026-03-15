@@ -571,6 +571,22 @@ th {
     color: var(--text-primary);
 }
 
+.modal-copy {
+    position: absolute;
+    top: 12px;
+    right: 45px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+    padding: 2px 4px;
+}
+.modal-copy:hover {
+    color: var(--accent);
+}
+
 .modal-ref {
     font-size: 1.1em;
     font-weight: bold;

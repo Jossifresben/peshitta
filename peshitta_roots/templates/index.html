@@ -256,6 +256,7 @@
     <div id="verse-modal" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()">&times;</button>
+            <button class="modal-copy" onclick="copyModalContent()" title="Copy to clipboard">&#128203;</button>
             <div class="modal-ref" id="modal-ref"></div>
             <button class="modal-nav-arrow" id="nav-prev" onclick="navigateVerse(-1)" disabled>&#9650;</button>
             <div id="modal-verses-container"></div>
@@ -433,6 +434,35 @@
             }
         }
         return parts.join(' ');
+    }
+
+    function copyModalContent() {
+        if (!modalVerses.length) return;
+        var lines = [];
+        // Header: root + reference range
+        var refText = document.getElementById('modal-ref').textContent;
+        lines.push(refText);
+        lines.push('');
+        // Each verse
+        for (var v = 0; v < modalVerses.length; v++) {
+            var data = modalVerses[v];
+            // Syriac text
+            lines.push(data.words.join(' '));
+            // Academic transliteration
+            lines.push(data.words_translit_academic.join(' '));
+            // Simple transliteration
+            lines.push(data.words_translit.join(' '));
+            // Translation
+            var translation = (modalLang === 'es') ? data.translation_es : data.translation_en;
+            if (translation) lines.push(translation);
+            lines.push('');
+        }
+        var text = lines.join('\n').trim();
+        navigator.clipboard.writeText(text).then(function() {
+            var btn = document.querySelector('.modal-copy');
+            btn.textContent = '\u2713';
+            setTimeout(function() { btn.textContent = '\uD83D\uDCCB'; }, 1500);
+        });
     }
 
     function formatRefRange(firstRef, lastRef) {
