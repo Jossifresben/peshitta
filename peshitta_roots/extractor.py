@@ -174,9 +174,8 @@ class RootExtractor:
 
             self._word_to_root[word] = root
 
-            # Get all occurrences of this word
-            occurrences = self.corpus.get_occurrences(word)
-            refs = [occ.reference for occ in occurrences]
+            # Get all references where this word appears
+            refs = self.corpus.get_occurrences(word)
             root_data[root][word] = refs
 
         # Build RootEntry objects

@@ -4,17 +4,6 @@ import csv
 import json
 import os
 from collections import Counter
-from dataclasses import dataclass, field
-
-
-@dataclass
-class WordOccurrence:
-    word: str
-    reference: str
-    book: str
-    chapter: int
-    verse: int
-    position: int  # 0-based word position within the verse
 
 
 class PeshittaCorpus:
@@ -27,7 +16,7 @@ class PeshittaCorpus:
                 'syriac_nt_traditional22_unicode.csv'
             )
         self.csv_path = csv_path
-        self._occurrences: dict[str, list[WordOccurrence]] = {}
+        self._occurrences: dict[str, list[str]] = {}  # word -> [reference, ...]
         self._total_words: int = 0
         self._verses: dict[str, str] = {}  # reference -> syriac text
         self._verse_order: list[str] = []  # ordered references for book iteration
@@ -46,33 +35,22 @@ class PeshittaCorpus:
                 if not syriac_text:
                     continue
 
-                book = row['book']
-                chapter = int(row['chapter'])
-                verse = int(row['verse'])
                 reference = row['reference']
 
                 self._verses[reference] = syriac_text
                 self._verse_order.append(reference)
 
                 words = syriac_text.split()
-                for pos, word in enumerate(words):
+                for word in words:
                     clean_word = word.strip()
                     if not clean_word:
                         continue
 
-                    occ = WordOccurrence(
-                        word=clean_word,
-                        reference=reference,
-                        book=book,
-                        chapter=chapter,
-                        verse=verse,
-                        position=pos,
-                    )
                     self._total_words += 1
 
                     if clean_word not in self._occurrences:
                         self._occurrences[clean_word] = []
-                    self._occurrences[clean_word].append(occ)
+                    self._occurrences[clean_word].append(reference)
 
         self._loaded = True
 
@@ -81,15 +59,15 @@ class PeshittaCorpus:
         self.load()
         return set(self._occurrences.keys())
 
-    def get_occurrences(self, word: str) -> list[WordOccurrence]:
-        """Return all occurrences of a specific surface form."""
+    def get_occurrences(self, word: str) -> list[str]:
+        """Return all reference strings where this word appears."""
         self.load()
         return self._occurrences.get(word, [])
 
     def word_frequency(self) -> Counter:
         """Return word frequency counts across the entire corpus."""
         self.load()
-        return Counter({word: len(occs) for word, occs in self._occurrences.items()})
+        return Counter({word: len(refs) for word, refs in self._occurrences.items()})
 
     def total_words(self) -> int:
         """Return total number of word tokens."""
