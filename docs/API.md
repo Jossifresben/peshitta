@@ -15,7 +15,8 @@ Renders `index.html` with search form and results.
 | `q` | string | `""` | Root query in dash-separated Latin (e.g., `K-TH-B`) |
 | `cw` | string | `""` | Cognate word search (Hebrew/Arabic script or Latin transliteration) |
 | `lang` | string | `es` | UI language: `es` or `en` |
-| `script` | string | `latin` | Transliteration script: `latin`, `hebrew`, or `arabic` |
+| `script` | string | `latin` | Transliteration script: `latin`, `hebrew`, `arabic`, or `syriac` |
+| `trans` | string | `<lang>` | Translation language: `en`, `es`, `he`, or `ar` (defaults to UI language) |
 
 **Behavior:**
 - If `q` is provided: parse as root, show word forms + cognates
@@ -36,8 +37,33 @@ Renders `browse.html` with paginated table of all roots sorted by frequency.
 | Param | Type | Default | Description |
 |-------|------|---------|-------------|
 | `lang` | string | `es` | UI language |
-| `script` | string | `latin` | Transliteration script |
+| `script` | string | `latin` | Transliteration script: `latin`, `hebrew`, `arabic`, or `syriac` |
+| `trans` | string | `<lang>` | Translation language: `en`, `es`, `he`, or `ar` |
 | `page` | int | `1` | Page number (50 roots per page) |
+
+**Root column** now displays both Syriac script and Latin transliteration side by side (e.g., `ܗܘܐ H-W-A`).
+
+---
+
+### `GET /read` — Peshitta Reader (Interlinear Chapter Reader)
+
+Renders `read.html` with an interlinear chapter reading view.
+
+**Query Parameters:**
+
+| Param | Type | Default | Description |
+|-------|------|---------|-------------|
+| `book` | string | `Matthew` | Book name (English) |
+| `chapter` | int | `1` | Chapter number |
+| `lang` | string | `es` | UI language |
+| `script` | string | `latin` | Transliteration script: `latin`, `hebrew`, `arabic`, or `syriac` |
+| `trans` | string | `<lang>` | Translation language: `en`, `es`, `he`, or `ar` |
+
+**Features:**
+- Book/chapter navigation with dropdowns and prev/next buttons
+- Three lines per verse: Syriac script, transliteration, translation
+- Clickable words with root lookup modal (via `/api/word-root`)
+- Root hover tooltips showing Latin transliteration (e.g., Y-L-D)
 
 ---
 
@@ -53,7 +79,7 @@ Returns verse text with word-level data for the modal viewer.
 |-------|------|---------|-------------|
 | `ref` | string | required | Verse reference (e.g., `Matthew 1:1`) |
 | `lang` | string | `es` | Language for book name translation |
-| `script` | string | `latin` | Transliteration script |
+| `script` | string | `latin` | Transliteration script: `latin`, `hebrew`, `arabic`, or `syriac` |
 
 **Response (200):**
 
@@ -139,3 +165,30 @@ Returns all roots sorted by frequency, paginated.
 ```
 
 **Note:** Glosses are English-only in this endpoint (used by browse page which handles language separately).
+
+---
+
+### `GET /api/word-root` — Word Root Lookup
+
+Returns the root for a given Syriac word form (used by the reader's clickable words).
+
+**Query Parameters:**
+
+| Param | Type | Default | Description |
+|-------|------|---------|-------------|
+| `word` | string | required | Syriac word form (e.g., `ܟܬܒܐ`) |
+| `script` | string | `latin` | Transliteration script: `latin`, `hebrew`, `arabic`, or `syriac` |
+
+**Response (200):**
+
+```json
+{
+  "word": "ܟܬܒܐ",
+  "root": "ܟܬܒ",
+  "root_translit": "K-TH-B"
+}
+```
+
+**Error Responses:**
+- `400`: Missing `word` parameter
+- `404`: Root not found for the given word

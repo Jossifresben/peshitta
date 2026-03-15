@@ -235,19 +235,75 @@ header p {
     opacity: 1;
 }
 
-.lang-toggle, .theme-toggle {
+.lang-toggle, .theme-toggle, .help-toggle {
     background: var(--accent);
     color: #fff;
     border: none;
-    padding: 8px 16px;
+    padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: 1.1em;
     text-decoration: none;
+    line-height: 1;
 }
 
-.lang-toggle:hover, .theme-toggle:hover {
+.lang-toggle:hover, .theme-toggle:hover, .help-toggle:hover {
     background: var(--accent-dark);
+}
+
+.lang-wrapper {
+    position: relative;
+}
+
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px var(--shadow);
+    padding: 6px;
+    min-width: 60px;
+    z-index: 300;
+}
+
+.lang-dropdown.open {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lang-option {
+    display: block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.85em;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.15s;
+}
+
+.lang-option:hover {
+    background: var(--bg-hover, #f0f0f0);
+}
+
+.lang-option.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.help-toggle {
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 1;
+    min-width: 32px;
+    text-align: center;
 }
 
 .theme-toggle {
@@ -1347,4 +1403,97 @@ footer a:hover {
     .root-header .root-syriac {
         font-size: 1.4em;
     }
+}
+
+/* === Help page === */
+.help-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.help-section {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-light);
+}
+
+.help-section h2 {
+    color: var(--accent);
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.3em;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 8px;
+}
+
+.help-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.help-section ul li {
+    padding: 8px 0;
+    line-height: 1.6;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.help-section ul li:last-child {
+    border-bottom: none;
+}
+
+.help-section ul li strong {
+    color: var(--text-primary);
+}
+
+.help-capabilities ul li {
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.help-capabilities ul li::before {
+    content: "•";
+    color: var(--accent);
+    font-weight: bold;
+    position: absolute;
+    left: 4px;
+}
+
+.help-faq details {
+    border-bottom: 1px solid var(--border-light);
+    padding: 0;
+}
+
+.help-faq details:last-child {
+    border-bottom: none;
+}
+
+.help-faq summary {
+    cursor: pointer;
+    padding: 12px 0;
+    font-weight: bold;
+    color: var(--text-primary);
+    list-style: none;
+}
+
+.help-faq summary::-webkit-details-marker {
+    display: none;
+}
+
+.help-faq summary::before {
+    content: "▸ ";
+    color: var(--accent);
+}
+
+.help-faq details[open] summary::before {
+    content: "▾ ";
+}
+
+.help-faq .faq-answer {
+    padding: 0 0 16px 16px;
+    line-height: 1.6;
+    color: var(--text-secondary);
 }

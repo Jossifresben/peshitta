@@ -84,9 +84,20 @@ git push origin main
 
 ### Transliteration
 - Default script: Latin (`script=latin`)
-- Options: `latin`, `hebrew`, `arabic`
+- Options: `latin`, `syriac`, `hebrew`, `arabic`
+  - `latin` — ABC (standard Latin letters, digraphs SH/KH/TH/TS)
+  - `syriac` — uses `transliterate_syriac_academic()` (scholarly ʾbg notation with diacritics)
+  - `hebrew` — Hebrew script (אבג)
+  - `arabic` — Arabic script (ابج)
 - Persisted in `localStorage('script')` on client side
 - Passed as `script` query parameter to server
+
+### Translation Language
+- Default: follows UI language (`trans` defaults to `lang`)
+- Options: `en` (English), `es` (Spanish), `he` (Hebrew Modern), `ar` (Arabic SVD)
+- Persisted in `localStorage('trans')` on client side
+- Passed as `trans` query parameter to server
+- RTL support for `he` and `ar` translations
 
 ### Root Format
 - Internal: Syriac Unicode (e.g., `ܟܬܒ`)

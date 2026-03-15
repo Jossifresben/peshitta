@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="{{ 'es' if lang == 'es' else 'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ t.help_title }} - {{ t.app_title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Syriac&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="sticky-header">
+        <div class="lang-wrapper">
+            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language">&#127760;</button>
+            <div class="lang-dropdown" id="lang-dropdown">
+                <a href="{{ url_for('help_page', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}">ES</a>
+                <a href="{{ url_for('help_page', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}">EN</a>
+            </div>
+        </div>
+        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle active" title="{{ t.help_link }}">?</a>
+        <div class="settings-wrapper">
+            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}">&#9881;</button>
+            <div class="settings-dropdown" id="settings-dropdown">
+                <div class="settings-label">{{ t.settings_script }}</div>
+                <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
+                <button class="settings-option{% if script == 'syriac' %} active{% endif %}" data-script="syriac">{{ t.settings_syriac }}</button>
+                <button class="settings-option{% if script == 'hebrew' %} active{% endif %}" data-script="hebrew">{{ t.settings_hebrew }}</button>
+                <button class="settings-option{% if script == 'arabic' %} active{% endif %}" data-script="arabic">{{ t.settings_arabic }}</button>
+                <div class="settings-divider"></div>
+                <div class="settings-label">{{ t.settings_translation }}</div>
+                <button class="settings-option{% if trans == 'en' %} active{% endif %}" data-trans="en">{{ t.settings_trans_en }}</button>
+                <button class="settings-option{% if trans == 'es' %} active{% endif %}" data-trans="es">{{ t.settings_trans_es }}</button>
+                <button class="settings-option{% if trans == 'he' %} active{% endif %}" data-trans="he">{{ t.settings_trans_he }}</button>
+                <button class="settings-option{% if trans == 'ar' %} active{% endif %}" data-trans="ar">{{ t.settings_trans_ar }}</button>
+            </div>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">☀️</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>{{ t.help_title }}</h1>
+            <p><a href="{{ url_for('index', lang=lang) }}">← {{ t.app_title }}</a></p>
+        </header>
+
+        <div class="help-content">
+
+            <!-- Section 1: How to Use -->
+            <div class="help-section">
+                <h2>{{ t.help_how_to }}</h2>
+                {% if lang == 'es' %}
+                <ul>
+                    <li><strong>Buscar raíces:</strong> Escribe una raíz trilítera en el buscador usando formato separado por guiones (ej. K-TH-B).</li>
+                    <li><strong>Buscar una palabra:</strong> También puedes buscar una palabra directamente en cualquier escritura o transliteración (ej. כתב, katav, كتب). El buscador encontrará la raíz asociada y mostrará todas sus formas.</li>
+                    <li><strong>Resultados:</strong> Al buscar una raíz o palabra, verás una lista de todas las formas derivadas de esa raíz, junto con los libros donde aparecen y el número de ocurrencias. Haz clic en cualquier versículo para ver el texto completo.</li>
+                    <li><strong>Versículos de contexto:</strong> En el modal de versículo, usa los botones de navegación para ver hasta 4 versículos anteriores y siguientes como contexto.</li>
+                    <li><strong>Explorar raíces:</strong> Haz clic en "Explorar todas las raíces" para navegar las 2,535 raíces ordenadas por frecuencia.</li>
+                    <li><strong>Leer la Peshitta:</strong> Haz clic en "Lector de la Peshitta" para leer capítulo por capítulo con texto interlineal (siríaco, transliteración, traducción).</li>
+                    <li><strong>Palabras con raíz:</strong> En el lector, las palabras subrayadas tienen una raíz identificada. Pasa el cursor para ver la raíz, o haz clic para ver todas las formas y ocurrencias.</li>
+                </ul>
+                {% else %}
+                <ul>
+                    <li><strong>Search roots:</strong> Type a triliteral root in the search box using dash-separated format (e.g. K-TH-B).</li>
+                    <li><strong>Search a word:</strong> You can also search for a word directly in any script or transliteration (e.g. כתב, katav, كتب). The search will find the associated root and show all its forms.</li>
+                    <li><strong>Results:</strong> When searching for a root or word, you'll see a list of all derived forms from that root, along with the books where they appear and the number of occurrences. Click any verse reference to see the full text.</li>
+                    <li><strong>Context verses:</strong> In the verse modal, use the navigation buttons to see up to 4 previous and following verses for context.</li>
+                    <li><strong>Browse roots:</strong> Click "Browse all roots" to navigate all 2,535 roots sorted by frequency.</li>
+                    <li><strong>Read the Peshitta:</strong> Click "Peshitta Reader" to read chapter by chapter with interlinear text (Syriac, transliteration, translation).</li>
+                    <li><strong>Words with roots:</strong> In the reader, underlined words have an identified root. Hover to see the root, or click to see all forms and occurrences.</li>
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Section 2: Settings -->
+            <div class="help-section">
+                <h2>{{ t.help_settings_title }}</h2>
+                {% if lang == 'es' %}
+                <ul>
+                    <li><strong>Transliteración (⚙️):</strong> Elige entre 4 escrituras para la transliteración: Latín (ABC), Siríaco académico (ʾbg), Hebreo (אבג), Árabe (ابج). Tu selección se guarda automáticamente.</li>
+                    <li><strong>Traducción (⚙️):</strong> Elige el idioma de las traducciones de los versículos: English, Español, עברית (Hebreo), العربية (Árabe).</li>
+                    <li><strong>Modo oscuro (☀️/🌙):</strong> Alterna entre modo claro y oscuro.</li>
+                    <li><strong>Idioma de la interfaz:</strong> Usa el botón "English"/"Español" para cambiar el idioma de la interfaz.</li>
+                </ul>
+                {% else %}
+                <ul>
+                    <li><strong>Transliteration (⚙️):</strong> Choose from 4 scripts for transliteration: Latin (ABC), Academic Syriac (ʾbg), Hebrew (אבג), Arabic (ابج). Your selection is saved automatically.</li>
+                    <li><strong>Translation (⚙️):</strong> Choose the language for verse translations: English, Español, עברית (Hebrew), العربية (Arabic).</li>
+                    <li><strong>Dark mode (☀️/🌙):</strong> Toggle between light and dark mode.</li>
+                    <li><strong>Interface language:</strong> Use the "English"/"Español" button to switch the UI language.</li>
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Section 3: Capabilities -->
+            <div class="help-section help-capabilities">
+                <h2>{{ t.help_capabilities }}</h2>
+                {% if lang == 'es' %}
+                <ul>
+                    <li>2,535 raíces trilíteras identificadas del Nuevo Testamento Peshitta (Khabouris Codex)</li>
+                    <li>109,428 palabras analizadas en 7,440 versículos, 22 libros</li>
+                    <li>~394 raíces con cognados semíticos (hebreo, árabe, acadio, arameo, etíope, ugarítico)</li>
+                    <li>Traducciones en 4 idiomas (EN, ES, HE, AR) — Hebreo Moderno y Árabe Smith &amp; Van Dyke</li>
+                    <li>Transliteración en 4 escrituras con correspondencia letra a letra</li>
+                    <li>Lector interlineal capítulo por capítulo con palabras clicables</li>
+                    <li>Glosario automático de significados para las raíces más frecuentes</li>
+                </ul>
+                {% else %}
+                <ul>
+                    <li>2,535 triliteral roots identified from the Peshitta New Testament (Khabouris Codex)</li>
+                    <li>109,428 words analyzed across 7,440 verses, 22 books</li>
+                    <li>~394 roots with Semitic cognates (Hebrew, Arabic, Akkadian, Aramaic, Ethiopic, Ugaritic)</li>
+                    <li>Translations in 4 languages (EN, ES, HE, AR) — Modern Hebrew and Arabic Smith &amp; Van Dyke</li>
+                    <li>Transliteration in 4 scripts with letter-by-letter correspondence</li>
+                    <li>Interlinear chapter-by-chapter reader with clickable words</li>
+                    <li>Automatic meaning glossary for the most frequent roots</li>
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Section 4: Sources -->
+            <div class="help-section">
+                <h2>{{ t.help_sources }}</h2>
+                {% if lang == 'es' %}
+                <ul>
+                    <li><strong>Texto Peshitta:</strong> Nuevo Testamento siríaco del Códice Khabouris, digitalizado por Dukhrana Biblical Research. Contiene 22 libros en escritura siríaca clásica (Estrangela).</li>
+                    <li><strong>Traducción inglesa:</strong> Traducción Murdock del NT Peshitta (dominio público, siglo XIX).</li>
+                    <li><strong>Traducción española:</strong> Reina-Valera 1909 (dominio público).</li>
+                    <li><strong>Traducción hebrea:</strong> Hebreo Moderno (siglo XIX), disponible a través de Bible SuperSearch (dominio público).</li>
+                    <li><strong>Traducción árabe:</strong> Smith &amp; Van Dyke (1865), obtenida de la API getBible v2 (dominio público).</li>
+                    <li><strong>Cognados semíticos:</strong> Compilación propia basada en léxicos estándar de hebreo (BDB), árabe (Hans Wehr), acadio (CAD), arameo y etíope. ~394 raíces con correspondencias entre lenguas.</li>
+                    <li><strong>Extracción de raíces:</strong> Algoritmo propio de análisis morfológico que identifica raíces trilíteras mediante eliminación de prefijos, sufijos y patrones de conjugación siríacos.</li>
+                </ul>
+                {% else %}
+                <ul>
+                    <li><strong>Peshitta text:</strong> Syriac New Testament from the Khabouris Codex, digitized by Dukhrana Biblical Research. Contains 22 books in classical Syriac script (Estrangela).</li>
+                    <li><strong>English translation:</strong> Murdock translation of the Peshitta NT (public domain, 19th century).</li>
+                    <li><strong>Spanish translation:</strong> Reina-Valera 1909 (public domain).</li>
+                    <li><strong>Hebrew translation:</strong> Modern Hebrew (19th century), available through Bible SuperSearch (public domain).</li>
+                    <li><strong>Arabic translation:</strong> Smith &amp; Van Dyke (1865), obtained from the getBible v2 API (public domain).</li>
+                    <li><strong>Semitic cognates:</strong> Custom compilation based on standard lexicons: Hebrew (BDB), Arabic (Hans Wehr), Akkadian (CAD), Aramaic, and Ethiopic. ~394 roots with cross-language correspondences.</li>
+                    <li><strong>Root extraction:</strong> Custom morphological analysis algorithm that identifies triliteral roots by stripping Syriac prefixes, suffixes, and conjugation patterns.</li>
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Section 5: FAQ -->
+            <div class="help-section help-faq">
+                <h2>{{ t.help_faq }}</h2>
+                {% if lang == 'es' %}
+                <details>
+                    <summary>¿Qué es una raíz trilítera?</summary>
+                    <div class="faq-answer">En las lenguas semíticas, la mayoría de las palabras derivan de una raíz de tres consonantes. Por ejemplo, K-TH-B (<span class="syriac">ܟܬܒ</span>) significa "escribir" y genera formas como <span class="syriac">ܟܬܒܐ</span> (libro), <span class="syriac">ܟܬܒ</span> (escribió), <span class="syriac">ܡܟܬܒܢܘܬܐ</span> (escritura).</div>
+                </details>
+                <details>
+                    <summary>¿Qué es la Peshitta?</summary>
+                    <div class="faq-answer">La Peshitta es la versión estándar de la Biblia en siríaco (arameo). Este sitio analiza el texto del Nuevo Testamento según el Códice Khabouris.</div>
+                </details>
+                <details>
+                    <summary>¿Por qué algunas palabras no están subrayadas en el lector?</summary>
+                    <div class="faq-answer">Solo las palabras que coinciden con una forma conocida de una raíz trilítera están marcadas. Partículas, preposiciones y palabras no identificadas no se subrayan.</div>
+                </details>
+                <details>
+                    <summary>¿Qué son los cognados?</summary>
+                    <div class="faq-answer">Los cognados son palabras en distintas lenguas semíticas que comparten la misma raíz ancestral. Por ejemplo, la raíz K-TH-B existe en hebreo (<span class="hebrew">כתב</span>), árabe (<span class="arabic">كتب</span>) y siríaco (<span class="syriac">ܟܬܒ</span>).</div>
+                </details>
+                <details>
+                    <summary>¿Se puede copiar el texto?</summary>
+                    <div class="faq-answer">Sí, en el buscador haz clic en el botón ⧉ del modal de versículo para copiar el texto siríaco con transliteración y traducción.</div>
+                </details>
+                {% else %}
+                <details>
+                    <summary>What is a triliteral root?</summary>
+                    <div class="faq-answer">In Semitic languages, most words derive from a three-consonant root. For example, K-TH-B (<span class="syriac">ܟܬܒ</span>) means "to write" and generates forms like <span class="syriac">ܟܬܒܐ</span> (book), <span class="syriac">ܟܬܒ</span> (he wrote), <span class="syriac">ܡܟܬܒܢܘܬܐ</span> (scripture).</div>
+                </details>
+                <details>
+                    <summary>What is the Peshitta?</summary>
+                    <div class="faq-answer">The Peshitta is the standard version of the Bible in Syriac (Aramaic). This site analyzes the New Testament text from the Khabouris Codex.</div>
+                </details>
+                <details>
+                    <summary>Why are some words not underlined in the reader?</summary>
+                    <div class="faq-answer">Only words matching a known form of a triliteral root are marked. Particles, prepositions, and unidentified words are not underlined.</div>
+                </details>
+                <details>
+                    <summary>What are cognates?</summary>
+                    <div class="faq-answer">Cognates are words in different Semitic languages that share the same ancestral root. For example, the root K-TH-B exists in Hebrew (<span class="hebrew">כתב</span>), Arabic (<span class="arabic">كتب</span>), and Syriac (<span class="syriac">ܟܬܒ</span>).</div>
+                </details>
+                <details>
+                    <summary>Can I copy text?</summary>
+                    <div class="faq-answer">Yes, in the search page click the ⧉ button in the verse modal to copy the Syriac text with transliteration and translation.</div>
+                </details>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+    // Settings dropdown
+    document.getElementById('settings-toggle').addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.getElementById('settings-dropdown').classList.toggle('open');
+        var ld = document.getElementById('lang-dropdown');
+        if (ld) ld.classList.remove('open');
+    });
+    document.addEventListener('click', function() {
+        document.getElementById('settings-dropdown').classList.remove('open');
+    });
+    document.getElementById('settings-dropdown').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Settings options
+    document.querySelectorAll('.settings-option').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var url = new URL(window.location);
+            if (this.dataset.script) {
+                url.searchParams.set('script', this.dataset.script);
+                localStorage.setItem('script', this.dataset.script);
+            }
+            if (this.dataset.trans) {
+                url.searchParams.set('trans', this.dataset.trans);
+                localStorage.setItem('trans', this.dataset.trans);
+            }
+            window.location = url;
+        });
+    });
+
+    // Language dropdown
+    (function() {
+        var langToggle = document.getElementById('lang-toggle');
+        var langDropdown = document.getElementById('lang-dropdown');
+        if (langToggle && langDropdown) {
+            langToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langDropdown.classList.toggle('open');
+                var sd = document.getElementById('settings-dropdown');
+                if (sd) sd.classList.remove('open');
+            });
+            document.addEventListener('click', function() {
+                langDropdown.classList.remove('open');
+            });
+            langDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+    })();
+
+    // Dark mode
+    (function() {
+        var toggle = document.getElementById('theme-toggle');
+        var dark = localStorage.getItem('dark') === '1';
+        if (dark) { document.body.classList.add('dark'); toggle.textContent = '🌙'; }
+        toggle.addEventListener('click', function() {
+            dark = !dark;
+            document.body.classList.toggle('dark', dark);
+            toggle.textContent = dark ? '🌙' : '☀️';
+            localStorage.setItem('dark', dark ? '1' : '0');
+        });
+    })();
+
+    // Restore settings from localStorage
+    (function() {
+        var url = new URL(window.location);
+        var changed = false;
+        var storedScript = localStorage.getItem('script');
+        if (storedScript && storedScript !== 'latin' && !url.searchParams.has('script')) {
+            url.searchParams.set('script', storedScript);
+            changed = true;
+        }
+        var storedTrans = localStorage.getItem('trans');
+        if (storedTrans && !url.searchParams.has('trans')) {
+            url.searchParams.set('trans', storedTrans);
+            changed = true;
+        }
+        if (changed) window.location = url;
+    })();
+    </script>
+</body>
+</html>

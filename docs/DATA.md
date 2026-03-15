@@ -39,6 +39,7 @@ UI translations for Spanish and English.
     "lang_toggle": "English",
     "settings_script": "Transliteración",
     "settings_latin": "Latín (ABC)",
+    "settings_syriac": "Siríaco (ʾbg)",
     "settings_hebrew": "Hebreo (אבג)",
     "settings_arabic": "Árabe (ابج)",
     "tooltip_roots": "Número de raíces trilíteras...",
@@ -61,7 +62,8 @@ UI translations for Spanish and English.
 - Results UI (section headers, column labels)
 - Browse page (pagination, table headers)
 - Stats tooltips
-- Settings labels
+- Settings labels (transliteration: 4 options; translation: 4 options)
+- Reader page labels
 - Book name translations (English → Spanish)
 - Verse modal labels
 
@@ -71,7 +73,7 @@ UI translations for Spanish and English.
 
 Hebrew and Arabic cognates for Syriac roots, with bilingual glosses.
 
-**Size:** 284 root entries (~9,657 lines)
+**Size:** ~394 root entries (expanded from 284 with 110 new roots)
 
 **Structure:**
 ```json
@@ -158,25 +160,34 @@ Function words excluded from root extraction.
 
 ## data/translations.json
 
-English and Spanish translations for all 7,440 verses.
+Verse translations in four languages for all 7,440 verses.
 
-**Size:** ~29,773 lines (lazy-loaded on first verse request)
+**Size:** Lazy-loaded on first verse request.
 
 **Structure:**
 ```json
 {
   "Matthew 1:1": {
     "en": "The book of the genealogy of Jesus Christ, the son of David, the son of Abraham.",
-    "es": "LIBRO de la generación de Jesucristo, hijo de David, hijo de Abraham."
+    "es": "LIBRO de la generación de Jesucristo, hijo de David, hijo de Abraham.",
+    "he": "ספר תולדות ישוע המשיח בן דוד בן אברהם",
+    "ar": "كتاب ميلاد يسوع المسيح ابن داود ابن ابراهيم"
   },
   "Matthew 1:2": { ... },
   ...
 }
 ```
 
-**Sources:**
-- English: World English Bible (WEB) — public domain
-- Spanish: Reina Valera 1909 — public domain
+**Languages:**
+
+| Key | Language | Source | Verses |
+|-----|----------|--------|--------|
+| `en` | English | World English Bible (WEB) — public domain | 7,440 |
+| `es` | Spanish | Reina Valera 1909 — public domain | 7,440 |
+| `he` | Hebrew Modern | Hebrew Modern translation | 7,440 |
+| `ar` | Arabic | Smith & Van Dyke (SVD) via getBible API | 7,440 |
+
+**RTL support:** Hebrew and Arabic translations are rendered with `direction: rtl` in the UI.
 
 ---
 

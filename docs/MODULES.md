@@ -21,6 +21,7 @@ The foundational module. All other modules depend on it for character mapping an
 | `SYRIAC_TO_ACADEMIC` | ܟ → k, ܬ → ṯ | Scholarly notation with diacritics |
 | `SYRIAC_TO_HEBREW` | ܟ → כ, ܫ → ש | 22 Syriac → 22 Hebrew characters |
 | `SYRIAC_TO_ARABIC` | ܟ → ك, ܫ → ش | 22 Syriac → Arabic characters |
+| `SYRIAC_TO_SYRIAC_ACADEMIC` | ܟ → k, ܬ → ṯ | Syriac academic transliteration (ʾbg style) |
 | `HEBREW_TO_LATIN` | כ → k | For cognate word input parsing |
 | `ARABIC_TO_LATIN` | ك → k | For cognate word input parsing |
 
@@ -38,7 +39,7 @@ Parses user input into a 3-letter Syriac root. Accepts:
 Returns `None` if input doesn't resolve to exactly 3 consonants.
 
 **`transliterate_syriac(text: str) -> str`** — Syriac → Latin lowercase
-**`transliterate_syriac_academic(text: str) -> str`** — Syriac → scholarly notation
+**`transliterate_syriac_academic(text: str) -> str`** — Syriac → scholarly notation (used for the `syriac` script option in settings)
 **`transliterate_syriac_to_hebrew(text: str) -> str`** — Syriac → Hebrew script
 **`transliterate_syriac_to_arabic(text: str) -> str`** — Syriac → Arabic script
 **`transliterate_hebrew(text: str) -> str`** — Hebrew → Latin
@@ -81,8 +82,10 @@ position: int       # 0-based word position in verse
 | `total_words()` | int | Total tokens (~134,000) |
 | `total_unique()` | int | Unique forms (~15,261) |
 | `get_verse_text(ref)` | str \| None | Full Syriac text of a verse |
-| `get_verse_translation(ref, lang)` | str | EN or ES translation (lazy-loads translations.json) |
+| `get_verse_translation(ref, lang)` | str | Translation in en/es/he/ar (lazy-loads translations.json) |
 | `get_adjacent_ref(ref, direction)` | str \| None | Previous (-1) or next (+1) verse reference |
+| `get_books()` | list[tuple[str, int]] | List of (book_name, chapter_count) pairs |
+| `get_chapter_verses(book, chapter)` | list[tuple[int, str, str]] | List of (verse_num, syriac_text, reference) for a chapter |
 
 **CSV Format:** `book_order,book,chapter,verse,reference,syriac`
 
@@ -121,6 +124,10 @@ total_occurrences: int    # Sum of all match counts
 | `get_all_roots()` | list[RootEntry] | All roots sorted by frequency (descending) |
 | `get_root_count()` | int | Number of unique roots (~2,535) |
 | `get_root_gloss(root_syriac)` | str | Gloss from known_roots.json |
+| `lookup_word_root(word)` | str \| None | Look up the root for a given Syriac word form (uses `_word_to_root` dict) |
+
+**Internal State:**
+- `_word_to_root: dict[str, str]` — Reverse index mapping every word form to its assigned root (built during `build_index()`)
 
 ### Root Extraction Algorithm
 

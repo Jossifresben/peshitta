@@ -2,7 +2,7 @@
 
 ## What This App Does
 
-The **Peshitta Triliteral Root Finder** is a bilingual (Spanish/English) Flask web app for searching and analyzing triliteral roots in the Syriac Peshitta New Testament. Users can search by Syriac root (in Latin, Hebrew, or Arabic transliteration), or by a cognate word in Hebrew/Arabic. The app shows all word forms derived from that root, their verse references, glosses, verb stems, and cognate words in Hebrew and Arabic.
+The **Peshitta Triliteral Root Finder** is a bilingual (Spanish/English) Flask web app for searching and analyzing triliteral roots in the Syriac Peshitta New Testament. Users can search by Syriac root (in Latin, Hebrew, Arabic, or Syriac academic transliteration), or by a cognate word in Hebrew/Arabic. The app shows all word forms derived from that root, their verse references, glosses, verb stems, and cognate words in Hebrew and Arabic. It also includes an interlinear chapter reader (`/read`) with clickable word-level root lookup. Translations are available in four languages: English, Spanish, Hebrew Modern, and Arabic SVD.
 
 ## Project Structure
 
@@ -19,20 +19,23 @@ peshitta/
 │   ├── cognates.py              # Hebrew/Arabic cognate lookup
 │   ├── glosser.py               # Morphological glossing & stem detection
 │   ├── templates/
-│   │   ├── index.html           # Main search page (689 lines)
-│   │   └── browse.html          # Browse all roots (170 lines)
+│   │   ├── index.html           # Main search page
+│   │   ├── browse.html          # Browse all roots
+│   │   └── read.html            # Interlinear chapter reader
 │   └── static/
-│       └── style.css            # Full CSS with dark/light themes (1,173 lines)
+│       └── style.css            # Full CSS with dark/light themes, reader & RTL styles
 ├── data/
 │   ├── i18n.json                # UI translations (ES/EN)
-│   ├── cognates.json            # 284 roots with Hebrew/Arabic cognates
+│   ├── cognates.json            # ~394 roots with Hebrew/Arabic cognates
 │   ├── known_roots.json         # Curated root dictionary with glosses
 │   ├── stopwords.json           # Function words to exclude
-│   ├── translations.json        # EN/ES verse translations (7,440 verses)
+│   ├── translations.json        # EN/ES/HE/AR verse translations (7,440 verses x 4 langs)
 │   └── word_glosses_override.json  # 1,015 manual gloss overrides
 ├── syriac_nt_traditional22_unicode.csv  # Source corpus (7,440 verses)
 ├── scripts/
 │   └── fetch_translations.py    # Utility to fetch translations
+├── fetch_arabic.py              # Script to fetch Arabic SVD from getBible API
+├── fetch_hebrew.py              # Script to import Hebrew Modern from he_modern.json
 ├── requirements.txt             # flask>=3.0, gunicorn>=21.2
 ├── render.yaml                  # Render.com deployment config
 └── docs/                        # This documentation
@@ -97,10 +100,20 @@ _init()
 ```
 1. corpus.get_verse_text("Matthew 1:1") → Syriac text
 2. Split into words → transliterate each (academic + script-specific)
-3. corpus.get_verse_translation(ref, 'en'/'es')
+3. corpus.get_verse_translation(ref, 'en'/'es'/'he'/'ar')
 4. corpus.get_adjacent_ref(ref, ±1) → prev/next verse refs
 5. Translate book name via i18n book_names
 6. Return JSON → modal JS renders with word highlighting
+```
+
+### Request Flow: Reader (`GET /read?book=Matthew&chapter=1&trans=he`)
+
+```
+1. corpus.get_books() → list of (book_name, chapter_count)
+2. corpus.get_chapter_verses(book, chapter) → list of (verse_num, syriac_text, reference)
+3. For each verse: transliterate, get translation in selected lang
+4. extractor.lookup_word_root(word) → root for hover tooltip
+5. Render read.html with interlinear display
 ```
 
 ## Global State & Thread Safety
@@ -110,7 +123,7 @@ All heavy objects are initialized once and shared across requests:
 ```python
 _corpus: PeshittaCorpus          # ~134k words indexed
 _extractor: RootExtractor        # ~2,535 roots indexed
-_cognate_lookup: CognateLookup   # 284 cognate entries
+_cognate_lookup: CognateLookup   # ~394 cognate entries
 _glosser: WordGlosser            # 1,015 override entries
 _i18n: dict                      # UI translations
 _initialized: bool               # Guard flag
@@ -130,6 +143,6 @@ The `_init()` function uses double-checked locking:
 | Total word tokens | ~134,000 |
 | Unique surface forms | ~15,261 |
 | Extracted triliteral roots | ~2,535 |
-| Cognate entries | 284 |
+| Cognate entries | ~394 |
 | Manual gloss overrides | 1,015 |
 | Known/curated roots | ~200 |

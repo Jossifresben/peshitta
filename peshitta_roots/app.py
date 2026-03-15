@@ -497,6 +497,23 @@ def read():
                            next_chapter=next_chapter)
 
 
+@app.route('/help')
+def help_page():
+    """Help page with how-to, settings, capabilities, and FAQ."""
+    _init()
+    lang = request.args.get('lang', 'es')
+    if lang not in _i18n:
+        lang = 'es'
+    t = _Namespace(_i18n[lang])
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
+        script = 'latin'
+    trans = request.args.get('trans', lang)
+    if trans not in ('en', 'es', 'he', 'ar'):
+        trans = lang
+    return render_template('help.html', t=t, lang=lang, script=script, trans=trans)
+
+
 @app.route('/api/word-root')
 def api_word_root():
     """Return root info for a given word form."""

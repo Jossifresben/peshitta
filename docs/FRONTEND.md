@@ -11,7 +11,7 @@
 ```
 ┌─────────────────────────────────────────┐
 │ [Sticky Header]                         │
-│   Lang Toggle | Settings ⚙️ | Theme ☀️  │
+│   Lang Toggle | Reader | Settings | Theme│
 ├─────────────────────────────────────────┤
 │ Title + Subtitle                        │
 │ Stats Bar: Roots | Words | Unique Forms │
@@ -61,7 +61,8 @@
 | Modal navigation | arrows in modal | Loads previous/next verses, accumulates up to 4 passages |
 | Copy to clipboard | `copyModalContent()` | Formats all visible passages with metadata, copies to clipboard |
 | Word highlighting | inline | Matches word form in verse text, wraps in `<mark>` |
-| Script switching | settings dropdown | Saves to localStorage, reloads page with `script` param |
+| Script switching | settings dropdown | Saves to localStorage, reloads page with `script` param (4 options: latin, syriac, hebrew, arabic) |
+| Translation lang | settings dropdown | Saves to localStorage, reloads page with `trans` param (4 options: en, es, he, ar) |
 | Dark mode | theme toggle | Saves to localStorage, respects `prefers-color-scheme` |
 | Book name translation | `translate_ref()` | Replaces English book names with localized names in references |
 
@@ -97,6 +98,49 @@ A toggleable reference grid showing all 22 Syriac consonants with their Latin eq
 ```
 
 Each root row links to `/?q=<root>&lang=<lang>#results`.
+
+**Root column** now shows both Syriac script and Latin transliteration (e.g., `ܗܘܐ H-W-A`).
+
+---
+
+### read.html (Peshitta Reader — Interlinear Chapter View)
+
+**URL:** `GET /read`
+
+**Layout:**
+
+```
++-------------------------------------------+
+| [Sticky Header] (same as other pages)     |
++-------------------------------------------+
+| Book dropdown | Chapter dropdown          |
+| [< Prev] [Next >]                        |
+|                                           |
+| Verse 1:                                  |
+|   Syriac text (RTL, clickable words)      |
+|   Transliteration                         |
+|   Translation (in selected language)      |
+|                                           |
+| Verse 2:                                  |
+|   ...                                     |
++-------------------------------------------+
+| Footer                                    |
++-------------------------------------------+
+
++-------------------------------------------+
+| [Root Lookup Modal - on word click]       |
+|   Word: xxxxxxx                           |
+|   Root: xxx (X-X-X)                       |
+|   Link to search page                     |
++-------------------------------------------+
+```
+
+**Key Features:**
+- Book and chapter navigation via dropdowns with prev/next buttons
+- Three interlinear lines per verse: Syriac script, transliteration, translation
+- Clickable Syriac words trigger root lookup modal (calls `/api/word-root`)
+- Root hover tooltips show Latin transliteration (e.g., Y-L-D)
+- When `syriac` script is selected, the duplicate transliteration line is hidden (since Syriac is already shown)
 
 ---
 
@@ -139,8 +183,14 @@ Uses CSS custom properties with `[data-theme]` attribute on `<html>`:
 | `.count-badge` | Occurrence count pill |
 | `.stem-badge` | Verb stem label pill |
 | `.stat-item` | Stats bar item with tooltip |
-| `.settings-dropdown` | Script selection dropdown |
+| `.settings-dropdown` | Script/translation selection dropdown (two sections) |
 | `.translit-table` | Alphabet reference grid |
+| `.reader-nav` | Book/chapter navigation bar in reader |
+| `.verse-block` | Individual verse container in reader |
+| `.verse-syriac` | Syriac text line in reader (RTL) |
+| `.verse-translit` | Transliteration line in reader |
+| `.verse-translation` | Translation line in reader |
+| `.root-latin` | Latin transliteration next to Syriac root in browse table |
 
 ### Responsive Breakpoints
 
@@ -160,4 +210,13 @@ Uses CSS custom properties with `[data-theme]` attribute on `<html>`:
 
 ### RTL Support
 
-Hebrew and Arabic transliteration elements get `direction: rtl` and appropriate `font-family` when the script setting is active. Applied both in results tables and verse modal.
+Hebrew and Arabic transliteration elements get `direction: rtl` and appropriate `font-family` when the script setting is active. Applied in results tables, verse modal, and reader translation lines. Hebrew (`he`) and Arabic (`ar`) translations also render RTL in the reader and modal views.
+
+### Settings Dropdown
+
+The settings dropdown has two sections on all pages:
+
+1. **Transliteration** (4 options): Latin (ABC), Syriac (ʾbg), Hebrew (אבג), Arabic (ابج)
+2. **Translation** (4 options): English, Spanish, Hebrew Modern, Arabic SVD
+
+Both are persisted via `localStorage` (`script` and `trans` keys).
