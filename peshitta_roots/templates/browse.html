@@ -45,8 +45,8 @@
                     <tbody>
                         {% for root in roots %}
                         <tr>
-                            <td class="syriac"><a href="{{ url_for('index', lang=lang, q=root.translit) }}" style="text-decoration: none; color: inherit;">{{ root.root }}</a></td>
-                            <td><a href="{{ url_for('index', lang=lang, q=root.translit) }}" class="ac-translit" style="text-decoration: none;">{{ root.translit }}</a></td>
+                            <td class="syriac"><a href="{{ url_for('index', lang=lang, q=root.translit) }}#results" style="text-decoration: none; color: inherit;">{{ root.root }}</a></td>
+                            <td><a href="{{ url_for('index', lang=lang, q=root.translit) }}#results" class="ac-translit" style="text-decoration: none;">{{ root.translit }}</a></td>
                             <td class="gloss-cell">{{ root.gloss }}</td>
                             <td>{{ root.forms }}</td>
                             <td><span class="count-badge">{{ root.occurrences }}</span></td>
