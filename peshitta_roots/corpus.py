@@ -28,8 +28,9 @@ class PeshittaCorpus:
             )
         self.csv_path = csv_path
         self._occurrences: dict[str, list[WordOccurrence]] = {}
-        self._all_words: list[WordOccurrence] = []
+        self._total_words: int = 0
         self._verses: dict[str, str] = {}  # reference -> syriac text
+        self._verse_order: list[str] = []  # ordered references for book iteration
         self._translations: dict[str, dict] = {}  # lang -> {ref: text}, lazy-loaded per language
         self._loaded = False
 
@@ -51,10 +52,10 @@ class PeshittaCorpus:
                 reference = row['reference']
 
                 self._verses[reference] = syriac_text
+                self._verse_order.append(reference)
 
                 words = syriac_text.split()
                 for pos, word in enumerate(words):
-                    # Skip hyphenated compound words (proper nouns like ܒܝܬ-ܠܚܡ)
                     clean_word = word.strip()
                     if not clean_word:
                         continue
@@ -67,7 +68,7 @@ class PeshittaCorpus:
                         verse=verse,
                         position=pos,
                     )
-                    self._all_words.append(occ)
+                    self._total_words += 1
 
                     if clean_word not in self._occurrences:
                         self._occurrences[clean_word] = []
@@ -93,7 +94,7 @@ class PeshittaCorpus:
     def total_words(self) -> int:
         """Return total number of word tokens."""
         self.load()
-        return len(self._all_words)
+        return self._total_words
 
     def total_unique(self) -> int:
         """Return number of unique surface forms."""
@@ -104,24 +105,20 @@ class PeshittaCorpus:
         """Return ordered list of (book_name, max_chapter) tuples."""
         self.load()
         if not hasattr(self, '_books_cache'):
-            books_order: dict[str, tuple[int, int]] = {}  # book -> (order, max_ch)
-            for occ in self._all_words:
-                if occ.book not in books_order:
-                    books_order[occ.book] = (occ.position, occ.chapter)
-                else:
-                    _, cur_max = books_order[occ.book]
-                    if occ.chapter > cur_max:
-                        books_order[occ.book] = (books_order[occ.book][0], occ.chapter)
-            # Sort by first appearance in corpus
-            # Use the CSV row order: parse book_order from the first occurrence
-            book_list = []
-            seen = set()
-            for occ in self._all_words:
-                if occ.book not in seen:
-                    seen.add(occ.book)
-                    _, max_ch = books_order[occ.book]
-                    book_list.append((occ.book, max_ch))
-            self._books_cache = book_list
+            books_max_ch: dict[str, int] = {}
+            book_list: list[tuple[str, int]] = []
+            for ref in self._verse_order:
+                # Parse "Book chapter:verse"
+                last_space = ref.rfind(' ')
+                book = ref[:last_space]
+                ch = int(ref[last_space + 1:].split(':')[0])
+                if book not in books_max_ch:
+                    books_max_ch[book] = ch
+                    book_list.append((book, ch))  # placeholder max_ch
+                elif ch > books_max_ch[book]:
+                    books_max_ch[book] = ch
+            # Update max chapters
+            self._books_cache = [(b, books_max_ch[b]) for b, _ in book_list]
         return self._books_cache
 
     def get_chapter_verses(self, book: str, chapter: int) -> list[tuple[int, str, str]]:
