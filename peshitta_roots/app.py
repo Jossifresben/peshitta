@@ -225,6 +225,8 @@ def api_verse():
     words_translit_academic = [transliterate_syriac_academic(w) for w in words]
 
     lang = request.args.get('lang', 'es')
+    if lang not in _i18n:
+        lang = 'es'
     translation_en = _corpus.get_verse_translation(ref, 'en')
     translation_es = _corpus.get_verse_translation(ref, 'es')
 
@@ -232,8 +234,17 @@ def api_verse():
     prev_ref = _corpus.get_adjacent_ref(ref, -1)
     next_ref = _corpus.get_adjacent_ref(ref, +1)
 
+    # Translate book name for display
+    book_names = _i18n[lang].get('book_names', {})
+    ref_display = ref
+    for en_name, local_name in book_names.items():
+        if ref.startswith(en_name):
+            ref_display = ref.replace(en_name, local_name, 1)
+            break
+
     return jsonify({
         'reference': ref,
+        'reference_display': ref_display,
         'syriac': syriac_text,
         'transliteration': transliterate_syriac(syriac_text),
         'words': words,

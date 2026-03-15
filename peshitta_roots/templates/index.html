@@ -358,10 +358,10 @@
         var container = document.getElementById('modal-verses-container');
         container.innerHTML = '';
 
-        // Build reference range header
-        var firstRef = modalVerses[0].reference;
-        var lastRef = modalVerses[modalVerses.length - 1].reference;
-        var refText = formatRefRange(firstRef, lastRef);
+        // Build reference range header using translated display names
+        var firstDisplay = modalVerses[0].reference_display;
+        var lastDisplay = modalVerses[modalVerses.length - 1].reference_display;
+        var refText = formatRefRange(firstDisplay, lastDisplay);
         document.getElementById('modal-ref').textContent = refText;
 
         // Render each verse
