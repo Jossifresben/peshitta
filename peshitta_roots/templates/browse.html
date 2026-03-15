@@ -6,20 +6,20 @@
     <title>{{ t.browse_title }} - {{ t.app_title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Syriac&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="sticky-header">
         <div class="lang-wrapper">
-            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language">&#127760;</button>
+            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language"><span class="material-symbols-outlined">captive_portal</span></button>
             <div class="lang-dropdown" id="lang-dropdown">
                 <a href="{{ url_for('browse_roots', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}">ES</a>
                 <a href="{{ url_for('browse_roots', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}">EN</a>
             </div>
         </div>
-        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}">?</a>
+        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
         <div class="settings-wrapper">
-            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}">&#9881;</button>
+            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}"><span class="material-symbols-outlined">settings</span></button>
             <div class="settings-dropdown" id="settings-dropdown">
                 <div class="settings-label">{{ t.settings_script }}</div>
                 <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
@@ -34,7 +34,7 @@
                 <button class="settings-option{% if trans == 'ar' %} active{% endif %}" data-trans="ar">{{ t.settings_trans_ar }}</button>
             </div>
         </div>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">☀️</button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
     </div>
 
     <div class="container">
@@ -197,7 +197,7 @@
 
         function applyTheme(theme) {
             html.setAttribute('data-theme', theme);
-            toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+            toggle.innerHTML = '<span class="material-symbols-outlined">' + (theme === 'dark' ? 'bedtime' : 'sunny') + '</span>';
         }
 
         applyTheme(getTheme());

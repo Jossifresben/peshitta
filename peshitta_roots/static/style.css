@@ -132,21 +132,6 @@ header p {
     position: relative;
 }
 
-.settings-toggle {
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1.1em;
-    line-height: 1;
-}
-
-.settings-toggle:hover {
-    background: var(--accent-dark);
-}
-
 .settings-dropdown {
     display: none;
     position: absolute;
@@ -235,20 +220,29 @@ header p {
     opacity: 1;
 }
 
-.lang-toggle, .theme-toggle, .help-toggle {
+.lang-toggle, .theme-toggle, .help-toggle, .settings-toggle {
     background: var(--accent);
     color: #fff;
     border: none;
-    padding: 8px 12px;
+    padding: 6px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1.1em;
     text-decoration: none;
     line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.lang-toggle:hover, .theme-toggle:hover, .help-toggle:hover {
+.lang-toggle:hover, .theme-toggle:hover, .help-toggle:hover, .settings-toggle:hover {
     background: var(--accent-dark);
+}
+
+.lang-toggle .material-symbols-outlined,
+.theme-toggle .material-symbols-outlined,
+.help-toggle .material-symbols-outlined,
+.settings-toggle .material-symbols-outlined {
+    font-size: 22px;
 }
 
 .lang-wrapper {
@@ -297,20 +291,6 @@ header p {
     color: #fff;
 }
 
-.help-toggle {
-    padding: 8px 12px;
-    font-weight: bold;
-    font-size: 1em;
-    line-height: 1;
-    min-width: 32px;
-    text-align: center;
-}
-
-.theme-toggle {
-    padding: 8px 12px;
-    font-size: 1.1em;
-    line-height: 1;
-}
 
 /* === Search form === */
 .search-section {
