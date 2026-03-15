@@ -2,6 +2,7 @@
 
 import json
 import os
+import threading
 
 from flask import Flask, render_template, request, jsonify
 
@@ -21,6 +22,7 @@ _cognate_lookup: CognateLookup | None = None
 _glosser: WordGlosser | None = None
 _i18n: dict = {}
 _initialized = False
+_init_lock = threading.Lock()
 
 
 def _get_data_dir():
@@ -39,29 +41,33 @@ def _init():
     if _initialized:
         return
 
-    data_dir = _get_data_dir()
+    with _init_lock:
+        if _initialized:
+            return
 
-    # Load i18n
-    i18n_path = os.path.join(data_dir, 'i18n.json')
-    with open(i18n_path, 'r', encoding='utf-8') as f:
-        _i18n = json.load(f)
+        data_dir = _get_data_dir()
 
-    # Load corpus
-    _corpus = PeshittaCorpus(_get_csv_path())
-    _corpus.load()
+        # Load i18n
+        i18n_path = os.path.join(data_dir, 'i18n.json')
+        with open(i18n_path, 'r', encoding='utf-8') as f:
+            _i18n = json.load(f)
 
-    # Build root index
-    _extractor = RootExtractor(_corpus, data_dir)
-    _extractor.build_index()
+        # Load corpus
+        _corpus = PeshittaCorpus(_get_csv_path())
+        _corpus.load()
 
-    # Load cognates
-    _cognate_lookup = CognateLookup(data_dir)
-    _cognate_lookup.load()
+        # Build root index
+        _extractor = RootExtractor(_corpus, data_dir)
+        _extractor.build_index()
 
-    # Initialize word glosser
-    _glosser = WordGlosser(_cognate_lookup, _extractor, data_dir)
+        # Load cognates
+        _cognate_lookup = CognateLookup(data_dir)
+        _cognate_lookup.load()
 
-    _initialized = True
+        # Initialize word glosser
+        _glosser = WordGlosser(_cognate_lookup, _extractor, data_dir)
+
+        _initialized = True
 
 
 def _get_translit_fn(script: str):
@@ -71,6 +77,21 @@ def _get_translit_fn(script: str):
     elif script == 'arabic':
         return transliterate_syriac_to_arabic
     return transliterate_syriac
+
+
+def _translit_to_dash(root_syriac: str) -> str:
+    """Convert a Syriac root to dash-separated Latin form (e.g., K-TH-B)."""
+    translit = transliterate_syriac(root_syriac).upper()
+    parts = []
+    i = 0
+    while i < len(translit):
+        if i + 1 < len(translit) and translit[i:i+2] in ('SH', 'KH', 'TH', 'TS'):
+            parts.append(translit[i:i+2])
+            i += 2
+        else:
+            parts.append(translit[i])
+            i += 1
+    return '-'.join(parts)
 
 
 class _Namespace:
@@ -111,34 +132,12 @@ def index():
         cw_results = _cognate_lookup.lookup_by_cognate_word(cognate_word)
         if len(cw_results) == 1:
             # Single match — redirect to root search
-            root_syriac = cw_results[0].root_syriac
-            root_translit = transliterate_syriac(root_syriac).upper()
-            # Build dash-separated form
-            parts = []
-            i = 0
-            while i < len(root_translit):
-                if i + 1 < len(root_translit) and root_translit[i:i+2] in ('SH', 'KH', 'TH', 'TS'):
-                    parts.append(root_translit[i:i+2])
-                    i += 2
-                else:
-                    parts.append(root_translit[i])
-                    i += 1
-            query = '-'.join(parts)
+            query = _translit_to_dash(cw_results[0].root_syriac)
         elif len(cw_results) > 1:
             # Multiple matches — show disambiguation
             disambiguation = []
             for entry in cw_results:
-                root_translit = transliterate_syriac(entry.root_syriac).upper()
-                parts = []
-                i = 0
-                while i < len(root_translit):
-                    if i + 1 < len(root_translit) and root_translit[i:i+2] in ('SH', 'KH', 'TH', 'TS'):
-                        parts.append(root_translit[i:i+2])
-                        i += 2
-                    else:
-                        parts.append(root_translit[i])
-                        i += 1
-                dash_form = '-'.join(parts)
+                dash_form = _translit_to_dash(entry.root_syriac)
                 gloss = entry.gloss_es if lang == 'es' else entry.gloss_en
                 disambiguation.append({
                     'root_syriac': entry.root_syriac,
@@ -297,18 +296,7 @@ def api_suggest():
 
     results = []
     for entry in _extractor.get_all_roots():
-        translit = transliterate_syriac(entry.root).upper()
-        # Build dash-separated form (e.g. "K-TH-B")
-        parts = []
-        i = 0
-        while i < len(translit):
-            if i + 1 < len(translit) and translit[i:i+2] in ('SH', 'KH', 'TH', 'TS'):
-                parts.append(translit[i:i+2])
-                i += 2
-            else:
-                parts.append(translit[i])
-                i += 1
-        dash_form = '-'.join(parts)
+        dash_form = _translit_to_dash(entry.root)
 
         if dash_form.startswith(prefix) or dash_form.startswith(normalized_prefix):
             # Show translit matching user's input style (O vs E for Ayin)
@@ -324,21 +312,6 @@ def api_suggest():
                 break
 
     return jsonify(results)
-
-
-def _translit_to_dash(root_syriac: str) -> str:
-    """Convert a Syriac root to dash-separated Latin form (e.g., K-TH-B)."""
-    translit = transliterate_syriac(root_syriac).upper()
-    parts = []
-    i = 0
-    while i < len(translit):
-        if i + 1 < len(translit) and translit[i:i+2] in ('SH', 'KH', 'TH', 'TS'):
-            parts.append(translit[i:i+2])
-            i += 2
-        else:
-            parts.append(translit[i])
-            i += 1
-    return '-'.join(parts)
 
 
 @app.route('/api/roots')
