@@ -58,13 +58,13 @@
                 <label class="viz-check"><input type="checkbox" id="chk-arabic" checked> <span class="viz-check-dot" style="background:#2D7D46;"></span> {% if lang == 'es' %}Árabe{% else %}Arabic{% endif %}</label>
                 <label class="viz-check"><input type="checkbox" id="chk-syriac" checked> <span class="viz-check-dot" style="background:#A0522D;"></span> {% if lang == 'es' %}Siríaco (Peshitta){% else %}Syriac (Peshitta){% endif %}</label>
                 <span id="viz-outlier-key" class="viz-outlier-key" style="display:none;">
-                    <svg width="18" height="18" style="vertical-align:middle;margin-right:4px;"><circle cx="9" cy="9" r="7" fill="none" stroke="#FFD700" stroke-width="2" stroke-dasharray="4,2"/></svg>
+                    <svg width="18" height="18" style="vertical-align:middle;margin-right:4px;"><circle cx="9" cy="9" r="7" fill="none" stroke="#DAA520" stroke-width="2" stroke-dasharray="4,2"/></svg>
                     {% if lang == 'es' %}Divergente{% else %}Outlier{% endif %}
                 </span>
                 <span id="viz-bridge-key" class="viz-bridge-key" style="display:none;">
                     <svg width="22" height="22" style="vertical-align:middle;margin-right:4px;">
-                        <circle cx="11" cy="11" r="9" fill="none" stroke="#FFD700" stroke-width="2.5" stroke-dasharray="4,3" class="bridge-outlier-ring"/>
-                        <circle cx="11" cy="11" r="6" fill="#B8860B" stroke="#FFD700" stroke-width="2"/>
+                        <circle cx="11" cy="11" r="9" fill="none" stroke="#DAA520" stroke-width="2.5" stroke-dasharray="4,3" class="bridge-outlier-ring"/>
+                        <circle cx="11" cy="11" r="6" fill="#B8860B" stroke="#DAA520" stroke-width="2"/>
                     </svg>
                     {% if lang == 'es' %}🔗 Click = puente semántico{% else %}🔗 Click = semantic bridge{% endif %}
                 </span>
@@ -92,7 +92,7 @@
         var COLOR_BRIDGE_CENTER = '#B8860B';
         var COLOR_BRIDGE_HEBREW = '#5B7DB8';
         var COLOR_BRIDGE_ARABIC = '#5BA87A';
-        var COLOR_BRIDGE_LINE = '#FFD700';
+        var COLOR_BRIDGE_LINE = '#DAA520';
         var COLOR_OUTLIER = '#999';
         var COLOR_LINE = '#ccc';
 
@@ -417,7 +417,7 @@
                 .attr('class', 'bridge-outlier-ring')
                 .attr('r', function(d) { return d.r + 5; })
                 .attr('fill', 'none')
-                .attr('stroke', '#FFD700')
+                .attr('stroke', '#DAA520')
                 .attr('stroke-width', 2.5)
                 .attr('stroke-dasharray', '4,3')
                 .attr('pointer-events', 'none');
@@ -432,8 +432,8 @@
                     return nodeColor(d);
                 })
                 .attr('stroke', function(d) {
-                    if (d.outlier && d.bridge) return '#FFD700';
-                    if (d.outlier) return '#FFD700';
+                    if (d.outlier && d.bridge) return '#DAA520';
+                    if (d.outlier) return '#DAA520';
                     return '#fff';
                 })
                 .attr('stroke-width', function(d) {
@@ -489,8 +489,11 @@
                 .append('text')
                 .attr('text-anchor', 'middle')
                 .attr('dy', function(d) { return d.r + 16; })
-                .attr('fill', '#FFD700')
+                .attr('fill', function() {
+                    return document.documentElement.getAttribute('data-theme') === 'dark' ? '#D4A832' : '#8B6914';
+                })
                 .attr('font-size', '12px')
+                .attr('font-weight', 'bold')
                 .attr('pointer-events', 'none')
                 .text('🔗 ' + (LANG === 'es' ? 'puente' : 'bridge'));
 
@@ -531,20 +534,21 @@
                     }
                 }
                 var outlier_tag = '';
+                var accentGold = getComputedStyle(document.documentElement).getPropertyValue('--accent-gold').trim() || '#B8860B';
                 if (d.outlier) {
-                    outlier_tag = '<br><span style="color:#FFD700;font-weight:bold;">' +
+                    outlier_tag = '<br><span style="color:' + accentGold + ';font-weight:bold;">' +
                         (LANG === 'es' ? '✦ Semánticamente divergente' : '✦ Semantic outlier') + '</span>';
                     if (d.bridge) {
-                        outlier_tag += '<br><span style="color:#FFD700;font-size:11px;font-style:italic;">' +
+                        outlier_tag += '<br><span style="color:' + accentGold + ';font-size:11px;font-style:italic;">' +
                             d.bridge.bridge_concept + '</span>';
                         var bridgeState = _expandedBridges[d.outlierKey] ?
                             (LANG === 'es' ? '🔗 Click para cerrar puente' : '🔗 Click to collapse bridge') :
                             (LANG === 'es' ? '🔗 Click para explorar puente → ' + d.bridge.target_root.toUpperCase() : '🔗 Click to explore bridge → ' + d.bridge.target_root.toUpperCase());
-                        outlier_tag += '<br><span style="color:#FFD700;font-size:12px;font-weight:bold;">' + bridgeState + '</span>';
+                        outlier_tag += '<br><span style="color:' + accentGold + ';font-size:12px;font-weight:bold;">' + bridgeState + '</span>';
                     }
                 }
                 if (d.bridgeConcept) {
-                    outlier_tag += '<br><span style="color:#FFD700;font-size:11px;font-style:italic;">' + d.bridgeConcept + '</span>';
+                    outlier_tag += '<br><span style="color:' + accentGold + ';font-size:11px;font-style:italic;">' + d.bridgeConcept + '</span>';
                 }
                 var html = '<strong>' + d.label + '</strong> <small>(' + lang_label + ')</small><br>' +
                            '<em>' + d.sublabel + '</em><br>' +
