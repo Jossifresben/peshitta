@@ -562,8 +562,9 @@
             // Position root centers in a circle
             var cx = width / 2;
             var cy = height / 2;
-            var orbitR = Math.min(width, height) * 0.3;
-            if (rootCount <= 3) orbitR = Math.min(width, height) * 0.15;
+            var orbitR = Math.min(width, height) * 0.18;
+            if (rootCount <= 3) orbitR = Math.min(width, height) * 0.1;
+            if (rootCount > 10) orbitR = Math.min(width, height) * 0.22;
 
             displayRoots.forEach(function(r, idx) {
                 var angle = (2 * Math.PI * idx / displayRoots.length) - Math.PI / 2;
@@ -841,9 +842,9 @@
                 });
 
             // Force simulation
-            var cognateDist = showCognates ? 100 : 0;
-            var rootDist = orbitR * 0.8;
-            var charge = showCognates ? -300 : -500;
+            var cognateDist = showCognates ? 70 : 0;
+            var rootDist = orbitR * 0.6;
+            var charge = showCognates ? -150 : -250;
 
             var simulation = d3.forceSimulation(nodes)
                 .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(function(l) {
@@ -870,23 +871,26 @@
 
             _simulation = simulation;
 
-            // Initial zoom to fit
-            setTimeout(function() {
+            // Zoom to fit all nodes in view
+            function zoomToFit(duration) {
                 var bounds = g.node().getBBox();
                 if (bounds.width > 0 && bounds.height > 0) {
-                    var padding = 40;
+                    var padding = 50;
                     var scale = Math.min(
                         (width - padding * 2) / bounds.width,
-                        (height - padding * 2) / bounds.height,
-                        1.5
+                        (height - padding * 2) / bounds.height
                     );
-                    scale = Math.max(scale, 0.3);
+                    scale = Math.max(Math.min(scale, 1.2), 0.15);
                     var tx = width / 2 - (bounds.x + bounds.width / 2) * scale;
                     var ty = height / 2 - (bounds.y + bounds.height / 2) * scale;
-                    svg.transition().duration(500)
+                    svg.transition().duration(duration)
                         .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
                 }
-            }, 2000);
+            }
+            // Fit after simulation settles at multiple checkpoints
+            setTimeout(function() { zoomToFit(400); }, 500);
+            setTimeout(function() { zoomToFit(400); }, 1500);
+            simulation.on('end', function() { zoomToFit(300); });
         }
 
         // Fullscreen toggle
