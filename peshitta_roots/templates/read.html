@@ -96,7 +96,7 @@
         <!-- Verses -->
         <div class="reader-body" id="reader-body">
             {% for v in verses %}
-            <div class="reader-verse">
+            <div class="reader-verse" id="verse-{{ v.number }}">
                 <span class="verse-num">{{ v.number }}</span>
                 <a href="{{ url_for('constellation', book=book, chapter=chapter, v_start=v.number, v_end=v.number, lang=lang, script=script, trans=trans) }}"
                    class="verse-constellation-link" title="{% if lang == 'es' %}Ver constelacion del versiculo{% else %}View verse constellation{% endif %}">
@@ -435,6 +435,22 @@
                 }, 1500);
             });
         });
+    })();
+    // Scroll to verse if v_start param is present
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var vStart = params.get('v_start');
+        if (vStart) {
+            var el = document.getElementById('verse-' + vStart);
+            if (el) {
+                setTimeout(function() {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    el.style.transition = 'background 0.3s';
+                    el.style.background = 'var(--accent-light, rgba(0,102,204,0.1))';
+                    setTimeout(function() { el.style.background = ''; }, 2500);
+                }, 300);
+            }
+        }
     })();
     </script>
 </body>
