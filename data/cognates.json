@@ -134,7 +134,9 @@
           "meaning_es": "escribirse mutuamente",
           "meaning_en": "to correspond with each other"
         }
-      ]
+      ],
+      "sabor_raiz_es": "inscripción, marca permanente, registro",
+      "sabor_raiz_en": "inscription, permanent mark, record"
     },
     "m-l-k": {
       "root_syriac": "ܡܠܟ",
@@ -230,7 +232,9 @@
           "bridge_concept_en": "Property/dominion connects to E-B-D (to serve, slave)",
           "bridge_concept_es": "Propiedad/dominio se conecta con E-B-D (servir, esclavizar)"
         }
-      }
+      },
+      "sabor_raiz_es": "dominio, soberanía, autoridad",
+      "sabor_raiz_en": "dominion, sovereignty, authority"
     },
     "sh-l-m": {
       "root_syriac": "ܫܠܡ",
@@ -341,7 +345,9 @@
           "meaning_es": "amigable, pacífico",
           "meaning_en": "friendly, peaceful"
         }
-      ]
+      ],
+      "sabor_raiz_es": "integridad, completud, paz",
+      "sabor_raiz_en": "wholeness, completion, peace"
     },
     "q-d-sh": {
       "root_syriac": "ܩܕܫ",
@@ -428,7 +434,9 @@
           "meaning_es": "santo",
           "meaning_en": "saint"
         }
-      ]
+      ],
+      "sabor_raiz_es": "separación sagrada, consagración, pureza",
+      "sabor_raiz_en": "sacred separation, consecration, purity"
     },
     "a-m-r": {
       "root_syriac": "ܐܡܪ",
@@ -512,7 +520,9 @@
           "bridge_concept_en": "Sign/indication connects to A-TH-R (trace, mark, sign)",
           "bridge_concept_es": "Señal/indicación conecta con A-TH-R (huella, marca, señal)"
         }
-      }
+      },
+      "sabor_raiz_es": "palabra, autoridad, mandato",
+      "sabor_raiz_en": "utterance, command, authority"
     },
     "y-l-d": {
       "root_syriac": "ܝܠܕ",
@@ -620,7 +630,9 @@
           "meaning_es": "recién nacido, bebé",
           "meaning_en": "newborn, infant"
         }
-      ]
+      ],
+      "sabor_raiz_es": "generación, nacimiento, descendencia",
+      "sabor_raiz_en": "generation, birth, offspring"
     },
     "e-b-d": {
       "root_syriac": "ܥܒܕ",
@@ -717,7 +729,9 @@
           "bridge_concept_en": "The root A-B-D has 'worshipped, venerated' as a core meaning, connecting to the outlier ma'bud (Arabic)",
           "bridge_concept_es": "La raíz A-B-D tiene 'adorado, venerado' como un significado central, conectándose al sentido atípico ma'bud (árabe)"
         }
-      }
+      },
+      "sabor_raiz_es": "labor, servicio, devoción",
+      "sabor_raiz_en": "labor, service, devotion"
     },
     "q-r-a": {
       "root_syriac": "ܩܪܐ",
@@ -798,7 +812,9 @@
           "meaning_es": "lugar de lectura, biblioteca",
           "meaning_en": "place of reading, library"
         }
-      ]
+      ],
+      "sabor_raiz_es": "voz, invocación, recitación",
+      "sabor_raiz_en": "voice, invocation, recitation"
     },
     "kh-z-a": {
       "root_syriac": "ܚܙܐ",
@@ -898,7 +914,9 @@
           "bridge_concept_en": "To be cautious connects to R-KH-Q (be far)",
           "bridge_concept_es": "Precaverse conecta con R-KH-Q (estar lejos)"
         }
-      }
+      },
+      "sabor_raiz_es": "visión, contemplación, percepción visual",
+      "sabor_raiz_en": "vision, beholding, sight"
     },
     "n-p-q": {
       "root_syriac": "ܢܦܩ",
@@ -978,7 +996,9 @@
           "bridge_concept_en": "Spending connects to N-P-SH (to consume, use up)",
           "bridge_concept_es": "Gastar conecta con N-P-SH (consumir, agotar)"
         }
-      }
+      },
+      "sabor_raiz_es": "salida, movimiento hacia afuera, expulsión",
+      "sabor_raiz_en": "egress, outward motion, expulsion"
     },
     "q-T-l": {
       "root_syriac": "ܩܛܠ",
@@ -1035,7 +1055,9 @@
           "meaning_es": "lugar de ejecución",
           "meaning_en": "place of execution"
         }
-      ]
+      ],
+      "sabor_raiz_es": "muerte violenta, destrucción, aniquilación",
+      "sabor_raiz_en": "violent death, destruction, annihilation"
     },
     "s-b-r": {
       "root_syriac": "ܣܒܪ",
@@ -1100,7 +1122,9 @@
           "meaning_es": "perspicacia, discernimiento",
           "meaning_en": "insight, discernment"
         }
-      ]
+      ],
+      "sabor_raiz_es": "paciencia, espera, discernimiento",
+      "sabor_raiz_en": "patience, waiting, discernment"
     },
     "b-r-k": {
       "root_syriac": "ܒܪܟ",
@@ -1175,7 +1199,9 @@
           "meaning_es": "bendecido",
           "meaning_en": "blessed"
         }
-      ]
+      ],
+      "sabor_raiz_es": "bendición, genuflexión, gracia",
+      "sabor_raiz_en": "blessing, genuflection, grace"
     },
     "p-r-q": {
       "root_syriac": "ܦܪܩ",
@@ -1250,7 +1276,9 @@
           "bridge_concept_en": "To divide, separate is core to the meaning of P-L-G",
           "bridge_concept_es": "Dividir, separar es central al significado de P-L-G"
         }
-      }
+      },
+      "sabor_raiz_es": "separación, liberación, distinción",
+      "sabor_raiz_en": "separation, liberation, distinction"
     },
     "r-kh-m": {
       "root_syriac": "ܪܚܡ",
@@ -1410,7 +1438,9 @@
           "bridge_concept_en": "To fall connects to N-P-L (to fall, descend)",
           "bridge_concept_es": "Caer se conecta con N-P-L (caer, descender)"
         }
-      }
+      },
+      "sabor_raiz_es": "existencia, presencia, identidad",
+      "sabor_raiz_en": "existence, presence, identity"
     },
     "q-w-m": {
       "root_syriac": "ܩܘܡ",
@@ -1514,7 +1544,9 @@
           "bridge_concept_en": "To be upright connects to S-G-A (be many, grow)",
           "bridge_concept_es": "Estar recto conecta con S-G-A (ser muchos, crecer)"
         }
-      }
+      },
+      "sabor_raiz_es": "levantamiento, posición, firmeza",
+      "sabor_raiz_en": "rising, standing, establishment"
     },
     "ts-l-a": {
       "root_syriac": "ܨܠܐ",
@@ -1586,7 +1618,9 @@
           "bridge_concept_en": "To roast connects to SH-Q-Y (give to drink, irrigate)",
           "bridge_concept_es": "Asar conecta con SH-Q-Y (dar de beber, regar)"
         }
-      }
+      },
+      "sabor_raiz_es": "invocación, resonancia, elevación",
+      "sabor_raiz_en": "invocation, resonance, elevation"
     },
     "g-b-r": {
       "root_syriac": "ܓܒܪ",
@@ -1674,7 +1708,9 @@
           "meaning_es": "omnipotencia",
           "meaning_en": "omnipotence"
         }
-      ]
+      ],
+      "sabor_raiz_es": "fuerza, virilidad, predominio",
+      "sabor_raiz_en": "strength, virility, prevailing"
     },
     "sh-l-T": {
       "root_syriac": "ܫܠܛ",
@@ -1783,7 +1819,9 @@
           "bridge_concept_en": "Chain is the core meaning of the root A-S-R (to bind, tie)",
           "bridge_concept_es": "Cadena es el significado central de la raíz A-S-R (atar, anudar)"
         }
-      }
+      },
+      "sabor_raiz_es": "dominio, autoridad, potestad",
+      "sabor_raiz_en": "dominion, authority, power"
     },
     "d-kh-l": {
       "root_syriac": "ܕܚܠ",
@@ -1836,7 +1874,9 @@
           "meaning_es": "miedo",
           "meaning_en": "fear"
         }
-      ]
+      ],
+      "sabor_raiz_es": "temor, aprensión, inquietud",
+      "sabor_raiz_en": "fear, dread, apprehension"
     },
     "kh-y-l": {
       "root_syriac": "ܚܝܠ",
@@ -1898,7 +1938,9 @@
           "bridge_concept_en": "To transform, change is the core meaning of H-P-K (to turn, overturn)",
           "bridge_concept_es": "Transformar, cambiar es el significado central de H-P-K (dar la vuelta, invertir)"
         }
-      }
+      },
+      "sabor_raiz_es": "vigor, capacidad, potencia",
+      "sabor_raiz_en": "vigor, capability, potency"
     },
     "kh-y-a": {
       "root_syriac": "ܚܝܐ",
@@ -1991,7 +2033,9 @@
           "meaning_es": "resurrección",
           "meaning_en": "resurrection"
         }
-      ]
+      ],
+      "sabor_raiz_es": "vitalidad, animación, existencia",
+      "sabor_raiz_en": "vitality, animation, existence"
     },
     "m-w-th": {
       "root_syriac": "ܡܘܬ",
@@ -2078,7 +2122,9 @@
           "meaning_es": "fallecido",
           "meaning_en": "deceased"
         }
-      ]
+      ],
+      "sabor_raiz_es": "cesación, fin de la vida, mortalidad",
+      "sabor_raiz_en": "cessation, life's end, mortality"
     },
     "y-h-b": {
       "root_syriac": "ܝܗܒ",
@@ -2164,7 +2210,9 @@
           "bridge_concept_en": "Talented/gifted connects to A-B-H (to have authority, to be important)",
           "bridge_concept_es": "Talentoso/dotado se conecta con A-B-H (tener autoridad, ser importante)"
         }
-      }
+      },
+      "sabor_raiz_es": "donación, transferencia, generosidad",
+      "sabor_raiz_en": "bestowal, transfer, giving"
     },
     "a-z-l": {
       "root_syriac": "ܐܙܠ",
@@ -2229,7 +2277,9 @@
           "meaning_en": "deer",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "movimiento, desplazamiento, transcurso",
+      "sabor_raiz_en": "movement, traversal, passage"
     },
     "a-th-a": {
       "root_syriac": "ܐܬܐ",
@@ -2286,7 +2336,9 @@
           "meaning_es": "venida, llegada",
           "meaning_en": "coming, arrival"
         }
-      ]
+      ],
+      "sabor_raiz_es": "llegada, movimiento hacia, presencia",
+      "sabor_raiz_en": "arrival, movement towards, presence"
     },
     "sh-d-r": {
       "root_syriac": "ܫܕܪ",
@@ -2357,7 +2409,9 @@
           "meaning_en": "source, origin",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "envío, emisión, transmisión",
+      "sabor_raiz_en": "sending, emission, transmission"
     },
     "a-kh-d": {
       "root_syriac": "ܐܚܕ",
@@ -2426,7 +2480,9 @@
           "meaning_es": "aprehendido, capturado",
           "meaning_en": "apprehended, captured"
         }
-      ]
+      ],
+      "sabor_raiz_es": "agarre, posesión, dominio",
+      "sabor_raiz_en": "grip, possession, mastery"
     },
     "sh-b-q": {
       "root_syriac": "ܫܒܩ",
@@ -2519,7 +2575,9 @@
           "bridge_concept_en": "To precede, have priority connects to Q-D-M (to go before, precede)",
           "bridge_concept_es": "Preceder, tener prioridad conecta con Q-D-M (ir antes, preceder)"
         }
-      }
+      },
+      "sabor_raiz_es": "abandono, liberación, perdón",
+      "sabor_raiz_en": "abandonment, release, forgiveness"
     },
     "kh-T-a": {
       "root_syriac": "ܚܛܐ",
@@ -2595,7 +2653,9 @@
           "meaning_en": "mistake",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "transgresión, error, desviación",
+      "sabor_raiz_en": "transgression, error, deviation"
     },
     "n-s-b": {
       "root_syriac": "ܢܣܒ",
@@ -2846,7 +2906,9 @@
           "bridge_concept_en": "Prominent/distinguished connects to N-G-D (to be prominent, stand out)",
           "bridge_concept_es": "Prominente/distinguido conecta con N-G-D (ser prominente, destacarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "respiración, vida, ser interior",
+      "sabor_raiz_en": "breath, vitality, inner self"
     },
     "r-w-kh": {
       "root_syriac": "ܪܘܚ",
@@ -2931,7 +2993,9 @@
           "bridge_concept_en": "To rest, take ease connects to SH-B-TH (sabbath, rest)",
           "bridge_concept_es": "Descansar, tener reposo conecta con SH-B-TH (sábado, descansar)"
         }
-      }
+      },
+      "sabor_raiz_es": "aliento vital, movimiento invisible, esencia etérea",
+      "sabor_raiz_en": "vital breath, invisible movement, ethereal essence"
     },
     "a-l-h": {
       "root_syriac": "ܐܠܗ",
@@ -3000,7 +3064,9 @@
           "meaning_es": "divinidad",
           "meaning_en": "divinity"
         }
-      ]
+      ],
+      "sabor_raiz_es": "divinidad, poder supremo, veneración",
+      "sabor_raiz_en": "divinity, supreme power, worship"
     },
     "k-h-n": {
       "root_syriac": "ܟܗܢ",
@@ -3075,7 +3141,9 @@
           "bridge_concept_en": "Divination/foretelling is central to the N-B-A root meaning 'to prophesy'",
           "bridge_concept_es": "La adivinación/predicción es central al significado del radical N-B-A que significa 'profetizar'"
         }
-      }
+      },
+      "sabor_raiz_es": "mediación sagrada, servicio ritual, intermediación divina",
+      "sabor_raiz_en": "sacred mediation, ritual service, divine intermediation"
     },
     "z-d-q": {
       "root_syriac": "ܙܕܩ",
@@ -3156,7 +3224,9 @@
           "meaning_es": "justo, recto",
           "meaning_en": "just, righteous"
         }
-      ]
+      ],
+      "sabor_raiz_es": "justicia, verdad, rectitud",
+      "sabor_raiz_en": "justice, truth, righteousness"
     },
     "e-b-r": {
       "root_syriac": "ܥܒܪ",
@@ -3222,7 +3292,9 @@
           "meaning_es": "árabe",
           "meaning_en": "Arab, Arabic"
         }
-      ]
+      ],
+      "sabor_raiz_es": "transición, travesía, alteridad",
+      "sabor_raiz_en": "crossing, transition, otherness"
     },
     "s-g-d": {
       "root_syriac": "ܣܓܕ",
@@ -3285,7 +3357,9 @@
           "meaning_es": "adorable, venerable",
           "meaning_en": "adorable, venerable"
         }
-      ]
+      ],
+      "sabor_raiz_es": "postración, reverencia, sumisión",
+      "sabor_raiz_en": "prostration, reverence, submission"
     },
     "ts-b-a": {
       "root_syriac": "ܨܒܐ",
@@ -3365,7 +3439,9 @@
           "bridge_concept_en": "Blowing/flowing connects to N-H-R (to flow, stream)",
           "bridge_concept_es": "Soplar/fluir conecta con N-H-R (fluir, correr)"
         }
-      }
+      },
+      "sabor_raiz_es": "voluntad, deseo, propósito",
+      "sabor_raiz_en": "will, desire, intent"
     },
     "k-n-sh": {
       "root_syriac": "ܟܢܫ",
@@ -3450,7 +3526,9 @@
           "bridge_concept_en": "Treasure/hoard connects to G-N-Z (to store, treasure, hide away)",
           "bridge_concept_es": "Tesoro/acumular conecta con G-N-Z (almacenar, atesorar, ocultar)"
         }
-      }
+      },
+      "sabor_raiz_es": "reunión, congregación, recolección",
+      "sabor_raiz_en": "gathering, congregation, collection"
     },
     "e-m-d": {
       "root_syriac": "ܥܡܕ",
@@ -3612,7 +3690,9 @@
           "bridge_concept_en": "Brush connects to KH-R-SH (be deaf, plow)",
           "bridge_concept_es": "Cepillo conecta con KH-R-SH (ser sordo, arar)"
         }
-      }
+      },
+      "sabor_raiz_es": "distinción, separación, interpretación",
+      "sabor_raiz_en": "distinction, separation, interpretation"
     },
     "sh-kh-kh": {
       "root_syriac": "ܫܟܚ",
@@ -3679,7 +3759,9 @@
           "bridge_concept_en": "To forget is a central meaning of N-S-Y (to forget, neglect)",
           "bridge_concept_es": "Olvidar es un significado central de N-S-Y (olvidar, descuidar)"
         }
-      }
+      },
+      "sabor_raiz_es": "hallazgo, habitación, asentamiento",
+      "sabor_raiz_en": "finding, dwelling, settlement"
     },
     "d-b-r": {
       "root_syriac": "ܕܒܪ",
@@ -3749,7 +3831,9 @@
           "meaning_es": "dirección, orientación",
           "meaning_en": "direction, orientation"
         }
-      ]
+      ],
+      "sabor_raiz_es": "conducción, palabra, dirección",
+      "sabor_raiz_en": "leading, word, direction"
     },
     "q-r-b": {
       "root_syriac": "ܩܪܒ",
@@ -3839,7 +3923,9 @@
           "bridge_concept_en": "War is a central meaning of L-KH-M (to fight, wage war)",
           "bridge_concept_es": "La guerra es un significado central de L-KH-M (luchar, hacer la guerra)"
         }
-      }
+      },
+      "sabor_raiz_es": "proximidad, ofrenda, intimidad",
+      "sabor_raiz_en": "closeness, offering, intimacy"
     },
     "n-h-r": {
       "root_syriac": "ܢܗܪ",
@@ -3896,7 +3982,9 @@
           "meaning_es": "día, luz del día",
           "meaning_en": "day, daylight"
         }
-      ]
+      ],
+      "sabor_raiz_es": "luminosidad, flujo, claridad",
+      "sabor_raiz_en": "luminosity, flow, brightness"
     },
     "b-n-a": {
       "root_syriac": "ܒܢܐ",
@@ -3971,7 +4059,9 @@
           "meaning_es": "estructura",
           "meaning_en": "structure"
         }
-      ]
+      ],
+      "sabor_raiz_es": "construcción, estructura, generación",
+      "sabor_raiz_en": "construction, structure, generation"
     },
     "s-p-r": {
       "root_syriac": "ܣܦܪ",
@@ -4071,7 +4161,9 @@
           "bridge_concept_en": "To dawn, appear connects to D-N-KH (shine, dawn)",
           "bridge_concept_es": "Amanecer, aparecer conecta con D-N-KH (brillar, amanecer)"
         }
-      }
+      },
+      "sabor_raiz_es": "escritura, narración, enumeración",
+      "sabor_raiz_en": "writing, narration, enumeration"
     },
     "sh-m-sh": {
       "root_syriac": "ܫܡܫ",
@@ -4210,7 +4302,9 @@
           "meaning_es": "manifestación, epifanía",
           "meaning_en": "manifestation, epiphany"
         }
-      ]
+      ],
+      "sabor_raiz_es": "desvelamiento, claridad, manifestación",
+      "sabor_raiz_en": "unveiling, clarity, manifestation"
     },
     "q-b-l": {
       "root_syriac": "ܩܒܠ",
@@ -4294,7 +4388,9 @@
           "bridge_concept_en": "Before connects to Q-D-M (before, front, precede)",
           "bridge_concept_es": "Antes conecta con Q-D-M (antes, frente, preceder)"
         }
-      }
+      },
+      "sabor_raiz_es": "recepción, acogida, encuentro",
+      "sabor_raiz_en": "reception, acceptance, meeting"
     },
     "n-p-l": {
       "root_syriac": "ܢܦܠ",
@@ -4367,7 +4463,9 @@
           "bridge_concept_en": "To fall/exit is a core meaning of N-P-Q",
           "bridge_concept_es": "Caerse/salir es un significado central de N-P-Q"
         }
-      }
+      },
+      "sabor_raiz_es": "descenso, colapso, asombro",
+      "sabor_raiz_en": "descent, collapse, wonder"
     },
     "kh-sh-b": {
       "root_syriac": "ܚܫܒ",
@@ -4454,7 +4552,9 @@
           "meaning_es": "aritmético, matemático",
           "meaning_en": "arithmetic, mathematical"
         }
-      ]
+      ],
+      "sabor_raiz_es": "cálculo, pensamiento, cuenta",
+      "sabor_raiz_en": "reckoning, thought, computation"
     },
     "p-l-kh": {
       "root_syriac": "ܦܠܚ",
@@ -4520,7 +4620,9 @@
           "bridge_concept_en": "Agriculture/plowing connects to P-R-SH (to plow, cultivate)",
           "bridge_concept_es": "Agricultura/labranza conecta con P-R-SH (arar, cultivar)"
         }
-      }
+      },
+      "sabor_raiz_es": "cultivo, labor, prosperidad",
+      "sabor_raiz_en": "cultivation, labor, prosperity"
     },
     "sh-r-r": {
       "root_syriac": "ܫܪܪ",
@@ -4618,7 +4720,9 @@
           "bridge_concept_en": "Wicked/perverse as core meaning of R-SH-A (to be wicked, evil)",
           "bridge_concept_es": "Malvado/perverso como significado central de R-SH-A (ser malvado, malvado)"
         }
-      }
+      },
+      "sabor_raiz_es": "firmeza, rectitud, verdad",
+      "sabor_raiz_en": "firmness, uprightness, truth"
     },
     "y-th-b": {
       "root_syriac": "ܝܬܒ",
@@ -4692,7 +4796,9 @@
           "bridge_concept_en": "One who remains in his place connects to A-TH-R (place, land)",
           "bridge_concept_es": "Que permanece en su sitio conecta con A-TH-R (lugar, tierra)"
         }
-      }
+      },
+      "sabor_raiz_es": "residencia, asiento, permanencia",
+      "sabor_raiz_en": "settlement, seat, dwelling"
     },
     "a-k-l": {
       "root_syriac": "ܐܟܠ",
@@ -4755,7 +4861,9 @@
           "meaning_es": "comida, plato",
           "meaning_en": "food, dish"
         }
-      ]
+      ],
+      "sabor_raiz_es": "consumo, nutrición, sustento",
+      "sabor_raiz_en": "consumption, nourishment, sustenance"
     },
     "sh-th-a": {
       "root_syriac": "ܫܬܐ",
@@ -4821,7 +4929,9 @@
           "bridge_concept_en": "To rain (winter) connects to SH-Q-Y (give to drink, irrigate)",
           "bridge_concept_es": "Llover (invierno) conecta con SH-Q-Y (dar de beber, regar)"
         }
-      }
+      },
+      "sabor_raiz_es": "ingesta, absorción, libación",
+      "sabor_raiz_en": "consumption, absorption, libation"
     },
     "z-q-p": {
       "root_syriac": "ܙܩܦ",
@@ -4878,7 +4988,9 @@
           "meaning_es": "crucificado",
           "meaning_en": "crucified"
         }
-      ]
+      ],
+      "sabor_raiz_es": "elevación, enderezamiento, verticalidad",
+      "sabor_raiz_en": "elevation, straightening, uprightness"
     },
     "b-e-a": {
       "root_syriac": "ܒܥܐ",
@@ -4956,7 +5068,9 @@
           "bridge_concept_en": "Sought, required connects to M-T-Y (to come, arrive)",
           "bridge_concept_es": "Buscado, requerido se conecta con M-T-Y (venir, llegar)"
         }
-      }
+      },
+      "sabor_raiz_es": "búsqueda, petición, deseo",
+      "sabor_raiz_en": "seeking, petition, desire"
     },
     "sh-m-e": {
       "root_syriac": "ܫܡܥ",
@@ -5053,7 +5167,9 @@
           "bridge_concept_en": "To be heard, to sound connects to N-SH-A (to rise, appear)",
           "bridge_concept_es": "Ser oído, sonar se conecta con N-SH-A (levantarse, aparecer)"
         }
-      }
+      },
+      "sabor_raiz_es": "percepción auditiva, atención, recepción",
+      "sabor_raiz_en": "auditory perception, attention, reception"
     },
     "y-d-e": {
       "root_syriac": "ܝܕܥ",
@@ -5131,7 +5247,9 @@
           "bridge_concept_en": "To leave/deposit connects to D-M-N (to come, arrive)",
           "bridge_concept_es": "Dejar/depositar conecta con D-M-N (venir, llegar)"
         }
-      }
+      },
+      "sabor_raiz_es": "conocimiento, percepción, sabiduría",
+      "sabor_raiz_en": "knowing, perception, wisdom"
     },
     "z-r-e": {
       "root_syriac": "ܙܪܥ",
@@ -5194,7 +5312,9 @@
           "meaning_es": "cultivos",
           "meaning_en": "crops"
         }
-      ]
+      ],
+      "sabor_raiz_es": "siembra, germinación, proliferación",
+      "sabor_raiz_en": "sowing, germination, propagation"
     },
     "y-sh-e": {
       "root_syriac": "ܝܫܥ",
@@ -5292,7 +5412,9 @@
           "bridge_concept_en": "To expand/become spacious connects to R-W-KH (to breathe, be spacious)",
           "bridge_concept_es": "Expandir/volverse espacioso se conecta con R-W-KH (respirar, ser espacioso)"
         }
-      }
+      },
+      "sabor_raiz_es": "salvación, liberación, rescate",
+      "sabor_raiz_en": "salvation, deliverance, rescue"
     },
     "b-y-th": {
       "root_syriac": "ܒܝܬ",
@@ -5387,7 +5509,9 @@
           "meaning_en": "homely",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "morada, hogar, espacio doméstico",
+      "sabor_raiz_en": "dwelling, home, domestic space"
     },
     "kh-d-a": {
       "root_syriac": "ܚܕܐ",
@@ -5577,7 +5701,9 @@
           "bridge_concept_en": "Bed, resting place connects to M-R-E (bed, couch, reclining place)",
           "bridge_concept_es": "Cama, lugar de descanso se conecta con M-R-E (cama, sofá, lugar para recostarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "abundancia, crecimiento, magnitud",
+      "sabor_raiz_en": "abundance, growth, magnitude"
     },
     "m-r-y": {
       "root_syriac": "ܡܪܝ",
@@ -5656,7 +5782,9 @@
           "bridge_concept_en": "The root A-N-SH has 'man/person' as a core meaning, which connects to the outlier meaning of MAR' (man/person).",
           "bridge_concept_es": "La raíz A-N-SH tiene 'hombre/persona' como un significado central, que se conecta con el significado de la palabra derivada MAR' (hombre/persona)."
         }
-      }
+      },
+      "sabor_raiz_es": "autoridad, dignidad, señorío",
+      "sabor_raiz_en": "authority, dignity, lordship"
     },
     "m-l-l": {
       "root_syriac": "ܡܠܠ",
@@ -5734,7 +5862,9 @@
           "meaning_en": "boredom, weariness",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "palabra, expresión, mediación",
+      "sabor_raiz_en": "speech, utterance, mediation"
     },
     "y-w-m": {
       "root_syriac": "ܝܘܡ",
@@ -5818,7 +5948,9 @@
           "bridge_concept_en": "Day of Judgment is the core meaning of Q-Y-M (to stand up, rise, be established)",
           "bridge_concept_es": "El Día del Juicio es el significado central de Q-Y-M (levantarse, alzarse, establecerse)"
         }
-      }
+      },
+      "sabor_raiz_es": "luz diurna, ciclo temporal, jornada",
+      "sabor_raiz_en": "daylight, temporal cycle, daily span"
     },
     "h-m-n": {
       "root_syriac": "ܗܡܢ",
@@ -5875,7 +6007,9 @@
           "meaning_es": "creyente",
           "meaning_en": "believer"
         }
-      ]
+      ],
+      "sabor_raiz_es": "confianza, fidelidad, certeza",
+      "sabor_raiz_en": "trust, faithfulness, certainty"
     },
     "d-y-n": {
       "root_syriac": "ܕܝܢ",
@@ -5984,7 +6118,9 @@
           "bridge_concept_en": "City connects to K-R-K (surround, city)",
           "bridge_concept_es": "Ciudad conecta con K-R-K (rodear, ciudad)"
         }
-      }
+      },
+      "sabor_raiz_es": "juicio, sentencia, obligación moral",
+      "sabor_raiz_en": "judgment, verdict, moral obligation"
     },
     "sh-m-y": {
       "root_syriac": "ܫܡܝ",
@@ -6047,7 +6183,9 @@
           "meaning_es": "ascender al cielo",
           "meaning_en": "to ascend to the heavens"
         }
-      ]
+      ],
+      "sabor_raiz_es": "altura, elevación, trascendencia",
+      "sabor_raiz_en": "height, elevation, transcendence"
     },
     "l-m-d": {
       "root_syriac": "ܠܡܕ",
@@ -6135,7 +6273,9 @@
           "meaning_en": "characteristic",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "transmisión, conocimiento, disciplina",
+      "sabor_raiz_en": "transmission, knowledge, discipline"
     },
     "r-e-a": {
       "root_syriac": "ܪܥܐ",
@@ -6192,7 +6332,9 @@
           "meaning_es": "rebaño/súbditos",
           "meaning_en": "flock/subjects"
         }
-      ]
+      ],
+      "sabor_raiz_es": "cuidado, guía, gobierno de rebaño",
+      "sabor_raiz_en": "care, guidance, pastoral governance"
     },
     "z-b-n": {
       "root_syriac": "ܙܒܢ",
@@ -6272,7 +6414,9 @@
           "bridge_concept_en": "Customer/client as a core meaning of A-B-D (to worship, serve)",
           "bridge_concept_es": "Cliente/cliente como significado central de A-B-D (adorar, servir)"
         }
-      }
+      },
+      "sabor_raiz_es": "tiempo, ordenamiento, disposición",
+      "sabor_raiz_en": "time, ordering, arrangement"
     },
     "sh-a-l": {
       "root_syriac": "ܫܐܠ",
@@ -6371,7 +6515,9 @@
           "bridge_concept_en": "Responsibility connects to A-M-N (to be reliable, trustworthy)",
           "bridge_concept_es": "Responsabilidad conecta con A-M-N (ser confiable, digno de confianza)"
         }
-      }
+      },
+      "sabor_raiz_es": "interrogación, búsqueda, demanda",
+      "sabor_raiz_en": "inquiry, seeking, petition"
     },
     "b-y-sh": {
       "root_syriac": "ܒܝܫ",
@@ -6461,7 +6607,9 @@
           "bridge_concept_en": "Ashamed, embarrassed connects to B-H-TH (be ashamed)",
           "bridge_concept_es": "Avergonzado, abochornado conecta con B-H-TH (avergonzarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "maldad, degradación, aflicción",
+      "sabor_raiz_en": "wickedness, degradation, affliction"
     },
     "sh-b-kh": {
       "root_syriac": "ܫܒܚ",
@@ -6537,7 +6685,9 @@
           "meaning_es": "gloria, esplendor",
           "meaning_en": "glory, splendor"
         }
-      ]
+      ],
+      "sabor_raiz_es": "exaltación, esplendor, magnificencia",
+      "sabor_raiz_en": "exaltation, splendor, magnificence"
     },
     "e-m-m": {
       "root_syriac": "ܥܡܡ",
@@ -6622,7 +6772,9 @@
           "bridge_concept_en": "The core meaning of A-KH-Y includes 'paternal uncle'",
           "bridge_concept_es": "El significado central de A-KH-Y incluye 'tío paterno'"
         }
-      }
+      },
+      "sabor_raiz_es": "comunidad, pertenencia, colectividad",
+      "sabor_raiz_en": "community, belonging, collectivity"
     },
     "e-y-n": {
       "root_syriac": "ܥܝܢ",
@@ -6681,7 +6833,9 @@
           "meaning_en": "watcher, observer",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "apertura, mirada, brotación",
+      "sabor_raiz_en": "opening, gaze, flowing forth"
     },
     "T-y-b": {
       "root_syriac": "ܛܝܒ",
@@ -6769,7 +6923,9 @@
           "meaning_es": "encontrar agradable, apreciar",
           "meaning_en": "to find pleasant, appreciate"
         }
-      ]
+      ],
+      "sabor_raiz_es": "bondad, perfección, agrado",
+      "sabor_raiz_en": "goodness, excellence, pleasantness"
     },
     "n-kh-th": {
       "root_syriac": "ܢܚܬ",
@@ -6910,7 +7066,9 @@
           "meaning_es": "enseñanza, instrucción",
           "meaning_en": "teaching, instruction"
         }
-      ]
+      ],
+      "sabor_raiz_es": "aprendizaje, transmisión, instrucción",
+      "sabor_raiz_en": "learning, transmission, instruction"
     },
     "s-l-q": {
       "root_syriac": "ܣܠܩ",
@@ -6995,7 +7153,9 @@
           "bridge_concept_en": "Greyhound connects to A-Y-L (gazelle, deer)",
           "bridge_concept_es": "Galgo conecta con A-Y-L (gacela, venado)"
         }
-      }
+      },
+      "sabor_raiz_es": "ascenso, elevación, superación",
+      "sabor_raiz_en": "ascent, elevation, upward movement"
     },
     "p-q-d": {
       "root_syriac": "ܦܩܕ",
@@ -7095,7 +7255,9 @@
           "bridge_concept_en": "To miss, long for connects to N-SH-A (to desire, long for)",
           "bridge_concept_es": "Echar de menos, anhelar se conecta con N-SH-A (desear, anhelar)"
         }
-      }
+      },
+      "sabor_raiz_es": "mandato, inspección, supervisión",
+      "sabor_raiz_en": "command, oversight, visitation"
     },
     "kh-w-r": {
       "root_syriac": "ܚܘܪ",
@@ -7299,7 +7461,9 @@
           "bridge_concept_en": "Groan connects to N-KH-R (to grunt, groan)",
           "bridge_concept_es": "Gemir se conecta con N-KH-R (gruñir, gemir)"
         }
-      }
+      },
+      "sabor_raiz_es": "respuesta, atención, significado",
+      "sabor_raiz_en": "response, attention, meaning"
     },
     "n-T-r": {
       "root_syriac": "ܢܛܪ",
@@ -7412,7 +7576,9 @@
           "bridge_concept_en": "View/appearance as part of the core meaning of M-R-Y (to see, observe)",
           "bridge_concept_es": "Vista/apariencia como parte del significado central de M-R-Y (ver, observar)"
         }
-      }
+      },
+      "sabor_raiz_es": "vigilancia, custodia, preservación",
+      "sabor_raiz_en": "watchfulness, custody, preservation"
     },
     "sh-r-a": {
       "root_syriac": "ܫܪܐ",
@@ -7503,7 +7669,9 @@
           "bridge_concept_en": "Arbitrariness is a core meaning of A-L-TS (to turn aside, be crooked)",
           "bridge_concept_es": "Arbitrariedad es un significado central de A-L-TS (desviarse, estar torcido)"
         }
-      }
+      },
+      "sabor_raiz_es": "apertura, liberación, comienzo",
+      "sabor_raiz_en": "opening, release, inception"
     },
     "e-l-y": {
       "root_syriac": "ܥܠܝ",
@@ -7561,7 +7729,9 @@
           "meaning_es": "ser exaltado",
           "meaning_en": "to be exalted"
         }
-      ]
+      ],
+      "sabor_raiz_es": "ascenso, elevación, exaltación",
+      "sabor_raiz_en": "ascent, elevation, exaltation"
     },
     "kh-l-p": {
       "root_syriac": "ܚܠܦ",
@@ -7646,7 +7816,9 @@
           "meaning_en": "backwardness, delay",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "sustitución, sucesión, alternancia",
+      "sabor_raiz_en": "substitution, succession, alternation"
     },
     "r-sh-a": {
       "root_syriac": "ܪܫܐ",
@@ -7721,7 +7893,9 @@
           "meaning_es": "mi cabeza",
           "meaning_en": "my head"
         }
-      ]
+      ],
+      "sabor_raiz_es": "primacía, origen, principio",
+      "sabor_raiz_en": "primacy, origin, beginning"
     },
     "th-r-e": {
       "root_syriac": "ܬܪܥ",
@@ -7812,7 +7986,9 @@
           "bridge_concept_en": "Left open (as a door) connects to Y-TH-R (remain, be left over)",
           "bridge_concept_es": "Dejado abierto (como una puerta) conecta con Y-TH-R (quedar, sobrar)"
         }
-      }
+      },
+      "sabor_raiz_es": "apertura, umbral, pasaje",
+      "sabor_raiz_en": "opening, threshold, passage"
     },
     "sh-l-kh": {
       "root_syriac": "ܫܠܚ",
@@ -7908,7 +8084,9 @@
           "bridge_concept_en": "To skin/pass (time) connects to D-M-R (to be amazed, astonished)",
           "bridge_concept_es": "Desollar/pasar (tiempo) conecta con D-M-R (sorprenderse, admirarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "envío, delegación, misión",
+      "sabor_raiz_en": "sending, delegation, mission"
     },
     "a-r-e": {
       "root_syriac": "ܐܪܥ",
@@ -8000,7 +8178,9 @@
           "bridge_concept_en": "Place of the earth, plot of land connects to E-R-S (earth, land)",
           "bridge_concept_es": "Lugar de la tierra, parcela de tierra conecta con E-R-S (tierra, tierra)"
         }
-      }
+      },
+      "sabor_raiz_es": "tierra, territorio, lo terrestre",
+      "sabor_raiz_en": "earth, land, terrestrial"
     },
     "r-g-z": {
       "root_syriac": "ܪܓܙ",
@@ -8183,7 +8363,9 @@
           "bridge_concept_en": "Vision/perspective connects to N-B-A (to prophesy, reveal)",
           "bridge_concept_es": "Visión/perspectiva conecta con N-B-A (profetizar, revelar)"
         }
-      }
+      },
+      "sabor_raiz_es": "percepción visual, contemplación, revelación",
+      "sabor_raiz_en": "sight, beholding, revelation"
     },
     "p-th-kh": {
       "root_syriac": "ܦܬܚ",
@@ -8276,7 +8458,9 @@
           "meaning_es": "apertura, expansión",
           "meaning_en": "opening, expansion"
         }
-      ]
+      ],
+      "sabor_raiz_es": "apertura, acceso, inicio",
+      "sabor_raiz_en": "opening, access, beginning"
     },
     "e-l-l": {
       "root_syriac": "ܥܠܠ",
@@ -8449,7 +8633,9 @@
           "meaning_es": "preparación, acondicionamiento",
           "meaning_en": "preparation, readiness"
         }
-      ]
+      ],
+      "sabor_raiz_es": "disposición, destino, readiness",
+      "sabor_raiz_en": "readiness, arrangement, destiny"
     },
     "b-r-a": {
       "root_syriac": "ܒܪܐ",
@@ -8546,7 +8732,9 @@
           "bridge_concept_en": "Healthy, sound connects to Q-L-L (voice, sound)",
           "bridge_concept_es": "Sano, saludable conecta con Q-L-L (voz, sonido)"
         }
-      }
+      },
+      "sabor_raiz_es": "generación, producción, novedad",
+      "sabor_raiz_en": "generation, production, newness"
     },
     "e-d-r": {
       "root_syriac": "ܥܕܪ",
@@ -8649,7 +8837,9 @@
           "bridge_concept_en": "'Excuse' connects to A-TH-R (trace, sign, reason)",
           "bridge_concept_es": "'Excusa' se conecta con A-TH-R (rastro, señal, razón)"
         }
-      }
+      },
+      "sabor_raiz_es": "apoyo, socorro, victoria",
+      "sabor_raiz_en": "support, aid, victory"
     },
     "n-b-a": {
       "root_syriac": "ܢܒܐ",
@@ -8766,7 +8956,9 @@
           "bridge_concept_en": "Announcement connects to A-M-R (to command, order)",
           "bridge_concept_es": "Anuncio se conecta con A-M-R (ordenar, mandar)"
         }
-      }
+      },
+      "sabor_raiz_es": "revelación, anuncio, voz divina",
+      "sabor_raiz_en": "revelation, announcement, divine voice"
     },
     "d-m-a": {
       "root_syriac": "ܕܡܐ",
@@ -8837,7 +9029,9 @@
           "meaning_es": "sanguíneo, sangriento",
           "meaning_en": "bloody, sanguine"
         }
-      ]
+      ],
+      "sabor_raiz_es": "similitud, esencia vital, semejanza",
+      "sabor_raiz_en": "likeness, vital essence, resemblance"
     },
     "g-z-r": {
       "root_syriac": "ܓܙܪ",
@@ -8916,7 +9110,9 @@
           "bridge_concept_en": "Ebb (tide) relates to N-H-R (flow, stream)",
           "bridge_concept_es": "La bajamar (marea) se relaciona con N-H-R (fluir, corriente)"
         }
-      }
+      },
+      "sabor_raiz_es": "corte, separación, decreto",
+      "sabor_raiz_en": "cutting, severance, decree"
     },
     "g-n-b": {
       "root_syriac": "ܓܢܒ",
@@ -9008,7 +9204,9 @@
           "bridge_concept_en": "To avoid connects to SH-Q-Y (give to drink, irrigate)",
           "bridge_concept_es": "Evitar conecta con SH-Q-Y (dar de beber, regar)"
         }
-      }
+      },
+      "sabor_raiz_es": "hurto, apropiación ilícita, ocultamiento",
+      "sabor_raiz_en": "theft, illicit taking, concealment"
     },
     "kh-r-b": {
       "root_syriac": "ܚܪܒ",
@@ -9077,7 +9275,9 @@
           "meaning_es": "destruir",
           "meaning_en": "to destroy"
         }
-      ]
+      ],
+      "sabor_raiz_es": "devastación, ruina, desolación",
+      "sabor_raiz_en": "devastation, ruin, desolation"
     },
     "p-r-s": {
       "root_syriac": "ܦܪܣ",
@@ -9183,7 +9383,9 @@
           "bridge_concept_en": "to devour, tear apart is a core meaning of A-K-L (to eat)",
           "bridge_concept_es": "devorar, desgarrar es un significado central de A-K-L (comer)"
         }
-      }
+      },
+      "sabor_raiz_es": "separación, distinción, explicación",
+      "sabor_raiz_en": "separation, distinction, interpretation"
     },
     "r-b-a": {
       "root_syriac": "ܪܒܐ",
@@ -9281,7 +9483,9 @@
           "bridge_concept_en": "Spring (season) connects to R-B-Y (to grow, thrive)",
           "bridge_concept_es": "Primavera (estación) se conecta con R-B-Y (crecer, prosperar)"
         }
-      }
+      },
+      "sabor_raiz_es": "magnitud, crecimiento, maestría",
+      "sabor_raiz_en": "magnitude, growth, mastery"
     },
     "a-s-r": {
       "root_syriac": "ܐܣܪ",
@@ -9378,7 +9582,9 @@
           "bridge_concept_en": "Captivity/slavery is a core meaning of A-B-D (to serve, be a slave)",
           "bridge_concept_es": "Cautiverio/esclavitud es un significado central de A-B-D (servir, ser esclavo)"
         }
-      }
+      },
+      "sabor_raiz_es": "atadura, restricción, cautividad",
+      "sabor_raiz_en": "binding, constraint, captivity"
     },
     "kh-b-l": {
       "root_syriac": "ܚܒܠ",
@@ -9557,7 +9763,9 @@
           "meaning_es": "cosa fuerte/lugar fortificado",
           "meaning_en": "strong thing/fortified place"
         }
-      ]
+      ],
+      "sabor_raiz_es": "fortaleza, poder, resistencia",
+      "sabor_raiz_en": "strength, power, fortitude"
     },
     "ts-w-m": {
       "root_syriac": "ܨܘܡ",
@@ -9644,7 +9852,9 @@
           "meaning_es": "Ramadán",
           "meaning_en": "Ramadan (fasting month)"
         }
-      ]
+      ],
+      "sabor_raiz_es": "abstinencia, privación, disciplina",
+      "sabor_raiz_en": "abstinence, restraint, discipline"
     },
     "g-m-r": {
       "root_syriac": "ܓܡܪ",
@@ -9738,7 +9948,9 @@
           "bridge_concept_en": "To gather embers is a metonymic extension of the core meaning of KH-B-R (to have/acquire/gain knowledge)",
           "bridge_concept_es": "Reunir brasas es una extensión metonímica del significado central de KH-B-R (tener/adquirir/ganar conocimiento)"
         }
-      }
+      },
+      "sabor_raiz_es": "consumación, término, plenitud",
+      "sabor_raiz_en": "completion, termination, fullness"
     },
     "sh-q-l": {
       "root_syriac": "ܫܩܠ",
@@ -9823,7 +10035,9 @@
           "bridge_concept_en": "To put, place, leave connects to S-Y-M (place, put)",
           "bridge_concept_es": "Poner, colocar, dejar conecta con S-Y-M (poner, colocar)"
         }
-      }
+      },
+      "sabor_raiz_es": "peso, carga, balance",
+      "sabor_raiz_en": "weight, burden, equilibrium"
     },
     "kh-w-b": {
       "root_syriac": "ܚܘܒ",
@@ -9892,7 +10106,9 @@
           "meaning_es": "amor, afecto",
           "meaning_en": "love, affection"
         }
-      ]
+      ],
+      "sabor_raiz_es": "vinculación, obligación afectiva, deuda del corazón",
+      "sabor_raiz_en": "binding attachment, affective obligation, heart's debt"
     },
     "l-b-sh": {
       "root_syriac": "ܠܒܫ",
@@ -9979,7 +10195,9 @@
           "meaning_es": "vestido",
           "meaning_en": "dressed, clothed"
         }
-      ]
+      ],
+      "sabor_raiz_es": "cobertura, envoltura, identidad vestida",
+      "sabor_raiz_en": "covering, envelopment, clothed identity"
     },
     "e-m-r": {
       "root_syriac": "ܥܡܪ",
@@ -10106,7 +10324,9 @@
           "bridge_concept_en": "The name 'Omar' derives from the root A-M-R, meaning 'to command, order'",
           "bridge_concept_es": "El nombre 'Omar' deriva de la raíz A-M-R, que significa 'mandar, ordenar'"
         }
-      }
+      },
+      "sabor_raiz_es": "habitación, construcción, poblamiento",
+      "sabor_raiz_en": "habitation, building, settlement"
     },
     "p-l-g": {
       "root_syriac": "ܦܠܓ",
@@ -10210,7 +10430,9 @@
           "bridge_concept_en": "Schism, dissension connects to R-KH-Q (to be distant, to separate)",
           "bridge_concept_es": "Cisma, disensión se conecta con R-KH-Q (estar distante, separarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "división, separación, flujo",
+      "sabor_raiz_en": "division, separation, flow"
     },
     "th-q-n": {
       "root_syriac": "ܬܩܢ",
@@ -10297,7 +10519,9 @@
           "meaning_es": "perfeccionamiento",
           "meaning_en": "perfection"
         }
-      ]
+      ],
+      "sabor_raiz_es": "perfección, corrección, maestría",
+      "sabor_raiz_en": "perfection, correction, mastery"
     },
     "y-r-th": {
       "root_syriac": "ܝܪܬ",
@@ -10366,7 +10590,9 @@
           "meaning_es": "herencia",
           "meaning_en": "heritage"
         }
-      ]
+      ],
+      "sabor_raiz_es": "posesión, legado, transmisión",
+      "sabor_raiz_en": "possession, legacy, transmission"
     },
     "sh-b-th": {
       "root_syriac": "ܫܒܬ",
@@ -10459,7 +10685,9 @@
           "bridge_concept_en": "Lethargy/deep sleep connects to D-M-KH (sleep)",
           "bridge_concept_es": "Letargo/sueño profundo conecta con D-M-KH (dormir)"
         }
-      }
+      },
+      "sabor_raiz_es": "cese, descanso, interrupción",
+      "sabor_raiz_en": "cessation, rest, interruption"
     },
     "e-sh-n": {
       "root_syriac": "ܥܫܢ",
@@ -10532,7 +10760,9 @@
           "bridge_concept_en": "Smoke is a core meaning of the root A-TH-R (to burn, smoke)",
           "bridge_concept_es": "El humo es un significado central de la raíz A-TH-R (quemar, humear)"
         }
-      }
+      },
+      "sabor_raiz_es": "vigor, robustez, firmeza",
+      "sabor_raiz_en": "vigor, robustness, firmness"
     },
     "n-kh-m": {
       "root_syriac": "ܢܚܡ",
@@ -10629,7 +10859,9 @@
           "bridge_concept_en": "Clearing one's throat connects to N-KH-R (to snort, breathe forcefully)",
           "bridge_concept_es": "Aclararse la garganta se conecta con N-KH-R (resoplar, respirar con fuerza)"
         }
-      }
+      },
+      "sabor_raiz_es": "alivio, descanso, consuelo",
+      "sabor_raiz_en": "relief, rest, solace"
     },
     "d-kh-r": {
       "root_syriac": "ܕܟܪ",
@@ -10799,7 +11031,9 @@
           "meaning_es": "lejano",
           "meaning_en": "distant"
         }
-      ]
+      ],
+      "sabor_raiz_es": "distancia, alejamiento, lejanía",
+      "sabor_raiz_en": "distance, remoteness, separation"
     },
     "n-z-r": {
       "root_syriac": "ܢܙܪ",
@@ -10892,7 +11126,9 @@
           "meaning_es": "cristianos (nazarenos)",
           "meaning_en": "Christians (Nazarenes)"
         }
-      ]
+      ],
+      "sabor_raiz_es": "consagración, voto sagrado, separación",
+      "sabor_raiz_en": "consecration, sacred vow, separation"
     },
     "s-h-d": {
       "root_syriac": "ܣܗܕ",
@@ -10976,7 +11212,9 @@
           "bridge_concept_en": "Place/scene of martyrdom connects to M-R-Y (to see, witness, observe)",
           "bridge_concept_es": "Lugar/escena de martirio se conecta con M-R-Y (ver, presenciar, observar)"
         }
-      }
+      },
+      "sabor_raiz_es": "testimonio, presencia veraz, martirio",
+      "sabor_raiz_en": "testimony, truthful presence, martyrdom"
     },
     "e-r-q": {
       "root_syriac": "ܥܪܩ",
@@ -11188,7 +11426,9 @@
           "bridge_concept_en": "The core meaning of KH-D-TH is 'new, modern', which is a good match for the outlier meaning of the root SH-N-A.",
           "bridge_concept_es": "El significado central de KH-D-TH es 'nuevo, moderno', lo cual es un buen equivalente para el significado periférico de la raíz SH-N-A."
         }
-      }
+      },
+      "sabor_raiz_es": "transformación, renovación, ciclo",
+      "sabor_raiz_en": "transformation, renewal, cycle"
     },
     "kh-l-m": {
       "root_syriac": "ܚܠܡ",
@@ -11285,7 +11525,9 @@
           "bridge_concept_en": "Patience and clemency are central meanings of A-B-H (to be gentle, forbearing)",
           "bridge_concept_es": "La paciencia y la clemencia son significados centrales de A-B-H (ser gentil, paciente)"
         }
-      }
+      },
+      "sabor_raiz_es": "visión nocturna, imaginación, sueño",
+      "sabor_raiz_en": "nocturnal vision, imagination, dreaming"
     },
     "kh-r-sh": {
       "root_syriac": "ܚܪܫ",
@@ -11449,7 +11691,9 @@
           "meaning_es": "encendido, ardiente",
           "meaning_en": "lit, burning"
         }
-      ]
+      ],
+      "sabor_raiz_es": "ignición, ardor, punto focal",
+      "sabor_raiz_en": "ignition, burning intensity, focal point"
     },
     "a-r-z": {
       "root_syriac": "ܐܪܙ",
@@ -11531,7 +11775,9 @@
           "meaning_es": "cifrado, simbólico",
           "meaning_en": "coded, symbolic"
         }
-      ]
+      ],
+      "sabor_raiz_es": "ocultamiento, enigma, lo velado",
+      "sabor_raiz_en": "hiddenness, enigma, the veiled"
     },
     "r-g-l": {
       "root_syriac": "ܪܓܠ",
@@ -11729,7 +11975,9 @@
           "bridge_concept_en": "To be mutually envious connects to H-W-A (be, become)",
           "bridge_concept_es": "Tener envidia mutua conecta con H-W-A (ser, estar)"
         }
-      }
+      },
+      "sabor_raiz_es": "lealtad, piedad, gracia",
+      "sabor_raiz_en": "loyalty, piety, grace"
     },
     "a-n-sh": {
       "root_syriac": "ܐܢܫ",
@@ -11817,7 +12065,9 @@
           "meaning_es": "humano",
           "meaning_en": "human"
         }
-      ]
+      ],
+      "sabor_raiz_es": "humanidad, vulnerabilidad, mortalidad",
+      "sabor_raiz_en": "humanity, vulnerability, mortality"
     },
     "a-y-l": {
       "root_syriac": "ܐܝܠ",
@@ -11920,7 +12170,9 @@
           "bridge_concept_en": "Cause, reason connects to E-L-TH (cause, reason)",
           "bridge_concept_es": "Causa, razón conecta con E-L-TH (causa, razón)"
         }
-      }
+      },
+      "sabor_raiz_es": "fortaleza, altura, divinidad",
+      "sabor_raiz_en": "strength, elevation, divinity"
     },
     "p-sh-T": {
       "root_syriac": "ܦܫܛ",
@@ -12001,7 +12253,9 @@
           "meaning_es": "extenderse, expandirse",
           "meaning_en": "to spread out, expand"
         }
-      ]
+      ],
+      "sabor_raiz_es": "extensión, simpleza, despliegue",
+      "sabor_raiz_en": "extension, simplicity, unfolding"
     },
     "z-k-a": {
       "root_syriac": "ܙܟܐ",
@@ -12104,7 +12358,9 @@
           "bridge_concept_en": "To remember connects to D-KH-R (remember, male)",
           "bridge_concept_es": "Recordar conecta con D-KH-R (recordar, varón)"
         }
-      }
+      },
+      "sabor_raiz_es": "pureza, mérito, prosperidad",
+      "sabor_raiz_en": "purity, merit, flourishing"
     },
     "kh-d-th": {
       "root_syriac": "ܚܕܬ",
@@ -12203,7 +12459,9 @@
           "bridge_concept_en": "Young people/moderns connects to N-SH-A (to grow, appear, originate)",
           "bridge_concept_es": "Gente joven/moderna se conecta con N-SH-A (crecer, aparecer, originarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "novedad, renovación, nacimiento",
+      "sabor_raiz_en": "newness, renewal, emergence"
     },
     "e-l-th": {
       "root_syriac": "ܥܠܬ",
@@ -12282,7 +12540,9 @@
           "bridge_concept_en": "'Sick, weak, afflicted' connects to E-D-R (to be ill, sick)",
           "bridge_concept_es": "'Enfermo, débil, afligido' se conecta con E-D-R (estar enfermo, enfermizo)"
         }
-      }
+      },
+      "sabor_raiz_es": "causalidad, justificación, razón fundamentadora",
+      "sabor_raiz_en": "causality, justification, foundational reason"
     },
     "th-w-b": {
       "root_syriac": "ܬܘܒ",
@@ -12360,7 +12620,9 @@
           "bridge_concept_en": "Garment/return connects to L-B-SH (to wear, clothe)",
           "bridge_concept_es": "Prenda/regreso se conecta con L-B-SH (vestir, cubrir)"
         }
-      }
+      },
+      "sabor_raiz_es": "regreso, vuelta, transformación moral",
+      "sabor_raiz_en": "return, turning back, moral transformation"
     },
     "n-w-r": {
       "root_syriac": "ܢܘܪ",
@@ -12453,7 +12715,9 @@
           "meaning_es": "iluminación",
           "meaning_en": "illumination"
         }
-      ]
+      ],
+      "sabor_raiz_es": "luminosidad, ardor, radiación",
+      "sabor_raiz_en": "luminosity, burning, radiance"
     },
     "sh-p-r": {
       "root_syriac": "ܫܦܪ",
@@ -12565,7 +12829,9 @@
           "bridge_concept_en": "Yellowish connects to S-P-R (to be yellow/golden)",
           "bridge_concept_es": "Amarillento se conecta con S-P-R (ser amarillo/dorado)"
         }
-      }
+      },
+      "sabor_raiz_es": "brillantez, belleza, claridad",
+      "sabor_raiz_en": "radiance, beauty, clarity"
     },
     "kh-k-m": {
       "root_syriac": "ܚܟܡ",
@@ -12687,7 +12953,9 @@
           "bridge_concept_en": "The core meaning of M-L-K (to rule, govern) includes 'ruler, judge'",
           "bridge_concept_es": "El significado central de M-L-K (gobernar, dirigir) incluye 'gobernante, juez'"
         }
-      }
+      },
+      "sabor_raiz_es": "sabiduría, discernimiento, gobierno",
+      "sabor_raiz_en": "wisdom, discernment, governance"
     },
     "d-r-sh": {
       "root_syriac": "ܕܪܫ",
@@ -12770,7 +13038,9 @@
           "meaning_en": "studies",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "búsqueda inquiridora, interpretación profunda, investigación",
+      "sabor_raiz_en": "seeking inquiry, deep interpretation, investigation"
     },
     "z-m-n": {
       "root_syriac": "ܙܡܢ",
@@ -12990,7 +13260,9 @@
           "bridge_concept_en": "Magnificent, illustrious relates to A-B-H (to be majestic, august)",
           "bridge_concept_es": "Magnífico, ilustre se relaciona con A-B-H (ser majestuoso, augusto)"
         }
-      }
+      },
+      "sabor_raiz_es": "rotación, movimiento circular, esfera",
+      "sabor_raiz_en": "rotation, circular motion, sphere"
     },
     "a-m-n": {
       "root_syriac": "ܐܡܢ",
@@ -13094,7 +13366,9 @@
           "bridge_concept_en": "Art as a specialized skill/craft, which is the core meaning of S-P-R (to count, to recount)",
           "bridge_concept_es": "El arte como una habilidad/oficio especializada, que es el significado central de S-P-R (contar, relatar)"
         }
-      }
+      },
+      "sabor_raiz_es": "confianza, fidelidad, seguridad",
+      "sabor_raiz_en": "trust, faithfulness, security"
     },
     "k-r-z": {
       "root_syriac": "ܟܪܙ",
@@ -13192,7 +13466,9 @@
           "bridge_concept_en": "The act of writing became the core meaning of K-TH-B, diverging from the original 'preach, herald' meaning of K-R-Z",
           "bridge_concept_es": "El acto de escribir se convirtió en el significado central de K-TH-B, divergiendo del significado original de 'predicar, proclamar' de K-R-Z"
         }
-      }
+      },
+      "sabor_raiz_es": "proclamación, voz pública, invocación",
+      "sabor_raiz_en": "proclamation, public voice, invocation"
     },
     "r-sh-m": {
       "root_syriac": "ܪܫܡ",
@@ -13249,7 +13525,9 @@
           "meaning_es": "decreto, dibujado",
           "meaning_en": "decree, drawn"
         }
-      ]
+      ],
+      "sabor_raiz_es": "marca, trazo, inscripción",
+      "sabor_raiz_en": "mark, trace, inscription"
     },
     "sh-w-a": {
       "root_syriac": "ܫܘܐ",
@@ -13336,7 +13614,9 @@
           "meaning_es": "equipararse, igualarse",
           "meaning_en": "to become equal, equalize"
         }
-      ]
+      ],
+      "sabor_raiz_es": "equiparación, nivelación, equivalencia",
+      "sabor_raiz_en": "equalization, leveling, equivalence"
     },
     "b-T-l": {
       "root_syriac": "ܒܛܠ",
@@ -13434,7 +13714,9 @@
           "bridge_concept_en": "False, vain connects to S-R-Q (empty, vain)",
           "bridge_concept_es": "Falso, vano conecta con S-R-Q (vacío, vano)"
         }
-      }
+      },
+      "sabor_raiz_es": "anulación, inactividad, nulidad",
+      "sabor_raiz_en": "annulment, cessation, nullification"
     },
     "kh-r-r": {
       "root_syriac": "ܚܪܪ",
@@ -13527,7 +13809,9 @@
           "meaning_es": "liberado",
           "meaning_en": "liberated"
         }
-      ]
+      ],
+      "sabor_raiz_es": "liberación, desprendimiento, independencia",
+      "sabor_raiz_en": "liberation, release, independence"
     },
     "m-sh-kh": {
       "root_syriac": "ܡܫܚ",
@@ -13631,7 +13915,9 @@
           "bridge_concept_en": "Destructive, harmful connects to KH-B-L (to destroy, ruin)",
           "bridge_concept_es": "Destructivo, dañino se conecta con KH-B-L (destruir, arruinar)"
         }
-      }
+      },
+      "sabor_raiz_es": "unción, consagración, ungüento",
+      "sabor_raiz_en": "anointing, consecration, ointment"
     },
     "kh-l-l": {
       "root_syriac": "ܚܠܠ",
@@ -13820,7 +14106,9 @@
           "bridge_concept_en": "Nasal passages as part of the core meaning of N-KH-R (to snort, breathe heavily)",
           "bridge_concept_es": "Los pasajes nasales como parte del significado central de N-KH-R (resoplar, respirar con fuerza)"
         }
-      }
+      },
+      "sabor_raiz_es": "contacto íntimo, inhalación, unión sensorial",
+      "sabor_raiz_en": "intimate contact, inhalation, sensory union"
     },
     "sh-kh-n": {
       "root_syriac": "ܫܟܢ",
@@ -13916,7 +14204,9 @@
           "bridge_concept_en": "Stillness connects to S-K-N (to dwell, reside)",
           "bridge_concept_es": "Tranquilidad se conecta con S-K-N (habitar, residir)"
         }
-      }
+      },
+      "sabor_raiz_es": "habitación, presencia establecida, morada",
+      "sabor_raiz_en": "dwelling, settled presence, abode"
     },
     "kh-g-g": {
       "root_syriac": "ܚܓܓ",
@@ -14009,7 +14299,9 @@
           "meaning_es": "hacer la peregrinación",
           "meaning_en": "to perform the pilgrimage"
         }
-      ]
+      ],
+      "sabor_raiz_es": "peregrinación, fiesta, movimiento sagrado",
+      "sabor_raiz_en": "pilgrimage, feast, sacred movement"
     },
     "th-r-ts": {
       "root_syriac": "ܬܪܨ",
@@ -14083,7 +14375,9 @@
           "bridge_concept_en": "Order, arrangement connects to P-Q-D (command, order)",
           "bridge_concept_es": "Orden, arreglo conecta con P-Q-D (mandar, ordenar)"
         }
-      }
+      },
+      "sabor_raiz_es": "rectitud, resolución, firmeza",
+      "sabor_raiz_en": "straightness, resolution, firmness"
     },
     "q-y-m": {
       "root_syriac": "ܩܝܡ",
@@ -14176,7 +14470,9 @@
           "bridge_concept_en": "Supervisor, director is a core meaning of A-M-R (command, order)",
           "bridge_concept_es": "Supervisor, director es un significado central de A-M-R (mandar, ordenar)"
         }
-      }
+      },
+      "sabor_raiz_es": "elevación, permanencia, sustancia",
+      "sabor_raiz_en": "elevation, endurance, substance"
     },
     "q-r-y": {
       "root_syriac": "ܩܪܝ",
@@ -14239,7 +14535,9 @@
           "meaning_es": "recitación",
           "meaning_en": "recitation"
         }
-      ]
+      ],
+      "sabor_raiz_es": "invocación, vocalización, proclamación",
+      "sabor_raiz_en": "invocation, vocalization, proclamation"
     },
     "m-l-y": {
       "root_syriac": "ܡܠܝ",
@@ -14302,7 +14600,9 @@
           "meaning_es": "llenado",
           "meaning_en": "filling"
         }
-      ]
+      ],
+      "sabor_raiz_es": "plenitud, abundancia, saturación",
+      "sabor_raiz_en": "fullness, abundance, saturation"
     },
     "p-g-r": {
       "root_syriac": "ܦܓܪ",
@@ -14349,7 +14649,9 @@
           "meaning_en": "torn, rent",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "materia inerte, descomposición, masa física",
+      "sabor_raiz_en": "inert matter, decay, physical mass"
     },
     "y-th-r": {
       "root_syriac": "ܝܬܪ",
@@ -14411,7 +14713,9 @@
           "bridge_concept_en": "To equip with strings connects to D-M-R (to be amazed, astonished)",
           "bridge_concept_es": "Equipar con cuerdas conecta con D-M-R (sorprenderse, admirarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "exceso, sobra, ventaja",
+      "sabor_raiz_en": "surplus, excess, advantage"
     },
     "k-a-p": {
       "root_syriac": "ܟܐܦ",
@@ -14492,7 +14796,9 @@
           "bridge_concept_en": "City in iraq connects to K-R-K (surround, city)",
           "bridge_concept_es": "Ciudad en irak conecta con K-R-K (rodear, ciudad)"
         }
-      }
+      },
+      "sabor_raiz_es": "solidez, magnitud, dureza",
+      "sabor_raiz_en": "solidity, magnitude, hardness"
     },
     "q-d-m": {
       "root_syriac": "ܩܕܡ",
@@ -14570,7 +14876,9 @@
           "bridge_concept_en": "Presentation/offering connects to Q-R-B (to draw near, approach)",
           "bridge_concept_es": "Presentación/ofrenda se conecta con Q-R-B (acercarse, aproximarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "anterioridad, frontera, precedencia",
+      "sabor_raiz_en": "precedence, frontness, priority"
     },
     "r-m-y": {
       "root_syriac": "ܪܡܝ",
@@ -14637,7 +14945,9 @@
           "bridge_concept_en": "High places connects to R-Y-M (be high, exalt)",
           "bridge_concept_es": "Lugares altos conecta con R-Y-M (ser alto, exaltar)"
         }
-      }
+      },
+      "sabor_raiz_es": "proyección, lanzamiento, distancia",
+      "sabor_raiz_en": "projection, casting, distance"
     },
     "T-w-b": {
       "root_syriac": "ܛܘܒ",
@@ -14716,7 +15026,9 @@
           "bridge_concept_en": "To be benevolent, behave well is part of the core meaning of A-B-H (to be gracious, show favor)",
           "bridge_concept_es": "Ser benévolo, comportarse bien es parte del significado central de A-B-H (ser gracioso, mostrar favor)"
         }
-      }
+      },
+      "sabor_raiz_es": "bondad, beneficio, excelencia",
+      "sabor_raiz_en": "goodness, benefit, excellence"
     },
     "a-th-r": {
       "root_syriac": "ܐܬܪ",
@@ -14783,7 +15095,9 @@
           "bridge_concept_en": "To prefer, choose connects to G-B-A (choose, elect)",
           "bridge_concept_es": "Preferir, elegir conecta con G-B-A (elegir, escoger)"
         }
-      }
+      },
+      "sabor_raiz_es": "lugar, huella, territorio",
+      "sabor_raiz_en": "place, trace, territory"
     },
     "b-s-r": {
       "root_syriac": "ܒܣܪ",
@@ -14848,7 +15162,9 @@
           "meaning_en": "good news",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "corporalidad, materialidad, carne viva",
+      "sabor_raiz_en": "embodiment, materiality, living flesh"
     },
     "k-a-n": {
       "root_syriac": "ܟܐܢ",
@@ -14899,7 +15215,9 @@
           "meaning_es": "formación, constitución",
           "meaning_en": "formation, constitution"
         }
-      ]
+      ],
+      "sabor_raiz_es": "rectitud, establecimiento, ser",
+      "sabor_raiz_en": "uprightness, establishment, being"
     },
     "s-y-m": {
       "root_syriac": "ܣܝܡ",
@@ -14955,7 +15273,9 @@
           "bridge_concept_en": "To rise, ascend connects to S-L-Q (ascend, go up)",
           "bridge_concept_es": "Elevarse, ascender conecta con S-L-Q (subir, ascender)"
         }
-      }
+      },
+      "sabor_raiz_es": "posición, colocación, establecimiento",
+      "sabor_raiz_en": "placement, positioning, establishment"
     },
     "l-kh-m": {
       "root_syriac": "ܠܚܡ",
@@ -15124,7 +15444,9 @@
           "bridge_concept_en": "Stepson/foster child connects to A-B-H (father, patriarch)",
           "bridge_concept_es": "Hijastro/hijo de crianza conecta con A-B-H (padre, patriarca)"
         }
-      }
+      },
+      "sabor_raiz_es": "magnitud, multiplicidad, maestría",
+      "sabor_raiz_en": "magnitude, multiplicity, mastery"
     },
     "r-y-m": {
       "root_syriac": "ܪܝܡ",
@@ -15198,7 +15520,9 @@
           "bridge_concept_en": "To desire connects to TS-B-Y (wish, desire)",
           "bridge_concept_es": "Desear conecta con TS-B-Y (desear, querer)"
         }
-      }
+      },
+      "sabor_raiz_es": "elevación, altura, sublimidad",
+      "sabor_raiz_en": "elevation, height, sublimity"
     },
     "q-l-l": {
       "root_syriac": "ܩܠܠ",
@@ -15257,7 +15581,9 @@
           "meaning_en": "little, scarce",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "voz, expresión audible, proclamación",
+      "sabor_raiz_en": "voice, audible expression, proclamation"
     },
     "kh-T-y": {
       "root_syriac": "ܚܛܝ",
@@ -15321,7 +15647,9 @@
           "meaning_en": "erroneous",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "transgresión, error moral, culpa",
+      "sabor_raiz_en": "transgression, moral error, guilt"
     },
     "T-l-y": {
       "root_syriac": "ܛܠܝ",
@@ -15387,7 +15715,9 @@
           "bridge_concept_en": "To follow, recite connects to N-Q-P (follow, go around)",
           "bridge_concept_es": "Seguir, recitar conecta con N-Q-P (seguir, rodear)"
         }
-      }
+      },
+      "sabor_raiz_es": "juventud, dependencia, vulnerabilidad",
+      "sabor_raiz_en": "youth, dependency, vulnerability"
     },
     "e-w-l": {
       "root_syriac": "ܥܘܠ",
@@ -15463,7 +15793,9 @@
           "bridge_concept_en": "Injustice/partiality is a core meaning of E-D-L (to be just, fair)",
           "bridge_concept_es": "La injusticia/parcialidad es un significado central de E-D-L (ser justo, imparcial)"
         }
-      }
+      },
+      "sabor_raiz_es": "penetración, transgresión, sometimiento",
+      "sabor_raiz_en": "penetration, transgression, subjection"
     },
     "y-m-n": {
       "root_syriac": "ܝܡܢ",
@@ -15508,7 +15840,9 @@
           "meaning_es": "ir hacia la derecha",
           "meaning_en": "to go towards the right"
         }
-      ]
+      ],
+      "sabor_raiz_es": "destreza, dirección, poder",
+      "sabor_raiz_en": "dexterity, direction, authority"
     },
     "T-w-r": {
       "root_syriac": "ܛܘܪ",
@@ -15569,7 +15903,9 @@
           "bridge_concept_en": "Drought/arid connects to Y-B-SH (to dry up, wither)",
           "bridge_concept_es": "Sequía/árido conecta con Y-B-SH (secarse, marchitarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "elevación, etapas de crecimiento, solidez",
+      "sabor_raiz_en": "elevation, stages of growth, solidity"
     },
     "y-q-r": {
       "root_syriac": "ܝܩܪ",
@@ -15614,7 +15950,9 @@
           "meaning_es": "honorable, digno",
           "meaning_en": "honorable, worthy"
         }
-      ]
+      ],
+      "sabor_raiz_es": "peso, valor, dignidad",
+      "sabor_raiz_en": "weight, worth, dignity"
     },
     "k-y-l": {
       "root_syriac": "ܟܝܠ",
@@ -15665,7 +16003,9 @@
           "meaning_es": "recipiente de medida",
           "meaning_en": "measuring vessel"
         }
-      ]
+      ],
+      "sabor_raiz_es": "medida, proporción, cuantificación",
+      "sabor_raiz_en": "measure, proportion, quantification"
     },
     "a-l-p": {
       "root_syriac": "ܐܠܦ",
@@ -15790,7 +16130,9 @@
           "meaning_es": "cubierto, revestido",
           "meaning_en": "covered, clothed"
         }
-      ]
+      ],
+      "sabor_raiz_es": "ocultamiento, envoltura, secreto",
+      "sabor_raiz_en": "concealment, wrapping, secrecy"
     },
     "s-k-l": {
       "root_syriac": "ܣܟܠ",
@@ -15930,7 +16272,9 @@
           "bridge_concept_en": "Starting point/source connects to M-SH-R (to spread, disperse)",
           "bridge_concept_es": "Punto de partida/fuente conecta con M-SH-R (extender, dispersar)"
         }
-      }
+      },
+      "sabor_raiz_es": "iniciación, establecimiento, liberación",
+      "sabor_raiz_en": "initiation, settlement, release"
     },
     "b-e-y": {
       "root_syriac": "ܒܥܝ",
@@ -15987,7 +16331,9 @@
           "meaning_es": "solicitar, reclamar",
           "meaning_en": "to demand, request"
         }
-      ]
+      ],
+      "sabor_raiz_es": "búsqueda, deseo, demanda",
+      "sabor_raiz_en": "seeking, desire, petition"
     },
     "s-n-q": {
       "root_syriac": "ܣܢܩ",
@@ -16041,7 +16387,9 @@
           "bridge_concept_en": "Need is central to A-K-L (to need, require)",
           "bridge_concept_es": "Necesidad es central a A-K-L (necesitar, requerir)"
         }
-      }
+      },
+      "sabor_raiz_es": "carencia, dependencia, urgencia",
+      "sabor_raiz_en": "lack, dependence, urgency"
     },
     "m-r-e": {
       "root_syriac": "ܡܪܥ",
@@ -16098,7 +16446,9 @@
           "meaning_es": "patológico, mórbido",
           "meaning_en": "pathological, morbid"
         }
-      ]
+      ],
+      "sabor_raiz_es": "debilidad, aflicción, padecimiento",
+      "sabor_raiz_en": "weakness, affliction, suffering"
     },
     "s-e-r": {
       "root_syriac": "ܣܥܪ",
@@ -16172,7 +16522,9 @@
           "bridge_concept_en": "To kindle/ignite connects to B-KH-R (to burn incense)",
           "bridge_concept_es": "Encender/incendiar se conecta con B-KH-R (quemar incienso)"
         }
-      }
+      },
+      "sabor_raiz_es": "aspereza, crecimiento, superficie visible",
+      "sabor_raiz_en": "roughness, growth, visible surface"
     },
     "d-n-kh": {
       "root_syriac": "ܕܢܚ",
@@ -16227,7 +16579,9 @@
           "bridge_concept_en": "To lament, complain connects to D-M-N (to come, arrive)",
           "bridge_concept_es": "Lamentarse, quejarse conecta con D-M-N (venir, llegar)"
         }
-      }
+      },
+      "sabor_raiz_es": "luminosidad, aproximación, claridad",
+      "sabor_raiz_en": "luminescence, approach, clarity"
     },
     "k-r-k": {
       "root_syriac": "ܟܪܟ",
@@ -16278,7 +16632,9 @@
           "meaning_es": "dar vueltas, girar",
           "meaning_en": "to turn around, rotate"
         }
-      ]
+      ],
+      "sabor_raiz_es": "envolvimiento, circunvalación, centro poblado",
+      "sabor_raiz_en": "enclosure, circumscription, urban center"
     },
     "p-r-e": {
       "root_syriac": "ܦܪܥ",
@@ -16352,7 +16708,9 @@
           "bridge_concept_en": "To rebel, disorder connects to D-M-R (to be amazed, astonished)",
           "bridge_concept_es": "Revelarse, desordenar conecta con D-M-R (sorprenderse, admirarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "recompensa, germinación, ramificación",
+      "sabor_raiz_en": "recompense, sprouting, branching"
     },
     "sh-w-th": {
       "root_syriac": "ܫܘܬ",
@@ -16403,7 +16761,9 @@
           "meaning_es": "igual, equivalente",
           "meaning_en": "equal, equivalent"
         }
-      ]
+      ],
+      "sabor_raiz_es": "equiparación, paridad, equivalencia",
+      "sabor_raiz_en": "equivalence, parity, equalization"
     },
     "n-kh-r": {
       "root_syriac": "ܢܟܪ",
@@ -16476,7 +16836,9 @@
           "bridge_concept_en": "Foreignness is central to N-KH-SH (to be a foreigner, to be strange)",
           "bridge_concept_es": "La extranjería es central a N-KH-SH (ser un extranjero, ser extraño)"
         }
-      }
+      },
+      "sabor_raiz_es": "extrañeza, lo no reconocido, alteridad",
+      "sabor_raiz_en": "strangeness, non-recognition, otherness"
     },
     "e-n-y": {
       "root_syriac": "ܥܢܝ",
@@ -16535,7 +16897,9 @@
           "meaning_en": "suffering, distress",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "respuesta, correspondencia, resonancia",
+      "sabor_raiz_en": "response, correspondence, resonance"
     },
     "ts-l-y": {
       "root_syriac": "ܨܠܝ",
@@ -16698,7 +17062,9 @@
           "meaning_es": "sueño profundo",
           "meaning_en": "deep sleep"
         }
-      ]
+      ],
+      "sabor_raiz_es": "quietud, letargo, sosiego",
+      "sabor_raiz_en": "stillness, drowsiness, repose"
     },
     "sh-l-y": {
       "root_syriac": "ܫܠܝ",
@@ -16750,7 +17116,9 @@
           "meaning_es": "tranquilo, apacible",
           "meaning_en": "calm, serene"
         }
-      ]
+      ],
+      "sabor_raiz_es": "quietud, reposo, sosiego",
+      "sabor_raiz_en": "quietness, rest, repose"
     },
     "k-n-y": {
       "root_syriac": "ܟܢܝ",
@@ -16825,7 +17193,9 @@
           "bridge_concept_en": "To surname/give a name connects to Q-N-Y (to acquire, possess)",
           "bridge_concept_es": "Sobrenombrar/dar un nombre se conecta con Q-N-Y (adquirir, poseer)"
         }
-      }
+      },
+      "sabor_raiz_es": "adquisición, posesión, llamada",
+      "sabor_raiz_en": "acquisition, possession, calling"
     },
     "s-m-k": {
       "root_syriac": "ܣܡܟ",
@@ -16876,7 +17246,9 @@
           "meaning_es": "apoyo, sostén",
           "meaning_en": "support, prop"
         }
-      ]
+      ],
+      "sabor_raiz_es": "sostén, apoyo, proximidad",
+      "sabor_raiz_en": "support, prop, adjacency"
     },
     "kh-w-y": {
       "root_syriac": "ܚܘܝ",
@@ -16928,7 +17300,9 @@
           "meaning_es": "revelación, manifestación",
           "meaning_en": "revelation, manifestation"
         }
-      ]
+      ],
+      "sabor_raiz_es": "revelación, manifestación, exposición",
+      "sabor_raiz_en": "revelation, manifestation, exposure"
     },
     "z-w-g": {
       "root_syriac": "ܙܘܓ",
@@ -16985,7 +17359,9 @@
           "meaning_es": "casamiento",
           "meaning_en": "marriage, wedding"
         }
-      ]
+      ],
+      "sabor_raiz_es": "unión, pareja, complemento",
+      "sabor_raiz_en": "union, pairing, complementarity"
     },
     "b-kh-r": {
       "root_syriac": "ܒܟܪ",
@@ -17053,7 +17429,9 @@
           "bridge_concept_en": "Morning connects to TS-P-R (morning, bird)",
           "bridge_concept_es": "Mañana conecta con TS-P-R (mañana, pájaro)"
         }
-      }
+      },
+      "sabor_raiz_es": "primacía, preeminencia, elección",
+      "sabor_raiz_en": "primacy, preeminence, choice"
     },
     "g-d-l": {
       "root_syriac": "ܓܕܠ",
@@ -17110,7 +17488,9 @@
           "meaning_es": "grande, imponente",
           "meaning_en": "great, imposing"
         }
-      ]
+      ],
+      "sabor_raiz_es": "magnitud, expansión, grandeza",
+      "sabor_raiz_en": "magnitude, expansion, greatness"
     },
     "sh-w-y": {
       "root_syriac": "ܫܘܝ",
@@ -17167,7 +17547,9 @@
           "meaning_es": "equiparación, igualación",
           "meaning_en": "equalization, leveling"
         }
-      ]
+      ],
+      "sabor_raiz_es": "equiparación, nivelación, equivalencia",
+      "sabor_raiz_en": "leveling, equivalence, equalization"
     },
     "ts-b-y": {
       "root_syriac": "ܨܒܝ",
@@ -17200,7 +17582,9 @@
           "meaning_es": "requerido, deseado",
           "meaning_en": "required, desired"
         }
-      ]
+      ],
+      "sabor_raiz_es": "anhelo, demanda, apetencia",
+      "sabor_raiz_en": "longing, demand, appetite"
     },
     "g-b-y": {
       "root_syriac": "ܓܒܝ",
@@ -17341,7 +17725,9 @@
           "bridge_concept_en": "The meaning \"to steal, rob\" is central to the root G-N-B (to steal)",
           "bridge_concept_es": "El significado \"robar\" es central a la raíz G-N-B (robar)"
         }
-      }
+      },
+      "sabor_raiz_es": "feminidad, humanidad, alteridad generizada",
+      "sabor_raiz_en": "femininity, humanity, gendered otherness"
     },
     "r-sh-y": {
       "root_syriac": "ܪܫܝ",
@@ -17402,7 +17788,9 @@
           "bridge_concept_en": "Bribery connects to SH-R-Y (begin, dwell, loosen)",
           "bridge_concept_es": "Soborno conecta con SH-R-Y (comenzar, habitar, soltar)"
         }
-      }
+      },
+      "sabor_raiz_es": "maldad, depravación, culpa",
+      "sabor_raiz_en": "evil, depravity, guilt"
     },
     "kh-z-q": {
       "root_syriac": "ܚܙܩ",
@@ -17453,7 +17841,9 @@
           "meaning_es": "afirmarse, mantenerse firme",
           "meaning_en": "to affirm oneself, remain firm"
         }
-      ]
+      ],
+      "sabor_raiz_es": "firmeza, fortaleza, asimiento",
+      "sabor_raiz_en": "strength, firmness, grip"
     },
     "e-th-r": {
       "root_syriac": "ܥܬܪ",
@@ -17515,7 +17905,9 @@
           "bridge_concept_en": "To stumble, fall connects to N-P-L (fall)",
           "bridge_concept_es": "Tropezar, caer conecta con N-P-L (caer)"
         }
-      }
+      },
+      "sabor_raiz_es": "abundancia, prosperidad, plenitud",
+      "sabor_raiz_en": "abundance, prosperity, fullness"
     },
     "s-kh-r": {
       "root_syriac": "ܣܟܪ",
@@ -17575,7 +17967,9 @@
           "bridge_concept_en": "Drunkenness/intoxication is a core meaning of the root KH-M-R",
           "bridge_concept_es": "Embriaguez/intoxicación es un significado central de la raíz KH-M-R"
         }
-      }
+      },
+      "sabor_raiz_es": "cierre, ocultación, clausura",
+      "sabor_raiz_en": "closure, concealment, enclosure"
     },
     "kh-b-r": {
       "root_syriac": "ܚܒܪ",
@@ -17627,7 +18021,9 @@
           "meaning_es": "compañero, asociado",
           "meaning_en": "companion, associate"
         }
-      ]
+      ],
+      "sabor_raiz_es": "asociación, vínculo social, unión",
+      "sabor_raiz_en": "association, social bond, togetherness"
     },
     "p-l-sh": {
       "root_syriac": "ܦܠܫ",
@@ -17660,7 +18056,9 @@
           "meaning_es": "trabajo, acción",
           "meaning_en": "work, action"
         }
-      ]
+      ],
+      "sabor_raiz_es": "labor, esfuerzo, servicio",
+      "sabor_raiz_en": "labor, toil, service"
     },
     "n-w-n": {
       "root_syriac": "ܢܘܢ",
@@ -17717,7 +18115,9 @@
           "meaning_es": "pescar",
           "meaning_en": "to fish"
         }
-      ]
+      ],
+      "sabor_raiz_es": "criatura acuática, abundancia, sustento",
+      "sabor_raiz_en": "aquatic creature, abundance, sustenance"
     },
     "kh-sh-kh": {
       "root_syriac": "ܚܫܟ",
@@ -17762,7 +18162,9 @@
           "meaning_es": "oscuridad, tinieblas",
           "meaning_en": "darkness, gloom"
         }
-      ]
+      ],
+      "sabor_raiz_es": "oscuridad, ausencia de luz, opacidad",
+      "sabor_raiz_en": "darkness, absence of light, obscurity"
     },
     "g-r-sh": {
       "root_syriac": "ܓܪܫ",
@@ -17830,7 +18232,9 @@
           "bridge_concept_en": "Disintegrate as a core meaning connects to D-M-R (to destroy, ruin)",
           "bridge_concept_es": "Desintegrar como un significado central se conecta con D-M-R (destruir, arruinar)"
         }
-      }
+      },
+      "sabor_raiz_es": "expulsión, separación, ruptura",
+      "sabor_raiz_en": "expulsion, severance, rupture"
     },
     "n-ts-r": {
       "root_syriac": "ܢܨܪ",
@@ -17897,7 +18301,9 @@
           "bridge_concept_en": "Victory, help connects to E-D-R (help)",
           "bridge_concept_es": "Victoria, ayuda conecta con E-D-R (ayudar)"
         }
-      }
+      },
+      "sabor_raiz_es": "vigilancia, protección, brote vital",
+      "sabor_raiz_en": "watchfulness, protection, vital growth"
     },
     "kh-r-th": {
       "root_syriac": "ܚܪܬ",
@@ -17991,7 +18397,9 @@
           "bridge_concept_en": "Exit/exodus connects to N-P-Q (to go out, depart)",
           "bridge_concept_es": "Salir/éxodo se conecta con N-P-Q (salir, partir)"
         }
-      }
+      },
+      "sabor_raiz_es": "término, límite, extremidad",
+      "sabor_raiz_en": "boundary, terminus, extremity"
     },
     "sh-b-y": {
       "root_syriac": "ܫܒܝ",
@@ -18048,7 +18456,9 @@
           "meaning_es": "captura",
           "meaning_en": "capture"
         }
-      ]
+      ],
+      "sabor_raiz_es": "captura, cautiverio, subyugación",
+      "sabor_raiz_en": "capture, captivity, subjugation"
     },
     "q-n-y": {
       "root_syriac": "ܩܢܝ",
@@ -18105,7 +18515,9 @@
           "meaning_es": "adquisición, compra",
           "meaning_en": "acquisition, purchase"
         }
-      ]
+      ],
+      "sabor_raiz_es": "adquisición, posesión, apropiación",
+      "sabor_raiz_en": "acquisition, possession, appropriation"
     },
     "y-b-l": {
       "root_syriac": "ܝܒܠ",
@@ -18166,7 +18578,9 @@
           "bridge_concept_en": "Jubilee year connects to SH-N-A (change, year)",
           "bridge_concept_es": "Año del jubileo conecta con SH-N-A (cambiar, año)"
         }
-      }
+      },
+      "sabor_raiz_es": "transporte, movimiento, carga",
+      "sabor_raiz_en": "transport, movement, conveyance"
     },
     "th-kh-l": {
       "root_syriac": "ܬܟܠ",
@@ -18217,7 +18631,9 @@
           "meaning_es": "confianza, resignación",
           "meaning_en": "trust, reliance, resignation"
         }
-      ]
+      ],
+      "sabor_raiz_es": "confianza, delegación, abandono",
+      "sabor_raiz_en": "trust, delegation, reliance"
     },
     "sh-kh-r": {
       "root_syriac": "ܫܟܪ",
@@ -18274,7 +18690,9 @@
           "meaning_es": "embriagarse",
           "meaning_en": "to get drunk"
         }
-      ]
+      ],
+      "sabor_raiz_es": "embriaguez, pérdida de control, alteración mental",
+      "sabor_raiz_en": "intoxication, loss of control, mental alteration"
     },
     "r-kh-ts": {
       "root_syriac": "ܪܚܨ",
@@ -18325,7 +18743,9 @@
           "meaning_es": "lavarse",
           "meaning_en": "to wash oneself"
         }
-      ]
+      ],
+      "sabor_raiz_es": "purificación, ablución, limpieza ritual",
+      "sabor_raiz_en": "purification, ablution, ritual cleansing"
     },
     "kh-t-m": {
       "root_syriac": "ܚܬܡ",
@@ -18382,7 +18802,9 @@
           "meaning_es": "anillo",
           "meaning_en": "ring"
         }
-      ]
+      ],
+      "sabor_raiz_es": "cierre, impresión, marca",
+      "sabor_raiz_en": "closure, impression, mark"
     },
     "t-e-n": {
       "root_syriac": "ܛܥܢ",
@@ -18500,7 +18922,9 @@
           "meaning_es": "silencioso, callado",
           "meaning_en": "silent, quiet"
         }
-      ]
+      ],
+      "sabor_raiz_es": "silencio, quietud, mutismo",
+      "sabor_raiz_en": "silence, quietness, stillness"
     },
     "z-e-r": {
       "root_syriac": "ܙܥܪ",
@@ -18551,7 +18975,9 @@
           "meaning_es": "pequeñez, menudencia",
           "meaning_en": "smallness, minuteness"
         }
-      ]
+      ],
+      "sabor_raiz_es": "pequeñez, mengua, insuficiencia",
+      "sabor_raiz_en": "smallness, diminution, scarcity"
     },
     "y-r-kh": {
       "root_syriac": "ܝܪܚ",
@@ -18603,7 +19029,9 @@
           "meaning_es": "meses",
           "meaning_en": "months"
         }
-      ]
+      ],
+      "sabor_raiz_es": "ciclo lunar, medida temporal, luminosidad nocturna",
+      "sabor_raiz_en": "lunar cycle, temporal measure, night's light"
     },
     "kh-l-q": {
       "root_syriac": "ܚܠܩ",
@@ -18733,7 +19161,9 @@
           "meaning_es": "sensación, sentimiento",
           "meaning_en": "sensation, feeling"
         }
-      ]
+      ],
+      "sabor_raiz_es": "sensibilidad, perturbación, percepción táctil",
+      "sabor_raiz_en": "sensation, tremor, tactile perception"
     },
     "s-b-e": {
       "root_syriac": "ܣܒܥ",
@@ -18784,7 +19214,9 @@
           "meaning_es": "saciado, satisfecho",
           "meaning_en": "sated, satisfied"
         }
-      ]
+      ],
+      "sabor_raiz_es": "saciedad, plenitud, hartazgo",
+      "sabor_raiz_en": "satiation, fullness, sufficiency"
     },
     "kh-l-ts": {
       "root_syriac": "ܚܠܨ",
@@ -18841,7 +19273,9 @@
           "meaning_es": "salvador, redentor",
           "meaning_en": "savior, redeemer"
         }
-      ]
+      ],
+      "sabor_raiz_es": "liberación, extracción, salvación",
+      "sabor_raiz_en": "liberation, extraction, salvation"
     },
     "kh-p-y": {
       "root_syriac": "ܚܦܝ",
@@ -18893,7 +19327,9 @@
           "meaning_en": "barefoot",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "ocultamiento, envoltura, purificación",
+      "sabor_raiz_en": "concealment, wrapping, purification"
     },
     "e-q-r": {
       "root_syriac": "ܥܩܪ",
@@ -18944,7 +19380,9 @@
           "meaning_es": "desraizado",
           "meaning_en": "uprooted"
         }
-      ]
+      ],
+      "sabor_raiz_es": "desgarramiento, esterilidad, extirpación",
+      "sabor_raiz_en": "tearing away, barrenness, extraction"
     },
     "sh-p-e": {
       "root_syriac": "ܫܦܥ",
@@ -19003,7 +19441,9 @@
           "meaning_en": "intercession, advocacy",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "fluir abundante, desbordamiento, plenitud",
+      "sabor_raiz_en": "abundant flow, overflow, fullness"
     },
     "ts-kh-y": {
       "root_syriac": "ܨܚܝ",
@@ -19054,7 +19494,9 @@
           "meaning_es": "causar sed",
           "meaning_en": "to cause thirst"
         }
-      ]
+      ],
+      "sabor_raiz_es": "sed, deseo ardiente, privación",
+      "sabor_raiz_en": "thirst, burning desire, deprivation"
     },
     "n-s-y": {
       "root_syriac": "ܢܣܝ",
@@ -19093,7 +19535,9 @@
           "meaning_es": "tentación",
           "meaning_en": "temptation"
         }
-      ]
+      ],
+      "sabor_raiz_es": "prueba, tentación, desafío",
+      "sabor_raiz_en": "testing, temptation, trial"
     },
     "kh-l-sh": {
       "root_syriac": "ܚܠܫ",
@@ -19144,7 +19588,9 @@
           "meaning_es": "debilitarse",
           "meaning_en": "to become weak"
         }
-      ]
+      ],
+      "sabor_raiz_es": "debilitación, fragilidad, agotamiento",
+      "sabor_raiz_en": "enfeeblement, frailty, exhaustion"
     },
     "sh-kh-p": {
       "root_syriac": "ܫܟܒ",
@@ -19195,7 +19641,9 @@
           "meaning_es": "lecho, cama",
           "meaning_en": "bed, couch"
         }
-      ]
+      ],
+      "sabor_raiz_es": "reclinación, reposo horizontal, postración",
+      "sabor_raiz_en": "reclining, horizontal rest, prostration"
     },
     "e-r-b": {
       "root_syriac": "ܥܪܒ",
@@ -19267,7 +19715,9 @@
           "bridge_concept_en": "Foreigner, strange connects to N-KH-R (foreign, strange)",
           "bridge_concept_es": "Extranjero, raro conecta con N-KH-R (extranjero, extraño)"
         }
-      }
+      },
+      "sabor_raiz_es": "mezcla, confluencia, ocaso",
+      "sabor_raiz_en": "mingling, convergence, sunset"
     },
     "n-q-p": {
       "root_syriac": "ܢܩܦ",
@@ -19318,7 +19768,9 @@
           "meaning_es": "acto de seguir, rodear",
           "meaning_en": "act of following, going around"
         }
-      ]
+      ],
+      "sabor_raiz_es": "circundación, persecución, movimiento envolvente",
+      "sabor_raiz_en": "circumambulation, pursuit, encircling motion"
     },
     "sh-l-h": {
       "root_syriac": "ܫܠܗ",
@@ -19372,7 +19824,9 @@
           "bridge_concept_en": "Expulsion/sending away connects to G-R-SH (to expel, drive out)",
           "bridge_concept_es": "Expulsión/enviar lejos conecta con G-R-SH (expulsar, sacar)"
         }
-      }
+      },
+      "sabor_raiz_es": "extracción, desnudamiento, privación",
+      "sabor_raiz_en": "extraction, stripping, removal"
     },
     "q-l-s": {
       "root_syriac": "ܩܠܣ",
@@ -19478,7 +19932,9 @@
           "bridge_concept_en": "Hardness, cruelty are central to Q-SH-SH (to be hard, rigid, harsh)",
           "bridge_concept_es": "La dureza, la crueldad son centrales a Q-SH-SH (ser duro, rígido, áspero)"
         }
-      }
+      },
+      "sabor_raiz_es": "rigidez, resistencia, obstinación",
+      "sabor_raiz_en": "rigidity, resistance, obstinacy"
     },
     "n-kh-sh": {
       "root_syriac": "ܢܚܫ",
@@ -19620,7 +20076,9 @@
           "meaning_es": "amigo",
           "meaning_en": "friend"
         }
-      ]
+      ],
+      "sabor_raiz_es": "rectitud, verdad, justicia",
+      "sabor_raiz_en": "righteousness, truth, justice"
     },
     "kh-n-q": {
       "root_syriac": "ܚܢܩ",
@@ -19677,7 +20135,9 @@
           "meaning_es": "estrangulación",
           "meaning_en": "strangulation"
         }
-      ]
+      ],
+      "sabor_raiz_es": "sofocación, constricción, asfixia",
+      "sabor_raiz_en": "suffocation, constriction, asphyxiation"
     },
     "m-z-g": {
       "root_syriac": "ܡܙܓ",
@@ -19734,7 +20194,9 @@
           "meaning_es": "temperamento",
           "meaning_en": "temperament"
         }
-      ]
+      ],
+      "sabor_raiz_es": "mezcla, combinación, temperamento",
+      "sabor_raiz_en": "blending, mixture, temperament"
     },
     "p-kh-m": {
       "root_syriac": "ܦܚܡ",
@@ -19791,7 +20253,9 @@
           "meaning_es": "carbonización",
           "meaning_en": "carbonization"
         }
-      ]
+      ],
+      "sabor_raiz_es": "carbonización, combustión incompleta, residuo ardiente",
+      "sabor_raiz_en": "carbonization, incomplete burning, glowing residue"
     },
     "sh-m-n": {
       "root_syriac": "ܫܡܢ",
@@ -19854,7 +20318,9 @@
           "meaning_es": "engordar",
           "meaning_en": "to fatten"
         }
-      ]
+      ],
+      "sabor_raiz_es": "untuosidad, sustancia grasa, nutrición",
+      "sabor_raiz_en": "unctousness, fatty substance, nourishment"
     },
     "r-e-m": {
       "root_syriac": "ܪܥܡ",
@@ -19905,7 +20371,9 @@
           "meaning_es": "temblor",
           "meaning_en": "tremor"
         }
-      ]
+      ],
+      "sabor_raiz_es": "estruendo, temblor, poder sonoro",
+      "sabor_raiz_en": "thunderous sound, trembling, sonic power"
     },
     "kh-m-r": {
       "root_syriac": "ܚܡܪ",
@@ -20031,7 +20499,9 @@
           "meaning_es": "almacén, depósito",
           "meaning_en": "storehouse, repository"
         }
-      ]
+      ],
+      "sabor_raiz_es": "ocultamiento, reserva, acumulación",
+      "sabor_raiz_en": "concealment, storage, accumulation"
     },
     "kh-r-m": {
       "root_syriac": "ܚܪܡ",
@@ -20116,7 +20586,9 @@
           "bridge_concept_en": "Sanctity/sacredness is a core meaning of Q-D-SH (to be holy, consecrated)",
           "bridge_concept_es": "Santidad/sacralidad es un significado central de Q-D-SH (ser santo, consagrado)"
         }
-      }
+      },
+      "sabor_raiz_es": "separación sagrada, prohibición, destrucción ritual",
+      "sabor_raiz_en": "sacred separation, prohibition, ritual destruction"
     },
     "r-p-a": {
       "root_syriac": "ܪܦܐ",
@@ -20167,7 +20639,9 @@
           "meaning_es": "médico, sanador",
           "meaning_en": "physician, healer"
         }
-      ]
+      ],
+      "sabor_raiz_es": "curación, restauración, sanidad",
+      "sabor_raiz_en": "healing, restoration, wholeness"
     },
     "g-l-z": {
       "root_syriac": "ܓܠܙ",
@@ -20224,7 +20698,9 @@
           "meaning_es": "cortado",
           "meaning_en": "cut"
         }
-      ]
+      ],
+      "sabor_raiz_es": "corte limpio, esquilar, separación",
+      "sabor_raiz_en": "sharp cutting, shearing, severance"
     },
     "m-sh-r": {
       "root_syriac": "ܡܫܪ",
@@ -20304,7 +20780,9 @@
           "bridge_concept_en": "Leadership, command is core to M-L-K (to rule, reign as king)",
           "bridge_concept_es": "Liderazgo, mando es central a M-L-K (gobernar, reinar como rey)"
         }
-      }
+      },
+      "sabor_raiz_es": "acampamiento, congregación, tienda",
+      "sabor_raiz_en": "encampment, gathering, dwelling"
     },
     "e-z-l": {
       "root_syriac": "ܥܙܠ",
@@ -20372,7 +20850,9 @@
           "bridge_concept_en": "Solitary connects to A-Z-L (to go, depart, separate)",
           "bridge_concept_es": "Solitario se conecta con A-Z-L (ir, partir, separar)"
         }
-      }
+      },
+      "sabor_raiz_es": "ociosidad, inacción, pereza",
+      "sabor_raiz_en": "idleness, inaction, sloth"
     },
     "r-q-d": {
       "root_syriac": "ܪܩܕ",
@@ -20423,7 +20903,9 @@
           "meaning_es": "pista de baile",
           "meaning_en": "dance floor"
         }
-      ]
+      ],
+      "sabor_raiz_es": "movimiento rítmico, alegría corporal, celebración",
+      "sabor_raiz_en": "rhythmic movement, bodily joy, celebration"
     },
     "p-sh-q": {
       "root_syriac": "ܦܫܩ",
@@ -20536,7 +21018,9 @@
           "meaning_es": "fotografía",
           "meaning_en": "photography"
         }
-      ]
+      ],
+      "sabor_raiz_es": "forma visual, representación, similitud",
+      "sabor_raiz_en": "visual form, representation, likeness"
     },
     "q-b-r": {
       "root_syriac": "ܩܒܪ",
@@ -20599,7 +21083,9 @@
           "meaning_es": "cementerio",
           "meaning_en": "cemetery"
         }
-      ]
+      ],
+      "sabor_raiz_es": "tierra, entierro, lo subterráneo",
+      "sabor_raiz_en": "earth, burial, the underground"
     },
     "sh-q-y": {
       "root_syriac": "ܫܩܝ",
@@ -20656,7 +21142,9 @@
           "meaning_es": "lugar de riego",
           "meaning_en": "watering place"
         }
-      ]
+      ],
+      "sabor_raiz_es": "hidratación, riego, provisión de agua",
+      "sabor_raiz_en": "watering, hydration, water provision"
     },
     "g-m-l": {
       "root_syriac": "ܓܡܠ",
@@ -20723,7 +21211,9 @@
           "bridge_concept_en": "Adorning/embellishing connects to Z-Y-N (to adorn, beautify)",
           "bridge_concept_es": "Adornar/embellecer se conecta con Z-Y-N (adornar, embellecer)"
         }
-      }
+      },
+      "sabor_raiz_es": "carga, madurez, retribución",
+      "sabor_raiz_en": "burden, maturity, recompense"
     },
     "kh-l-b": {
       "root_syriac": "ܚܠܒ",
@@ -20775,7 +21265,9 @@
           "meaning_es": "lechero/a",
           "meaning_en": "milkman/milkmaid"
         }
-      ]
+      ],
+      "sabor_raiz_es": "sustancia nutritiva, abundancia, ordeño",
+      "sabor_raiz_en": "nourishment, abundance, milking"
     },
     "t-kh-n": {
       "root_syriac": "ܛܚܢ",
@@ -20826,7 +21318,9 @@
           "meaning_es": "molinero",
           "meaning_en": "miller"
         }
-      ]
+      ],
+      "sabor_raiz_es": "pulverización, molienda, desmenuzamiento",
+      "sabor_raiz_en": "grinding, pulverization, crushing"
     },
     "sh-r-b": {
       "root_syriac": "ܫܪܒ",
@@ -20902,7 +21396,9 @@
           "bridge_concept_en": "To drink connects to SH-Q-Y (give to drink, irrigate)",
           "bridge_concept_es": "Beber conecta con SH-Q-Y (dar de beber, regar)"
         }
-      }
+      },
+      "sabor_raiz_es": "linaje, agrupación, flujo generacional",
+      "sabor_raiz_en": "lineage, gathering, generational flow"
     },
     "kh-b-sh": {
       "root_syriac": "ܚܒܫ",
@@ -20959,7 +21455,9 @@
           "meaning_es": "cadena",
           "meaning_en": "chain"
         }
-      ]
+      ],
+      "sabor_raiz_es": "confinamiento, restricción, encadenamiento",
+      "sabor_raiz_en": "confinement, restraint, binding"
     },
     "e-d-l": {
       "root_syriac": "ܥܕܠ",
@@ -21022,7 +21520,9 @@
           "bridge_concept_en": "Just, equitable connects to K-A-N (just, righteous)",
           "bridge_concept_es": "Justo, equitativo conecta con K-A-N (justo, recto)"
         }
-      }
+      },
+      "sabor_raiz_es": "censura, reprensión, corrección",
+      "sabor_raiz_en": "censure, reproof, correction"
     },
     "q-r-sh": {
       "root_syriac": "ܩܪܫ",
@@ -21074,7 +21574,9 @@
           "meaning_es": "congelar",
           "meaning_en": "to congeal"
         }
-      ]
+      ],
+      "sabor_raiz_es": "rigidez, frío, contracción",
+      "sabor_raiz_en": "rigidity, cold, contraction"
     },
     "sh-g-r": {
       "root_syriac": "ܫܓܪ",
@@ -21119,7 +21621,9 @@
           "meaning_es": "ser enviado, ser encendido",
           "meaning_en": "to be sent, be kindled"
         }
-      ]
+      ],
+      "sabor_raiz_es": "envío, impulso, ignición",
+      "sabor_raiz_en": "sending, impulse, ignition"
     },
     "z-y-n": {
       "root_syriac": "ܙܝܢ",
@@ -21188,7 +21692,9 @@
           "bridge_concept_en": "To adorn oneself connects to D-M-R (to be amazed, astonished)",
           "bridge_concept_es": "Adornarse conecta con D-M-R (sorprenderse, admirarse)"
         }
-      }
+      },
+      "sabor_raiz_es": "armamento, defensa, equipamiento",
+      "sabor_raiz_en": "armament, defense, equipment"
     },
     "g-n-y": {
       "root_syriac": "ܓܢܝ",
@@ -21261,7 +21767,9 @@
           "bridge_concept_en": "Heart, inner self connects to N-P-SH (soul, self)",
           "bridge_concept_es": "Corazón, interior conecta con N-P-SH (alma, ser)"
         }
-      }
+      },
+      "sabor_raiz_es": "cultivo, encierro fértil, paraíso",
+      "sabor_raiz_en": "cultivation, enclosed fertility, paradise"
     },
     "kh-q-l": {
       "root_syriac": "ܚܩܠ",
@@ -21306,7 +21814,9 @@
           "meaning_es": "agricultor",
           "meaning_en": "farmer"
         }
-      ]
+      ],
+      "sabor_raiz_es": "tierra cultivada, espacio labrado, sustento agrario",
+      "sabor_raiz_en": "tilled earth, cultivated space, agrarian sustenance"
     },
     "d-k-y": {
       "root_syriac": "ܕܟܝ",
@@ -21378,7 +21888,9 @@
           "bridge_concept_en": "Alms/charity is central to the meaning of Z-K-A",
           "bridge_concept_es": "Las limosnas/caridad son centrales al significado de Z-K-A"
         }
-      }
+      },
+      "sabor_raiz_es": "pureza, inocencia, claridad",
+      "sabor_raiz_en": "purity, innocence, clarity"
     },
     "sh-n-y": {
       "root_syriac": "ܫܢܝ",
@@ -21441,7 +21953,9 @@
           "meaning_es": "cambio",
           "meaning_en": "change"
         }
-      ]
+      ],
+      "sabor_raiz_es": "transformación, renovación, tiempo",
+      "sabor_raiz_en": "transformation, renewal, temporality"
     },
     "ts-b-n": {
       "root_syriac": "ܨܒܢ",
@@ -21501,7 +22015,9 @@
           "bridge_concept_en": "Appetite/craving as core meaning of A-K-L (to eat)",
           "bridge_concept_es": "Apetito/ansia como significado central de A-K-L (comer)"
         }
-      }
+      },
+      "sabor_raiz_es": "deseo, voluntad, anhelo",
+      "sabor_raiz_en": "desire, will, longing"
     },
     "kh-y-b": {
       "root_syriac": "ܚܝܒ",
@@ -21575,7 +22091,9 @@
           "bridge_concept_en": "'Guilty, responsible' is a core meaning of A-N-SH (to err, do wrong)",
           "bridge_concept_es": "'Culpable, responsable' es un significado central de A-N-SH (errar, hacer mal)"
         }
-      }
+      },
+      "sabor_raiz_es": "obligación, culpa, deuda",
+      "sabor_raiz_en": "obligation, guilt, debt"
     },
     "k-r-y": {
       "root_syriac": "ܟܪܝ",
@@ -21638,7 +22156,9 @@
           "meaning_es": "brevedad",
           "meaning_en": "brevity"
         }
-      ]
+      ],
+      "sabor_raiz_es": "brevedad, excavación, reducción",
+      "sabor_raiz_en": "shortness, digging, reduction"
     },
     "p-w-m": {
       "root_syriac": "ܦܘܡ",
@@ -21704,7 +22224,9 @@
           "bridge_concept_en": "Liturgical poem connects to Q-R-A (to call, recite)",
           "bridge_concept_es": "Poema litúrgico se conecta con Q-R-A (llamar, recitar)"
         }
-      }
+      },
+      "sabor_raiz_es": "apertura, palabra, expresión",
+      "sabor_raiz_en": "opening, speech, utterance"
     },
     "m-th-l": {
       "root_syriac": "ܡܬܠ",
@@ -21761,7 +22283,9 @@
           "meaning_es": "similar, semejante",
           "meaning_en": "similar, resembling"
         }
-      ]
+      ],
+      "sabor_raiz_es": "similitud, comparación, ejemplo",
+      "sabor_raiz_en": "likeness, comparison, exemplar"
     },
     "m-l-th": {
       "root_syriac": "ܡܠܬ",
@@ -21849,7 +22373,9 @@
           "bridge_concept_en": "Kingdom/sovereignty is a core meaning of M-L-K",
           "bridge_concept_es": "Reino/soberanía es un significado central de M-L-K"
         }
-      }
+      },
+      "sabor_raiz_es": "palabra, autoridad, imperio",
+      "sabor_raiz_en": "word, authority, dominion"
     },
     "kh-b-b": {
       "root_syriac": "ܚܒܒ",
@@ -21918,7 +22444,9 @@
           "meaning_es": "amar",
           "meaning_en": "to love"
         }
-      ]
+      ],
+      "sabor_raiz_es": "afecto, deseo íntimo, querencia",
+      "sabor_raiz_en": "affection, intimate desire, cherishing"
     },
     "w-h-b": {
       "root_syriac": "ܘܗܒ",
@@ -21981,7 +22509,9 @@
           "meaning_es": "dotado, talentoso",
           "meaning_en": "gifted, talented"
         }
-      ]
+      ],
+      "sabor_raiz_es": "generosidad, donación, capacidad",
+      "sabor_raiz_en": "giving, generosity, endowment"
     },
     "r-e-n": {
       "root_syriac": "ܪܥܢ",
@@ -22041,7 +22571,9 @@
           "bridge_concept_en": "Will, desire connects to TS-B-Y (wish, desire)",
           "bridge_concept_es": "Voluntad, deseo conecta con TS-B-Y (desear, querer)"
         }
-      }
+      },
+      "sabor_raiz_es": "visión, percepción, pensamiento",
+      "sabor_raiz_en": "sight, perception, thought"
     },
     "d-m-y": {
       "root_syriac": "ܕܡܝ",
@@ -22106,7 +22638,9 @@
           "meaning_en": "doll, figurine",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "semejanza, forma visual, similitud",
+      "sabor_raiz_en": "resemblance, visual form, likeness"
     },
     "m-n-y": {
       "root_syriac": "ܡܢܝ",
@@ -22172,7 +22706,9 @@
           "meaning_en": "predestined, designated",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "numeración, designación, dotación",
+      "sabor_raiz_en": "numbering, designation, allocation"
     },
     "kh-w-h": {
       "root_syriac": "ܚܘܗ",
@@ -22245,7 +22781,9 @@
           "bridge_concept_en": "The name Eve (h-w-y) shifts from the core meaning of 'show, declare' in KH-W-H to the specific female proper name",
           "bridge_concept_es": "El nombre Eva (h-w-y) cambia del significado central de 'mostrar, declarar' en KH-W-H al nombre propio femenino específico"
         }
-      }
+      },
+      "sabor_raiz_es": "revelación, manifestación, exposición",
+      "sabor_raiz_en": "revelation, manifestation, disclosure"
     },
     "d-r-b": {
       "root_syriac": "ܕܪܒ",
@@ -22308,7 +22846,9 @@
           "meaning_es": "entrenamiento, capacitación",
           "meaning_en": "training, instruction"
         }
-      ]
+      ],
+      "sabor_raiz_es": "disciplina, formación, práctica repetida",
+      "sabor_raiz_en": "discipline, formation, repeated practice"
     },
     "k-m-r": {
       "root_syriac": "ܟܡܪ",
@@ -22378,7 +22918,9 @@
           "bridge_concept_en": "Hood, cover connects to K-S-Y (cover, hide)",
           "bridge_concept_es": "Capota, cubierta conecta con K-S-Y (cubrir, ocultar)"
         }
-      }
+      },
+      "sabor_raiz_es": "sacralidad, oficio ritual, mediación divina",
+      "sabor_raiz_en": "sacredness, ritual office, divine mediation"
     },
     "t-n-p": {
       "root_syriac": "ܛܢܦ",
@@ -22435,7 +22977,9 @@
           "meaning_es": "contaminación, polución",
           "meaning_en": "contamination, pollution"
         }
-      ]
+      ],
+      "sabor_raiz_es": "contaminación, impureza, corrupción",
+      "sabor_raiz_en": "contamination, impurity, defilement"
     },
     "b-h-th": {
       "root_syriac": "ܒܗܬ",
@@ -22509,7 +23053,9 @@
           "bridge_concept_en": "To be astounded connects to H-W-A (be, become)",
           "bridge_concept_es": "Estar atónito conecta con H-W-A (ser, estar)"
         }
-      }
+      },
+      "sabor_raiz_es": "vergüenza, deshonra, confusión",
+      "sabor_raiz_en": "shame, disgrace, discomfiture"
     },
     "s-p-n": {
       "root_syriac": "ܣܦܢ",
@@ -22560,7 +23106,9 @@
           "meaning_es": "cubierta, toldo",
           "meaning_en": "cover, canopy"
         }
-      ]
+      ],
+      "sabor_raiz_es": "envolvimiento, protección, travesía",
+      "sabor_raiz_en": "enclosure, protection, voyage"
     },
     "a-b-h": {
       "root_syriac": "ܐܒܗ",
@@ -22623,7 +23171,9 @@
           "meaning_es": "paternidad",
           "meaning_en": "paternity"
         }
-      ]
+      ],
+      "sabor_raiz_es": "paternidad, origen, linaje",
+      "sabor_raiz_en": "paternity, origin, lineage"
     },
     "k-r-s": {
       "root_syriac": "ܟܪܣ",
@@ -22760,7 +23310,9 @@
           "meaning_en": "space, sphere",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "vitalidad, animación, existencia viviente",
+      "sabor_raiz_en": "vitality, animation, living existence"
     },
     "b-n-y": {
       "root_syriac": "ܒܢܝ",
@@ -22835,7 +23387,9 @@
           "meaning_es": "estructura, composición",
           "meaning_en": "structure, composition"
         }
-      ]
+      ],
+      "sabor_raiz_es": "construcción, generación, estructura",
+      "sabor_raiz_en": "building, generation, structure"
     },
     "kh-a-r": {
       "root_syriac": "ܚܐܪ",
@@ -22908,7 +23462,9 @@
           "bridge_concept_en": "Paleness connects to L-B-N (white, pale)",
           "bridge_concept_es": "Palidez se conecta con L-B-N (blanco, pálido)"
         }
-      }
+      },
+      "sabor_raiz_es": "visión, libertad, elección",
+      "sabor_raiz_en": "sight, freedom, choice"
     },
     "y-b-sh": {
       "root_syriac": "ܝܒܫ",
@@ -22959,7 +23515,9 @@
           "meaning_es": "secar",
           "meaning_en": "to dry"
         }
-      ]
+      ],
+      "sabor_raiz_es": "desecación, aridez, privación de humedad",
+      "sabor_raiz_en": "desiccation, aridity, moisture loss"
     },
     "k-sh-l": {
       "root_syriac": "ܟܫܠ",
@@ -23027,7 +23585,9 @@
           "bridge_concept_en": "Laziness connects to A-K-L (to eat, consume)",
           "bridge_concept_es": "La pereza se conecta con A-K-L (comer, consumir)"
         }
-      }
+      },
+      "sabor_raiz_es": "tropiezo, caída, obstáculo",
+      "sabor_raiz_en": "stumbling, falling, obstruction"
     },
     "s-r-q": {
       "root_syriac": "ܣܪܩ",
@@ -23108,7 +23668,9 @@
           "bridge_concept_en": "Theft/stealing is a core meaning of the root G-N-B",
           "bridge_concept_es": "El robo/hurto es un significado central de la raíz G-N-B"
         }
-      }
+      },
+      "sabor_raiz_es": "vacuidad, inanidad, vaciamiento",
+      "sabor_raiz_en": "emptiness, voidness, depletion"
     },
     "r-y-sh": {
       "root_syriac": "ܪܝܫ",
@@ -23178,7 +23740,9 @@
           "meaning_es": "jefes, líderes",
           "meaning_en": "chiefs, leaders"
         }
-      ]
+      ],
+      "sabor_raiz_es": "primacía, preeminencia, liderazgo",
+      "sabor_raiz_en": "primacy, preeminence, leadership"
     },
     "q-r-n": {
       "root_syriac": "ܩܪܢ",
@@ -23247,7 +23811,9 @@
           "bridge_concept_en": "To pair/join is a core meaning of the root Z-W-G",
           "bridge_concept_es": "Emparejarse/unirse es un significado central de la raíz Z-W-G"
         }
-      }
+      },
+      "sabor_raiz_es": "prominencia, proyección, ángulo",
+      "sabor_raiz_en": "projection, protrusion, angularity"
     },
     "k-p-n": {
       "root_syriac": "ܟܦܢ",
@@ -23334,7 +23900,9 @@
           "bridge_concept_en": "Shroud/winding sheet is a related concept to K-P-R (to cover, to expiate)",
           "bridge_concept_es": "Sudario/mortaja es un concepto relacionado con K-P-R (cubrir, expiar)"
         }
-      }
+      },
+      "sabor_raiz_es": "hambre, carencia, necesidad",
+      "sabor_raiz_en": "hunger, want, deprivation"
     },
     "e-r-s": {
       "root_syriac": "ܥܪܣ",
@@ -23396,7 +23964,9 @@
           "bridge_concept_en": "Arbor/trellis connects to A-R-Z (cedar, type of tree)",
           "bridge_concept_es": "Enramada/emparrado conecta con A-R-Z (cedro, tipo de árbol)"
         }
-      }
+      },
+      "sabor_raiz_es": "reclinación, reposo, lecho",
+      "sabor_raiz_en": "reclining, rest, bed"
     },
     "l-b-n": {
       "root_syriac": "ܠܒܢ",
@@ -23477,7 +24047,9 @@
           "bridge_concept_en": "Moon is the core meaning of Y-R-KH",
           "bridge_concept_es": "La luna es el significado central de Y-R-KH"
         }
-      }
+      },
+      "sabor_raiz_es": "blancura, construcción, solidez",
+      "sabor_raiz_en": "whiteness, building, solidity"
     },
     "e-y-r": {
       "root_syriac": "ܥܝܪ",
@@ -23556,7 +24128,9 @@
           "bridge_concept_en": "To reproach/criticize connects to G-R-SH (to drive away, banish)",
           "bridge_concept_es": "Reprochar/criticar conecta con G-R-SH (expulsar, desterrar)"
         }
-      }
+      },
+      "sabor_raiz_es": "vigilia, alerta, despertar",
+      "sabor_raiz_en": "watchfulness, alertness, wakefulness"
     },
     "ts-p-r": {
       "root_syriac": "ܨܦܪ",
@@ -23625,7 +24199,9 @@
           "meaning_es": "silbido",
           "meaning_en": "whistle"
         }
-      ]
+      ],
+      "sabor_raiz_es": "canto matutino, vuelo, aurora",
+      "sabor_raiz_en": "dawn song, flight, daybreak"
     },
     "b-k-y": {
       "root_syriac": "ܒܟܝ",
@@ -23682,7 +24258,9 @@
           "meaning_es": "llanto",
           "meaning_en": "weeping"
         }
-      ]
+      ],
+      "sabor_raiz_es": "llanto, lágrimas, dolor expresado",
+      "sabor_raiz_en": "weeping, tears, expressed sorrow"
     },
     "k-w-n": {
       "root_syriac": "ܟܘܢ",
@@ -23769,7 +24347,9 @@
           "bridge_concept_en": "The root H-W-Y has the core meaning of 'to be, to exist'",
           "bridge_concept_es": "La raíz H-W-Y tiene el significado central de 'ser, existir'"
         }
-      }
+      },
+      "sabor_raiz_es": "rectitud, establecimiento, fijación",
+      "sabor_raiz_en": "rightness, establishment, fixedness"
     },
     "y-m-m": {
       "root_syriac": "ܝܡܡ",
@@ -23927,7 +24507,9 @@
           "bridge_concept_en": "Attraction, charm are core meanings of SH-P-R (to be beautiful, pleasant)",
           "bridge_concept_es": "Atracción, encanto son significados centrales de SH-P-R (ser bello, agradable)"
         }
-      }
+      },
+      "sabor_raiz_es": "abandono, liberación, perdón",
+      "sabor_raiz_en": "abandonment, release, forgiveness"
     },
     "k-r-m": {
       "root_syriac": "ܟܪܡ",
@@ -24001,7 +24583,9 @@
           "bridge_concept_en": "Generous, noble connects to A-B-H (exalted, honored, noble)",
           "bridge_concept_es": "Generoso, noble se conecta con A-B-H (exaltado, honrado, noble)"
         }
-      }
+      },
+      "sabor_raiz_es": "cultivo, viña, abundancia cultivada",
+      "sabor_raiz_en": "cultivation, vineyard, cultivated abundance"
     },
     "kh-p-t": {
       "root_syriac": "ܚܦܛ",
@@ -24064,7 +24648,9 @@
           "meaning_es": "precaución, cautela",
           "meaning_en": "precaution, caution"
         }
-      ]
+      ],
+      "sabor_raiz_es": "impulso, prisa, motivación",
+      "sabor_raiz_en": "impulse, urgency, drive"
     },
     "t-e-y": {
       "root_syriac": "ܛܥܝ",
@@ -24136,7 +24722,9 @@
           "bridge_concept_en": "Obedient/submissive connects to A-B-D (to worship, serve, obey)",
           "bridge_concept_es": "Obediente/sumiso conecta con A-B-D (adorar, servir, obedecer)"
         }
-      }
+      },
+      "sabor_raiz_es": "desviación, pérdida de camino, transgresión",
+      "sabor_raiz_en": "deviation, wandering astray, transgression"
     },
     "kh-s-m": {
       "root_syriac": "ܚܣܡ",
@@ -24253,7 +24841,9 @@
           "meaning_es": "gaita, flauta",
           "meaning_en": "bagpipe, flute"
         }
-      ]
+      ],
+      "sabor_raiz_es": "música, cántico, instrumento sonoro",
+      "sabor_raiz_en": "music, song, sounding instrument"
     },
     "kh-d-r": {
       "root_syriac": "ܚܕܪ",
@@ -24329,7 +24919,9 @@
           "bridge_concept_en": "Surrounding connects to E-R-B (to enter, go in)",
           "bridge_concept_es": "Rodear conecta con E-R-B (entrar, ir adentro)"
         }
-      }
+      },
+      "sabor_raiz_es": "envoltura, recinto, circunvalación",
+      "sabor_raiz_en": "enclosure, boundary, surrounding space"
     },
     "n-g-d": {
       "root_syriac": "ܢܓܕ",
@@ -24394,7 +24986,9 @@
           "meaning_en": "excellent, outstanding",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "conducción, dirección, frente",
+      "sabor_raiz_en": "leading, directing, facing"
     },
     "a-l-ts": {
       "root_syriac": "ܐܠܨ",
@@ -24451,7 +25045,9 @@
           "meaning_es": "adhesión, pegamiento",
           "meaning_en": "adherence, sticking"
         }
-      ]
+      ],
+      "sabor_raiz_es": "presión, constricción, necesidad inexorable",
+      "sabor_raiz_en": "pressure, constriction, inexorable necessity"
     },
     "ts-e-r": {
       "root_syriac": "ܨܥܪ",
@@ -24497,7 +25093,9 @@
           "meaning_es": "pequeño, joven",
           "meaning_en": "small, young"
         }
-      ]
+      ],
+      "sabor_raiz_es": "pequeñez, menoscabo, sufrimiento",
+      "sabor_raiz_en": "smallness, diminishment, suffering"
     },
     "d-g-l": {
       "root_syriac": "ܕܓܠ",
@@ -24561,7 +25159,9 @@
           "meaning_es": "mentiroso, falso mesías",
           "meaning_en": "liar, false messiah"
         }
-      ]
+      ],
+      "sabor_raiz_es": "falsedad, engaño, impostura",
+      "sabor_raiz_en": "falsehood, deception, imposture"
     },
     "r-d-y": {
       "root_syriac": "ܪܕܝ",
@@ -24634,7 +25234,9 @@
           "bridge_concept_en": "H-L-K (to go, walk, depart) connects to the meaning 'to perish; to go'",
           "bridge_concept_es": "H-L-K (ir, caminar, partir) se conecta con el significado 'perecer; ir'"
         }
-      }
+      },
+      "sabor_raiz_es": "desplazamiento, movimiento constante, exploración",
+      "sabor_raiz_en": "movement, sustained travel, exploration"
     },
     "m-t-y": {
       "root_syriac": "ܡܛܝ",
@@ -24715,7 +25317,9 @@
           "bridge_concept_en": "Mount, beast of burden connects to A-B-D (to serve, work)",
           "bridge_concept_es": "Monte, bestia de carga se conecta con A-B-D (servir, trabajar)"
         }
-      }
+      },
+      "sabor_raiz_es": "extensión, llegada, progresión",
+      "sabor_raiz_en": "extension, arrival, progression"
     },
     "sh-r-k": {
       "root_syriac": "ܫܪܟ",
@@ -24778,7 +25382,9 @@
           "bridge_concept_en": "Partner, associate connects to KH-B-R (to be associated/connected with)",
           "bridge_concept_es": "Socio, asociado se conecta con KH-B-R (estar asociado/conectado con)"
         }
-      }
+      },
+      "sabor_raiz_es": "permanencia, residuo, supervivencia",
+      "sabor_raiz_en": "persistence, remainder, survival"
     },
     "q-sh-sh": {
       "root_syriac": "ܩܫܫ",
@@ -24823,7 +25429,9 @@
           "meaning_es": "vejez, ancianidad",
           "meaning_en": "old age, elderliness"
         }
-      ]
+      ],
+      "sabor_raiz_es": "ancianidad, madurez, autoridad",
+      "sabor_raiz_en": "elderhood, maturity, authority"
     },
     "th-l-th": {
       "root_syriac": "ܬܠܬ",
@@ -24892,7 +25500,9 @@
           "meaning_es": "estar dividido en tres partes",
           "meaning_en": "to be divided into three parts"
         }
-      ]
+      ],
+      "sabor_raiz_es": "triplicidad, división ternaria, trinidad",
+      "sabor_raiz_en": "threefold division, tripartite structure, trinity"
     },
     "s-m-y": {
       "root_syriac": "ܣܡܝ",
@@ -24959,7 +25569,9 @@
           "bridge_concept_en": "Reputation, fame connects to SH-M-E (hear, listen)",
           "bridge_concept_es": "Reputación, fama conecta con SH-M-E (oír, escuchar)"
         }
-      }
+      },
+      "sabor_raiz_es": "oscuridad, pérdida de visión, opacidad",
+      "sabor_raiz_en": "darkness, loss of sight, obscurity"
     },
     "a-th-y": {
       "root_syriac": "ܐܬܝ",
@@ -25053,7 +25665,9 @@
           "bridge_concept_en": "To bring, to deliver connects to Y-B-L (bring, carry)",
           "bridge_concept_es": "Traer, entregar conecta con Y-B-L (traer, llevar)"
         }
-      }
+      },
+      "sabor_raiz_es": "aproximación, llegada, movimiento hacia",
+      "sabor_raiz_en": "approach, arrival, movement toward"
     },
     "a-y-th": {
       "root_syriac": "ܐܝܬ",
@@ -25118,7 +25732,9 @@
           "meaning_en": "existent, present",
           "outlier": true
         }
-      ]
+      ],
+      "sabor_raiz_es": "presencia, ser, existencia",
+      "sabor_raiz_en": "presence, being, existence"
     },
     "k-w-l": {
       "root_syriac": "ܟܘܠ",
@@ -25188,7 +25804,9 @@
           "meaning_es": "recopilarse, acumularse",
           "meaning_en": "to accumulate, amass"
         }
-      ]
+      ],
+      "sabor_raiz_es": "totalidad, conjunto, universalidad",
+      "sabor_raiz_en": "totality, collectivity, universality"
     },
     "sh-y-kh": {
       "root_syriac": "ܫܝܚ",
@@ -25251,7 +25869,9 @@
           "meaning_es": "ungido",
           "meaning_en": "anointed"
         }
-      ]
+      ],
+      "sabor_raiz_es": "ungüento, consagración, elegido",
+      "sabor_raiz_en": "anointing, consecration, chosen"
     },
     "h-w-y": {
       "root_syriac": "ܗܘܝ",
@@ -25344,7 +25964,9 @@
           "bridge_concept_en": "Place where something becomes connects to S-Y-M (place, put)",
           "bridge_concept_es": "Lugar donde algo se convierte en conecta con S-Y-M (poner, colocar)"
         }
-      }
+      },
+      "sabor_raiz_es": "ser, devenir, existencia",
+      "sabor_raiz_en": "being, becoming, existence"
     },
     "m-d-m": {
       "root_syriac": "ܡܕܡ",
@@ -25424,7 +26046,9 @@
           "bridge_concept_en": "The root Q-R-Y has 'city' as a central meaning",
           "bridge_concept_es": "La raíz Q-R-Y tiene 'ciudad' como un significado central"
         }
-      }
+      },
+      "sabor_raiz_es": "materia, substancia, cantidad",
+      "sabor_raiz_en": "matter, substance, quantity"
     },
     "l-w-y": {
       "root_syriac": "ܠܘܝ",
@@ -25529,7 +26153,9 @@
           "bridge_concept_en": "Flag bearer/standard is a central meaning of D-G-L",
           "bridge_concept_es": "Abanderado/estandarte es un significado central de D-G-L"
         }
-      }
+      },
+      "sabor_raiz_es": "compañía, adhesión, seguimiento",
+      "sabor_raiz_en": "companionship, adherence, following"
     },
     "l-w-th": {
       "root_syriac": "ܠܘܬ",
@@ -25580,7 +26206,9 @@
           "meaning_es": "proximidad, cercanía",
           "meaning_en": "proximity, nearness"
         }
-      ]
+      ],
+      "sabor_raiz_es": "proximidad, acompañamiento, junto",
+      "sabor_raiz_en": "proximity, accompaniment, togetherness"
     },
     "n-b-y": {
       "root_syriac": "ܢܒܝ",
@@ -25649,7 +26277,9 @@
           "meaning_es": "profetizar",
           "meaning_en": "to prophesy"
         }
-      ]
+      ],
+      "sabor_raiz_es": "revelación, proclamación divina, comunicación profética",
+      "sabor_raiz_en": "revelation, divine proclamation, prophetic utterance"
     },
     "a-kh-y": {
       "root_syriac": "ܐܚܝ",
@@ -25718,7 +26348,9 @@
           "meaning_es": "hermanos",
           "meaning_en": "brothers"
         }
-      ]
+      ],
+      "sabor_raiz_es": "fraternidad, vínculo consanguíneo, kinship",
+      "sabor_raiz_en": "kinship, fraternal bond, consanguinity"
     },
     "b-r-y": {
       "root_syriac": "ܒܪܝ",
@@ -25802,7 +26434,9 @@
           "bridge_concept_en": "Clear, pure connects to D-K-Y (pure, clean)",
           "bridge_concept_es": "Claro, puro conecta con D-K-Y (puro, limpio)"
         }
-      }
+      },
+      "sabor_raiz_es": "generación, producción, novedad",
+      "sabor_raiz_en": "generation, production, newness"
     },
     "y-th-y": {
       "root_syriac": "ܝܬܝ",
@@ -25887,7 +26521,9 @@
           "bridge_concept_en": "To sit connects to Y-TH-B (sit, dwell)",
           "bridge_concept_es": "Sentarse conecta con Y-TH-B (sentarse, habitar)"
         }
-      }
+      },
+      "sabor_raiz_es": "sedentarismo, morada, permanencia",
+      "sabor_raiz_en": "settlement, dwelling, permanence"
     },
     "kh-r-n": {
       "root_syriac": "ܚܪܢ",
@@ -25972,7 +26608,9 @@
           "bridge_concept_en": "Separation and departure are core meanings of P-R-Q (to separate, divide, redeem)",
           "bridge_concept_es": "Separación y partida son significados centrales de P-R-Q (separar, dividir, redimir)"
         }
-      }
+      },
+      "sabor_raiz_es": "alteridad, diferencia, distinción",
+      "sabor_raiz_en": "otherness, difference, distinction"
     },
     "m-l-p": {
       "root_syriac": "ܡܠܦ",
@@ -26050,7 +26688,9 @@
           "bridge_concept_en": "Known/well-known connects to Y-D-E (to know)",
           "bridge_concept_es": "Conocido/bien conocido se conecta con Y-D-E (conocer)"
         }
-      }
+      },
+      "sabor_raiz_es": "transmisión de saber, aprendizaje, formación",
+      "sabor_raiz_en": "transmission of knowledge, learning, formation"
     },
     "h-y-m-n": {
       "root_syriac": "ܗܝܡܢ",
@@ -26107,7 +26747,9 @@
           "meaning_es": "creyente",
           "meaning_en": "believer"
         }
-      ]
+      ],
+      "sabor_raiz_es": "confianza, lealtad, firmeza",
+      "sabor_raiz_en": "trust, loyalty, steadfastness"
     },
     "th-r-y": {
       "root_syriac": "ܬܪܝ",
@@ -26165,7 +26807,9 @@
           "meaning_es": "ambos, los dos",
           "meaning_en": "both, the two"
         }
-      ]
+      ],
+      "sabor_raiz_es": "dualidad, pareja, división",
+      "sabor_raiz_en": "duality, pairing, twoness"
     },
     "a-y-d": {
       "root_syriac": "ܐܝܕ",
@@ -26245,7 +26889,9 @@
           "bridge_concept_en": "Known, famous as a core meaning of Y-D-E (to know)",
           "bridge_concept_es": "Conocido, famoso como un significado central de Y-D-E (conocer)"
         }
-      }
+      },
+      "sabor_raiz_es": "poder, capacidad, apoyo",
+      "sabor_raiz_en": "power, capability, support"
     },
     "a-y-k": {
       "root_syriac": "ܐܝܟ",
@@ -26325,7 +26971,9 @@
           "bridge_concept_en": "To consider, judge connects to D-Y-N (judge)",
           "bridge_concept_es": "Considerar, juzgar conecta con D-Y-N (juzgar)"
         }
-      }
+      },
+      "sabor_raiz_es": "similitud, comparación, modo",
+      "sabor_raiz_en": "likeness, comparison, manner"
     },
     "a-y-n": {
       "root_syriac": "ܐܝܢ",
@@ -26467,7 +27115,9 @@
           "meaning_es": "judío",
           "meaning_en": "Jew"
         }
-      ]
+      ],
+      "sabor_raiz_es": "identidad tribal, pueblo elegido, tribu de Judá",
+      "sabor_raiz_en": "tribal identity, chosen people, Judah's lineage"
     },
     "s-y-r": {
       "root_syriac": "ܣܝܪ",
@@ -26553,7 +27203,9 @@
           "bridge_concept_en": "Patience/forbearance is central to the S-B-R root",
           "bridge_concept_es": "Paciencia/tolerancia es central al radical S-B-R"
         }
-      }
+      },
+      "sabor_raiz_es": "espera paciente, perseverancia, confianza",
+      "sabor_raiz_en": "patient waiting, perseverance, trust"
     },
     "sh-e-y": {
       "root_syriac": "ܫܥܝ",
@@ -26614,7 +27266,9 @@
           "bridge_concept_en": "The meaning of 'sensate, conscious' is closely related to the core meanings of A-Y-N (eye, seeing, perceiving)",
           "bridge_concept_es": "El significado de 'sensato, consciente' está estrechamente relacionado con los significados centrales de A-Y-N (ojo, ver, percibir)"
         }
-      }
+      },
+      "sabor_raiz_es": "medida temporal, momento preciso, cálculo",
+      "sabor_raiz_en": "temporal measure, precise moment, reckoning"
     },
     "y-d-y": {
       "root_syriac": "ܝܕܝ",
@@ -26710,7 +27364,9 @@
           "bridge_concept_en": "To wish, to want connects to TS-B-Y (wish, desire)",
           "bridge_concept_es": "Desear, querer conecta con TS-B-Y (desear, querer)"
         }
-      }
+      },
+      "sabor_raiz_es": "conocimiento, percepción, intimidad",
+      "sabor_raiz_en": "knowledge, perception, intimacy"
     },
     "kh-r-y": {
       "root_syriac": "ܚܪܝ",
@@ -26785,7 +27441,9 @@
           "meaning_es": "liberado, emancipado",
           "meaning_en": "liberated, emancipated"
         }
-      ]
+      ],
+      "sabor_raiz_es": "liberación, desprendimiento, soltura",
+      "sabor_raiz_en": "liberation, release, freedom"
     },
     "kh-m-sh": {
       "root_syriac": "ܚܡܫ",
@@ -26860,7 +27518,9 @@
           "meaning_es": "en forma de pentágono",
           "meaning_en": "pentagonal in shape"
         }
-      ]
+      ],
+      "sabor_raiz_es": "quintuple, división, estructura pentagonal",
+      "sabor_raiz_en": "fiveness, division into five, pentagonal structure"
     },
     "g-b-a": {
       "root_syriac": "ܓܒܐ",
@@ -26946,7 +27606,9 @@
           "bridge_concept_en": "Tax collector is a specialized form of 'to bind, seize' (A-S-R) as they 'bind' people to taxation",
           "bridge_concept_es": "El recaudador de impuestos es una forma especializada de 'atar, apresar' (A-S-R) ya que 'atan' a las personas al impuesto"
         }
-      }
+      },
+      "sabor_raiz_es": "selección, preferencia, distinción",
+      "sabor_raiz_en": "selection, preference, distinction"
     },
     "e-d-th": {
       "root_syriac": "ܥܕܬ",
@@ -27112,7 +27774,9 @@
           "bridge_concept_en": "Oppression, tyranny are central to the meaning of A-S-R (to oppress, subjugate)",
           "bridge_concept_es": "La opresión y la tiranía son centrales al significado de A-S-R (oprimir, subyugar)"
         }
-      }
+      },
+      "sabor_raiz_es": "malevolencia, posesión, otredad maligna",
+      "sabor_raiz_en": "malevolence, possession, hostile otherness"
     },
     "r-b-e": {
       "root_syriac": "ܪܒܥ",
@@ -27201,7 +27865,9 @@
           "bridge_concept_en": "Quadruple, quaternary connects to TH-L-TH (three)",
           "bridge_concept_es": "Cuádruple, cuaternario se conecta con TH-L-TH (tres)"
         }
-      }
+      },
+      "sabor_raiz_es": "cuadratura, multiplicidad cuádruple, división en cuartos",
+      "sabor_raiz_en": "fourness, quadrate division, four-fold partition"
     },
     "h-p-k": {
       "root_syriac": "ܗܦܟ",
@@ -27286,7 +27952,9 @@
           "bridge_concept_en": "Opposition, contrary is antonymous to N-G-D (to agree, be evident)",
           "bridge_concept_es": "Oposición, contrario es antónimo de N-G-D (estar de acuerdo, ser evidente)"
         }
-      }
+      },
+      "sabor_raiz_es": "inversión, transformación radical, giro",
+      "sabor_raiz_en": "inversion, radical transformation, reversal"
     },
     "ts-r-y": {
       "root_syriac": "ܨܪܝ",
@@ -27433,7 +28101,9 @@
           "bridge_concept_en": "Detestable/reprehensible connects to A-B-H (to be abhorrent, abominable)",
           "bridge_concept_es": "Detestable/reprehensible se conecta con A-B-H (ser abominable, abominable)"
         }
-      }
+      },
+      "sabor_raiz_es": "debilidad, enfermedad, deterioro",
+      "sabor_raiz_en": "weakness, sickness, deterioration"
     },
     "k-p-r": {
       "root_syriac": "ܟܦܪ",
@@ -27593,7 +28263,9 @@
           "meaning_es": "altar",
           "meaning_en": "altar"
         }
-      ]
+      ],
+      "sabor_raiz_es": "inmolación, ofrenda sagrada, matanza ritual",
+      "sabor_raiz_en": "immolation, sacred offering, ritual slaughter"
     },
     "sh-b-e": {
       "root_syriac": "ܫܒܥ",
@@ -27683,7 +28355,9 @@
           "bridge_concept_en": "To be satisfied connects to S-G-A (be many, grow)",
           "bridge_concept_es": "Estar satisfecho conecta con S-G-A (ser muchos, crecer)"
         }
-      }
+      },
+      "sabor_raiz_es": "plenitud cíclica, compromiso solemne, completud sagrada",
+      "sabor_raiz_en": "cyclical fullness, solemn commitment, sacred completion"
     },
     "r-h-t": {
       "root_syriac": "ܪܗܛ",
@@ -27758,7 +28432,9 @@
           "meaning_es": "carrera",
           "meaning_en": "race"
         }
-      ]
+      ],
+      "sabor_raiz_es": "movimiento rápido, carrera, velocidad",
+      "sabor_raiz_en": "swift motion, racing, speed"
     },
     "l-sh-n": {
       "root_syriac": "ܠܫܢ",
@@ -27830,7 +28506,9 @@
           "bridge_concept_en": "To accuse, denounce is connected to the core meaning of Q-D-SH (to be holy, set apart)",
           "bridge_concept_es": "Acusar, denunciar se conecta con el significado central de Q-D-SH (ser santo, apartado)"
         }
-      }
+      },
+      "sabor_raiz_es": "palabra, expresión, comunicación",
+      "sabor_raiz_en": "speech, expression, communication"
     },
     "k-s-p": {
       "root_syriac": "ܟܣܦ",
@@ -27909,7 +28587,9 @@
           "bridge_concept_en": "Piece, fragment are part of the core meaning of P-L-G (to split, divide)",
           "bridge_concept_es": "Pieza, fragmento son parte del significado central de P-L-G (dividir, partir)"
         }
-      }
+      },
+      "sabor_raiz_es": "valor, adquisición, deseo",
+      "sabor_raiz_en": "value, acquisition, longing"
     },
     "kh-s-r": {
       "root_syriac": "ܚܣܪ",
@@ -27995,7 +28675,9 @@
           "bridge_concept_en": "Impoverished/lost connects to A-B-D (perish, be destroyed)",
           "bridge_concept_es": "Empobrecido/perdido conecta con A-B-D (perecer, ser destruido)"
         }
-      }
+      },
+      "sabor_raiz_es": "carencia, pérdida, deficiencia",
+      "sabor_raiz_en": "lack, loss, deficiency"
     },
     "b-e-l": {
       "root_syriac": "ܒܥܠ",
@@ -28052,7 +28734,9 @@
           "meaning_es": "tomar como esposo",
           "meaning_en": "to take as a husband"
         }
-      ]
+      ],
+      "sabor_raiz_es": "dominio, posesión, señorío",
+      "sabor_raiz_en": "dominion, possession, lordship"
     },
     "s-k-n": {
       "root_syriac": "ܣܟܢ",
@@ -28149,7 +28833,9 @@
           "bridge_concept_en": "Tranquility and divine presence are core meanings of A-L-H (God, divinity)",
           "bridge_concept_es": "Tranquilidad y presencia divina son significados centrales de A-L-H (Dios, divinidad)"
         }
-      }
+      },
+      "sabor_raiz_es": "habitación, residencia, asentamiento",
+      "sabor_raiz_en": "dwelling, residence, settlement"
     },
     "r-e-y": {
       "root_syriac": "ܪܥܝ",
@@ -28228,7 +28914,9 @@
           "bridge_concept_en": "Pasture, grazing land connects to R-E-A (to pasture, graze)",
           "bridge_concept_es": "Pasto, tierra de pastoreo se conecta con R-E-A (pastar, apacentar)"
         }
-      }
+      },
+      "sabor_raiz_es": "cuidado, guía, pastoreo",
+      "sabor_raiz_en": "care, guidance, shepherding"
     },
     "e-g-l": {
       "root_syriac": "ܥܓܠ",
@@ -28364,7 +29052,9 @@
           "meaning_es": "alimentado, sustentado",
           "meaning_en": "fed, sustained"
         }
-      ]
+      ],
+      "sabor_raiz_es": "categoría, clasificación, distinción",
+      "sabor_raiz_en": "categorization, distinction, differentiation"
     },
     "th-b-e": {
       "root_syriac": "ܬܒܥ",
@@ -28431,7 +29121,9 @@
           "bridge_concept_en": "To follow connects to N-Q-P (follow, go around)",
           "bridge_concept_es": "Seguir conecta con N-Q-P (seguir, rodear)"
         }
-      }
+      },
+      "sabor_raiz_es": "exigencia, reclamación, necesidad",
+      "sabor_raiz_en": "demand, claim, necessity"
     },
     "h-l-k": {
       "root_syriac": "ܗܠܟ",
@@ -28601,7 +29293,9 @@
           "bridge_concept_en": "Attention and understanding connect to A-L-P (to learn, teach)",
           "bridge_concept_es": "Atención y entendimiento se conectan con A-L-P (aprender, enseñar)"
         }
-      }
+      },
+      "sabor_raiz_es": "adquisición, conocimiento, familiaridad",
+      "sabor_raiz_en": "acquisition, knowledge, familiarity"
     },
     "kh-d-y": {
       "root_syriac": "ܚܕܝ",
@@ -28681,7 +29375,9 @@
           "bridge_concept_en": "Novelty/modernity as a semantic shift from core meaning of 'newness, freshness' in Kh-D-Th",
           "bridge_concept_es": "Novedad/modernidad como un cambio semántico del significado central de 'novedad, frescura' en Kh-D-Th"
         }
-      }
+      },
+      "sabor_raiz_es": "alegría, vivacidad, intensidad",
+      "sabor_raiz_en": "joy, vibrancy, intensity"
     },
     "sh-th-p": {
       "root_syriac": "ܫܬܦ",
@@ -28750,7 +29446,9 @@
           "meaning_es": "compartido, común",
           "meaning_en": "shared, common"
         }
-      ]
+      ],
+      "sabor_raiz_es": "participación, asociación, comunidad",
+      "sabor_raiz_en": "participation, partnership, communion"
     },
     "g-d-p": {
       "root_syriac": "ܓܕܦ",
@@ -28801,7 +29499,9 @@
           "meaning_es": "blasfemo",
           "meaning_en": "blasphemer"
         }
-      ]
+      ],
+      "sabor_raiz_es": "insulto, profanación, irreverencia",
+      "sabor_raiz_en": "insult, desecration, irreverence"
     },
     "e-s-r": {
       "root_syriac": "ܥܣܪ",
@@ -28840,7 +29540,9 @@
           "meaning_es": "diezmo, décimo",
           "meaning_en": "tithe, tenth"
         }
-      ]
+      ],
+      "sabor_raiz_es": "decena, grupo completo, división decimal",
+      "sabor_raiz_en": "group of ten, complete set, decimal division"
     },
     "a-b-d": {
       "root_syriac": "ܐܒܕ",
@@ -28945,7 +29647,9 @@
           "bridge_concept_en": "The root E-B-D (to serve, worship, be a slave) has 'subjected, enslaved' as a core meaning",
           "bridge_concept_es": "La raíz E-B-D (servir, adorar, ser esclavo) tiene 'sometido, esclavizado' como un significado central"
         }
-      }
+      },
+      "sabor_raiz_es": "pérdida, aniquilamiento, desaparición",
+      "sabor_raiz_en": "loss, annihilation, cessation"
     },
     "g-l-y": {
       "root_syriac": "ܓܠܝ",
@@ -29026,7 +29730,9 @@
           "meaning_es": "manifiesto, evidente",
           "meaning_en": "manifest, evident"
         }
-      ]
+      ],
+      "sabor_raiz_es": "unveiling, manifestación, claridad",
+      "sabor_raiz_en": "unveiling, manifestation, clarity"
     },
     "e-h-d": {
       "root_syriac": "ܥܗܕ",
@@ -29108,7 +29814,9 @@
           "meaning_es": "testificar",
           "meaning_en": "to testify"
         }
-      ]
+      ],
+      "sabor_raiz_es": "memoria, testimonio, pacto",
+      "sabor_raiz_en": "memory, witness, covenant"
     },
     "p-s-q": {
       "root_syriac": "ܦܣܩ",
@@ -29185,7 +29893,9 @@
           "meaning_es": "decisivo, cortante",
           "meaning_en": "decisive, cutting"
         }
-      ]
+      ],
+      "sabor_raiz_es": "separación, corte, decisión",
+      "sabor_raiz_en": "severance, division, determination"
     },
     "r-d-p": {
       "root_syriac": "ܪܕܦ",
@@ -29264,7 +29974,9 @@
           "bridge_concept_en": "Explorer/leader connects to N-B-A (to spring up, appear, announce)",
           "bridge_concept_es": "Explorador/líder se conecta con N-B-A (surgir, aparecer, anunciar)"
         }
-      }
+      },
+      "sabor_raiz_es": "persecución, acoso, seguimiento",
+      "sabor_raiz_en": "pursuit, persecution, chase"
     },
     "d-m-n": {
       "root_syriac": "ܕܡܢ",
@@ -29323,7 +30035,9 @@
           "meaning_es": "similar, parecido",
           "meaning_en": "similar, resembling"
         }
-      ]
+      ],
+      "sabor_raiz_es": "semejanza, continuidad, aproximación",
+      "sabor_raiz_en": "resemblance, continuity, approach"
     },
     "w-m-n": {
       "root_syriac": "ܘܡܢ",
@@ -29408,7 +30122,9 @@
           "bridge_concept_en": "Impregnable, inaccessible connects to A-B-H (exalted, sublime)",
           "bridge_concept_es": "Inexpugnable, inaccesible se conecta con A-B-H (exaltado, sublime)"
         }
-      }
+      },
+      "sabor_raiz_es": "conjunción, conexión, agregación",
+      "sabor_raiz_en": "conjunction, connection, aggregation"
     },
     "d-m-r": {
       "root_syriac": "ܕܡܪ",
@@ -29495,7 +30211,9 @@
           "bridge_concept_en": "Destroyed/ruined connects to Kh-R-B (to destroy, ruin)",
           "bridge_concept_es": "Destruido/arruinado conecta con Kh-R-B (destruir, arruinar)"
         }
-      }
+      },
+      "sabor_raiz_es": "asombro, semejanza, imaginación",
+      "sabor_raiz_en": "amazement, likeness, imagination"
     }
   }
 }

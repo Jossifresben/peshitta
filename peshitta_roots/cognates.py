@@ -30,6 +30,8 @@ class CognateEntry:
     root_syriac: str
     gloss_es: str
     gloss_en: str
+    sabor_raiz_es: str = ''
+    sabor_raiz_en: str = ''
     hebrew: list[CognateWord] = field(default_factory=list)
     arabic: list[CognateWord] = field(default_factory=list)
     semantic_bridges: list[SemanticBridge] = field(default_factory=list)
@@ -102,6 +104,8 @@ class CognateLookup:
                 root_syriac=root_syriac,
                 gloss_es=entry_data.get('gloss_es', ''),
                 gloss_en=entry_data.get('gloss_en', ''),
+                sabor_raiz_es=entry_data.get('sabor_raiz_es', ''),
+                sabor_raiz_en=entry_data.get('sabor_raiz_en', ''),
                 hebrew=hebrew_words,
                 arabic=arabic_words,
                 semantic_bridges=bridges,
@@ -207,3 +211,13 @@ class CognateLookup:
     def has_cognates(self, root_syriac: str) -> bool:
         """Check if cognates exist for a given root."""
         return self.lookup(root_syriac) is not None
+
+    def get_all_keys(self) -> list[str]:
+        """Return all root keys (e.g., ['k-th-b', 'sh-l-m', ...])."""
+        self.load()
+        return list(self._cognates.keys())
+
+    def lookup_by_key(self, key: str) -> CognateEntry | None:
+        """Look up cognates by transliteration key (e.g., 'sh-l-m')."""
+        self.load()
+        return self._cognates.get(key)

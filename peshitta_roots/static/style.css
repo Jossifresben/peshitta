@@ -475,6 +475,230 @@ header p {
     color: var(--accent);
 }
 
+/* Viz view tabs (Grafo / Ficha) */
+.viz-view-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--border-color, #e0d5c8);
+    margin-bottom: 0;
+}
+.viz-view-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    color: var(--text-secondary, #8a7560);
+    transition: all 0.2s;
+    margin-bottom: -2px;
+}
+.viz-view-tab:hover {
+    color: var(--text-color, #333);
+    background: var(--hover-bg, rgba(0,0,0,0.03));
+}
+.viz-view-tab.active {
+    color: var(--accent, #b45309);
+    border-bottom-color: var(--accent, #b45309);
+    font-weight: 600;
+}
+.viz-view-tab .material-symbols-outlined {
+    font-size: 20px;
+}
+
+/* Root Card (Ficha) */
+.root-ficha {
+    padding: 24px 20px;
+}
+.ficha-section {
+    margin-bottom: 28px;
+}
+.ficha-section:last-child {
+    margin-bottom: 0;
+}
+.ficha-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--text-secondary, #8a7560);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 12px 0;
+}
+.ficha-section-title .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--accent, #b45309);
+}
+.ficha-root-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.ficha-root-syriac {
+    font-family: 'Noto Sans Syriac', serif;
+    font-size: 2em;
+    font-weight: 600;
+    color: var(--accent, #b45309);
+}
+.ficha-root-translit {
+    font-size: 1.1em;
+    color: var(--text-secondary, #8a7560);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+.ficha-semantic-text {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--text-color, #333);
+    margin: 0;
+    font-style: italic;
+}
+.ficha-citation-original {
+    font-family: 'Noto Sans Syriac', serif;
+    font-size: 1.15em;
+    line-height: 1.8;
+    direction: rtl;
+    text-align: right;
+    color: var(--text-color, #333);
+    padding: 10px 16px 0;
+    border-left: 3px solid var(--accent, #b45309);
+    background: var(--hover-bg, rgba(0,0,0,0.02));
+    border-radius: 0 8px 0 0;
+}
+.ficha-citation-translit {
+    font-size: 0.85em;
+    line-height: 1.6;
+    color: var(--text-secondary, #8a7560);
+    padding: 4px 16px;
+    border-left: 3px solid var(--accent, #b45309);
+    background: var(--hover-bg, rgba(0,0,0,0.02));
+    font-style: italic;
+}
+.ficha-citation {
+    margin: 0 0 8px 0;
+    padding: 8px 16px 12px;
+    border-left: 3px solid var(--accent, #b45309);
+    background: var(--hover-bg, rgba(0,0,0,0.02));
+    border-radius: 0 0 8px 0;
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: var(--text-color, #333);
+    font-style: italic;
+}
+.ficha-citation-ref {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85em;
+    color: var(--text-secondary, #8a7560);
+}
+.ficha-read-link {
+    color: var(--accent, #b45309);
+    text-decoration: none;
+    font-weight: 600;
+}
+.ficha-read-link:hover {
+    text-decoration: underline;
+}
+.ficha-sisters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.ficha-sister {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 16px;
+    border: 1px solid var(--border-color, #e0d5c8);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-color, #333);
+    transition: all 0.2s;
+    min-width: 100px;
+}
+.ficha-sister:hover {
+    border-color: var(--accent, #b45309);
+    background: var(--hover-bg, rgba(0,0,0,0.03));
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.ficha-sister-root {
+    font-weight: 600;
+    font-size: 1em;
+}
+.ficha-sister-gloss {
+    font-size: 0.8em;
+    color: var(--text-secondary, #8a7560);
+    margin-top: 2px;
+}
+.ficha-sister-shared {
+    font-size: 0.7em;
+    color: var(--accent, #b45309);
+    font-weight: 600;
+    margin-top: 4px;
+}
+.ficha-sisters-empty {
+    font-size: 0.9em;
+    color: var(--text-secondary, #8a7560);
+    font-style: italic;
+    margin: 0;
+}
+.ficha-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.ficha-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+.ficha-table th {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--border-color, #e0d5c8);
+    color: var(--text-secondary, #8a7560);
+    font-weight: 600;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.ficha-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-color, #e0d5c8);
+    vertical-align: top;
+}
+.ficha-table tr:last-child td {
+    border-bottom: none;
+}
+.ficha-word {
+    display: block;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+.ficha-word-syriac { font-family: 'Noto Sans Syriac', serif; }
+.ficha-word-hebrew { font-family: 'Noto Sans Hebrew', serif; }
+.ficha-word-arabic { font-family: 'Noto Sans Arabic', serif; direction: rtl; }
+.ficha-translit {
+    display: block;
+    font-size: 0.85em;
+    color: var(--text-secondary, #8a7560);
+}
+.ficha-meaning {
+    display: block;
+    font-size: 0.82em;
+    color: var(--text-color, #333);
+    margin-top: 2px;
+}
+
 .search-section label {
     display: block;
     font-weight: bold;

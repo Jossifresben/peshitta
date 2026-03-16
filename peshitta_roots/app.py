@@ -725,6 +725,59 @@ def api_root_family():
                 'bridge_concept': b.bridge_concept_es if meaning_lang == 'es' else b.bridge_concept_en,
             })
 
+    # Paradigmatic citation — best verse for this root
+    paradigmatic_ref = ''
+    paradigmatic_verse = ''
+    paradigmatic_syriac = ''
+    paradigmatic_translit = ''
+    if root_entry and root_entry.matches:
+        # Pick the most frequent form's first reference
+        best_match = max(root_entry.matches, key=lambda m: m.count)
+        if best_match.references:
+            paradigmatic_ref = best_match.references[0]
+            verse_text = _corpus.get_verse_translation(paradigmatic_ref, meaning_lang)
+            if verse_text:
+                paradigmatic_verse = verse_text
+            # Original Syriac + transliteration
+            syriac_text = _corpus.get_verse_text(paradigmatic_ref)
+            if syriac_text:
+                paradigmatic_syriac = syriac_text
+                words = syriac_text.split()
+                paradigmatic_translit = ' '.join(translit_fn(w) for w in words)
+            # Translate book name for display
+            book_names = _i18n.get(meaning_lang, {}).get('book_names', {})
+            para_ref_display = paradigmatic_ref
+            for en_name, local_name in book_names.items():
+                if paradigmatic_ref.startswith(en_name):
+                    para_ref_display = paradigmatic_ref.replace(en_name, local_name, 1)
+                    break
+            paradigmatic_ref = para_ref_display
+
+    # Sister roots — roots sharing 2 of 3 consonants
+    sister_roots = []
+    root_parts = root_input.lower().split('-')
+    if len(root_parts) == 3:
+        all_keys = _cognate_lookup.get_all_keys()
+        for other_key in all_keys:
+            if other_key == root_input.lower():
+                continue
+            other_parts = other_key.split('-')
+            if len(other_parts) == 3:
+                shared = sum(1 for a, b in zip(root_parts, other_parts) if a == b)
+                if shared >= 2:
+                    other_entry = _cognate_lookup.lookup_by_key(other_key)
+                    other_gloss = ''
+                    other_syriac = ''
+                    if other_entry:
+                        other_gloss = other_entry.gloss_es if meaning_lang == 'es' else other_entry.gloss_en
+                        other_syriac = other_entry.root_syriac
+                    sister_roots.append({
+                        'root_translit': other_key.upper(),
+                        'root_syriac': other_syriac,
+                        'gloss': other_gloss,
+                        'shared': shared,
+                    })
+
     return jsonify({
         'root': root_syriac,
         'root_translit': root_input.upper(),
@@ -734,6 +787,11 @@ def api_root_family():
         'hebrew': hebrew,
         'arabic': arabic,
         'semantic_bridges': bridges,
+        'paradigmatic_ref': paradigmatic_ref,
+        'paradigmatic_verse': paradigmatic_verse,
+        'paradigmatic_syriac': paradigmatic_syriac,
+        'paradigmatic_translit': paradigmatic_translit,
+        'sister_roots': sister_roots,
     })
 
 

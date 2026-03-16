@@ -73,27 +73,103 @@
         </div>
         <div id="viz-error" class="viz-error" style="display:none;"></div>
         <div id="viz-container" class="viz-container" style="display:none;">
-            <div class="viz-controls">
-                <label class="viz-check"><input type="checkbox" id="chk-hebrew" checked> <span class="viz-check-dot" style="background:#2E5090;"></span> {% if lang == 'es' %}Hebreo{% else %}Hebrew{% endif %}</label>
-                <label class="viz-check"><input type="checkbox" id="chk-arabic" checked> <span class="viz-check-dot" style="background:#2D7D46;"></span> {% if lang == 'es' %}Árabe{% else %}Arabic{% endif %}</label>
-                <label class="viz-check"><input type="checkbox" id="chk-syriac" checked> <span class="viz-check-dot" style="background:#A0522D;"></span> {% if lang == 'es' %}Siríaco (Peshitta){% else %}Syriac (Peshitta){% endif %}</label>
-                <span id="viz-outlier-key" class="viz-outlier-key" style="display:none;">
-                    <svg width="18" height="18" style="vertical-align:middle;margin-right:4px;"><circle cx="9" cy="9" r="7" fill="none" stroke="#DAA520" stroke-width="2" stroke-dasharray="4,2"/></svg>
-                    {% if lang == 'es' %}Divergente{% else %}Outlier{% endif %}
-                </span>
-                <span id="viz-bridge-key" class="viz-bridge-key" style="display:none;">
-                    <svg width="22" height="22" style="vertical-align:middle;margin-right:4px;">
-                        <circle cx="11" cy="11" r="9" fill="none" stroke="#DAA520" stroke-width="2.5" stroke-dasharray="4,3" class="bridge-outlier-ring"/>
-                        <circle cx="11" cy="11" r="6" fill="#B8860B" stroke="#DAA520" stroke-width="2"/>
-                    </svg>
-                    {% if lang == 'es' %}🔗 Click = puente semántico{% else %}🔗 Click = semantic bridge{% endif %}
-                </span>
-                <button id="viz-fullscreen" class="viz-fullscreen-btn" title="{% if lang == 'es' %}Pantalla completa{% else %}Fullscreen{% endif %}">
-                    <span class="material-symbols-outlined" id="fullscreen-icon">fullscreen</span>
+            <!-- Grafo / Ficha tabs -->
+            <div class="viz-view-tabs">
+                <button class="viz-view-tab active" id="tab-graph" onclick="switchVizTab('graph')">
+                    <span class="material-symbols-outlined">hub</span> {% if lang == 'es' %}Grafo{% else %}Graph{% endif %}
+                </button>
+                <button class="viz-view-tab" id="tab-ficha" onclick="switchVizTab('ficha')">
+                    <span class="material-symbols-outlined">badge</span> {% if lang == 'es' %}Ficha de Ra&iacute;z{% else %}Root Card{% endif %}
                 </button>
             </div>
-            <div id="viz-svg-wrap" class="viz-svg-wrap"></div>
-            <div id="viz-tooltip" class="viz-tooltip"></div>
+
+            <!-- Graph view -->
+            <div id="view-graph">
+                <div class="viz-controls">
+                    <label class="viz-check"><input type="checkbox" id="chk-hebrew" checked> <span class="viz-check-dot" style="background:#2E5090;"></span> {% if lang == 'es' %}Hebreo{% else %}Hebrew{% endif %}</label>
+                    <label class="viz-check"><input type="checkbox" id="chk-arabic" checked> <span class="viz-check-dot" style="background:#2D7D46;"></span> {% if lang == 'es' %}Árabe{% else %}Arabic{% endif %}</label>
+                    <label class="viz-check"><input type="checkbox" id="chk-syriac" checked> <span class="viz-check-dot" style="background:#A0522D;"></span> {% if lang == 'es' %}Siríaco (Peshitta){% else %}Syriac (Peshitta){% endif %}</label>
+                    <span id="viz-outlier-key" class="viz-outlier-key" style="display:none;">
+                        <svg width="18" height="18" style="vertical-align:middle;margin-right:4px;"><circle cx="9" cy="9" r="7" fill="none" stroke="#DAA520" stroke-width="2" stroke-dasharray="4,2"/></svg>
+                        {% if lang == 'es' %}Divergente{% else %}Outlier{% endif %}
+                    </span>
+                    <span id="viz-bridge-key" class="viz-bridge-key" style="display:none;">
+                        <svg width="22" height="22" style="vertical-align:middle;margin-right:4px;">
+                            <circle cx="11" cy="11" r="9" fill="none" stroke="#DAA520" stroke-width="2.5" stroke-dasharray="4,3" class="bridge-outlier-ring"/>
+                            <circle cx="11" cy="11" r="6" fill="#B8860B" stroke="#DAA520" stroke-width="2"/>
+                        </svg>
+                        {% if lang == 'es' %}🔗 Click = puente semántico{% else %}🔗 Click = semantic bridge{% endif %}
+                    </span>
+                    <button id="viz-fullscreen" class="viz-fullscreen-btn" title="{% if lang == 'es' %}Pantalla completa{% else %}Fullscreen{% endif %}">
+                        <span class="material-symbols-outlined" id="fullscreen-icon">fullscreen</span>
+                    </button>
+                </div>
+                <div id="viz-svg-wrap" class="viz-svg-wrap"></div>
+                <div id="viz-tooltip" class="viz-tooltip"></div>
+            </div>
+
+            <!-- Ficha (Root Card) view -->
+            <div id="view-ficha" style="display:none;">
+                <div class="root-ficha">
+                    <!-- Semantic field -->
+                    <div class="ficha-section ficha-semantic">
+                        <div class="ficha-root-header">
+                            <span class="ficha-root-syriac" id="ficha-root-syriac"></span>
+                            <span class="ficha-root-translit" id="ficha-root-translit"></span>
+                        </div>
+                        <p class="ficha-semantic-text" id="ficha-sabor"></p>
+                    </div>
+
+                    <!-- Paradigmatic citation -->
+                    <div class="ficha-section ficha-citation-section">
+                        <h3 class="ficha-section-title">
+                            <span class="material-symbols-outlined">menu_book</span>
+                            {% if lang == 'es' %}Cita paradigm&aacute;tica{% else %}Key verse{% endif %}
+                        </h3>
+                        <div class="ficha-citation-original" id="ficha-syriac"></div>
+                        <div class="ficha-citation-translit" id="ficha-translit"></div>
+                        <blockquote class="ficha-citation" id="ficha-verse"></blockquote>
+                        <div class="ficha-citation-ref">
+                            <span id="ficha-ref"></span>
+                            <a id="ficha-read-link" href="#" class="ficha-read-link">
+                                {% if lang == 'es' %}Leer{% else %}Read{% endif %} &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sister roots -->
+                    <div class="ficha-section ficha-sisters-section">
+                        <h3 class="ficha-section-title">
+                            <span class="material-symbols-outlined">share</span>
+                            {% if lang == 'es' %}Ra&iacute;ces hermanas{% else %}Sister roots{% endif %}
+                        </h3>
+                        <div class="ficha-sisters" id="ficha-sisters"></div>
+                        <p class="ficha-sisters-empty" id="ficha-sisters-empty" style="display:none;">
+                            {% if lang == 'es' %}No se encontraron ra&iacute;ces hermanas{% else %}No sister roots found{% endif %}
+                        </p>
+                    </div>
+
+                    <!-- All derivatives table -->
+                    <div class="ficha-section ficha-derivatives-section">
+                        <h3 class="ficha-section-title">
+                            <span class="material-symbols-outlined">table_chart</span>
+                            {% if lang == 'es' %}Derivados completos{% else %}All derivatives{% endif %}
+                        </h3>
+                        <div class="ficha-table-wrap">
+                            <table class="ficha-table" id="ficha-table">
+                                <thead>
+                                    <tr>
+                                        <th>{% if lang == 'es' %}Sir&iacute;aco{% else %}Syriac{% endif %}</th>
+                                        <th>{% if lang == 'es' %}Hebreo{% else %}Hebrew{% endif %}</th>
+                                        <th>{% if lang == 'es' %}&Aacute;rabe{% else %}Arabic{% endif %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ficha-table-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -161,6 +237,7 @@
             document.getElementById('viz-loading').style.display = 'none';
             document.getElementById('viz-container').style.display = 'block';
             render();
+            buildFicha(data);
         })
         .catch(function(err) {
             document.getElementById('viz-loading').style.display = 'none';
@@ -178,6 +255,122 @@
             _expandedBridges = {};
             document.getElementById('viz-svg-wrap').innerHTML = '';
             buildViz(_rawData);
+        }
+
+        // Tab switching (Grafo / Ficha)
+        window.switchVizTab = function(tab) {
+            var graphView = document.getElementById('view-graph');
+            var fichaView = document.getElementById('view-ficha');
+            var tabGraph = document.getElementById('tab-graph');
+            var tabFicha = document.getElementById('tab-ficha');
+            if (tab === 'ficha') {
+                graphView.style.display = 'none';
+                fichaView.style.display = '';
+                tabGraph.classList.remove('active');
+                tabFicha.classList.add('active');
+            } else {
+                graphView.style.display = '';
+                fichaView.style.display = 'none';
+                tabGraph.classList.add('active');
+                tabFicha.classList.remove('active');
+            }
+        };
+
+        // Build ficha (Root Card) from API data
+        function buildFicha(data) {
+            // Root header (Syriac + transliteration)
+            document.getElementById('ficha-root-syriac').textContent = data.root || '';
+            document.getElementById('ficha-root-translit').textContent = data.root_translit || '';
+
+            // Semantic field (sabor_raiz)
+            var saborEl = document.getElementById('ficha-sabor');
+            saborEl.textContent = data.sabor_raiz || data.gloss || '';
+
+            // Paradigmatic citation
+            var verseEl = document.getElementById('ficha-verse');
+            var refEl = document.getElementById('ficha-ref');
+            var readLink = document.getElementById('ficha-read-link');
+            var syriacEl = document.getElementById('ficha-syriac');
+            var translitEl = document.getElementById('ficha-translit');
+            if (data.paradigmatic_verse) {
+                syriacEl.textContent = data.paradigmatic_syriac || '';
+                translitEl.textContent = data.paradigmatic_translit || '';
+                verseEl.textContent = '"' + data.paradigmatic_verse + '"';
+                refEl.textContent = '— ' + data.paradigmatic_ref;
+                // Build reader link from the reference
+                var refParts = data.paradigmatic_ref.match(/^(.+?)\s+(\d+):(\d+)/);
+                if (refParts) {
+                    readLink.href = '/read?lang=' + LANG + '&book=' + encodeURIComponent(refParts[1]) +
+                        '&chapter=' + refParts[2] + '&v_start=' + refParts[3];
+                    readLink.style.display = '';
+                } else {
+                    readLink.style.display = 'none';
+                }
+            } else {
+                syriacEl.textContent = '';
+                translitEl.textContent = '';
+                verseEl.textContent = LANG === 'es' ? 'No disponible' : 'Not available';
+                refEl.textContent = '';
+                readLink.style.display = 'none';
+            }
+
+            // Sister roots
+            var sistersEl = document.getElementById('ficha-sisters');
+            var sistersEmpty = document.getElementById('ficha-sisters-empty');
+            sistersEl.innerHTML = '';
+            if (data.sister_roots && data.sister_roots.length > 0) {
+                sistersEmpty.style.display = 'none';
+                data.sister_roots.forEach(function(sr) {
+                    var pill = document.createElement('a');
+                    pill.className = 'ficha-sister';
+                    pill.href = '/visualize/' + sr.root_translit + '?lang=' + LANG +
+                        '&script=' + SCRIPT + '&trans=' + TRANS;
+                    var label = sr.root_translit;
+                    if (sr.root_syriac) label = sr.root_syriac + ' ' + label;
+                    pill.innerHTML = '<span class="ficha-sister-root">' + label + '</span>' +
+                        '<span class="ficha-sister-gloss">' + (sr.gloss || '') + '</span>' +
+                        '<span class="ficha-sister-shared">' + sr.shared + '/3</span>';
+                    sistersEl.appendChild(pill);
+                });
+            } else {
+                sistersEmpty.style.display = '';
+            }
+
+            // Derivatives table — 3 columns
+            var tbody = document.getElementById('ficha-table-body');
+            tbody.innerHTML = '';
+            var syriac = data.syriac_words || [];
+            var hebrew = (data.hebrew || []).filter(function(h) { return !h.outlier; });
+            var arabic = (data.arabic || []).filter(function(a) { return !a.outlier; });
+            var maxRows = Math.max(syriac.length, hebrew.length, arabic.length);
+            for (var i = 0; i < maxRows; i++) {
+                var tr = document.createElement('tr');
+                // Syriac column
+                var tdS = document.createElement('td');
+                if (i < syriac.length) {
+                    tdS.innerHTML = '<span class="ficha-word ficha-word-syriac">' + syriac[i].word + '</span>' +
+                        '<span class="ficha-translit">' + syriac[i].translit + '</span>' +
+                        '<span class="ficha-meaning">' + (syriac[i].meaning || '') + '</span>';
+                }
+                tr.appendChild(tdS);
+                // Hebrew column
+                var tdH = document.createElement('td');
+                if (i < hebrew.length) {
+                    tdH.innerHTML = '<span class="ficha-word ficha-word-hebrew">' + hebrew[i].word + '</span>' +
+                        '<span class="ficha-translit">' + hebrew[i].translit + '</span>' +
+                        '<span class="ficha-meaning">' + (hebrew[i].meaning || '') + '</span>';
+                }
+                tr.appendChild(tdH);
+                // Arabic column
+                var tdA = document.createElement('td');
+                if (i < arabic.length) {
+                    tdA.innerHTML = '<span class="ficha-word ficha-word-arabic">' + arabic[i].word + '</span>' +
+                        '<span class="ficha-translit">' + arabic[i].translit + '</span>' +
+                        '<span class="ficha-meaning">' + (arabic[i].meaning || '') + '</span>';
+                }
+                tr.appendChild(tdA);
+                tbody.appendChild(tr);
+            }
         }
 
         // Fullscreen toggle
