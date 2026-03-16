@@ -247,7 +247,6 @@
         <div id="constellation-error" class="viz-error" style="display:none;"></div>
 
         <div id="constellation-main" style="display:none;">
-            <div id="constellation-ref" style="font-size:1.2em; font-weight:600; color:var(--accent-dark, #5c3a1e); margin-bottom: 4px;"></div>
             <div id="constellation-stats" class="constellation-stats"></div>
             <div id="constellation-root-list" class="constellation-root-list"></div>
 
@@ -261,8 +260,6 @@
                 <!-- Visualization -->
                 <div class="constellation-viz-wrap" id="constellation-viz-wrap">
                     <div class="constellation-controls">
-                        <label class="viz-check"><input type="checkbox" id="chk-cognates" checked> {% if lang == 'es' %}Cognados{% else %}Cognates{% endif %}</label>
-                        <label class="viz-check"><input type="checkbox" id="chk-connections" checked> {% if lang == 'es' %}Conexiones{% else %}Connections{% endif %}</label>
                         <span class="constellation-legend">
                             <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#8B4513;"></span> {% if lang == 'es' %}Raiz{% else %}Root{% endif %}</span>
                             <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#2E5090;"></span> {% if lang == 'es' %}Hebreo{% else %}Hebrew{% endif %}</span>
@@ -339,8 +336,7 @@
             document.getElementById('constellation-loading').style.display = 'none';
             document.getElementById('constellation-main').style.display = 'block';
 
-            // Show reference
-            document.getElementById('constellation-ref').textContent = data.reference;
+            // Show reference in passage panel
             document.getElementById('passage-panel-title').textContent = data.reference;
 
             // Stats
@@ -502,10 +498,6 @@
             });
         }
 
-        // Checkboxes
-        document.getElementById('chk-cognates').addEventListener('change', render);
-        document.getElementById('chk-connections').addEventListener('change', render);
-
         function render() {
             if (!_data) return;
             document.getElementById('constellation-svg-wrap').innerHTML = '';
@@ -534,8 +526,8 @@
 
         function buildConstellation(data) {
             updateSize();
-            var showCognates = document.getElementById('chk-cognates').checked;
-            var showConnections = document.getElementById('chk-connections').checked;
+            var showCognates = true;
+            var showConnections = true;
 
             var nodes = [];
             var links = [];
