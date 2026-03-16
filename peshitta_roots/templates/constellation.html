@@ -318,6 +318,9 @@
         var _data = null;
         var _simulation = null;
         var _highlightedRoot = null;
+        var _svg = null;
+        var _zoom = null;
+        var _nodes = null;
 
         var url = '/api/passage-constellation?book=' + encodeURIComponent(BOOK)
                 + '&chapter=' + CHAPTER + '&v_start=' + V_START + '&v_end=' + V_END
@@ -468,6 +471,19 @@
                 el.style.fontWeight = el.querySelector('strong').textContent === rootTranslit ? 'bold' : 'normal';
                 el.style.opacity = el.querySelector('strong').textContent === rootTranslit ? '1' : '0.5';
             });
+
+            // Pan to center the root node in the viewport
+            if (_svg && _zoom && _nodes) {
+                var targetNode = _nodes.find(function(n) { return n.id === 'root-' + rootTranslit; });
+                if (targetNode && targetNode.x != null && targetNode.y != null) {
+                    var currentTransform = d3.zoomTransform(_svg.node());
+                    var scale = currentTransform.k;
+                    var tx = width / 2 - targetNode.x * scale;
+                    var ty = height / 2 - targetNode.y * scale;
+                    _svg.transition().duration(400)
+                        .call(_zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+                }
+            }
         }
 
         function clearHighlight() {
@@ -614,6 +630,8 @@
                 .append('svg')
                 .attr('width', width)
                 .attr('height', height);
+            _svg = svg;
+            _nodes = nodes;
 
             var g = svg.append('g');
 
@@ -622,6 +640,7 @@
                 .on('zoom', function(event) {
                     g.attr('transform', event.transform);
                 });
+            _zoom = zoom;
             svg.call(zoom);
 
             // Links
