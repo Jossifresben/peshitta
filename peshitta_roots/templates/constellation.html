@@ -85,6 +85,30 @@
             border: 1px solid var(--border-color, #e0d5c8);
             position: relative;
         }
+        .constellation-help-wrap {
+            display: inline-flex;
+            align-items: center;
+        }
+        .constellation-help-tooltip {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 28px;
+            z-index: 100;
+            background: var(--card-bg, #fff);
+            border: 1px solid var(--border-color, #e0d5c8);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 0.78em;
+            line-height: 1.6;
+            color: var(--text-color, #333);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            white-space: nowrap;
+            min-width: 200px;
+        }
+        .constellation-help-wrap:hover .constellation-help-tooltip {
+            display: block;
+        }
         .constellation-legend {
             display: flex;
             flex-wrap: wrap;
@@ -273,9 +297,37 @@
                                 {% if lang == 'es' %}Puente{% else %}Bridge{% endif %}
                             </span>
                         </span>
-                        <button id="constellation-fullscreen" class="viz-fullscreen-btn" title="{% if lang == 'es' %}Pantalla completa{% else %}Fullscreen{% endif %}" style="margin-left:auto;">
-                            <span class="material-symbols-outlined" id="fullscreen-icon">fullscreen</span>
-                        </button>
+                        <div style="margin-left:auto; display:flex; align-items:center; gap:4px;">
+                            <div class="constellation-help-wrap" style="position:relative;">
+                                <span class="material-symbols-outlined" style="font-size:20px; color:var(--text-muted, #888); cursor:help;">help</span>
+                                <div class="constellation-help-tooltip">
+                                    {% if lang == 'es' %}
+                                    <div style="font-weight:600; margin-bottom:6px;">Navegaci&oacute;n</div>
+                                    <div><b>Rat&oacute;n</b></div>
+                                    <div>Rueda &mdash; zoom</div>
+                                    <div>Arrastrar fondo &mdash; mover</div>
+                                    <div>Arrastrar nodo &mdash; reposicionar</div>
+                                    <div style="margin-top:6px;"><b>Teclado</b></div>
+                                    <div>&larr; &uarr; &darr; &rarr; &mdash; mover</div>
+                                    <div>+ / &minus; &mdash; zoom</div>
+                                    <div>Esc &mdash; restablecer vista</div>
+                                    {% else %}
+                                    <div style="font-weight:600; margin-bottom:6px;">Navigation</div>
+                                    <div><b>Mouse</b></div>
+                                    <div>Scroll wheel &mdash; zoom</div>
+                                    <div>Drag background &mdash; pan</div>
+                                    <div>Drag node &mdash; reposition</div>
+                                    <div style="margin-top:6px;"><b>Keyboard</b></div>
+                                    <div>&larr; &uarr; &darr; &rarr; &mdash; pan</div>
+                                    <div>+ / &minus; &mdash; zoom</div>
+                                    <div>Esc &mdash; reset view</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <button id="constellation-fullscreen" class="viz-fullscreen-btn" title="{% if lang == 'es' %}Pantalla completa{% else %}Fullscreen{% endif %}">
+                                <span class="material-symbols-outlined" id="fullscreen-icon">fullscreen</span>
+                            </button>
+                        </div>
                     </div>
                     <div id="constellation-svg-wrap" class="constellation-svg-wrap"></div>
                     <div id="constellation-tooltip" class="viz-tooltip"></div>
