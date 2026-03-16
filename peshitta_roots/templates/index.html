@@ -128,9 +128,48 @@
                 <p class="search-help">{{ t.cognate_search_help }}</p>
             </div>
 
-            <a href="{{ url_for('browse', lang=lang) }}" class="browse-link">{{ t.browse_link }} &rarr;</a>
-            <span style="color: var(--text-muted); margin: 0 8px;">|</span>
-            <a href="{{ url_for('read', lang=lang) }}" class="browse-link">{{ t.read_link }} &rarr;</a>
+            <div class="home-cta-row">
+                <a href="{{ url_for('browse', lang=lang) }}" class="home-cta-btn">
+                    <span class="material-symbols-outlined">list</span> {{ t.browse_link }}
+                </a>
+                <a href="{{ url_for('read', lang=lang) }}" class="home-cta-btn">
+                    <span class="material-symbols-outlined">menu_book</span> {{ t.read_link }}
+                </a>
+            </div>
+        </div>
+
+        <!-- Feature showcase (collapsible, cached in localStorage) -->
+        <a href="#" id="feature-show-link" class="feature-reopen-link" style="display:none;" onclick="event.preventDefault(); toggleShowcase(false);">
+            <span class="material-symbols-outlined" style="font-size:16px; vertical-align:-3px;">explore</span>
+            {{ t.feature_reopen }}
+        </a>
+        <div class="feature-showcase" id="feature-showcase">
+            <div class="feature-tabs">
+                <button class="feature-tab active" data-feature="read" onclick="switchFeature('read')">
+                    <span class="material-symbols-outlined">menu_book</span> {{ t.feature_tab_read }}
+                </button>
+                <button class="feature-tab" data-feature="roots" onclick="switchFeature('roots')">
+                    <span class="material-symbols-outlined">hub</span> {{ t.feature_tab_roots }}
+                </button>
+                <button class="feature-tab" data-feature="constellation" onclick="switchFeature('constellation')">
+                    <span class="material-symbols-outlined">scatter_plot</span> {{ t.feature_tab_constellation }}
+                </button>
+                <button class="feature-close" onclick="toggleShowcase(true)" title="{% if lang == 'es' %}Ocultar{% else %}Hide{% endif %}">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div id="feature-read" class="feature-panel">
+                <p>{{ t.feature_desc_read }}</p>
+                <a href="{{ url_for('read', lang=lang, book='luke', chapter=1, verse=28) }}" class="feature-cta">{{ t.feature_cta_read }} &rarr;</a>
+            </div>
+            <div id="feature-roots" class="feature-panel" style="display:none;">
+                <p>{{ t.feature_desc_roots }}</p>
+                <a href="{{ url_for('index', lang=lang, q='R-W-KH') }}#results" class="feature-cta">{{ t.feature_cta_roots }} &rarr;</a>
+            </div>
+            <div id="feature-constellation" class="feature-panel" style="display:none;">
+                <p>{{ t.feature_desc_constellation }}</p>
+                <a href="{{ url_for('constellation', lang=lang, book='luke', chapter=1, v_start=28, v_end=28) }}" class="feature-cta">{{ t.feature_cta_constellation }} &rarr;</a>
+            </div>
         </div>
 
         {% if disambiguation %}
@@ -316,6 +355,34 @@
             rootTab.classList.remove('active');
         }
     }
+    // --- Feature showcase ---
+    function switchFeature(tab) {
+        var tabs = ['read', 'roots', 'constellation'];
+        tabs.forEach(function(t) {
+            var panel = document.getElementById('feature-' + t);
+            if (panel) panel.style.display = (t === tab) ? '' : 'none';
+        });
+        document.querySelectorAll('.feature-tab').forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-feature') === tab);
+        });
+    }
+
+    // Collapsible with localStorage
+    (function() {
+        var showcase = document.getElementById('feature-showcase');
+        var showLink = document.getElementById('feature-show-link');
+        if (localStorage.getItem('hideFeatureShowcase') === 'true') {
+            showcase.style.display = 'none';
+            showLink.style.display = '';
+        }
+        window.toggleShowcase = function(hide) {
+            showcase.style.display = hide ? 'none' : '';
+            showLink.style.display = hide ? '' : 'none';
+            if (hide) localStorage.setItem('hideFeatureShowcase', 'true');
+            else localStorage.removeItem('hideFeatureShowcase');
+        };
+    })();
+
     // Auto-select cognate tab if a cognate word was submitted
     {% if cognate_word %}
     switchTab('cognate');
