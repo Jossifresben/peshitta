@@ -1,7 +1,7 @@
 {
   "es": {
-    "app_title": "Buscador de Raíces Trilíteras - Khabouris Peshitta",
-    "app_subtitle": "Nuevo Testamento Siríaco",
+    "app_title": "Constelaciones del Peshitta",
+    "app_subtitle": "Explora el Nuevo Testamento desde las raíces arameas",
     "search_tab_root": "Buscar por raíz",
     "search_tab_cognate": "Buscar por palabra",
     "search_label": "Ingrese una raíz trilítera",
@@ -103,8 +103,8 @@
     }
   },
   "en": {
-    "app_title": "Triliteral Root Finder - Khabouris Peshitta",
-    "app_subtitle": "Syriac New Testament",
+    "app_title": "Peshitta Constellations",
+    "app_subtitle": "Explore the New Testament from its Aramaic roots",
     "search_tab_root": "Search by root",
     "search_tab_cognate": "Search by word",
     "search_label": "Enter a triliteral root",
