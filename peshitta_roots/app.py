@@ -803,10 +803,16 @@ def api_passage_constellation():
                 'root': root_translit,
                 'root_syriac': root,
             })
+        # Get translation
+        translation = _corpus.get_verse_translation(ref, trans)
+        if not translation:
+            translation = _corpus.get_verse_translation(ref, 'en')
+
         verses.append({
             'ref': ref,
             'verse_num': v_num,
             'words': verse_words,
+            'translation': translation or '',
         })
 
     if not verses:

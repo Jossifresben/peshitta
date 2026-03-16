@@ -430,6 +430,14 @@
                 translitLine.textContent = v.words.map(function(w) { return w.translit; }).join(' ');
                 div.appendChild(translitLine);
 
+                // Translation line
+                if (v.translation) {
+                    var transLine = document.createElement('div');
+                    transLine.className = 'constellation-translation';
+                    transLine.textContent = v.translation;
+                    div.appendChild(transLine);
+                }
+
                 container.appendChild(div);
             });
         }
