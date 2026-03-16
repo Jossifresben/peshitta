@@ -103,6 +103,72 @@ Each root row links to `/?q=<root>&lang=<lang>#results`.
 
 ---
 
+### visualize.html (Root Family Visualizer)
+
+**URL:** `GET /visualize/<root_key>`
+
+**Layout:**
+
+```
+┌─────────────────────────────────────────┐
+│ [Sticky Header] (same as other pages)   │
+├─────────────────────────────────────────┤
+│ Title: Root Visualizer                  │
+│ ← Back to results                      │
+│                                         │
+│ [✓ Hebrew] [✓ Arabic] [✓ Syriac]       │
+│ [◯ Outlier] [◯ Bridge] [⛶ Fullscreen]  │
+│                                         │
+│ ┌─────────────────────────────────────┐ │
+│ │          D3.js Force Graph          │ │
+│ │                                     │ │
+│ │      ┌────┐   ┌────┐              │ │
+│ │      │ heb│   │ ar │              │ │
+│ │      └──┬─┘   └─┬──┘              │ │
+│ │         │       │                  │ │
+│ │      ┌──┴───────┴──┐              │ │
+│ │      │   CENTER    │              │ │
+│ │      │  root+gloss │              │ │
+│ │      └──┬───────┬──┘              │ │
+│ │         │       │                  │ │
+│ │      ┌──┴─┐   ┌─┴──┐              │ │
+│ │      │ syr│   │ syr│              │ │
+│ │      └────┘   └────┘              │ │
+│ └─────────────────────────────────────┘ │
+│ [Tooltip on hover]                      │
+└─────────────────────────────────────────┘
+```
+
+**Key JavaScript Features:**
+
+| Feature | Description |
+|---------|-------------|
+| D3 force simulation | Radial layout with center root, satellite cognates |
+| Language toggles | Checkboxes to show/hide Hebrew, Arabic, Syriac nodes |
+| Outlier detection | Dashed gold border on semantic outliers |
+| Bridge expansion | Click bridge-outlier → fetch target root family → expand graph |
+| Bridge collapse | Click again to collapse bridge nodes |
+| Bridge visual | Animated gold dashed link, pulsing outer ring on bridge outliers |
+| "🔗 bridge" label | Text below bridge-outlier nodes |
+| Fullscreen | Native Fullscreen API, controls float as overlay |
+| Zoom/drag | D3 zoom + node dragging |
+| Tooltip | Word details, outlier info, bridge concept on hover |
+| Multi-line meaning | Meanings wrap to 2 lines inside bubbles |
+
+**Node types and colors:**
+
+| Type | Color | Radius |
+|------|-------|--------|
+| center | #8B4513 (brown) | 64 |
+| hebrew | #2E5090 (blue) | 52 |
+| arabic | #2D7D46 (green) | 52 |
+| syriac | #A0522D (terracotta) | 48 |
+| bridge-center | #B8860B (dark gold) | 56 |
+| bridge-hebrew | #5B7DB8 (light blue) | 46 |
+| bridge-arabic | #5BA87A (light green) | 46 |
+
+---
+
 ### read.html (Peshitta Reader — Interlinear Chapter View)
 
 **URL:** `GET /read`
@@ -191,6 +257,15 @@ Uses CSS custom properties with `[data-theme]` attribute on `<html>`:
 | `.verse-translit` | Transliteration line in reader |
 | `.verse-translation` | Translation line in reader |
 | `.root-latin` | Latin transliteration next to Syriac root in browse table |
+| `.viz-container` | Visualizer wrapper (supports fullscreen mode) |
+| `.viz-controls` | Language toggle checkboxes and legend |
+| `.viz-svg-wrap` | D3 SVG container |
+| `.viz-tooltip` | Hover tooltip for nodes |
+| `.viz-outlier-key` | Legend: outlier indicator |
+| `.viz-bridge-key` | Legend: bridge indicator |
+| `.viz-fullscreen-btn` | Fullscreen toggle button |
+| `.bridge-link-animated` | Animated dashed bridge link |
+| `.bridge-outlier-ring` | Pulsing gold ring on bridge outliers |
 
 ### Responsive Breakpoints
 

@@ -118,6 +118,44 @@ Edit `data/known_roots.json`. Add the Syriac root under `roots` with a `gloss` a
 **To add UI translations:**
 Edit `data/i18n.json`. Add the key to both `es` and `en` sections.
 
+## Data Pipeline Scripts
+
+Scripts in `/scripts` are batch tools for generating and maintaining cognate data. They require the `anthropic` Python package and a valid `ANTHROPIC_API_KEY`.
+
+### expand_cognates.py
+Expands Hebrew and Arabic cognate words for all roots using Claude API. Adds derived forms, related words, and additional meanings. Includes checkpoint saves (every 20 roots) and retry logic for API errors.
+
+```bash
+python scripts/expand_cognates.py              # Process all roots
+python scripts/expand_cognates.py --dry-run    # Preview only
+```
+
+### tag_outliers.py
+Uses Claude AI to identify semantic outliers — cognate words that share the triliteral root but have drifted in meaning from the root's core semantic field. Tags words with `"outlier": true` in cognates.json.
+
+```bash
+python scripts/tag_outliers.py                 # Process all roots
+python scripts/tag_outliers.py --dry-run       # Preview only
+python scripts/tag_outliers.py --root r-w-kh   # Single root
+```
+
+### generate_bridges.py
+For each outlier word, asks Claude which OTHER root in our database has the outlier's meaning as its CORE meaning, creating semantic bridges between root families. Validates that target roots exist in cognates.json.
+
+```bash
+python scripts/generate_bridges.py             # Process all outliers
+python scripts/generate_bridges.py --dry-run   # Preview only
+python scripts/generate_bridges.py --root r-w-kh  # Single root
+```
+
+### fix_bridge_concepts.py
+Fixes bridge entries where the `target_root` doesn't match the `bridge_concept_en/es` text (caused by the fallback mechanism selecting an alternative root after the concept text was generated).
+
+```bash
+python scripts/fix_bridge_concepts.py          # Fix all mismatches
+python scripts/fix_bridge_concepts.py --dry-run  # Preview only
+```
+
 ## Code Review Findings (as of 2026-03-15)
 
 ### Fixed

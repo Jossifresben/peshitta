@@ -13,6 +13,16 @@ class CognateWord:
     transliteration: str
     meaning_es: str
     meaning_en: str
+    outlier: bool = False
+
+
+@dataclass
+class SemanticBridge:
+    outlier_key: str        # "ar:raha"
+    target_root: str        # "n-w-kh" (cognates.json key)
+    relationship: str       # "semantic_neighbor"
+    bridge_concept_en: str
+    bridge_concept_es: str
 
 
 @dataclass
@@ -22,6 +32,7 @@ class CognateEntry:
     gloss_en: str
     hebrew: list[CognateWord] = field(default_factory=list)
     arabic: list[CognateWord] = field(default_factory=list)
+    semantic_bridges: list[SemanticBridge] = field(default_factory=list)
 
 
 class CognateLookup:
@@ -63,6 +74,7 @@ class CognateLookup:
                     transliteration=hw['transliteration'],
                     meaning_es=hw.get('meaning_es', ''),
                     meaning_en=hw.get('meaning_en', ''),
+                    outlier=hw.get('outlier', False),
                 ))
 
             arabic_words = []
@@ -72,7 +84,19 @@ class CognateLookup:
                     transliteration=aw['transliteration'],
                     meaning_es=aw.get('meaning_es', ''),
                     meaning_en=aw.get('meaning_en', ''),
+                    outlier=aw.get('outlier', False),
                 ))
+
+            bridges = []
+            for outlier_key, bridge_data in entry_data.get('semantic_bridges', {}).items():
+                if bridge_data.get('target_root'):
+                    bridges.append(SemanticBridge(
+                        outlier_key=outlier_key,
+                        target_root=bridge_data['target_root'],
+                        relationship=bridge_data.get('relationship', 'semantic_neighbor'),
+                        bridge_concept_en=bridge_data.get('bridge_concept_en', ''),
+                        bridge_concept_es=bridge_data.get('bridge_concept_es', ''),
+                    ))
 
             entry = CognateEntry(
                 root_syriac=root_syriac,
@@ -80,6 +104,7 @@ class CognateLookup:
                 gloss_en=entry_data.get('gloss_en', ''),
                 hebrew=hebrew_words,
                 arabic=arabic_words,
+                semantic_bridges=bridges,
             )
 
             self._cognates[key] = entry

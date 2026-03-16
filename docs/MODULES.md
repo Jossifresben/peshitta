@@ -11,6 +11,7 @@ The foundational module. All other modules depend on it for character mapping an
 | `SYRIAC_CONSONANTS` | frozenset | 22 Syriac letters (ܐ through ܬ, U+0710–U+072C) |
 | `WEAK_LETTERS` | frozenset | ܐ, ܘ, ܝ — can be root consonants or vowel markers |
 | `PROCLITIC_LETTERS` | frozenset | ܕ, ܘ, ܒ, ܠ — particles that attach to words |
+| `SEMITIC_EQUIVALENCES` | list | Cross-language consonant pairs for sound correspondence fallback |
 
 ### Transliteration Maps
 
@@ -25,6 +26,17 @@ The foundational module. All other modules depend on it for character mapping an
 | `HEBREW_TO_LATIN` | כ → k | For cognate word input parsing |
 | `ARABIC_TO_LATIN` | ك → k | For cognate word input parsing |
 
+### Semitic Sound Correspondences
+
+The `SEMITIC_EQUIVALENCES` list defines known cross-language consonant pairs:
+
+| Pair | Syriac Characters | Correspondence |
+|------|-------------------|----------------|
+| S ↔ SH | ܣ (Semkath) ↔ ܫ (Shin) | Arabic س regularly corresponds to Hebrew/Syriac שׁ |
+| TH ↔ T | ܬ (Taw) ↔ ܛ (Teth) | Arabic ث/ت emphatic correspondence |
+| D ↔ TH | ܕ (Dalath) ↔ ܬ (Taw) | Arabic ذ/ث correspondence |
+| TS ↔ S | ܨ (Sadhe) ↔ ܣ (Semkath) | Arabic ص/س correspondence |
+
 ### Functions
 
 **`parse_root_input(user_input: str) -> str | None`**
@@ -37,6 +49,9 @@ Parses user input into a 3-letter Syriac root. Accepts:
 - Syriac script: `ܟܬܒ`
 
 Returns `None` if input doesn't resolve to exactly 3 consonants.
+
+**`semitic_root_variants(root_syriac: str) -> list[str]`**
+Generates alternative Syriac root strings using known sound correspondences. For example, given ܣܠܡ (s-l-m), returns [ܫܠܡ (sh-l-m)] because Arabic s regularly corresponds to Hebrew/Syriac sh. Used as a fallback when the primary root lookup fails.
 
 **`transliterate_syriac(text: str) -> str`** — Syriac → Latin lowercase
 **`transliterate_syriac_academic(text: str) -> str`** — Syriac → scholarly notation (used for the `syriac` script option in settings)
@@ -178,7 +193,7 @@ Generates all valid stem candidates by trying all combinations of proclitic + ve
 
 ## cognates.py — Hebrew/Arabic Cognate Lookup
 
-Maps Syriac roots to their Hebrew and Arabic cognates with bilingual glosses.
+Maps Syriac roots to their Hebrew and Arabic cognates with bilingual glosses, outlier detection, and semantic bridges.
 
 ### Dataclass: `CognateWord`
 ```python
@@ -186,6 +201,16 @@ word: str                 # Script form (e.g., כָּתַב or كَتَبَ)
 transliteration: str      # Latin (e.g., "katav" or "kataba")
 meaning_es: str           # Spanish meaning
 meaning_en: str           # English meaning
+outlier: bool             # True if semantically divergent from root's core meaning
+```
+
+### Dataclass: `SemanticBridge`
+```python
+outlier_key: str          # "ar:raha" — identifies which outlier word
+target_root: str          # "sh-b-th" — root where outlier's meaning is core
+relationship: str         # "semantic_neighbor", "antonym_root", etc.
+bridge_concept_en: str    # English explanation of the semantic connection
+bridge_concept_es: str    # Spanish explanation
 ```
 
 ### Dataclass: `CognateEntry`
@@ -195,6 +220,7 @@ gloss_es: str             # Root meaning in Spanish
 gloss_en: str             # Root meaning in English
 hebrew: list[CognateWord]
 arabic: list[CognateWord]
+semantic_bridges: list[SemanticBridge]
 ```
 
 ### Class: `CognateLookup`

@@ -345,6 +345,49 @@ def parse_root_input(user_input: str) -> str | None:
     return ''.join(syriac_chars)
 
 
+# --- Semitic sound correspondences ---
+# Known cross-language consonant equivalences (Syriac Unicode pairs)
+# Arabic s often corresponds to Hebrew/Syriac sh, etc.
+SEMITIC_EQUIVALENCES = [
+    ('\u0723', '\u072B'),  # ܣ Semkath (s) ↔ ܫ Shin (sh)
+    ('\u072C', '\u071B'),  # ܬ Taw (th) ↔ ܛ Teth (T) — Arabic th/t
+    ('\u0715', '\u072C'),  # ܕ Dalath (d) ↔ ܬ Taw (th) — Arabic dh/th
+    ('\u0728', '\u0723'),  # ܨ Sadhe (ts) ↔ ܣ Semkath (s) — Arabic ṣ/s
+]
+
+
+def semitic_root_variants(root_syriac: str) -> list[str]:
+    """Generate alternative Syriac root strings using Semitic sound correspondences.
+
+    For example, if given ܣܠܡ (s-l-m), returns [ܫܠܡ (sh-l-m)] because
+    Arabic s regularly corresponds to Hebrew/Syriac sh.
+
+    Returns a list of alternative roots (not including the original).
+    """
+    if not root_syriac or len(root_syriac) != 3:
+        return []
+
+    variants = set()
+    chars = list(root_syriac)
+
+    for pos in range(3):
+        for a, b in SEMITIC_EQUIVALENCES:
+            if chars[pos] == a:
+                alt = chars.copy()
+                alt[pos] = b
+                variant = ''.join(alt)
+                if variant != root_syriac:
+                    variants.add(variant)
+            elif chars[pos] == b:
+                alt = chars.copy()
+                alt[pos] = a
+                variant = ''.join(alt)
+                if variant != root_syriac:
+                    variants.add(variant)
+
+    return list(variants)
+
+
 def syriac_consonants_of(word: str) -> str:
     """Extract only the Syriac consonant characters from a word."""
     return ''.join(ch for ch in word if ch in SYRIAC_CONSONANTS)

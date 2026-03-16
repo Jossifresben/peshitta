@@ -200,6 +200,8 @@
                 html += '<span class="syriac" style="font-size:1.8em;">' + data.root + '</span> ';
                 html += '<span style="font-family:monospace; font-size:1.3em; letter-spacing:2px;">' + data.root_translit + '</span>';
                 if (data.gloss) html += ' <span style="font-style:italic; color:var(--text-gloss);">— ' + data.gloss + '</span>';
+                html += ' <a href="/visualize/' + data.root_translit + '?lang=' + currentLang + '&script=' + currentScript + '" class="viz-link-icon" title="{% if lang == 'es' %}Visualizar familia de raíz{% else %}Visualize root family{% endif %}">';
+                html += '<span class="material-symbols-outlined" style="font-size:20px; vertical-align:middle;">hub</span></a>';
                 html += '</div>';
 
                 if (data.matches && data.matches.length > 0) {

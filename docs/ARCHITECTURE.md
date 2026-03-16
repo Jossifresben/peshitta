@@ -21,18 +21,24 @@ peshitta/
 │   ├── templates/
 │   │   ├── index.html           # Main search page
 │   │   ├── browse.html          # Browse all roots
-│   │   └── read.html            # Interlinear chapter reader
+│   │   ├── read.html            # Interlinear chapter reader
+│   │   ├── visualize.html       # D3.js root family visualizer with semantic bridges
+│   │   └── help.html            # Help & documentation page
 │   └── static/
-│       └── style.css            # Full CSS with dark/light themes, reader & RTL styles
+│       └── style.css            # Full CSS with dark/light themes, visualizer, reader & RTL styles
 ├── data/
 │   ├── i18n.json                # UI translations (ES/EN)
-│   ├── cognates.json            # ~394 roots with Hebrew/Arabic cognates
+│   ├── cognates.json            # 397 roots, 3,780 cognates, 651 outliers, 363 bridges
 │   ├── known_roots.json         # Curated root dictionary with glosses
 │   ├── stopwords.json           # Function words to exclude
 │   ├── translations.json        # EN/ES/HE/AR verse translations (7,440 verses x 4 langs)
 │   └── word_glosses_override.json  # 1,015 manual gloss overrides
 ├── syriac_nt_traditional22_unicode.csv  # Source corpus (7,440 verses)
 ├── scripts/
+│   ├── expand_cognates.py       # Batch expand Hebrew/Arabic cognates via Claude API
+│   ├── tag_outliers.py          # AI-powered semantic outlier detection
+│   ├── generate_bridges.py      # Generate cross-root semantic bridges via Claude API
+│   ├── fix_bridge_concepts.py   # Fix mismatched bridge concept text
 │   └── fetch_translations.py    # Utility to fetch translations
 ├── fetch_arabic.py              # Script to fetch Arabic SVD from getBible API
 ├── fetch_hebrew.py              # Script to import Hebrew Modern from he_modern.json
@@ -52,7 +58,7 @@ app.py (Flask routes, initialization)
 │   ├── corpus.py
 │   └── affixes.py   (prefix/suffix stripping rules)
 │       └── characters.py
-├── cognates.py      (Hebrew/Arabic cognate lookup)
+├── cognates.py      (Hebrew/Arabic cognate lookup, outliers, semantic bridges)
 │   └── characters.py
 └── glosser.py       (morphological glossing, stem detection)
     ├── affixes.py
@@ -88,6 +94,7 @@ _init()
 1. parse_root_input("K-TH-B") → ܟܬܒ (Syriac Unicode)
 2. extractor.lookup_root(ܟܬܒ) → RootEntry with all word forms
 3. cognate_lookup.lookup(ܟܬܒ) → CognateEntry (Hebrew כתב, Arabic كتب)
+   - If not found: try semitic_root_variants() (e.g., S-L-M → SH-L-M)
 4. For each word form:
    ├── glosser.gloss(form, root, lang) → composed gloss string
    ├── glosser.get_stem(form, root) → verb stem label or None
@@ -123,7 +130,7 @@ All heavy objects are initialized once and shared across requests:
 ```python
 _corpus: PeshittaCorpus          # ~134k words indexed
 _extractor: RootExtractor        # ~2,535 roots indexed
-_cognate_lookup: CognateLookup   # ~394 cognate entries
+_cognate_lookup: CognateLookup   # 397 cognate entries (3,780 words, 651 outliers, 363 bridges)
 _glosser: WordGlosser            # 1,015 override entries
 _i18n: dict                      # UI translations
 _initialized: bool               # Guard flag
@@ -143,6 +150,9 @@ The `_init()` function uses double-checked locking:
 | Total word tokens | ~134,000 |
 | Unique surface forms | ~15,261 |
 | Extracted triliteral roots | ~2,535 |
-| Cognate entries | ~394 |
+| Cognate entries | 397 |
+| Total cognate words | 3,780 (1,929 Hebrew + 1,851 Arabic) |
+| Semantic outliers | 651 |
+| Semantic bridges | 363 (across 207 root families) |
 | Manual gloss overrides | 1,015 |
 | Known/curated roots | ~200 |

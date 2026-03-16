@@ -38,18 +38,6 @@ UI translations for Spanish and English.
     "search_button": "Buscar",
     "lang_toggle": "English",
     "settings_script": "Transliteración",
-    "settings_latin": "Latín (ABC)",
-    "settings_syriac": "Siríaco (ʾbg)",
-    "settings_hebrew": "Hebreo (אבג)",
-    "settings_arabic": "Árabe (ابج)",
-    "tooltip_roots": "Número de raíces trilíteras...",
-    "tooltip_words": "Total de palabras analizadas...",
-    "tooltip_unique": "Formas morfológicas distintas...",
-    "book_names": {
-      "Matthew": "Mateo",
-      "Mark": "Marcos",
-      ...
-    },
     ...
   },
   "en": { ... }
@@ -71,9 +59,9 @@ UI translations for Spanish and English.
 
 ## data/cognates.json
 
-Hebrew and Arabic cognates for Syriac roots, with bilingual glosses.
+Hebrew and Arabic cognates for Syriac roots, with bilingual glosses, semantic outlier flags, and semantic bridges.
 
-**Size:** ~394 root entries (expanded from 284 with 110 new roots)
+**Size:** 397 root entries, 3,780 cognate words (1,929 Hebrew + 1,851 Arabic), 651 outliers, 363 semantic bridges across 207 roots
 
 **Structure:**
 ```json
@@ -88,7 +76,8 @@ Hebrew and Arabic cognates for Syriac roots, with bilingual glosses.
           "word": "כָּתַב",
           "transliteration": "katav",
           "meaning_es": "escribir",
-          "meaning_en": "to write"
+          "meaning_en": "to write",
+          "outlier": false
         }
       ],
       "arabic": [
@@ -98,7 +87,15 @@ Hebrew and Arabic cognates for Syriac roots, with bilingual glosses.
           "meaning_es": "escribir",
           "meaning_en": "to write"
         }
-      ]
+      ],
+      "semantic_bridges": {
+        "ar:raha": {
+          "target_root": "sh-b-th",
+          "relationship": "semantic_neighbor",
+          "bridge_concept_en": "Rest/comfort connects to SH-B-TH (sabbath, rest)",
+          "bridge_concept_es": "Descanso/confort conecta con SH-B-TH (sábado, descansar)"
+        }
+      }
     }
   }
 }
@@ -109,6 +106,17 @@ Hebrew and Arabic cognates for Syriac roots, with bilingual glosses.
 - `root_syriac` is the 3-letter Syriac Unicode
 - Each root can have multiple Hebrew and Arabic cognate words
 - All meanings are bilingual (ES/EN)
+- `outlier: true` flags cognates that have drifted semantically from the root's core meaning
+- `semantic_bridges` maps outlier keys (e.g., `ar:raha`) to target roots where the outlier's meaning is core
+
+**Semantic bridge fields:**
+
+| Field | Description |
+|-------|-------------|
+| `target_root` | Root key where the outlier's meaning is central (e.g., `sh-b-th`) |
+| `relationship` | One of: `semantic_neighbor`, `antonym_root`, `metonymic_shift`, `functional_drift` |
+| `bridge_concept_en` | English explanation of the semantic connection |
+| `bridge_concept_es` | Spanish explanation of the semantic connection |
 
 ---
 

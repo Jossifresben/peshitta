@@ -20,6 +20,7 @@ Renders `index.html` with search form and results.
 
 **Behavior:**
 - If `q` is provided: parse as root, show word forms + cognates
+  - Semitic sound correspondences are applied automatically (e.g., `S-L-M` finds `SH-L-M`)
 - If `cw` is provided (and no `q`): look up cognate word
   - Single match → auto-redirects to root search
   - Multiple matches → shows disambiguation list
@@ -64,6 +65,44 @@ Renders `read.html` with an interlinear chapter reading view.
 - Three lines per verse: Syriac script, transliteration, translation
 - Clickable words with root lookup modal (via `/api/word-root`)
 - Root hover tooltips showing Latin transliteration (e.g., Y-L-D)
+
+---
+
+### `GET /visualize/<root_key>` — Root Family Visualizer
+
+Renders `visualize.html` with an interactive D3.js force-directed graph.
+
+**URL Parameters:**
+- `root_key` — Root in dash-separated Latin (e.g., `R-W-KH`)
+
+**Query Parameters:**
+
+| Param | Type | Default | Description |
+|-------|------|---------|-------------|
+| `lang` | string | `es` | UI language |
+| `script` | string | `latin` | Transliteration script |
+| `trans` | string | `<lang>` | Translation language for cognate meanings |
+
+**Features:**
+- Center node: Syriac root with gloss
+- Satellite nodes: Hebrew (blue), Arabic (green), Syriac (brown) cognates
+- Language toggle checkboxes (Hebrew/Arabic/Syriac)
+- Semantic outliers: dashed gold border (plain outliers) or solid gold ring with pulsing glow (bridge outliers)
+- Clickable bridge outliers: expand to show target root family with animated gold bridge link
+- Fullscreen mode: button in controls bar to enter native fullscreen
+- Zoom and drag support
+
+---
+
+### `GET /help` — Help Page
+
+Renders `help.html` with app documentation, capabilities, and stats.
+
+**Query Parameters:**
+
+| Param | Type | Default | Description |
+|-------|------|---------|-------------|
+| `lang` | string | `es` | UI language |
 
 ---
 
@@ -165,6 +204,73 @@ Returns all roots sorted by frequency, paginated.
 ```
 
 **Note:** Glosses are English-only in this endpoint (used by browse page which handles language separately).
+
+---
+
+### `GET /api/root-family` — Root Family Data (Visualizer)
+
+Returns full root family data for the D3.js visualizer, including cognates, outliers, and semantic bridges.
+
+**Query Parameters:**
+
+| Param | Type | Default | Description |
+|-------|------|---------|-------------|
+| `root` | string | required | Root in dash-separated Latin (e.g., `K-TH-B` or `S-L-M`) |
+| `lang` | string | `es` | UI language |
+| `script` | string | `latin` | Transliteration script |
+| `trans` | string | `<lang>` | Translation language for cognate meanings |
+
+**Response (200):**
+
+```json
+{
+  "root": "ܫܠܡ",
+  "root_translit": "SH-L-M",
+  "gloss": "peace, complete",
+  "sabor_raiz": "peace, complete",
+  "syriac_words": [
+    {
+      "word": "ܫܠܡܐ",
+      "translit": "shlma",
+      "meaning": "peace",
+      "references": ["Matthew 10:13", "..."]
+    }
+  ],
+  "hebrew": [
+    {
+      "word": "שָׁלוֹם",
+      "translit": "shalom",
+      "meaning": "peace",
+      "outlier": false
+    }
+  ],
+  "arabic": [
+    {
+      "word": "سَلَام",
+      "translit": "salam",
+      "meaning": "peace"
+    }
+  ],
+  "semantic_bridges": [
+    {
+      "outlier_key": "ar:rāwaḥa",
+      "target_root": "sh-b-th",
+      "relationship": "semantic_neighbor",
+      "bridge_concept": "To rest, take ease connects to SH-B-TH (sabbath, rest)"
+    }
+  ]
+}
+```
+
+**Notes:**
+- Semitic sound correspondences are applied (e.g., `root=s-l-m` resolves to `SH-L-M`)
+- `outlier: true` appears only on flagged cognate words
+- `semantic_bridges` lists bridges for outlier words that connect to other root families
+- The visualizer uses `target_root` to fetch the bridge family via a second `/api/root-family` call
+
+**Error Responses:**
+- `400`: Missing `root` parameter
+- `400`: Invalid root (can't parse to Syriac)
 
 ---
 

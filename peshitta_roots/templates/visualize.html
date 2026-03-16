@@ -45,7 +45,7 @@
     <div class="container">
         <header>
             <h1 class="page-title">{% if lang == 'es' %}Visualizador de Raíz{% else %}Root Visualizer{% endif %}</h1>
-            <p class="back-link"><a href="{{ url_for('index', lang=lang, q=root_key) }}">{% if lang == 'es' %}&larr; Volver a resultados{% else %}&larr; Back to results{% endif %}</a></p>
+            <p class="viz-back"><a href="{{ url_for('index', lang=lang, q=root_key) }}" class="viz-back-link">{% if lang == 'es' %}&larr; Volver a resultados{% else %}&larr; Back to results{% endif %}</a></p>
         </header>
 
         <div id="viz-loading" class="viz-loading">
@@ -53,6 +53,25 @@
         </div>
         <div id="viz-error" class="viz-error" style="display:none;"></div>
         <div id="viz-container" class="viz-container" style="display:none;">
+            <div class="viz-controls">
+                <label class="viz-check"><input type="checkbox" id="chk-hebrew" checked> <span class="viz-check-dot" style="background:#2E5090;"></span> {% if lang == 'es' %}Hebreo{% else %}Hebrew{% endif %}</label>
+                <label class="viz-check"><input type="checkbox" id="chk-arabic" checked> <span class="viz-check-dot" style="background:#2D7D46;"></span> {% if lang == 'es' %}Árabe{% else %}Arabic{% endif %}</label>
+                <label class="viz-check"><input type="checkbox" id="chk-syriac" checked> <span class="viz-check-dot" style="background:#A0522D;"></span> {% if lang == 'es' %}Siríaco (Peshitta){% else %}Syriac (Peshitta){% endif %}</label>
+                <span id="viz-outlier-key" class="viz-outlier-key" style="display:none;">
+                    <svg width="18" height="18" style="vertical-align:middle;margin-right:4px;"><circle cx="9" cy="9" r="7" fill="none" stroke="#FFD700" stroke-width="2" stroke-dasharray="4,2"/></svg>
+                    {% if lang == 'es' %}Divergente{% else %}Outlier{% endif %}
+                </span>
+                <span id="viz-bridge-key" class="viz-bridge-key" style="display:none;">
+                    <svg width="22" height="22" style="vertical-align:middle;margin-right:4px;">
+                        <circle cx="11" cy="11" r="9" fill="none" stroke="#FFD700" stroke-width="2.5" stroke-dasharray="4,3" class="bridge-outlier-ring"/>
+                        <circle cx="11" cy="11" r="6" fill="#B8860B" stroke="#FFD700" stroke-width="2"/>
+                    </svg>
+                    {% if lang == 'es' %}🔗 Click = puente semántico{% else %}🔗 Click = semantic bridge{% endif %}
+                </span>
+                <button id="viz-fullscreen" class="viz-fullscreen-btn" title="{% if lang == 'es' %}Pantalla completa{% else %}Fullscreen{% endif %}">
+                    <span class="material-symbols-outlined" id="fullscreen-icon">fullscreen</span>
+                </button>
+            </div>
             <div id="viz-svg-wrap" class="viz-svg-wrap"></div>
             <div id="viz-tooltip" class="viz-tooltip"></div>
         </div>
@@ -63,24 +82,44 @@
         var ROOT_KEY = {{ root_key|tojson }};
         var LANG = {{ lang|tojson }};
         var SCRIPT = {{ script|tojson }};
+        var TRANS = {{ trans|tojson }};
 
         // Colors
         var COLOR_CENTER = '#8B4513';
         var COLOR_SYRIAC = '#A0522D';
         var COLOR_HEBREW = '#2E5090';
         var COLOR_ARABIC = '#2D7D46';
+        var COLOR_BRIDGE_CENTER = '#B8860B';
+        var COLOR_BRIDGE_HEBREW = '#5B7DB8';
+        var COLOR_BRIDGE_ARABIC = '#5BA87A';
+        var COLOR_BRIDGE_LINE = '#FFD700';
         var COLOR_OUTLIER = '#999';
         var COLOR_LINE = '#ccc';
 
         var width, height;
         function updateSize() {
             var wrap = document.getElementById('viz-svg-wrap');
-            width = wrap.clientWidth;
-            height = Math.max(500, Math.min(700, window.innerHeight - 200));
+            var isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+            width = isFs ? window.innerWidth : wrap.clientWidth;
+            height = isFs ? window.innerHeight : Math.max(500, Math.min(700, window.innerHeight - 200));
         }
         updateSize();
 
-        fetch('/api/root-family?root=' + encodeURIComponent(ROOT_KEY) + '&lang=' + LANG + '&script=' + SCRIPT)
+        var _rawData = null;
+        // Bridge state
+        var _bridgeMap = {};        // outlier_key → { target_root, bridge_concept }
+        var _expandedBridges = {};  // outlier_key → { nodeIds, centerNodeId }
+        // Persistent D3 references for in-place updates
+        var _simulation = null;
+        var _nodes = [];
+        var _links = [];
+        var _svg = null;
+        var _g = null;
+        var _linkGroup = null;
+        var _nodeGroup = null;
+        var _tooltip = null;
+
+        fetch('/api/root-family?root=' + encodeURIComponent(ROOT_KEY) + '&lang=' + LANG + '&script=' + SCRIPT + '&trans=' + TRANS)
         .then(function(r) { return r.json(); })
         .then(function(data) {
             if (data.error) {
@@ -89,9 +128,17 @@
                 document.getElementById('viz-error').textContent = data.error;
                 return;
             }
+            _rawData = data;
+            // Build bridge map
+            _bridgeMap = {};
+            if (data.semantic_bridges) {
+                data.semantic_bridges.forEach(function(b) {
+                    _bridgeMap[b.outlier_key] = b;
+                });
+            }
             document.getElementById('viz-loading').style.display = 'none';
             document.getElementById('viz-container').style.display = 'block';
-            buildViz(data);
+            render();
         })
         .catch(function(err) {
             document.getElementById('viz-loading').style.display = 'none';
@@ -99,71 +146,205 @@
             document.getElementById('viz-error').textContent = 'Error: ' + err.message;
         });
 
+        // Re-render on checkbox change
+        document.getElementById('chk-hebrew').addEventListener('change', render);
+        document.getElementById('chk-arabic').addEventListener('change', render);
+        document.getElementById('chk-syriac').addEventListener('change', render);
+
+        function render() {
+            if (!_rawData) return;
+            _expandedBridges = {};
+            document.getElementById('viz-svg-wrap').innerHTML = '';
+            buildViz(_rawData);
+        }
+
+        // Fullscreen toggle
+        (function() {
+            var fsBtn = document.getElementById('viz-fullscreen');
+            var fsIcon = document.getElementById('fullscreen-icon');
+            var container = document.getElementById('viz-container');
+            if (!fsBtn) return;
+
+            function isFullscreen() {
+                return !!(document.fullscreenElement || document.webkitFullscreenElement);
+            }
+
+            function enterFullscreen() {
+                var el = container;
+                if (el.requestFullscreen) el.requestFullscreen();
+                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+            }
+
+            function exitFullscreen() {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+
+            function onFsChange() {
+                if (isFullscreen()) {
+                    fsIcon.textContent = 'fullscreen_exit';
+                    container.classList.add('is-fullscreen');
+                } else {
+                    fsIcon.textContent = 'fullscreen';
+                    container.classList.remove('is-fullscreen');
+                }
+                // Re-render at new size
+                setTimeout(render, 100);
+            }
+
+            fsBtn.addEventListener('click', function() {
+                if (isFullscreen()) exitFullscreen();
+                else enterFullscreen();
+            });
+
+            document.addEventListener('fullscreenchange', onFsChange);
+            document.addEventListener('webkitfullscreenchange', onFsChange);
+        })();
+
+        // Helper: truncate meaning for bubble display
+        function truncMeaning(s, max) {
+            if (!s) return '';
+            if (s.length <= max) return s;
+            return s.substring(0, max - 1) + '…';
+        }
+
+        // Helper: split meaning into two lines for better fit inside bubbles
+        function wrapMeaning(s, maxPerLine) {
+            if (!s) return [''];
+            if (s.length <= maxPerLine) return [s];
+            // Try to split at comma or space near the middle
+            var mid = Math.floor(s.length / 2);
+            var commaIdx = s.indexOf(',', Math.max(0, mid - 6));
+            if (commaIdx > 0 && commaIdx < s.length - 3) {
+                var line1 = s.substring(0, commaIdx + 1).trim();
+                var line2 = s.substring(commaIdx + 1).trim();
+                if (line1.length > maxPerLine) line1 = line1.substring(0, maxPerLine - 1) + '…';
+                if (line2.length > maxPerLine) line2 = line2.substring(0, maxPerLine - 1) + '…';
+                return [line1, line2];
+            }
+            // Fallback: split at space
+            var spaceIdx = s.lastIndexOf(' ', maxPerLine);
+            if (spaceIdx > 3) {
+                var l1 = s.substring(0, spaceIdx);
+                var l2 = s.substring(spaceIdx + 1);
+                if (l2.length > maxPerLine) l2 = l2.substring(0, maxPerLine - 1) + '…';
+                return [l1, l2];
+            }
+            return [s.substring(0, maxPerLine - 1) + '…'];
+        }
+
+        function nodeColor(d) {
+            if (d.type === 'center') return COLOR_CENTER;
+            if (d.type === 'bridge-center') return COLOR_BRIDGE_CENTER;
+            if (d.type === 'bridge-hebrew') return COLOR_BRIDGE_HEBREW;
+            if (d.type === 'bridge-arabic') return COLOR_BRIDGE_ARABIC;
+            if (d.type === 'syriac') return COLOR_SYRIAC;
+            if (d.type === 'hebrew') return COLOR_HEBREW;
+            if (d.type === 'arabic') return COLOR_ARABIC;
+            return COLOR_OUTLIER;
+        }
+
         function buildViz(data) {
             updateSize();
-            var nodes = [];
-            var links = [];
-            var tooltip = d3.select('#viz-tooltip');
+            var showHeb = document.getElementById('chk-hebrew').checked;
+            var showAr = document.getElementById('chk-arabic').checked;
+            var showSyr = document.getElementById('chk-syriac').checked;
+
+            _nodes = [];
+            _links = [];
+            _tooltip = d3.select('#viz-tooltip');
 
             // Center node
-            nodes.push({
+            _nodes.push({
                 id: 'center',
                 label: data.root,
                 sublabel: data.root_translit,
                 detail: data.sabor_raiz,
                 type: 'center',
-                r: 50,
+                r: 64,
                 fx: width / 2,
                 fy: height / 2
             });
 
-            // Syriac words
-            data.syriac_words.forEach(function(w, i) {
-                nodes.push({
-                    id: 'syr-' + i,
-                    label: w.word,
-                    sublabel: w.translit,
-                    detail: w.meaning,
-                    refs: w.references,
-                    type: 'syriac',
-                    r: 32
-                });
-                links.push({ source: 'center', target: 'syr-' + i });
-            });
-
             // Hebrew cognates
-            data.hebrew.forEach(function(w, i) {
-                nodes.push({
-                    id: 'heb-' + i,
-                    label: w.word,
-                    sublabel: w.translit,
-                    detail: w.meaning,
-                    type: 'hebrew',
-                    r: 30
+            if (showHeb) {
+                data.hebrew.forEach(function(w, i) {
+                    var outlierKey = 'heb:' + w.translit.toLowerCase().trim();
+                    var bridge = _bridgeMap[outlierKey] || null;
+                    _nodes.push({
+                        id: 'heb-' + i,
+                        label: w.word,
+                        sublabel: w.translit,
+                        detail: w.meaning,
+                        type: 'hebrew',
+                        outlier: !!w.outlier,
+                        bridge: bridge,
+                        outlierKey: outlierKey,
+                        r: 52
+                    });
+                    _links.push({ source: 'center', target: 'heb-' + i });
                 });
-                links.push({ source: 'center', target: 'heb-' + i });
-            });
+            }
 
             // Arabic cognates
-            data.arabic.forEach(function(w, i) {
-                nodes.push({
-                    id: 'ar-' + i,
-                    label: w.word,
-                    sublabel: w.translit,
-                    detail: w.meaning,
-                    type: 'arabic',
-                    r: 30
+            if (showAr) {
+                data.arabic.forEach(function(w, i) {
+                    var outlierKey = 'ar:' + w.translit.toLowerCase().trim();
+                    var bridge = _bridgeMap[outlierKey] || null;
+                    _nodes.push({
+                        id: 'ar-' + i,
+                        label: w.word,
+                        sublabel: w.translit,
+                        detail: w.meaning,
+                        type: 'arabic',
+                        outlier: !!w.outlier,
+                        bridge: bridge,
+                        outlierKey: outlierKey,
+                        r: 52
+                    });
+                    _links.push({ source: 'center', target: 'ar-' + i });
                 });
-                links.push({ source: 'center', target: 'ar-' + i });
-            });
+            }
 
-            var svg = d3.select('#viz-svg-wrap')
+            // Syriac words
+            if (showSyr) {
+                data.syriac_words.forEach(function(w, i) {
+                    _nodes.push({
+                        id: 'syr-' + i,
+                        label: w.word,
+                        sublabel: w.translit,
+                        detail: w.meaning,
+                        refs: w.references,
+                        type: 'syriac',
+                        outlier: false,
+                        bridge: null,
+                        r: 48
+                    });
+                    _links.push({ source: 'center', target: 'syr-' + i });
+                });
+            }
+
+            // Adjust forces based on node count
+            var nodeCount = _nodes.length - 1;
+            var dist = nodeCount > 12 ? 220 : nodeCount > 6 ? 190 : 170;
+            var charge = nodeCount > 12 ? -700 : -500;
+
+            _svg = d3.select('#viz-svg-wrap')
                 .append('svg')
                 .attr('width', width)
                 .attr('height', height);
 
+            _g = _svg.append('g');
+
+            var zoom = d3.zoom()
+                .scaleExtent([0.3, 4])
+                .on('zoom', function(event) {
+                    _g.attr('transform', event.transform);
+                });
+            _svg.call(zoom);
+
             // Arrowhead marker
-            svg.append('defs').append('marker')
+            _svg.append('defs').append('marker')
                 .attr('id', 'arrow')
                 .attr('viewBox', '0 -5 10 10')
                 .attr('refX', 20)
@@ -175,143 +356,356 @@
                 .attr('d', 'M0,-4L10,0L0,4')
                 .attr('fill', COLOR_LINE);
 
-            function nodeColor(d) {
-                if (d.type === 'center') return COLOR_CENTER;
-                if (d.type === 'syriac') return COLOR_SYRIAC;
-                if (d.type === 'hebrew') return COLOR_HEBREW;
-                if (d.type === 'arabic') return COLOR_ARABIC;
-                return COLOR_OUTLIER;
-            }
+            _linkGroup = _g.append('g').attr('class', 'links');
+            _nodeGroup = _g.append('g').attr('class', 'nodes');
 
-            var simulation = d3.forceSimulation(nodes)
-                .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(140))
-                .force('charge', d3.forceManyBody().strength(-300))
+            _simulation = d3.forceSimulation(_nodes)
+                .force('link', d3.forceLink(_links).id(function(d) { return d.id; }).distance(function(l) {
+                    var target = typeof l.target === 'object' ? l.target : _nodes.find(function(n) { return n.id === l.target; });
+                    if (l.bridge) return dist * 1.8;
+                    return target && target.outlier ? dist * 1.6 : dist;
+                }))
+                .force('charge', d3.forceManyBody().strength(charge))
                 .force('center', d3.forceCenter(width / 2, height / 2))
-                .force('collision', d3.forceCollide().radius(function(d) { return d.r + 10; }));
+                .force('collision', d3.forceCollide().radius(function(d) { return d.r + 18; }));
 
-            var link = svg.append('g')
-                .selectAll('line')
-                .data(links)
-                .join('line')
-                .attr('stroke', COLOR_LINE)
-                .attr('stroke-width', 2)
-                .attr('marker-end', 'url(#arrow)');
+            updateGraph();
 
-            var node = svg.append('g')
-                .selectAll('g')
-                .data(nodes)
-                .join('g')
+            // Show keys
+            var hasOutliers = _nodes.some(function(d) { return d.outlier; });
+            var hasBridges = _nodes.some(function(d) { return d.outlier && d.bridge; });
+            var outlierKey = document.getElementById('viz-outlier-key');
+            var bridgeKey = document.getElementById('viz-bridge-key');
+            if (outlierKey) outlierKey.style.display = hasOutliers ? 'inline-flex' : 'none';
+            if (bridgeKey) bridgeKey.style.display = hasBridges ? 'inline-flex' : 'none';
+        }
+
+        function updateGraph() {
+            // --- Links ---
+            var linkSel = _linkGroup.selectAll('line').data(_links, function(d) {
+                var sid = typeof d.source === 'object' ? d.source.id : d.source;
+                var tid = typeof d.target === 'object' ? d.target.id : d.target;
+                return sid + '->' + tid;
+            });
+            linkSel.exit().transition().duration(300).attr('stroke-opacity', 0).remove();
+            var linkEnter = linkSel.enter().append('line')
+                .attr('stroke', function(d) { return d.bridge ? COLOR_BRIDGE_LINE : COLOR_LINE; })
+                .attr('stroke-width', function(d) { return d.bridge ? 2.5 : 2; })
+                .attr('stroke-dasharray', function(d) { return d.bridge ? '8,4' : 'none'; })
+                .attr('stroke-opacity', 0)
+                .attr('marker-end', function(d) { return d.bridge ? '' : 'url(#arrow)'; });
+            linkEnter.transition().duration(300).attr('stroke-opacity', 1);
+            // Animate bridge dashes
+            linkEnter.filter(function(d) { return d.bridge; })
+                .attr('class', 'bridge-link-animated');
+            var allLinks = linkEnter.merge(linkSel);
+
+            // --- Nodes ---
+            var nodeSel = _nodeGroup.selectAll('g.viz-node').data(_nodes, function(d) { return d.id; });
+            nodeSel.exit().transition().duration(300).attr('opacity', 0).remove();
+            var nodeEnter = nodeSel.enter().append('g')
+                .attr('class', 'viz-node')
+                .attr('opacity', 0)
                 .call(d3.drag()
                     .on('start', dragstart)
                     .on('drag', dragged)
                     .on('end', dragend));
 
-            // Circles
-            node.append('circle')
-                .attr('r', function(d) { return d.r; })
-                .attr('fill', nodeColor)
-                .attr('stroke', '#fff')
-                .attr('stroke-width', 2)
-                .style('cursor', 'pointer');
+            // Pulsing outer ring for bridge-outliers (rendered BEFORE main circle so it's behind)
+            nodeEnter.filter(function(d) { return d.outlier && d.bridge; })
+                .append('circle')
+                .attr('class', 'bridge-outlier-ring')
+                .attr('r', function(d) { return d.r + 5; })
+                .attr('fill', 'none')
+                .attr('stroke', '#FFD700')
+                .attr('stroke-width', 2.5)
+                .attr('stroke-dasharray', '4,3')
+                .attr('pointer-events', 'none');
 
-            // Labels - main word
-            node.append('text')
+            // Circle
+            nodeEnter.append('circle')
+                .attr('class', function(d) { return 'node-circle' + (d.outlier && d.bridge ? ' bridge-clickable' : ''); })
+                .attr('r', function(d) { return d.r; })
+                .attr('fill', function(d) {
+                    if (d.outlier && d.bridge) return nodeColor(d);  // full color for bridge outliers
+                    if (d.outlier) return nodeColor(d) + '99';       // muted for plain outliers
+                    return nodeColor(d);
+                })
+                .attr('stroke', function(d) {
+                    if (d.outlier && d.bridge) return '#FFD700';
+                    if (d.outlier) return '#FFD700';
+                    return '#fff';
+                })
+                .attr('stroke-width', function(d) {
+                    if (d.outlier && d.bridge) return 3.5;
+                    if (d.outlier) return 3;
+                    return 2;
+                })
+                .attr('stroke-dasharray', function(d) {
+                    if (d.outlier && d.bridge) return 'none';  // solid gold border for bridge outliers
+                    if (d.outlier) return '6,3';                // dashed for plain outliers
+                    return 'none';
+                })
+                .style('cursor', function(d) { return (d.outlier && d.bridge) ? 'pointer' : 'default'; });
+
+            // Label: main word
+            nodeEnter.append('text')
                 .attr('text-anchor', 'middle')
-                .attr('dy', function(d) { return d.type === 'center' ? '-0.5em' : '-0.3em'; })
+                .attr('dy', function(d) { return (d.type === 'center' || d.type === 'bridge-center') ? '-1.2em' : '-1em'; })
                 .attr('fill', '#fff')
-                .attr('font-size', function(d) { return d.type === 'center' ? '14px' : '12px'; })
+                .attr('font-size', function(d) { return (d.type === 'center' || d.type === 'bridge-center') ? '16px' : '14px'; })
                 .attr('font-weight', 'bold')
                 .attr('pointer-events', 'none')
                 .text(function(d) { return d.label; });
 
-            // Labels - transliteration
-            node.append('text')
+            // Label: transliteration
+            nodeEnter.append('text')
                 .attr('text-anchor', 'middle')
-                .attr('dy', function(d) { return d.type === 'center' ? '0.7em' : '0.8em'; })
+                .attr('dy', '0.2em')
                 .attr('fill', '#fff')
-                .attr('font-size', '10px')
+                .attr('font-size', '11px')
                 .attr('pointer-events', 'none')
                 .text(function(d) { return d.sublabel; });
 
-            // Center: sabor raiz below
-            node.filter(function(d) { return d.type === 'center'; })
+            // Label: meaning (non-center) — multi-line wrapping
+            nodeEnter.filter(function(d) { return d.type !== 'center' && d.type !== 'bridge-center'; })
+                .each(function(d) {
+                    var g = d3.select(this);
+                    var lines = wrapMeaning(d.detail, 20);
+                    lines.forEach(function(line, idx) {
+                        g.append('text')
+                            .attr('text-anchor', 'middle')
+                            .attr('dy', (1.4 + idx * 1.1) + 'em')
+                            .attr('fill', 'rgba(255,255,255,0.85)')
+                            .attr('font-size', '9px')
+                            .attr('font-style', 'italic')
+                            .attr('pointer-events', 'none')
+                            .text(line);
+                    });
+                });
+
+            // Bridge icon below bubble for bridge-outliers
+            nodeEnter.filter(function(d) { return d.outlier && d.bridge && !d.type.startsWith('bridge-'); })
                 .append('text')
                 .attr('text-anchor', 'middle')
-                .attr('dy', '1.8em')
+                .attr('dy', function(d) { return d.r + 16; })
+                .attr('fill', '#FFD700')
+                .attr('font-size', '12px')
+                .attr('pointer-events', 'none')
+                .text('🔗 ' + (LANG === 'es' ? 'puente' : 'bridge'));
+
+            // Center / bridge-center: detail below
+            nodeEnter.filter(function(d) { return d.type === 'center' || d.type === 'bridge-center'; })
+                .append('text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', '1.6em')
                 .attr('fill', '#fff')
-                .attr('font-size', '9px')
+                .attr('font-size', '10px')
                 .attr('font-style', 'italic')
                 .attr('pointer-events', 'none')
                 .text(function(d) { return d.detail; });
 
-            // Tooltip on hover
-            node.on('mouseover', function(event, d) {
+            nodeEnter.transition().duration(400).attr('opacity', 1);
+            var allNodes = nodeEnter.merge(nodeSel);
+
+            // Click handler for outliers with bridges
+            allNodes.filter(function(d) { return d.outlier && d.bridge && !d.type.startsWith('bridge-'); })
+                .on('click', function(event, d) {
+                    event.stopPropagation();
+                    toggleBridge(d);
+                });
+
+            // Tooltip
+            allNodes.on('mouseover', function(event, d) {
                 if (d.type === 'center') return;
-                var lang_label = d.type === 'syriac' ? (LANG === 'es' ? 'Siríaco' : 'Syriac') :
-                                 d.type === 'hebrew' ? (LANG === 'es' ? 'Hebreo' : 'Hebrew') :
+                var lang_label;
+                if (d.type === 'bridge-center') {
+                    lang_label = LANG === 'es' ? 'Raíz puente' : 'Bridge root';
+                } else {
+                    var base = d.type.replace('bridge-', '');
+                    lang_label = base === 'syriac' ? (LANG === 'es' ? 'Siríaco' : 'Syriac') :
+                                 base === 'hebrew' ? (LANG === 'es' ? 'Hebreo' : 'Hebrew') :
                                  (LANG === 'es' ? 'Árabe' : 'Arabic');
+                    if (d.type.startsWith('bridge-')) {
+                        lang_label += (LANG === 'es' ? ' (puente)' : ' (bridge)');
+                    }
+                }
+                var outlier_tag = '';
+                if (d.outlier) {
+                    outlier_tag = '<br><span style="color:#FFD700;font-weight:bold;">' +
+                        (LANG === 'es' ? '✦ Semánticamente divergente' : '✦ Semantic outlier') + '</span>';
+                    if (d.bridge) {
+                        outlier_tag += '<br><span style="color:#FFD700;font-size:11px;font-style:italic;">' +
+                            d.bridge.bridge_concept + '</span>';
+                        var bridgeState = _expandedBridges[d.outlierKey] ?
+                            (LANG === 'es' ? '🔗 Click para cerrar puente' : '🔗 Click to collapse bridge') :
+                            (LANG === 'es' ? '🔗 Click para explorar puente → ' + d.bridge.target_root.toUpperCase() : '🔗 Click to explore bridge → ' + d.bridge.target_root.toUpperCase());
+                        outlier_tag += '<br><span style="color:#FFD700;font-size:12px;font-weight:bold;">' + bridgeState + '</span>';
+                    }
+                }
+                if (d.bridgeConcept) {
+                    outlier_tag += '<br><span style="color:#FFD700;font-size:11px;font-style:italic;">' + d.bridgeConcept + '</span>';
+                }
                 var html = '<strong>' + d.label + '</strong> <small>(' + lang_label + ')</small><br>' +
                            '<em>' + d.sublabel + '</em><br>' +
-                           d.detail;
+                           d.detail + outlier_tag;
                 if (d.refs && d.refs.length > 0) {
                     html += '<br><small>' + d.refs.join(', ') + '</small>';
                 }
-                tooltip.html(html)
+                _tooltip.html(html)
                     .style('display', 'block')
                     .style('left', (event.pageX + 12) + 'px')
                     .style('top', (event.pageY - 20) + 'px');
             })
             .on('mousemove', function(event) {
-                tooltip.style('left', (event.pageX + 12) + 'px')
+                _tooltip.style('left', (event.pageX + 12) + 'px')
                        .style('top', (event.pageY - 20) + 'px');
             })
             .on('mouseout', function() {
-                tooltip.style('display', 'none');
+                _tooltip.style('display', 'none');
             });
 
-            // Click on syriac word → go to search
-            node.on('click', function(event, d) {
-                if (d.type === 'syriac' && d.refs && d.refs.length > 0) {
-                    window.location.href = '/?lang=' + LANG + '&q=' + encodeURIComponent(ROOT_KEY) + '#results';
-                }
-            });
-
-            simulation.on('tick', function() {
-                link.attr('x1', function(d) { return d.source.x; })
+            // Update simulation
+            _simulation.nodes(_nodes);
+            _simulation.force('link').links(_links);
+            _simulation.on('tick', function() {
+                allLinks.attr('x1', function(d) { return d.source.x; })
                     .attr('y1', function(d) { return d.source.y; })
                     .attr('x2', function(d) { return d.target.x; })
                     .attr('y2', function(d) { return d.target.y; });
-                node.attr('transform', function(d) {
-                    d.x = Math.max(d.r, Math.min(width - d.r, d.x));
-                    d.y = Math.max(d.r, Math.min(height - d.r, d.y));
+                allNodes.attr('transform', function(d) {
                     return 'translate(' + d.x + ',' + d.y + ')';
                 });
             });
+        }
 
-            // Legend
-            var legend = svg.append('g').attr('transform', 'translate(20, ' + (height - 80) + ')');
-            var langs = [
-                { label: LANG === 'es' ? 'Siríaco' : 'Syriac', color: COLOR_SYRIAC },
-                { label: LANG === 'es' ? 'Hebreo' : 'Hebrew', color: COLOR_HEBREW },
-                { label: LANG === 'es' ? 'Árabe' : 'Arabic', color: COLOR_ARABIC }
-            ];
-            langs.forEach(function(l, i) {
-                legend.append('circle').attr('cx', 0).attr('cy', i * 22).attr('r', 8).attr('fill', l.color);
-                legend.append('text').attr('x', 16).attr('y', i * 22 + 4)
-                    .attr('fill', 'var(--text)').attr('font-size', '12px').text(l.label);
+        function toggleBridge(outlierNode) {
+            var key = outlierNode.outlierKey;
+            if (_expandedBridges[key]) {
+                collapseBridge(key);
+            } else {
+                expandBridge(outlierNode);
+            }
+        }
+
+        function expandBridge(outlierNode) {
+            var key = outlierNode.outlierKey;
+            var bridge = outlierNode.bridge;
+            var url = '/api/root-family?root=' + encodeURIComponent(bridge.target_root)
+                      + '&lang=' + LANG + '&script=' + SCRIPT + '&trans=' + TRANS;
+
+            fetch(url)
+            .then(function(r) { return r.json(); })
+            .then(function(targetData) {
+                if (targetData.error) return;
+
+                var prefix = 'bridge-' + key.replace(/[^a-z0-9]/g, '_') + '-';
+                var newNodeIds = [];
+
+                // Secondary center node
+                var cx = outlierNode.x || width / 2;
+                var cy = outlierNode.y || height / 2;
+                var dx = cx - width / 2;
+                var dy = cy - height / 2;
+                var len = Math.sqrt(dx * dx + dy * dy) || 1;
+                var targetX = cx + (dx / len) * 180;
+                var targetY = cy + (dy / len) * 180;
+
+                var centerNode = {
+                    id: prefix + 'center',
+                    label: targetData.root,
+                    sublabel: targetData.root_translit,
+                    detail: targetData.sabor_raiz || targetData.gloss,
+                    type: 'bridge-center',
+                    outlier: false,
+                    bridge: null,
+                    bridgeConcept: bridge.bridge_concept,
+                    r: 56,
+                    x: targetX, y: targetY
+                };
+                _nodes.push(centerNode);
+                newNodeIds.push(centerNode.id);
+
+                // Bridge link (outlier → bridge center)
+                _links.push({
+                    source: outlierNode.id,
+                    target: prefix + 'center',
+                    bridge: true
+                });
+
+                // Target's hebrew cognates
+                var showHeb = document.getElementById('chk-hebrew').checked;
+                var showAr = document.getElementById('chk-arabic').checked;
+                if (showHeb) {
+                    targetData.hebrew.forEach(function(w, i) {
+                        var nodeId = prefix + 'heb-' + i;
+                        _nodes.push({
+                            id: nodeId,
+                            label: w.word,
+                            sublabel: w.translit,
+                            detail: w.meaning,
+                            type: 'bridge-hebrew',
+                            outlier: !!w.outlier,
+                            bridge: null,
+                            r: 46
+                        });
+                        _links.push({ source: prefix + 'center', target: nodeId });
+                        newNodeIds.push(nodeId);
+                    });
+                }
+
+                // Target's arabic cognates
+                if (showAr) {
+                    targetData.arabic.forEach(function(w, i) {
+                        var nodeId = prefix + 'ar-' + i;
+                        _nodes.push({
+                            id: nodeId,
+                            label: w.word,
+                            sublabel: w.translit,
+                            detail: w.meaning,
+                            type: 'bridge-arabic',
+                            outlier: !!w.outlier,
+                            bridge: null,
+                            r: 46
+                        });
+                        _links.push({ source: prefix + 'center', target: nodeId });
+                        newNodeIds.push(nodeId);
+                    });
+                }
+
+                _expandedBridges[key] = { nodeIds: newNodeIds, prefix: prefix };
+
+                updateGraph();
+                _simulation.alpha(0.5).restart();
+            });
+        }
+
+        function collapseBridge(key) {
+            var info = _expandedBridges[key];
+            var idsToRemove = new Set(info.nodeIds);
+
+            _nodes = _nodes.filter(function(n) { return !idsToRemove.has(n.id); });
+            _links = _links.filter(function(l) {
+                var sid = typeof l.source === 'object' ? l.source.id : l.source;
+                var tid = typeof l.target === 'object' ? l.target.id : l.target;
+                return !idsToRemove.has(sid) && !idsToRemove.has(tid);
             });
 
-            function dragstart(event, d) {
-                if (!event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x; d.fy = d.y;
-            }
-            function dragged(event, d) {
-                d.fx = event.x; d.fy = event.y;
-            }
-            function dragend(event, d) {
-                if (!event.active) simulation.alphaTarget(0);
-                if (d.type !== 'center') { d.fx = null; d.fy = null; }
-            }
+            delete _expandedBridges[key];
+            updateGraph();
+            _simulation.alpha(0.3).restart();
+        }
+
+        function dragstart(event, d) {
+            if (!event.active) _simulation.alphaTarget(0.3).restart();
+            d.fx = d.x; d.fy = d.y;
+        }
+        function dragged(event, d) {
+            d.fx = event.x; d.fy = event.y;
+        }
+        function dragend(event, d) {
+            if (!event.active) _simulation.alphaTarget(0);
+            if (d.type !== 'center') { d.fx = null; d.fy = null; }
         }
     })();
 

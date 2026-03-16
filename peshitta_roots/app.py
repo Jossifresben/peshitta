@@ -7,7 +7,8 @@ import threading
 from flask import Flask, render_template, request, jsonify
 
 from .characters import (parse_root_input, transliterate_syriac, transliterate_syriac_academic,
-                         transliterate_syriac_to_hebrew, transliterate_syriac_to_arabic)
+                         transliterate_syriac_to_hebrew, transliterate_syriac_to_arabic,
+                         semitic_root_variants)
 from .corpus import PeshittaCorpus
 from .extractor import RootExtractor
 from .cognates import CognateLookup
@@ -164,6 +165,17 @@ def index():
 
             # Look up cognates
             cognate_entry = _cognate_lookup.lookup(root_syriac)
+
+            # Semitic sound correspondence fallback (e.g., s-l-m → sh-l-m)
+            if not root_entry and not cognate_entry:
+                for variant in semitic_root_variants(root_syriac):
+                    v_root = _extractor.lookup_root(variant)
+                    v_cognate = _cognate_lookup.lookup(variant)
+                    if v_root or v_cognate:
+                        root_syriac = variant
+                        root_entry = v_root
+                        cognate_entry = v_cognate
+                        break
 
             # Get gloss from cognates or known roots
             gloss = ''
@@ -599,6 +611,12 @@ def api_root_family():
         script = 'latin'
     translit_fn = _get_translit_fn(script)
 
+    trans = request.args.get('trans', lang)
+    if trans not in ('en', 'es', 'he', 'ar'):
+        trans = lang
+    # For cognate meanings, use trans if es/en; fall back to lang for he/ar (no meanings in those)
+    meaning_lang = trans if trans in ('es', 'en') else lang
+
     if not root_input:
         return jsonify({'error': 'Missing root parameter'}), 400
 
@@ -609,24 +627,59 @@ def api_root_family():
     root_entry = _extractor.lookup_root(root_syriac)
     cognate_entry = _cognate_lookup.lookup(root_syriac)
 
+    # Semitic sound correspondence fallback (e.g., s-l-m → sh-l-m)
+    if not root_entry and not cognate_entry:
+        for variant in semitic_root_variants(root_syriac):
+            v_root = _extractor.lookup_root(variant)
+            v_cognate = _cognate_lookup.lookup(variant)
+            if v_root or v_cognate:
+                root_syriac = variant
+                root_entry = v_root
+                cognate_entry = v_cognate
+                break
+
     gloss = ''
     sabor_raiz_es = ''
     sabor_raiz_en = ''
     if cognate_entry:
-        gloss = cognate_entry.gloss_es if lang == 'es' else cognate_entry.gloss_en
+        gloss = cognate_entry.gloss_es if meaning_lang == 'es' else cognate_entry.gloss_en
         sabor_raiz_es = getattr(cognate_entry, 'sabor_raiz_es', '') or ''
         sabor_raiz_en = getattr(cognate_entry, 'sabor_raiz_en', '') or ''
     if not gloss:
         gloss = _extractor.get_root_gloss(root_syriac)
 
-    sabor_raiz = sabor_raiz_es if lang == 'es' else sabor_raiz_en
+    sabor_raiz = sabor_raiz_es if meaning_lang == 'es' else sabor_raiz_en
     if not sabor_raiz:
         sabor_raiz = gloss
 
-    # Syriac word forms
+    # Syriac word forms — filter out inflected forms with proclitics
+    # for the visualizer (keep only base/unique lexical forms)
+    PROCLITICS = {'\u0718', '\u0715', '\u0712', '\u0720'}  # ܘ ܕ ܒ ܠ
+    COMPOUND_PROCLITICS = {
+        '\u0718\u0712', '\u0718\u0720', '\u0718\u0721', '\u0718\u0715',
+        '\u0715\u0712', '\u0715\u0720', '\u0715\u0721', '\u0720\u0721',
+    }
     syriac_words = []
+    seen_meanings = set()
     if root_entry:
         for m in root_entry.matches:
+            # Skip forms starting with proclitics (d-, w-, b-, l- and compounds)
+            has_proclitic = False
+            if len(m.form) > 1:
+                if m.form[:2] in COMPOUND_PROCLITICS:
+                    has_proclitic = True
+                elif m.form[0] in PROCLITICS:
+                    has_proclitic = True
+            if has_proclitic:
+                continue
+
+            meaning = _glosser.gloss(m.form, root_syriac, meaning_lang)
+            # Deduplicate by meaning
+            if meaning and meaning in seen_meanings:
+                continue
+            if meaning:
+                seen_meanings.add(meaning)
+
             if script == 'latin':
                 translit_display = m.transliteration
             else:
@@ -634,7 +687,7 @@ def api_root_family():
             syriac_words.append({
                 'word': m.form,
                 'translit': translit_display,
-                'meaning': _glosser.gloss(m.form, root_syriac, lang),
+                'meaning': meaning,
                 'references': m.references[:5],
             })
 
@@ -643,16 +696,33 @@ def api_root_family():
     arabic = []
     if cognate_entry:
         for hw in cognate_entry.hebrew:
-            hebrew.append({
+            h = {
                 'word': hw.word,
                 'translit': hw.transliteration,
-                'meaning': hw.meaning_es if lang == 'es' else hw.meaning_en,
-            })
+                'meaning': hw.meaning_es if meaning_lang == 'es' else hw.meaning_en,
+            }
+            if hw.outlier:
+                h['outlier'] = True
+            hebrew.append(h)
         for aw in cognate_entry.arabic:
-            arabic.append({
+            a = {
                 'word': aw.word,
                 'translit': aw.transliteration,
-                'meaning': aw.meaning_es if lang == 'es' else aw.meaning_en,
+                'meaning': aw.meaning_es if meaning_lang == 'es' else aw.meaning_en,
+            }
+            if aw.outlier:
+                a['outlier'] = True
+            arabic.append(a)
+
+    # Semantic bridges
+    bridges = []
+    if cognate_entry and cognate_entry.semantic_bridges:
+        for b in cognate_entry.semantic_bridges:
+            bridges.append({
+                'outlier_key': b.outlier_key,
+                'target_root': b.target_root,
+                'relationship': b.relationship,
+                'bridge_concept': b.bridge_concept_es if meaning_lang == 'es' else b.bridge_concept_en,
             })
 
     return jsonify({
@@ -663,6 +733,7 @@ def api_root_family():
         'syriac_words': syriac_words,
         'hebrew': hebrew,
         'arabic': arabic,
+        'semantic_bridges': bridges,
     })
 
 
