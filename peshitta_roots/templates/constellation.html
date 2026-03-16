@@ -402,10 +402,6 @@
                 var syrLine = document.createElement('div');
                 syrLine.style.direction = 'rtl';
                 syrLine.style.textAlign = 'right';
-                var numSpan = document.createElement('span');
-                numSpan.className = 'constellation-verse-num';
-                numSpan.textContent = v.verse_num;
-                syrLine.appendChild(numSpan);
 
                 v.words.forEach(function(w) {
                     var span = document.createElement('span');
