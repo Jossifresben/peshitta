@@ -376,6 +376,7 @@
         var _svg = null;
         var _zoom = null;
         var _nodes = null;
+        var _lockedRoot = null;
 
         var url = '/api/passage-constellation?book=' + encodeURIComponent(BOOK)
                 + '&chapter=' + CHAPTER + '&v_start=' + V_START + '&v_end=' + V_END
@@ -434,7 +435,12 @@
                 tag.innerHTML = '<strong>' + r.root_translit + '</strong> <span class="freq">x' + r.frequency + '</span>';
                 tag.title = r.gloss || '';
                 tag.addEventListener('click', function() {
-                    highlightRoot(r.root_translit);
+                    var wasLocked = _lockedRoot === r.root_translit;
+                    clearHighlight();
+                    if (!wasLocked) {
+                        _lockedRoot = r.root_translit;
+                        highlightRoot(r.root_translit);
+                    }
                 });
                 // Right-click opens single root visualizer
                 tag.addEventListener('contextmenu', function(e) {
@@ -464,13 +470,18 @@
                     if (w.root) {
                         span.setAttribute('data-root', w.root);
                         span.style.borderBottomColor = getRootColor(w.root);
-                        span.addEventListener('mouseenter', function() {
-                            highlightRoot(w.root);
-                        });
-                        span.addEventListener('mouseleave', function() {
+                        span.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            var wasActive = span.classList.contains('highlighted');
+                            // Clear any previous lock
                             clearHighlight();
+                            if (!wasActive) {
+                                _lockedRoot = w.root;
+                                highlightRoot(w.root);
+                            }
                         });
-                        span.addEventListener('click', function() {
+                        span.addEventListener('dblclick', function(e) {
+                            e.stopPropagation();
                             window.open('/visualize/' + w.root + '?lang=' + LANG + '&script=' + SCRIPT + '&trans=' + TRANS, '_blank');
                         });
                     }
@@ -539,6 +550,7 @@
 
         function clearHighlight() {
             _highlightedRoot = null;
+            _lockedRoot = null;
             document.querySelectorAll('.constellation-word.highlighted').forEach(function(el) {
                 el.classList.remove('highlighted');
             });
@@ -886,7 +898,8 @@
             })
             .on('mouseout', function() {
                 tooltip.style('display', 'none');
-                clearHighlight();
+                // Don't clear if a word is locked from the passage panel
+                if (!_lockedRoot) clearHighlight();
             });
 
             // Click: root nodes open visualizer
