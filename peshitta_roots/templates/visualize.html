@@ -117,7 +117,9 @@
         var width, height;
         function updateSize() {
             var wrap = document.getElementById('viz-svg-wrap');
-            var isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+            var container = document.getElementById('viz-container');
+            var isFs = !!(document.fullscreenElement || document.webkitFullscreenElement) ||
+                       (container && container.classList.contains('is-fullscreen'));
             width = isFs ? window.innerWidth : wrap.clientWidth;
             height = isFs ? window.innerHeight : Math.max(500, Math.min(700, window.innerHeight - 200));
         }
@@ -183,35 +185,66 @@
             var container = document.getElementById('viz-container');
             if (!fsBtn) return;
 
-            function isFullscreen() {
+            var _cssFullscreen = false;
+
+            function isNativeFullscreen() {
                 return !!(document.fullscreenElement || document.webkitFullscreenElement);
             }
 
+            function supportsNativeFs() {
+                return !!(container.requestFullscreen || container.webkitRequestFullscreen);
+            }
+
+            function enterCssFullscreen() {
+                _cssFullscreen = true;
+                container.classList.add('is-fullscreen');
+                document.body.style.overflow = 'hidden';
+                fsIcon.textContent = 'fullscreen_exit';
+                setTimeout(render, 100);
+            }
+
+            function exitCssFullscreen() {
+                _cssFullscreen = false;
+                container.classList.remove('is-fullscreen');
+                document.body.style.overflow = '';
+                fsIcon.textContent = 'fullscreen';
+                setTimeout(render, 100);
+            }
+
             function enterFullscreen() {
-                var el = container;
-                if (el.requestFullscreen) el.requestFullscreen();
-                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+                if (supportsNativeFs()) {
+                    var el = container;
+                    var p = el.requestFullscreen ? el.requestFullscreen() :
+                            el.webkitRequestFullscreen ? el.webkitRequestFullscreen() : null;
+                    // If native fullscreen fails (e.g. mobile Chrome restrictions), fall back to CSS
+                    if (p && p.catch) p.catch(function() { enterCssFullscreen(); });
+                } else {
+                    enterCssFullscreen();
+                }
             }
 
             function exitFullscreen() {
-                if (document.exitFullscreen) document.exitFullscreen();
-                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                if (isNativeFullscreen()) {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                } else if (_cssFullscreen) {
+                    exitCssFullscreen();
+                }
             }
 
             function onFsChange() {
-                if (isFullscreen()) {
+                if (isNativeFullscreen()) {
                     fsIcon.textContent = 'fullscreen_exit';
                     container.classList.add('is-fullscreen');
                 } else {
                     fsIcon.textContent = 'fullscreen';
                     container.classList.remove('is-fullscreen');
                 }
-                // Re-render at new size
                 setTimeout(render, 100);
             }
 
             fsBtn.addEventListener('click', function() {
-                if (isFullscreen()) exitFullscreen();
+                if (isNativeFullscreen() || _cssFullscreen) exitFullscreen();
                 else enterFullscreen();
             });
 

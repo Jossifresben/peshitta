@@ -1782,18 +1782,19 @@ footer a:hover {
     width: 100vw;
     height: 100vh;
     z-index: 9999;
-    background: var(--bg-color, #fff);
+    background: var(--bg-page, #fff);
     margin: 0;
     padding: 0;
     border-radius: 0;
+    overflow: hidden;
 }
 .viz-container.is-fullscreen .viz-controls {
     position: absolute;
-    top: 12px;
-    left: 12px;
-    right: 12px;
+    top: 8px;
+    left: 8px;
+    right: 8px;
     z-index: 10;
-    background: var(--card-bg, rgba(255,255,255,0.92));
+    background: var(--bg-card, rgba(255,255,255,0.92));
     backdrop-filter: blur(8px);
     border-radius: 10px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.15);
