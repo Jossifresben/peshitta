@@ -253,7 +253,11 @@
             <div class="constellation-layout">
                 <!-- Passage panel -->
                 <div class="constellation-passage" id="passage-panel">
-                    <h3 id="passage-panel-title"></h3>
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                        <button id="prev-verse-btn" class="nav-btn" style="padding:4px 10px; font-size:0.85em;" title="{% if lang == 'es' %}Versiculo anterior{% else %}Previous verse{% endif %}">&larr;</button>
+                        <h3 id="passage-panel-title" style="margin:0; flex:1; text-align:center;"></h3>
+                        <button id="next-verse-btn" class="nav-btn" style="padding:4px 10px; font-size:0.85em;" title="{% if lang == 'es' %}Versiculo siguiente{% else %}Next verse{% endif %}">&rarr;</button>
+                    </div>
                     <div id="passage-text"></div>
                 </div>
 
@@ -502,6 +506,27 @@
             if (!_data) return;
             document.getElementById('constellation-svg-wrap').innerHTML = '';
             buildConstellation(_data);
+        }
+
+        // Verse navigation
+        function navigateVerse(delta) {
+            var url = new URL(window.location);
+            var newStart = V_START + delta;
+            var newEnd = V_END + delta;
+            if (newStart < 1) return;
+            url.searchParams.set('v_start', newStart);
+            url.searchParams.set('v_end', newEnd);
+            window.location = url;
+        }
+        document.getElementById('prev-verse-btn').addEventListener('click', function() {
+            navigateVerse(-1);
+        });
+        document.getElementById('next-verse-btn').addEventListener('click', function() {
+            navigateVerse(1);
+        });
+        // Disable prev if at verse 1
+        if (V_START <= 1) {
+            document.getElementById('prev-verse-btn').disabled = true;
         }
 
         // Helper: split meaning into lines
