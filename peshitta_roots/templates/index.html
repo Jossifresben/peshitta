@@ -794,6 +794,23 @@
         }
     })();
 
+    // --- Update feature CTA links with user's stored preferences ---
+    (function() {
+        var script = localStorage.getItem('script') || 'latin';
+        var trans = localStorage.getItem('trans');
+        if (!script && !trans) return;
+        document.querySelectorAll('.feature-cta').forEach(function(a) {
+            var url = new URL(a.href, window.location.origin);
+            if (script && url.searchParams.has('script')) {
+                url.searchParams.set('script', script);
+            }
+            if (trans && url.searchParams.has('trans')) {
+                url.searchParams.set('trans', trans);
+            }
+            a.href = url.pathname + '?' + url.searchParams.toString() + url.hash;
+        });
+    })();
+
     // --- Dark Mode ---
     (function() {
         var toggle = document.getElementById('theme-toggle');
