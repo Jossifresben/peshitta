@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8KTQRY55S"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S8KTQRY55S');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ t.app_title }} — {% if lang == 'es' %}Constelacion{% else %}Constellation{% endif %}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .constellation-layout {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .constellation-passage {
+            flex: 0 0 320px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+            padding: 16px;
+            background: var(--card-bg, #fff);
+            border-radius: 12px;
+            border: 1px solid var(--border-color, #e0d5c8);
+        }
+        .constellation-passage h3 {
+            margin: 0 0 12px;
+            font-size: 1em;
+            color: var(--accent-dark, #5c3a1e);
+        }
+        .constellation-verse {
+            margin-bottom: 16px;
+        }
+        .constellation-verse-num {
+            font-weight: bold;
+            color: var(--accent-gold, #B8860B);
+            margin-right: 4px;
+            font-size: 0.85em;
+        }
+        .constellation-word {
+            display: inline;
+            cursor: default;
+            padding: 1px 2px;
+            border-radius: 3px;
+            transition: background 0.2s;
+            font-family: 'Noto Sans Syriac', serif;
+            font-size: 1.2em;
+        }
+        .constellation-word.has-root {
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .constellation-word.has-root:hover {
+            background: rgba(184, 134, 11, 0.15);
+        }
+        .constellation-word.highlighted {
+            background: rgba(184, 134, 11, 0.25);
+        }
+        .constellation-translit {
+            display: block;
+            font-size: 0.85em;
+            color: var(--text-secondary, #8a7560);
+            margin-top: 4px;
+            direction: ltr;
+        }
+        .constellation-translation {
+            display: block;
+            font-size: 0.85em;
+            color: var(--text-secondary, #8a7560);
+            font-style: italic;
+            margin-top: 4px;
+        }
+        .constellation-viz-wrap {
+            flex: 1;
+            min-width: 0;
+        }
+        .constellation-svg-wrap {
+            width: 100%;
+            min-height: 500px;
+            background: var(--card-bg, #fff);
+            border-radius: 12px;
+            border: 1px solid var(--border-color, #e0d5c8);
+            position: relative;
+        }
+        .constellation-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 10px 16px;
+            font-size: 0.8em;
+            color: var(--text-secondary, #8a7560);
+            align-items: center;
+        }
+        .constellation-legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .constellation-legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .constellation-stats {
+            font-size: 0.85em;
+            color: var(--text-secondary, #8a7560);
+            margin-top: 6px;
+        }
+        .constellation-root-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+        .constellation-root-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            background: var(--card-bg, #fff);
+            color: var(--text-primary, #2c1810);
+            border-color: var(--border-color, #e0d5c8);
+        }
+        .constellation-root-tag:hover {
+            border-color: var(--accent-gold, #B8860B);
+        }
+        .constellation-root-tag .freq {
+            font-size: 0.75em;
+            opacity: 0.6;
+        }
+        .constellation-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        /* Inter-root connection line animation */
+        @keyframes dash-flow {
+            to { stroke-dashoffset: -20; }
+        }
+        .inter-root-link {
+            animation: dash-flow 1.5s linear infinite;
+        }
+        /* Fullscreen support */
+        .constellation-viz-wrap.is-fullscreen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            background: var(--bg-color, #faf6f1);
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .constellation-viz-wrap.is-fullscreen .constellation-svg-wrap {
+            flex: 1;
+            border-radius: 0;
+            border: none;
+            min-height: 0;
+        }
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .constellation-layout {
+                flex-direction: column;
+            }
+            .constellation-passage {
+                flex: none;
+                max-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sticky-header">
+        <a href="{{ url_for('index', lang=lang) }}" class="logo-link" title="{{ t.app_title }}">
+            <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo" class="navbar-logo">
+        </a>
+        <div class="lang-wrapper">
+            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language"><span class="material-symbols-outlined">captive_portal</span></button>
+            <div class="lang-dropdown" id="lang-dropdown">
+                <a href="?book={{ book }}&chapter={{ chapter }}&v_start={{ v_start }}&v_end={{ v_end }}&lang=es&script={{ script }}&trans=es" class="lang-option{% if lang == 'es' %} active{% endif %}">ES</a>
+                <a href="?book={{ book }}&chapter={{ chapter }}&v_start={{ v_start }}&v_end={{ v_end }}&lang=en&script={{ script }}&trans=en" class="lang-option{% if lang == 'en' %} active{% endif %}">EN</a>
+            </div>
+        </div>
+        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
+        <div class="settings-wrapper">
+            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}"><span class="material-symbols-outlined">settings</span></button>
+            <div class="settings-dropdown" id="settings-dropdown">
+                <div class="settings-label">{{ t.settings_script }}</div>
+                <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
+                <button class="settings-option{% if script == 'syriac' %} active{% endif %}" data-script="syriac">{{ t.settings_syriac }}</button>
+                <button class="settings-option{% if script == 'hebrew' %} active{% endif %}" data-script="hebrew">{{ t.settings_hebrew }}</button>
+                <button class="settings-option{% if script == 'arabic' %} active{% endif %}" data-script="arabic">{{ t.settings_arabic }}</button>
+                <div class="settings-divider"></div>
+                <div class="settings-label">{{ t.settings_translation }}</div>
+                <button class="settings-option{% if trans == 'en' %} active{% endif %}" data-trans="en">{{ t.settings_trans_en }}</button>
+                <button class="settings-option{% if trans == 'es' %} active{% endif %}" data-trans="es">{{ t.settings_trans_es }}</button>
+                <button class="settings-option{% if trans == 'he' %} active{% endif %}" data-trans="he">{{ t.settings_trans_he }}</button>
+                <button class="settings-option{% if trans == 'ar' %} active{% endif %}" data-trans="ar">{{ t.settings_trans_ar }}</button>
+            </div>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
+        <button class="share-toggle" id="share-toggle" aria-label="Share" title="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
+    </div>
+
+    <div id="share-modal" class="modal-overlay">
+        <div class="modal-content share-modal-content">
+            <button class="modal-close" onclick="document.getElementById('share-modal').classList.remove('active')">&times;</button>
+            <h3 class="share-modal-title">{% if lang == 'es' %}Compartir esta pagina{% else %}Share this page{% endif %}</h3>
+            <div class="share-qr-wrap">
+                <div id="share-qr"></div>
+                <p class="share-qr-hint">{% if lang == 'es' %}Escanea con tu dispositivo{% else %}Scan with your device{% endif %}</p>
+            </div>
+            <div class="share-url-wrap">
+                <input type="text" id="share-url" class="share-url-input" readonly>
+                <button id="share-copy-btn" class="share-copy-btn" title="{% if lang == 'es' %}Copiar{% else %}Copy{% endif %}">
+                    <span class="material-symbols-outlined">content_copy</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="page-title">{% if lang == 'es' %}Constelacion del Pasaje{% else %}Passage Constellation{% endif %}</h1>
+            <p class="viz-back">
+                <a href="{{ url_for('read', lang=lang, book=book, chapter=chapter, script=script, trans=trans) }}" class="viz-back-link">
+                    {% if lang == 'es' %}&larr; Volver al lector{% else %}&larr; Back to reader{% endif %}
+                </a>
+            </p>
+        </header>
+
+        <div id="constellation-loading" class="viz-loading">
+            <p>{% if lang == 'es' %}Cargando constelacion...{% else %}Loading constellation...{% endif %}</p>
+        </div>
+        <div id="constellation-error" class="viz-error" style="display:none;"></div>
+
+        <div id="constellation-main" style="display:none;">
+            <div id="constellation-ref" style="font-size:1.2em; font-weight:600; color:var(--accent-dark, #5c3a1e); margin-bottom: 4px;"></div>
+            <div id="constellation-stats" class="constellation-stats"></div>
+            <div id="constellation-root-list" class="constellation-root-list"></div>
+
+            <div class="constellation-layout">
+                <!-- Passage panel -->
+                <div class="constellation-passage" id="passage-panel">
+                    <h3>{% if lang == 'es' %}Texto del Pasaje{% else %}Passage Text{% endif %}</h3>
+                    <div id="passage-text"></div>
+                </div>
+
+                <!-- Visualization -->
+                <div class="constellation-viz-wrap" id="constellation-viz-wrap">
+                    <div class="constellation-controls">
+                        <label class="viz-check"><input type="checkbox" id="chk-cognates" checked> {% if lang == 'es' %}Cognados{% else %}Cognates{% endif %}</label>
+                        <label class="viz-check"><input type="checkbox" id="chk-connections" checked> {% if lang == 'es' %}Conexiones{% else %}Connections{% endif %}</label>
+                        <span class="constellation-legend">
+                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#8B4513;"></span> {% if lang == 'es' %}Raiz{% else %}Root{% endif %}</span>
+                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#2E5090;"></span> {% if lang == 'es' %}Hebreo{% else %}Hebrew{% endif %}</span>
+                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#2D7D46;"></span> {% if lang == 'es' %}Arabe{% else %}Arabic{% endif %}</span>
+                            <span class="constellation-legend-item">
+                                <svg width="20" height="10"><line x1="0" y1="5" x2="20" y2="5" stroke="#DAA520" stroke-width="2" stroke-dasharray="4,2"/></svg>
+                                {% if lang == 'es' %}Puente{% else %}Bridge{% endif %}
+                            </span>
+                        </span>
+                        <button id="constellation-fullscreen" class="viz-fullscreen-btn" title="{% if lang == 'es' %}Pantalla completa{% else %}Fullscreen{% endif %}" style="margin-left:auto;">
+                            <span class="material-symbols-outlined" id="fullscreen-icon">fullscreen</span>
+                        </button>
+                    </div>
+                    <div id="constellation-svg-wrap" class="constellation-svg-wrap"></div>
+                    <div id="constellation-tooltip" class="viz-tooltip"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        var BOOK = {{ book|tojson }};
+        var CHAPTER = {{ chapter }};
+        var V_START = {{ v_start }};
+        var V_END = {{ v_end }};
+        var LANG = {{ lang|tojson }};
+        var SCRIPT = {{ script|tojson }};
+        var TRANS = {{ trans|tojson }};
+        var BOOK_NAMES = {{ book_names|tojson }};
+
+        // Colors
+        var ROOT_COLORS = [
+            '#8B4513', '#2E5090', '#2D7D46', '#9B2335', '#6B4C9A',
+            '#CC7722', '#20706B', '#8B2252', '#4A6741', '#B85C38',
+            '#3A5FCD', '#CD6839', '#458B74', '#8B6508', '#5D478B',
+            '#2F4F4F', '#CD3333', '#228B22', '#6959CD', '#CD9B1D'
+        ];
+        var COLOR_HEBREW = '#2E5090';
+        var COLOR_ARABIC = '#2D7D46';
+        var COLOR_BRIDGE = '#DAA520';
+        var COLOR_LINE = '#ccc';
+
+        var width, height;
+        function updateSize() {
+            var wrap = document.getElementById('constellation-svg-wrap');
+            var vizWrap = document.getElementById('constellation-viz-wrap');
+            var isFs = vizWrap && vizWrap.classList.contains('is-fullscreen');
+            width = isFs ? window.innerWidth : wrap.clientWidth;
+            height = isFs ? window.innerHeight - 60 : Math.max(500, Math.min(700, window.innerHeight - 250));
+        }
+
+        var _data = null;
+        var _simulation = null;
+        var _highlightedRoot = null;
+
+        var url = '/api/passage-constellation?book=' + encodeURIComponent(BOOK)
+                + '&chapter=' + CHAPTER + '&v_start=' + V_START + '&v_end=' + V_END
+                + '&lang=' + LANG + '&script=' + SCRIPT + '&trans=' + TRANS;
+
+        fetch(url)
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.error) {
+                document.getElementById('constellation-loading').style.display = 'none';
+                document.getElementById('constellation-error').style.display = 'block';
+                document.getElementById('constellation-error').textContent = data.error;
+                return;
+            }
+            _data = data;
+            document.getElementById('constellation-loading').style.display = 'none';
+            document.getElementById('constellation-main').style.display = 'block';
+
+            // Show reference
+            document.getElementById('constellation-ref').textContent = data.reference;
+
+            // Stats
+            var statsText = LANG === 'es'
+                ? data.total_roots + ' raices encontradas' + (data.connections.length ? ', ' + data.connections.length + ' conexiones' : '')
+                : data.total_roots + ' roots found' + (data.connections.length ? ', ' + data.connections.length + ' connections' : '');
+            document.getElementById('constellation-stats').textContent = statsText;
+
+            // Build root tag list
+            buildRootTags(data);
+
+            // Build passage panel
+            buildPassagePanel(data);
+
+            // Build visualization
+            render();
+        })
+        .catch(function(err) {
+            document.getElementById('constellation-loading').style.display = 'none';
+            document.getElementById('constellation-error').style.display = 'block';
+            document.getElementById('constellation-error').textContent = 'Error: ' + err.message;
+        });
+
+        function getRootColor(rootTranslit) {
+            if (!_data) return ROOT_COLORS[0];
+            var idx = _data.roots.findIndex(function(r) { return r.root_translit === rootTranslit; });
+            return ROOT_COLORS[idx % ROOT_COLORS.length];
+        }
+
+        function buildRootTags(data) {
+            var container = document.getElementById('constellation-root-list');
+            container.innerHTML = '';
+            data.roots.forEach(function(r, idx) {
+                var tag = document.createElement('span');
+                tag.className = 'constellation-root-tag';
+                tag.style.borderColor = ROOT_COLORS[idx % ROOT_COLORS.length];
+                tag.innerHTML = '<strong>' + r.root_translit + '</strong> <span class="freq">x' + r.frequency + '</span>';
+                tag.title = r.gloss || '';
+                tag.addEventListener('click', function() {
+                    highlightRoot(r.root_translit);
+                });
+                // Right-click opens single root visualizer
+                tag.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    window.open('/visualize/' + r.root_translit + '?lang=' + LANG + '&script=' + SCRIPT + '&trans=' + TRANS, '_blank');
+                });
+                container.appendChild(tag);
+            });
+        }
+
+        function buildPassagePanel(data) {
+            var container = document.getElementById('passage-text');
+            container.innerHTML = '';
+            data.verses.forEach(function(v) {
+                var div = document.createElement('div');
+                div.className = 'constellation-verse';
+
+                // Syriac line (RTL)
+                var syrLine = document.createElement('div');
+                syrLine.style.direction = 'rtl';
+                syrLine.style.textAlign = 'right';
+                var numSpan = document.createElement('span');
+                numSpan.className = 'constellation-verse-num';
+                numSpan.textContent = v.verse_num;
+                syrLine.appendChild(numSpan);
+
+                v.words.forEach(function(w) {
+                    var span = document.createElement('span');
+                    span.className = 'constellation-word' + (w.root ? ' has-root' : '');
+                    span.textContent = w.syriac + ' ';
+                    if (w.root) {
+                        span.setAttribute('data-root', w.root);
+                        span.style.borderBottomColor = getRootColor(w.root);
+                        span.addEventListener('mouseenter', function() {
+                            highlightRoot(w.root);
+                        });
+                        span.addEventListener('mouseleave', function() {
+                            clearHighlight();
+                        });
+                        span.addEventListener('click', function() {
+                            window.open('/visualize/' + w.root + '?lang=' + LANG + '&script=' + SCRIPT + '&trans=' + TRANS, '_blank');
+                        });
+                    }
+                    syrLine.appendChild(span);
+                });
+                div.appendChild(syrLine);
+
+                // Transliteration line
+                var translitLine = document.createElement('div');
+                translitLine.className = 'constellation-translit';
+                translitLine.textContent = v.words.map(function(w) { return w.translit; }).join(' ');
+                div.appendChild(translitLine);
+
+                container.appendChild(div);
+            });
+        }
+
+        function highlightRoot(rootTranslit) {
+            _highlightedRoot = rootTranslit;
+            // Highlight words in passage panel
+            document.querySelectorAll('.constellation-word').forEach(function(el) {
+                el.classList.toggle('highlighted', el.getAttribute('data-root') === rootTranslit);
+            });
+            // Highlight in D3
+            if (_simulation) {
+                d3.selectAll('.constellation-node').attr('opacity', function(d) {
+                    if (d.rootParent === rootTranslit || d.id === 'root-' + rootTranslit) return 1;
+                    if (d.type === 'root') return 0.3;
+                    return 0.15;
+                });
+                d3.selectAll('.constellation-link-line').attr('opacity', function(d) {
+                    var sid = typeof d.source === 'object' ? d.source.rootParent || d.source.id : d.source;
+                    var tid = typeof d.target === 'object' ? d.target.rootParent || d.target.id : d.target;
+                    if (sid === rootTranslit || tid === rootTranslit ||
+                        sid === 'root-' + rootTranslit || tid === 'root-' + rootTranslit) return 1;
+                    return 0.1;
+                });
+            }
+            // Highlight root tag
+            document.querySelectorAll('.constellation-root-tag').forEach(function(el) {
+                el.style.fontWeight = el.querySelector('strong').textContent === rootTranslit ? 'bold' : 'normal';
+                el.style.opacity = el.querySelector('strong').textContent === rootTranslit ? '1' : '0.5';
+            });
+        }
+
+        function clearHighlight() {
+            _highlightedRoot = null;
+            document.querySelectorAll('.constellation-word.highlighted').forEach(function(el) {
+                el.classList.remove('highlighted');
+            });
+            if (_simulation) {
+                d3.selectAll('.constellation-node').attr('opacity', 1);
+                d3.selectAll('.constellation-link-line').attr('opacity', 1);
+            }
+            document.querySelectorAll('.constellation-root-tag').forEach(function(el) {
+                el.style.fontWeight = 'normal';
+                el.style.opacity = '1';
+            });
+        }
+
+        // Checkboxes
+        document.getElementById('chk-cognates').addEventListener('change', render);
+        document.getElementById('chk-connections').addEventListener('change', render);
+
+        function render() {
+            if (!_data) return;
+            document.getElementById('constellation-svg-wrap').innerHTML = '';
+            buildConstellation(_data);
+        }
+
+        // Helper: split meaning into lines
+        function wrapMeaning(s, maxPerLine) {
+            if (!s) return [''];
+            if (s.length <= maxPerLine) return [s];
+            var mid = Math.floor(s.length / 2);
+            var commaIdx = s.indexOf(',', Math.max(0, mid - 6));
+            if (commaIdx > 0 && commaIdx < s.length - 3) {
+                var line1 = s.substring(0, commaIdx + 1).trim();
+                var line2 = s.substring(commaIdx + 1).trim();
+                if (line1.length > maxPerLine) line1 = line1.substring(0, maxPerLine - 1) + '\u2026';
+                if (line2.length > maxPerLine) line2 = line2.substring(0, maxPerLine - 1) + '\u2026';
+                return [line1, line2];
+            }
+            var spaceIdx = s.lastIndexOf(' ', maxPerLine);
+            if (spaceIdx > 3) {
+                return [s.substring(0, spaceIdx), s.substring(spaceIdx + 1).substring(0, maxPerLine)];
+            }
+            return [s.substring(0, maxPerLine - 1) + '\u2026'];
+        }
+
+        function buildConstellation(data) {
+            updateSize();
+            var showCognates = document.getElementById('chk-cognates').checked;
+            var showConnections = document.getElementById('chk-connections').checked;
+
+            var nodes = [];
+            var links = [];
+            var tooltip = d3.select('#constellation-tooltip');
+            var rootCount = data.roots.length;
+
+            // Cap roots for performance
+            var maxRoots = 20;
+            var displayRoots = data.roots.slice(0, maxRoots);
+
+            // Position root centers in a circle
+            var cx = width / 2;
+            var cy = height / 2;
+            var orbitR = Math.min(width, height) * 0.3;
+            if (rootCount <= 3) orbitR = Math.min(width, height) * 0.15;
+
+            displayRoots.forEach(function(r, idx) {
+                var angle = (2 * Math.PI * idx / displayRoots.length) - Math.PI / 2;
+                var x = cx + orbitR * Math.cos(angle);
+                var y = cy + orbitR * Math.sin(angle);
+                var rootR = 36 + Math.min(r.frequency * 4, 20);
+
+                nodes.push({
+                    id: 'root-' + r.root_translit,
+                    label: r.root_syriac,
+                    sublabel: r.root_translit,
+                    detail: r.gloss || '',
+                    type: 'root',
+                    rootParent: r.root_translit,
+                    r: rootR,
+                    color: ROOT_COLORS[idx % ROOT_COLORS.length],
+                    freq: r.frequency,
+                    x: x, y: y,
+                });
+
+                if (showCognates) {
+                    // Hebrew cognates (limit to 3 per root to keep it clean)
+                    var hLimit = Math.min(r.hebrew.length, 3);
+                    for (var hi = 0; hi < hLimit; hi++) {
+                        var hw = r.hebrew[hi];
+                        var hid = 'heb-' + r.root_translit + '-' + hi;
+                        nodes.push({
+                            id: hid,
+                            label: hw.word,
+                            sublabel: hw.translit,
+                            detail: hw.meaning,
+                            type: 'hebrew',
+                            rootParent: r.root_translit,
+                            r: 30,
+                            color: COLOR_HEBREW,
+                            outlier: hw.outlier,
+                        });
+                        links.push({ source: 'root-' + r.root_translit, target: hid, type: 'cognate' });
+                    }
+                    // Arabic cognates (limit to 3)
+                    var aLimit = Math.min(r.arabic.length, 3);
+                    for (var ai = 0; ai < aLimit; ai++) {
+                        var aw = r.arabic[ai];
+                        var aid = 'ar-' + r.root_translit + '-' + ai;
+                        nodes.push({
+                            id: aid,
+                            label: aw.word,
+                            sublabel: aw.translit,
+                            detail: aw.meaning,
+                            type: 'arabic',
+                            rootParent: r.root_translit,
+                            r: 30,
+                            color: COLOR_ARABIC,
+                            outlier: aw.outlier,
+                        });
+                        links.push({ source: 'root-' + r.root_translit, target: aid, type: 'cognate' });
+                    }
+                }
+            });
+
+            // Inter-root connections
+            if (showConnections) {
+                var displayRootSet = new Set(displayRoots.map(function(r) { return r.root_translit; }));
+                data.connections.forEach(function(c) {
+                    if (displayRootSet.has(c.source) && displayRootSet.has(c.target)) {
+                        links.push({
+                            source: 'root-' + c.source,
+                            target: 'root-' + c.target,
+                            type: 'bridge',
+                            concept: c.concept,
+                        });
+                    }
+                });
+            }
+
+            // Create SVG
+            var svg = d3.select('#constellation-svg-wrap')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+
+            var g = svg.append('g');
+
+            var zoom = d3.zoom()
+                .scaleExtent([0.2, 5])
+                .on('zoom', function(event) {
+                    g.attr('transform', event.transform);
+                });
+            svg.call(zoom);
+
+            // Links
+            var linkGroup = g.append('g').attr('class', 'links');
+            var linkSel = linkGroup.selectAll('line').data(links);
+            var linkEnter = linkSel.enter().append('line')
+                .attr('class', function(d) {
+                    return 'constellation-link-line' + (d.type === 'bridge' ? ' inter-root-link' : '');
+                })
+                .attr('stroke', function(d) { return d.type === 'bridge' ? COLOR_BRIDGE : COLOR_LINE; })
+                .attr('stroke-width', function(d) { return d.type === 'bridge' ? 2.5 : 1.5; })
+                .attr('stroke-dasharray', function(d) { return d.type === 'bridge' ? '6,4' : 'none'; })
+                .attr('stroke-opacity', function(d) { return d.type === 'bridge' ? 0.8 : 0.5; });
+
+            // Bridge labels on inter-root links
+            var bridgeLabels = g.append('g').attr('class', 'bridge-labels');
+            var bridgeLinks = links.filter(function(l) { return l.type === 'bridge' && l.concept; });
+            var bridgeLabelSel = bridgeLabels.selectAll('text').data(bridgeLinks);
+            var bridgeLabelEnter = bridgeLabelSel.enter().append('text')
+                .attr('class', 'bridge-label-text')
+                .attr('text-anchor', 'middle')
+                .attr('fill', COLOR_BRIDGE)
+                .attr('font-size', '9px')
+                .attr('font-style', 'italic')
+                .attr('pointer-events', 'none')
+                .text(function(d) { return d.concept; });
+
+            // Nodes
+            var nodeGroup = g.append('g').attr('class', 'nodes');
+            var nodeSel = nodeGroup.selectAll('g').data(nodes, function(d) { return d.id; });
+            var nodeEnter = nodeSel.enter().append('g')
+                .attr('class', 'constellation-node')
+                .style('cursor', 'pointer')
+                .call(d3.drag()
+                    .on('start', function(event, d) {
+                        if (!event.active) simulation.alphaTarget(0.3).restart();
+                        d.fx = d.x; d.fy = d.y;
+                    })
+                    .on('drag', function(event, d) {
+                        d.fx = event.x; d.fy = event.y;
+                    })
+                    .on('end', function(event, d) {
+                        if (!event.active) simulation.alphaTarget(0);
+                        d.fx = null; d.fy = null;
+                    }));
+
+            // Circle
+            nodeEnter.append('circle')
+                .attr('r', function(d) { return d.r; })
+                .attr('fill', function(d) {
+                    if (d.outlier) return d.color + '88';
+                    return d.color;
+                })
+                .attr('stroke', function(d) {
+                    if (d.outlier) return COLOR_BRIDGE;
+                    if (d.type === 'root') return '#fff';
+                    return 'rgba(255,255,255,0.5)';
+                })
+                .attr('stroke-width', function(d) {
+                    if (d.type === 'root') return 3;
+                    if (d.outlier) return 2;
+                    return 1.5;
+                })
+                .attr('stroke-dasharray', function(d) {
+                    return d.outlier ? '4,2' : 'none';
+                });
+
+            // Frequency badge for root nodes
+            nodeEnter.filter(function(d) { return d.type === 'root'; })
+                .append('circle')
+                .attr('cx', function(d) { return d.r * 0.65; })
+                .attr('cy', function(d) { return -d.r * 0.65; })
+                .attr('r', 10)
+                .attr('fill', '#fff')
+                .attr('stroke', function(d) { return d.color; })
+                .attr('stroke-width', 1.5);
+
+            nodeEnter.filter(function(d) { return d.type === 'root'; })
+                .append('text')
+                .attr('x', function(d) { return d.r * 0.65; })
+                .attr('y', function(d) { return -d.r * 0.65 + 4; })
+                .attr('text-anchor', 'middle')
+                .attr('fill', function(d) { return d.color; })
+                .attr('font-size', '10px')
+                .attr('font-weight', 'bold')
+                .attr('pointer-events', 'none')
+                .text(function(d) { return d.freq; });
+
+            // Label: main word
+            nodeEnter.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', function(d) { return d.type === 'root' ? '-0.8em' : '-0.6em'; })
+                .attr('fill', '#fff')
+                .attr('font-size', function(d) { return d.type === 'root' ? '14px' : '11px'; })
+                .attr('font-weight', 'bold')
+                .attr('pointer-events', 'none')
+                .text(function(d) { return d.label; });
+
+            // Label: transliteration
+            nodeEnter.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', function(d) { return d.type === 'root' ? '0.5em' : '0.5em'; })
+                .attr('fill', 'rgba(255,255,255,0.9)')
+                .attr('font-size', function(d) { return d.type === 'root' ? '11px' : '9px'; })
+                .attr('pointer-events', 'none')
+                .text(function(d) { return d.sublabel; });
+
+            // Root gloss
+            nodeEnter.filter(function(d) { return d.type === 'root' && d.detail; })
+                .each(function(d) {
+                    var el = d3.select(this);
+                    var lines = wrapMeaning(d.detail, 16);
+                    lines.forEach(function(line, idx) {
+                        el.append('text')
+                            .attr('text-anchor', 'middle')
+                            .attr('dy', (1.6 + idx * 1.0) + 'em')
+                            .attr('fill', 'rgba(255,255,255,0.75)')
+                            .attr('font-size', '8px')
+                            .attr('font-style', 'italic')
+                            .attr('pointer-events', 'none')
+                            .text(line);
+                    });
+                });
+
+            // Cognate meaning
+            nodeEnter.filter(function(d) { return d.type !== 'root' && d.detail; })
+                .each(function(d) {
+                    var el = d3.select(this);
+                    var lines = wrapMeaning(d.detail, 14);
+                    lines.forEach(function(line, idx) {
+                        el.append('text')
+                            .attr('text-anchor', 'middle')
+                            .attr('dy', (1.4 + idx * 1.0) + 'em')
+                            .attr('fill', 'rgba(255,255,255,0.8)')
+                            .attr('font-size', '8px')
+                            .attr('font-style', 'italic')
+                            .attr('pointer-events', 'none')
+                            .text(line);
+                    });
+                });
+
+            // Tooltip
+            nodeEnter.on('mouseover', function(event, d) {
+                var langLabel;
+                if (d.type === 'root') {
+                    langLabel = LANG === 'es' ? 'Raiz' : 'Root';
+                } else if (d.type === 'hebrew') {
+                    langLabel = LANG === 'es' ? 'Hebreo' : 'Hebrew';
+                } else {
+                    langLabel = LANG === 'es' ? 'Arabe' : 'Arabic';
+                }
+                var html = '<strong>' + d.label + '</strong> <small>(' + langLabel + ')</small><br>' +
+                           '<em>' + d.sublabel + '</em>';
+                if (d.detail) html += '<br>' + d.detail;
+                if (d.type === 'root') {
+                    html += '<br><small style="color:var(--accent-gold);">' +
+                        (LANG === 'es' ? 'Click = abrir visualizador' : 'Click = open visualizer') + '</small>';
+                }
+                if (d.outlier) {
+                    html += '<br><span style="color:#DAA520;font-weight:bold;">' +
+                        (LANG === 'es' ? 'Divergente' : 'Outlier') + '</span>';
+                }
+                tooltip.html(html)
+                    .style('display', 'block')
+                    .style('left', (event.pageX + 12) + 'px')
+                    .style('top', (event.pageY - 20) + 'px');
+
+                // Highlight this root family
+                if (d.rootParent) highlightRoot(d.rootParent);
+            })
+            .on('mousemove', function(event) {
+                tooltip.style('left', (event.pageX + 12) + 'px')
+                       .style('top', (event.pageY - 20) + 'px');
+            })
+            .on('mouseout', function() {
+                tooltip.style('display', 'none');
+                clearHighlight();
+            });
+
+            // Click: root nodes open visualizer
+            nodeEnter.filter(function(d) { return d.type === 'root'; })
+                .on('click', function(event, d) {
+                    window.open('/visualize/' + d.sublabel + '?lang=' + LANG + '&script=' + SCRIPT + '&trans=' + TRANS, '_blank');
+                });
+
+            // Force simulation
+            var cognateDist = showCognates ? 100 : 0;
+            var rootDist = orbitR * 0.8;
+            var charge = showCognates ? -300 : -500;
+
+            var simulation = d3.forceSimulation(nodes)
+                .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(function(l) {
+                    if (l.type === 'bridge') return rootDist;
+                    return cognateDist;
+                }))
+                .force('charge', d3.forceManyBody().strength(charge))
+                .force('center', d3.forceCenter(cx, cy))
+                .force('collision', d3.forceCollide().radius(function(d) { return d.r + 8; }))
+                .on('tick', function() {
+                    linkEnter.attr('x1', function(d) { return d.source.x; })
+                        .attr('y1', function(d) { return d.source.y; })
+                        .attr('x2', function(d) { return d.target.x; })
+                        .attr('y2', function(d) { return d.target.y; });
+
+                    bridgeLabelEnter
+                        .attr('x', function(d) { return (d.source.x + d.target.x) / 2; })
+                        .attr('y', function(d) { return (d.source.y + d.target.y) / 2 - 6; });
+
+                    nodeEnter.attr('transform', function(d) {
+                        return 'translate(' + d.x + ',' + d.y + ')';
+                    });
+                });
+
+            _simulation = simulation;
+
+            // Initial zoom to fit
+            setTimeout(function() {
+                var bounds = g.node().getBBox();
+                if (bounds.width > 0 && bounds.height > 0) {
+                    var padding = 40;
+                    var scale = Math.min(
+                        (width - padding * 2) / bounds.width,
+                        (height - padding * 2) / bounds.height,
+                        1.5
+                    );
+                    scale = Math.max(scale, 0.3);
+                    var tx = width / 2 - (bounds.x + bounds.width / 2) * scale;
+                    var ty = height / 2 - (bounds.y + bounds.height / 2) * scale;
+                    svg.transition().duration(500)
+                        .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+                }
+            }, 2000);
+        }
+
+        // Fullscreen toggle
+        (function() {
+            var fsBtn = document.getElementById('constellation-fullscreen');
+            var fsIcon = document.getElementById('fullscreen-icon');
+            var vizWrap = document.getElementById('constellation-viz-wrap');
+            if (!fsBtn) return;
+
+            var _cssFs = false;
+
+            function enterFs() {
+                if (vizWrap.requestFullscreen) {
+                    var p = vizWrap.requestFullscreen();
+                    if (p && p.catch) p.catch(function() { enterCssFs(); });
+                } else if (vizWrap.webkitRequestFullscreen) {
+                    vizWrap.webkitRequestFullscreen();
+                } else {
+                    enterCssFs();
+                }
+            }
+            function enterCssFs() {
+                _cssFs = true;
+                vizWrap.classList.add('is-fullscreen');
+                document.body.style.overflow = 'hidden';
+                fsIcon.textContent = 'fullscreen_exit';
+                setTimeout(render, 100);
+            }
+            function exitCssFs() {
+                _cssFs = false;
+                vizWrap.classList.remove('is-fullscreen');
+                document.body.style.overflow = '';
+                fsIcon.textContent = 'fullscreen';
+                setTimeout(render, 100);
+            }
+            function exitFs() {
+                if (document.fullscreenElement || document.webkitFullscreenElement) {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                } else if (_cssFs) {
+                    exitCssFs();
+                }
+            }
+            function onFsChange() {
+                var isNative = !!(document.fullscreenElement || document.webkitFullscreenElement);
+                if (isNative) {
+                    fsIcon.textContent = 'fullscreen_exit';
+                    vizWrap.classList.add('is-fullscreen');
+                } else {
+                    fsIcon.textContent = 'fullscreen';
+                    vizWrap.classList.remove('is-fullscreen');
+                }
+                setTimeout(render, 100);
+            }
+            fsBtn.addEventListener('click', function() {
+                if ((document.fullscreenElement || document.webkitFullscreenElement) || _cssFs) exitFs();
+                else enterFs();
+            });
+            document.addEventListener('fullscreenchange', onFsChange);
+            document.addEventListener('webkitfullscreenchange', onFsChange);
+        })();
+    })();
+
+    // --- Shared navbar JS ---
+    (function() {
+        var langBtn = document.getElementById('lang-toggle');
+        var langDrop = document.getElementById('lang-dropdown');
+        langBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            langDrop.style.display = langDrop.style.display === 'flex' ? 'none' : 'flex';
+            document.getElementById('settings-dropdown').style.display = 'none';
+        });
+        var setBtn = document.getElementById('settings-toggle');
+        var setDrop = document.getElementById('settings-dropdown');
+        setBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            setDrop.style.display = setDrop.style.display === 'flex' ? 'none' : 'flex';
+            langDrop.style.display = 'none';
+        });
+        document.addEventListener('click', function() {
+            langDrop.style.display = 'none';
+            setDrop.style.display = 'none';
+        });
+        setDrop.querySelectorAll('.settings-option').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var url = new URL(window.location);
+                if (btn.dataset.script) url.searchParams.set('script', btn.dataset.script);
+                if (btn.dataset.trans) url.searchParams.set('trans', btn.dataset.trans);
+                window.location = url;
+            });
+        });
+    })();
+
+    // Dark mode
+    (function() {
+        var toggle = document.getElementById('theme-toggle');
+        var html = document.documentElement;
+        function getTheme() { return localStorage.getItem('theme') || 'light'; }
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            toggle.innerHTML = '<span class="material-symbols-outlined">' + (theme === 'dark' ? 'bedtime' : 'sunny') + '</span>';
+        }
+        applyTheme(getTheme());
+        toggle.addEventListener('click', function() {
+            var next = (html.getAttribute('data-theme') || 'light') === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+        });
+    })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script>
+    (function() {
+        var shareBtn = document.getElementById('share-toggle');
+        var shareModal = document.getElementById('share-modal');
+        var shareUrl = document.getElementById('share-url');
+        var copyBtn = document.getElementById('share-copy-btn');
+        var qrEl = document.getElementById('share-qr');
+        var qrGenerated = false;
+        shareBtn.addEventListener('click', function() {
+            var url = window.location.href;
+            shareUrl.value = url;
+            if (!qrGenerated) {
+                var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                new QRCode(qrEl, { text: url, width: 200, height: 200,
+                    colorDark: isDark ? '#e8dfd5' : '#2c1810',
+                    colorLight: isDark ? '#2a2018' : '#ffffff',
+                    correctLevel: QRCode.CorrectLevel.M });
+                qrGenerated = true;
+            }
+            shareModal.classList.add('active');
+        });
+        shareModal.addEventListener('click', function(e) { if (e.target === shareModal) shareModal.classList.remove('active'); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && shareModal.classList.contains('active')) shareModal.classList.remove('active'); });
+        copyBtn.addEventListener('click', function() {
+            shareUrl.select();
+            navigator.clipboard.writeText(shareUrl.value).then(function() {
+                copyBtn.querySelector('.material-symbols-outlined').textContent = 'check';
+                setTimeout(function() { copyBtn.querySelector('.material-symbols-outlined').textContent = 'content_copy'; }, 1500);
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

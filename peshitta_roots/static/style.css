@@ -1200,6 +1200,19 @@ footer a:hover {
     min-width: 20px;
 }
 
+.verse-constellation-link {
+    position: absolute;
+    left: -5px;
+    top: 32px;
+    color: var(--accent-gold);
+    opacity: 0.4;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+.verse-constellation-link:hover {
+    opacity: 1;
+}
+
 .reader-line {
     margin-left: 22px;
     line-height: 1.8;

@@ -737,6 +737,222 @@ def api_root_family():
     })
 
 
+@app.route('/constellation')
+def constellation():
+    """Passage constellation visualizer page."""
+    _init()
+    lang = request.args.get('lang', 'es')
+    if lang not in _i18n:
+        lang = 'es'
+    t = _Namespace(_i18n[lang])
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
+        script = 'latin'
+    trans = request.args.get('trans', lang)
+    if trans not in ('en', 'es', 'he', 'ar'):
+        trans = lang
+    book = request.args.get('book', 'Matthew')
+    chapter = request.args.get('chapter', 1, type=int)
+    v_start = request.args.get('v_start', 1, type=int)
+    v_end = request.args.get('v_end', v_start, type=int)
+    book_names = _i18n[lang].get('book_names', {})
+    return render_template('constellation.html', t=t, lang=lang, script=script,
+                           trans=trans, book=book, chapter=chapter,
+                           v_start=v_start, v_end=v_end,
+                           book_names=book_names)
+
+
+@app.route('/api/passage-constellation')
+def api_passage_constellation():
+    """Return constellation data for a passage: roots, cognates, and inter-root connections."""
+    _init()
+    book = request.args.get('book', '').strip()
+    chapter = request.args.get('chapter', 0, type=int)
+    v_start = request.args.get('v_start', 0, type=int)
+    v_end = request.args.get('v_end', v_start, type=int)
+    lang = request.args.get('lang', 'es')
+    if lang not in _i18n:
+        lang = 'es'
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
+        script = 'latin'
+    translit_fn = _get_translit_fn(script)
+    trans = request.args.get('trans', lang)
+    if trans not in ('en', 'es', 'he', 'ar'):
+        trans = lang
+    meaning_lang = trans if trans in ('es', 'en') else lang
+
+    if not book or not chapter or not v_start:
+        return jsonify({'error': 'Missing book, chapter, or v_start'}), 400
+
+    # Collect verses
+    verses = []
+    for v_num in range(v_start, v_end + 1):
+        ref = f"{book} {chapter}:{v_num}"
+        syriac_text = _corpus.get_verse_text(ref)
+        if syriac_text is None:
+            continue
+        words = syriac_text.split()
+        verse_words = []
+        for w in words:
+            root = _extractor.lookup_word_root(w)
+            root_translit = _translit_to_dash(root) if root else None
+            verse_words.append({
+                'syriac': w,
+                'translit': translit_fn(w),
+                'root': root_translit,
+                'root_syriac': root,
+            })
+        verses.append({
+            'ref': ref,
+            'verse_num': v_num,
+            'words': verse_words,
+        })
+
+    if not verses:
+        return jsonify({'error': 'No verses found'}), 404
+
+    # Collect unique roots with frequency and word forms
+    root_map = {}  # root_translit -> { root_syriac, word_forms, count }
+    for v in verses:
+        for w in v['words']:
+            rt = w['root']
+            if not rt:
+                continue
+            if rt not in root_map:
+                root_map[rt] = {
+                    'root_syriac': w['root_syriac'],
+                    'root_translit': rt,
+                    'word_forms': [],
+                    'count': 0,
+                }
+            root_map[rt]['count'] += 1
+            # Track unique word forms
+            form_key = w['syriac']
+            existing = [f for f in root_map[rt]['word_forms'] if f['syriac'] == form_key]
+            if not existing:
+                root_map[rt]['word_forms'].append({
+                    'syriac': w['syriac'],
+                    'translit': w['translit'],
+                    'verse_ref': v['ref'],
+                })
+
+    # Build root data with cognates
+    roots_data = []
+    root_keys_in_passage = set()  # cognate.json keys for bridge detection
+    for rt, info in root_map.items():
+        root_syriac = info['root_syriac']
+        cognate_entry = _cognate_lookup.lookup(root_syriac)
+
+        gloss = ''
+        if cognate_entry:
+            gloss = cognate_entry.gloss_es if meaning_lang == 'es' else cognate_entry.gloss_en
+        if not gloss:
+            gloss = _extractor.get_root_gloss(root_syriac)
+
+        # Cognates
+        hebrew = []
+        arabic = []
+        bridges_raw = []
+        if cognate_entry:
+            for hw in cognate_entry.hebrew:
+                hebrew.append({
+                    'word': hw.word,
+                    'translit': hw.transliteration,
+                    'meaning': hw.meaning_es if meaning_lang == 'es' else hw.meaning_en,
+                    'outlier': hw.outlier,
+                })
+            for aw in cognate_entry.arabic:
+                arabic.append({
+                    'word': aw.word,
+                    'translit': aw.transliteration,
+                    'meaning': aw.meaning_es if meaning_lang == 'es' else aw.meaning_en,
+                    'outlier': aw.outlier,
+                })
+            if cognate_entry.semantic_bridges:
+                for b in cognate_entry.semantic_bridges:
+                    bridges_raw.append({
+                        'target_root': b.target_root,
+                        'bridge_concept': b.bridge_concept_es if meaning_lang == 'es' else b.bridge_concept_en,
+                    })
+            # Track the cognate key for this root
+            key = _cognate_lookup._syriac_to_key.get(root_syriac)
+            if key:
+                root_keys_in_passage.add(key)
+
+        roots_data.append({
+            'root_translit': rt,
+            'root_syriac': root_syriac,
+            'gloss': gloss,
+            'frequency': info['count'],
+            'word_forms': info['word_forms'],
+            'hebrew': hebrew,
+            'arabic': arabic,
+            'bridges': bridges_raw,
+        })
+
+    # Sort by frequency (most common roots first)
+    roots_data.sort(key=lambda r: -r['frequency'])
+
+    # Detect inter-root connections (bridges between roots in the passage)
+    connections = []
+    passage_root_translits = {r['root_translit'] for r in roots_data}
+    seen_connections = set()
+    for rd in roots_data:
+        for b in rd.get('bridges', []):
+            target_key = b['target_root']
+            # Check if target root is also in this passage
+            # The target_root in bridges is a cognates.json key (e.g., "n-w-kh")
+            # Convert to translit format for matching
+            target_translit = target_key.upper().replace('-', '-')
+            if target_translit in passage_root_translits:
+                conn_key = tuple(sorted([rd['root_translit'], target_translit]))
+                if conn_key not in seen_connections:
+                    seen_connections.add(conn_key)
+                    connections.append({
+                        'source': rd['root_translit'],
+                        'target': target_translit,
+                        'concept': b['bridge_concept'],
+                    })
+
+    # Also check for shared consonants (2 of 3)
+    root_translits = list(passage_root_translits)
+    for i in range(len(root_translits)):
+        for j in range(i + 1, len(root_translits)):
+            r1_parts = root_translits[i].split('-')
+            r2_parts = root_translits[j].split('-')
+            if len(r1_parts) == 3 and len(r2_parts) == 3:
+                shared = sum(1 for a, b in zip(r1_parts, r2_parts) if a == b)
+                if shared >= 2:
+                    conn_key = tuple(sorted([root_translits[i], root_translits[j]]))
+                    if conn_key not in seen_connections:
+                        seen_connections.add(conn_key)
+                        label = (meaning_lang == 'es' and 'Raíces hermanas' or 'Sister roots') + \
+                                f' ({shared}/3)'
+                        connections.append({
+                            'source': root_translits[i],
+                            'target': root_translits[j],
+                            'concept': label,
+                            'type': 'sister',
+                        })
+
+    # Build display reference
+    book_names = _i18n[lang].get('book_names', {})
+    book_display = book_names.get(book, book)
+    if v_start == v_end:
+        ref_display = f"{book_display} {chapter}:{v_start}"
+    else:
+        ref_display = f"{book_display} {chapter}:{v_start}-{v_end}"
+
+    return jsonify({
+        'reference': ref_display,
+        'verses': verses,
+        'roots': roots_data,
+        'connections': connections,
+        'total_roots': len(roots_data),
+    })
+
+
 def create_app():
     """Factory function for the Flask app."""
     return app

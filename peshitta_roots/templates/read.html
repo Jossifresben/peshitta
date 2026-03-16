@@ -98,6 +98,10 @@
             {% for v in verses %}
             <div class="reader-verse">
                 <span class="verse-num">{{ v.number }}</span>
+                <a href="{{ url_for('constellation', book=book, chapter=chapter, v_start=v.number, v_end=v.number, lang=lang, script=script, trans=trans) }}"
+                   class="verse-constellation-link" title="{% if lang == 'es' %}Ver constelacion del versiculo{% else %}View verse constellation{% endif %}">
+                    <span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle;">scatter_plot</span>
+                </a>
                 <div class="reader-line reader-syriac">
                     {% for w in v.words %}
                     <span class="rw{% if w.has_root %} clickable{% endif %}" {% if w.has_root %}data-form="{{ w.syriac }}" data-root="{{ w.root }}" data-root-translit="{{ w.root_translit }}" title="{{ w.root_translit }}"{% endif %}>{{ w.syriac }}</span>
