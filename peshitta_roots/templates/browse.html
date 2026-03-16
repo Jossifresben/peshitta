@@ -75,6 +75,7 @@
                             <td class="gloss-cell">{{ root.gloss }}</td>
                             <td>{{ root.forms }}</td>
                             <td><span class="count-badge">{{ root.occurrences }}</span></td>
+                            <td><a href="{{ url_for('visualize', root_key=root.translit_key, lang=lang, script=script, trans=trans) }}" class="viz-btn" title="{% if lang == 'es' %}Visualizar{% else %}Visualize{% endif %}"><span class="material-symbols-outlined">hub</span></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

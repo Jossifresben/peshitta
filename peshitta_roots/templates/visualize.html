@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ t.app_title }} — {{ root_key }}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="sticky-header">
+        <a href="{{ url_for('index', lang=lang) }}" class="logo-link" title="{{ t.app_title }}">
+            <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo" class="navbar-logo">
+        </a>
+        <div class="lang-wrapper">
+            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language"><span class="material-symbols-outlined">captive_portal</span></button>
+            <div class="lang-dropdown" id="lang-dropdown">
+                <a href="{{ url_for('visualize', root_key=root_key, lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}">ES</a>
+                <a href="{{ url_for('visualize', root_key=root_key, lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}">EN</a>
+            </div>
+        </div>
+        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
+        <div class="settings-wrapper">
+            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}"><span class="material-symbols-outlined">settings</span></button>
+            <div class="settings-dropdown" id="settings-dropdown">
+                <div class="settings-label">{{ t.settings_script }}</div>
+                <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
+                <button class="settings-option{% if script == 'syriac' %} active{% endif %}" data-script="syriac">{{ t.settings_syriac }}</button>
+                <button class="settings-option{% if script == 'hebrew' %} active{% endif %}" data-script="hebrew">{{ t.settings_hebrew }}</button>
+                <button class="settings-option{% if script == 'arabic' %} active{% endif %}" data-script="arabic">{{ t.settings_arabic }}</button>
+                <div class="settings-divider"></div>
+                <div class="settings-label">{{ t.settings_translation }}</div>
+                <button class="settings-option{% if trans == 'en' %} active{% endif %}" data-trans="en">{{ t.settings_trans_en }}</button>
+                <button class="settings-option{% if trans == 'es' %} active{% endif %}" data-trans="es">{{ t.settings_trans_es }}</button>
+                <button class="settings-option{% if trans == 'he' %} active{% endif %}" data-trans="he">{{ t.settings_trans_he }}</button>
+                <button class="settings-option{% if trans == 'ar' %} active{% endif %}" data-trans="ar">{{ t.settings_trans_ar }}</button>
+            </div>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="page-title">{% if lang == 'es' %}Visualizador de Raíz{% else %}Root Visualizer{% endif %}</h1>
+            <p class="back-link"><a href="{{ url_for('index', lang=lang, q=root_key) }}">{% if lang == 'es' %}&larr; Volver a resultados{% else %}&larr; Back to results{% endif %}</a></p>
+        </header>
+
+        <div id="viz-loading" class="viz-loading">
+            <p>{% if lang == 'es' %}Cargando familia de raíz...{% else %}Loading root family...{% endif %}</p>
+        </div>
+        <div id="viz-error" class="viz-error" style="display:none;"></div>
+        <div id="viz-container" class="viz-container" style="display:none;">
+            <div id="viz-svg-wrap" class="viz-svg-wrap"></div>
+            <div id="viz-tooltip" class="viz-tooltip"></div>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        var ROOT_KEY = {{ root_key|tojson }};
+        var LANG = {{ lang|tojson }};
+        var SCRIPT = {{ script|tojson }};
+
+        // Colors
+        var COLOR_CENTER = '#8B4513';
+        var COLOR_SYRIAC = '#A0522D';
+        var COLOR_HEBREW = '#2E5090';
+        var COLOR_ARABIC = '#2D7D46';
+        var COLOR_OUTLIER = '#999';
+        var COLOR_LINE = '#ccc';
+
+        var width, height;
+        function updateSize() {
+            var wrap = document.getElementById('viz-svg-wrap');
+            width = wrap.clientWidth;
+            height = Math.max(500, Math.min(700, window.innerHeight - 200));
+        }
+        updateSize();
+
+        fetch('/api/root-family?root=' + encodeURIComponent(ROOT_KEY) + '&lang=' + LANG + '&script=' + SCRIPT)
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.error) {
+                document.getElementById('viz-loading').style.display = 'none';
+                document.getElementById('viz-error').style.display = 'block';
+                document.getElementById('viz-error').textContent = data.error;
+                return;
+            }
+            document.getElementById('viz-loading').style.display = 'none';
+            document.getElementById('viz-container').style.display = 'block';
+            buildViz(data);
+        })
+        .catch(function(err) {
+            document.getElementById('viz-loading').style.display = 'none';
+            document.getElementById('viz-error').style.display = 'block';
+            document.getElementById('viz-error').textContent = 'Error: ' + err.message;
+        });
+
+        function buildViz(data) {
+            updateSize();
+            var nodes = [];
+            var links = [];
+            var tooltip = d3.select('#viz-tooltip');
+
+            // Center node
+            nodes.push({
+                id: 'center',
+                label: data.root,
+                sublabel: data.root_translit,
+                detail: data.sabor_raiz,
+                type: 'center',
+                r: 50,
+                fx: width / 2,
+                fy: height / 2
+            });
+
+            // Syriac words
+            data.syriac_words.forEach(function(w, i) {
+                nodes.push({
+                    id: 'syr-' + i,
+                    label: w.word,
+                    sublabel: w.translit,
+                    detail: w.meaning,
+                    refs: w.references,
+                    type: 'syriac',
+                    r: 32
+                });
+                links.push({ source: 'center', target: 'syr-' + i });
+            });
+
+            // Hebrew cognates
+            data.hebrew.forEach(function(w, i) {
+                nodes.push({
+                    id: 'heb-' + i,
+                    label: w.word,
+                    sublabel: w.translit,
+                    detail: w.meaning,
+                    type: 'hebrew',
+                    r: 30
+                });
+                links.push({ source: 'center', target: 'heb-' + i });
+            });
+
+            // Arabic cognates
+            data.arabic.forEach(function(w, i) {
+                nodes.push({
+                    id: 'ar-' + i,
+                    label: w.word,
+                    sublabel: w.translit,
+                    detail: w.meaning,
+                    type: 'arabic',
+                    r: 30
+                });
+                links.push({ source: 'center', target: 'ar-' + i });
+            });
+
+            var svg = d3.select('#viz-svg-wrap')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+
+            // Arrowhead marker
+            svg.append('defs').append('marker')
+                .attr('id', 'arrow')
+                .attr('viewBox', '0 -5 10 10')
+                .attr('refX', 20)
+                .attr('refY', 0)
+                .attr('markerWidth', 6)
+                .attr('markerHeight', 6)
+                .attr('orient', 'auto')
+                .append('path')
+                .attr('d', 'M0,-4L10,0L0,4')
+                .attr('fill', COLOR_LINE);
+
+            function nodeColor(d) {
+                if (d.type === 'center') return COLOR_CENTER;
+                if (d.type === 'syriac') return COLOR_SYRIAC;
+                if (d.type === 'hebrew') return COLOR_HEBREW;
+                if (d.type === 'arabic') return COLOR_ARABIC;
+                return COLOR_OUTLIER;
+            }
+
+            var simulation = d3.forceSimulation(nodes)
+                .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(140))
+                .force('charge', d3.forceManyBody().strength(-300))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('collision', d3.forceCollide().radius(function(d) { return d.r + 10; }));
+
+            var link = svg.append('g')
+                .selectAll('line')
+                .data(links)
+                .join('line')
+                .attr('stroke', COLOR_LINE)
+                .attr('stroke-width', 2)
+                .attr('marker-end', 'url(#arrow)');
+
+            var node = svg.append('g')
+                .selectAll('g')
+                .data(nodes)
+                .join('g')
+                .call(d3.drag()
+                    .on('start', dragstart)
+                    .on('drag', dragged)
+                    .on('end', dragend));
+
+            // Circles
+            node.append('circle')
+                .attr('r', function(d) { return d.r; })
+                .attr('fill', nodeColor)
+                .attr('stroke', '#fff')
+                .attr('stroke-width', 2)
+                .style('cursor', 'pointer');
+
+            // Labels - main word
+            node.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', function(d) { return d.type === 'center' ? '-0.5em' : '-0.3em'; })
+                .attr('fill', '#fff')
+                .attr('font-size', function(d) { return d.type === 'center' ? '14px' : '12px'; })
+                .attr('font-weight', 'bold')
+                .attr('pointer-events', 'none')
+                .text(function(d) { return d.label; });
+
+            // Labels - transliteration
+            node.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', function(d) { return d.type === 'center' ? '0.7em' : '0.8em'; })
+                .attr('fill', '#fff')
+                .attr('font-size', '10px')
+                .attr('pointer-events', 'none')
+                .text(function(d) { return d.sublabel; });
+
+            // Center: sabor raiz below
+            node.filter(function(d) { return d.type === 'center'; })
+                .append('text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', '1.8em')
+                .attr('fill', '#fff')
+                .attr('font-size', '9px')
+                .attr('font-style', 'italic')
+                .attr('pointer-events', 'none')
+                .text(function(d) { return d.detail; });
+
+            // Tooltip on hover
+            node.on('mouseover', function(event, d) {
+                if (d.type === 'center') return;
+                var lang_label = d.type === 'syriac' ? (LANG === 'es' ? 'Siríaco' : 'Syriac') :
+                                 d.type === 'hebrew' ? (LANG === 'es' ? 'Hebreo' : 'Hebrew') :
+                                 (LANG === 'es' ? 'Árabe' : 'Arabic');
+                var html = '<strong>' + d.label + '</strong> <small>(' + lang_label + ')</small><br>' +
+                           '<em>' + d.sublabel + '</em><br>' +
+                           d.detail;
+                if (d.refs && d.refs.length > 0) {
+                    html += '<br><small>' + d.refs.join(', ') + '</small>';
+                }
+                tooltip.html(html)
+                    .style('display', 'block')
+                    .style('left', (event.pageX + 12) + 'px')
+                    .style('top', (event.pageY - 20) + 'px');
+            })
+            .on('mousemove', function(event) {
+                tooltip.style('left', (event.pageX + 12) + 'px')
+                       .style('top', (event.pageY - 20) + 'px');
+            })
+            .on('mouseout', function() {
+                tooltip.style('display', 'none');
+            });
+
+            // Click on syriac word → go to search
+            node.on('click', function(event, d) {
+                if (d.type === 'syriac' && d.refs && d.refs.length > 0) {
+                    window.location.href = '/?lang=' + LANG + '&q=' + encodeURIComponent(ROOT_KEY) + '#results';
+                }
+            });
+
+            simulation.on('tick', function() {
+                link.attr('x1', function(d) { return d.source.x; })
+                    .attr('y1', function(d) { return d.source.y; })
+                    .attr('x2', function(d) { return d.target.x; })
+                    .attr('y2', function(d) { return d.target.y; });
+                node.attr('transform', function(d) {
+                    d.x = Math.max(d.r, Math.min(width - d.r, d.x));
+                    d.y = Math.max(d.r, Math.min(height - d.r, d.y));
+                    return 'translate(' + d.x + ',' + d.y + ')';
+                });
+            });
+
+            // Legend
+            var legend = svg.append('g').attr('transform', 'translate(20, ' + (height - 80) + ')');
+            var langs = [
+                { label: LANG === 'es' ? 'Siríaco' : 'Syriac', color: COLOR_SYRIAC },
+                { label: LANG === 'es' ? 'Hebreo' : 'Hebrew', color: COLOR_HEBREW },
+                { label: LANG === 'es' ? 'Árabe' : 'Arabic', color: COLOR_ARABIC }
+            ];
+            langs.forEach(function(l, i) {
+                legend.append('circle').attr('cx', 0).attr('cy', i * 22).attr('r', 8).attr('fill', l.color);
+                legend.append('text').attr('x', 16).attr('y', i * 22 + 4)
+                    .attr('fill', 'var(--text)').attr('font-size', '12px').text(l.label);
+            });
+
+            function dragstart(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x; d.fy = d.y;
+            }
+            function dragged(event, d) {
+                d.fx = event.x; d.fy = event.y;
+            }
+            function dragend(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                if (d.type !== 'center') { d.fx = null; d.fy = null; }
+            }
+        }
+    })();
+
+    // --- Shared navbar JS (lang, settings, theme) ---
+    (function() {
+        var langBtn = document.getElementById('lang-toggle');
+        var langDrop = document.getElementById('lang-dropdown');
+        langBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            langDrop.style.display = langDrop.style.display === 'flex' ? 'none' : 'flex';
+            document.getElementById('settings-dropdown').style.display = 'none';
+        });
+        var setBtn = document.getElementById('settings-toggle');
+        var setDrop = document.getElementById('settings-dropdown');
+        setBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            setDrop.style.display = setDrop.style.display === 'flex' ? 'none' : 'flex';
+            langDrop.style.display = 'none';
+        });
+        document.addEventListener('click', function() {
+            langDrop.style.display = 'none';
+            setDrop.style.display = 'none';
+        });
+        setDrop.querySelectorAll('.settings-option').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var url = new URL(window.location);
+                if (btn.dataset.script) url.searchParams.set('script', btn.dataset.script);
+                if (btn.dataset.trans) url.searchParams.set('trans', btn.dataset.trans);
+                window.location = url;
+            });
+        });
+    })();
+
+    // Dark mode
+    (function() {
+        var toggle = document.getElementById('theme-toggle');
+        var html = document.documentElement;
+        function getTheme() { return localStorage.getItem('theme') || 'light'; }
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            toggle.innerHTML = '<span class="material-symbols-outlined">' + (theme === 'dark' ? 'bedtime' : 'sunny') + '</span>';
+        }
+        applyTheme(getTheme());
+        toggle.addEventListener('click', function() {
+            var next = (html.getAttribute('data-theme') || 'light') === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+        });
+    })();
+    </script>
+</body>
+</html>

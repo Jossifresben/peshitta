@@ -568,6 +568,104 @@ def api_word_root():
     })
 
 
+@app.route('/visualize/<root_key>')
+def visualize(root_key):
+    """Root family visualizer page."""
+    _init()
+    lang = request.args.get('lang', 'es')
+    if lang not in _i18n:
+        lang = 'es'
+    t = _Namespace(_i18n[lang])
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
+        script = 'latin'
+    trans = request.args.get('trans', lang)
+    if trans not in ('en', 'es', 'he', 'ar'):
+        trans = lang
+    return render_template('visualize.html', t=t, lang=lang, script=script,
+                           trans=trans, root_key=root_key.upper())
+
+
+@app.route('/api/root-family')
+def api_root_family():
+    """Return full root family data for the visualizer."""
+    _init()
+    root_input = request.args.get('root', '').strip()
+    lang = request.args.get('lang', 'es')
+    if lang not in _i18n:
+        lang = 'es'
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
+        script = 'latin'
+    translit_fn = _get_translit_fn(script)
+
+    if not root_input:
+        return jsonify({'error': 'Missing root parameter'}), 400
+
+    root_syriac = parse_root_input(root_input)
+    if root_syriac is None:
+        return jsonify({'error': 'Invalid root'}), 400
+
+    root_entry = _extractor.lookup_root(root_syriac)
+    cognate_entry = _cognate_lookup.lookup(root_syriac)
+
+    gloss = ''
+    sabor_raiz_es = ''
+    sabor_raiz_en = ''
+    if cognate_entry:
+        gloss = cognate_entry.gloss_es if lang == 'es' else cognate_entry.gloss_en
+        sabor_raiz_es = getattr(cognate_entry, 'sabor_raiz_es', '') or ''
+        sabor_raiz_en = getattr(cognate_entry, 'sabor_raiz_en', '') or ''
+    if not gloss:
+        gloss = _extractor.get_root_gloss(root_syriac)
+
+    sabor_raiz = sabor_raiz_es if lang == 'es' else sabor_raiz_en
+    if not sabor_raiz:
+        sabor_raiz = gloss
+
+    # Syriac word forms
+    syriac_words = []
+    if root_entry:
+        for m in root_entry.matches:
+            if script == 'latin':
+                translit_display = m.transliteration
+            else:
+                translit_display = translit_fn(m.form)
+            syriac_words.append({
+                'word': m.form,
+                'translit': translit_display,
+                'meaning': _glosser.gloss(m.form, root_syriac, lang),
+                'references': m.references[:5],
+            })
+
+    # Cognates
+    hebrew = []
+    arabic = []
+    if cognate_entry:
+        for hw in cognate_entry.hebrew:
+            hebrew.append({
+                'word': hw.word,
+                'translit': hw.transliteration,
+                'meaning': hw.meaning_es if lang == 'es' else hw.meaning_en,
+            })
+        for aw in cognate_entry.arabic:
+            arabic.append({
+                'word': aw.word,
+                'translit': aw.transliteration,
+                'meaning': aw.meaning_es if lang == 'es' else aw.meaning_en,
+            })
+
+    return jsonify({
+        'root': root_syriac,
+        'root_translit': root_input.upper(),
+        'gloss': gloss,
+        'sabor_raiz': sabor_raiz,
+        'syriac_words': syriac_words,
+        'hebrew': hebrew,
+        'arabic': arabic,
+    })
+
+
 def create_app():
     """Factory function for the Flask app."""
     return app

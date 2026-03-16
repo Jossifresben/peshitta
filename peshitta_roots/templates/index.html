@@ -147,6 +147,7 @@
                     <a href="#section-peshitta" class="nav-btn">{{ t.results_peshitta }}</a>
                     <a href="#section-hebrew" class="nav-btn">{{ t.results_hebrew }}</a>
                     <a href="#section-arabic" class="nav-btn">{{ t.results_arabic }}</a>
+                    <a href="{{ url_for('visualize', root_key=result.root_translit, lang=lang, script=script, trans=trans) }}" class="viz-btn" title="{% if lang == 'es' %}Visualizar familia de raíz{% else %}Visualize root family{% endif %}"><span class="material-symbols-outlined">hub</span> {% if lang == 'es' %}Visualizar{% else %}Visualize{% endif %}</a>
                 </div>
             </div>
 

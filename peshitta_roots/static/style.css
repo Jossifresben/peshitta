@@ -1499,3 +1499,76 @@ footer a:hover {
     line-height: 1.6;
     color: var(--text-secondary);
 }
+
+/* === Root Visualizer === */
+.viz-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.viz-svg-wrap {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-card);
+    overflow: hidden;
+}
+
+.viz-svg-wrap svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.viz-loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+    font-size: 1.1em;
+}
+
+.viz-error {
+    text-align: center;
+    padding: 40px 20px;
+    color: #c0392b;
+    font-size: 1.1em;
+}
+
+.viz-tooltip {
+    display: none;
+    position: absolute;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: 0 4px 16px var(--shadow);
+    max-width: 280px;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.viz-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.viz-btn:hover {
+    background: var(--accent-dark);
+}
+
+.viz-btn .material-symbols-outlined {
+    font-size: 16px;
+}
