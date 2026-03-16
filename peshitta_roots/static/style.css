@@ -234,7 +234,7 @@ header p {
     opacity: 1;
 }
 
-.lang-toggle, .theme-toggle, .help-toggle, .settings-toggle {
+.lang-toggle, .theme-toggle, .help-toggle, .settings-toggle, .share-toggle {
     background: var(--accent);
     color: #fff;
     border: none;
@@ -248,14 +248,15 @@ header p {
     justify-content: center;
 }
 
-.lang-toggle:hover, .theme-toggle:hover, .help-toggle:hover, .settings-toggle:hover {
+.lang-toggle:hover, .theme-toggle:hover, .help-toggle:hover, .settings-toggle:hover, .share-toggle:hover {
     background: var(--accent-dark);
 }
 
 .lang-toggle .material-symbols-outlined,
 .theme-toggle .material-symbols-outlined,
 .help-toggle .material-symbols-outlined,
-.settings-toggle .material-symbols-outlined {
+.settings-toggle .material-symbols-outlined,
+.share-toggle .material-symbols-outlined {
     font-size: 22px;
 }
 
@@ -755,6 +756,79 @@ th {
 }
 .modal-copy:hover {
     color: var(--accent);
+}
+
+/* Share modal */
+.share-modal-content {
+    max-width: 400px;
+    text-align: center;
+    padding: 30px 35px 25px;
+}
+
+.share-modal-title {
+    font-size: 1.2em;
+    color: var(--accent-dark);
+    margin-bottom: 20px;
+}
+
+.share-qr-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.share-qr-wrap canvas,
+.share-qr-wrap img {
+    border-radius: 8px;
+    border: 3px solid var(--border);
+    padding: 8px;
+    background: #fff;
+}
+
+.share-qr-hint {
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.share-url-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.share-url-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border-input);
+    border-radius: 6px;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-size: 0.85em;
+    font-family: monospace;
+}
+
+.share-copy-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+}
+
+.share-copy-btn:hover {
+    background: var(--accent-dark);
+}
+
+.share-copy-btn .material-symbols-outlined {
+    font-size: 20px;
 }
 
 .modal-ref {

@@ -40,6 +40,24 @@
             </div>
         </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
+        <button class="share-toggle" id="share-toggle" aria-label="Share" title="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
+    </div>
+
+    <div id="share-modal" class="modal-overlay">
+        <div class="modal-content share-modal-content">
+            <button class="modal-close" onclick="document.getElementById('share-modal').classList.remove('active')">&times;</button>
+            <h3 class="share-modal-title">{% if lang == 'es' %}Compartir esta página{% else %}Share this page{% endif %}</h3>
+            <div class="share-qr-wrap">
+                <div id="share-qr"></div>
+                <p class="share-qr-hint">{% if lang == 'es' %}Escanea con tu dispositivo{% else %}Scan with your device{% endif %}</p>
+            </div>
+            <div class="share-url-wrap">
+                <input type="text" id="share-url" class="share-url-input" readonly>
+                <button id="share-copy-btn" class="share-copy-btn" title="{% if lang == 'es' %}Copiar{% else %}Copy{% endif %}">
+                    <span class="material-symbols-outlined">content_copy</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -757,6 +775,55 @@
             var next = (html.getAttribute('data-theme') || 'light') === 'dark' ? 'light' : 'dark';
             localStorage.setItem('theme', next);
             applyTheme(next);
+        });
+    })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script>
+    (function() {
+        var shareBtn = document.getElementById('share-toggle');
+        var shareModal = document.getElementById('share-modal');
+        var shareUrl = document.getElementById('share-url');
+        var copyBtn = document.getElementById('share-copy-btn');
+        var qrEl = document.getElementById('share-qr');
+        var qrGenerated = false;
+
+        shareBtn.addEventListener('click', function() {
+            var url = window.location.href;
+            shareUrl.value = url;
+            if (!qrGenerated) {
+                var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                new QRCode(qrEl, {
+                    text: url,
+                    width: 200,
+                    height: 200,
+                    colorDark: isDark ? '#e8dfd5' : '#2c1810',
+                    colorLight: isDark ? '#2a2018' : '#ffffff',
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+                qrGenerated = true;
+            }
+            shareModal.classList.add('active');
+        });
+
+        shareModal.addEventListener('click', function(e) {
+            if (e.target === shareModal) shareModal.classList.remove('active');
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && shareModal.classList.contains('active')) {
+                shareModal.classList.remove('active');
+            }
+        });
+
+        copyBtn.addEventListener('click', function() {
+            shareUrl.select();
+            navigator.clipboard.writeText(shareUrl.value).then(function() {
+                copyBtn.querySelector('.material-symbols-outlined').textContent = 'check';
+                setTimeout(function() {
+                    copyBtn.querySelector('.material-symbols-outlined').textContent = 'content_copy';
+                }, 1500);
+            });
         });
     })();
     </script>
