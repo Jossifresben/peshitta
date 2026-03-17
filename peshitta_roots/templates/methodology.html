@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="{{ 'es' if lang == 'es' else 'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8KTQRY55S"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S8KTQRY55S');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if lang == 'es' %}Un puente entre tradiciones{% else %}A bridge between traditions{% endif %} - {{ t.app_title }}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+    <style>
+        .methodology-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .methodology-content h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.6rem;
+            letter-spacing: -0.01em;
+        }
+        .methodology-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+        .methodology-content p {
+            margin-bottom: 1.2em;
+        }
+        .methodology-content em {
+            font-style: italic;
+        }
+        .methodology-content strong {
+            font-weight: 600;
+        }
+        .methodology-content blockquote {
+            border-left: 3px solid var(--accent, #b8860b);
+            margin: 1.5em 0;
+            padding: 0.75em 1.25em;
+            background: var(--card-bg, rgba(0,0,0,0.03));
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        .methodology-content .task-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5em 0;
+        }
+        .methodology-content .task-list li {
+            margin-bottom: 1em;
+            padding-left: 0;
+        }
+        .methodology-content .task-list li strong {
+            display: inline;
+        }
+        .methodology-content .example-block {
+            background: var(--card-bg, rgba(0,0,0,0.03));
+            border-radius: 10px;
+            padding: 1.25em 1.5em;
+            margin: 1.5em 0;
+        }
+        .methodology-content .example-block p {
+            margin-bottom: 0.75em;
+        }
+        .methodology-content .example-block p:last-child {
+            margin-bottom: 0;
+        }
+        .methodology-content .tool-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5em 0;
+        }
+        .methodology-content .tool-list li {
+            margin-bottom: 0.6em;
+            padding-left: 0;
+        }
+        .methodology-content .tool-list li strong {
+            color: var(--accent, #b8860b);
+        }
+        .methodology-content .references-list {
+            list-style: none;
+            padding: 0;
+            margin: 1em 0;
+        }
+        .methodology-content .references-list li {
+            margin-bottom: 0.5em;
+            padding-left: 1.5em;
+            text-indent: -1.5em;
+            font-style: italic;
+        }
+        .methodology-content .root-example {
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+        .methodology-content a {
+            color: var(--accent, #b8860b);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        .methodology-content a:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="sticky-header">
+        <a href="{{ url_for('index', lang=lang) }}" class="nav-logo" title="Home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
+        <div class="lang-wrapper">
+            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language"><span class="material-symbols-outlined">captive_portal</span></button>
+            <div class="lang-dropdown" id="lang-dropdown">
+                <a href="{{ url_for('methodology_page', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}">ES</a>
+                <a href="{{ url_for('methodology_page', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}">EN</a>
+            </div>
+        </div>
+        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
+        <div class="settings-wrapper">
+            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}"><span class="material-symbols-outlined">settings</span></button>
+            <div class="settings-dropdown" id="settings-dropdown">
+                <div class="settings-label">{{ t.settings_script }}</div>
+                <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
+                <button class="settings-option{% if script == 'syriac' %} active{% endif %}" data-script="syriac">{{ t.settings_syriac }}</button>
+                <button class="settings-option{% if script == 'hebrew' %} active{% endif %}" data-script="hebrew">{{ t.settings_hebrew }}</button>
+                <button class="settings-option{% if script == 'arabic' %} active{% endif %}" data-script="arabic">{{ t.settings_arabic }}</button>
+                <div class="settings-divider"></div>
+                <div class="settings-label">{{ t.settings_translation }}</div>
+                <button class="settings-option{% if trans == 'en' %} active{% endif %}" data-trans="en">{{ t.settings_trans_en }}</button>
+                <button class="settings-option{% if trans == 'es' %} active{% endif %}" data-trans="es">{{ t.settings_trans_es }}</button>
+                <button class="settings-option{% if trans == 'he' %} active{% endif %}" data-trans="he">{{ t.settings_trans_he }}</button>
+                <button class="settings-option{% if trans == 'ar' %} active{% endif %}" data-trans="ar">{{ t.settings_trans_ar }}</button>
+                <div class="settings-divider"></div>
+                <div class="settings-label">{{ t.settings_syriac_font }}</div>
+                <button class="settings-option syriac-font-option" data-syriac-font="estrangela">{{ t.settings_font_estrangela }}</button>
+                <button class="settings-option syriac-font-option" data-syriac-font="eastern">{{ t.settings_font_eastern }}</button>
+                <button class="settings-option syriac-font-option" data-syriac-font="western">{{ t.settings_font_western }}</button>
+            </div>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
+        <button class="share-toggle" id="share-toggle" aria-label="Share" title="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
+    </div>
+
+    <div id="share-modal" class="modal-overlay">
+        <div class="modal-content share-modal-content">
+            <button class="modal-close" onclick="document.getElementById('share-modal').classList.remove('active')">&times;</button>
+            <h3 class="share-modal-title">{% if lang == 'es' %}Compartir esta página{% else %}Share this page{% endif %}</h3>
+            <div class="share-qr-wrap">
+                <div id="share-qr"></div>
+                <p class="share-qr-hint">{% if lang == 'es' %}Escanea con tu dispositivo{% else %}Scan with your device{% endif %}</p>
+            </div>
+            <div class="share-url-wrap">
+                <input type="text" id="share-url" class="share-url-input" readonly>
+                <button id="share-copy-btn" class="share-copy-btn" title="{% if lang == 'es' %}Copiar{% else %}Copy{% endif %}">
+                    <span class="material-symbols-outlined">content_copy</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>{% if lang == 'es' %}Un puente entre tradiciones{% else %}A bridge between traditions{% endif %}</h1>
+            <p style="font-style: italic; font-size: 1.15em; margin-top: -0.25em;">{% if lang == 'es' %}Sabe mejor en arameo{% else %}It tastes better in Aramaic{% endif %}</p>
+        </header>
+
+        <div class="methodology-content">
+
+            {% if lang == 'es' %}
+
+            <p>El arameo, el hebreo y el árabe son lenguas hermanas. Comparten raíces, estructuras y una forma de entender la palabra como fuerza viva. Esto significa que el estudio del arameo de Jesús no pertenece a una sola confesión. Pertenece a la familia semítica entera. Un musulmán, un judío y un cristiano pueden sentarse ante la misma raíz y reconocer algo propio en ella. El puente interreligioso no es una construcción diplomática: ya existía en la lengua.</p>
+
+            <h2>El método: leer la Peshitta desde la raíz</h2>
+
+            <p>Las lenguas semíticas no funcionan como las indoeuropeas. El castellano, el griego, el latín definen. El arameo, el hebreo y el árabe <em>irradian</em>. Cada palabra brota de una raíz trilítera —tres consonantes que engendran familias enteras de significados emparentados. La raíz no entrega un concepto cerrado: abre un campo de fuerza. Lo que un diccionario traduce con una sola palabra, en arameo vibra en diez direcciones simultáneas.</p>
+
+            <p>Esto no es una curiosidad académica. Es un problema de primer orden cuando el texto en cuestión son los Evangelios. Los dichos de Jesús fueron pronunciados en arameo, recogidos en griego, vertidos al latín, traducidos al castellano. Cada capa de traducción gana algo y pierde algo. Lo que se pierde, casi siempre, es la raíz —y con ella, la onda expansiva de sentido que la palabra original desencadena en el oyente.</p>
+
+            <p>La propuesta detrás de esta aplicación es directa: <em>volver a la Peshitta</em>, el texto siríaco de los Evangelios, y leer desde la raíz. El método sistematizado aquí fue desarrollado por Vicente Haya (Abdelmumin Aya), filósofo, historiador y arabista de la Universidad de Sevilla.</p>
+
+            <h3>Las cinco tareas</h3>
+
+            <p>El método se articula en cinco pasos accesibles a cualquier persona con curiosidad:</p>
+
+            <ul class="task-list">
+                <li><strong>1. Comparar traducciones.</strong> Las traducciones divergen en los puntos exactos donde el arameo dice algo que ningún traductor supo resolver. Las divergencias son el mapa: señalan dónde excavar.</li>
+                <li><strong>2. Consultar la Peshitta.</strong> Ir al texto siríaco y localizar la forma verbal o nominal exacta que el arameo emplea.</li>
+                <li><strong>3. Buscar concordancias bíblicas.</strong> ¿Dónde más aparece esa misma raíz en las Escrituras? Los patrones recurrentes revelan el sentido profundo. Interpretar la Biblia desde la Biblia.</li>
+                <li><strong>4. Explorar la familia completa de la raíz.</strong> Recoger todas las palabras que nacen de las mismas tres consonantes. De esa familia emerge el <em>sabor de la raíz</em>: no una definición, sino un campo semántico vivo, algo que se experimenta más que se comprende.</li>
+                <li><strong>5. Producir la expansión de sentido.</strong> No una traducción alternativa. Una <em>expansión</em> que permita al lector habitar el espacio que la palabra aramea abre.</li>
+            </ul>
+
+            <h3>Lo que aparece cuando se mira</h3>
+
+            <p>Tres ejemplos bastan para ilustrar la diferencia.</p>
+
+            <div class="example-block">
+                <p>En <a href="{{ url_for('read', lang=lang, book='Luke', chapter=24, v_start=39, script=script, trans=trans) }}">Lucas 24,39</a>, Jesús resucitado dice a sus discípulos "tocadme." Pero el verbo arameo no es <span class="root-example">Q-R-B</span>, acercarse con suavidad, como quien ofrece un regalo. El verbo es <a href="{{ url_for('index', lang=lang, q='G-SH-SH', script=script, trans=trans) }}#results"><span class="root-example">G-SH-SH</span></a> (<span class="syriac">ܓܫܫ</span>): explorar, tantear, palpar, forcejear en la oscuridad. No dice "acercaos con cariño." Dice algo más crudo y más íntimo: <em>explorad mi carne con vuestras manos</em>. Un universo de significado que ninguna traducción conserva.</p>
+            </div>
+
+            <div class="example-block">
+                <p>En <a href="{{ url_for('read', lang=lang, book='Mark', chapter=11, v_start=12, script=script, trans=trans) }}">Marcos 11,12-14</a>, Jesús maldice una higuera que no da fruto. El episodio resulta desconcertante en cualquier lengua moderna. En arameo, la clave es acústica: "arrepentimiento" (<em>tetta'</em>) y "higuera" (<em>titta'</em>) son casi homófonos. Jesús no descargaba su ira contra un árbol. Hablaba del arrepentimiento estéril, del que no produce fruto. Un juego sonoro invisible fuera del arameo.</p>
+            </div>
+
+            <div class="example-block">
+                <p>Cuando Jesús dice a Lázaro "sal fuera" (<em>ta' lebar</em>) en <a href="{{ url_for('read', lang=lang, book='John', chapter=11, v_start=43, script=script, trans=trans) }}">Juan 11,43</a>, la raíz <a href="{{ url_for('index', lang=lang, q='A-T-Y', script=script, trans=trans) }}#results"><span class="root-example">'-T-Y</span></a> no solo significa "salir." También significa "triunfar hacia fuera," "fructificar hacia fuera," "transformarse hacia fuera." La resurrección no funciona aquí como evento médico. Funciona como explosión de sentido.</p>
+            </div>
+
+            <h3>Constelaciones de sentido</h3>
+
+            <p>Una herramienta central de este método son las <em>constelaciones de sentido</em>. Un pasaje funciona como un cielo nocturno. Las raíces trilíteras que lo componen forman patrones —constelaciones— que se iluminan mutuamente.</p>
+
+            <p><a href="{{ url_for('constellation', lang=lang, book='Luke', chapter=1, v_start=26, v_end=38, script=script, trans=trans) }}">La Anunciación (Lucas 1,26-38)</a> contiene al menos tres constelaciones reconocibles. La constelación de los <strong>Nombres</strong>: la raíz <a href="{{ url_for('index', lang=lang, q='Q-R-A', script=script, trans=trans) }}#results"><span class="root-example">Q-R-A</span></a> ("llamar") aparece cinco veces, <em>shema'</em> ("nombre") cuatro. La constelación de la <strong>Concepción y la Fertilidad</strong>: virgen, desposada, vientre, y el dato de que ocurre "en el sexto mes," que en el calendario arameo corresponde al mes del riego. La constelación del <strong>Poder</strong>: trono, reino, fuerza, señor.</p>
+
+            <p>Estos patrones no son decorativos. Son estructurales. Visibilizarlos transforma la lectura del texto.</p>
+
+            <h3>Constelaciones del Peshitta</h3>
+
+            <p>Esta aplicación traduce el método en herramientas concretas. La página principal ofrece dos modos de búsqueda:</p>
+
+            <ul class="tool-list">
+                <li><strong>Búsqueda por raíz</strong> — escribe una raíz trilítera (por ejemplo, <a href="{{ url_for('index', lang=lang, q='SH-L-M', script=script, trans=trans) }}#results"><em>SH-L-M</em></a>) y obtén todas sus formas atestiguadas en la Peshitta, con referencias bíblicas, cognados hebreos y árabes, y raíces hermanas. Prueba con <a href="{{ url_for('index', lang=lang, q='N-P-SH', script=script, trans=trans) }}#results"><em>N-P-SH</em></a>: la raíz que en arameo une "alma," "respirar," "descansar" y "multiplicarse" en un solo campo de sentido.</li>
+                <li><strong>Búsqueda por palabra</strong> — busca cualquier palabra en español o inglés y encuentra las raíces arameas que la contienen. Por ejemplo, <a href="{{ url_for('index', lang=lang, cw='shalom', script=script, trans=trans) }}#results"><em>shalom</em></a>.</li>
+            </ul>
+
+            <p>Desde los resultados de búsqueda puedes acceder a:</p>
+
+            <ul class="tool-list">
+                <li><a href="{{ url_for('visualize', root_key='SH-L-M', lang=lang, script=script, trans=trans) }}"><strong>Visualización de raíz</strong></a> — un grafo interactivo que despliega la familia completa de una raíz: todas las formas, significados y conexiones entre ellas. El <em>sabor de la raíz</em> hecho visible.</li>
+                <li><a href="{{ url_for('visualize', root_key='N-P-SH', lang=lang, script=script, trans=trans, tab='ficha') }}"><strong>Ficha de raíz</strong></a> — todas las formas atestiguadas de una raíz, sus significados, referencias bíblicas, cognados hebreos y árabes, y raíces hermanas reunidos en una sola vista.</li>
+                <li><a href="{{ url_for('read', lang=lang, book='John', chapter=1, v_start=1, script=script, trans=trans) }}"><strong>Lectura interlineal</strong></a> — el texto de la Peshitta verso a verso con transliteración, glosa y traducción, accesible desde cualquier referencia bíblica.</li>
+                <li><a href="{{ url_for('constellation', lang=lang, book='Luke', chapter=1, v_start=26, v_end=38, script=script, trans=trans) }}"><strong>Constelaciones</strong></a> — el mapa estelar de un pasaje: cada raíz trilítera representada como un nodo, con las conexiones entre raíces que iluminan la estructura profunda del texto.</li>
+            </ul>
+
+            <p>No pretendemos sustituir el estudio riguroso. Pretendemos que cualquier persona curiosa pueda dar los primeros pasos y descubrir, por sí misma, que en arameo sabe mejor.</p>
+
+            <h3>Referencias</h3>
+
+            <p>El método sistematizado aquí fue desarrollado por Vicente Haya (Abdelmumin Aya), filósofo, historiador y arabista de la Universidad de Sevilla. Sus obras principales sobre el tema:</p>
+
+            <ul class="references-list">
+                <li><em>El arameo en sus labios</em> (Fragmenta, 2013)</li>
+                <li><em>Belleza y profundidad</em> (Fragmenta, 2021)</li>
+                <li><em>Descolonizar a Jesucristo</em> (Akal, 2018)</li>
+                <li><em>El Padrenuestro en arameo</em> (Vaso Roto)</li>
+                <li><em>La Luz del arameo</em> (Almuzara, 2025)</li>
+            </ul>
+
+            {% else %}
+
+            <p>Aramaic, Hebrew, and Arabic are sister languages. They share roots, structures, and a fundamental understanding of the word as living force rather than fixed concept. This means the study of the Aramaic Jesus belongs to no single tradition. It belongs to the entire Semitic family. A Muslim, a Jew, and a Christian can sit before the same root and recognize something of their own in it. The interreligious bridge is not a diplomatic construction. It already existed in the language.</p>
+
+            <h2>The method: reading the Peshitta from the root</h2>
+
+            <p>Semitic languages work differently from the ones most Western readers know. English, Greek, Latin define. Aramaic, Hebrew, and Arabic <em>radiate</em>. Every word grows from a triliteral root — three consonants that generate entire families of related meanings. A root does not deliver a sealed concept. It opens a force field. What a dictionary renders as a single word, in Aramaic pulses in ten directions at once.</p>
+
+            <p>This matters urgently when the text in question is the Gospels. The sayings of Jesus were spoken in Aramaic, recorded in Greek, carried into Latin, translated into modern languages. Each layer of translation gains something and loses something. What is lost, almost always, is the root — and with it, the expansive wave of meaning that the original word set in motion.</p>
+
+            <p>The idea behind this application is straightforward: <em>go back to the Peshitta</em>, the Syriac text of the Gospels, and read from the root. The method systematized here was developed by Vicente Haya (Abdelmumin Aya), philosopher, historian, and Arabist at the University of Seville.</p>
+
+            <h3>The five tasks</h3>
+
+            <p>The method is built on five steps accessible to anyone willing to look closely:</p>
+
+            <ul class="task-list">
+                <li><strong>1. Compare translations.</strong> Translations diverge at the exact points where the Aramaic says something no translator could resolve. The disagreements are the map: they show where to dig.</li>
+                <li><strong>2. Consult the Peshitta.</strong> Go to the Syriac text and identify the precise verbal or nominal form used.</li>
+                <li><strong>3. Search biblical concordances.</strong> Where else does this same root appear in Scripture? Recurring patterns reveal deep meaning. Interpret the Bible from the Bible.</li>
+                <li><strong>4. Explore the full family of the root.</strong> Gather every word born from the same three consonants. From that family emerges the <em>root flavor</em> — not a definition, but a living semantic field, something experienced more than understood.</li>
+                <li><strong>5. Produce the expansion of meaning.</strong> Not an alternative translation. An <em>expansion</em> that lets the reader inhabit the space the Aramaic word opens.</li>
+            </ul>
+
+            <h3>What appears when you look</h3>
+
+            <p>Three examples show the difference clearly.</p>
+
+            <div class="example-block">
+                <p>In <a href="{{ url_for('read', lang=lang, book='Luke', chapter=24, v_start=39, script=script, trans=trans) }}">Luke 24:39</a>, the risen Jesus tells his disciples to "touch" him. But the Aramaic verb is not <span class="root-example">Q-R-B</span> — to approach gently, tenderly, as one bearing a gift. The verb is <a href="{{ url_for('index', lang=lang, q='G-SH-SH', script=script, trans=trans) }}#results"><span class="root-example">G-SH-SH</span></a> (<span class="syriac">ܓܫܫ</span>): to explore, to grope, to probe, to wrestle in the dark. He does not say "come near with kindness." He says something rawer and more intimate: <em>explore my flesh with your hands</em>. An entire universe of meaning that no translation preserves.</p>
+            </div>
+
+            <div class="example-block">
+                <p>In <a href="{{ url_for('read', lang=lang, book='Mark', chapter=11, v_start=12, script=script, trans=trans) }}">Mark 11:12-14</a>, Jesus curses a fig tree for bearing no fruit. The episode bewilders in any modern language. In Aramaic, the key is acoustic: "repentance" (<em>tetta'</em>) and "fig tree" (<em>titta'</em>) land as near-homophones. Jesus was not raging at a tree. He was speaking of barren repentance — repentance that bears nothing. A sound-play invisible outside Aramaic.</p>
+            </div>
+
+            <div class="example-block">
+                <p>When Jesus tells Lazarus "come out" (<em>ta' lebar</em>) in <a href="{{ url_for('read', lang=lang, book='John', chapter=11, v_start=43, script=script, trans=trans) }}">John 11:43</a>, the root <a href="{{ url_for('index', lang=lang, q='A-T-Y', script=script, trans=trans) }}#results"><span class="root-example">'-T-Y</span></a> does not only mean "exit." It also means "triumph outward," "bear fruit outward," "transform outward." Resurrection here does not function as a medical event. It functions as an explosion of meaning.</p>
+            </div>
+
+            <h3>Constellations of meaning</h3>
+
+            <p>A central tool of this method is the <em>constellation of meaning</em>. A passage works like a night sky. The triliteral roots within it form patterns — constellations — that illuminate each other.</p>
+
+            <p><a href="{{ url_for('constellation', lang=lang, book='Luke', chapter=1, v_start=26, v_end=38, script=script, trans=trans) }}">The Annunciation (Luke 1:26-38)</a> contains at least three recognizable constellations. The constellation of <strong>Names</strong>: the root <a href="{{ url_for('index', lang=lang, q='Q-R-A', script=script, trans=trans) }}#results"><span class="root-example">Q-R-A</span></a> ("to call") appears five times, <em>shema'</em> ("name") four. The constellation of <strong>Conception and Fertility</strong>: virgin, betrothed, womb, and the quietly remarkable detail that this happens "in the sixth month" — which in the Aramaic calendar marks the month of irrigation, the month when water enters the fields to bring forth life. The constellation of <strong>Power</strong>: throne, kingdom, force, lord.</p>
+
+            <p>These patterns are not decorative. They are structural. Making them visible transforms how the text is read.</p>
+
+            <h3>Peshitta Constellations</h3>
+
+            <p>This application translates the method into working tools. The home page offers two search modes:</p>
+
+            <ul class="tool-list">
+                <li><strong>Root search</strong> — type a triliteral root (e.g., <a href="{{ url_for('index', lang=lang, q='SH-L-M', script=script, trans=trans) }}#results"><em>SH-L-M</em></a>) and retrieve all its attested forms in the Peshitta, with biblical references, Hebrew and Arabic cognates, and sister roots. Try <a href="{{ url_for('index', lang=lang, q='N-P-SH', script=script, trans=trans) }}#results"><em>N-P-SH</em></a>: the root that in Aramaic weaves "soul," "to breathe," "to rest," and "to multiply" into a single field of meaning.</li>
+                <li><strong>Word search</strong> — search any word in English or Spanish and find the Aramaic roots behind it. For example, <a href="{{ url_for('index', lang=lang, cw='shalom', script=script, trans=trans) }}#results"><em>shalom</em></a>.</li>
+            </ul>
+
+            <p>From the search results you can access:</p>
+
+            <ul class="tool-list">
+                <li><a href="{{ url_for('visualize', root_key='SH-L-M', lang=lang, script=script, trans=trans) }}"><strong>Root visualization</strong></a> — an interactive graph that unfolds the full family of a root: every form, meaning, and connection between them. The <em>root flavor</em> made visible.</li>
+                <li><a href="{{ url_for('visualize', root_key='N-P-SH', lang=lang, script=script, trans=trans, tab='ficha') }}"><strong>Root card</strong></a> — every attested form of a root, its meanings, biblical references, Hebrew and Arabic cognates, and sister roots gathered in a single view.</li>
+                <li><a href="{{ url_for('read', lang=lang, book='John', chapter=1, v_start=1, script=script, trans=trans) }}"><strong>Interlinear reading</strong></a> — the Peshitta text verse by verse with transliteration, gloss, and translation, accessible from any biblical reference.</li>
+                <li><a href="{{ url_for('constellation', lang=lang, book='Luke', chapter=1, v_start=26, v_end=38, script=script, trans=trans) }}"><strong>Constellations</strong></a> — the star-map of a passage: each triliteral root displayed as a node, with connections between roots that illuminate the deep structure of the text.</li>
+            </ul>
+
+            <p>We do not claim to replace careful study. We aim to give any curious person the tools to take the first steps and discover, through their own exploration, that it truly does taste better in Aramaic.</p>
+
+            <h3>References</h3>
+
+            <p>The method systematized here was developed by Vicente Haya (Abdelmumin Aya), philosopher, historian, and Arabist at the University of Seville. His principal works on the subject:</p>
+
+            <ul class="references-list">
+                <li><em>El arameo en sus labios</em> (Fragmenta, 2013)</li>
+                <li><em>Belleza y profundidad</em> (Fragmenta, 2021)</li>
+                <li><em>Descolonizar a Jesucristo</em> (Akal, 2018)</li>
+                <li><em>El Padrenuestro en arameo</em> (Vaso Roto)</li>
+                <li><em>La Luz del arameo</em> (Almuzara, 2025)</li>
+            </ul>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+    <script>
+    // Settings dropdown
+    document.getElementById('settings-toggle').addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.getElementById('settings-dropdown').classList.toggle('open');
+        var ld = document.getElementById('lang-dropdown');
+        if (ld) ld.classList.remove('open');
+    });
+    document.addEventListener('click', function() {
+        document.getElementById('settings-dropdown').classList.remove('open');
+    });
+    document.getElementById('settings-dropdown').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Settings options
+    document.querySelectorAll('.settings-option').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var url = new URL(window.location);
+            if (this.dataset.script) {
+                url.searchParams.set('script', this.dataset.script);
+                localStorage.setItem('script', this.dataset.script);
+            } else if (this.dataset.trans) {
+                url.searchParams.set('trans', this.dataset.trans);
+                localStorage.setItem('trans', this.dataset.trans);
+            } else {
+                return;
+            }
+            window.location = url;
+        });
+    });
+
+    // --- Syriac Font Variant ---
+    (function() {
+        var html = document.documentElement;
+        var stored = localStorage.getItem('syriac-font') || 'estrangela';
+        if (stored !== 'estrangela') {
+            html.setAttribute('data-syriac-font', stored);
+        }
+        document.querySelectorAll('.syriac-font-option').forEach(function(btn) {
+            if (btn.getAttribute('data-syriac-font') === stored) {
+                btn.classList.add('active');
+            }
+            btn.addEventListener('click', function() {
+                var val = this.getAttribute('data-syriac-font');
+                localStorage.setItem('syriac-font', val);
+                if (val === 'estrangela') {
+                    html.removeAttribute('data-syriac-font');
+                } else {
+                    html.setAttribute('data-syriac-font', val);
+                }
+                document.querySelectorAll('.syriac-font-option').forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    })();
+
+    // Language dropdown
+    (function() {
+        var langToggle = document.getElementById('lang-toggle');
+        var langDropdown = document.getElementById('lang-dropdown');
+        if (langToggle && langDropdown) {
+            langToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langDropdown.classList.toggle('open');
+                var sd = document.getElementById('settings-dropdown');
+                if (sd) sd.classList.remove('open');
+            });
+            document.addEventListener('click', function() {
+                langDropdown.classList.remove('open');
+            });
+            langDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+    })();
+
+    // Dark mode
+    (function() {
+        var toggle = document.getElementById('theme-toggle');
+        var dark = localStorage.getItem('dark') === '1';
+        if (dark) { document.body.classList.add('dark'); toggle.innerHTML = '<span class="material-symbols-outlined">bedtime</span>'; }
+        toggle.addEventListener('click', function() {
+            dark = !dark;
+            document.body.classList.toggle('dark', dark);
+            toggle.innerHTML = '<span class="material-symbols-outlined">' + (dark ? 'bedtime' : 'sunny') + '</span>';
+            localStorage.setItem('dark', dark ? '1' : '0');
+        });
+    })();
+
+    // Restore settings from localStorage
+    (function() {
+        var url = new URL(window.location);
+        var changed = false;
+        var storedScript = localStorage.getItem('script');
+        if (storedScript && storedScript !== 'latin' && !url.searchParams.has('script')) {
+            url.searchParams.set('script', storedScript);
+            changed = true;
+        }
+        var storedTrans = localStorage.getItem('trans');
+        if (storedTrans && !url.searchParams.has('trans')) {
+            url.searchParams.set('trans', storedTrans);
+            changed = true;
+        }
+        if (changed) window.location = url;
+    })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script>
+    (function() {
+        var shareBtn = document.getElementById('share-toggle');
+        var shareModal = document.getElementById('share-modal');
+        var shareUrl = document.getElementById('share-url');
+        var copyBtn = document.getElementById('share-copy-btn');
+        var qrEl = document.getElementById('share-qr');
+        var qrGenerated = false;
+
+        shareBtn.addEventListener('click', function() {
+            var url = window.location.href;
+            shareUrl.value = url;
+            if (!qrGenerated) {
+                var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                new QRCode(qrEl, {
+                    text: url,
+                    width: 200,
+                    height: 200,
+                    colorDark: isDark ? '#e8dfd5' : '#2c1810',
+                    colorLight: isDark ? '#2a2018' : '#ffffff',
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+                qrGenerated = true;
+            }
+            shareModal.classList.add('active');
+        });
+
+        shareModal.addEventListener('click', function(e) {
+            if (e.target === shareModal) shareModal.classList.remove('active');
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && shareModal.classList.contains('active')) {
+                shareModal.classList.remove('active');
+            }
+        });
+
+        copyBtn.addEventListener('click', function() {
+            shareUrl.select();
+            navigator.clipboard.writeText(shareUrl.value).then(function() {
+                copyBtn.querySelector('.material-symbols-outlined').textContent = 'check';
+                setTimeout(function() {
+                    copyBtn.querySelector('.material-symbols-outlined').textContent = 'content_copy';
+                }, 1500);
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

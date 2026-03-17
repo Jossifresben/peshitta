@@ -9,7 +9,7 @@
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
@@ -39,6 +39,11 @@
                 <button class="settings-option{% if trans == 'es' %} active{% endif %}" data-trans="es">{{ t.settings_trans_es }}</button>
                 <button class="settings-option{% if trans == 'he' %} active{% endif %}" data-trans="he">{{ t.settings_trans_he }}</button>
                 <button class="settings-option{% if trans == 'ar' %} active{% endif %}" data-trans="ar">{{ t.settings_trans_ar }}</button>
+                <div class="settings-divider"></div>
+                <div class="settings-label">{{ t.settings_syriac_font }}</div>
+                <button class="settings-option syriac-font-option" data-syriac-font="estrangela">{{ t.settings_font_estrangela }}</button>
+                <button class="settings-option syriac-font-option" data-syriac-font="eastern">{{ t.settings_font_eastern }}</button>
+                <button class="settings-option syriac-font-option" data-syriac-font="western">{{ t.settings_font_western }}</button>
             </div>
         </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
@@ -65,7 +70,6 @@
     <div class="container">
         <header>
             <h1 class="page-title">{% if lang == 'es' %}Visualizador de Raíz{% else %}Root Visualizer{% endif %}</h1>
-            <p class="viz-back"><a href="{{ url_for('index', lang=lang, q=root_key) }}" class="viz-back-link">{% if lang == 'es' %}&larr; Volver a resultados{% else %}&larr; Back to results{% endif %}</a></p>
         </header>
 
         <div id="viz-loading" class="viz-loading">
@@ -1057,8 +1061,36 @@
             btn.addEventListener('click', function() {
                 var url = new URL(window.location);
                 if (btn.dataset.script) url.searchParams.set('script', btn.dataset.script);
-                if (btn.dataset.trans) url.searchParams.set('trans', btn.dataset.trans);
+                else if (btn.dataset.trans) url.searchParams.set('trans', btn.dataset.trans);
+                else { return; }
                 window.location = url;
+            });
+        });
+    })();
+
+    // --- Syriac Font Variant ---
+    (function() {
+        var html = document.documentElement;
+        var stored = localStorage.getItem('syriac-font') || 'estrangela';
+        if (stored !== 'estrangela') {
+            html.setAttribute('data-syriac-font', stored);
+        }
+        document.querySelectorAll('.syriac-font-option').forEach(function(btn) {
+            if (btn.getAttribute('data-syriac-font') === stored) {
+                btn.classList.add('active');
+            }
+            btn.addEventListener('click', function() {
+                var val = this.getAttribute('data-syriac-font');
+                localStorage.setItem('syriac-font', val);
+                if (val === 'estrangela') {
+                    html.removeAttribute('data-syriac-font');
+                } else {
+                    html.setAttribute('data-syriac-font', val);
+                }
+                document.querySelectorAll('.syriac-font-option').forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
             });
         });
     })();

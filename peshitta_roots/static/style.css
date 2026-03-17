@@ -32,6 +32,15 @@
     --error-bg: #fde8e8;
     --error-text: #c53030;
     --highlight-border: #d4a017;
+    --syriac-font: 'Noto Sans Syriac', 'Estrangelo Edessa', serif;
+}
+
+/* === Syriac Script Variants === */
+[data-syriac-font="eastern"] {
+    --syriac-font: 'Noto Sans Syriac Eastern', 'Estrangelo Edessa', serif;
+}
+[data-syriac-font="western"] {
+    --syriac-font: 'Noto Sans Syriac Western', 'Estrangelo Edessa', serif;
 }
 
 /* === Dark Theme === */
@@ -553,7 +562,7 @@ header p {
     margin-bottom: 8px;
 }
 .ficha-root-syriac {
-    font-family: 'Noto Sans Syriac', serif;
+    font-family: var(--syriac-font);
     font-size: 2em;
     font-weight: 600;
     color: var(--accent, #b45309);
@@ -572,8 +581,8 @@ header p {
     font-style: italic;
 }
 .ficha-citation-original {
-    font-family: 'Noto Sans Syriac', serif;
-    font-size: 1.15em;
+    font-family: var(--syriac-font);
+    font-size: 1.45em;
     line-height: 1.8;
     direction: rtl;
     text-align: right;
@@ -719,7 +728,7 @@ header p {
     color: #fff;
 }
 .deg-aramaic .deg-word {
-    font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif;
+    font-family: var(--syriac-font);
 }
 .deg-greek {
     background: #483D8B;
@@ -786,7 +795,7 @@ header p {
 }
 .modal-deg-aramaic .syriac,
 .modal-deg-aramaic {
-    font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif, sans-serif;
+    font-family: var(--syriac-font);
 }
 .modal-deg-greek {
     background: #483D8B;
@@ -879,7 +888,7 @@ header p {
     font-weight: 600;
     margin-bottom: 2px;
 }
-.ficha-word-syriac { font-family: 'Noto Sans Syriac', serif; }
+.ficha-word-syriac { font-family: var(--syriac-font); }
 .ficha-word-hebrew { font-family: 'Noto Sans Hebrew', serif; }
 .ficha-word-arabic { font-family: 'Noto Sans Arabic', serif; direction: rtl; }
 .ficha-translit {
@@ -959,7 +968,7 @@ header p {
 }
 
 .tt-syriac {
-    font-family: 'Noto Sans Syriac', serif;
+    font-family: var(--syriac-font);
     font-size: 1.3em;
     direction: rtl;
 }
@@ -1037,7 +1046,7 @@ header p {
 .root-header .root-syriac {
     font-size: 2.2em;
     direction: rtl;
-    font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif;
+    font-family: var(--syriac-font);
 }
 
 .root-header .root-latin {
@@ -1136,7 +1145,7 @@ th {
 /* === Script text styling === */
 .syriac {
     direction: rtl;
-    font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif;
+    font-family: var(--syriac-font);
     font-size: 1.3em;
     unicode-bidi: bidi-override;
 }
@@ -1387,7 +1396,7 @@ th {
 
 .modal-syriac {
     direction: rtl;
-    font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif;
+    font-family: var(--syriac-font);
     font-size: 1.6em;
     line-height: 1.8;
     color: var(--text-primary);
@@ -1540,7 +1549,7 @@ th {
 
 .ac-syriac {
     direction: rtl;
-    font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif;
+    font-family: var(--syriac-font);
     font-size: 1.3em;
 }
 
@@ -1765,7 +1774,7 @@ footer a:hover {
 
 .reader-syriac {
     direction: rtl;
-    font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif;
+    font-family: var(--syriac-font);
     font-size: 1.4em;
     text-align: right;
     margin-left: 0;
