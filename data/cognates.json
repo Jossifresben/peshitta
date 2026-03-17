@@ -34968,6 +34968,310 @@
         "lost_es": "En arameo, ܕܡܪ (d-m-r) es una raíz que conecta el asombro con la capacidad de formar imágenes internas: sorprenderse es, literalmente, quedar atrapado en una representación mental que no se esperaba, como si la realidad produjera una 'semejanza' (dammáh) que desestabiliza la mente. La raíz entrelaza el estupor físico — quedarse paralizado ante lo inesperado — con la imaginación activa (midméh), la facultad de ver lo que no está presente. Cuando se tradujo al griego como θαυμάζω, el término heredó la nobleza filosófica griega: desde Platón y Aristóteles, el asombro es el comienzo del pensamiento racional, un acto contemplativo y casi sereno. Se perdió así la dimensión corporal del estupor arameo y, sobre todo, el vínculo profundo entre asombro y semejanza-imaginación. Al llegar al español como 'maravillarse' o al inglés como 'to marvel', queda una emoción de sorpresa genérica y superficial: ya no se siente el cuerpo que se paraliza, ni la mente que genera imágenes involuntarias ante lo que la desborda.",
         "lost_en": "In Aramaic, ܕܡܪ (d-m-r) is a root that weaves astonishment together with the capacity to form internal images: to be amazed is, at its core, to be seized by an unexpected mental likeness (dammáh), as though reality itself produces a representation that destabilizes the mind. The root braids physical stupefaction — standing paralyzed before the unexpected — with active imagination (midméh), the faculty of seeing what is not visibly present. When translated into Greek as θαυμάζω, the word inherited the philosophical nobility of the Greek tradition: since Plato and Aristotle, wonder is the beginning of rational thought, a contemplative and almost serene act of the intellect. Lost in this transfer was the bodily dimension of Aramaic stupor and, crucially, the deep link between amazement and likeness-imagination — the idea that being astonished means being involuntarily flooded with mental images. By the time it reaches English as 'to marvel' or Spanish as 'maravillarse', what remains is a generic, surface-level emotion of surprise: the body no longer freezes, and the mind no longer generates unbidden images in the face of what overwhelms it."
       }
+    },
+    "g-sh": {
+      "root_syriac": "ܓܫ",
+      "gloss_es": "tocar, palpar",
+      "gloss_en": "touch, feel",
+      "hebrew": [
+        {
+          "word": "גָּשַׁשׁ",
+          "transliteration": "gashash",
+          "meaning_es": "palpar, tantear",
+          "meaning_en": "to grope, to feel about"
+        },
+        {
+          "word": "מְגֻשָּׁשׁ",
+          "transliteration": "megushash",
+          "meaning_es": "palpado, tanteado",
+          "meaning_en": "groped, felt about"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "جَسَّ",
+          "transliteration": "jassa",
+          "meaning_es": "tocar, palpar, espiar",
+          "meaning_en": "to touch, to feel, to spy"
+        },
+        {
+          "word": "جَاسُوس",
+          "transliteration": "jāsūs",
+          "meaning_es": "espía",
+          "meaning_en": "spy"
+        },
+        {
+          "word": "تَجَسُّس",
+          "transliteration": "tajassus",
+          "meaning_es": "espionaje, indagación",
+          "meaning_en": "espionage, investigation"
+        }
+      ],
+      "sabor_raiz_es": "tacto, exploración, contacto sensorial",
+      "sabor_raiz_en": "touch, probing, sensory contact",
+      "greek_parallel": {
+        "word": "ψηλαφάω",
+        "transliteration": "psēlaphaō",
+        "meaning_es": "tocar, palpar",
+        "meaning_en": "to touch, to handle",
+        "aramaic_range_es": "tocar, palpar, tantear, explorar con las manos, espiar — el campo va del contacto físico directo a la investigación encubierta",
+        "aramaic_range_en": "touch, feel, grope, explore by hand, spy — the field spans from direct physical contact to covert investigation",
+        "greek_range_es": "palpar, tocar para verificar — sentido restringido al contacto físico verificador",
+        "greek_range_en": "handle, touch to verify — restricted to verificatory physical contact",
+        "lost_en": "In Aramaic, the root ܓܫ (G-SH) carries the full arc of tactile knowledge: to touch, to grope, to feel one’s way through darkness, to probe what is hidden. The hand that touches is the same hand that investigates. This is why the Magi of Matthew’s Gospel are called ܡܓܘܫܐ (mgushe) — they are not ‘wise men’ in the abstract, cerebral sense that the Greek σοφοί would suggest, but feelers, probers, those who explore reality through direct contact with it. The Hebrew cognate גָּשַׁשׁ (gashash) preserves this beautifully: to grope about, to feel one’s way as a blind person feels the walls. The Arabic جَاسُوس (jāsūs, spy) reveals another branch of the same root: the spy is one who touches what should not be touched, who probes forbidden terrain. When the Greek New Testament renders this world with ψηλαφάω (psēlaphaō), the word retains only the verificatory sense — Thomas touching the wounds to confirm, to handle as evidence. What vanishes is the entire epistemology embedded in the Semitic root: that true knowledge begins in the fingertips, that wisdom is a kind of groping, and that the Magi who came to Bethlehem were not scholars consulting books but feelers following a tremor in the texture of reality itself.",
+        "lost_es": "En arameo, la raíz ܓܫ (G-SH) abarca todo el arco del conocimiento táctil: tocar, palpar, tantear en la oscuridad, explorar lo oculto. La mano que toca es la misma mano que investiga. Por eso los Magos del Evangelio de Mateo se llaman ܡܓܘܫܐ (mgushe) — no son ‘sabios’ en el sentido abstracto y cerebral que sugeriría el griego σοφοί, sino palpadores, exploradores, quienes conocen la realidad a través del contacto directo con ella. El cognado hebreo גָּשַׁשׁ (gashash) lo preserva hermosamente: tantear, palpar el camino como un ciego palpa las paredes. El árabe جَاسُوس (jāsūs, espía) revela otra rama de la misma raíz: el espía es quien toca lo que no debe tocarse, quien sondea terreno prohibido. Cuando el Nuevo Testamento griego traduce este mundo con ψηλαφάω (psēlaphaō), la palabra retiene solo el sentido verificatorio — Tomás tocando las heridas para confirmar, para manejar como evidencia. Lo que desaparece es toda la epistemología inscrita en la raíz semítica: que el verdadero conocimiento empieza en las yemas de los dedos, que la sabiduría es una forma de tanteo, y que los Magos que llegaron a Belén no eran eruditos consultando libros sino palpadores siguiendo un temblor en la textura misma de la realidad."
+      },
+      "paradigmatic_note_es": "La palabra 'magos' (mgushe) comparte raíz con 'tocar/palpar' — los Magos son literalmente 'los palpadores', los que investigan la realidad mediante contacto directo. Esta conexión semántica entre sabiduría y tacto es completamente invisible en cualquier traducción.",
+      "paradigmatic_note_en": "The word 'Magi' (mgushe) shares its root with 'to touch/feel' — the wise men are literally 'the feelers/probers', those who investigate reality through direct sensory contact. This stunning link between wisdom and touch is entirely lost in translation."
+    },
+    "kh-sh": {
+      "root_syriac": "ܚܫ",
+      "gloss_es": "sufrir, padecer",
+      "gloss_en": "suffer",
+      "hebrew": [
+        {
+          "word": "חוּשׁ",
+          "transliteration": "khush",
+          "meaning_es": "sentir, percibir",
+          "meaning_en": "to feel, to sense"
+        },
+        {
+          "word": "חוֹשׁ",
+          "transliteration": "khosh",
+          "meaning_es": "sentido, sensación",
+          "meaning_en": "sense, feeling"
+        },
+        {
+          "word": "תְּחוּשָׁה",
+          "transliteration": "tekhushá",
+          "meaning_es": "sensación, sentimiento",
+          "meaning_en": "sensation, feeling"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "حَشَّ",
+          "transliteration": "khashsha",
+          "meaning_es": "sentir dolor",
+          "meaning_en": "to feel pain"
+        },
+        {
+          "word": "إِحْسَاس",
+          "transliteration": "ikhsās",
+          "meaning_es": "sensación, percepción",
+          "meaning_en": "sensation, perception",
+          "outlier": true
+        }
+      ],
+      "sabor_raiz_es": "sensación, padecimiento, sentir profundo",
+      "sabor_raiz_en": "sensation, suffering, deep feeling",
+      "greek_parallel": {
+        "word": "πάσχω",
+        "transliteration": "paschō",
+        "meaning_es": "sufrir, padecer",
+        "meaning_en": "to suffer",
+        "aramaic_range_es": "sufrir, padecer, sentir dolor — la raíz conecta el sufrimiento con la percepción sensorial",
+        "aramaic_range_en": "suffer, endure pain, feel — the root connects suffering with sensory perception",
+        "greek_range_es": "sufrir, experimentar — sentido amplio que incluye experiencia positiva y negativa",
+        "greek_range_en": "suffer, experience — broad sense including positive and negative experience",
+        "lost_en": "In Aramaic, ܚܫ (KH-SH) holds together what modern languages have torn apart: suffering and sensation are one single act. To suffer is to feel; to feel is, at some depth, to suffer. The Hebrew cognate חוּשׁ (khush) means simply to sense, to perceive — the neutral faculty of sensation — while the Arabic إِحْسَاس (ikhsās) names perception itself, the raw nerve of awareness. The Aramaic root sits at the crossroads: ܚܫ (khash) is what the body does when it is fully open to reality, when it receives the world without the shield of abstraction. When the author of Hebrews writes that Christ ܚܫ (khash, suffered), the Aramaic reader understands not merely that he endured pain but that he felt — completely, without anesthesia, with every nerve of his created body registering the texture of human existence. The Greek πάσχω (paschō) can mean ‘to experience’ broadly, but in practice the New Testament tradition narrowed it to the Passion, to suffering as ordeal. In English, ‘to suffer’ has lost all connection to sensation; it denotes only pain, only affliction. What has been lost is the Semitic intuition that the capacity to suffer and the capacity to feel are the same capacity — that a being incapable of suffering would be a being incapable of perception, and that the Cross is not merely an event of pain but an event of absolute, total sensation.",
+        "lost_es": "En arameo, ܚܫ (KH-SH) mantiene unido lo que las lenguas modernas han separado: sufrir y sentir son un solo acto. Sufrir es sentir; sentir es, en alguna profundidad, sufrir. El cognado hebreo חוּשׁ (khush) significa simplemente percibir, sentir — la facultad neutra de la sensación — mientras que el árabe إِحْسَاس (ikhsās) nombra la percepción misma, el nervio puro de la conciencia. La raíz aramea se sitúa en la encrucijada: ܚܫ (khash) es lo que hace el cuerpo cuando está completamente abierto a la realidad, cuando recibe el mundo sin el escudo de la abstracción. Cuando el autor de Hebreos escribe que Cristo ܚܫ (khash, sufrió), el lector arameo entiende no solamente que padeció dolor sino que sintió — completamente, sin anestesia, con cada nervio de su cuerpo creado registrando la textura de la existencia humana. El griego πάσχω (paschō) puede significar ‘experimentar’ en sentido amplio, pero en la práctica la tradición neotestamentaria lo estrechó a la Pasión, al sufrimiento como calvario. En español, ‘sufrir’ ha perdido toda conexión con la sensación; denota solo dolor, solo aflicción. Lo que se ha perdido es la intuición semítica de que la capacidad de sufrir y la capacidad de sentir son la misma capacidad — que un ser incapaz de sufrir sería un ser incapaz de percepción, y que la Cruz no es meramente un acontecimiento de dolor sino un acontecimiento de sensación absoluta, total."
+      },
+      "paradigmatic_note_es": "En arameo, sufrir (khash) y sentir/percibir comparten la misma raíz — sufrir ES sentir. El griego paschō no porta esta dimensión sensorial, lo que significa que la teología del sufrimiento en Hebreos pierde un matiz crucial: Cristo no solo 'padeció', sino que 'sintió' la tentación en toda su intensidad.",
+      "paradigmatic_note_en": "In Aramaic, to suffer (khash) and to feel/sense share the same root — to suffer IS to feel. The Greek paschō lacks this sensory dimension, meaning the theology of suffering in Hebrews loses a crucial nuance: Christ did not merely 'suffer' temptation but 'felt' it in its full intensity."
+    },
+    "s-m": {
+      "root_syriac": "ܣܡ",
+      "gloss_es": "poner, colocar",
+      "gloss_en": "place, set, put",
+      "hebrew": [
+        {
+          "word": "שָׂם",
+          "transliteration": "sam",
+          "meaning_es": "poner, colocar",
+          "meaning_en": "to put, to place"
+        },
+        {
+          "word": "שִׂים",
+          "transliteration": "sim",
+          "meaning_es": "poner, colocar",
+          "meaning_en": "to put, to set"
+        },
+        {
+          "word": "תָּשִׂים",
+          "transliteration": "tasim",
+          "meaning_es": "pondrás",
+          "meaning_en": "you will place"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "سَمَّى",
+          "transliteration": "sammā",
+          "meaning_es": "nombrar, designar",
+          "meaning_en": "to name, to designate",
+          "outlier": true
+        }
+      ],
+      "sabor_raiz_es": "colocación, disposición, establecimiento",
+      "sabor_raiz_en": "placement, setting, establishment",
+      "greek_parallel": {
+        "word": "τίθημι",
+        "transliteration": "tithēmi",
+        "meaning_es": "poner, colocar",
+        "meaning_en": "to put, to place",
+        "aramaic_range_es": "poner, colocar, establecer, disponer — acción de situar algo en un lugar",
+        "aramaic_range_en": "put, place, set, establish — the act of situating something",
+        "greek_range_es": "poner, colocar, establecer, proponer — sentido físico y abstracto",
+        "greek_range_en": "put, place, set, propose — physical and abstract sense",
+        "lost_en": "In Aramaic, ܣܡ (S-M) means to place, to set, to put something where it belongs — an act of deliberate situating. The Hebrew cognates שָׂם (sam) and שִׂים (sim) carry the same weight: to put is to assign a location, to give something its proper site in the order of things. But the Arabic cognate reveals a dimension that Greek and modern languages have entirely forgotten: سَمَّى (sammā) means to name, to designate. This is not a random semantic drift — it is the fossil of an ancient Semitic intuition that to place and to name are the same gesture. To name something is to place it in the world; to place something is to declare what it is. When Matthew 3:10 says the axe ܣܝܡ (sym, is placed) at the root of the trees, the Aramaic ear hears not merely a spatial arrangement but a declaration, a naming of judgment. The Greek τίθημι (tithēmi) preserves the physical sense adequately — to put, to place, to set down — and even extends into the abstract (to propose, to establish). But what τίθημι cannot carry is the ancient bond between placing and naming, between location and identity. In English, ‘to place’ and ‘to name’ inhabit entirely separate semantic universes. What has been lost is the Semitic understanding that the world is not a neutral container into which things are dropped, but a fabric of named positions — that to place the axe at the root is already to have spoken.",
+        "lost_es": "En arameo, ܣܡ (S-M) significa colocar, poner, situar algo donde pertenece — un acto de ubicación deliberada. Los cognados hebreos שָׂם (sam) y שִׂים (sim) tienen el mismo peso: poner es asignar una ubicación, dar a algo su sitio propio en el orden de las cosas. Pero el cognado árabe revela una dimensión que el griego y las lenguas modernas han olvidado por completo: سَمَّى (sammā) significa nombrar, designar. Esto no es una deriva semántica aleatoria — es el fósil de una intuición semítica antigua según la cual colocar y nombrar son el mismo gesto. Nombrar algo es colocarlo en el mundo; colocar algo es declarar lo que es. Cuando Mateo 3:10 dice que el hacha ܣܝܡ (sym, está puesta) en la raíz de los árboles, el oído arameo escucha no simplemente una disposición espacial sino una declaración, un nombramiento del juicio. El griego τίθημι (tithēmi) preserva el sentido físico adecuadamente — poner, colocar, depositar — e incluso se extiende a lo abstracto (proponer, establecer). Pero lo que τίθημι no puede transportar es el vínculo antiguo entre colocar y nombrar, entre ubicación e identidad. En español, ‘colocar’ y ‘nombrar’ habitan universos semánticos completamente separados. Lo que se ha perdido es la comprensión semítica de que el mundo no es un contenedor neutro donde se depositan cosas, sino un tejido de posiciones nombradas — que poner el hacha en la raíz ya es haber hablado."
+      },
+      "paradigmatic_note_es": "El hacha 'está puesta' (sym) a la raíz de los árboles — el verbo arameo enfatiza la deliberación del acto: alguien colocó el hacha allí con intención. El cognado árabe sammā ('nombrar') revela que 'colocar' y 'designar' comparten campo semántico: nombrar es colocar una identidad sobre algo.",
+      "paradigmatic_note_en": "The ax 'is placed' (sym) at the root of the trees — the Aramaic verb emphasizes the deliberateness of the act: someone set the ax there with intention. The Arabic cognate sammā ('to name') reveals that 'placing' and 'designating' share a semantic field: to name is to place an identity upon something."
+    },
+    "e-l": {
+      "root_syriac": "ܥܠ",
+      "gloss_es": "entrar",
+      "gloss_en": "enter",
+      "hebrew": [
+        {
+          "word": "עָלָה",
+          "transliteration": "alá",
+          "meaning_es": "subir, ascender",
+          "meaning_en": "to go up, to ascend"
+        },
+        {
+          "word": "עוֹלֶה",
+          "transliteration": "olé",
+          "meaning_es": "el que sube, inmigrante",
+          "meaning_en": "one who ascends, immigrant"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "عَلَا",
+          "transliteration": "ʿalā",
+          "meaning_es": "subir, elevarse",
+          "meaning_en": "to rise, to be high"
+        },
+        {
+          "word": "عَالِي",
+          "transliteration": "ʿālī",
+          "meaning_es": "alto, elevado",
+          "meaning_en": "high, elevated"
+        }
+      ],
+      "sabor_raiz_es": "entrada, ascenso, ingreso hacia lo alto",
+      "sabor_raiz_en": "entry, ascent, upward ingress",
+      "greek_parallel": {
+        "word": "εἰσέρχομαι",
+        "transliteration": "eiserchomai",
+        "meaning_es": "entrar",
+        "meaning_en": "to enter, to go in",
+        "aramaic_range_es": "entrar, acceder, penetrar — movimiento hacia el interior",
+        "aramaic_range_en": "enter, access, go into — inward movement",
+        "greek_range_es": "entrar, ir hacia dentro — sentido literal y figurado",
+        "greek_range_en": "enter, go in — literal and figurative sense",
+        "lost_en": "In Aramaic, ܥܠ (E-L) means to enter, to go into — an inward movement, a crossing of thresholds. But the Hebrew and Arabic cognates preserve a dimension that the Aramaic verb itself has partially buried: עָלָה (alá) in Hebrew means to go up, to ascend, and gives us עוֹלֶה (olé), one who ascends — the word still used for a Jewish immigrant to Israel, because to enter the Holy Land is to go up. The Arabic عَلَا (ʿalā) means to rise, to be elevated, and عَالِي (ʿālī) means high, exalted. Here is the ancient Semitic geography of the sacred: entry and ascent are the same movement. To enter the Temple is to ascend; to enter the presence of God is to rise. When the resurrected saints ܥܠܘ (elw, entered) the holy city in Matthew 27:53, the Aramaic carries the faint echo of ascension within the act of entry — they did not merely walk through the gates but rose into a sacred space. The Greek εἰσέρχομαι (eiserchomai) is strictly horizontal: eis (into) + erchomai (to come). It is a perfectly competent verb of spatial movement, but it knows nothing of altitude. In English, ‘to enter’ is flatter still — a word equally at home for entering a room, entering data, entering a competition. What has been lost is the vertical axis of the Semitic root: the understanding that certain spaces are above you, that to enter them is to be lifted, and that the threshold of a sacred place is not a horizontal line to cross but a slope to climb.",
+        "lost_es": "En arameo, ܥܠ (E-L) significa entrar, ingresar — un movimiento hacia adentro, un cruce de umbrales. Pero los cognados hebreos y árabes preservan una dimensión que el verbo arameo mismo ha enterrado parcialmente: עָלָה (alá) en hebreo significa subir, ascender, y nos da עוֹלֶה (olé), el que asciende — la palabra que aún se usa para un inmigrante judío a Israel, porque entrar en Tierra Santa es subir. El árabe عَلَا (ʿalā) significa elevarse, ascender, y عَالِي (ʿālī) significa alto, exaltado. Aquí está la geografía semítica antigua de lo sagrado: entrada y ascenso son el mismo movimiento. Entrar al Templo es ascender; entrar en la presencia de Dios es elevarse. Cuando los santos resucitados ܥܠܘ (elw, entraron) en la ciudad santa en Mateo 27:53, el arameo lleva el eco tenue de la ascensión dentro del acto de entrar — no simplemente cruzaron las puertas sino que se elevaron hacia un espacio sagrado. El griego εἰσέρχομαι (eiserchomai) es estrictamente horizontal: eis (hacia dentro) + erchomai (venir). Es un verbo perfectamente competente de movimiento espacial, pero no sabe nada de altitud. En español, ‘entrar’ es más plano todavía — una palabra igualmente cómoda para entrar en una habitación, entrar datos, entrar en una competición. Lo que se ha perdido es el eje vertical de la raíz semítica: la comprensión de que ciertos espacios están por encima de ti, que entrar en ellos es ser elevado, y que el umbral de un lugar sagrado no es una línea horizontal que se cruza sino una pendiente que se asciende."
+      },
+      "paradigmatic_note_es": "Los resucitados 'entraron' (elw) en la ciudad santa — pero los cognados hebreo (alá, 'ascender') y árabe (ʿalā, 'elevarse') revelan que este 'entrar' lleva inscrito un 'subir'. Entrar a Jerusalén tras la resurrección es simultáneamente ascender, un doble sentido que el griego eiserchomai ('entrar') no conserva.",
+      "paradigmatic_note_en": "The risen ones 'entered' (elw) the holy city — but the Hebrew (alá, 'to ascend') and Arabic (ʿalā, 'to rise') cognates reveal that this 'entering' carries an embedded 'going up'. Entering Jerusalem after the resurrection is simultaneously ascending, a double meaning that the Greek eiserchomai ('to enter') does not preserve."
+    },
+    "sh-r": {
+      "root_syriac": "ܫܪ",
+      "gloss_es": "verdadero, firme",
+      "gloss_en": "true, firm",
+      "hebrew": [
+        {
+          "word": "שָׁרִיר",
+          "transliteration": "sharir",
+          "meaning_es": "válido, firme",
+          "meaning_en": "valid, firm"
+        },
+        {
+          "word": "אֲשֶׁר",
+          "transliteration": "asher",
+          "meaning_es": "que, el cual (partícula relativa)",
+          "meaning_en": "that, which (relative particle)",
+          "outlier": true
+        }
+      ],
+      "arabic": [
+        {
+          "word": "شَرَّ",
+          "transliteration": "sharra",
+          "meaning_es": "ser malo",
+          "meaning_en": "to be evil",
+          "outlier": true
+        }
+      ],
+      "sabor_raiz_es": "firmeza, solidez, verdad palpable",
+      "sabor_raiz_en": "firmness, solidity, tangible truth",
+      "greek_parallel": {
+        "word": "ἀληθής",
+        "transliteration": "alēthēs",
+        "meaning_es": "verdadero",
+        "meaning_en": "true",
+        "aramaic_range_es": "verdadero, firme, válido, confirmado — la verdad como solidez",
+        "aramaic_range_en": "true, firm, valid, confirmed — truth as solidity",
+        "greek_range_es": "verdadero, no oculto — la verdad como des-ocultamiento (a-lētheia)",
+        "greek_range_en": "true, unhidden — truth as un-concealment (a-lētheia)",
+        "lost_en": "In Aramaic, ܫܪ (SH-R) gives us ܫܪܝܪܐ (sharira, true), and the word carries in its body the sensation of firmness, of something solid underfoot, of ground that does not give way. The Hebrew cognate שָׁרִיר (sharir) means valid, firm, established — truth in the Semitic register is not something you see but something you stand on. A true word is a firm word; a true person is a solid person; a true foundation is one that holds weight. When John 3:33 declares that God is ܫܪܝܪܐ (sharira, true), the Aramaic reader feels bedrock beneath the statement — the God who does not shift, does not crack, does not deceive because deception is a form of instability. Now consider what happens when this enters Greek as ἀληθής (alēthēs), derived from ἀλήθεια (alētheia): un-hiddenness, un-forgetting, the removal of a veil. This is a magnificent concept — truth as disclosure, as the emergence of what was concealed — but it is an entirely different concept. The Aramaic asks: can you stand on it? The Greek asks: can you see it? These are two different questions, and they produce two different civilizations. In English, ‘true’ has become so bleached by overuse that it functions as a mere binary — true or false, correct or incorrect, as on an exam. What has been lost is both the Aramaic solidity and the Greek luminosity: the modern word carries neither the weight of sharira nor the unveiling of alētheia. We are left with a word that means little more than ‘factually accurate,’ stripped of both the ground beneath and the light above.",
+        "lost_es": "En arameo, ܫܪ (SH-R) nos da ܫܪܝܪܐ (sharira, verdadero), y la palabra lleva en su cuerpo la sensación de firmeza, de algo sólido bajo los pies, de suelo que no cede. El cognado hebreo שָׁרִיר (sharir) significa válido, firme, establecido — la verdad en el registro semítico no es algo que se ve sino algo sobre lo que uno se sostiene. Una palabra verdadera es una palabra firme; una persona verdadera es una persona sólida; un fundamento verdadero es uno que soporta peso. Cuando Juan 3:33 declara que Dios es ܫܪܝܪܐ (sharira, verdadero), el lector arameo siente roca madre bajo la afirmación — el Dios que no se mueve, no se agrieta, no engaña porque el engaño es una forma de inestabilidad. Consideremos ahora lo que ocurre cuando esto entra al griego como ἀληθής (alēthēs), derivado de ἀλήθεια (alētheia): des-ocultamiento, des-olvido, la remoción de un velo. Es un concepto magnífico — la verdad como revelación, como emergencia de lo que estaba oculto — pero es un concepto completamente diferente. El arameo pregunta: ¿puedes sostenerte sobre ello? El griego pregunta: ¿puedes verlo? Son dos preguntas distintas, y producen dos civilizaciones distintas. En español, ‘verdadero’ se ha desgastado tanto por el uso que funciona como un mero binario — verdadero o falso, correcto o incorrecto, como en un examen. Lo que se ha perdido es tanto la solidez aramea como la luminosidad griega: la palabra moderna no lleva ni el peso de sharira ni el desvelamiento de alētheia. Nos queda una palabra que significa poco más que ‘factualmente preciso’, despojada tanto del suelo debajo como de la luz encima."
+      },
+      "paradigmatic_note_es": "El arameo sharira ('verdadero') concibe la verdad como solidez — algo sobre lo cual puedes pararte firme. El griego alētheia ('des-ocultamiento') la concibe como revelación. Son dos metáforas radicalmente distintas: para el arameo, Dios es verdadero porque es firme y confiable; para el griego, porque se des-oculta.",
+      "paradigmatic_note_en": "Aramaic sharira ('true') conceives truth as solidity — something you can stand firm upon. Greek alētheia ('un-hiddenness') conceives it as revelation. These are radically different metaphors: for the Aramaic, God is true because He is firm and reliable; for the Greek, because He is un-concealed."
+    },
+    "sh-m": {
+      "root_syriac": "ܫܡ",
+      "gloss_es": "nombre",
+      "gloss_en": "name",
+      "hebrew": [
+        {
+          "word": "שֵׁם",
+          "transliteration": "shem",
+          "meaning_es": "nombre",
+          "meaning_en": "name"
+        },
+        {
+          "word": "שְׁמָא",
+          "transliteration": "shmā",
+          "meaning_es": "nombre (arameo)",
+          "meaning_en": "name (Aramaic)"
+        }
+      ],
+      "arabic": [
+        {
+          "word": "اِسْم",
+          "transliteration": "ism",
+          "meaning_es": "nombre",
+          "meaning_en": "name"
+        },
+        {
+          "word": "سَمَّى",
+          "transliteration": "sammā",
+          "meaning_es": "nombrar",
+          "meaning_en": "to name"
+        }
+      ],
+      "sabor_raiz_es": "identidad, esencia, designación",
+      "sabor_raiz_en": "identity, essence, designation",
+      "greek_parallel": {
+        "word": "ὄνομα",
+        "transliteration": "onoma",
+        "meaning_es": "nombre",
+        "meaning_en": "name",
+        "aramaic_range_es": "nombre, identidad, esencia, reputación — en el mundo semítico, el nombre es la persona",
+        "aramaic_range_en": "name, identity, essence, reputation — in the Semitic world, the name is the person",
+        "greek_range_es": "nombre, designación, título",
+        "greek_range_en": "name, designation, title",
+        "lost_en": "In Aramaic, ܫܡ (SH-M) is not a label attached to a thing from outside — it is the thing’s innermost identity made audible. The Hebrew שֵׁם (shem) carries the same force: a name is not a convention but a revelation. When the angel tells Joseph ‘you shall call ܫܡܗ (shmh, his name) Yeshua,’ this is not a bureaucratic registration but an ontological unveiling — the name declares what the child IS, what he will do, the very substance of his mission. In the Semitic world, to know someone’s name is to have access to their essence; to call upon a name is to invoke a presence, not recite a word. The Arabic cognates confirm this density: اِسْم (ism) is name as identity, and سَمَّى (sammā, to name) shares its root with the act of elevation and marking — to name is to raise something into distinctness. When the Greek New Testament renders this as ὄνομα (onoma), the word functions competently as a designation, a title, a way of referring. But ὄνομα belongs to a linguistic culture that had already begun to theorize the arbitrary relationship between words and things — Plato’s Cratylus debates whether names are natural or conventional, a question that would be incomprehensible to a Semitic mind for whom the name is neither natural nor conventional but constitutive. In English, ‘name’ is the thinnest possible version of this concept: a tag, a string of letters on a birth certificate. What has been lost is the entire Semitic experience that to name is to call into being, that the name is not about the person but is the person, and that ‘in the name of’ is not a formula but an entry into someone’s living reality.",
+        "lost_es": "En arameo, ܫܡ (SH-M) no es una etiqueta adherida a una cosa desde fuera — es la identidad más íntima de la cosa hecha audible. El hebreo שֵׁם (shem) tiene la misma fuerza: un nombre no es una convención sino una revelación. Cuando el ángel dice a José ‘llamarás ܫܡܗ (shmh, su nombre) Yeshua’, esto no es un registro burocrático sino un desvelamiento ontológico — el nombre declara lo que el niño ES, lo que hará, la sustancia misma de su misión. En el mundo semítico, conocer el nombre de alguien es tener acceso a su esencia; invocar un nombre es convocar una presencia, no recitar una palabra. Los cognados árabes confirman esta densidad: اِسْم (ism) es el nombre como identidad, y سَمَّى (sammā, nombrar) comparte raíz con el acto de elevación y distinción — nombrar es alzar algo hacia su singularidad. Cuando el Nuevo Testamento griego traduce esto como ὄνομα (onoma), la palabra funciona competentemente como designación, título, modo de referencia. Pero ὄνομα pertenece a una cultura lingüística que ya había comenzado a teorizar la relación arbitraria entre palabras y cosas — el Crátilo de Platón debate si los nombres son naturales o convencionales, una pregunta incomprensible para una mente semítica para quien el nombre no es natural ni convencional sino constitutivo. En español, ‘nombre’ es la versión más delgada posible de este concepto: una etiqueta, una cadena de letras en un certificado de nacimiento. Lo que se ha perdido es toda la experiencia semítica de que nombrar es llamar a la existencia, de que el nombre no es sobre la persona sino que es la persona, y de que ‘en el nombre de’ no es una fórmula sino una entrada en la realidad viviente de alguien."
+      },
+      "paradigmatic_note_es": "«Llamarás su nombre Yeshua» no es un acto de etiquetado sino de revelación: en el pensamiento semítico, el nombre (shma) ES la persona, su misión y destino. Yeshua contiene la raíz Y-SH-E (salvación), de modo que el nombre mismo anuncia la obra — un juego etimológico que el griego onoma no puede reproducir.",
+      "paradigmatic_note_en": "\"You shall call his name Yeshua\" is not an act of labeling but of revelation: in Semitic thought, the name (shma) IS the person, their mission and destiny. Yeshua contains the root Y-SH-E (salvation), so the name itself announces the work — an etymological wordplay that the Greek onoma cannot reproduce."
     }
   }
 }
