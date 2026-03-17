@@ -16,6 +16,17 @@ from .glosser import WordGlosser
 
 app = Flask(__name__)
 
+
+def _detect_lang():
+    """Detect UI language from query param or browser Accept-Language header."""
+    lang = request.args.get('lang', '').strip()
+    if lang in ('es', 'en'):
+        return lang
+    # Sniff browser Accept-Language
+    best = request.accept_languages.best_match(['es', 'en'], default='en')
+    return best
+
+
 # --- Global state (initialized on first request) ---
 _corpus: PeshittaCorpus | None = None
 _extractor: RootExtractor | None = None
@@ -115,7 +126,7 @@ class _Namespace:
 def index():
     _init()
 
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     t = _Namespace(_i18n[lang])
@@ -274,7 +285,7 @@ def api_verse():
     translit_fn = _get_translit_fn(script)
     words_translit = [translit_fn(w) for w in words]
 
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     translation_en = _corpus.get_verse_translation(ref, 'en')
@@ -392,7 +403,7 @@ def api_roots():
 def browse():
     """Browse all roots with pagination."""
     _init()
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     t = _Namespace(_i18n[lang])
@@ -449,7 +460,7 @@ def browse():
 def read():
     """Interlinear chapter reader."""
     _init()
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     t = _Namespace(_i18n[lang])
@@ -523,7 +534,7 @@ def read():
 def help_page():
     """Help page with how-to, settings, capabilities, and FAQ."""
     _init()
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     t = _Namespace(_i18n[lang])
@@ -540,7 +551,7 @@ def help_page():
 def methodology_page():
     """Methodology page describing the Semitic exegesis method."""
     _init()
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     t = _Namespace(_i18n[lang])
@@ -561,7 +572,7 @@ def api_word_root():
     if not form:
         return jsonify({'error': 'Missing form parameter'}), 400
 
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     script = request.args.get('script', 'latin')
@@ -625,7 +636,7 @@ def api_word_root():
 def visualize(root_key):
     """Root family visualizer page."""
     _init()
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     t = _Namespace(_i18n[lang])
@@ -647,7 +658,7 @@ def api_root_family():
     """Return full root family data for the visualizer."""
     _init()
     root_input = request.args.get('root', '').strip()
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     script = request.args.get('script', 'latin')
@@ -862,7 +873,7 @@ def api_root_family():
 def constellation():
     """Passage constellation visualizer page."""
     _init()
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     t = _Namespace(_i18n[lang])
@@ -891,7 +902,7 @@ def api_passage_constellation():
     chapter = request.args.get('chapter', 0, type=int)
     v_start = request.args.get('v_start', 0, type=int)
     v_end = request.args.get('v_end', v_start, type=int)
-    lang = request.args.get('lang', 'es')
+    lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
     script = request.args.get('script', 'latin')
