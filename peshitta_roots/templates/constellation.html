@@ -1094,18 +1094,18 @@
         langBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             langDrop.style.display = langDrop.style.display === 'flex' ? 'none' : 'flex';
-            document.getElementById('settings-dropdown').style.display = 'none';
+            document.getElementById('settings-dropdown').classList.remove('open');
         });
         var setBtn = document.getElementById('settings-toggle');
         var setDrop = document.getElementById('settings-dropdown');
         setBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            setDrop.style.display = setDrop.style.display === 'flex' ? 'none' : 'flex';
+            setDrop.classList.toggle('open');
             langDrop.style.display = 'none';
         });
         document.addEventListener('click', function() {
             langDrop.style.display = 'none';
-            setDrop.style.display = 'none';
+            setDrop.classList.remove('open');
         });
         setDrop.querySelectorAll('.settings-option').forEach(function(btn) {
             btn.addEventListener('click', function() {
