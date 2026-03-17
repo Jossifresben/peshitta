@@ -127,7 +127,7 @@
 
         <footer>
             <div class="footer-line">{{ 'Por Jossi Fresco, inspirado por' if lang == 'es' else 'By Jossi Fresco, inspired by' }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
-            <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a> <span class="footer-sep">|</span> MIT License</div>
+            <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a></div>
             <div class="footer-links">
                 <a href="{{ 'https://somosunodigital.com/es/' if lang == 'es' else 'https://somosunodigital.com' }}" target="_blank" rel="noopener">somosunodigital.com</a>
                 <span class="footer-sep">|</span>
@@ -224,9 +224,35 @@
                 html += '<span class="syriac" style="font-size:1.8em;">' + data.root + '</span> ';
                 html += '<span style="font-family:monospace; font-size:1.3em; letter-spacing:2px;">' + data.root_translit + '</span>';
                 if (data.gloss) html += ' <span style="font-style:italic; color:var(--text-gloss);">— ' + data.gloss + '</span>';
-                html += ' <a href="/visualize/' + data.root_translit + '?lang=' + currentLang + '&script=' + currentScript + '" class="viz-link-icon" title="{% if lang == 'es' %}Visualizar familia de raíz{% else %}Visualize root family{% endif %}">';
-                html += '<span class="material-symbols-outlined" style="font-size:20px; vertical-align:middle;">hub</span></a>';
                 html += '</div>';
+                html += '<a href="/visualize/' + data.root_translit + '?lang=' + currentLang + '&script=' + currentScript + '" class="modal-viz-btn">';
+                html += '<span class="material-symbols-outlined">hub</span> ';
+                html += '{% if lang == "es" %}Visualizar familia de raíz{% else %}Visualize root family{% endif %}';
+                html += '</a>';
+
+                // Compact degradation chain
+                if (data.degradation) {
+                    var deg = data.degradation;
+                    var seeMore = '{{ t.degradation_see_more|default("see full analysis") }}';
+                    var firstSentence = deg.lost ? deg.lost.split('. ')[0] + '.' : '';
+                    html += '<div class="modal-degradation">';
+                    html += '<div class="modal-deg-chain">';
+                    html += '<span class="modal-deg-step modal-deg-aramaic">' + data.root + ' ' + data.root_translit.toLowerCase() + '</span>';
+                    html += '<span class="modal-deg-arrow">\u2192</span>';
+                    html += '<span class="modal-deg-step modal-deg-greek">' + deg.greek_word + ' ' + deg.greek_translit + '</span>';
+                    html += '<span class="modal-deg-arrow">\u2192</span>';
+                    html += '<span class="modal-deg-step modal-deg-modern">' + deg.meaning + '</span>';
+                    html += '</div>';
+                    if (deg.aramaic_range) {
+                        html += '<div class="modal-deg-range">' + deg.aramaic_range + '</div>';
+                    }
+                    if (firstSentence) {
+                        html += '<div class="modal-deg-lost">' + firstSentence;
+                        html += ' <a href="/visualize/' + data.root_translit + '?lang=' + currentLang + '&script=' + currentScript + '#ficha" class="modal-deg-more">' + seeMore + ' \u2192</a>';
+                        html += '</div>';
+                    }
+                    html += '</div>';
+                }
 
                 if (data.matches && data.matches.length > 0) {
                     html += '<div style="font-weight:600; margin:12px 0 8px; color:var(--accent-dark);">{{ t.read_all_forms }} (' + data.matches.length + ')</div>';

@@ -26,6 +26,20 @@ class SemanticBridge:
 
 
 @dataclass
+class GreekParallel:
+    word: str              # πνεῦμα
+    transliteration: str   # pneuma
+    meaning_es: str
+    meaning_en: str
+    aramaic_range_es: str
+    aramaic_range_en: str
+    greek_range_es: str
+    greek_range_en: str
+    lost_es: str
+    lost_en: str
+
+
+@dataclass
 class CognateEntry:
     root_syriac: str
     gloss_es: str
@@ -35,6 +49,9 @@ class CognateEntry:
     hebrew: list[CognateWord] = field(default_factory=list)
     arabic: list[CognateWord] = field(default_factory=list)
     semantic_bridges: list[SemanticBridge] = field(default_factory=list)
+    greek_parallel: GreekParallel | None = None
+    paradigmatic_note_es: str = ''
+    paradigmatic_note_en: str = ''
 
 
 class CognateLookup:
@@ -100,6 +117,22 @@ class CognateLookup:
                         bridge_concept_es=bridge_data.get('bridge_concept_es', ''),
                     ))
 
+            greek_parallel = None
+            gp_data = entry_data.get('greek_parallel')
+            if gp_data and gp_data.get('word'):
+                greek_parallel = GreekParallel(
+                    word=gp_data['word'],
+                    transliteration=gp_data.get('transliteration', ''),
+                    meaning_es=gp_data.get('meaning_es', ''),
+                    meaning_en=gp_data.get('meaning_en', ''),
+                    aramaic_range_es=gp_data.get('aramaic_range_es', ''),
+                    aramaic_range_en=gp_data.get('aramaic_range_en', ''),
+                    greek_range_es=gp_data.get('greek_range_es', ''),
+                    greek_range_en=gp_data.get('greek_range_en', ''),
+                    lost_es=gp_data.get('lost_es', ''),
+                    lost_en=gp_data.get('lost_en', ''),
+                )
+
             entry = CognateEntry(
                 root_syriac=root_syriac,
                 gloss_es=entry_data.get('gloss_es', ''),
@@ -109,6 +142,9 @@ class CognateLookup:
                 hebrew=hebrew_words,
                 arabic=arabic_words,
                 semantic_bridges=bridges,
+                greek_parallel=greek_parallel,
+                paradigmatic_note_es=entry_data.get('paradigmatic_note_es', ''),
+                paradigmatic_note_en=entry_data.get('paradigmatic_note_en', ''),
             )
 
             self._cognates[key] = entry

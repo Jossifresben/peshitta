@@ -129,6 +129,7 @@
                         <div class="ficha-citation-original" id="ficha-syriac"></div>
                         <div class="ficha-citation-translit" id="ficha-translit"></div>
                         <blockquote class="ficha-citation" id="ficha-verse"></blockquote>
+                        <div class="ficha-citation-note" id="ficha-citation-note" style="display:none;"></div>
                         <div class="ficha-citation-ref">
                             <span id="ficha-ref"></span>
                             <a id="ficha-read-link" href="#" class="ficha-read-link">
@@ -147,6 +148,16 @@
                         <p class="ficha-sisters-empty" id="ficha-sisters-empty" style="display:none;">
                             {% if lang == 'es' %}No se encontraron ra&iacute;ces hermanas{% else %}No sister roots found{% endif %}
                         </p>
+                    </div>
+
+                    <!-- Translation degradation -->
+                    <div class="ficha-section ficha-degradation-section" id="ficha-degradation-section" style="display:none;">
+                        <h3 class="ficha-section-title">
+                            <span class="material-symbols-outlined">translate</span>
+                            {{ t.degradation_title }}
+                        </h3>
+                        <div class="ficha-degradation-chain" id="ficha-degradation-chain"></div>
+                        <div class="ficha-degradation-lost" id="ficha-degradation-lost"></div>
                     </div>
 
                     <!-- All derivatives table -->
@@ -258,7 +269,7 @@
         }
 
         // Tab switching (Grafo / Ficha)
-        window.switchVizTab = function(tab) {
+        window.switchVizTab = function(tab, updateUrl) {
             var graphView = document.getElementById('view-graph');
             var fichaView = document.getElementById('view-ficha');
             var tabGraph = document.getElementById('tab-graph');
@@ -274,7 +285,15 @@
                 tabGraph.classList.add('active');
                 tabFicha.classList.remove('active');
             }
+            if (updateUrl !== false) {
+                var url = new URL(window.location);
+                url.searchParams.set('tab', tab);
+                history.replaceState(null, '', url);
+            }
         };
+        // Auto-switch tab from URL parameter
+        var urlTab = new URLSearchParams(window.location.search).get('tab');
+        if (urlTab === 'ficha') switchVizTab('ficha', false);
 
         // Build ficha (Root Card) from API data
         function buildFicha(data) {
@@ -293,9 +312,24 @@
             var syriacEl = document.getElementById('ficha-syriac');
             var translitEl = document.getElementById('ficha-translit');
             if (data.paradigmatic_verse) {
-                syriacEl.textContent = data.paradigmatic_syriac || '';
+                // Highlight the paradigmatic form in the Syriac text
+                var syrText = data.paradigmatic_syriac || '';
+                var form = data.paradigmatic_form || '';
+                if (form && syrText.indexOf(form) !== -1) {
+                    syriacEl.innerHTML = syrText.split(form).join('<mark class="cite-highlight">' + form + '</mark>');
+                } else {
+                    syriacEl.textContent = syrText;
+                }
                 translitEl.textContent = data.paradigmatic_translit || '';
                 verseEl.textContent = '"' + data.paradigmatic_verse + '"';
+                // Paradigmatic note (manual translation annotation)
+                var noteEl = document.getElementById('ficha-citation-note');
+                if (data.paradigmatic_note) {
+                    noteEl.textContent = data.paradigmatic_note;
+                    noteEl.style.display = '';
+                } else {
+                    noteEl.style.display = 'none';
+                }
                 refEl.textContent = '— ' + data.paradigmatic_ref;
                 // Build reader link from the reference
                 var refParts = data.paradigmatic_ref.match(/^(.+?)\s+(\d+):(\d+)/);
@@ -334,6 +368,46 @@
                 });
             } else {
                 sistersEmpty.style.display = '';
+            }
+
+            // Translation degradation — ¿Qué se perdió?
+            var degSection = document.getElementById('ficha-degradation-section');
+            var degChain = document.getElementById('ficha-degradation-chain');
+            var degLost = document.getElementById('ficha-degradation-lost');
+            if (data.greek_parallel) {
+                var gp = data.greek_parallel;
+                degSection.style.display = '';
+                var aramLabel = LANG === 'es' ? 'Arameo' : 'Aramaic';
+                var greekLabel = LANG === 'es' ? 'Griego (NT)' : 'Greek (NT)';
+                var modernLabel = LANG === 'es' ? 'Trad. moderna' : 'Modern trans.';
+                degChain.innerHTML =
+                    '<div class="deg-step-wrap">' +
+                        '<div class="deg-step deg-aramaic">' +
+                            '<div class="deg-word">' + (data.root || '') + '</div>' +
+                            '<div class="deg-translit">' + (data.root_translit || '').toLowerCase() + '</div>' +
+                            '<div class="deg-range">' + (gp.aramaic_range || '') + '</div>' +
+                        '</div>' +
+                        '<div class="deg-label">' + aramLabel + '</div>' +
+                    '</div>' +
+                    '<div class="deg-arrow-wrap"><span class="deg-arrow">\u2192</span></div>' +
+                    '<div class="deg-step-wrap">' +
+                        '<div class="deg-step deg-greek">' +
+                            '<div class="deg-word">' + gp.word + '</div>' +
+                            '<div class="deg-translit">' + gp.transliteration + '</div>' +
+                            '<div class="deg-range">' + (gp.greek_range || '') + '</div>' +
+                        '</div>' +
+                        '<div class="deg-label">' + greekLabel + '</div>' +
+                    '</div>' +
+                    '<div class="deg-arrow-wrap"><span class="deg-arrow">\u2192</span></div>' +
+                    '<div class="deg-step-wrap">' +
+                        '<div class="deg-step deg-modern">' +
+                            '<div class="deg-word">' + gp.meaning + '</div>' +
+                        '</div>' +
+                        '<div class="deg-label">' + modernLabel + '</div>' +
+                    '</div>';
+                degLost.textContent = gp.lost || '';
+            } else {
+                degSection.style.display = 'none';
             }
 
             // Derivatives table — 3 columns

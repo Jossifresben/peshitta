@@ -520,6 +520,17 @@ header p {
 .ficha-section:last-child {
     margin-bottom: 0;
 }
+.cite-highlight {
+    background: rgba(180, 83, 9, 0.2);
+    color: #8B4513;
+    padding: 0 2px;
+    border-radius: 3px;
+    font-weight: 700;
+}
+[data-theme="dark"] .cite-highlight {
+    background: rgba(217, 119, 6, 0.25);
+    color: #f0c070;
+}
 .ficha-section-title {
     display: flex;
     align-items: center;
@@ -592,6 +603,19 @@ header p {
     color: var(--text-color, #333);
     font-style: italic;
 }
+.ficha-citation-note {
+    font-size: 0.85em;
+    font-style: italic;
+    color: var(--accent, #b45309);
+    margin-top: 6px;
+    padding: 6px 10px;
+    border-left: 3px solid var(--accent, #b45309);
+    background: rgba(180, 83, 9, 0.06);
+    border-radius: 0 4px 4px 0;
+}
+[data-theme="dark"] .ficha-citation-note {
+    background: rgba(217, 119, 6, 0.1);
+}
 .ficha-citation-ref {
     display: flex;
     align-items: center;
@@ -651,6 +675,177 @@ header p {
     font-style: italic;
     margin: 0;
 }
+/* Translation degradation — ¿Qué se perdió? */
+.ficha-degradation-chain {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 12px 0 16px;
+}
+.deg-step-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 120px;
+    max-width: 220px;
+}
+.deg-step {
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+    width: 100%;
+}
+.deg-word {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+.deg-translit {
+    font-size: 0.9em;
+    opacity: 0.85;
+    font-style: italic;
+    margin-bottom: 6px;
+}
+.deg-range {
+    font-size: 0.78em;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+.deg-aramaic {
+    background: #8B4513;
+    color: #fff;
+}
+.deg-aramaic .deg-word {
+    font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif;
+}
+.deg-greek {
+    background: #483D8B;
+    color: #fff;
+}
+.deg-modern {
+    background: var(--bg-highlight, #f5f0e8);
+    color: var(--text-primary, #3d2b1f);
+    border: 2px solid var(--border-color, #e0d5c8);
+}
+.deg-label {
+    font-size: 0.72em;
+    color: var(--text-secondary, #8a7560);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 6px;
+    font-weight: 600;
+}
+.deg-arrow-wrap {
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+}
+.deg-arrow {
+    font-size: 1.5em;
+    color: var(--text-secondary, #8a7560);
+    font-weight: 300;
+}
+.ficha-degradation-lost {
+    font-style: italic;
+    color: var(--text-primary, #3d2b1f);
+    line-height: 1.6;
+    padding: 12px 16px;
+    border-left: 3px solid #483D8B;
+    background: var(--bg-highlight, #f5f0e8);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.92em;
+}
+
+/* Compact degradation in word modal */
+.modal-degradation {
+    margin: 10px 0 14px;
+    padding: 10px 14px;
+    background: var(--bg-highlight, #f5f0e8);
+    border-radius: 8px;
+    border-left: 3px solid #483D8B;
+}
+.modal-deg-chain {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+.modal-deg-step {
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+.modal-deg-aramaic {
+    background: #8B4513;
+    color: #fff;
+}
+.modal-deg-aramaic .syriac,
+.modal-deg-aramaic {
+    font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif, sans-serif;
+}
+.modal-deg-greek {
+    background: #483D8B;
+    color: #fff;
+}
+.modal-deg-modern {
+    background: var(--border-color, #e0d5c8);
+    color: var(--text-primary, #3d2b1f);
+}
+.modal-deg-arrow {
+    color: var(--text-secondary, #8a7560);
+    font-size: 1.1em;
+}
+.modal-deg-range {
+    font-size: 0.82em;
+    color: var(--text-secondary, #8a7560);
+    font-style: italic;
+    margin-bottom: 4px;
+}
+.modal-deg-lost {
+    font-size: 0.85em;
+    color: var(--text-primary, #3d2b1f);
+    line-height: 1.5;
+}
+.modal-deg-more {
+    font-size: 0.9em;
+    color: var(--accent, #8B4513);
+    text-decoration: none;
+    font-style: italic;
+}
+.modal-deg-more:hover {
+    text-decoration: underline;
+}
+
+/* Dark mode overrides for degradation */
+[data-theme="dark"] .deg-aramaic {
+    background: #a0522d;
+}
+[data-theme="dark"] .deg-greek {
+    background: #5a4fb0;
+}
+[data-theme="dark"] .deg-modern {
+    background: var(--bg-highlight, #4a3a10);
+    color: var(--text-primary, #e8dcc8);
+}
+[data-theme="dark"] .ficha-degradation-lost {
+    background: var(--bg-highlight, #4a3a10);
+    color: var(--text-primary, #e8dcc8);
+    border-left-color: #7B6DC8;
+}
+[data-theme="dark"] .modal-degradation {
+    background: var(--bg-highlight, #4a3a10);
+    border-left-color: #7B6DC8;
+}
+[data-theme="dark"] .modal-deg-modern {
+    background: var(--border-color, #5a4930);
+    color: var(--text-primary, #e8dcc8);
+}
+
 .ficha-table-wrap {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -2018,9 +2213,51 @@ footer a:hover {
 .viz-btn:hover {
     background: var(--accent-dark);
 }
+.viz-btn-primary {
+    padding: 8px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    border-radius: 8px;
+    background: #483D8B;
+    box-shadow: 0 2px 8px rgba(72, 61, 139, 0.35);
+    letter-spacing: 0.02em;
+    transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.viz-btn-primary:hover {
+    background: #5a4fb0;
+    box-shadow: 0 4px 14px rgba(72, 61, 139, 0.45);
+    transform: translateY(-1px);
+}
 
 .viz-btn .material-symbols-outlined {
     font-size: 16px;
+}
+.viz-btn-primary .material-symbols-outlined {
+    font-size: 18px;
+}
+
+/* Visualize button in word modal */
+.modal-viz-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent);
+    color: #fff;
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-decoration: none;
+    margin: 8px 0 4px;
+    box-shadow: 0 2px 6px rgba(139, 69, 19, 0.3);
+    transition: background 0.15s, box-shadow 0.15s;
+}
+.modal-viz-btn:hover {
+    background: var(--accent-dark);
+    box-shadow: 0 3px 10px rgba(139, 69, 19, 0.4);
+}
+.modal-viz-btn .material-symbols-outlined {
+    font-size: 18px;
 }
 
 .viz-controls {

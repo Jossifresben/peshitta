@@ -571,12 +571,26 @@ def api_word_root():
                 'references': m.references[:20],
             })
 
+    # Greek parallel — compact degradation for word modal
+    degradation = None
+    if cognate_entry and cognate_entry.greek_parallel:
+        gp = cognate_entry.greek_parallel
+        is_es = lang == 'es'
+        degradation = {
+            'greek_word': gp.word,
+            'greek_translit': gp.transliteration,
+            'meaning': gp.meaning_es if is_es else gp.meaning_en,
+            'aramaic_range': gp.aramaic_range_es if is_es else gp.aramaic_range_en,
+            'lost': gp.lost_es if is_es else gp.lost_en,
+        }
+
     return jsonify({
         'form': form,
         'root': root,
         'root_translit': _translit_to_dash(root),
         'gloss': gloss,
         'matches': matches,
+        'degradation': degradation,
     })
 
 
@@ -730,12 +744,14 @@ def api_root_family():
     paradigmatic_verse = ''
     paradigmatic_syriac = ''
     paradigmatic_translit = ''
+    paradigmatic_form = ''
     if root_entry and root_entry.matches:
         # Pick the most frequent form's first reference
         best_match = max(root_entry.matches, key=lambda m: m.count)
+        paradigmatic_form = best_match.form
         if best_match.references:
             paradigmatic_ref = best_match.references[0]
-            verse_text = _corpus.get_verse_translation(paradigmatic_ref, meaning_lang)
+            verse_text = _corpus.get_verse_translation(paradigmatic_ref, trans)
             if verse_text:
                 paradigmatic_verse = verse_text
             # Original Syriac + transliteration
@@ -745,7 +761,7 @@ def api_root_family():
                 words = syriac_text.split()
                 paradigmatic_translit = ' '.join(translit_fn(w) for w in words)
             # Translate book name for display
-            book_names = _i18n.get(meaning_lang, {}).get('book_names', {})
+            book_names = _i18n.get(trans, {}).get('book_names', {}) or _i18n.get(meaning_lang, {}).get('book_names', {})
             para_ref_display = paradigmatic_ref
             for en_name, local_name in book_names.items():
                 if paradigmatic_ref.startswith(en_name):
@@ -778,6 +794,20 @@ def api_root_family():
                         'shared': shared,
                     })
 
+    # Greek parallel — translation degradation data
+    greek_parallel = None
+    if cognate_entry and cognate_entry.greek_parallel:
+        gp = cognate_entry.greek_parallel
+        is_es = meaning_lang == 'es'
+        greek_parallel = {
+            'word': gp.word,
+            'transliteration': gp.transliteration,
+            'meaning': gp.meaning_es if is_es else gp.meaning_en,
+            'aramaic_range': gp.aramaic_range_es if is_es else gp.aramaic_range_en,
+            'greek_range': gp.greek_range_es if is_es else gp.greek_range_en,
+            'lost': gp.lost_es if is_es else gp.lost_en,
+        }
+
     return jsonify({
         'root': root_syriac,
         'root_translit': root_input.upper(),
@@ -791,7 +821,10 @@ def api_root_family():
         'paradigmatic_verse': paradigmatic_verse,
         'paradigmatic_syriac': paradigmatic_syriac,
         'paradigmatic_translit': paradigmatic_translit,
+        'paradigmatic_form': paradigmatic_form,
+        'paradigmatic_note': (cognate_entry.paradigmatic_note_es if meaning_lang == 'es' else cognate_entry.paradigmatic_note_en) if cognate_entry else '',
         'sister_roots': sister_roots,
+        'greek_parallel': greek_parallel,
     })
 
 

@@ -207,10 +207,10 @@
                 <div class="root-meaning">{{ result.gloss }}</div>
                 {% endif %}
                 <div class="root-header-nav">
+                    <a href="{{ url_for('visualize', root_key=result.root_translit, lang=lang, script=script, trans=trans) }}" class="viz-btn viz-btn-primary" title="{% if lang == 'es' %}Visualizar familia de raíz{% else %}Visualize root family{% endif %}"><span class="material-symbols-outlined">hub</span> {% if lang == 'es' %}Visualizar{% else %}Visualize{% endif %}</a>
                     <a href="#section-peshitta" class="nav-btn">{{ t.results_peshitta }}</a>
                     <a href="#section-hebrew" class="nav-btn">{{ t.results_hebrew }}</a>
                     <a href="#section-arabic" class="nav-btn">{{ t.results_arabic }}</a>
-                    <a href="{{ url_for('visualize', root_key=result.root_translit, lang=lang, script=script, trans=trans) }}" class="viz-btn" title="{% if lang == 'es' %}Visualizar familia de raíz{% else %}Visualize root family{% endif %}"><span class="material-symbols-outlined">hub</span> {% if lang == 'es' %}Visualizar{% else %}Visualize{% endif %}</a>
                 </div>
             </div>
 
@@ -314,7 +314,7 @@
 
         <footer>
             <div class="footer-line">{{ 'Por Jossi Fresco, inspirado por' if lang == 'es' else 'By Jossi Fresco, inspired by' }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
-            <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a> <span class="footer-sep">|</span> MIT License</div>
+            <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a></div>
             <div class="footer-links">
                 <a href="{{ 'https://somosunodigital.com/es/' if lang == 'es' else 'https://somosunodigital.com' }}" target="_blank" rel="noopener">somosunodigital.com</a>
                 <span class="footer-sep">|</span>
