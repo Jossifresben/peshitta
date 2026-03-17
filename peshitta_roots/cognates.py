@@ -192,15 +192,16 @@ class CognateLookup:
 
         # Try transliterated key
         translit = transliterate_syriac(root_syriac)
-        # Convert transliteration to key format: k-th-b
-        if len(root_syriac) >= 3:
+        # Convert transliteration to key format: k-th-b or g-sh
+        if len(root_syriac) >= 2:
             parts = []
-            i = 0
             for ch in root_syriac:
                 from .characters import SYRIAC_TO_LATIN
                 if ch in SYRIAC_TO_LATIN:
-                    parts.append(SYRIAC_TO_LATIN[ch])
-            if len(parts) == 3:
+                    # Normalize ' (alef) back to 'a' for JSON key lookup
+                    val = SYRIAC_TO_LATIN[ch]
+                    parts.append('a' if val == "'" else val)
+            if len(parts) in (2, 3):
                 key = '-'.join(parts)
                 if key in self._cognates:
                     return self._cognates[key]

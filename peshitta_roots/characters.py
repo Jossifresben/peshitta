@@ -36,7 +36,7 @@ PROCLITIC_LETTERS = frozenset(['\u0715', '\u0718', '\u0712', '\u0720'])  # ܕ ܘ
 
 # --- Syriac -> Latin transliteration ---
 SYRIAC_TO_LATIN = {
-    '\u0710': 'a',    # ܐ Alaph
+    '\u0710': "'",    # ܐ Alaph (glottal stop)
     '\u0712': 'b',    # ܒ Beth
     '\u0713': 'g',    # ܓ Gamal
     '\u0715': 'd',    # ܕ Dalath
@@ -63,7 +63,8 @@ SYRIAC_TO_LATIN = {
 # --- Latin -> Syriac (reverse map for user input parsing) ---
 # Handles both upper and lower case input
 LATIN_TO_SYRIAC = {
-    'a':  '\u0710',  # ܐ
+    "'":  '\u0710',  # ܐ Alaph (glottal stop)
+    'a':  '\u0710',  # ܐ (alternate input for backward compatibility)
     'b':  '\u0712',  # ܒ
     'g':  '\u0713',  # ܓ
     'd':  '\u0715',  # ܕ
@@ -79,7 +80,6 @@ LATIN_TO_SYRIAC = {
     'n':  '\u0722',  # ܢ
     's':  '\u0723',  # ܣ
     'e':  '\u0725',  # ܥ E (Ayin)
-    "'":  '\u0725',  # ܥ (alternate input)
     'o':  '\u0725',  # ܥ (alternate input for Hebrew-familiar users)
     'p':  '\u0726',  # ܦ
     'ts': '\u0728',  # ܨ
@@ -311,12 +311,12 @@ def parse_root_input(user_input: str) -> str | None:
     """Parse user input like 'K-T-B' or 'k t b' into Syriac root string.
 
     Accepts:
-      - Dash-separated: K-T-B
-      - Space-separated: K T B
+      - Dash-separated: K-T-B (triliteral) or G-SH (biliteral)
+      - Space-separated: K T B or G SH
       - Digraphs: SH-L-M, KH-T-B, TH-Q-N, TS-L-M
       - Case-insensitive (except T for Teth)
 
-    Returns Syriac root string or None if invalid.
+    Returns Syriac root string (2 or 3 chars) or None if invalid.
     """
     user_input = user_input.strip()
     if not user_input:
@@ -328,7 +328,7 @@ def parse_root_input(user_input: str) -> str | None:
     else:
         parts = user_input.split()
 
-    if len(parts) != 3:
+    if len(parts) not in (2, 3):
         return None
 
     syriac_chars = []
@@ -364,13 +364,13 @@ def semitic_root_variants(root_syriac: str) -> list[str]:
 
     Returns a list of alternative roots (not including the original).
     """
-    if not root_syriac or len(root_syriac) != 3:
+    if not root_syriac or len(root_syriac) not in (2, 3):
         return []
 
     variants = set()
     chars = list(root_syriac)
 
-    for pos in range(3):
+    for pos in range(len(chars)):
         for a, b in SEMITIC_EQUIVALENCES:
             if chars[pos] == a:
                 alt = chars.copy()

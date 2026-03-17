@@ -78,9 +78,9 @@ class RootExtractor:
         return word in self._stopwords
 
     def _extract_root_for_word(self, word: str) -> str | None:
-        """Try to extract a triliteral root from a single word.
+        """Try to extract a root from a single word.
 
-        Returns the root as a 3-character Syriac string, or None.
+        Returns the root as a 2- or 3-character Syriac string, or None.
         """
         # 1. Direct form lookup in known dictionary
         if word in self._form_to_root:
@@ -97,6 +97,10 @@ class RootExtractor:
             if consonants in self._known_roots:
                 return consonants
             # Even if not known, 3-consonant words are likely roots
+            return consonants
+
+        # 3b. If exactly 2 consonants and it's a known biliteral root
+        if len(consonants) == 2 and consonants in self._known_roots:
             return consonants
 
         # 4. Generate candidate stems via affix stripping

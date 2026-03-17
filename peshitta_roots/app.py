@@ -83,16 +83,23 @@ def _get_translit_fn(script: str):
 
 
 def _translit_to_dash(root_syriac: str) -> str:
-    """Convert a Syriac root to dash-separated Latin form (e.g., K-TH-B)."""
-    translit = transliterate_syriac(root_syriac).upper()
+    """Convert a Syriac root to dash-separated Latin form (e.g., K-TH-B).
+
+    Alef (ܐ) is rendered as "'" (glottal stop), not "A".
+    """
+    translit = transliterate_syriac(root_syriac)
     parts = []
     i = 0
     while i < len(translit):
-        if i + 1 < len(translit) and translit[i:i+2] in ('SH', 'KH', 'TH', 'TS'):
-            parts.append(translit[i:i+2])
+        ch = translit[i]
+        if ch == "'":
+            parts.append("'")
+            i += 1
+        elif i + 1 < len(translit) and translit[i:i+2].upper() in ('SH', 'KH', 'TH', 'TS'):
+            parts.append(translit[i:i+2].upper())
             i += 2
         else:
-            parts.append(translit[i])
+            parts.append(ch.upper())
             i += 1
     return '-'.join(parts)
 
@@ -221,7 +228,7 @@ def index():
 
             result = {
                 'root': root_syriac,
-                'root_translit': query.upper(),
+                'root_translit': _translit_to_dash(root_syriac),
                 'gloss': gloss,
                 'matches': matches,
                 'hebrew': hebrew,
@@ -313,18 +320,21 @@ def api_suggest():
     if not prefix:
         return jsonify([])
 
-    # Normalize alternate inputs: O -> E (both map to Ayin)
+    # Normalize alternate inputs: O -> E (both map to Ayin), A -> ' (alef)
     normalized_prefix = prefix.replace('O', 'E')
+    # Also try matching A as alef (') for backward compatibility
+    alef_prefix = None
+    if normalized_prefix.startswith('A'):
+        alef_prefix = "'" + normalized_prefix[1:]
 
     results = []
     for entry in _extractor.get_all_roots():
         dash_form = _translit_to_dash(entry.root)
 
-        if dash_form.startswith(prefix) or dash_form.startswith(normalized_prefix):
-            # Show translit matching user's input style (O vs E for Ayin)
+        if (dash_form.startswith(prefix) or
+            dash_form.startswith(normalized_prefix) or
+            (alef_prefix and dash_form.startswith(alef_prefix))):
             display_form = dash_form
-            if prefix != normalized_prefix:
-                display_form = dash_form.replace('E', 'O')
             results.append({
                 'root': entry.root,
                 'translit': display_form,
@@ -625,8 +635,11 @@ def visualize(root_key):
     trans = request.args.get('trans', lang)
     if trans not in ('en', 'es', 'he', 'ar'):
         trans = lang
+    display_key = root_key.upper()
+    if display_key.startswith('A-'):
+        display_key = "'" + display_key[1:]
     return render_template('visualize.html', t=t, lang=lang, script=script,
-                           trans=trans, root_key=root_key.upper())
+                           trans=trans, root_key=display_key)
 
 
 @app.route('/api/root-family')
@@ -805,7 +818,7 @@ def api_root_family():
                         other_gloss = other_entry.gloss_es if meaning_lang == 'es' else other_entry.gloss_en
                         other_syriac = other_entry.root_syriac
                     sister_roots.append({
-                        'root_translit': other_key.upper(),
+                        'root_translit': other_key.upper().replace('A-', "'-", 1) if other_key.startswith('a-') else other_key.upper(),
                         'root_syriac': other_syriac,
                         'gloss': other_gloss,
                         'shared': shared,
@@ -827,7 +840,7 @@ def api_root_family():
 
     return jsonify({
         'root': root_syriac,
-        'root_translit': root_input.upper(),
+        'root_translit': _translit_to_dash(root_syriac) if root_syriac else root_input.upper(),
         'gloss': gloss,
         'sabor_raiz': sabor_raiz,
         'syriac_words': syriac_words,
@@ -1035,14 +1048,15 @@ def api_passage_constellation():
         for j in range(i + 1, len(root_translits)):
             r1_parts = root_translits[i].split('-')
             r2_parts = root_translits[j].split('-')
-            if len(r1_parts) == 3 and len(r2_parts) == 3:
+            if len(r1_parts) >= 2 and len(r2_parts) >= 2:
                 shared = sum(1 for a, b in zip(r1_parts, r2_parts) if a == b)
+                max_len = max(len(r1_parts), len(r2_parts))
                 if shared >= 2:
                     conn_key = tuple(sorted([root_translits[i], root_translits[j]]))
                     if conn_key not in seen_connections:
                         seen_connections.add(conn_key)
                         label = (meaning_lang == 'es' and 'Raíces hermanas' or 'Sister roots') + \
-                                f' ({shared}/3)'
+                                f' ({shared}/{max_len})'
                         connections.append({
                             'source': root_translits[i],
                             'target': root_translits[j],
