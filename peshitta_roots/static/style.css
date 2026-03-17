@@ -415,8 +415,6 @@ header p {
     align-items: center;
     gap: 6px;
     padding: 12px 18px;
-    white-space: nowrap;
-    flex-shrink: 0;
     background: none;
     border: none;
     border-bottom: 3px solid transparent;
@@ -1860,6 +1858,15 @@ footer a:hover {
 
     header p {
         font-size: 0.95em;
+    }
+
+    .feature-tab {
+        padding: 10px 8px;
+        font-size: 0.8em;
+        gap: 3px;
+    }
+    .feature-tab .material-symbols-outlined {
+        display: none;
     }
 
     .search-section {
