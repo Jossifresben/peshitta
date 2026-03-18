@@ -564,6 +564,17 @@ def methodology_page():
     return render_template('methodology.html', t=t, lang=lang, script=script, trans=trans)
 
 
+@app.route('/about')
+def about_page():
+    """About the author page."""
+    _init()
+    lang = _detect_lang()
+    if lang not in _i18n:
+        lang = 'es'
+    t = _Namespace(_i18n[lang])
+    return render_template('about.html', t=t, lang=lang)
+
+
 @app.route('/api/word-root')
 def api_word_root():
     """Return root info for a given word form."""
