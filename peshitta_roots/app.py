@@ -786,12 +786,21 @@ def api_root_family():
     paradigmatic_syriac = ''
     paradigmatic_translit = ''
     paradigmatic_form = ''
+
+    # Check for manual override in cognates.json
+    override_ref = cognate_entry.paradigmatic_ref_override if cognate_entry else ''
+
     if root_entry and root_entry.matches:
-        # Pick the most frequent form's first reference
         best_match = max(root_entry.matches, key=lambda m: m.count)
         paradigmatic_form = best_match.form
-        if best_match.references:
+
+        # Use override ref if set, otherwise pick the most frequent form's first reference
+        if override_ref:
+            paradigmatic_ref = override_ref
+        elif best_match.references:
             paradigmatic_ref = best_match.references[0]
+
+        if paradigmatic_ref:
             verse_text = _corpus.get_verse_translation(paradigmatic_ref, trans)
             if verse_text:
                 paradigmatic_verse = verse_text

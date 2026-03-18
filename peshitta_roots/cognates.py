@@ -52,6 +52,7 @@ class CognateEntry:
     greek_parallel: GreekParallel | None = None
     paradigmatic_note_es: str = ''
     paradigmatic_note_en: str = ''
+    paradigmatic_ref_override: str = ''
 
 
 class CognateLookup:
@@ -145,6 +146,7 @@ class CognateLookup:
                 greek_parallel=greek_parallel,
                 paradigmatic_note_es=entry_data.get('paradigmatic_note_es', ''),
                 paradigmatic_note_en=entry_data.get('paradigmatic_note_en', ''),
+                paradigmatic_ref_override=entry_data.get('paradigmatic_ref', ''),
             )
 
             self._cognates[key] = entry
