@@ -1,0 +1,956 @@
+[
+  {
+    "root": "kh-z-a",
+    "issue": "Duplicate root with kh-z-y. Both map to ܚܙܐ/ܚܙܝ with 'see' gloss. In Payne Smith the root is ܚܙܐ (khza). The kh-z-y variant is redundant.",
+    "current_gloss_en": "see",
+    "suggested_fix": "Remove kh-z-y as duplicate, or merge entries. The root in Payne Smith is ḥzā."
+  },
+  {
+    "root": "kh-z-y",
+    "issue": "Duplicate of kh-z-a (ܚܙܐ). The gloss 'see, vision' is acceptable but this is the same root as kh-z-a. In Payne Smith both forms are under the same entry.",
+    "current_gloss_en": "see, vision",
+    "suggested_fix": "Merge with kh-z-a or mark as variant."
+  },
+  {
+    "root": "s-b-r",
+    "issue": "Gloss 'hope, preach' is correct for Syriac ܣܒܪ per Payne Smith. However, the primary meaning in Payne Smith is 'to think, suppose, opine' which is missing. 'Hope' and 'preach good tidings' are secondary meanings.",
+    "current_gloss_en": "hope, preach",
+    "suggested_fix": "Change to 'think, suppose; hope; preach good tidings'"
+  },
+  {
+    "root": "z-d-q",
+    "issue": "Syriac ܙܕܩ in Payne Smith means 'to be right, fitting, proper; to be justified' — NOT 'be righteous' which is more the Hebrew sense. This is a significant semantic difference. Duplicate with ts-d-q which also glosses 'be righteous'.",
+    "current_gloss_en": "be righteous",
+    "suggested_fix": "Change to 'be fitting, proper, right; be justified'. The root for 'righteous' in the Hebrew/moral sense is better represented by ts-d-q."
+  },
+  {
+    "root": "ts-d-q",
+    "issue": "Duplicate concept with z-d-q. Both gloss 'be righteous'. In Payne Smith, the Syriac root ܨܕܩ does not appear as a separate entry — the standard Syriac form is ܙܕܩ (z-d-q). ܨܕܩ may be a Hebrew-influenced form.",
+    "current_gloss_en": "be righteous",
+    "suggested_fix": "Verify whether ܨܕܩ is actually attested in Syriac per Payne Smith. This may be a Hebrew root (tsadaq) incorrectly listed as Syriac."
+  },
+  {
+    "root": "e-l-m",
+    "issue": "Gloss 'world, eternity' treats these as nominal meanings only. In Payne Smith, ܥܠܡ as a root implies 'to hide, conceal' which is the verbal sense. 'World' (ʿālmā) and 'eternity' are derived nouns.",
+    "current_gloss_en": "world, eternity",
+    "suggested_fix": "Add verbal sense: 'hide, conceal; world, eternity'"
+  },
+  {
+    "root": "n-p-sh",
+    "issue": "Gloss 'soul, self' is the nominal meaning only. In Payne Smith the root ܢܦܫ also has verbal senses: 'to breathe, refresh oneself'. The nominal ܢܦܫܐ (naphshā) means 'soul, self, person'.",
+    "current_gloss_en": "soul, self",
+    "suggested_fix": "Consider adding 'breathe, refresh; soul, self'"
+  },
+  {
+    "root": "r-w-kh",
+    "issue": "Gloss 'spirit, wind' is correct for the noun ܪܘܚܐ. But treating it as a root is questionable — in Payne Smith the verbal root ܪܘܚ means 'to be spacious, be relieved'. The noun senses are derived.",
+    "current_gloss_en": "spirit, wind",
+    "suggested_fix": "Add verbal sense: 'be spacious, be relieved; spirit, wind'"
+  },
+  {
+    "root": "a-l-h",
+    "issue": "Gloss 'God' is correct as a noun but ܐܠܗ is not really a verbal root in Syriac. In Payne Smith, ܐܠܗܐ (alāhā) is treated as a noun. There is no verbal meaning 'to be God'.",
+    "current_gloss_en": "God",
+    "suggested_fix": "Keep as 'God' but note this is a nominal root, not a verbal one."
+  },
+  {
+    "root": "k-h-n",
+    "issue": "Gloss 'priest' is nominal only. In Payne Smith, the verb ܟܗܢ means 'to be a priest, officiate as priest'. The gloss should reflect the verbal meaning.",
+    "current_gloss_en": "priest",
+    "suggested_fix": "Change to 'be a priest, officiate; priest'"
+  },
+  {
+    "root": "s-g-d",
+    "issue": "Gloss 'worship' is incomplete. In Payne Smith, ܣܓܕ primarily means 'to prostrate oneself, bow down, do obeisance'. 'Worship' is a secondary/extended meaning.",
+    "current_gloss_en": "worship",
+    "suggested_fix": "Change to 'prostrate oneself, bow down, worship'"
+  },
+  {
+    "root": "e-m-d",
+    "issue": "Gloss 'baptize' is a specifically Christian meaning. In Payne Smith, ܥܡܕ means 'to immerse, baptize, dip'. The root meaning is broader than just baptism.",
+    "current_gloss_en": "baptize",
+    "suggested_fix": "Change to 'immerse, dip; baptize'"
+  },
+  {
+    "root": "sh-kh-kh",
+    "issue": "Root transliterated as sh-kh-kh but Syriac ܫܟܚ has letters shin-kap-ḥeth. The transliteration suggests three consonants with kh repeated, but the actual root is sh-k-ḥ. In Payne Smith ܫܟܚ means 'to find, be able'.",
+    "current_gloss_en": "find",
+    "suggested_fix": "Fix transliteration to 'sh-k-kh' or 'sh-k-ḥ'. Add 'be able' to gloss: 'find, be able'"
+  },
+  {
+    "root": "d-b-r",
+    "issue": "Gloss 'lead, guide' is correct per Payne Smith for Syriac ܕܒܪ. However, note this is different from Hebrew d-b-r which means 'speak'. The Syriac meaning 'lead, take, carry away' is correct.",
+    "current_gloss_en": "lead, guide",
+    "suggested_fix": "Acceptable, but could add 'take, carry away' per Payne Smith"
+  },
+  {
+    "root": "n-h-r",
+    "issue": "Gloss 'shine, river' conflates two distinct meanings. In Payne Smith, ܢܗܪ as a verb means 'to give light, shine, illuminate'. ܢܗܪܐ (nahrā) as a noun means 'river'. These may be from distinct roots.",
+    "current_gloss_en": "shine, river",
+    "suggested_fix": "Keep but note these are distinct semantic fields under the same root letters."
+  },
+  {
+    "root": "s-p-r",
+    "issue": "Gloss 'scribe, book' is nominal only. In Payne Smith, ܣܦܪ as a root is not a common Syriac verb. The noun ܣܦܪܐ (sāprā) means 'scribe' and ܣܶܦܪܐ means 'book'. This is more of a nominal root.",
+    "current_gloss_en": "scribe, book",
+    "suggested_fix": "Acceptable as nominal glosses."
+  },
+  {
+    "root": "sh-m-sh",
+    "issue": "Gloss 'serve, sun' conflates verb and noun. In Payne Smith, ܫܡܫ as a verb means 'to serve, minister, officiate (especially liturgically)'. ܫܡܫܐ (shemshā) as a noun means 'sun'. Both are correct but the verbal meaning is the primary root.",
+    "current_gloss_en": "serve, sun",
+    "suggested_fix": "Acceptable, but primary sense is 'serve, minister' with 'sun' as noun derivative."
+  },
+  {
+    "root": "b-y-th",
+    "issue": "Nominal root only — ܒܝܬ means 'house'. This is not a verbal root in Syriac per Payne Smith. Transliteration b-y-th is unusual; ܒܝܬ is beth-yod-taw.",
+    "current_gloss_en": "house",
+    "suggested_fix": "Acceptable as nominal root."
+  },
+  {
+    "root": "kh-d-a",
+    "issue": "Gloss 'one, rejoice' conflates TWO DIFFERENT roots. In Payne Smith: ܚܕ (ḥaḏ) = 'one' (numeral), and ܚܕܐ (ḥḏā) = 'to rejoice, be glad'. These are distinct entries. The root for 'one' is really biliteral kh-d, not kh-d-a.",
+    "current_gloss_en": "one, rejoice",
+    "suggested_fix": "Separate into two entries or clarify: 'rejoice, be glad' for kh-d-a (ܚܕܐ), with 'one' listed separately."
+  },
+  {
+    "root": "m-r-y",
+    "issue": "Gloss 'lord, master' is a nominal meaning of ܡܪܝ (māri/mor). In Payne Smith, ܡܪܐ (mārā) is 'lord, master'. The form ܡܪܝ is a construct/possessive form. This is not really a triliteral root — the root is m-r-a or m-r.",
+    "current_gloss_en": "lord, master",
+    "suggested_fix": "Note that this is derived from the biliteral/nominal root m-r-a (ܡܪܐ). ܡܪܝ is 'my lord'."
+  },
+  {
+    "root": "h-m-n",
+    "issue": "Gloss 'believe, faith' is questionable. The Syriac root for 'believe' is ܗܝܡܢ (haymēn), a quadriliteral form, not the triliteral h-m-n. ܗܡܢ as a triliteral is not standard in Payne Smith.",
+    "current_gloss_en": "believe, faith",
+    "suggested_fix": "This should be listed as the quadriliteral h-y-m-n (ܗܝܡܢ), which is already present in the file. Remove this entry or mark as variant."
+  },
+  {
+    "root": "h-y-m-n",
+    "issue": "This is correctly identified as a quadriliteral. In Payne Smith, ܗܰܝܡܶܢ (haymen) means 'to believe, trust, have faith'. Gloss is correct. Note: this is a quadriliteral, not triliteral, root.",
+    "current_gloss_en": "believe, faith",
+    "suggested_fix": "Gloss is correct. Just note this duplicates h-m-n."
+  },
+  {
+    "root": "sh-m-y",
+    "issue": "ܫܡܝ glossed as 'heaven, sky' — this is a nominal form ܫܡܝܐ (shmayā). Not a verbal root in Payne Smith. The root letters are shin-mim-yod but there is no verbal ܫܡܝ in the dictionary.",
+    "current_gloss_en": "heaven, sky",
+    "suggested_fix": "Acceptable as nominal root but should be noted as non-verbal."
+  },
+  {
+    "root": "y-sh-e",
+    "issue": "Gloss 'save, Jesus' is problematic. ܝܫܥ is a proper-name root (Yeshuʿ/Jesus). In Payne Smith, there is no separate verbal entry for ܝܫܥ — the name ܝܫܘܥ (Yēshūʿ) is listed as a proper noun. The verbal meaning 'save' belongs to Hebrew yāshaʿ, not Syriac.",
+    "current_gloss_en": "save, Jesus",
+    "suggested_fix": "Clarify that 'save' is the etymological Hebrew meaning, not an active Syriac verb. Gloss should be: 'Jesus (from Hebrew: salvation)'"
+  },
+  {
+    "root": "z-q-p",
+    "issue": "Gloss 'crucify, raise' reverses the primary meaning. In Payne Smith, ܙܩܦ primarily means 'to raise up, set upright, erect'. The meaning 'crucify' is secondary and specifically refers to erecting/raising on a cross.",
+    "current_gloss_en": "crucify, raise",
+    "suggested_fix": "Change to 'raise up, erect; crucify'"
+  },
+  {
+    "root": "th-l-m",
+    "issue": "Gloss 'disciple' is a nominal meaning only. In Payne Smith, ܬܠܡܝܕܐ (talmīḏā) means 'disciple, pupil, learner'. The verbal root ܬܠܡ is not common in Syriac. This is more properly a derivative noun from the concept of learning.",
+    "current_gloss_en": "disciple",
+    "suggested_fix": "Note as primarily nominal. The root may relate to 'learn' but the entry in Payne Smith is for the noun ܬܠܡܝܕܐ."
+  },
+  {
+    "root": "p-r-s",
+    "issue": "Gloss 'spread, separate (Pharisee)' conflates different roots. In Payne Smith, ܦܪܣ means 'to spread out, extend'. The 'separate' meaning and Pharisee connection belong to ܦܪܫ (p-r-sh), which is a DIFFERENT root already in the file.",
+    "current_gloss_en": "spread, separate (Pharisee)",
+    "suggested_fix": "Remove 'separate (Pharisee)' — that belongs to p-r-sh. Correct gloss: 'spread out, extend'"
+  },
+  {
+    "root": "r-b-a",
+    "issue": "Gloss 'great, rabbi' mixes Syriac with Hebrew. In Payne Smith, ܪܒܐ (rabbā) means 'great, large, chief'. 'Rabbi' is a Hebrew/Aramaic title of respect but Payne Smith treats ܪܒ/ܪܒܐ as 'great'. Also duplicate with r-b-y.",
+    "current_gloss_en": "great, rabbi",
+    "suggested_fix": "Change to 'great, large, chief'. Note overlap with r-b-y."
+  },
+  {
+    "root": "r-b-y",
+    "issue": "Duplicate with r-b-a. Both are forms of the same root ܪܒ. Gloss 'great, many, rabbi' — in Payne Smith ܪܒܝ is not a separate root from ܪܒ/ܪܒܐ.",
+    "current_gloss_en": "great, many, rabbi",
+    "suggested_fix": "Merge with r-b-a or remove as duplicate."
+  },
+  {
+    "root": "kh-s-d",
+    "issue": "Gloss 'reproach (Hebrew chesed = mercy - semantic shift)' is CORRECT and well-noted. In Payne Smith, ܚܣܕ means 'to reproach, insult, revile'. The note about the semantic shift from Hebrew ḥesed is valuable and accurate.",
+    "current_gloss_en": "reproach (Hebrew chesed = mercy - semantic shift)",
+    "suggested_fix": "No fix needed — this is correctly noted."
+  },
+  {
+    "root": "a-y-l",
+    "issue": "Gloss 'tree, power' is questionable for Syriac ܐܝܠ. In Payne Smith, ܐܝܠ is not a standard Syriac root with these meanings. ܐܝܠܢܐ (īlānā) means 'tree' but derives from a different formation. 'Power' may come from Hebrew ʾayil but is not standard Syriac.",
+    "current_gloss_en": "tree, power",
+    "suggested_fix": "Verify this root in Payne Smith. The Syriac word for 'tree' is ܐܝܠܢܐ. The root may be better listed as a-y-l-n or noted as questionable."
+  },
+  {
+    "root": "z-k-a",
+    "issue": "Gloss 'be victorious, be pure' — in Payne Smith, ܙܟܐ primarily means 'to be victorious, conquer, overcome, prevail'. The meaning 'be pure' is not the primary Syriac sense; that is more the Hebrew/Aramaic z-k-y meaning.",
+    "current_gloss_en": "be victorious, be pure",
+    "suggested_fix": "Change to 'be victorious, conquer, prevail'. Remove or deprioritize 'be pure'."
+  },
+  {
+    "root": "e-l-th",
+    "issue": "ܥܠܬ glossed as 'cause, reason' — in Payne Smith, ܥܠܬܐ (ʿeltā) is a noun meaning 'cause, pretext, occasion'. This is not a verbal root. The root letters e-l-th don't form a verb in Syriac.",
+    "current_gloss_en": "cause, reason",
+    "suggested_fix": "Note as nominal only. This is a derived noun, not a root with verbal force."
+  },
+  {
+    "root": "n-w-r",
+    "issue": "Gloss 'fire, light' is nominal only. In Payne Smith, ܢܘܪܐ (nūrā) means 'fire'. ܢܘܗܪܐ (nūhrā) means 'light' but derives from n-h-r not n-w-r. The root ܢܘܪ for 'light' is questionable.",
+    "current_gloss_en": "fire, light",
+    "suggested_fix": "Change to 'fire'. 'Light' belongs to n-h-r (ܢܗܪ) which is a separate root."
+  },
+  {
+    "root": "sh-p-r",
+    "issue": "Gloss 'be beautiful, trumpet (shofar)' — in Payne Smith, ܫܦܪ means 'to be fair, beautiful, pleasing'. The 'trumpet/shofar' connection is Hebrew (shōphār), not a primary Syriac meaning of this root. ܫܝܦܘܪܐ (shīpūrā) in Syriac does mean 'trumpet' but comes from a different formation.",
+    "current_gloss_en": "be beautiful, trumpet (shofar)",
+    "suggested_fix": "Change to 'be fair, beautiful, pleasing'. Note shofar as Hebrew cognate, not Syriac root meaning."
+  },
+  {
+    "root": "d-r-sh",
+    "issue": "Gloss 'seek, interpret (midrash)' — in Payne Smith, ܕܪܫ means 'to tread, trample; to dispute, discuss, argue'. The meaning 'seek, interpret' is more Hebrew (dārash). The Syriac verb is about disputation, not seeking.",
+    "current_gloss_en": "seek, interpret (midrash)",
+    "suggested_fix": "Change to 'dispute, discuss, argue; tread'. The 'seek, interpret' sense is Hebrew, not Syriac."
+  },
+  {
+    "root": "g-l-l",
+    "issue": "Gloss 'roll, Galilee' — in Payne Smith ܓܠ/ܓܠܠ means 'to roll'. The 'Galilee' connection is etymological (Hebrew gālīl = district/region from g-l-l 'to roll/revolve') but Payne Smith does not gloss ܓܠܠ as 'Galilee'.",
+    "current_gloss_en": "roll, Galilee",
+    "suggested_fix": "Change to 'roll, revolve'. Note Galilee etymology separately."
+  },
+  {
+    "root": "a-m-n",
+    "issue": "Gloss 'trust, amen' — in Payne Smith, ܐܡܝܢ/ܐܡܝܢܐ means 'constant, continual, perpetual'. The word ܐܡܝܢ (āmīn) = 'amen' is a Hebrew loanword. The Syriac root ܐܡܢ is not primarily about 'trust' — that is the Hebrew sense.",
+    "current_gloss_en": "trust, amen",
+    "suggested_fix": "Change to 'be constant, continual; amen (Hebrew loanword)'"
+  },
+  {
+    "root": "k-r-z",
+    "issue": "Gloss 'preach, herald' is correct per Payne Smith. ܟܪܙ (kraz) means 'to preach, proclaim, herald'. Note this may be a loanword from Greek κηρύσσω.",
+    "current_gloss_en": "preach, herald",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "kh-l-l",
+    "issue": "Gloss 'profane, begin (halal)' — in Payne Smith ܚܠ/ܚܠܠ has meanings but 'halal' is a Hebrew term. In Syriac, the root is not commonly used with 'begin' meaning (that is Hebrew ḥālal). Verify Syriac usage.",
+    "current_gloss_en": "profane, begin (halal)",
+    "suggested_fix": "Verify whether 'begin' is attested in Syriac Payne Smith or is only Hebrew."
+  },
+  {
+    "root": "sh-kh-n",
+    "issue": "Gloss 'dwell (Shekinah)' — in Payne Smith, ܫܟܢ does not appear as a major entry. The Syriac verb for 'dwell' is primarily ܫܪܐ (shrā) or ܥܡܪ (ʿmar). ܫܟܝܢܬܐ (Shekinah) is a theological term from Hebrew/Aramaic. Verify root status.",
+    "current_gloss_en": "dwell (Shekinah)",
+    "suggested_fix": "Verify whether ܫܟܢ is attested as a Syriac verb in Payne Smith. May be primarily a Hebrew root."
+  },
+  {
+    "root": "kh-g-g",
+    "issue": "Gloss 'celebrate (hag/hajj)' — ܚܓ/ܚܓܓ is not a common Syriac root in Payne Smith. ܚܓܐ (ḥaggā) = 'feast, festival' exists as a loanword. The verbal root ܚܓܓ is Hebrew/Arabic, not native Syriac.",
+    "current_gloss_en": "celebrate (hag/hajj)",
+    "suggested_fix": "Note as Hebrew/Arabic cognate. In Syriac, ܥܕܥܕ (ʿeḏʿēḏā) and ܥܐܕܐ (ʿīḏā) are more common for 'feast/celebrate'."
+  },
+  {
+    "root": "q-y-m",
+    "issue": "Duplicate with q-w-m. Both gloss 'stand, rise' and both map to roots based on q-m. In Payne Smith the root is ܩܡ (qām). Having both q-w-m and q-y-m is redundant.",
+    "current_gloss_en": "stand, rise",
+    "suggested_fix": "Merge with q-w-m or remove as duplicate."
+  },
+  {
+    "root": "q-r-y",
+    "issue": "Duplicate with q-r-a. Both gloss 'call, read' and represent ܩܪܐ/ܩܪܝ. In Payne Smith the root is ܩܪܐ.",
+    "current_gloss_en": "call, read",
+    "suggested_fix": "Merge with q-r-a or remove as duplicate."
+  },
+  {
+    "root": "sh-r-y",
+    "issue": "Duplicate with sh-r-a. Both gloss forms of ܫܪܐ/ܫܪܝ. In Payne Smith the root is ܫܪܐ (shrā). Gloss 'begin, dwell, loosen' — 'dwell' is correct (ܫܪܐ can mean 'to dwell, lodge') but is not the primary meaning.",
+    "current_gloss_en": "begin, dwell, loosen",
+    "suggested_fix": "Merge with sh-r-a. Primary meanings per Payne Smith: 'to loose, dissolve, untie; begin; dwell, lodge'."
+  },
+  {
+    "root": "b-e-y",
+    "issue": "Duplicate with b-e-a. Both gloss 'seek, ask' for ܒܥܐ/ܒܥܝ.",
+    "current_gloss_en": "seek, ask",
+    "suggested_fix": "Merge with b-e-a or remove as duplicate."
+  },
+  {
+    "root": "kh-T-y",
+    "issue": "Duplicate with kh-T-a. Both gloss 'sin' for ܚܛܐ/ܚܛܝ.",
+    "current_gloss_en": "sin",
+    "suggested_fix": "Merge with kh-T-a or remove as duplicate."
+  },
+  {
+    "root": "e-n-y",
+    "issue": "Duplicate with e-n-a. Both gloss 'answer' for ܥܢܐ/ܥܢܝ.",
+    "current_gloss_en": "answer",
+    "suggested_fix": "Merge with e-n-a or remove as duplicate."
+  },
+  {
+    "root": "ts-l-y",
+    "issue": "Duplicate with ts-l-a. Gloss 'pray, crucify' — in Payne Smith, ܨܠܐ primarily means 'to pray'. The 'crucify' sense is a different usage (ܨܠܒ is the typical root for crucify in Syriac). Conflation with z-q-p.",
+    "current_gloss_en": "pray, crucify",
+    "suggested_fix": "Merge with ts-l-a. Remove 'crucify' — the root for crucify is ܙܩܦ (z-q-p) or ܨܠܒ (ts-l-b), not ܨܠܐ."
+  },
+  {
+    "root": "sh-n-y",
+    "issue": "Duplicate with sh-n-a. Both gloss 'change, year' for ܫܢܐ/ܫܢܝ.",
+    "current_gloss_en": "change, year",
+    "suggested_fix": "Merge with sh-n-a or remove as duplicate."
+  },
+  {
+    "root": "sh-w-y",
+    "issue": "Duplicate with sh-w-a. Both gloss 'be equal, worthy' for ܫܘܐ/ܫܘܝ.",
+    "current_gloss_en": "be equal, worthy",
+    "suggested_fix": "Merge with sh-w-a or remove as duplicate."
+  },
+  {
+    "root": "ts-b-y",
+    "issue": "Duplicate with ts-b-a. Both gloss 'desire, wish' for ܨܒܐ/ܨܒܝ.",
+    "current_gloss_en": "wish, desire",
+    "suggested_fix": "Merge with ts-b-a or remove as duplicate."
+  },
+  {
+    "root": "g-b-y",
+    "issue": "Duplicate with g-b-a. Both gloss 'choose, elect' for ܓܒܐ/ܓܒܝ. In Payne Smith the root is ܓܒܐ.",
+    "current_gloss_en": "choose, elect",
+    "suggested_fix": "Merge with g-b-a or remove as duplicate."
+  },
+  {
+    "root": "r-e-y",
+    "issue": "Duplicate with r-e-a. Both gloss 'shepherd, tend' for ܪܥܐ/ܪܥܝ.",
+    "current_gloss_en": "shepherd, tend",
+    "suggested_fix": "Merge with r-e-a or remove as duplicate."
+  },
+  {
+    "root": "g-l-y",
+    "issue": "Duplicate with g-l-a. Both gloss 'reveal' for ܓܠܐ/ܓܠܝ.",
+    "current_gloss_en": "reveal",
+    "suggested_fix": "Merge with g-l-a or remove as duplicate."
+  },
+  {
+    "root": "d-m-y",
+    "issue": "Duplicate with d-m-a. Both relate to ܕܡܐ/ܕܡܝ 'resemble'.",
+    "current_gloss_en": "resemble, image",
+    "suggested_fix": "Merge with d-m-a or remove as duplicate."
+  },
+  {
+    "root": "n-b-y",
+    "issue": "Duplicate with n-b-a. Both gloss 'prophesy' for ܢܒܐ/ܢܒܝ.",
+    "current_gloss_en": "prophesy",
+    "suggested_fix": "Merge with n-b-a or remove as duplicate."
+  },
+  {
+    "root": "b-r-y",
+    "issue": "Duplicate with b-r-a. Both gloss 'create, son' for ܒܪܐ/ܒܪܝ.",
+    "current_gloss_en": "create, son",
+    "suggested_fix": "Merge with b-r-a or remove as duplicate."
+  },
+  {
+    "root": "b-n-y",
+    "issue": "Duplicate with b-n-a. Both gloss 'build, son' for ܒܢܐ/ܒܢܝ.",
+    "current_gloss_en": "build, son",
+    "suggested_fix": "Merge with b-n-a or remove as duplicate."
+  },
+  {
+    "root": "kh-y-y",
+    "issue": "Duplicate with kh-y-a. Both gloss 'live/life' for ܚܝܐ/ܚܝܝ.",
+    "current_gloss_en": "live, life",
+    "suggested_fix": "Merge with kh-y-a or remove as duplicate."
+  },
+  {
+    "root": "y-th-y",
+    "issue": "Duplicate with y-th-b. Both gloss 'sit, dwell' for ܝܬܒ/ܝܬܝ. Note ܝܬܝ is not even the correct final radical — the root in Payne Smith is ܝܬܒ.",
+    "current_gloss_en": "sit, dwell",
+    "suggested_fix": "Remove — this is an incorrect variant of y-th-b (ܝܬܒ)."
+  },
+  {
+    "root": "y-d-y",
+    "issue": "Duplicate with y-d-e. Both gloss 'know' for ܝܕܥ/ܝܕܝ. The root in Payne Smith is ܝܕܥ (yḏaʿ).",
+    "current_gloss_en": "know",
+    "suggested_fix": "Remove — this is an incorrect variant of y-d-e (ܝܕܥ)."
+  },
+  {
+    "root": "kh-d-y",
+    "issue": "Duplicate with kh-d-a. Both gloss 'rejoice' for ܚܕܐ/ܚܕܝ.",
+    "current_gloss_en": "rejoice, joy",
+    "suggested_fix": "Merge with kh-d-a or remove as duplicate."
+  },
+  {
+    "root": "a-th-y",
+    "issue": "Duplicate with a-th-a. Both gloss 'come' for ܐܬܐ/ܐܬܝ.",
+    "current_gloss_en": "come, arrive",
+    "suggested_fix": "Merge with a-th-a or remove as duplicate."
+  },
+  {
+    "root": "h-w-y",
+    "issue": "Duplicate with h-w-a. Both gloss 'be, become' for ܗܘܐ/ܗܘܝ.",
+    "current_gloss_en": "be, become",
+    "suggested_fix": "Merge with h-w-a or remove as duplicate."
+  },
+  {
+    "root": "kh-r-y",
+    "issue": "Duplicate with kh-r-r. Both relate to 'free, liberate'. The root in Payne Smith is ܚܪ/ܚܪܪ. ܚܪܝ is not a separate root.",
+    "current_gloss_en": "free, liberate",
+    "suggested_fix": "Merge with kh-r-r or remove as duplicate."
+  },
+  {
+    "root": "r-sh-y",
+    "issue": "Gloss 'wicked' — in Payne Smith, ܪܫܝܥܐ (rashīʿā) means 'wicked, impious, ungodly'. The root would be r-sh-e (resh-shin-ʿayin) not r-sh-y. The transliteration may be wrong.",
+    "current_gloss_en": "wicked",
+    "suggested_fix": "Check root — Syriac 'wicked' is ܪܫܝܥ from root r-sh-e (resh-shin-ayin), not r-sh-y."
+  },
+  {
+    "root": "n-sh-a",
+    "issue": "Gloss 'women' — ܢܫܐ (neshē) is the plural of ܐܢܬܬܐ (antthā, 'woman'). This is not a verbal root; it is a suppletive plural noun. Payne Smith lists it under ܐܢܬܬܐ not as a separate root.",
+    "current_gloss_en": "women",
+    "suggested_fix": "Note as irregular plural noun, not a root. Remove or reclassify."
+  },
+  {
+    "root": "p-l-sh",
+    "issue": "Gloss 'work, serve' — ܦܠܫ is NOT attested in Payne Smith with meaning 'work, serve'. That meaning belongs to ܦܠܚ (p-l-kh), which is already in the file. ܦܠܫ is not a standard Syriac root.",
+    "current_gloss_en": "work, serve",
+    "suggested_fix": "WRONG ROOT. This appears to be a mistaken duplicate of p-l-kh (ܦܠܚ). Remove or verify."
+  },
+  {
+    "root": "sh-w-th",
+    "issue": "Gloss 'equal, worthy' — this duplicates sh-w-a/sh-w-y. In Payne Smith, the root is ܫܘܐ (shwā). ܫܘܬ is not a standard separate root.",
+    "current_gloss_en": "equal, worthy",
+    "suggested_fix": "Remove — duplicate of sh-w-a."
+  },
+  {
+    "root": "kh-w-h",
+    "issue": "Gloss 'show, declare' — duplicate of kh-w-y. In Payne Smith, ܚܘܝ/ܚܘܐ (ḥawwī) means 'to show, point out, declare'. ܚܘܗ is not a standard form.",
+    "current_gloss_en": "show, declare",
+    "suggested_fix": "Remove — duplicate of kh-w-y. The Syriac form is ܚܘܝ not ܚܘܗ."
+  },
+  {
+    "root": "w-h-b",
+    "issue": "Gloss 'give' — ܘܗܒ is not the standard Syriac root form. The root for 'give' in Syriac is ܝܗܒ (y-h-b), which is already in the file. ܘܗܒ may be a variant/confusion.",
+    "current_gloss_en": "give",
+    "suggested_fix": "Remove — duplicate of y-h-b. The initial waw is not a root letter."
+  },
+  {
+    "root": "b-r-a",
+    "issue": "Gloss 'create, son' conflates two distinct words. In Payne Smith, ܒܪܐ (brā) as a verb means 'to create'. ܒܪܐ (brā) as a noun means 'son'. These have different etymologies despite identical spelling. The 'son' meaning is primary and much more common.",
+    "current_gloss_en": "create, son",
+    "suggested_fix": "Keep but clarify these are homographic: verb 'create' vs. noun 'son, child'."
+  },
+  {
+    "root": "d-m-a",
+    "issue": "Gloss 'resemble, blood' conflates two distinct roots. In Payne Smith, ܕܡܐ (dmā) 'to resemble' and ܕܡܐ (dmā) 'blood' are distinct entries. These are homographs from different roots.",
+    "current_gloss_en": "resemble, blood",
+    "suggested_fix": "Keep but clarify these are distinct homographic roots."
+  },
+  {
+    "root": "r-sh-a",
+    "issue": "Gloss 'head, chief' for ܪܫܐ — in Payne Smith, ܪܫ/ܪܝܫ (rīsh) means 'head, chief, top, beginning'. ܪܫܐ is a form but the main dictionary entry is under ܪܝܫ. Also duplicates r-y-sh.",
+    "current_gloss_en": "head, chief",
+    "suggested_fix": "Duplicate with r-y-sh. Merge entries."
+  },
+  {
+    "root": "r-y-sh",
+    "issue": "Gloss 'head, chief' — this is the correct form per Payne Smith. ܪܝܫ/ܪܝܫܐ means 'head, chief, top, beginning'. Duplicate with r-sh-a.",
+    "current_gloss_en": "head, chief",
+    "suggested_fix": "Keep this as the primary entry. Remove r-sh-a."
+  },
+  {
+    "root": "sh-l-kh",
+    "issue": "Gloss 'send, apostle' — in Payne Smith, ܫܠܚ (shlaḥ) means 'to strip off (clothes), unclothe; to send'. ܫܠܝܚܐ (shlīḥā) means 'apostle, envoy'. The primary meaning 'strip off' is missing from the gloss. Also overlaps with sh-l-h and sh-d-r for 'send'.",
+    "current_gloss_en": "send, apostle",
+    "suggested_fix": "Change to 'strip off, unclothe; send; apostle'. The 'strip' meaning is primary."
+  },
+  {
+    "root": "sh-l-h",
+    "issue": "Gloss 'strip, take off' — this appears to be the same root as sh-l-kh (ܫܠܚ). The final letter transliteration differs (h vs kh) but the Syriac ܫܠܗ is not a standard root in Payne Smith.",
+    "current_gloss_en": "strip, take off",
+    "suggested_fix": "Verify — this may be a mistransliteration of sh-l-kh (ܫܠܚ). Remove if duplicate."
+  },
+  {
+    "root": "a-r-e",
+    "issue": "Gloss 'earth, land' — ܐܪܥ/ܐܪܥܐ (arʿā) in Payne Smith means 'earth, land, ground, country'. Correct but this is primarily a nominal form.",
+    "current_gloss_en": "earth, land",
+    "suggested_fix": "Acceptable. Note as nominal."
+  },
+  {
+    "root": "e-l-l",
+    "issue": "Gloss 'enter' for ܥܠܠ — in Payne Smith, the root ܥܠ (ʿal) means 'to enter'. ܥܠܠ as a geminate form is not standard. This duplicates e-l (ܥܠ) which is also in the file and also duplicates e-w-l.",
+    "current_gloss_en": "enter",
+    "suggested_fix": "Remove — the root is ܥܠ (biliteral e-l), not ܥܠܠ. Triplicate with e-l and e-w-l."
+  },
+  {
+    "root": "e-w-l",
+    "issue": "Gloss 'enter' for ܥܘܠ — in Payne Smith, ܥܘܠ does not mean 'enter'. ܥܘܠܐ (ʿawlā) means 'iniquity, wrong'. The verb 'enter' is ܥܠ (ʿal). WRONG GLOSS.",
+    "current_gloss_en": "enter",
+    "suggested_fix": "WRONG. In Payne Smith ܥܘܠ/ܥܘܠܐ means 'iniquity, wrong, injustice'. Change to 'iniquity, wrong' or remove."
+  },
+  {
+    "root": "e-l",
+    "issue": "Gloss 'enter' for ܥܠ — correct per Payne Smith. ܥܠ (ʿal) means 'to enter, go in'. But this is a biliteral root, not triliteral. Also duplicated by e-l-l and e-w-l.",
+    "current_gloss_en": "enter",
+    "suggested_fix": "Correct gloss. Note as biliteral root. Remove duplicates e-l-l and e-w-l."
+  },
+  {
+    "root": "q-l-l",
+    "issue": "Gloss 'voice, sound' for ܩܠܠ — WRONG. In Payne Smith, ܩܠ/ܩܠܐ (qālā) means 'voice, sound'. But ܩܠܠ as a geminate root means 'to be light, swift; to curse'. The 'voice' meaning belongs to the biliteral q-l, not the geminate q-l-l.",
+    "current_gloss_en": "voice, sound",
+    "suggested_fix": "WRONG. Change to 'be light, swift; curse' for q-l-l. The meaning 'voice, sound' belongs to the noun ܩܠܐ from biliteral q-l."
+  },
+  {
+    "root": "e-z-z",
+    "issue": "Gloss 'be strong' for ܥܙܙ — in Payne Smith, ܥܙ (ʿaz) / ܥܙܝܙ (ʿazzīz) means 'strong, mighty'. However, a distinct Syriac verbal form ܥܫܢ (e-sh-n, already in the file) is more commonly used for 'be strong'. ܥܙ is more adjectival.",
+    "current_gloss_en": "be strong",
+    "suggested_fix": "Acceptable but note overlap with e-sh-n."
+  },
+  {
+    "root": "kh-w-b",
+    "issue": "Gloss 'love, debt' for ܚܘܒ — in Payne Smith, ܚܘܒܐ (ḥūbbā) means 'love, affection' and ܚܘܒܐ (ḥawbā) means 'debt, obligation, guilt'. These are distinct words with different vowel patterns despite same consonants.",
+    "current_gloss_en": "love, debt",
+    "suggested_fix": "Keep but clarify: ḥūbbā = 'love' vs. ḥawbā = 'debt, guilt'. These are distinct words."
+  },
+  {
+    "root": "p-g-r",
+    "issue": "Gloss 'body' for ܦܓܪ — in Payne Smith, ܦܓܪܐ (pagrā) means 'body' but especially 'corpse, dead body'. The living-body meaning is secondary. Missing important nuance.",
+    "current_gloss_en": "body",
+    "suggested_fix": "Change to 'body, corpse'. The 'corpse' meaning is primary in Payne Smith."
+  },
+  {
+    "root": "k-a-p",
+    "issue": "Gloss 'rock, stone' for ܟܐܦ — in Payne Smith, ܟܐܦܐ (kīpā) means 'stone, rock'. Gloss is correct. This is the word behind 'Cephas/Peter'.",
+    "current_gloss_en": "rock, stone",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "k-a-n",
+    "issue": "Gloss 'just, righteous' for ܟܐܢ — in Payne Smith, ܟܐܢ/ܟܐܢܐ (kīnā) means 'just, right, upright'. This is an adjectival form. Correct.",
+    "current_gloss_en": "just, righteous",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "r-y-m",
+    "issue": "Gloss 'be high, exalt' for ܪܝܡ — in Payne Smith, the root is ܪܡ (rām) meaning 'to be high, exalted'. ܪܝܡ may be a participial form, not a separate root.",
+    "current_gloss_en": "be high, exalt",
+    "suggested_fix": "Note the root is properly r-m (biliteral). ܪܝܡ is a derived form."
+  },
+  {
+    "root": "m-l-p",
+    "issue": "Gloss 'teach' for ܡܠܦ — this is NOT a root. ܡܠܦ is the Aphel participle of ܝܠܦ (y-l-p, 'to learn'). In the Aphel, ܐܠܦ/ܡܠܦ means 'to teach'. This should not be listed as a separate root.",
+    "current_gloss_en": "teach",
+    "suggested_fix": "Remove — this is not a root. It is the Aphel/causative form of y-l-p (ܝܠܦ). Already covered by a-l-p and y-l-p."
+  },
+  {
+    "root": "a-l-p",
+    "issue": "Gloss 'learn, teach; thousand' — in Payne Smith, ܐܠܦ (aleph) means 'to teach, instruct' (Aphel of y-l-p). ܐܠܦ/ܐܠܦܐ also means 'thousand'. Gloss is essentially correct.",
+    "current_gloss_en": "learn, teach; thousand",
+    "suggested_fix": "Correct. Note that 'learn' is properly y-l-p; 'teach' is the Aphel form."
+  },
+  {
+    "root": "s-k-l",
+    "issue": "Gloss 'understand, be foolish' for ܣܟܠ — in Payne Smith, ܣܟܠ/ܣܟܠܐ (saklā) means 'foolish, stupid'. The meaning 'understand' belongs to Hebrew ś-k-l (with sin, not samekh). In Syriac, ܣܟܠ is primarily NEGATIVE — 'be foolish'.",
+    "current_gloss_en": "understand, be foolish",
+    "suggested_fix": "MISLEADING. Primary Syriac meaning is 'be foolish, stupid'. Remove 'understand' or clarify it is Hebrew only."
+  },
+  {
+    "root": "kh-m-r",
+    "issue": "Gloss 'wine, donkey' for ܚܡܪ — in Payne Smith, ܚܡܪܐ (ḥamrā) means 'wine' and ܚܡܪܐ (ḥmārā) means 'donkey'. These are distinct words with different vowel patterns. Also, the verbal root ܚܡܪ means 'to ferment, leaven'. Missing the verbal sense.",
+    "current_gloss_en": "wine, donkey",
+    "suggested_fix": "Add verbal sense: 'ferment, leaven; wine; donkey'. Note wine and donkey are homographs."
+  },
+  {
+    "root": "g-l-z",
+    "issue": "Gloss 'shear, cut' for ܓܠܙ — in Payne Smith, ܓܠܙ means 'to shear, shave, cut off; to defraud, rob'. The 'defraud' meaning is significant and missing.",
+    "current_gloss_en": "shear, cut",
+    "suggested_fix": "Add 'defraud': 'shear, cut; defraud, rob'"
+  },
+  {
+    "root": "m-sh-r",
+    "issue": "Gloss 'camp' for ܡܫܪ — in Payne Smith, ܡܫܪܝܬܐ (mashritā) means 'camp'. But ܡܫܪ as a root is not standard — the word is derived from ܫܪܐ (shrā, 'to lodge, dwell'). This should not be a separate root entry.",
+    "current_gloss_en": "camp",
+    "suggested_fix": "Remove — this is not a root. ܡܫܪܝܬܐ (camp) derives from sh-r-a (ܫܪܐ)."
+  },
+  {
+    "root": "e-z-l",
+    "issue": "Gloss 'spin, lazy' for ܥܙܠ — in Payne Smith, ܥܙܠ means 'to spin (thread)'. The meaning 'lazy' is not the primary Syriac sense. In Hebrew, ʿāṣēl means 'lazy' but in Syriac the root is about spinning.",
+    "current_gloss_en": "spin, lazy",
+    "suggested_fix": "Change to 'spin (thread)'. Remove 'lazy' or note as Hebrew sense."
+  },
+  {
+    "root": "ts-b-n",
+    "issue": "Gloss 'will, desire' for ܨܒܢ — in Payne Smith, ܨܒܝܢ/ܨܒܝܢܐ (ṣebyānā) means 'will, desire, pleasure'. But ܨܒܢ is not the root — the root is ܨܒܐ (ts-b-a), already in the file. This is a derived noun form.",
+    "current_gloss_en": "will, desire",
+    "suggested_fix": "Remove — not a separate root. ܨܒܝܢܐ is a derivative of ts-b-a (ܨܒܐ)."
+  },
+  {
+    "root": "d-m-n",
+    "issue": "Gloss 'come, arrive' for ܕܡܢ — ܕܡܢ does NOT mean 'come, arrive' in Payne Smith. This root is NOT attested with this meaning. WRONG ROOT or WRONG GLOSS.",
+    "current_gloss_en": "to come, arrive",
+    "suggested_fix": "WRONG. ܕܡܢ is not a Syriac root meaning 'come, arrive'. Verify source. May be confused with another root."
+  },
+  {
+    "root": "w-m-n",
+    "issue": "Gloss 'and, also' for ܘܡܢ — this is NOT a root. ܘ (w) is a conjunction prefix meaning 'and', and ܡܢ (men) is a preposition meaning 'from'. ܘܡܢ is a grammatical combination, not a lexical root.",
+    "current_gloss_en": "and, also",
+    "suggested_fix": "REMOVE. This is not a root at all — it is a conjunction + preposition combination."
+  },
+  {
+    "root": "d-m-r",
+    "issue": "Gloss 'be amazed, astonished' for ܕܡܪ — in Payne Smith, ܕܡܪ is not the standard root. The Syriac word for 'be amazed' is ܬܡܗ (t-m-h) or ܬܗܪ (t-h-r). ܕܡܪ may be a marginal form. Verify in Payne Smith.",
+    "current_gloss_en": "to be amazed, astonished",
+    "suggested_fix": "Verify attestation. The common Syriac roots for 'be amazed' are ܬܡܗ and ܬܗܪ."
+  },
+  {
+    "root": "g-sh",
+    "issue": "Gloss 'touch, feel' for ܓܫ — in Payne Smith, ܓܫ/ܓܫܫ means 'to touch, feel, grope'. Correct but this is biliteral, not triliteral.",
+    "current_gloss_en": "touch, feel",
+    "suggested_fix": "Correct meaning but note as biliteral root."
+  },
+  {
+    "root": "kh-sh",
+    "issue": "Gloss 'suffer' for ܚܫ — in Payne Smith, ܚܫ (ḥash) means 'to suffer, be affected, feel'. Correct but this is biliteral.",
+    "current_gloss_en": "suffer",
+    "suggested_fix": "Correct meaning but note as biliteral root."
+  },
+  {
+    "root": "s-m",
+    "issue": "Gloss 'place, set, put' for ܣܡ — in Payne Smith, ܣܡ (sām) means 'to place, set, put; to appoint'. Correct but biliteral.",
+    "current_gloss_en": "place, set, put",
+    "suggested_fix": "Correct meaning but note as biliteral root."
+  },
+  {
+    "root": "sh-r",
+    "issue": "Gloss 'true, firm' for ܫܪ — in Payne Smith, the adjective ܫܪܝܪ (sharīr) means 'true, firm, reliable'. But ܫܪ as a biliteral root means 'to leap, spring'. The adjective comes from ܫܪܪ (sh-r-r) which is already in the file.",
+    "current_gloss_en": "true, firm",
+    "suggested_fix": "WRONG for the biliteral root. ܫܪ means 'to leap, spring'. The meaning 'true, firm' belongs to sh-r-r (ܫܪܪ)."
+  },
+  {
+    "root": "sh-m",
+    "issue": "Gloss 'name' for ܫܡ — in Payne Smith, ܫܡ/ܫܡܐ (shmā) means 'name'. Correct but this is a nominal biliteral, not a verbal root.",
+    "current_gloss_en": "name",
+    "suggested_fix": "Correct meaning. Note as nominal biliteral."
+  },
+  {
+    "root": "m-d-m",
+    "issue": "Gloss 'something, thing' for ܡܕܡ — in Payne Smith, ܡܕܡ (meddem) means 'something, anything, a thing'. This is a pronoun/particle, not a root. It cannot be decomposed into radicals.",
+    "current_gloss_en": "something, thing",
+    "suggested_fix": "REMOVE as a root. ܡܕܡ is an indeclinable pronoun/particle, not a triliteral root."
+  },
+  {
+    "root": "l-w-th",
+    "issue": "Gloss 'toward, near' for ܠܘܬ — in Payne Smith, ܠܘܬ (lwāṯ) is a preposition meaning 'to, toward, near, with'. This is NOT a root — it is a grammatical particle.",
+    "current_gloss_en": "toward, near",
+    "suggested_fix": "REMOVE as a root. ܠܘܬ is a preposition, not a verbal root."
+  },
+  {
+    "root": "a-y-k",
+    "issue": "Gloss 'like, as' for ܐܝܟ — in Payne Smith, ܐܝܟ is a preposition/conjunction meaning 'like, as, according to'. This is NOT a root.",
+    "current_gloss_en": "like, as",
+    "suggested_fix": "REMOVE as a root. ܐܝܟ is a preposition/particle, not a lexical root."
+  },
+  {
+    "root": "a-y-n",
+    "issue": "Gloss 'where, eye' for ܐܝܢ — conflates two different words. ܐܝܢ (ayn) = 'where?' (interrogative) and ܥܝܢ (ʿaynā) = 'eye'. The 'eye' meaning belongs to e-y-n (ܥܝܢ) which is already in the file. ܐܝܢ is an interrogative particle, not a root.",
+    "current_gloss_en": "where, eye",
+    "suggested_fix": "WRONG conflation. Remove 'eye' (belongs to e-y-n). ܐܝܢ is just an interrogative particle 'where?', not a root."
+  },
+  {
+    "root": "a-y-d",
+    "issue": "Gloss 'hand' for ܐܝܕ — in Payne Smith, ܐܝܕܐ (īḏā) means 'hand'. Correct meaning but this is a nominal form. The root is really biliteral y-d.",
+    "current_gloss_en": "hand",
+    "suggested_fix": "Correct meaning but note as nominal. The prostethic aleph is not a root letter."
+  },
+  {
+    "root": "a-y-th",
+    "issue": "Gloss 'there is, exist' for ܐܝܬ — in Payne Smith, ܐܝܬ (īṯ) is an existential particle meaning 'there is, there are'. This is NOT a root — it is a particle.",
+    "current_gloss_en": "there is, exist",
+    "suggested_fix": "REMOVE as a root. ܐܝܬ is an existential particle, not a verbal root."
+  },
+  {
+    "root": "k-w-l",
+    "issue": "Gloss 'all, every' for ܟܘܠ — in Payne Smith, ܟܠ/ܟܘܠ (kul) means 'all, every, each'. This is a quantifier/particle, not a verbal root.",
+    "current_gloss_en": "all, every",
+    "suggested_fix": "REMOVE as a root. ܟܠ is a quantifier, not a verbal root."
+  },
+  {
+    "root": "sh-y-kh",
+    "issue": "Gloss 'anoint, Messiah' for ܫܝܚ — WRONG ROOT. In Syriac, 'anoint' is ܡܫܚ (m-sh-kh), already in the file. ܫܝܚ is not attested with this meaning. ܡܫܝܚܐ (Meshīḥā, 'Messiah') derives from ܡܫܚ, not ܫܝܚ.",
+    "current_gloss_en": "anoint, Messiah",
+    "suggested_fix": "WRONG. Remove — 'anoint' belongs to m-sh-kh (ܡܫܚ). ܫܝܚ is not a valid root for this meaning."
+  },
+  {
+    "root": "s-y-r",
+    "issue": "Gloss 'hope, expect' for ܣܝܪ — in Payne Smith, ܣܒܪ (s-b-r) is the root for 'hope'. ܣܝܪ is not a standard Syriac root meaning 'hope'. Verify attestation.",
+    "current_gloss_en": "hope, expect",
+    "suggested_fix": "Verify in Payne Smith. May be confused with s-b-r (ܣܒܪ). ܣܝܪ is not clearly attested for 'hope'."
+  },
+  {
+    "root": "sh-e-y",
+    "issue": "Gloss 'hour, time' for ܫܥܝ — in Payne Smith, ܫܥܬܐ (shāʿtā) means 'hour'. The root is ܫܥ (sh-ʿ) not ܫܥܝ. This is a nominal form, not a verbal root.",
+    "current_gloss_en": "hour, time",
+    "suggested_fix": "Reclassify as nominal. The root is sh-e (biliteral), not sh-e-y."
+  },
+  {
+    "root": "kh-r-n",
+    "issue": "Gloss 'other, another' for ܚܪܢ — in Payne Smith, ܐ̱ܚܪܢ/ܐ̱ܚܪܢܐ (ḥrēnā) means 'other, another'. The initial aleph is part of the word. This is an adjective, not a verbal root. The root may be from kh-r (ḥar, 'last').",
+    "current_gloss_en": "other, another",
+    "suggested_fix": "Note as adjectival form. Not a standard verbal root."
+  },
+  {
+    "root": "e-d-th",
+    "issue": "Gloss 'church, assembly' for ܥܕܬ — in Payne Smith, ܥܕܬܐ (ʿēḏtā/ʿīttā) means 'church, congregation, assembly'. This is a noun, not a verbal root. The root origin is debated.",
+    "current_gloss_en": "church, assembly",
+    "suggested_fix": "Note as nominal. Not a verbal root."
+  },
+  {
+    "root": "sh-a-d",
+    "issue": "Gloss 'demon' for ܫܐܕ — in Payne Smith, ܫܐܕܐ (shīḏā) means 'demon, evil spirit'. Correct meaning but this is a noun, probably a loanword, not a verbal root.",
+    "current_gloss_en": "demon",
+    "suggested_fix": "Correct meaning. Note as nominal, likely a loanword."
+  },
+  {
+    "root": "ts-r-y",
+    "issue": "Gloss 'need, be necessary' for ܨܪܝ — this is NOT a standard Syriac root in Payne Smith. The word for 'need/necessary' is ܣܢܝܩ (from s-n-q, already in file) or derived from other roots.",
+    "current_gloss_en": "need, be necessary",
+    "suggested_fix": "Verify in Payne Smith. ܨܪܝ is not clearly attested. May be a ghost root."
+  },
+  {
+    "root": "k-r-h",
+    "issue": "Gloss 'be sick, weak' for ܟܪܗ — in Payne Smith, ܟܪܗ (kreh) means 'to be sick, ill, weak, infirm'. Correct.",
+    "current_gloss_en": "be sick, weak",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "kh-l-q",
+    "issue": "Gloss 'shave, portion' for ܚܠܩ — in Payne Smith, ܚܠܩ means 'to shave' and ܚܘܠܩ/ܚܘܠܩܐ means 'lot, portion, share'. The verbal meaning is 'shave' and the noun is 'portion'. These may be related or distinct.",
+    "current_gloss_en": "shave, portion",
+    "suggested_fix": "Acceptable. Both senses are attested."
+  },
+  {
+    "root": "kh-p-y",
+    "issue": "Gloss 'cover, wash' for ܚܦܝ — in Payne Smith, the primary meaning of forms from ܚܦ is 'to wash, bathe'. The 'cover' meaning may be confused with ܟܦ/ܟܣ. Verify the 'cover' sense.",
+    "current_gloss_en": "cover, wash",
+    "suggested_fix": "Verify 'cover'. Primary Syriac meaning is 'wash'. 'Cover' may be Hebrew (k-p-h)."
+  },
+  {
+    "root": "sh-kh-p",
+    "issue": "Root transliteration sh-kh-p but Syriac form shown as ܫܟܒ — the third letter is beth (b) not pe (p). Transliteration is WRONG. Should be sh-k-b.",
+    "current_gloss_en": "lie down, sleep",
+    "suggested_fix": "Fix transliteration from sh-kh-p to sh-k-b. The Syriac ܫܟܒ = shin-kap-beth."
+  },
+  {
+    "root": "t-e-n",
+    "issue": "Root transliteration t-e-n for ܛܥܢ — the transliteration system uses 'T' for ṭeṯ elsewhere (T-y-b, T-w-b etc.) but here uses lowercase 't'. Should be T-e-n for consistency.",
+    "current_gloss_en": "carry, bear",
+    "suggested_fix": "Fix transliteration to T-e-n for consistency with ṭeṯ convention."
+  },
+  {
+    "root": "t-kh-n",
+    "issue": "Root transliteration t-kh-n for ܛܚܢ — same inconsistency. Should be T-kh-n (capital T for ṭeṯ).",
+    "current_gloss_en": "grind",
+    "suggested_fix": "Fix transliteration to T-kh-n for consistency."
+  },
+  {
+    "root": "t-e-y",
+    "issue": "Root transliteration t-e-y for ܛܥܝ — should be T-e-y (capital T for ṭeṭ) for consistency.",
+    "current_gloss_en": "err, go astray",
+    "suggested_fix": "Fix transliteration to T-e-y for consistency."
+  },
+  {
+    "root": "t-n-p",
+    "issue": "Root transliteration t-n-p for ܛܢܦ — should be T-n-p for consistency.",
+    "current_gloss_en": "defile, pollute",
+    "suggested_fix": "Fix transliteration to T-n-p for consistency."
+  },
+  {
+    "root": "k-m-r",
+    "issue": "Gloss 'priest' for ܟܡܪ — in Payne Smith, ܟܘܡܪܐ (kūmrā) means 'priest' but specifically a PAGAN priest, not a Jewish or Christian priest. This is a significant distinction from k-h-n.",
+    "current_gloss_en": "priest",
+    "suggested_fix": "Change to 'pagan priest, idolatrous priest'. Payne Smith distinguishes this from ܟܗܢ (legitimate priest)."
+  },
+  {
+    "root": "s-k-n",
+    "issue": "Gloss 'dwell, danger' for ܣܟܢ — in Payne Smith, these are DIFFERENT roots. ܣܟܢ is not attested as a single root meaning both 'dwell' and 'danger'. 'Dwell' is ܫܟܢ (sh-k-n) and 'danger' may be from ܣܟܢ/ܣܟܢܬܐ (saqqānā). Conflation of two different roots.",
+    "current_gloss_en": "dwell, danger",
+    "suggested_fix": "WRONG conflation. 'Dwell' belongs to sh-k-n, not s-k-n. If s-k-n is attested, it means 'danger'. Separate or correct."
+  },
+  {
+    "root": "z-n-y",
+    "issue": "Gloss 'kind, type' for ܙܢܝ — in Payne Smith, ܙܢ/ܙܢܐ (zennā) means 'kind, manner, sort, way'. The root ܙܢܝ is not standard — ܙܢ is biliteral. Also, ܙܢ can also mean 'to commit fornication' which is completely missing.",
+    "current_gloss_en": "kind, type",
+    "suggested_fix": "Note 'kind, type' is from biliteral z-n. Add missing meaning: 'fornicate, commit adultery' (also under this root in Payne Smith)."
+  },
+  {
+    "root": "sh-w-q",
+    "issue": "Gloss 'leave, forgive' for ܫܘܩ — this duplicates sh-b-q (ܫܒܩ). In Payne Smith, ܫܘܩ/ܫܘܩܐ (shūqā) means 'street, market'. The verb 'leave, forgive' is ܫܒܩ (shbaq), not ܫܘܩ. WRONG GLOSS.",
+    "current_gloss_en": "leave, forgive",
+    "suggested_fix": "WRONG. ܫܘܩ/ܫܘܩܐ means 'street, market' in Payne Smith. The meaning 'leave, forgive' belongs to sh-b-q (ܫܒܩ)."
+  },
+  {
+    "root": "k-w-n",
+    "issue": "Gloss 'be right, correct' for ܟܘܢ — in Payne Smith, ܟܘܢ does not clearly mean 'be right'. The Hebrew/Arabic k-w-n means 'to be, exist' but in Syriac h-w-a is used instead. ܟܘܢ may mean 'to rebuke, reprove' in some Syriac contexts.",
+    "current_gloss_en": "be right, correct",
+    "suggested_fix": "Verify in Payne Smith. ܟܘܢ may mean 'rebuke' rather than 'be right'. The 'be right' sense may be Hebrew/Arabic."
+  },
+  {
+    "root": "y-m-m",
+    "issue": "Gloss 'sea, day' for ܝܡܡ — conflates two distinct roots. ܝܡ/ܝܡܐ (yammā) = 'sea' and ܝܘܡ/ܝܘܡܐ (yawmā) = 'day'. These are from DIFFERENT roots (y-m for sea, y-w-m for day). y-w-m is already in the file.",
+    "current_gloss_en": "sea, day",
+    "suggested_fix": "WRONG conflation. 'Day' belongs to y-w-m (already in file). ܝܡ means 'sea' only. Fix to 'sea'."
+  },
+  {
+    "root": "sh-r-b",
+    "issue": "Gloss 'tribe, generation' for ܫܪܒ — in Payne Smith, ܫܪܒ/ܫܪܒܬܐ (sharbtā) means 'tribe, family, race, generation, narrative'. Correct, though 'narrative, story' is also an important meaning.",
+    "current_gloss_en": "tribe, generation",
+    "suggested_fix": "Add 'narrative, story': 'tribe, generation, narrative'"
+  },
+  {
+    "root": "kh-p-t",
+    "issue": "Gloss 'urge, exhort' for ܚܦܛ — in Payne Smith, ܚܦܛ means 'to be diligent, take pains, urge, exhort'. The 'be diligent' sense is important and missing.",
+    "current_gloss_en": "urge, exhort",
+    "suggested_fix": "Add 'be diligent': 'be diligent, urge, exhort'"
+  },
+  {
+    "root": "kh-s-m",
+    "issue": "Gloss 'muzzle, envy' for ܚܣܡ — in Payne Smith, ܚܣܡ primarily means 'to envy, be jealous'. The meaning 'muzzle' may come from Hebrew ḥāsam which is a different root. Verify 'muzzle' in Syriac.",
+    "current_gloss_en": "muzzle, envy",
+    "suggested_fix": "Verify 'muzzle'. Primary Syriac meaning is 'envy, be jealous'. 'Muzzle' may belong to a different root."
+  },
+  {
+    "root": "sh-th-p",
+    "issue": "Gloss 'share, partner' for ܫܬܦ — in Payne Smith, ܫܬܦ/ܫܘܬܦ (shautep) means 'to make a partner, associate'. ܫܘܬܦܐ (shautāpā) means 'partner, companion'. Correct.",
+    "current_gloss_en": "share, partner",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "sh-r-k",
+    "issue": "Gloss 'remain, rest' for ܫܪܟ — in Payne Smith, ܫܪܟ means 'to remain, be left over'. Correct.",
+    "current_gloss_en": "remain, rest",
+    "suggested_fix": "Correct. 'Rest' should be clarified as 'remainder' not 'repose'."
+  },
+  {
+    "root": "r-e-n",
+    "issue": "Gloss 'thought, mind' for ܪܥܢ — in Payne Smith, ܪܥ/ܪܥܝܢ/ܪܥܝܢܐ (reʿyānā) means 'thought, mind, opinion, will'. But ܪܥܢ is not the root — this is a derived noun from ܪܥܐ (r-ʿ-ā, 'to think, to tend'). The root is r-e-a not r-e-n.",
+    "current_gloss_en": "thought, mind",
+    "suggested_fix": "Remove — ܪܥܝܢ is a derived noun from r-e-a (ܪܥܐ), not a separate root."
+  },
+  {
+    "root": "m-l-th",
+    "issue": "Gloss 'word, matter' for ܡܠܬ — in Payne Smith, ܡܠܬ/ܡܠܬܐ (meltā) means 'word, saying, thing'. Correct meaning. But this is actually the construct/absolute form of a noun from ܡܠܠ (m-l-l, 'speak'), already in the file.",
+    "current_gloss_en": "word, matter",
+    "suggested_fix": "Note as derivative of m-l-l. Could be merged."
+  },
+  {
+    "root": "d-r-b",
+    "issue": "Gloss 'train, instruct' for ܕܪܒ — in Payne Smith, ܕܪܒ means 'to be accustomed, trained, experienced'. Correct.",
+    "current_gloss_en": "train, instruct",
+    "suggested_fix": "Correct. Consider adding 'be accustomed'."
+  },
+  {
+    "root": "kh-a-r",
+    "issue": "Gloss 'look, free' for ܚܐܪ — in Payne Smith, ܚܐܪ (ḥār) means 'to look, gaze' and ܚܐܪ/ܚܐܪܐ (ḥērrā) means 'free, freeborn'. Correct — both meanings are attested under this root.",
+    "current_gloss_en": "look, free",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "r-d-y",
+    "issue": "Gloss 'travel, journey' for ܪܕܝ — in Payne Smith, ܪܕ/ܪܕܐ (rdā) means 'to go, travel, proceed, flow'. The root is ܪܕ (biliteral) or ܪܕܐ, not ܪܕܝ. ܝ is just the participial/adjective ending.",
+    "current_gloss_en": "travel, journey",
+    "suggested_fix": "Note root is properly r-d-a (ܪܕܐ) or biliteral r-d."
+  },
+  {
+    "root": "s-p-n",
+    "issue": "Gloss 'ship, cover' for ܣܦܢ — in Payne Smith, ܣܦܢ is not a major entry. ܣܦܝܢܬܐ (spīntā) means 'ship, boat'. The 'cover' meaning is questionable for Syriac. Verify.",
+    "current_gloss_en": "ship, cover",
+    "suggested_fix": "Verify 'cover' in Payne Smith. Primary attested meaning is 'ship' (noun)."
+  },
+  {
+    "root": "a-b-h",
+    "issue": "Gloss 'father (plural form)' for ܐܒܗ — ܐܒ/ܐܒܐ (abā) means 'father'. ܐܒܗ is not a root — it appears in the plural ܐܒܗ̈ܬ (abhāhāthā, 'fathers'). This is a morphological form, not a root.",
+    "current_gloss_en": "father (plural form)",
+    "suggested_fix": "Remove as separate root. This is a morphological form of ܐܒ (a-b, 'father')."
+  },
+  {
+    "root": "th-kh-l",
+    "issue": "Gloss 'trust, rely' for ܬܟܠ — in Payne Smith, ܬܟܠ/ܬܟܝܠ (takkīl) means 'to trust, confide, rely'. Correct.",
+    "current_gloss_en": "trust, rely",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "r-kh-ts",
+    "issue": "Gloss 'wash' for ܪܚܨ — in Payne Smith, ܪܚܨ means 'to wash' (specifically the body/hands). Correct but could note it is specifically washing the body, not clothes.",
+    "current_gloss_en": "wash",
+    "suggested_fix": "Acceptable. Could specify 'wash (the body)'."
+  },
+  {
+    "root": "sh-g-r",
+    "issue": "Gloss 'send, kindle' for ܫܓܪ — in Payne Smith, ܫܓܪ does not clearly mean 'send'. It means 'to heat, burn, kindle'. Verify 'send' meaning.",
+    "current_gloss_en": "send, kindle",
+    "suggested_fix": "Verify 'send'. Primary meaning is 'heat, kindle, inflame'. Remove 'send' if not attested."
+  },
+  {
+    "root": "g-n-y",
+    "issue": "Gloss 'garden' for ܓܢܝ — in Payne Smith, ܓܢ/ܓܢܬ/ܓܢܬܐ (gannthā) means 'garden'. ܓܢܝ is not the standard form. This is nominal and the root is really g-n or g-n-th.",
+    "current_gloss_en": "garden",
+    "suggested_fix": "Note as nominal. The root form should be g-n-th (ܓܢܬ) not g-n-y."
+  },
+  {
+    "root": "s-n-q",
+    "issue": "Gloss 'need' for ܣܢܩ — in Payne Smith, ܣܢܩ means 'to need, lack, want, be in need of'. Correct.",
+    "current_gloss_en": "need",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "m-r-e",
+    "issue": "Gloss 'sick, disease' for ܡܪܥ — in Payne Smith, ܡܪܥ is not the standard root. The Syriac word for 'sick' is ܟܪܝܗ (from k-r-h, already in file). ܡܪܥ may be an alternate form. Verify.",
+    "current_gloss_en": "sick, disease",
+    "suggested_fix": "Verify in Payne Smith. The common root for 'sick' is k-r-h."
+  },
+  {
+    "root": "s-e-r",
+    "issue": "Gloss 'do, visit, hair' for ܣܥܪ — in Payne Smith, ܣܥܪ means 'to do, make, perform, visit'. ܣܥܪ/ܣܥܪܐ (saʿrā) also means 'hair'. Correct — all three senses are attested.",
+    "current_gloss_en": "do, visit, hair",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "p-r-e",
+    "issue": "Gloss 'repay, bear fruit' for ܦܪܥ — in Payne Smith, ܦܪܥ primarily means 'to repay, recompense, avenge'. The 'bear fruit' meaning is from Hebrew pārāʿ, not clearly Syriac. Verify.",
+    "current_gloss_en": "repay, bear fruit",
+    "suggested_fix": "Verify 'bear fruit' in Syriac. Primary meaning is 'repay, recompense, avenge'."
+  },
+  {
+    "root": "y-q-r",
+    "issue": "Gloss 'honor, heavy' for ܝܩܪ — in Payne Smith, ܝܩܪ (yaqqar/yaqīr) means 'honored, precious, dear; heavy'. Correct — both senses attested. Note this is cognate with Hebrew k-b-d which also means both 'honor' and 'heavy'.",
+    "current_gloss_en": "honor, heavy",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "q-sh-sh",
+    "issue": "Gloss 'elder, presbyter' for ܩܫܫ — in Payne Smith, ܩܫ/ܩܫܐ (qashā) and ܩܫܝܫ/ܩܫܝܫܐ (qashīshā) mean 'elder, presbyter, priest'. Correct.",
+    "current_gloss_en": "elder, presbyter",
+    "suggested_fix": "Correct. No change needed."
+  },
+  {
+    "root": "n-kh-sh",
+    "issue": "Gloss 'copper, serpent' for ܢܚܫ — in Payne Smith, ܢܚܫ/ܢܚܫܐ (nḥāshā) means 'brass, copper' and can also refer to 'serpent' (from Hebrew nāḥāsh). However, the 'serpent' meaning is primarily Hebrew; in Syriac, ḥewyā (ܚܘܝ) is the common word for snake.",
+    "current_gloss_en": "copper, serpent",
+    "suggested_fix": "Primary Syriac meaning is 'copper, brass'. 'Serpent' is Hebrew influence. Consider: 'copper, brass; serpent (Hebrew)'"
+  },
+  {
+    "root": "kh-r-p",
+    "issue": "Gloss 'reproach, winter' for ܚܪܦ — in Payne Smith, ܚܪܦ means 'to reproach, revile' and ܚܪܦ/ܣܬܘ can relate to winter. Both senses attested but they are likely from distinct semantic fields.",
+    "current_gloss_en": "reproach, winter",
+    "suggested_fix": "Acceptable. Both senses attested under this root."
+  },
+  {
+    "root": "y-h-d",
+    "issue": "Gloss 'Judah, Jewish' for ܝܗܕ — this is a proper noun, not a verbal root. In Payne Smith, ܝܗܘܕ/ܝܗܘܕܝ (yehūḏāyā) refers to 'Judah, Judea, Jewish'. Not a productive lexical root.",
+    "current_gloss_en": "Judah, Jewish",
+    "suggested_fix": "Note as proper noun / demonym, not a verbal root."
+  },
+  {
+    "root": "l-w-y",
+    "issue": "Gloss 'Levi, accompany' for ܠܘܝ — in Payne Smith, ܠܘ̈ܝ (Lēwāyē) are Levites. The verb ܠܘ (lwā) means 'to accompany, escort'. Correct that both senses are attested.",
+    "current_gloss_en": "Levi, accompany",
+    "suggested_fix": "Acceptable."
+  }
+]

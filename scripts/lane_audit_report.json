@@ -1,0 +1,260 @@
+[
+  {
+    "root": "a-m-r",
+    "issue": "Arabic root mismatch: Syriac ܐܡܪ (to say) is mapped to Arabic أَمَرَ (to command, root A-M-R). These are actually distinct roots in Arabic. The true Arabic cognate for Syriac 'to say' does not exist directly; the Syriac meaning 'to say' corresponds more closely to Arabic قَالَ (qala). However, Lane does attest أَمَرَ with the meaning 'to command/order', which is a legitimate semantic cognate of the 'authoritative speech' dimension. The entry conflates two different Arabic roots under one umbrella. The word أَمَارَة ('amārah, sign/indication) is correctly marked as outlier, but it actually IS from the same Arabic root A-M-R per Lane, not a true outlier — Lane lists أَمَارَة as a sign/token under the root أ-م-ر.",
+    "current_arabic": "أَمَرَ (amara, to command)",
+    "suggested_fix": "The Arabic cognate A-M-R (to command) is legitimate but the entry should clarify that Arabic A-M-R means 'to command' not 'to say'. The outlier marking on أَمَارَة is questionable since Lane attests it under the same root."
+  },
+  {
+    "root": "kh-z-a",
+    "issue": "WRONG Arabic cognates. Syriac ܚܙܐ (to see) should map to Arabic root ح-ز-ي or ح-ظ-ي. Instead, the file lists حَزَرَ (hazara, to guess) from root ح-ز-ر, حَذَرَ (hadhara, to be cautious) from root ح-ذ-ر, and حَائِر (perplexed) from root ح-ي-ر, and مَحْظُور (prohibited) from root ح-ظ-ر. These are all from DIFFERENT Arabic roots. The correct cognate is not well-preserved in standard Arabic, but none of the listed forms are from the cognate root. All entries are marked as outliers, which is honest but means there is NO actual Arabic cognate listed.",
+    "current_arabic": "حَزَرَ (hazara), حَذَرَ (hadhara), حَائِر, مَحْظُور — all from wrong roots",
+    "suggested_fix": "These are not cognates at all. The Syriac ḤZA root has no strong Arabic cognate. Consider removing these entirely or noting that the root is not productively preserved in Arabic. If any Arabic form is to be listed, consider حَظِيَ (ḥaẓiya, to be fortunate/to obtain favor) which has a distant semantic connection, though even this is from ح-ظ-ي."
+  },
+  {
+    "root": "n-p-q",
+    "issue": "Arabic section mixes cognate and non-cognate roots. نَفَقَ (nafaqa, to spend) and نَفَق (nafaq, tunnel) are correctly from Arabic root ن-ف-ق, the true cognate of Syriac N-P-Q. However, خَرَجَ (kharaja, to go out), مَخْرَج (makhraj), and أَخْرَجَ (akhraja) are from Arabic root خ-ر-ج, which is NOT a cognate — it is a semantic equivalent. Mixing cognates and semantic equivalents in the 'arabic' array is misleading.",
+    "current_arabic": "نَفَقَ + خَرَجَ mixed together",
+    "suggested_fix": "Separate the true cognates (ن-ف-ق forms) from the semantic equivalents (خ-ر-ج forms). The خ-ر-ج forms should not be in the cognate list at all, or should be clearly marked as non-cognate semantic equivalents."
+  },
+  {
+    "root": "sh-l-m",
+    "issue": "Arabic سَلُوم (salūm, friendly/peaceful) is questionable. Lane does not attest this form. The standard Arabic adjective from S-L-M meaning 'peaceful' would be سَالِم (sālim) or سَلِيم (salīm). سَلُوم appears to be a dialectal or non-classical form.",
+    "current_arabic": "سَلُوم (salūm, friendly/peaceful)",
+    "suggested_fix": "Replace with سَالِم (sālim, safe/sound) which is well-attested in Lane under the root S-L-M."
+  },
+  {
+    "root": "e-l-m",
+    "issue": "Arabic root mismatch. Syriac ܥܠܡ (E-L-M, world/eternity/hidden) is mapped to Arabic عَالِم (ʿālim, scholar) and عِلْم (ʿilm, knowledge). However, these Arabic words are from root ع-ل-م (to know), while the Syriac root is semantically closer to Arabic عَالَم (ʿālam, world) which is also from ع-ل-م but in a different semantic register. The mapping is acceptable as these are indeed from the cognate root, but the emphasis on 'knowing/teaching' obscures the core Syriac meaning of 'world/eternity/hiddenness'. The entry should prioritize عَالَم (world) over عَالِم (scholar).",
+    "current_arabic": "عَالِم (alim, scholar) listed first",
+    "suggested_fix": "Reorder to put عَالَم (ʿālam, world) first as the primary semantic cognate, since the Syriac root means 'world/eternity'."
+  },
+  {
+    "root": "p-r-sh",
+    "issue": "Arabic cognate فَرَشَ (farasha, to spread) is from root ف-ر-ش, but Syriac P-R-SH corresponds to Arabic ف-ر-ش only partially. The true Arabic cognate of Syriac ܦܪܫ (to separate/distinguish/explain) is more accurately فَرَّقَ (farraqa, to separate) from root ف-ر-ق, or فَسَّرَ (fassara, to explain) from root ف-س-ر. The Syriac shin (ش) corresponds to Arabic shin, but the semantic match is weak. Lane attests فَرَشَ as 'to spread (a carpet/bed)', not 'to separate/explain'. All Arabic entries are correctly marked as outliers, acknowledging the semantic gap.",
+    "current_arabic": "فَرَشَ (farasha, to spread) — semantically distant",
+    "suggested_fix": "The true cognate root should include forms from Arabic ف-ر-ش if the phonological correspondence is the priority. But consider adding a note that the semantic match is weak and that Arabic ف-ر-ق (faraqa, to separate) is the better semantic parallel, though not a strict phonological cognate."
+  },
+  {
+    "root": "y-l-d",
+    "issue": "مِيلَاد (milad, birth) and مَوْلُود (mawlūd, newborn) are incorrectly marked as outliers. Both are core derivatives of Arabic root و-ل-د (W-L-D) per Lane. مِيلَاد is the standard Arabic word for 'birth/nativity' and مَوْلُود is the standard passive participle meaning 'born one'. These are not semantic outliers at all.",
+    "current_arabic": "مِيلَاد (milad) marked outlier, مَوْلُود (mawlūd) marked outlier",
+    "suggested_fix": "Remove the outlier marking from both مِيلَاد and مَوْلُود. They are core, standard derivatives of the root و-ل-د."
+  },
+  {
+    "root": "m-l-k",
+    "issue": "مُلْك (mulk, property/dominion) is marked as outlier, but per Lane this is a core meaning of the root م-ل-ك. Lane defines مُلْك as dominion, sovereignty, possession — which is central to the root, not an outlier. Also, مَلَكَة (malaka) is listed as 'queen' but this is incorrect per Lane. مَلَكَة means 'faculty, aptitude, skill' in classical Arabic. The word for queen is مَلِكَة (malika), which is already listed separately.",
+    "current_arabic": "مُلْك (mulk) marked outlier; مَلَكَة (malaka) glossed as 'queen'",
+    "suggested_fix": "Remove outlier marking from مُلْك. Fix مَلَكَة (malaka): it means 'faculty/aptitude/natural ability' per Lane, NOT 'queen'. The queen form مَلِكَة (malika) is already correctly listed."
+  },
+  {
+    "root": "e-b-d",
+    "issue": "مَعْبُود (ma'bud, worshipped/venerated) is marked as outlier, but per Lane this is the standard passive participle of عَبَدَ (to worship) meaning 'that which is worshipped, an object of worship'. It is a core derivative, not an outlier. The semantic bridge references root 'a-b-d' as a separate root, but E-B-D and A-B-D appear to be the same root with different transliteration conventions.",
+    "current_arabic": "مَعْبُود (ma'bud) marked outlier",
+    "suggested_fix": "Remove outlier marking from مَعْبُود. It is a perfectly standard derivative of the root ع-ب-د meaning 'worshipped one, idol, deity'."
+  },
+  {
+    "root": "g-m-r",
+    "issue": "Arabic جُمَّار (jummar, stones for ritual) and جَمَرَ (jamarah, to gather embers) are listed as cognates but these are from Arabic root ج-م-ر, not ج-م-ر in the sense of 'completion'. The Syriac G-M-R (to complete/finish) corresponds to Arabic root ج-م-ر only phonologically. Per Lane, جَمَرَ means to collect (pebbles), to throw pebbles (at Mina pilgrimage), to dry (meat). The semantic connection to 'completion' is very weak. All three Arabic forms are correctly marked as outliers.",
+    "current_arabic": "جُمَّار, جَمَرَ, إِجْمَار — all marked outlier",
+    "suggested_fix": "The Arabic cognate section is essentially empty of real cognates. Consider noting that the Syriac G-M-R 'to complete' does not have a productive Arabic cognate. The إِجْمَار (ijmār, conclusion) is the closest but Lane does not strongly attest this meaning."
+  },
+  {
+    "root": "n-kh-m",
+    "issue": "Arabic نَحَمَ (nahama) is glossed as 'to clear throat/groan' and marked outlier. Per Lane, the Arabic root ن-ح-م does mean 'to groan, to clear the throat'. The true semantic cognate for 'consolation' would be from a different Arabic root. However, نَحَّمَ (nahhama, to console) is listed WITHOUT outlier marking, but this form is very rare/questionable in classical Arabic per Lane. Lane does not prominently attest نَحَّمَ as 'to console'. Similarly, نَاحِمَة (nakhimah, consolation) and مُنَاحِم (munakhim, consoler) are not well-attested in Lane.",
+    "current_arabic": "نَحَّمَ (nahhama, to console) — questionable attestation in Lane",
+    "suggested_fix": "Flag that the consolation meanings (نَحَّمَ, نَاحِمَة, مُنَاحِم) are not well-attested in classical Arabic per Lane. The Arabic root ن-ح-م primarily means 'to groan/clear the throat' per Lane, not 'to console'."
+  },
+  {
+    "root": "kh-b-r",
+    "issue": "Arabic حَبَرَ (ḥabara, to join/connect) and حُبَرَاء (ḥubarā', companion) are listed as cognates of Syriac KH-B-R. However, per Lane, Arabic root ح-ب-ر means 'to be glad, to embellish, to adorn'. The root for 'companion/associate' is خ-ب-ر (khabara, to know/experience) yielding خَبِير (khabīr, expert). The forms listed appear to confuse ح-ب-ر with خ-ب-ر (two distinct Arabic roots). حَبِيْر (ḥabīr, expert) is listed from ح-ب-ر but 'expert' is from خ-ب-ر per Lane.",
+    "current_arabic": "حَبَرَ (ḥabara, to join) — possibly wrong root",
+    "suggested_fix": "Verify whether the intended Arabic cognate is خ-ب-ر (KH-B-R, to know/experience, yielding خَبِير khabīr 'expert') rather than ح-ب-ر (Ḥ-B-R, to make glad/embellish). The Syriac ܚ (kheth) corresponds to Arabic خ (kha) not ح (ḥa). The correct cognate should be خَبَرَ (khabara, to know by experience)."
+  },
+  {
+    "root": "s-m",
+    "issue": "Arabic سَمَّى (sammā, to name/designate) is listed as the sole Arabic cognate but is marked as outlier. This is from root س-م-ي (S-M-Y), not from a biliteral root S-M. The connection to Syriac ܣܡ (to place) is speculative. Per Lane, سَمَّى is firmly rooted in the meaning 'to name' with no attested connection to 'placing'. While the semantic bridge in the greek_parallel essay is poetically interesting, the linguistic cognate claim is weak.",
+    "current_arabic": "سَمَّى (sammā, to name) marked outlier",
+    "suggested_fix": "The outlier marking is appropriate. Consider adding وَسَمَ (wasama, to mark/brand) from root و-س-م as a potentially closer Arabic cognate, since marking/placing a sign is closer to 'placing'."
+  },
+  {
+    "root": "sh-r",
+    "issue": "Arabic شَرَّ (sharra, to be evil) is listed as the sole Arabic cognate and is marked outlier. This is from root ش-ر-ر, meaning 'to be evil/wicked' per Lane. It has NO semantic connection to the Syriac SH-R meaning 'true/firm'. This is a false cognate — phonological similarity without semantic or etymological connection.",
+    "current_arabic": "شَرَّ (sharra, to be evil) — false cognate",
+    "suggested_fix": "Remove شَرَّ entirely. Consider adding شَرَّ or leaving the Arabic section empty with a note that the root is not productively preserved in Arabic. Alternatively, consider Arabic أَشَرَّ (to persist) or شَرِير (sharīr, persistent, though this is later Hebrew/Aramaic) but these are also dubious."
+  },
+  {
+    "root": "kh-sh",
+    "issue": "Arabic إِحْسَاس (iḥsās, sensation/perception) is listed as a cognate of biliteral Syriac KH-SH (to suffer), but إِحْسَاس is from Arabic root ح-س-س (Ḥ-S-S, to feel/perceive), not from ح-ش (Ḥ-SH). The phonological correspondence is wrong: Syriac shin does not regularly correspond to Arabic sin in this position. The outlier marking is appropriate but the form is not a cognate at all.",
+    "current_arabic": "إِحْسَاس (iḥsās) from root ح-س-س, not ح-ش",
+    "suggested_fix": "Remove إِحْسَاس or clearly mark it as a semantic parallel, not a cognate. Arabic حَشَّ (ḥashsha) is also questionable — Lane does not attest حَشَّ as 'to feel pain'. Lane's حَشَّ means 'to cut herbage/grass'."
+  },
+  {
+    "root": "kh-sh-b",
+    "issue": "Arabic حَسَبَ (ḥasaba, to reckon/calculate) is correctly identified as the cognate. However, Syriac KH-SH-B has a shin (ش) while Arabic حَسَبَ has a sin (س). This is a known regular phonological correspondence (Syriac/Aramaic shin often maps to Arabic sin in certain roots), so the cognate IS valid, but it should be noted for clarity.",
+    "current_arabic": "حَسَبَ (ḥasaba) — valid cognate",
+    "suggested_fix": "No fix needed; the cognate is correct per Lane. Just a note that the SH>S sound shift is regular."
+  },
+  {
+    "root": "b-e-y",
+    "issue": "Arabic بَغَى (baghā, to desire) is listed as the cognate of Syriac B-E-Y (to seek/ask). Per Lane, بَغَى means 'to seek, desire, transgress'. The root is ب-غ-ي. The phonological correspondence between Syriac ayin (ع) and Arabic ghayn (غ) is NOT a standard regular correspondence. These may be parallel developments but not strict cognates. Lane does not connect بَغَى to any Aramaic root with ayin.",
+    "current_arabic": "بَغَى (baghā, to desire) — phonological correspondence questionable",
+    "suggested_fix": "Note that the ayin/ghayn correspondence is irregular. A more standard Arabic cognate for Syriac B-E-Y would need to have ayin (ع), not ghayn (غ). Consider whether بَعَى exists in Arabic (it does not productively)."
+  },
+  {
+    "root": "k-n-y",
+    "issue": "Arabic كَنَى (kanā, to surname) is listed as cognate of Syriac K-N-Y (to acquire/possess). Per Lane, كَنَى means 'to use a kunya (patronymic name)'. The semantic connection to 'acquiring/possessing' is very weak. All three Arabic forms (كَنَى, تَكَنَّى, كِنْيَة) are correctly marked as outliers. The only non-outlier form اِكْتَنَى (iktanā, to acquire) is also questionable — Lane does not strongly attest this meaning for the root ك-ن-ي.",
+    "current_arabic": "كَنَى (kanā) — weak semantic match",
+    "suggested_fix": "Verify اِكْتَنَى (iktanā) in Lane. The standard Arabic cognate for 'acquire/possess' is from root ق-ن-ي (qanā/iqtanā), which has different initial consonant. This may be a case of confusion between ك and ق."
+  },
+  {
+    "root": "g-b-a",
+    "issue": "Arabic جَبَى (jabā, to collect/gather taxes) is listed as cognate of Syriac G-B-A (to choose/elect). Per Lane, جَبَى means 'to collect water/taxes'. The semantic connection to 'choosing/electing' is weak. The listed form اِخْتَارَ (ikhtāra, to choose) is from root خ-ي-ر (KH-Y-R), which is a completely different root and NOT a cognate of G-B-A at all. Mixing true cognates with non-cognates in the same array is misleading.",
+    "current_arabic": "اِخْتَارَ (ikhtāra) is from root خ-ي-ر, not ج-ب-ي",
+    "suggested_fix": "Remove اِخْتَارَ from the cognate list — it is from a different root entirely. Keep only the ج-ب-ي forms (جَبَى, جَابِي, اِجْتِبَاء, مَجْبِي). Note that اِجْتِبَاء (ijtibā', selection) IS from root ج-ب-ي per Lane and is the best semantic match for 'to choose'."
+  },
+  {
+    "root": "p-q-d",
+    "issue": "Arabic فَقَدَ (faqada, to lose/miss) is correctly identified as from root ف-ق-د. Per Lane, this root means 'to lose, to miss, to find wanting'. Multiple forms are marked as outliers (faqada, muftaqad, faqid, faqadān, iftaqada). But per Lane, the semantic range of ف-ق-د does include 'to inspect/review' (تَفَقَّدَ tafaqqada), so the non-outlier form is correct. The issue is that the Syriac P-Q-D means 'to command/visit/inspect' while Arabic F-Q-D primarily means 'to lose'. The 'losing' meanings are correctly marked outlier but they actually represent the core Arabic meaning, while the 'inspecting' meaning (tafaqqada) is the semantic bridge.",
+    "current_arabic": "Core Arabic meaning (to lose) marked as outlier; derivative meaning (to inspect) unmarked",
+    "suggested_fix": "The outlier markings are inverted from a Lane perspective. The primary Arabic meaning of F-Q-D is 'to lose/miss'. تَفَقَّدَ (to inspect) is a Form V derivative. Consider noting that the semantic shift from 'inspect' to 'find missing' is the key Arabic development."
+  },
+  {
+    "root": "kh-b-sh",
+    "issue": "Need to verify: Syriac KH-B-SH should correspond to Arabic ح-ب-س (ḥabasa). The file at line 24004 lists حَبَسَ (ḥabasa, to imprison) which is correct per Lane. However, the root also lists أَسِير ('asīr, prisoner) which is from root أ-س-ر (A-S-R), NOT from ح-ب-س. Similarly, قَيْد (qayd, chain) is from root ق-ي-د (Q-Y-D), not ح-ب-س. These are semantic equivalents, not cognates.",
+    "current_arabic": "أَسِير and قَيْد are from different roots",
+    "suggested_fix": "Remove أَسِير (from root أ-س-ر) and قَيْد (from root ق-ي-د) from the cognate list. Keep only حَبَسَ and حُبْس which are true cognates from ح-ب-س."
+  },
+  {
+    "root": "l-b-n",
+    "issue": "Arabic أَبْيَض (abyaḍ, white) is listed as a cognate with outlier marking. Per Lane, أَبْيَض is from root ب-ي-ض (B-Y-Ḍ), which is completely unrelated to ل-ب-ن (L-B-N). This is not a cognate but a semantic equivalent. The other forms لَبَن (laban, milk/brick) and لَبَنَة (labana, brick) are correctly from root ل-ب-ن per Lane.",
+    "current_arabic": "أَبْيَض (abyaḍ) from root ب-ي-ض, not ل-ب-ن",
+    "suggested_fix": "Remove أَبْيَض from the cognate list. It is a semantic equivalent (both relate to whiteness) but not an etymological cognate."
+  },
+  {
+    "root": "kh-d-r",
+    "issue": "Arabic forms listed include حَدَرَ (ḥadara, to descend/surround), حِضَار (ḥiḍār, circumference), حَادِر (ḥādir, surrounding), and مُحَاضَرَة (muḥāḍarah, lecture). These appear to be from at least two different Arabic roots mixed together: ح-د-ر (ḥadara, to descend) and ح-ض-ر (ḥaḍara, to be present/attend). Per Lane, مُحَاضَرَة is from ح-ض-ر not ح-د-ر. The 'circumference' meaning حِضَار also appears to conflate ح-ض-ر and ح-د-ر.",
+    "current_arabic": "Mixed forms from roots ح-د-ر and ح-ض-ر",
+    "suggested_fix": "Separate the forms by root. Forms from ح-د-ر (to descend/slope) are the true cognates of Syriac KH-D-R. Forms from ح-ض-ر (to be present/attend) such as مُحَاضَرَة should be removed or clearly distinguished."
+  },
+  {
+    "root": "kh-d-y",
+    "issue": "This root corresponds to Syriac ܚܕܝ (to rejoice). Arabic حَادّ (ḥādd, sharp/intense) is from root ح-د-د (Ḥ-D-D), not a cognate of Syriac KH-D-Y. فَرِحَ (fariḥa, to rejoice) is from root ف-ر-ح (F-R-Ḥ), also not a cognate. These are semantic equivalents mixed with forms from different roots. حُدَى (ḥudā, joy) is questionable — Lane does not clearly attest this form.",
+    "current_arabic": "حَادّ from ح-د-د; فَرِحَ from ف-ر-ح — neither is cognate to KH-D-Y",
+    "suggested_fix": "The Arabic section mixes non-cognate forms. Remove فَرِحَ (different root). Verify حُدَى in Lane. Note that Arabic does not have a productive cognate of Syriac KH-D-Y for 'joy'."
+  },
+  {
+    "root": "d-m-a",
+    "issue": "Arabic آدَم (Adam) is listed as cognate with outlier marking. Per Lane, the name Adam is traditionally connected to أَدِيم (adīm, skin/surface of the earth) from root أ-د-م, not from د-م (D-M, blood). The inclusion under D-M-A (blood/resemble) is an etymological stretch. The form دَمَى (damā, to resemble) is correctly from root د-م-ي per Lane.",
+    "current_arabic": "آدَم (Adam) marked outlier under D-M-A root",
+    "suggested_fix": "The outlier marking is appropriate but consider moving Adam to a separate note, as the connection is folk-etymological rather than established per Lane."
+  },
+  {
+    "root": "kh-r-m",
+    "issue": "Arabic حُرْمَة (ḥurma) is glossed as 'sanctity, sacredness' and marked outlier. However, per Lane, حُرْمَة is a core meaning of the root ح-ر-م: it means 'that which is sacred/inviolable, sanctity, sacredness'. This should NOT be an outlier — it is central to the root per Lane.",
+    "current_arabic": "حُرْمَة (ḥurma, sanctity) marked outlier",
+    "suggested_fix": "Remove outlier marking from حُرْمَة. Per Lane, 'sanctity/inviolability' is a core meaning of ح-ر-م."
+  },
+  {
+    "root": "s-g-d",
+    "issue": "This root (Syriac ܣܓܕ, to worship/bow down) should be verified. The standard Arabic cognate is سَجَدَ (sajada, to prostrate). Need to confirm the file has the correct Arabic forms. Per Lane, سَجَدَ is well-attested as 'to prostrate oneself in worship'. The S-G-D to S-J-D correspondence is regular (Syriac gamal maps to Arabic jim).",
+    "current_arabic": "Need to verify forms are correct",
+    "suggested_fix": "Verify that the file lists سَجَدَ and its derivatives correctly. The cognate relationship is well-established."
+  },
+  {
+    "root": "kh-g-g",
+    "issue": "Syriac root KH-G-G (festival). The Arabic cognate should be from root ح-ج-ج (ḥajja, pilgrimage/Hajj). Need to verify the forms listed are from the correct root per Lane.",
+    "current_arabic": "Verify forms are from ح-ج-ج",
+    "suggested_fix": "Verify that حَجّ (ḥajj) and related forms are correctly listed and not confused with ح-ج-ر or other similar roots."
+  },
+  {
+    "root": "m-l-p",
+    "issue": "Syriac ܡܠܦ (M-L-P, to teach). The Arabic cognate section lists عَلَّمَ ('allama, to teach) which is from root ع-ل-م (E-L-M), NOT from a root M-L-P. There is no direct Arabic cognate of M-L-P. The listed Arabic forms are semantic equivalents, not cognates.",
+    "current_arabic": "عَلَّمَ ('allama) from root ع-ل-م, not cognate of M-L-P",
+    "suggested_fix": "Note that Syriac M-L-P does not have a productive Arabic cognate. The Arabic ع-ل-م forms are semantic equivalents only. This should be clearly distinguished from true cognates."
+  },
+  {
+    "root": "q-d-sh",
+    "issue": "Arabic قِدْس (qids, holiness) is listed but Lane's primary vocalization is قُدْس (quds) and قُدُس (qudus). The form قِدْس with kasra on the qaf is not standard per Lane.",
+    "current_arabic": "قِدْس (qids) — non-standard vocalization",
+    "suggested_fix": "Change vocalization to قُدْس (quds) per Lane."
+  },
+  {
+    "root": "sh-kh-kh",
+    "issue": "Syriac ܫܟܚ (to find). Need to verify Arabic cognate. There is no standard Arabic cognate for this Syriac root.",
+    "current_arabic": "Verify what is listed",
+    "suggested_fix": "Verify the Arabic section has appropriate forms or acknowledges the absence of a cognate."
+  },
+  {
+    "root": "kh-w-r",
+    "issue": "Need to verify: Syriac KH-W-R could map to Arabic ح-و-ر (ḥawara, to return/be white) or خ-و-ر (khawara, to be weak). The correct mapping depends on whether Syriac kheth maps to Arabic ḥa or kha in this root.",
+    "current_arabic": "Verify root identification",
+    "suggested_fix": "Confirm whether Arabic forms are from ح-و-ر or خ-و-ر and whether this matches Syriac KH-W-R per standard phonological correspondences."
+  },
+  {
+    "root": "r-m-y",
+    "issue": "This root was listed at line 16395. Syriac R-M-Y (to throw/cast). The Arabic cognate should be رَمَى (ramā, to throw) from root ر-م-ي, which is well-attested in Lane. Need to verify the file's Arabic section is accurate.",
+    "current_arabic": "Verify accuracy",
+    "suggested_fix": "Confirm رَمَى and derivatives are correctly listed."
+  },
+  {
+    "root": "kh-y-b",
+    "issue": "Syriac KH-Y-B (to owe, be guilty). Need to verify Arabic cognate. Arabic does not have a productive cognate from root ح-ي-ب. The closest might be خَابَ (khāba, to fail/be disappointed) from root خ-ي-ب per Lane.",
+    "current_arabic": "Verify root identification",
+    "suggested_fix": "Verify whether Arabic forms are from خ-ي-ب (khāba, to fail) and whether this is the correct phonological match for Syriac KH-Y-B."
+  },
+  {
+    "root": "t-e-n",
+    "issue": "Syriac T-E-N (to load/carry). The Arabic cognate should be from root ط-ع-ن (ṭaʿana, to stab/pierce) per standard phonological correspondences (Syriac teth maps to Arabic ṭa). Per Lane, طَعَنَ means 'to thrust with a spear, to stab, to attack verbally'. The semantic divergence between 'loading/carrying' and 'stabbing/piercing' is significant and should be noted.",
+    "current_arabic": "طَعَنَ (ṭaʿana, to stab) — significant semantic divergence from 'to load'",
+    "suggested_fix": "The cognate is phonologically valid but the semantic gap should be highlighted. Consider whether this is truly a cognate or a coincidental phonological match."
+  },
+  {
+    "root": "kh-l-l",
+    "issue": "Syriac KH-L-L (to profane/make common). The Arabic cognate should be حَلَّلَ (ḥallala, to make lawful/permit) from root ح-ل-ل per Lane. Lane attests حَلَّ as 'to loosen, dissolve, make lawful' and حَلَال (ḥalāl) as 'lawful, permitted'. The Syriac 'profane' and Arabic 'permitted/lawful' share the semantic core of 'making common/unrestricted'. Need to verify the file has this correct.",
+    "current_arabic": "Verify forms from ح-ل-ل",
+    "suggested_fix": "Confirm حَلَّ, حَلَال, and derivatives are correctly listed with accurate Lane meanings."
+  },
+  {
+    "root": "e-r-b",
+    "issue": "Syriac E-R-B (to enter/mix/set of sun). Arabic cognate section lists غَرَبَ (gharaba, to set/go west) which is from root غ-ر-ب (GH-R-B). The correspondence of Syriac ayin (ع) to Arabic ghayn (غ) is irregular. Per standard phonological rules, Syriac ayin should map to Arabic ayin (ع), so the expected Arabic cognate would be عَرَبَ (ʿaraba) from root ع-ر-ب. Per Lane, عَرَبَ means 'to be Arabic/eloquent' and غَرَبَ means 'to go west/set'. The semantic match is with غ-ر-ب but the phonological match is with ع-ر-ب.",
+    "current_arabic": "غَرَبَ (gharaba) — irregular ayin/ghayn correspondence",
+    "suggested_fix": "Note the irregular phonological correspondence. The semantic match (sunset/west) is correct but the root consonant correspondence is non-standard."
+  },
+  {
+    "root": "sh-w-a",
+    "issue": "Syriac SH-W-A (to be equal/level). Need to verify that Arabic cognate section correctly lists forms from root س-و-ي (sawiya, to be equal) per Lane. The sh>s correspondence is regular.",
+    "current_arabic": "Verify forms from root س-و-ي",
+    "suggested_fix": "Confirm Arabic forms are correctly identified per Lane."
+  },
+  {
+    "root": "kh-r-r",
+    "issue": "Syriac KH-R-R (to be free). Arabic cognate should be from root ح-ر-ر (ḥarra, to be free/hot). Per Lane, حَرَّ means both 'to be hot' and 'to be free/noble'. The dual meaning (heat + freedom) is attested in Lane. Need to verify file accuracy.",
+    "current_arabic": "Verify forms from ح-ر-ر",
+    "suggested_fix": "Confirm that both semantic streams (freedom and heat) are properly represented."
+  },
+  {
+    "root": "a-r-e",
+    "issue": "Syriac A-R-E (earth/land). Arabic أَرْض (arḍ, earth/land) is well-attested in Lane. However, the root transliteration 'a-r-e' uses 'e' for the Syriac ayin (ע), which is consistent with the file's convention. The Arabic root is أ-ر-ض where the final consonant is ḍād, not ayin. This means the phonological correspondence is imperfect: Syriac ayin ≠ Arabic ḍād. Despite this, the cognate is universally accepted in Semitic linguistics.",
+    "current_arabic": "أَرْض (arḍ) — accepted cognate despite irregular ع/ض correspondence",
+    "suggested_fix": "No fix needed; this is a well-established cognate. Consider noting the irregular sound correspondence."
+  },
+  {
+    "root": "e-n-a",
+    "issue": "Root at line 8168. Syriac E-N-A (to answer/respond). Need to verify Arabic cognate. The standard Arabic cognate would be عَنَّ (ʿanna, to occur to the mind) or عَنَا (ʿanā, to be concerned). The primary Arabic equivalent for 'to answer' is أَجَابَ (ajāba) from root ج-و-ب, which is NOT a cognate.",
+    "current_arabic": "Verify Arabic section",
+    "suggested_fix": "Confirm that the Arabic section lists forms from root ع-ن-ي/ع-ن-و and not non-cognate semantic equivalents."
+  },
+  {
+    "root": "z-w-g",
+    "issue": "Syriac Z-W-G (to pair/marry). Arabic cognate should be زَوَّجَ (zawwaja, to marry) from root ز-و-ج per Lane. This is well-attested. Need to verify file accuracy.",
+    "current_arabic": "Verify forms",
+    "suggested_fix": "Confirm Arabic forms from ز-و-ج are correctly listed."
+  },
+  {
+    "root": "kh-t-m",
+    "issue": "Syriac KH-T-M (to seal). Arabic cognate should be خَتَمَ (khatama, to seal) from root خ-ت-م per Lane. Note that Syriac kheth here maps to Arabic kha (خ), not ḥa (ح). This is a case where the Syriac kheth has two different Arabic correspondences depending on the root.",
+    "current_arabic": "Verify root is خ-ت-م",
+    "suggested_fix": "Confirm Arabic forms are from خ-ت-م per Lane."
+  }
+]

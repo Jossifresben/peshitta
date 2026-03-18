@@ -1,0 +1,302 @@
+[
+  {
+    "root": "k-th-b",
+    "issue": "Modern Hebrew forms not in BDB",
+    "current_hebrew": "כְּתִיבָה (ktiva) 'writing'; מִכְתּוֹב (mikhtov)",
+    "suggested_fix": "Remove כְּתִיבָה (modern Hebrew abstract noun). מִכְתּוֹב is not a standard BDB form — consider מִכְתָּב (mikhtav) which IS in BDB."
+  },
+  {
+    "root": "k-s-p",
+    "issue": "Modern Israeli Hebrew — obviously anachronistic",
+    "current_hebrew": "כַּסְפּוֹמָט (kaspomat) 'ATM'",
+    "suggested_fix": "Remove כַּסְפּוֹמָט entirely. ATM machines did not exist in biblical times."
+  },
+  {
+    "root": "n-p-q",
+    "issue": "Hebrew entries are from root Y-TS-A, not from N-P-Q",
+    "current_hebrew": "יָצָא (yatzá) 'to go out'; מוֹצָא (motsá) 'origin'; הוֹצִיא (hotsí) 'to take out'",
+    "suggested_fix": "These are all from Hebrew root י-צ-א (Y-TS-A). There is no direct Hebrew cognate of Syriac N-P-Q. Mark as semantic parallels or remove and note that the Syriac root lacks a Hebrew cognate from the same triliteral root."
+  },
+  {
+    "root": "d-kh-l",
+    "issue": "Hebrew entries are from root P-KH-D, not D-KH-L",
+    "current_hebrew": "פַּחַד (paḥad) 'fear'; פַּחְדָּן (paḥdan) 'coward'",
+    "suggested_fix": "פַּחַד and פַּחְדָּן are from root פ-ח-ד (P-KH-D). The Syriac root D-KH-L 'to fear/enter' has no direct Hebrew triliteral cognate. These are semantic parallels, not etymological cognates."
+  },
+  {
+    "root": "a-z-l",
+    "issue": "Multiple wrong root assignments and dubious forms",
+    "current_hebrew": "אֲיָלִים ('ayalim) 'deer'; אֱלַי ('elai) 'to me'; הָלְכָה (halkha) 'to go (feminine)'",
+    "suggested_fix": "אֲיָלִים is from root א-י-ל (A-Y-L), not A-Z-L. אֱלַי is a prepositional form (אֶל + suffix), not from any verbal root. הָלְכָה listed as 'to go (feminine)' but this word is universally known as 'halakha' (Jewish law, from root H-L-K). None of these are cognates of Syriac ܐܙܠ."
+  },
+  {
+    "root": "sh-r-r",
+    "issue": "Hebrew entry from wrong root",
+    "current_hebrew": "יָשָׁר (yashar) 'straight, upright'",
+    "suggested_fix": "יָשָׁר is from root י-שׁ-ר (Y-SH-R), not SH-R-R. The Syriac root ܫܪܪ means 'to be firm/true'. The Hebrew cognate should be forms from שׁ-ר-ר such as שׁוֹרֵר or related forms."
+  },
+  {
+    "root": "z-b-n",
+    "issue": "All Hebrew entries are from root Z-M-N, not Z-B-N",
+    "current_hebrew": "זְמַן (zman) 'time' and related forms",
+    "suggested_fix": "The Hebrew forms listed (זְמַן etc.) are from root ז-מ-ן (Z-M-N 'appoint time'). The Syriac root ܙܒܢ means 'to buy/sell/time'. There is no common Hebrew cognate from Z-B-N. Remove Z-M-N forms or mark them as semantic parallels only."
+  },
+  {
+    "root": "ts-l-a",
+    "issue": "Hebrew entry from wrong root",
+    "current_hebrew": "צְלִיל (ts'lil) 'sound'",
+    "suggested_fix": "צְלִיל is from root צ-ל-ל (TS-L-L 'to ring, sound'), not TS-L-A. Remove or mark as outlier from a different root."
+  },
+  {
+    "root": "sh-l-m",
+    "issue": "Modern Hebrew form not in BDB",
+    "current_hebrew": "מוּשְׁלָם (mushlam) 'perfect'",
+    "suggested_fix": "מוּשְׁלָם is a modern Hebrew passive participle meaning 'perfect/flawless'. This form is not in BDB. The biblical Hebrew form would be שָׁלֵם (shalem)."
+  },
+  {
+    "root": "k-r-z",
+    "issue": "Hebrew entries from wrong root Q-R-A",
+    "current_hebrew": "קָרָא (kara') 'to call' and derivatives",
+    "suggested_fix": "קָרָא and its derivatives are from root ק-ר-א (Q-R-A 'to call/read'). The Syriac root ܟܪܙ (K-R-Z) 'to preach/proclaim' has a Hebrew cognate כָּרַז (karaz) which appears in late/Aramaic sections of the Bible (Daniel, Esther). Use כָּרַז instead."
+  },
+  {
+    "root": "b-r-k",
+    "issue": "Wrong meaning assigned to Hebrew word",
+    "current_hebrew": "בִּרְכָּה (birká) listed as 'knee'",
+    "suggested_fix": "בִּרְכָּה (birka) in BDB means 'pool, pond' (2 Samuel 2:13, etc.). The word for 'knee' is בֶּרֶךְ (berekh). Correct the meaning or replace with the correct form."
+  },
+  {
+    "root": "n-w-n",
+    "issue": "Fabricated/non-attested Hebrew forms",
+    "current_hebrew": "לִינוֹן (linon); נָאוֹן (na'on); נִינָה (ninah)",
+    "suggested_fix": "These forms do not appear in BDB or standard Hebrew lexicons. Remove as fabricated entries. The attested BDB form is נוּן (nun) 'fish' or the name נוּן (Nun)."
+  },
+  {
+    "root": "z-y-n",
+    "issue": "Fabricated/non-attested Hebrew forms",
+    "current_hebrew": "ליזון (lizon); זניין (zaniyn)",
+    "suggested_fix": "These forms do not appear in BDB or any standard lexicon. Remove as fabricated entries."
+  },
+  {
+    "root": "sh-d-r",
+    "issue": "Hebrew entries are from root SH-L-KH, not SH-D-R",
+    "current_hebrew": "שָׁלַח (shalakh) 'to send'; שְׁלִיחַ (sh'lichá) 'emissary'",
+    "suggested_fix": "שָׁלַח and שְׁלִיחַ are from root שׁ-ל-ח (SH-L-KH). The Syriac root ܫܕܪ (SH-D-R) 'to send' has no direct Hebrew cognate. These are semantic parallels, not root cognates. Note: the entry sh-l-kh already exists separately with these same forms."
+  },
+  {
+    "root": "a-th-a",
+    "issue": "Questionable/non-standard Hebrew forms",
+    "current_hebrew": "אָתִיל (atil); אִתּוּת (ittut)",
+    "suggested_fix": "אָתִיל and אִתּוּת are not standard BDB forms. The basic Hebrew cognate אָתָה (atha) 'to come' is in BDB (rare, mostly poetic), but the derived forms listed appear invented."
+  },
+  {
+    "root": "q-w-m",
+    "issue": "Non-standard vocalization",
+    "current_hebrew": "קָאָם (qam)",
+    "suggested_fix": "The standard BDB vocalization is קָם (qam) without the extra aleph. Correct to קָם."
+  },
+  {
+    "root": "ts-b-a",
+    "issue": "Semantic mismatch between Syriac and Hebrew cognate",
+    "current_hebrew": "צָבָא (tsava) 'army/host'",
+    "suggested_fix": "The Syriac root ܨܒܐ means 'to desire/want', while Hebrew צָבָא means 'army/host/service'. While they share the same consonantal root, the semantic fields diverge significantly. This should be noted — the entry currently presents them as straightforward cognates without acknowledging the semantic gap."
+  },
+  {
+    "root": "q-r-sh",
+    "issue": "Hebrew entries from wrong root Q-R-KH",
+    "current_hebrew": "קֶרַח (qéreḥ) 'ice'; קָרֵחַ (qáréaḥ) 'bald'",
+    "suggested_fix": "קֶרַח (ice) and קָרֵחַ (bald) are from root ק-ר-ח (Q-R-KH), not Q-R-SH. The Syriac root Q-R-SH has different cognates."
+  },
+  {
+    "root": "y-h-b",
+    "issue": "Hebrew entry from wrong root",
+    "current_hebrew": "מוֹנָה (moná) 'talent/gift'",
+    "suggested_fix": "מוֹנָה is not from root Y-H-B ('to give'). It appears to be from root מ-נ-ה (M-N-H 'to count/appoint'). Remove from this entry."
+  },
+  {
+    "root": "n-s-b",
+    "issue": "Hebrew entries from wrong roots",
+    "current_hebrew": "נִסָּה (nissáh) 'to try'; נֶסַח (nésaḥ)",
+    "suggested_fix": "נִסָּה is from root נ-ס-ה (N-S-H 'to test/try'), not N-S-B. נֶסַח appears to be from root נ-ס-ח (N-S-KH). Neither belongs under N-S-B."
+  },
+  {
+    "root": "sh-b-kh",
+    "issue": "All Hebrew entries are post-biblical/Rabbinic, not in BDB",
+    "current_hebrew": "All forms listed",
+    "suggested_fix": "The Hebrew forms for this root (שבח 'to praise') are predominantly post-biblical/Rabbinic Hebrew. BDB has minimal entries for this root. Flag all as post-biblical or note that this root's Hebrew attestation is primarily Rabbinic."
+  },
+  {
+    "root": "sh-kh-kh",
+    "issue": "Mixed roots — Hebrew entries from multiple different roots",
+    "current_hebrew": "מָצָא (matsa) 'to find'; מִשְׁכָּן (mishkan) 'dwelling'",
+    "suggested_fix": "מָצָא is from root מ-צ-א (M-TS-A), a semantic parallel but not a cognate. מִשְׁכָּן is from root שׁ-כ-ן (SH-K-N 'to dwell'), not SH-KH-KH. The connection is thematic (dwelling/finding) but not etymological. Mark מָצָא and מִשְׁכָּן as semantic parallels from different roots."
+  },
+  {
+    "root": "th-r-e",
+    "issue": "Hebrew entries from wrong root",
+    "current_hebrew": "שַׁעַר (sha'ar) 'gate'; שְׁעָרִים (she'arim) 'gates'",
+    "suggested_fix": "שַׁעַר and שְׁעָרִים are from root שׁ-ע-ר (SH-'-R), not from the Syriac root ת-ר-ע (TH-R-'). These are semantic parallels (both mean 'gate/door') but from different triliteral roots. The Aramaic form תַּרְעָא (tar'a) listed is correct as an Aramaic form but is not Hebrew."
+  },
+  {
+    "root": "e-th-d",
+    "issue": "Hebrew entries from wrong root K-W-N",
+    "current_hebrew": "הֶתְּכִין (hettekhin) 'to prepare'; הֲכָנָה (hakaná) 'preparation'; נָכוֹן (nachón) 'ready'",
+    "suggested_fix": "הֶתְּכִין, הֲכָנָה, and נָכוֹן are all from root כ-ו-ן (K-W-N 'to establish/prepare'), not from ע-ת-ד (E-TH-D). The first three entries (עָתִיד, עֲתִידוֹת, עָתַד) are correct, but the K-W-N forms should be removed or marked as semantic parallels."
+  },
+  {
+    "root": "p-l-sh",
+    "issue": "Duplicate entry — same Hebrew as p-l-kh",
+    "current_hebrew": "פָּלַח (palakh) and related forms",
+    "suggested_fix": "This entry appears to duplicate the p-l-kh entry with the same Hebrew root פ-ל-ח. If P-L-SH is a distinct Syriac root, it needs distinct Hebrew cognates, not the same ones used for P-L-KH."
+  },
+  {
+    "root": "d-n-kh",
+    "issue": "Hebrew entries are from wrong/unrelated roots",
+    "current_hebrew": "נָדַח (nāḏaḥ) 'to shine'; נַחַת (naḥat) 'to descend'; נוֹחַ (nōaḥ) 'to rest'",
+    "suggested_fix": "נָדַח in BDB means 'to be banished/driven away', NOT 'to shine'. נַחַת is from root נ-ח-ת (N-KH-T). נוֹחַ is from root נ-ו-ח (N-W-KH). None of these are cognates of the Syriac root ד-נ-ח (D-N-KH 'to dawn/shine'). The Syriac root has no direct Hebrew cognate."
+  },
+  {
+    "root": "k-a-p",
+    "issue": "Hebrew entries from wrong roots",
+    "current_hebrew": "כָּבַד (kāvad) 'to be heavy'; כְּבִיר (kəvīr) 'great'; כְּבִיָּה (kəviyyāh) 'weight'",
+    "suggested_fix": "כָּבַד is from root כ-ב-ד (K-B-D 'to be heavy/honored'). כְּבִיר and כְּבִיָּה are also from K-B-R/K-B-D, not K-A-P. Only כֵּף (kef) 'rock' is a legitimate cognate. Remove the K-B-D forms."
+  },
+  {
+    "root": "s-n-q",
+    "issue": "Hebrew entries from wrong root TS-R-KH",
+    "current_hebrew": "צָרִיךְ (tsarikh) 'necessary'; צֹרֶךְ (tsorekh) 'need'",
+    "suggested_fix": "צָרִיךְ and צֹרֶךְ are from root צ-ר-ך (TS-R-KH), not S-N-Q. The Syriac root ܣܢܩ has no direct Hebrew cognate. מַסְנֵיק appears to be an Aramaic-style form, not biblical Hebrew. These are semantic parallels only."
+  },
+  {
+    "root": "b-e-a",
+    "issue": "Questionable Hebrew form",
+    "current_hebrew": "בּוֹאֵב (bo'ev) 'the one who seeks'",
+    "suggested_fix": "בּוֹאֵב does not appear in BDB. This form seems fabricated. The root בעה does exist in BDB but is rare; בִּקֵּשׁ from root ב-ק-שׁ (B-Q-SH) is a semantic parallel, not a cognate."
+  },
+  {
+    "root": "kh-d-a",
+    "issue": "Hebrew entry from questionable root assignment",
+    "current_hebrew": "חִדּוּד (khidud) listed as 'joy, rejoicing'",
+    "suggested_fix": "חִדּוּד in standard Hebrew means 'sharpening' (from root ח-ד-ד KH-D-D 'to be sharp'), not 'joy'. The joy meaning belongs to חֶדְוָה (khedvah) which is correctly listed. Remove or correct חִדּוּד."
+  },
+  {
+    "root": "s-g-a",
+    "issue": "Hebrew forms are biblical Aramaic, not biblical Hebrew",
+    "current_hebrew": "שָׂגָא (saga); שַׂגִּיא (saggi); הִשְׂגִּיא (hisgi); שְׂגִיא (śəgī'); הִשְׂתַּגֵּא (histagge'); שִׂגְיוֹן (śigʾyōn)",
+    "suggested_fix": "Most of these forms are from the Aramaic portions of the Bible (Daniel), not from biblical Hebrew proper. שַׂגִּיא and שְׂגִיא are explicitly Aramaic. Flag as biblical Aramaic rather than biblical Hebrew per BDB."
+  },
+  {
+    "root": "m-r-y",
+    "issue": "Hebrew forms are Aramaic, not biblical Hebrew",
+    "current_hebrew": "מָרִי (mari); מָרָן (maran); מָר (mār); מַרְיָה (maryāh)",
+    "suggested_fix": "מָרִי, מָרָן, מָר, and מַרְיָה are Aramaic forms, not biblical Hebrew. The only proper Hebrew word listed is אָדוֹן (adon) 'lord', which is from a completely different root (A-D-N). Distinguish Aramaic forms from Hebrew, and note that אָדוֹן is a semantic parallel, not a cognate."
+  },
+  {
+    "root": "b-y-th",
+    "issue": "Modern Hebrew forms not in BDB",
+    "current_hebrew": "בַּיְתָנוּת (bayitánut) 'domesticity'; בַּיְתָנִי (bayitání) 'domestic'; בַּיְתָאִי (bayit'ái) 'homely'",
+    "suggested_fix": "בַּיְתָנוּת, בַּיְתָנִי, and בַּיְתָאִי are modern Hebrew coinages not found in BDB. Remove or flag as modern Hebrew."
+  },
+  {
+    "root": "s-p-r",
+    "issue": "Modern Hebrew form not in BDB",
+    "current_hebrew": "סִפְרִיָּה (sifriyya) 'library'",
+    "suggested_fix": "סִפְרִיָּה is modern Hebrew for 'library'. Not in BDB. Remove or flag as modern Hebrew."
+  },
+  {
+    "root": "y-d-e",
+    "issue": "Modern Hebrew forms not in BDB",
+    "current_hebrew": "מַדָּע (madda) 'science'; מוּדָע (muḏa) 'informed, aware'",
+    "suggested_fix": "מַדָּע in its modern sense of 'science' is not in BDB (the BDB entry for מַדָּע is limited). מוּדָע 'informed/aware' is modern Hebrew. Flag or remove these modern forms."
+  },
+  {
+    "root": "y-w-m",
+    "issue": "Modern Hebrew form not in BDB",
+    "current_hebrew": "יֹומַן (yoman) 'calendar'",
+    "suggested_fix": "יֹומַן as 'calendar' is modern Hebrew. Not in BDB. Remove or flag as modern Hebrew."
+  },
+  {
+    "root": "n-p-l",
+    "issue": "Questionable Hebrew form",
+    "current_hebrew": "מַנָּפֵל (manafél) 'one who causes to fall'",
+    "suggested_fix": "מַנָּפֵל is not a standard BDB form. The BDB hiphil form would be מַפִּיל (mappil). This form appears invented."
+  },
+  {
+    "root": "p-l-g",
+    "issue": "Modern Hebrew form not in BDB",
+    "current_hebrew": "מִפְלָגָה (miflaga) 'political party'; פַּלְגָּנוּת (palganut) 'factionalism'",
+    "suggested_fix": "מִפְלָגָה as 'political party' and פַּלְגָּנוּת are modern Hebrew terms. Not in BDB. Remove or flag as modern Hebrew."
+  },
+  {
+    "root": "z-k-a",
+    "issue": "Hebrew entries from wrong root D-KH-R",
+    "current_hebrew": "זָכוֹר (zakhór) 'to remember'; זִכָּרוֹן (zikkáron) 'memory'",
+    "suggested_fix": "זָכוֹר and זִכָּרוֹן are from root ז-כ-ר (Z-K-R 'to remember'), not Z-K-A ('to be pure'). These are already correctly listed under the d-kh-r entry. They are marked as outliers, but they belong to a completely different root."
+  },
+  {
+    "root": "th-l-m",
+    "issue": "Duplicate entry — overlaps with l-m-d",
+    "current_hebrew": "תַּלְמִיד (talmid); תַּלְמוּד (talmud); לִמּוּד (limud); מַלְמֵד (malmed)",
+    "suggested_fix": "This entry substantially duplicates the l-m-d entry. תַּלְמִיד and תַּלְמוּד could be argued as derived from TH-L-M, but לִמּוּד and מַלְמֵד are clearly from L-M-D. Also, לֶמַד (lemed) listed here is not standard — the BDB form is לָמַד (lamad). Consider consolidating with l-m-d or removing duplicate forms."
+  },
+  {
+    "root": "e-m-r",
+    "issue": "Hebrew entries are all outliers from a different semantic field",
+    "current_hebrew": "All entries marked as outliers — עָמַר ('amar) 'gather sheaves'; עֹמֶר ('omer) 'sheaf'",
+    "suggested_fix": "All Hebrew entries under this root are marked as outliers. The Syriac root ܥܡܪ means 'to dwell/inhabit', but Hebrew עמר means 'to gather sheaves'. These are false cognates (same consonants, completely different meanings). The entry should note that the Hebrew root Ayin-Mem-Resh has diverged semantically from the Syriac."
+  },
+  {
+    "root": "r-m-y",
+    "issue": "Hebrew entries are from root R-W-M, not R-M-Y",
+    "current_hebrew": "רָמָה (ramá) 'height'; רָמוֹת (rámot) 'high places'",
+    "suggested_fix": "רָמָה as 'height' and רָמוֹת as 'high places' are from root ר-ו-ם (R-W-M 'to be high'), not R-M-Y ('to throw'). The Syriac root ܪܡܝ means 'to throw/cast'. These Hebrew forms are incorrectly assigned."
+  },
+  {
+    "root": "T-w-b",
+    "issue": "Duplicate root — overlaps with T-y-b",
+    "current_hebrew": "טוֹב (tov) 'good'; טוּב (tuv) 'goodness'",
+    "suggested_fix": "This entry (T-w-b) duplicates much of the T-y-b entry, which also lists טוֹב and טוּב. Consider consolidating these two entries."
+  },
+  {
+    "root": "n-h-r",
+    "issue": "Hebrew forms are Aramaic, not standard biblical Hebrew",
+    "current_hebrew": "נָהִיר (nāhîr) 'brilliant'; מַנְהִיר (manhîr) 'to illuminate'",
+    "suggested_fix": "נָהִיר and מַנְהִיר are Aramaic forms, not standard biblical Hebrew per BDB. The Hebrew נָהָר (nahar) 'river' and נְהָרָה (nehara) 'light' are legitimate, but the other forms should be flagged as Aramaic."
+  },
+  {
+    "root": "b-e-y",
+    "issue": "Duplicate root — overlaps with b-e-a",
+    "current_hebrew": "Same Hebrew forms as b-e-a entry",
+    "suggested_fix": "This entry (b-e-y) appears to be a duplicate of the b-e-a entry, with the same Syriac root ܒܥܐ/ܒܥܝ and largely the same Hebrew cognates. Consolidate into a single entry."
+  },
+  {
+    "root": "kh-sh-b",
+    "issue": "Modern Hebrew form not in BDB",
+    "current_hebrew": "חֲשִׁיבוּת (ḥašivut) 'importance'",
+    "suggested_fix": "חֲשִׁיבוּת is a modern Hebrew abstract noun not found in BDB. Remove or flag as modern Hebrew."
+  },
+  {
+    "root": "q-r-b",
+    "issue": "Hebrew entry from wrong root",
+    "current_hebrew": "מִלְחָמָה (milkhama) 'war'",
+    "suggested_fix": "מִלְחָמָה is from root ל-ח-ם (L-KH-M 'to fight'), not Q-R-B. It is already marked as outlier but should be noted as belonging to a completely different root. The semantic bridge correctly links it to L-KH-M."
+  },
+  {
+    "root": "l-m-d",
+    "issue": "Modern Hebrew form not in BDB",
+    "current_hebrew": "לַמָּדוּת (lamadut) 'erudition'",
+    "suggested_fix": "לַמָּדוּת is a modern Hebrew abstract noun not in BDB. Remove or flag as modern Hebrew."
+  },
+  {
+    "root": "sh-m-sh",
+    "issue": "Post-biblical Hebrew forms",
+    "current_hebrew": "שִׁמֵּשׁ (shimesh) 'to serve'; שַׁמָּשׁ (shamash) 'servant'; שָׁמוּשׁ (shamush) 'service'",
+    "suggested_fix": "שִׁמֵּשׁ and שַׁמָּשׁ in the sense of 'servant/to serve' are primarily post-biblical/Rabbinic Hebrew. BDB lists שֶׁמֶשׁ (shemesh) 'sun' but the verbal forms meaning 'to serve' are late. Flag as post-biblical."
+  },
+  {
+    "root": "g-l-a",
+    "issue": "Post-biblical Hebrew form",
+    "current_hebrew": "הִתְגַּלּוּת (hitgalut) 'revelation'",
+    "suggested_fix": "הִתְגַּלּוּת is a later Hebrew abstract noun. BDB lists גָּלָה and גָּלוּת but not this hitpa'el-derived form. Flag as post-biblical."
+  }
+]
