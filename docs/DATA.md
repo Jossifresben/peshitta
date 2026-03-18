@@ -118,6 +118,30 @@ Hebrew and Arabic cognates for Syriac roots, with bilingual glosses, semantic ou
 | `bridge_concept_en` | English explanation of the semantic connection |
 | `bridge_concept_es` | Spanish explanation of the semantic connection |
 
+**Semantic field summaries (sabor_raiz):**
+
+| Field | Description |
+|-------|-------------|
+| `sabor_raiz_es` | Short poetic phrase (3-5 words) capturing the root's semantic field in Spanish (e.g., `"inscripción, marca permanente, registro"`) |
+| `sabor_raiz_en` | Same in English (e.g., `"inscription, permanent mark, record"`) |
+
+**Greek parallel / translation degradation:**
+
+Each root may have a `greek_parallel` object showing the Greek NT equivalent and a prose analysis of what was lost in the Aramaic -> Greek -> modern translation chain.
+
+| Field | Description |
+|-------|-------------|
+| `greek_parallel.word` | Greek word in Unicode (e.g., `"γράφω"`) |
+| `greek_parallel.transliteration` | Latin transliteration (e.g., `"graphō"`) |
+| `greek_parallel.meaning_es` | Spanish gloss of the Greek word |
+| `greek_parallel.meaning_en` | English gloss of the Greek word |
+| `greek_parallel.aramaic_range_es` | Full semantic range of the Syriac root, in Spanish |
+| `greek_parallel.aramaic_range_en` | Full semantic range of the Syriac root, in English |
+| `greek_parallel.greek_range_es` | Semantic range of the Greek equivalent, in Spanish |
+| `greek_parallel.greek_range_en` | Semantic range of the Greek equivalent, in English |
+| `greek_parallel.lost_es` | Extended prose (Spanish) on what semantic nuance was lost in translation |
+| `greek_parallel.lost_en` | Extended prose (English) on what semantic nuance was lost in translation |
+
 ---
 
 ## data/known_roots.json

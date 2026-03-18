@@ -156,15 +156,60 @@ python scripts/fix_bridge_concepts.py          # Fix all mismatches
 python scripts/fix_bridge_concepts.py --dry-run  # Preview only
 ```
 
-## Code Review Findings (as of 2026-03-15)
+### generate_greek_parallels.py
+Generates `greek_parallel` (translation degradation) data for each root. Uses Claude Haiku to produce the Greek NT equivalent and a prose analysis of what semantic nuance was lost in the Aramaic -> Greek -> modern translation chain.
 
-### Fixed
-- **DRY violation:** Dash-form builder was duplicated 4 times → consolidated into `_translit_to_dash()`
-- **Thread safety:** `_init()` now uses double-checked locking with `threading.Lock()`
+```bash
+python scripts/generate_greek_parallels.py             # Process all
+python scripts/generate_greek_parallels.py --dry-run   # Preview prompt
+python scripts/generate_greek_parallels.py --root r-w-kh  # Single root
+```
 
-### Open (Important, not critical)
-- Cached sorted roots (sorted on every call to `get_all_roots()`)
-- No `SECRET_KEY` configured (needed if sessions/CSRF ever added)
-- No security headers (X-Content-Type-Options, X-Frame-Options, CSP)
-- No input length limits on query parameters
-- Dependencies not pinned to exact versions in `requirements.txt`
+### generate_sabor_raiz.py
+Generates `sabor_raiz_es` / `sabor_raiz_en` (semantic field summary) for each root. Uses Claude Haiku to produce a poetic 3-5 word phrase capturing the root's semantic field from its gloss and cognate meanings.
+
+```bash
+python scripts/generate_sabor_raiz.py             # Process all
+python scripts/generate_sabor_raiz.py --dry-run   # Preview prompt
+python scripts/generate_sabor_raiz.py --root sh-l-m  # Single root
+```
+
+### generate_hebrew_parallels.py
+Generates `hebrew_parallel` (translation shift) data for each root. Uses Claude Opus to analyze what shifts when Hebrew is rendered into its Aramaic sister language (Peshitta OT).
+
+```bash
+python scripts/generate_hebrew_parallels.py             # Process all
+python scripts/generate_hebrew_parallels.py --dry-run   # Preview prompt
+python scripts/generate_hebrew_parallels.py --root kh-k-m  # Single root
+```
+
+### generate_new_cognates.py
+Generates cognate entries for Syriac roots that have no cognates yet. Sends batches of uncovered roots to Claude, which filters out non-roots (particles, proper nouns, pronouns) and generates Hebrew and Arabic cognates for genuine triliteral roots.
+
+```bash
+python scripts/generate_new_cognates.py             # Process all
+python scripts/generate_new_cognates.py --dry-run   # Preview
+```
+
+### convert_ot_text.py
+Converts ETCBC/Peshitta plain text files to CSV format matching the NT corpus structure.
+
+```bash
+python scripts/convert_ot_text.py /tmp/etcbc-peshitta/plain/0.2 --books Proverbs
+python scripts/convert_ot_text.py /tmp/etcbc-peshitta/plain/0.2  # All books
+```
+
+### fetch_ot_translations.py
+Fetches public domain Bible translations (WEB English, Reina-Valera 1909 Spanish) for OT books via bible.helloao.org and merges them into the translations JSON.
+
+```bash
+python scripts/fetch_ot_translations.py                # All 4 books, both languages
+python scripts/fetch_ot_translations.py --books Psalms  # Single book
+```
+
+### Other utility scripts
+
+- **dedup_cognates.py** — Removes duplicate Hebrew/Arabic entries from cognates.json.
+- **flag_modern_hebrew.py** — Flags and removes modern Israeli Hebrew forms not attested in BDB.
+- **apply_priority1_fixes.py** — Applies Priority 1 corrections from BDB/Lane/Payne audits to cognates.json.
+- **fetch_translations.py** — Fetches WEB (English) and RV1909 (Spanish) translations for the Peshitta 22-book NT canon.
