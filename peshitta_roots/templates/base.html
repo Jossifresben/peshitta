@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="{{ 'es' if lang == 'es' else 'en' }}" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8KTQRY55S"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S8KTQRY55S');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ t.app_title }}{% endblock %}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <a href="#main-content" class="skip-link">{% if lang == 'es' %}Ir al contenido{% else %}Skip to content{% endif %}</a>
+
+    <div class="sticky-header" role="banner">
+        <a href="{{ url_for('index', lang=lang) }}" class="nav-logo" title="Home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
+        <div class="lang-wrapper">
+            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">captive_portal</span></button>
+            <div class="lang-dropdown" id="lang-dropdown" role="menu">
+                {% block lang_links %}
+                <a href="?lang=es" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
+                <a href="?lang=en" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+                {% endblock %}
+            </div>
+        </div>
+        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}" aria-label="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
+        {% block header_settings %}
+        <div class="settings-wrapper">
+            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">settings</span></button>
+            <div class="settings-dropdown" id="settings-dropdown" role="menu">
+                <div class="settings-label">{{ t.settings_script }}</div>
+                <button class="settings-option{% if script|default('latin') == 'latin' %} active{% endif %}" data-script="latin" role="menuitemradio" aria-checked="{{ 'true' if script|default('latin') == 'latin' else 'false' }}">{{ t.settings_latin }}</button>
+                <button class="settings-option{% if script|default('latin') == 'syriac' %} active{% endif %}" data-script="syriac" role="menuitemradio" aria-checked="{{ 'true' if script|default('latin') == 'syriac' else 'false' }}">{{ t.settings_syriac }}</button>
+                <button class="settings-option{% if script|default('latin') == 'hebrew' %} active{% endif %}" data-script="hebrew" role="menuitemradio" aria-checked="{{ 'true' if script|default('latin') == 'hebrew' else 'false' }}">{{ t.settings_hebrew }}</button>
+                <button class="settings-option{% if script|default('latin') == 'arabic' %} active{% endif %}" data-script="arabic" role="menuitemradio" aria-checked="{{ 'true' if script|default('latin') == 'arabic' else 'false' }}">{{ t.settings_arabic }}</button>
+                <div class="settings-divider"></div>
+                <div class="settings-label">{{ t.settings_translation }}</div>
+                <button class="settings-option{% if trans|default(lang) == 'en' %} active{% endif %}" data-trans="en" role="menuitemradio" aria-checked="{{ 'true' if trans|default(lang) == 'en' else 'false' }}">{{ t.settings_trans_en }}</button>
+                <button class="settings-option{% if trans|default(lang) == 'es' %} active{% endif %}" data-trans="es" role="menuitemradio" aria-checked="{{ 'true' if trans|default(lang) == 'es' else 'false' }}">{{ t.settings_trans_es }}</button>
+                <button class="settings-option{% if trans|default(lang) == 'he' %} active{% endif %}" data-trans="he" role="menuitemradio" aria-checked="{{ 'true' if trans|default(lang) == 'he' else 'false' }}">{{ t.settings_trans_he }}</button>
+                <button class="settings-option{% if trans|default(lang) == 'ar' %} active{% endif %}" data-trans="ar" role="menuitemradio" aria-checked="{{ 'true' if trans|default(lang) == 'ar' else 'false' }}">{{ t.settings_trans_ar }}</button>
+                <div class="settings-divider"></div>
+                <div class="settings-label">{{ t.settings_syriac_font }}</div>
+                <button class="settings-option syriac-font-option" data-syriac-font="estrangela" role="menuitemradio">{{ t.settings_font_estrangela }}</button>
+                <button class="settings-option syriac-font-option" data-syriac-font="eastern" role="menuitemradio">{{ t.settings_font_eastern }}</button>
+                <button class="settings-option syriac-font-option" data-syriac-font="western" role="menuitemradio">{{ t.settings_font_western }}</button>
+            </div>
+        </div>
+        {% endblock %}
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
+        {% block header_share %}
+        <button class="share-toggle" id="share-toggle" aria-label="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}" title="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
+        {% endblock %}
+    </div>
+
+    {% block share_modal %}
+    <div id="share-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}">
+        <div class="modal-content share-modal-content">
+            <button class="modal-close" onclick="document.getElementById('share-modal').classList.remove('active')" aria-label="{% if lang == 'es' %}Cerrar{% else %}Close{% endif %}">&times;</button>
+            <h3 class="share-modal-title">{% if lang == 'es' %}Compartir esta p&aacute;gina{% else %}Share this page{% endif %}</h3>
+            <div class="share-qr-wrap">
+                <div id="share-qr"></div>
+                <p class="share-qr-hint">{% if lang == 'es' %}Escanea con tu dispositivo{% else %}Scan with your device{% endif %}</p>
+            </div>
+            <div class="share-url-wrap">
+                <input type="text" id="share-url" class="share-url-input" readonly aria-label="URL">
+                <button id="share-copy-btn" class="share-copy-btn" title="{% if lang == 'es' %}Copiar{% else %}Copy{% endif %}">
+                    <span class="material-symbols-outlined">content_copy</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

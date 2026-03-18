@@ -1,125 +1,115 @@
-<!DOCTYPE html>
-<html lang="{{ 'es' if lang == 'es' else 'en' }}">
-<head>
-    <meta charset="UTF-8">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8KTQRY55S"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S8KTQRY55S');</script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if lang == 'es' %}Sobre el autor{% else %}About{% endif %} - {{ t.app_title }}</title>
-    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
-    <style>
-        .about-content {
-            max-width: 640px;
-            margin: 0 auto;
-            padding: 0 1rem 3rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-        .about-photo-wrap {
-            display: flex;
-            justify-content: center;
-            margin: 2rem 0 2.5rem;
-        }
-        .about-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: center 20%;
-            border: 3px solid var(--accent, #b8860b);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-        .about-content p {
-            margin-bottom: 1.2em;
-        }
-        .about-content a {
-            color: var(--accent, #b8860b);
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-        .about-content a:hover {
-            opacity: 0.8;
-        }
-        .about-content h2 {
-            text-align: center;
-            margin-bottom: 0.25rem;
-            font-size: 1.6rem;
-            letter-spacing: -0.01em;
-        }
-        .about-content .about-subtitle {
-            text-align: center;
-            font-style: italic;
-            color: var(--text-muted, #666);
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-        }
-        .about-links-section {
-            margin-top: 2.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border, #ddd);
-        }
-        .about-links-section h3 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-        .about-links-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .about-links-list li {
-            margin-bottom: 0.6em;
-        }
-        .about-links-list a {
-            color: var(--accent, #b8860b);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4em;
-        }
-        .about-links-list a:hover {
-            text-decoration: underline;
-        }
-        .about-links-list .material-symbols-outlined {
-            font-size: 1.1em;
-        }
-    </style>
-</head>
-<body>
-    <div class="sticky-header">
-        <a href="{{ url_for('index', lang=lang) }}" class="nav-logo" title="Home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
-        <div class="lang-wrapper">
-            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language"><span class="material-symbols-outlined">captive_portal</span></button>
-            <div class="lang-dropdown" id="lang-dropdown">
-                <a href="{{ url_for('about_page', lang='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}">ES</a>
-                <a href="{{ url_for('about_page', lang='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}">EN</a>
-            </div>
-        </div>
-        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
-    </div>
+{% extends "base.html" %}
 
+{% block title %}{% if lang == 'es' %}Sobre el autor{% else %}About{% endif %} - {{ t.app_title }}{% endblock %}
+
+{% block lang_links %}
+<a href="{{ url_for('about_page', lang='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
+<a href="{{ url_for('about_page', lang='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+{% endblock %}
+
+{% block header_settings %}{% endblock %}
+{% block header_share %}{% endblock %}
+{% block share_modal %}{% endblock %}
+
+{% block head_extra %}
+<style>
+    .about-content {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 1rem 3rem;
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+    .about-photo-wrap {
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0 2.5rem;
+    }
+    .about-photo {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center 20%;
+        border: 3px solid var(--accent, #b8860b);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .about-content p {
+        margin-bottom: 1.2em;
+    }
+    .about-content a {
+        color: var(--accent, #b8860b);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+    .about-content a:hover {
+        opacity: 0.8;
+    }
+    .about-content h2 {
+        text-align: center;
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+        letter-spacing: -0.01em;
+    }
+    .about-content .about-subtitle {
+        text-align: center;
+        font-style: italic;
+        color: var(--text-muted, #666);
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+    }
+    .about-links-section {
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border, #ddd);
+    }
+    .about-links-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    .about-links-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .about-links-list li {
+        margin-bottom: 0.6em;
+    }
+    .about-links-list a {
+        color: var(--accent, #b8860b);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4em;
+    }
+    .about-links-list a:hover {
+        text-decoration: underline;
+    }
+    .about-links-list .material-symbols-outlined {
+        font-size: 1.1em;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
     <div class="container">
         <div class="about-content">
 
             <div class="about-photo-wrap">
-                <img src="{{ url_for('static', filename='author.jpg') }}" alt="Jossi Fresco" class="about-photo">
+                <img src="{{ url_for('static', filename='author.jpg') }}" alt="Jossi Fresco" class="about-photo" loading="lazy">
             </div>
 
             <h2>Jossi Fresco</h2>
 
             {% if lang == 'es' %}
 
-            <p>Jossi es tecnólogo, músico y explorador. Polímata por naturaleza, se ha movido con fluidez entre disciplinas a lo largo de su vida, integrando experiencia técnica, creativa y humana.</p>
+            <p>Jossi es tecn&oacute;logo, m&uacute;sico y explorador. Pol&iacute;mata por naturaleza, se ha movido con fluidez entre disciplinas a lo largo de su vida, integrando experiencia t&eacute;cnica, creativa y humana.</p>
 
-            <p>Esa trayectoria afinó una intuición: los sistemas, ya sean de código o de lenguaje, contienen patrones que revelan significado cuando se observan desde su propia estructura.</p>
+            <p>Esa trayectoria afin&oacute; una intuici&oacute;n: los sistemas, ya sean de c&oacute;digo o de lenguaje, contienen patrones que revelan significado cuando se observan desde su propia estructura.</p>
 
-            <p>Su trabajo se sitúa en la intersección de lo técnico y lo intuitivo, análisis y percepción directa. Le interesa crear condiciones donde el significado pueda surgir con claridad, sin ser forzado ni reducido.</p>
+            <p>Su trabajo se sit&uacute;a en la intersecci&oacute;n de lo t&eacute;cnico y lo intuitivo, an&aacute;lisis y percepci&oacute;n directa. Le interesa crear condiciones donde el significado pueda surgir con claridad, sin ser forzado ni reducido.</p>
 
-            <p>Un hilo constante: cómo el lenguaje configura nuestra comprensión de la realidad. Este proyecto nació tras asistir a una conferencia de <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a> sobre la Peshitta, que abrió una línea de indagación sobre la relación entre lenguaje, estructura y sentido.</p>
+            <p>Un hilo constante: c&oacute;mo el lenguaje configura nuestra comprensi&oacute;n de la realidad. Este proyecto naci&oacute; tras asistir a una conferencia de <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a> sobre la Peshitta, que abri&oacute; una l&iacute;nea de indagaci&oacute;n sobre la relaci&oacute;n entre lenguaje, estructura y sentido.</p>
 
             {% else %}
 
@@ -134,10 +124,10 @@
             {% endif %}
 
             <div class="about-links-section">
-                <h3>{% if lang == 'es' %}Proyectos y expresiones{% else %}Projects & expressions{% endif %}</h3>
+                <h3>{% if lang == 'es' %}Proyectos y expresiones{% else %}Projects &amp; expressions{% endif %}</h3>
                 <ul class="about-links-list">
-                    <li><a href="https://podcasts.apple.com/us/podcast/palabras-de-luz/id1850475452" target="_blank" rel="noopener"><span class="material-symbols-outlined">podcasts</span> Palabras de Luz — Podcast</a></li>
-                    <li><a href="https://open.spotify.com/artist/6o9tQlVJKRbAyxmyY5D6hr" target="_blank" rel="noopener"><span class="material-symbols-outlined">music_note</span> {% if lang == 'es' %}Música en Spotify{% else %}Music on Spotify{% endif %}</a></li>
+                    <li><a href="https://podcasts.apple.com/us/podcast/palabras-de-luz/id1850475452" target="_blank" rel="noopener"><span class="material-symbols-outlined">podcasts</span> Palabras de Luz &mdash; Podcast</a></li>
+                    <li><a href="https://open.spotify.com/artist/6o9tQlVJKRbAyxmyY5D6hr" target="_blank" rel="noopener"><span class="material-symbols-outlined">music_note</span> {% if lang == 'es' %}M&uacute;sica en Spotify{% else %}Music on Spotify{% endif %}</a></li>
                     <li><a href="https://substack.com/@jossifrescobenaim403749" target="_blank" rel="noopener"><span class="material-symbols-outlined">edit_note</span> Substack</a></li>
                     <li><a href="https://cosmicoach.com" target="_blank" rel="noopener"><span class="material-symbols-outlined">auto_awesome</span> cosmicoach.com</a></li>
                     <li><a href="https://dar-a-luz.com" target="_blank" rel="noopener"><span class="material-symbols-outlined">light_mode</span> Dar a Luz</a></li>
@@ -152,35 +142,4 @@
             <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a></div>
         </footer>
     </div>
-
-    <script>
-    // Dark mode
-    (function() {
-        var html = document.documentElement;
-        var btn = document.getElementById('theme-toggle');
-        var icon = btn.querySelector('.material-symbols-outlined');
-        function apply(theme) {
-            html.setAttribute('data-theme', theme);
-            icon.textContent = theme === 'dark' ? 'dark_mode' : 'sunny';
-            localStorage.setItem('theme', theme);
-        }
-        var saved = localStorage.getItem('theme');
-        if (saved) apply(saved);
-        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) apply('dark');
-        btn.addEventListener('click', function() {
-            apply(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-        });
-    })();
-    // Language dropdown
-    (function() {
-        var btn = document.getElementById('lang-toggle');
-        var drop = document.getElementById('lang-dropdown');
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            drop.classList.toggle('open');
-        });
-        document.addEventListener('click', function() { drop.classList.remove('open'); });
-    })();
-    </script>
-</body>
-</html>
+{% endblock %}

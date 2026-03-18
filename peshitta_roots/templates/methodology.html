@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="{{ 'es' if lang == 'es' else 'en' }}">
-<head>
-    <meta charset="UTF-8">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8KTQRY55S"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S8KTQRY55S');</script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if lang == 'es' %}Un puente entre tradiciones{% else %}A bridge between traditions{% endif %} - {{ t.app_title }}</title>
-    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+{% extends "base.html" %}
+
+{% block title %}{% if lang == 'es' %}Un puente entre tradiciones{% else %}A bridge between traditions{% endif %} - {{ t.app_title }}{% endblock %}
+
+{% block lang_links %}
+<a href="{{ url_for('methodology_page', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
+<a href="{{ url_for('methodology_page', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+{% endblock %}
+
+{% block head_extra %}
     <style>
         .methodology-content {
             max-width: 720px;
@@ -106,60 +104,9 @@
             opacity: 0.8;
         }
     </style>
-</head>
-<body>
-    <div class="sticky-header">
-        <a href="{{ url_for('index', lang=lang) }}" class="nav-logo" title="Home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
-        <div class="lang-wrapper">
-            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language"><span class="material-symbols-outlined">captive_portal</span></button>
-            <div class="lang-dropdown" id="lang-dropdown">
-                <a href="{{ url_for('methodology_page', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}">ES</a>
-                <a href="{{ url_for('methodology_page', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}">EN</a>
-            </div>
-        </div>
-        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
-        <div class="settings-wrapper">
-            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}"><span class="material-symbols-outlined">settings</span></button>
-            <div class="settings-dropdown" id="settings-dropdown">
-                <div class="settings-label">{{ t.settings_script }}</div>
-                <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
-                <button class="settings-option{% if script == 'syriac' %} active{% endif %}" data-script="syriac">{{ t.settings_syriac }}</button>
-                <button class="settings-option{% if script == 'hebrew' %} active{% endif %}" data-script="hebrew">{{ t.settings_hebrew }}</button>
-                <button class="settings-option{% if script == 'arabic' %} active{% endif %}" data-script="arabic">{{ t.settings_arabic }}</button>
-                <div class="settings-divider"></div>
-                <div class="settings-label">{{ t.settings_translation }}</div>
-                <button class="settings-option{% if trans == 'en' %} active{% endif %}" data-trans="en">{{ t.settings_trans_en }}</button>
-                <button class="settings-option{% if trans == 'es' %} active{% endif %}" data-trans="es">{{ t.settings_trans_es }}</button>
-                <button class="settings-option{% if trans == 'he' %} active{% endif %}" data-trans="he">{{ t.settings_trans_he }}</button>
-                <button class="settings-option{% if trans == 'ar' %} active{% endif %}" data-trans="ar">{{ t.settings_trans_ar }}</button>
-                <div class="settings-divider"></div>
-                <div class="settings-label">{{ t.settings_syriac_font }}</div>
-                <button class="settings-option syriac-font-option" data-syriac-font="estrangela">{{ t.settings_font_estrangela }}</button>
-                <button class="settings-option syriac-font-option" data-syriac-font="eastern">{{ t.settings_font_eastern }}</button>
-                <button class="settings-option syriac-font-option" data-syriac-font="western">{{ t.settings_font_western }}</button>
-            </div>
-        </div>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
-        <button class="share-toggle" id="share-toggle" aria-label="Share" title="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
-    </div>
+{% endblock %}
 
-    <div id="share-modal" class="modal-overlay">
-        <div class="modal-content share-modal-content">
-            <button class="modal-close" onclick="document.getElementById('share-modal').classList.remove('active')">&times;</button>
-            <h3 class="share-modal-title">{% if lang == 'es' %}Compartir esta página{% else %}Share this page{% endif %}</h3>
-            <div class="share-qr-wrap">
-                <div id="share-qr"></div>
-                <p class="share-qr-hint">{% if lang == 'es' %}Escanea con tu dispositivo{% else %}Scan with your device{% endif %}</p>
-            </div>
-            <div class="share-url-wrap">
-                <input type="text" id="share-url" class="share-url-input" readonly>
-                <button id="share-copy-btn" class="share-copy-btn" title="{% if lang == 'es' %}Copiar{% else %}Copy{% endif %}">
-                    <span class="material-symbols-outlined">content_copy</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
+{% block content %}
     <div class="container">
         <header>
             <h1>{% if lang == 'es' %}Un puente entre tradiciones{% else %}A bridge between traditions{% endif %}</h1>
@@ -197,7 +144,7 @@
             <p>Dos ejemplos bastan para ilustrar la diferencia.</p>
 
             <div class="example-block">
-                <p>En <a href="{{ url_for('read', lang=lang, book='Luke', chapter=24, v_start=39, script=script, trans=trans) }}">Lucas 24,39</a>, Jesús resucitado dice a sus discípulos "tocadme." Pero el verbo arameo no es <span class="root-example">Q-R-B</span>, acercarse con suavidad, como quien ofrece un regalo. El verbo es <a href="{{ url_for('index', lang=lang, q='G-SH-SH', script=script, trans=trans) }}#results"><span class="root-example">G-SH-SH</span></a> (<span class="syriac">ܓܫܫ</span>): explorar, tantear, palpar, forcejear en la oscuridad. No dice "acercaos con cariño." Dice algo más crudo y más íntimo: <em>explorad mi carne con vuestras manos</em>. Un universo de significado que ninguna traducción conserva.</p>
+                <p>En <a href="{{ url_for('read', lang=lang, book='Luke', chapter=24, v_start=39, script=script, trans=trans) }}">Lucas 24,39</a>, Jesús resucitado dice a sus discípulos "tocadme." Pero el verbo arameo no es <span class="root-example">Q-R-B</span>, acercarse con suavidad, como quien ofrece un regalo. El verbo es <a href="{{ url_for('index', lang=lang, q='G-SH', script=script, trans=trans) }}#results"><span class="root-example">G-SH</span></a> (<span class="syriac">ܓܫ</span>): explorar, tantear, palpar, forcejear en la oscuridad. No dice "acercaos con cariño." Dice algo más crudo y más íntimo: <em>explorad mi carne con vuestras manos</em>. Un universo de significado que ninguna traducción conserva.</p>
             </div>
 
             <div class="example-block">
@@ -283,7 +230,7 @@
             <p>Two examples show the difference clearly.</p>
 
             <div class="example-block">
-                <p>In <a href="{{ url_for('read', lang=lang, book='Luke', chapter=24, v_start=39, script=script, trans=trans) }}">Luke 24:39</a>, the risen Jesus tells his disciples to "touch" him. But the Aramaic verb is not <span class="root-example">Q-R-B</span> — to approach gently, tenderly, as one bearing a gift. The verb is <a href="{{ url_for('index', lang=lang, q='G-SH-SH', script=script, trans=trans) }}#results"><span class="root-example">G-SH-SH</span></a> (<span class="syriac">ܓܫܫ</span>): to explore, to grope, to probe, to wrestle in the dark. He does not say "come near with kindness." He says something rawer and more intimate: <em>explore my flesh with your hands</em>. An entire universe of meaning that no translation preserves.</p>
+                <p>In <a href="{{ url_for('read', lang=lang, book='Luke', chapter=24, v_start=39, script=script, trans=trans) }}">Luke 24:39</a>, the risen Jesus tells his disciples to "touch" him. But the Aramaic verb is not <span class="root-example">Q-R-B</span> — to approach gently, tenderly, as one bearing a gift. The verb is <a href="{{ url_for('index', lang=lang, q='G-SH', script=script, trans=trans) }}#results"><span class="root-example">G-SH</span></a> (<span class="syriac">ܓܫ</span>): to explore, to grope, to probe, to wrestle in the dark. He does not say "come near with kindness." He says something rawer and more intimate: <em>explore my flesh with your hands</em>. An entire universe of meaning that no translation preserves.</p>
             </div>
 
             <div class="example-block">
@@ -344,164 +291,4 @@
 
         </div>
     </div>
-
-    <script>
-    // Settings dropdown
-    document.getElementById('settings-toggle').addEventListener('click', function(e) {
-        e.stopPropagation();
-        document.getElementById('settings-dropdown').classList.toggle('open');
-        var ld = document.getElementById('lang-dropdown');
-        if (ld) ld.classList.remove('open');
-    });
-    document.addEventListener('click', function() {
-        document.getElementById('settings-dropdown').classList.remove('open');
-    });
-    document.getElementById('settings-dropdown').addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-
-    // Settings options
-    document.querySelectorAll('.settings-option').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var url = new URL(window.location);
-            if (this.dataset.script) {
-                url.searchParams.set('script', this.dataset.script);
-                localStorage.setItem('script', this.dataset.script);
-            } else if (this.dataset.trans) {
-                url.searchParams.set('trans', this.dataset.trans);
-                localStorage.setItem('trans', this.dataset.trans);
-            } else {
-                return;
-            }
-            window.location = url;
-        });
-    });
-
-    // --- Syriac Font Variant ---
-    (function() {
-        var html = document.documentElement;
-        var stored = localStorage.getItem('syriac-font') || 'estrangela';
-        if (stored !== 'estrangela') {
-            html.setAttribute('data-syriac-font', stored);
-        }
-        document.querySelectorAll('.syriac-font-option').forEach(function(btn) {
-            if (btn.getAttribute('data-syriac-font') === stored) {
-                btn.classList.add('active');
-            }
-            btn.addEventListener('click', function() {
-                var val = this.getAttribute('data-syriac-font');
-                localStorage.setItem('syriac-font', val);
-                if (val === 'estrangela') {
-                    html.removeAttribute('data-syriac-font');
-                } else {
-                    html.setAttribute('data-syriac-font', val);
-                }
-                document.querySelectorAll('.syriac-font-option').forEach(function(b) {
-                    b.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
-    })();
-
-    // Language dropdown
-    (function() {
-        var langToggle = document.getElementById('lang-toggle');
-        var langDropdown = document.getElementById('lang-dropdown');
-        if (langToggle && langDropdown) {
-            langToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                langDropdown.classList.toggle('open');
-                var sd = document.getElementById('settings-dropdown');
-                if (sd) sd.classList.remove('open');
-            });
-            document.addEventListener('click', function() {
-                langDropdown.classList.remove('open');
-            });
-            langDropdown.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        }
-    })();
-
-    // Dark mode
-    (function() {
-        var toggle = document.getElementById('theme-toggle');
-        var dark = localStorage.getItem('dark') === '1';
-        if (dark) { document.body.classList.add('dark'); toggle.innerHTML = '<span class="material-symbols-outlined">bedtime</span>'; }
-        toggle.addEventListener('click', function() {
-            dark = !dark;
-            document.body.classList.toggle('dark', dark);
-            toggle.innerHTML = '<span class="material-symbols-outlined">' + (dark ? 'bedtime' : 'sunny') + '</span>';
-            localStorage.setItem('dark', dark ? '1' : '0');
-        });
-    })();
-
-    // Restore settings from localStorage
-    (function() {
-        var url = new URL(window.location);
-        var changed = false;
-        var storedScript = localStorage.getItem('script');
-        if (storedScript && storedScript !== 'latin' && !url.searchParams.has('script')) {
-            url.searchParams.set('script', storedScript);
-            changed = true;
-        }
-        var storedTrans = localStorage.getItem('trans');
-        if (storedTrans && !url.searchParams.has('trans')) {
-            url.searchParams.set('trans', storedTrans);
-            changed = true;
-        }
-        if (changed) window.location = url;
-    })();
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <script>
-    (function() {
-        var shareBtn = document.getElementById('share-toggle');
-        var shareModal = document.getElementById('share-modal');
-        var shareUrl = document.getElementById('share-url');
-        var copyBtn = document.getElementById('share-copy-btn');
-        var qrEl = document.getElementById('share-qr');
-        var qrGenerated = false;
-
-        shareBtn.addEventListener('click', function() {
-            var url = window.location.href;
-            shareUrl.value = url;
-            if (!qrGenerated) {
-                var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-                new QRCode(qrEl, {
-                    text: url,
-                    width: 200,
-                    height: 200,
-                    colorDark: isDark ? '#e8dfd5' : '#2c1810',
-                    colorLight: isDark ? '#2a2018' : '#ffffff',
-                    correctLevel: QRCode.CorrectLevel.M
-                });
-                qrGenerated = true;
-            }
-            shareModal.classList.add('active');
-        });
-
-        shareModal.addEventListener('click', function(e) {
-            if (e.target === shareModal) shareModal.classList.remove('active');
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && shareModal.classList.contains('active')) {
-                shareModal.classList.remove('active');
-            }
-        });
-
-        copyBtn.addEventListener('click', function() {
-            shareUrl.select();
-            navigator.clipboard.writeText(shareUrl.value).then(function() {
-                copyBtn.querySelector('.material-symbols-outlined').textContent = 'check';
-                setTimeout(function() {
-                    copyBtn.querySelector('.material-symbols-outlined').textContent = 'content_copy';
-                }, 1500);
-            });
-        });
-    })();
-    </script>
-</body>
-</html>
+{% endblock %}

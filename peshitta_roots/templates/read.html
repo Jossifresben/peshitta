@@ -1,69 +1,13 @@
-<!DOCTYPE html>
-<html lang="{{ 'es' if lang == 'es' else 'en' }}">
-<head>
-    <meta charset="UTF-8">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8KTQRY55S"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S8KTQRY55S');</script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ t.read_title }} - {{ t.app_title }}</title>
-    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="sticky-header">
-        <a href="{{ url_for('index', lang=lang) }}" class="nav-logo" title="Home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
-        <div class="lang-wrapper">
-            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language"><span class="material-symbols-outlined">captive_portal</span></button>
-            <div class="lang-dropdown" id="lang-dropdown">
-                <a href="{{ url_for('read', lang='es', book=book, chapter=chapter, script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}">ES</a>
-                <a href="{{ url_for('read', lang='en', book=book, chapter=chapter, script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}">EN</a>
-            </div>
-        </div>
-        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
-        <div class="settings-wrapper">
-            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}"><span class="material-symbols-outlined">settings</span></button>
-            <div class="settings-dropdown" id="settings-dropdown">
-                <div class="settings-label">{{ t.settings_script }}</div>
-                <button class="settings-option{% if script == 'latin' %} active{% endif %}" data-script="latin">{{ t.settings_latin }}</button>
-                <button class="settings-option{% if script == 'syriac' %} active{% endif %}" data-script="syriac">{{ t.settings_syriac }}</button>
-                <button class="settings-option{% if script == 'hebrew' %} active{% endif %}" data-script="hebrew">{{ t.settings_hebrew }}</button>
-                <button class="settings-option{% if script == 'arabic' %} active{% endif %}" data-script="arabic">{{ t.settings_arabic }}</button>
-                <div class="settings-divider"></div>
-                <div class="settings-label">{{ t.settings_translation }}</div>
-                <button class="settings-option{% if trans == 'en' %} active{% endif %}" data-trans="en">{{ t.settings_trans_en }}</button>
-                <button class="settings-option{% if trans == 'es' %} active{% endif %}" data-trans="es">{{ t.settings_trans_es }}</button>
-                <button class="settings-option{% if trans == 'he' %} active{% endif %}" data-trans="he">{{ t.settings_trans_he }}</button>
-                <button class="settings-option{% if trans == 'ar' %} active{% endif %}" data-trans="ar">{{ t.settings_trans_ar }}</button>
-                <div class="settings-divider"></div>
-                <div class="settings-label">{{ t.settings_syriac_font }}</div>
-                <button class="settings-option syriac-font-option" data-syriac-font="estrangela">{{ t.settings_font_estrangela }}</button>
-                <button class="settings-option syriac-font-option" data-syriac-font="eastern">{{ t.settings_font_eastern }}</button>
-                <button class="settings-option syriac-font-option" data-syriac-font="western">{{ t.settings_font_western }}</button>
-            </div>
-        </div>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
-        <button class="share-toggle" id="share-toggle" aria-label="Share" title="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
-    </div>
+{% extends "base.html" %}
 
-    <div id="share-modal" class="modal-overlay">
-        <div class="modal-content share-modal-content">
-            <button class="modal-close" onclick="document.getElementById('share-modal').classList.remove('active')">&times;</button>
-            <h3 class="share-modal-title">{% if lang == 'es' %}Compartir esta página{% else %}Share this page{% endif %}</h3>
-            <div class="share-qr-wrap">
-                <div id="share-qr"></div>
-                <p class="share-qr-hint">{% if lang == 'es' %}Escanea con tu dispositivo{% else %}Scan with your device{% endif %}</p>
-            </div>
-            <div class="share-url-wrap">
-                <input type="text" id="share-url" class="share-url-input" readonly>
-                <button id="share-copy-btn" class="share-copy-btn" title="{% if lang == 'es' %}Copiar{% else %}Copy{% endif %}">
-                    <span class="material-symbols-outlined">content_copy</span>
-                </button>
-            </div>
-        </div>
-    </div>
+{% block title %}{{ t.read_title }} - {{ t.app_title }}{% endblock %}
 
+{% block lang_links %}
+<a href="{{ url_for('read', lang='es', book=book, chapter=chapter, script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
+<a href="{{ url_for('read', lang='en', book=book, chapter=chapter, script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+{% endblock %}
+
+{% block content %}
     <div class="container">
         <header>
             <h1>{{ t.read_title }}</h1>
@@ -101,10 +45,10 @@
         <div class="reader-body" id="reader-body">
             {% for v in verses %}
             <div class="reader-verse" id="verse-{{ v.number }}">
-                <span class="verse-num">{{ v.number }}</span>
+                <span class="verse-num">{{ chapter }}:{{ v.number }}</span>
                 <a href="{{ url_for('constellation', book=book, chapter=chapter, v_start=v.number, v_end=v.number, lang=lang, script=script, trans=trans) }}"
                    class="verse-constellation-link" title="{% if lang == 'es' %}Ver constelacion del versiculo{% else %}View verse constellation{% endif %}">
-                    <span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle;">scatter_plot</span>
+                    <span class="material-symbols-outlined">scatter_plot</span>
                 </a>
                 <div class="reader-line reader-syriac">
                     {% for w in v.words %}
@@ -144,7 +88,9 @@
             </div>
         </div>
     </div>
+{% endblock %}
 
+{% block scripts %}
     <script>
     var currentLang = '{{ lang }}';
     var currentScript = '{{ script }}';
@@ -297,195 +243,6 @@
         if (e.key === 'Escape') closeRootModal();
     });
 
-    // --- Settings dropdown ---
-    (function() {
-        var toggle = document.getElementById('settings-toggle');
-        var dropdown = document.getElementById('settings-dropdown');
-        var options = dropdown.querySelectorAll('.settings-option');
-
-        toggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropdown.classList.toggle('open');
-            var ld = document.getElementById('lang-dropdown');
-            if (ld) ld.classList.remove('open');
-        });
-
-        options.forEach(function(opt) {
-            opt.addEventListener('click', function() {
-                var url = new URL(window.location.href);
-                var scriptVal = this.getAttribute('data-script');
-                var transVal = this.getAttribute('data-trans');
-                if (scriptVal) {
-                    localStorage.setItem('script', scriptVal);
-                    url.searchParams.set('script', scriptVal);
-                } else if (transVal) {
-                    localStorage.setItem('trans', transVal);
-                    url.searchParams.set('trans', transVal);
-                } else {
-                    return;
-                }
-                window.location.href = url.toString();
-            });
-        });
-
-        document.addEventListener('click', function() {
-            dropdown.classList.remove('open');
-        });
-        dropdown.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-
-        var urlParams = new URLSearchParams(window.location.search);
-        var needsRedirect = false;
-        if (!urlParams.has('script')) {
-            var storedScript = localStorage.getItem('script');
-            if (storedScript && storedScript !== 'latin') {
-                urlParams.set('script', storedScript);
-                needsRedirect = true;
-            }
-        }
-        if (!urlParams.has('trans')) {
-            var storedTrans = localStorage.getItem('trans');
-            if (storedTrans) {
-                urlParams.set('trans', storedTrans);
-                needsRedirect = true;
-            }
-        }
-        if (needsRedirect) {
-            var newUrl = window.location.pathname + '?' + urlParams.toString() + window.location.hash;
-            window.location.replace(newUrl);
-        }
-    })();
-
-    // --- Syriac Font Variant ---
-    (function() {
-        var html = document.documentElement;
-        var stored = localStorage.getItem('syriac-font') || 'estrangela';
-        if (stored !== 'estrangela') {
-            html.setAttribute('data-syriac-font', stored);
-        }
-        document.querySelectorAll('.syriac-font-option').forEach(function(btn) {
-            if (btn.getAttribute('data-syriac-font') === stored) {
-                btn.classList.add('active');
-            }
-            btn.addEventListener('click', function() {
-                var val = this.getAttribute('data-syriac-font');
-                localStorage.setItem('syriac-font', val);
-                if (val === 'estrangela') {
-                    html.removeAttribute('data-syriac-font');
-                } else {
-                    html.setAttribute('data-syriac-font', val);
-                }
-                document.querySelectorAll('.syriac-font-option').forEach(function(b) {
-                    b.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
-    })();
-
-    // --- Language dropdown ---
-    (function() {
-        var langToggle = document.getElementById('lang-toggle');
-        var langDropdown = document.getElementById('lang-dropdown');
-        if (langToggle && langDropdown) {
-            langToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                langDropdown.classList.toggle('open');
-                var sd = document.getElementById('settings-dropdown');
-                if (sd) sd.classList.remove('open');
-            });
-            document.addEventListener('click', function() {
-                langDropdown.classList.remove('open');
-            });
-            langDropdown.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        }
-    })();
-
-    // --- Dark Mode ---
-    (function() {
-        var toggle = document.getElementById('theme-toggle');
-        var html = document.documentElement;
-
-        function getTheme() {
-            var stored = localStorage.getItem('theme');
-            if (stored) return stored;
-            return 'light';
-        }
-
-        function applyTheme(theme) {
-            html.setAttribute('data-theme', theme);
-            toggle.innerHTML = '<span class="material-symbols-outlined">' + (theme === 'dark' ? 'bedtime' : 'sunny') + '</span>';
-        }
-
-        applyTheme(getTheme());
-
-        toggle.addEventListener('click', function() {
-            var current = html.getAttribute('data-theme') || 'light';
-            var next = current === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('theme', next);
-            applyTheme(next);
-        });
-
-        if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-                if (!localStorage.getItem('theme')) {
-                    applyTheme(e.matches ? 'dark' : 'light');
-                }
-            });
-        }
-    })();
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <script>
-    (function() {
-        var shareBtn = document.getElementById('share-toggle');
-        var shareModal = document.getElementById('share-modal');
-        var shareUrl = document.getElementById('share-url');
-        var copyBtn = document.getElementById('share-copy-btn');
-        var qrEl = document.getElementById('share-qr');
-        var qrGenerated = false;
-
-        shareBtn.addEventListener('click', function() {
-            var url = window.location.href;
-            shareUrl.value = url;
-            if (!qrGenerated) {
-                var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-                new QRCode(qrEl, {
-                    text: url,
-                    width: 200,
-                    height: 200,
-                    colorDark: isDark ? '#e8dfd5' : '#2c1810',
-                    colorLight: isDark ? '#2a2018' : '#ffffff',
-                    correctLevel: QRCode.CorrectLevel.M
-                });
-                qrGenerated = true;
-            }
-            shareModal.classList.add('active');
-        });
-
-        shareModal.addEventListener('click', function(e) {
-            if (e.target === shareModal) shareModal.classList.remove('active');
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && shareModal.classList.contains('active')) {
-                shareModal.classList.remove('active');
-            }
-        });
-
-        copyBtn.addEventListener('click', function() {
-            shareUrl.select();
-            navigator.clipboard.writeText(shareUrl.value).then(function() {
-                copyBtn.querySelector('.material-symbols-outlined').textContent = 'check';
-                setTimeout(function() {
-                    copyBtn.querySelector('.material-symbols-outlined').textContent = 'content_copy';
-                }, 1500);
-            });
-        });
-    })();
     // Scroll to verse if v_start param is present
     (function() {
         var params = new URLSearchParams(window.location.search);
@@ -503,5 +260,4 @@
         }
     })();
     </script>
-</body>
-</html>
+{% endblock %}
