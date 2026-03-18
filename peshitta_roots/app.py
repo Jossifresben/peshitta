@@ -883,6 +883,7 @@ def api_root_family():
         'paradigmatic_syriac': paradigmatic_syriac,
         'paradigmatic_translit': paradigmatic_translit,
         'paradigmatic_form': paradigmatic_form,
+        'paradigmatic_form_translit': translit_fn(paradigmatic_form) if paradigmatic_form else '',
         'paradigmatic_note': (cognate_entry.paradigmatic_note_es if meaning_lang == 'es' else cognate_entry.paradigmatic_note_en) if cognate_entry else '',
         'sister_roots': sister_roots,
         'greek_parallel': greek_parallel,

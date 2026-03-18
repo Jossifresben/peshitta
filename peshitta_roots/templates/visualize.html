@@ -268,7 +268,14 @@
                 } else {
                     syriacEl.textContent = syrText;
                 }
-                translitEl.textContent = data.paradigmatic_translit || '';
+                // Highlight the paradigmatic form in the transliteration
+                var translitText = data.paradigmatic_translit || '';
+                var formTranslit = data.paradigmatic_form_translit || '';
+                if (formTranslit && translitText.indexOf(formTranslit) !== -1) {
+                    translitEl.innerHTML = translitText.split(formTranslit).join('<mark class="cite-highlight">' + formTranslit + '</mark>');
+                } else {
+                    translitEl.textContent = translitText;
+                }
                 verseEl.textContent = '"' + data.paradigmatic_verse + '"';
                 // Paradigmatic note (manual translation annotation)
                 var noteEl = document.getElementById('ficha-citation-note');
