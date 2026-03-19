@@ -923,6 +923,10 @@ def api_passage_constellation():
     chapter = request.args.get('chapter', 0, type=int)
     v_start = request.args.get('v_start', 0, type=int)
     v_end = request.args.get('v_end', v_start, type=int)
+    # Validate book against known books
+    valid_books = {b[0] for b in _corpus.get_books()}
+    if book not in valid_books:
+        return jsonify({'error': 'Invalid book name', 'roots': [], 'connections': []}), 400
     lang = _detect_lang()
     if lang not in _i18n:
         lang = 'es'
@@ -1062,8 +1066,8 @@ def api_passage_constellation():
             target_key = b['target_root']
             # Check if target root is also in this passage
             # The target_root in bridges is a cognates.json key (e.g., "n-w-kh")
-            # Convert to translit format for matching
-            target_translit = target_key.upper().replace('-', '-')
+            # Convert to translit format: uppercase, but Alef 'a-' → "'-"
+            target_translit = target_key.upper().replace('A-', "'-", 1) if target_key.startswith('a-') else target_key.upper()
             if target_translit in passage_root_translits:
                 conn_key = tuple(sorted([rd['root_translit'], target_translit]))
                 if conn_key not in seen_connections:

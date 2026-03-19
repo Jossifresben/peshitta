@@ -138,6 +138,12 @@
         });
     });
 
+    function escHtml(str) {
+        var d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
     // --- Clickable words → root modal ---
     document.getElementById('reader-body').addEventListener('click', function(e) {
         var el = e.target.closest('.clickable');
@@ -162,11 +168,11 @@
                 }
                 var html = '';
                 html += '<div class="modal-ref">';
-                html += '<span class="syriac" style="font-size:1.8em;">' + data.root + '</span> ';
-                html += '<span style="font-family:monospace; font-size:1.3em; letter-spacing:2px;">' + data.root_translit + '</span>';
-                if (data.gloss) html += ' <span style="font-style:italic; color:var(--text-gloss);">— ' + data.gloss + '</span>';
+                html += '<span class="syriac" style="font-size:1.8em;">' + escHtml(data.root) + '</span> ';
+                html += '<span style="font-family:monospace; font-size:1.3em; letter-spacing:2px;">' + escHtml(data.root_translit) + '</span>';
+                if (data.gloss) html += ' <span style="font-style:italic; color:var(--text-gloss);">— ' + escHtml(data.gloss) + '</span>';
                 html += '</div>';
-                html += '<a href="/visualize/' + data.root_translit + '?lang=' + currentLang + '&script=' + currentScript + '" class="modal-viz-btn">';
+                html += '<a href="/visualize/' + encodeURIComponent(data.root_translit) + '?lang=' + currentLang + '&script=' + currentScript + '" class="modal-viz-btn">';
                 html += '<span class="material-symbols-outlined">hub</span> ';
                 html += '{% if lang == "es" %}Visualizar familia de raíz{% else %}Visualize root family{% endif %}';
                 html += '</a>';
@@ -178,17 +184,17 @@
                     var firstSentence = deg.lost ? deg.lost.split('. ')[0] + '.' : '';
                     html += '<div class="modal-degradation">';
                     html += '<div class="modal-deg-chain">';
-                    html += '<span class="modal-deg-step modal-deg-aramaic">' + data.root + ' ' + data.root_translit.toLowerCase() + '</span>';
+                    html += '<span class="modal-deg-step modal-deg-aramaic">' + escHtml(data.root) + ' ' + escHtml(data.root_translit.toLowerCase()) + '</span>';
                     html += '<span class="modal-deg-arrow">\u2192</span>';
-                    html += '<span class="modal-deg-step modal-deg-greek">' + deg.greek_word + ' ' + deg.greek_translit + '</span>';
+                    html += '<span class="modal-deg-step modal-deg-greek">' + escHtml(deg.greek_word) + ' ' + escHtml(deg.greek_translit) + '</span>';
                     html += '<span class="modal-deg-arrow">\u2192</span>';
-                    html += '<span class="modal-deg-step modal-deg-modern">' + deg.meaning + '</span>';
+                    html += '<span class="modal-deg-step modal-deg-modern">' + escHtml(deg.meaning) + '</span>';
                     html += '</div>';
                     if (deg.aramaic_range) {
-                        html += '<div class="modal-deg-range">' + deg.aramaic_range + '</div>';
+                        html += '<div class="modal-deg-range">' + escHtml(deg.aramaic_range) + '</div>';
                     }
                     if (firstSentence) {
-                        html += '<div class="modal-deg-lost">' + firstSentence;
+                        html += '<div class="modal-deg-lost">' + escHtml(firstSentence);
                         html += ' <a href="/visualize/' + data.root_translit + '?lang=' + currentLang + '&script=' + currentScript + '&tab=ficha" class="modal-deg-more">' + seeMore + ' \u2192</a>';
                         html += '</div>';
                     }
@@ -203,8 +209,8 @@
                     html += '</tr></thead><tbody>';
                     data.matches.forEach(function(m) {
                         html += '<tr>';
-                        html += '<td class="syriac">' + m.form + '</td>';
-                        html += '<td class="gloss-cell">' + (m.gloss || '') + (m.stem ? ' <span class="stem-badge">' + m.stem + '</span>' : '') + '</td>';
+                        html += '<td class="syriac">' + escHtml(m.form) + '</td>';
+                        html += '<td class="gloss-cell">' + escHtml(m.gloss || '') + (m.stem ? ' <span class="stem-badge">' + escHtml(m.stem) + '</span>' : '') + '</td>';
                         html += '<td><span class="count-badge">' + m.count + '</span></td>';
                         html += '<td class="refs">';
                         var refs = m.references || [];
@@ -217,7 +223,7 @@
                                     break;
                                 }
                             }
-                            html += '<span class="ref-link" onclick="closeRootModal(); window.location.href=\'/?q=' + data.root_translit + '&lang=' + currentLang + '&script=' + currentScript + '#results\'">' + refDisplay + '</span>';
+                            html += '<span class="ref-link" onclick="closeRootModal(); window.location.href=\'/?q=' + encodeURIComponent(data.root_translit) + '&lang=' + currentLang + '&script=' + currentScript + '#results\'">' + escHtml(refDisplay) + '</span>';
                         }
                         if (refs.length > maxRefs) html += '<span class="ref-more">+' + (refs.length - maxRefs) + '</span>';
                         html += '</td></tr>';
@@ -253,7 +259,7 @@
                 setTimeout(function() {
                     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     el.style.transition = 'background 0.3s';
-                    el.style.background = 'var(--accent-light, rgba(0,102,204,0.1))';
+                    el.style.background = 'rgba(107,122,94,0.12)';
                     setTimeout(function() { el.style.background = ''; }, 2500);
                 }, 300);
             }

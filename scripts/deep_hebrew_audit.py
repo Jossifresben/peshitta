@@ -11,9 +11,11 @@ Checks for:
 7. Duplicate roots (same Syriac root appearing under different keys)
 """
 import json
+import os
 from collections import defaultdict
 
-COGNATES_PATH = "data/cognates.json"
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+COGNATES_PATH = os.path.join(_SCRIPT_DIR, "..", "data", "cognates.json")
 
 def load():
     with open(COGNATES_PATH, encoding="utf-8") as f:

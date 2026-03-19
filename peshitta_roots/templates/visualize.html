@@ -209,6 +209,12 @@
         document.getElementById('chk-arabic').addEventListener('change', render);
         document.getElementById('chk-syriac').addEventListener('change', render);
 
+        function escHtml(str) {
+            var d = document.createElement('div');
+            d.textContent = str;
+            return d.innerHTML;
+        }
+
         function render() {
             if (!_rawData) return;
             _expandedBridges = {};
@@ -264,7 +270,7 @@
                 var syrText = data.paradigmatic_syriac || '';
                 var form = data.paradigmatic_form || '';
                 if (form && syrText.indexOf(form) !== -1) {
-                    syriacEl.innerHTML = syrText.split(form).join('<mark class="cite-highlight">' + form + '</mark>');
+                    syriacEl.innerHTML = syrText.split(form).map(escHtml).join('<mark class="cite-highlight">' + escHtml(form) + '</mark>');
                 } else {
                     syriacEl.textContent = syrText;
                 }
@@ -272,7 +278,7 @@
                 var translitText = data.paradigmatic_translit || '';
                 var formTranslit = data.paradigmatic_form_translit || '';
                 if (formTranslit && translitText.indexOf(formTranslit) !== -1) {
-                    translitEl.innerHTML = translitText.split(formTranslit).join('<mark class="cite-highlight">' + formTranslit + '</mark>');
+                    translitEl.innerHTML = translitText.split(formTranslit).map(escHtml).join('<mark class="cite-highlight">' + escHtml(formTranslit) + '</mark>');
                 } else {
                     translitEl.textContent = translitText;
                 }
@@ -316,9 +322,9 @@
                         '&script=' + SCRIPT + '&trans=' + TRANS;
                     var label = sr.root_translit;
                     if (sr.root_syriac) label = sr.root_syriac + ' ' + label;
-                    pill.innerHTML = '<span class="ficha-sister-root">' + label + '</span>' +
-                        '<span class="ficha-sister-gloss">' + (sr.gloss || '') + '</span>' +
-                        '<span class="ficha-sister-shared">' + sr.shared + '/3</span>';
+                    pill.innerHTML = '<span class="ficha-sister-root">' + escHtml(label) + '</span>' +
+                        '<span class="ficha-sister-gloss">' + escHtml(sr.gloss || '') + '</span>' +
+                        '<span class="ficha-sister-shared">' + escHtml(sr.shared + '') + '/3</span>';
                     sistersEl.appendChild(pill);
                 });
             } else {
@@ -338,25 +344,25 @@
                 degChain.innerHTML =
                     '<div class="deg-step-wrap">' +
                         '<div class="deg-step deg-aramaic">' +
-                            '<div class="deg-word">' + (data.root || '') + '</div>' +
-                            '<div class="deg-translit">' + (data.root_translit || '').toLowerCase() + '</div>' +
-                            '<div class="deg-range">' + (gp.aramaic_range || '') + '</div>' +
+                            '<div class="deg-word">' + escHtml(data.root || '') + '</div>' +
+                            '<div class="deg-translit">' + escHtml((data.root_translit || '').toLowerCase()) + '</div>' +
+                            '<div class="deg-range">' + escHtml(gp.aramaic_range || '') + '</div>' +
                         '</div>' +
                         '<div class="deg-label">' + aramLabel + '</div>' +
                     '</div>' +
                     '<div class="deg-arrow-wrap"><span class="deg-arrow">\u2192</span></div>' +
                     '<div class="deg-step-wrap">' +
                         '<div class="deg-step deg-greek">' +
-                            '<div class="deg-word">' + gp.word + '</div>' +
-                            '<div class="deg-translit">' + gp.transliteration + '</div>' +
-                            '<div class="deg-range">' + (gp.greek_range || '') + '</div>' +
+                            '<div class="deg-word">' + escHtml(gp.word) + '</div>' +
+                            '<div class="deg-translit">' + escHtml(gp.transliteration) + '</div>' +
+                            '<div class="deg-range">' + escHtml(gp.greek_range || '') + '</div>' +
                         '</div>' +
                         '<div class="deg-label">' + greekLabel + '</div>' +
                     '</div>' +
                     '<div class="deg-arrow-wrap"><span class="deg-arrow">\u2192</span></div>' +
                     '<div class="deg-step-wrap">' +
                         '<div class="deg-step deg-modern">' +
-                            '<div class="deg-word">' + gp.meaning + '</div>' +
+                            '<div class="deg-word">' + escHtml(gp.meaning) + '</div>' +
                         '</div>' +
                         '<div class="deg-label">' + modernLabel + '</div>' +
                     '</div>';
@@ -377,25 +383,25 @@
                 // Syriac column
                 var tdS = document.createElement('td');
                 if (i < syriac.length) {
-                    tdS.innerHTML = '<span class="ficha-word ficha-word-syriac">' + syriac[i].word + '</span>' +
-                        '<span class="ficha-translit">' + syriac[i].translit + '</span>' +
-                        '<span class="ficha-meaning">' + (syriac[i].meaning || '') + '</span>';
+                    tdS.innerHTML = '<span class="ficha-word ficha-word-syriac">' + escHtml(syriac[i].word) + '</span>' +
+                        '<span class="ficha-translit">' + escHtml(syriac[i].translit) + '</span>' +
+                        '<span class="ficha-meaning">' + escHtml(syriac[i].meaning || '') + '</span>';
                 }
                 tr.appendChild(tdS);
                 // Hebrew column
                 var tdH = document.createElement('td');
                 if (i < hebrew.length) {
-                    tdH.innerHTML = '<span class="ficha-word ficha-word-hebrew">' + hebrew[i].word + '</span>' +
-                        '<span class="ficha-translit">' + hebrew[i].translit + '</span>' +
-                        '<span class="ficha-meaning">' + (hebrew[i].meaning || '') + '</span>';
+                    tdH.innerHTML = '<span class="ficha-word ficha-word-hebrew">' + escHtml(hebrew[i].word) + '</span>' +
+                        '<span class="ficha-translit">' + escHtml(hebrew[i].translit) + '</span>' +
+                        '<span class="ficha-meaning">' + escHtml(hebrew[i].meaning || '') + '</span>';
                 }
                 tr.appendChild(tdH);
                 // Arabic column
                 var tdA = document.createElement('td');
                 if (i < arabic.length) {
-                    tdA.innerHTML = '<span class="ficha-word ficha-word-arabic">' + arabic[i].word + '</span>' +
-                        '<span class="ficha-translit">' + arabic[i].translit + '</span>' +
-                        '<span class="ficha-meaning">' + (arabic[i].meaning || '') + '</span>';
+                    tdA.innerHTML = '<span class="ficha-word ficha-word-arabic">' + escHtml(arabic[i].word) + '</span>' +
+                        '<span class="ficha-translit">' + escHtml(arabic[i].translit) + '</span>' +
+                        '<span class="ficha-meaning">' + escHtml(arabic[i].meaning || '') + '</span>';
                 }
                 tr.appendChild(tdA);
                 tbody.appendChild(tr);

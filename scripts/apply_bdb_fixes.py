@@ -10,17 +10,28 @@ Categories of fixes:
 import json
 import copy
 import sys
+import os
+import tempfile
 
-COGNATES_PATH = "data/cognates.json"
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+COGNATES_PATH = os.path.join(_SCRIPT_DIR, "..", "data", "cognates.json")
 
 def load():
     with open(COGNATES_PATH, encoding="utf-8") as f:
         return json.load(f)
 
 def save(data):
-    with open(COGNATES_PATH, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-        f.write("\n")
+    """Atomic write: write to temp file first, then rename."""
+    dir_name = os.path.dirname(COGNATES_PATH)
+    fd, tmp_path = tempfile.mkstemp(dir=dir_name, suffix=".json")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+        os.replace(tmp_path, COGNATES_PATH)
+    except Exception:
+        os.unlink(tmp_path)
+        raise
 
 def remove_hebrew_words(root_data, words_to_remove):
     """Remove Hebrew entries whose 'word' field matches any in words_to_remove."""

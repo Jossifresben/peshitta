@@ -53,18 +53,6 @@
           "transliteration": "kitub",
           "meaning_es": "escrito",
           "meaning_en": "written"
-        },
-        {
-          "word": "מַכְתֵּב",
-          "transliteration": "makhteiv",
-          "meaning_es": "carta",
-          "meaning_en": "letter"
-        },
-        {
-          "word": "מִכְתָּב",
-          "transliteration": "mikhtav",
-          "meaning_es": "carta",
-          "meaning_en": "letter"
         }
       ],
       "arabic": [
@@ -706,12 +694,6 @@
           "meaning_en": "worship"
         },
         {
-          "word": "عِبَادَة",
-          "transliteration": "ibaada",
-          "meaning_es": "adoración, culto",
-          "meaning_en": "worship, adoration"
-        },
-        {
           "word": "عَبِيد",
           "transliteration": "abeed",
           "meaning_es": "esclavos",
@@ -781,18 +763,6 @@
           "transliteration": "koreh",
           "meaning_es": "lector, quien lee",
           "meaning_en": "reader, one who reads"
-        },
-        {
-          "word": "קְרִיאָה",
-          "transliteration": "kri'ah",
-          "meaning_es": "lectura, acción de leer",
-          "meaning_en": "reading, act of reading"
-        },
-        {
-          "word": "מִקְרָא",
-          "transliteration": "mikra",
-          "meaning_es": "Escritura Sagrada, pasaje bíblico",
-          "meaning_en": "Scripture, biblical passage"
         }
       ],
       "arabic": [
@@ -991,7 +961,7 @@
       },
       "cognate_note": "No direct Hebrew cognate from same triliteral root. Hebrew semantic parallel: Y-TS-A (יצא)."
     },
-    "q-T-l": {
+    "q-t-l": {
       "root_syriac": "ܩܛܠ",
       "gloss_es": "matar",
       "gloss_en": "kill",
@@ -1096,7 +1066,7 @@
         },
         {
           "word": "مَسْبُور",
-          "transliteration": "masb??r",
+          "transliteration": "maṣbūr",
           "meaning_es": "esperanzado, con esperanza",
           "meaning_en": "hopeful, with hope"
         },
@@ -1671,18 +1641,6 @@
           "meaning_en": "Gabriel (strength of God)"
         },
         {
-          "word": "גִּבּוֹר",
-          "transliteration": "gibor",
-          "meaning_es": "héroe/poderoso",
-          "meaning_en": "hero/mighty one"
-        },
-        {
-          "word": "גְּבוּרָה",
-          "transliteration": "g'vurah",
-          "meaning_es": "fortaleza/poder",
-          "meaning_en": "strength/power"
-        },
-        {
           "word": "גְּבִירָה",
           "transliteration": "gevirah",
           "meaning_es": "señora, reina madre",
@@ -1737,7 +1695,7 @@
         "lost_en": "In Aramaic, ܓܒܪܐ (gaḇrā) does not simply denote a male individual: it designates someone who prevails, who possesses vital strength and heroic capacity. The root G-B-R pulses through the angel's name Gabriel ('strength of God'), through Hebrew gibbor ('hero, mighty warrior'), and through Arabic jabbar ('the almighty, the one who compels'), even jabarut ('divine omnipotence'). The root also carried the idea of mending and restoring — Arabic jabara means 'to set a broken bone,' as though true manhood were the capacity to recompose what is shattered through strength. When rendered into Greek as ἀνήρ, the semantic field was reconfigured under Hellenistic categories: the male is defined by his status as rational citizen, husband, and head of household, not by his capacity to prevail or his restorative force. By the time it arrives in English as 'man' or in Spanish as 'hombre,' the entire charge of potency, heroism, and restoration has been drained: what remains is a neutral demographic noun, emptied of the energy the Semitic root demanded."
       }
     },
-    "sh-l-T": {
+    "sh-l-t": {
       "root_syriac": "ܫܠܛ",
       "gloss_es": "gobernar, dominar",
       "gloss_en": "rule, have power",
@@ -2103,12 +2061,6 @@
           "transliteration": "mītâ",
           "meaning_es": "acto de morir",
           "meaning_en": "act of dying"
-        },
-        {
-          "word": "מָוֶת",
-          "transliteration": "māwet",
-          "meaning_es": "muerte",
-          "meaning_en": "death"
         }
       ],
       "arabic": [
@@ -2639,7 +2591,7 @@
         "lost_en": "In Aramaic, ܫܒܩ (shbaq) is first and foremost a physical, visceral act: releasing something from the hand, abandoning a place, letting drop what one holds. From that bodily experience of letting go, the meaning of forgiveness is born: to forgive is literally to release the other from the bond tying them to their offense. It is the same word Jesus cries on the cross — ܠܡܢܐ ܫܒܩܬܢܝ ('lmana shbaqtani', 'why have you abandoned me?') — and the same word he uses when saying 'forgive them.' The fact that abandonment and forgiveness share the same root reveals that for the Aramaic mind, forgiveness is not an abstract decree but the gesture of letting go, of opening the hand that grips. Greek ἀφίημι retains some of this ('to send away', 'to let go'), but in the Hellenistic context it becomes juridified: forgiveness turns into cancellation of a debt, a legal act rather than a bodily one. By the time it reaches English as 'forgive' (from Old English for-gifan, 'to give completely'), the gesture of release is replaced by the act of giving — and the connection to abandonment, departure, and desolation is entirely severed. One no longer feels that to forgive and to abandon are two faces of the same movement of open hands."
       }
     },
-    "kh-T-a": {
+    "kh-t-a": {
       "root_syriac": "ܚܛܐ",
       "gloss_es": "pecar",
       "gloss_en": "sin",
@@ -3269,18 +3221,6 @@
           "transliteration": "tsadak",
           "meaning_es": "ser justo, correcto, apropiado",
           "meaning_en": "to be just, correct, appropriate"
-        },
-        {
-          "word": "צֶדֶק",
-          "transliteration": "tzédek",
-          "meaning_es": "justicia, rectitud",
-          "meaning_en": "justice, righteousness"
-        },
-        {
-          "word": "צַדִּיק",
-          "transliteration": "tzadik",
-          "meaning_es": "justo, recto",
-          "meaning_en": "righteous, just"
         }
       ],
       "arabic": [
@@ -3377,13 +3317,13 @@
         },
         {
           "word": "عَبَرَ",
-          "transliteration": "^abara",
+          "transliteration": "ʿabara",
           "meaning_es": "cruzar, atravesar",
           "meaning_en": "to cross, pass through"
         },
         {
           "word": "إِبْرَة",
-          "transliteration": "?ibra",
+          "transliteration": "ʿibra",
           "meaning_es": "aguja, lección",
           "meaning_en": "needle, lesson",
           "outlier": true
