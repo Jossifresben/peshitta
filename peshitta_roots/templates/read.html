@@ -5,6 +5,7 @@
 {% block lang_links %}
 <a href="{{ url_for('read', lang='es', book=book, chapter=chapter, script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('read', lang='en', book=book, chapter=chapter, script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('read', lang='he', book=book, chapter=chapter, script=script, trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 {% endblock %}
 
 {% block content %}
@@ -47,7 +48,7 @@
             <div class="reader-verse" id="verse-{{ v.number }}">
                 <span class="verse-num">{{ chapter }}:{{ v.number }}</span>
                 <a href="{{ url_for('constellation', book=book, chapter=chapter, v_start=v.number, v_end=v.number, lang=lang, script=script, trans=trans) }}"
-                   class="verse-constellation-link" title="{% if lang == 'es' %}Ver constelacion del versiculo{% else %}View verse constellation{% endif %}">
+                   class="verse-constellation-link" title="{{ t.read_constellation }}">
                     <span class="material-symbols-outlined">scatter_plot</span>
                 </a>
                 <div class="reader-line reader-syriac">
@@ -74,7 +75,7 @@
         </div>
 
         <footer>
-            <div class="footer-line">{{ 'Por' if lang == 'es' else 'By' }} <a href="{{ url_for('about_page', lang=lang) }}">Jossi Fresco</a>{{ ', inspirado por' if lang == 'es' else ', inspired by' }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
+            <div class="footer-line">{{ t.footer_by }} <a href="{{ url_for('about_page', lang=lang) }}">Jossi Fresco</a>{{ t.footer_inspired }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
             <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a></div>
         </footer>
     </div>
@@ -174,7 +175,7 @@
                 html += '</div>';
                 html += '<a href="/visualize/' + encodeURIComponent(data.root_translit) + '?lang=' + currentLang + '&script=' + currentScript + '" class="modal-viz-btn">';
                 html += '<span class="material-symbols-outlined">hub</span> ';
-                html += '{% if lang == "es" %}Visualizar familia de raíz{% else %}Visualize root family{% endif %}';
+                html += {{ t.viz_root_family|tojson }};
                 html += '</a>';
 
                 // Compact degradation chain

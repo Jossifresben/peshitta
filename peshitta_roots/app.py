@@ -20,10 +20,10 @@ app = Flask(__name__)
 def _detect_lang():
     """Detect UI language from query param or browser Accept-Language header."""
     lang = request.args.get('lang', '').strip()
-    if lang in ('es', 'en'):
+    if lang in ('es', 'en', 'he'):
         return lang
     # Sniff browser Accept-Language
-    best = request.accept_languages.best_match(['es', 'en'], default='en')
+    best = request.accept_languages.best_match(['es', 'en', 'he'], default='en')
     return best
 
 

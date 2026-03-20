@@ -5,47 +5,48 @@
 {% block lang_links %}
 <a href="{{ url_for('visualize', root_key=root_key, lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('visualize', root_key=root_key, lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('visualize', root_key=root_key, lang='he', script=script, trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 {% endblock %}
 
 {% block content %}
     <div class="container">
         <header>
-            <h1 class="page-title">{% if lang == 'es' %}Visualizador de Raíz{% else %}Root Visualizer{% endif %}</h1>
+            <h1 class="page-title">{{ t.viz_title }}</h1>
         </header>
 
         <div id="viz-loading" class="viz-loading">
-            <p>{% if lang == 'es' %}Cargando familia de raíz...{% else %}Loading root family...{% endif %}</p>
+            <p>{{ t.viz_loading }}</p>
         </div>
         <div id="viz-error" class="viz-error" style="display:none;"></div>
         <div id="viz-container" class="viz-container" style="display:none;">
             <!-- Grafo / Ficha tabs -->
             <div class="viz-view-tabs">
                 <button class="viz-view-tab active" id="tab-graph" onclick="switchVizTab('graph')">
-                    <span class="material-symbols-outlined">hub</span> {% if lang == 'es' %}Grafo{% else %}Graph{% endif %}
+                    <span class="material-symbols-outlined">hub</span> {{ t.viz_graph_tab }}
                 </button>
                 <button class="viz-view-tab" id="tab-ficha" onclick="switchVizTab('ficha')">
-                    <span class="material-symbols-outlined">badge</span> {% if lang == 'es' %}Ficha de Ra&iacute;z{% else %}Root Card{% endif %}
+                    <span class="material-symbols-outlined">badge</span> {{ t.viz_card_tab }}
                 </button>
             </div>
 
             <!-- Graph view -->
             <div id="view-graph">
                 <div class="viz-controls">
-                    <label class="viz-check"><input type="checkbox" id="chk-hebrew" checked> <span class="viz-check-dot" style="background:#2E5090;"></span> {% if lang == 'es' %}Hebreo{% else %}Hebrew{% endif %}</label>
-                    <label class="viz-check"><input type="checkbox" id="chk-arabic" checked> <span class="viz-check-dot" style="background:#2D7D46;"></span> {% if lang == 'es' %}Árabe{% else %}Arabic{% endif %}</label>
-                    <label class="viz-check"><input type="checkbox" id="chk-syriac" checked> <span class="viz-check-dot" style="background:#A0522D;"></span> {% if lang == 'es' %}Siríaco (Peshitta){% else %}Syriac (Peshitta){% endif %}</label>
+                    <label class="viz-check"><input type="checkbox" id="chk-hebrew" checked> <span class="viz-check-dot" style="background:#2E5090;"></span> {{ t.viz_checkbox_hebrew }}</label>
+                    <label class="viz-check"><input type="checkbox" id="chk-arabic" checked> <span class="viz-check-dot" style="background:#2D7D46;"></span> {{ t.viz_checkbox_arabic }}</label>
+                    <label class="viz-check"><input type="checkbox" id="chk-syriac" checked> <span class="viz-check-dot" style="background:#A0522D;"></span> {{ t.viz_checkbox_syriac }}</label>
                     <span id="viz-outlier-key" class="viz-outlier-key" style="display:none;">
                         <svg width="18" height="18" style="vertical-align:middle;margin-right:4px;"><circle cx="9" cy="9" r="7" fill="none" stroke="#DAA520" stroke-width="2" stroke-dasharray="4,2"/></svg>
-                        {% if lang == 'es' %}Divergente{% else %}Outlier{% endif %}
+                        {{ t.viz_outlier_legend }}
                     </span>
                     <span id="viz-bridge-key" class="viz-bridge-key" style="display:none;">
                         <svg width="22" height="22" style="vertical-align:middle;margin-right:4px;">
                             <circle cx="11" cy="11" r="9" fill="none" stroke="#DAA520" stroke-width="2.5" stroke-dasharray="4,3" class="bridge-outlier-ring"/>
                             <circle cx="11" cy="11" r="6" fill="#B8860B" stroke="#DAA520" stroke-width="2"/>
                         </svg>
-                        {% if lang == 'es' %}🔗 Click = puente semántico{% else %}🔗 Click = semantic bridge{% endif %}
+                        🔗 {{ t.viz_click_bridge }}
                     </span>
-                    <button id="viz-fullscreen" class="viz-fullscreen-btn" title="{% if lang == 'es' %}Pantalla completa{% else %}Fullscreen{% endif %}">
+                    <button id="viz-fullscreen" class="viz-fullscreen-btn" title="{{ t.fullscreen }}">
                         <span class="material-symbols-outlined" id="fullscreen-icon">fullscreen</span>
                     </button>
                 </div>
@@ -69,7 +70,7 @@
                     <div class="ficha-section ficha-citation-section">
                         <h3 class="ficha-section-title">
                             <span class="material-symbols-outlined">menu_book</span>
-                            {% if lang == 'es' %}Cita paradigm&aacute;tica{% else %}Key verse{% endif %}
+                            {{ t.viz_key_verse }}
                         </h3>
                         <div class="ficha-citation-original" id="ficha-syriac"></div>
                         <div class="ficha-citation-translit" id="ficha-translit"></div>
@@ -78,7 +79,7 @@
                         <div class="ficha-citation-ref">
                             <span id="ficha-ref"></span>
                             <a id="ficha-read-link" href="#" class="ficha-read-link">
-                                {% if lang == 'es' %}Leer{% else %}Read{% endif %} &rarr;
+                                {{ t.viz_read }} &rarr;
                             </a>
                         </div>
                     </div>
@@ -87,11 +88,11 @@
                     <div class="ficha-section ficha-sisters-section">
                         <h3 class="ficha-section-title">
                             <span class="material-symbols-outlined">share</span>
-                            {% if lang == 'es' %}Ra&iacute;ces hermanas{% else %}Sister roots{% endif %}
+                            {{ t.viz_sisters }}
                         </h3>
                         <div class="ficha-sisters" id="ficha-sisters"></div>
                         <p class="ficha-sisters-empty" id="ficha-sisters-empty" style="display:none;">
-                            {% if lang == 'es' %}No se encontraron ra&iacute;ces hermanas{% else %}No sister roots found{% endif %}
+                            {{ t.viz_no_sisters }}
                         </p>
                     </div>
 
@@ -109,15 +110,15 @@
                     <div class="ficha-section ficha-derivatives-section">
                         <h3 class="ficha-section-title">
                             <span class="material-symbols-outlined">table_chart</span>
-                            {% if lang == 'es' %}Derivados completos{% else %}All derivatives{% endif %}
+                            {{ t.viz_all_derivatives }}
                         </h3>
                         <div class="ficha-table-wrap">
                             <table class="ficha-table" id="ficha-table">
                                 <thead>
                                     <tr>
-                                        <th>{% if lang == 'es' %}Sir&iacute;aco{% else %}Syriac{% endif %}</th>
-                                        <th>{% if lang == 'es' %}Hebreo{% else %}Hebrew{% endif %}</th>
-                                        <th>{% if lang == 'es' %}&Aacute;rabe{% else %}Arabic{% endif %}</th>
+                                        <th>{{ t.viz_col_syriac }}</th>
+                                        <th>{{ t.viz_col_hebrew }}</th>
+                                        <th>{{ t.viz_col_arabic }}</th>
                                     </tr>
                                 </thead>
                                 <tbody id="ficha-table-body"></tbody>
@@ -133,6 +134,22 @@
 {% block scripts %}
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
+    var STRINGS = {
+        notAvailable: {{ t.not_available|tojson }},
+        degradationAramaic: {{ t.degradation_aramaic|tojson }},
+        degradationGreek: {{ t.degradation_greek|tojson }},
+        degradationModern: {{ t.degradation_modern|tojson }},
+        bridgeLabel: {{ t.bridge_label|tojson }},
+        bridgeRoot: {{ t.bridge_root|tojson }},
+        syriacLabel: {{ t.syriac_label|tojson }},
+        hebrewLabel: {{ t.hebrew_label|tojson }},
+        arabicLabel: {{ t.arabic_label|tojson }},
+        clickClose: {{ t.click_close|tojson }},
+        clickExplore: {{ t.click_explore|tojson }},
+        semanticOutlier: {{ t.semantic_outlier|tojson }},
+        vizRootFamily: {{ t.viz_root_family|tojson }},
+        errorLoading: {{ t.error_loading|tojson }}
+    };
     (function() {
         var ROOT_KEY = {{ root_key|tojson }};
         var LANG = {{ lang|tojson }};
@@ -304,7 +321,7 @@
             } else {
                 syriacEl.textContent = '';
                 translitEl.textContent = '';
-                verseEl.textContent = LANG === 'es' ? 'No disponible' : 'Not available';
+                verseEl.textContent = STRINGS.notAvailable;
                 refEl.textContent = '';
                 readLink.style.display = 'none';
             }
@@ -338,9 +355,9 @@
             if (data.greek_parallel) {
                 var gp = data.greek_parallel;
                 degSection.style.display = '';
-                var aramLabel = LANG === 'es' ? 'Arameo' : 'Aramaic';
-                var greekLabel = LANG === 'es' ? 'Griego (NT)' : 'Greek (NT)';
-                var modernLabel = LANG === 'es' ? 'Trad. moderna' : 'Modern trans.';
+                var aramLabel = STRINGS.degradationAramaic;
+                var greekLabel = STRINGS.degradationGreek;
+                var modernLabel = STRINGS.degradationModern;
                 degChain.innerHTML =
                     '<div class="deg-step-wrap">' +
                         '<div class="deg-step deg-aramaic">' +
@@ -776,7 +793,7 @@
                 .attr('font-size', '12px')
                 .attr('font-weight', 'bold')
                 .attr('pointer-events', 'none')
-                .text('🔗 ' + (LANG === 'es' ? 'puente' : 'bridge'));
+                .text('🔗 ' + STRINGS.bridgeLabel);
 
             // Center / bridge-center: detail below
             nodeEnter.filter(function(d) { return d.type === 'center' || d.type === 'bridge-center'; })
@@ -804,27 +821,27 @@
                 if (d.type === 'center') return;
                 var lang_label;
                 if (d.type === 'bridge-center') {
-                    lang_label = LANG === 'es' ? 'Raíz puente' : 'Bridge root';
+                    lang_label = STRINGS.bridgeRoot;
                 } else {
                     var base = d.type.replace('bridge-', '');
-                    lang_label = base === 'syriac' ? (LANG === 'es' ? 'Siríaco' : 'Syriac') :
-                                 base === 'hebrew' ? (LANG === 'es' ? 'Hebreo' : 'Hebrew') :
-                                 (LANG === 'es' ? 'Árabe' : 'Arabic');
+                    lang_label = base === 'syriac' ? STRINGS.syriacLabel :
+                                 base === 'hebrew' ? STRINGS.hebrewLabel :
+                                 STRINGS.arabicLabel;
                     if (d.type.startsWith('bridge-')) {
-                        lang_label += (LANG === 'es' ? ' (puente)' : ' (bridge)');
+                        lang_label += ' (' + STRINGS.bridgeLabel + ')';
                     }
                 }
                 var outlier_tag = '';
                 var accentGold = getComputedStyle(document.documentElement).getPropertyValue('--accent-gold').trim() || '#B8860B';
                 if (d.outlier) {
                     outlier_tag = '<br><span style="color:' + accentGold + ';font-weight:bold;">' +
-                        (LANG === 'es' ? '✦ Semánticamente divergente' : '✦ Semantic outlier') + '</span>';
+                        '✦ ' + STRINGS.semanticOutlier + '</span>';
                     if (d.bridge) {
                         outlier_tag += '<br><span style="color:' + accentGold + ';font-size:11px;font-style:italic;">' +
                             d.bridge.bridge_concept + '</span>';
                         var bridgeState = _expandedBridges[d.outlierKey] ?
-                            (LANG === 'es' ? '🔗 Click para cerrar puente' : '🔗 Click to collapse bridge') :
-                            (LANG === 'es' ? '🔗 Click para explorar puente → ' + d.bridge.target_root.toUpperCase() : '🔗 Click to explore bridge → ' + d.bridge.target_root.toUpperCase());
+                            ('🔗 ' + STRINGS.clickClose) :
+                            ('🔗 ' + STRINGS.clickExplore + ' → ' + d.bridge.target_root.toUpperCase());
                         outlier_tag += '<br><span style="color:' + accentGold + ';font-size:12px;font-weight:bold;">' + bridgeState + '</span>';
                     }
                 }

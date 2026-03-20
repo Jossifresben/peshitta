@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}{% if lang == 'es' %}Sobre el autor{% else %}About{% endif %} - {{ t.app_title }}{% endblock %}
+{% block title %}{{ t.about_title }} - {{ t.app_title }}{% endblock %}
 
 {% block lang_links %}
 <a href="{{ url_for('about_page', lang='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('about_page', lang='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('about_page', lang='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 {% endblock %}
 
 {% block header_settings %}{% endblock %}
@@ -99,7 +100,7 @@
                 <img src="{{ url_for('static', filename='author.jpg') }}" alt="Jossi Fresco" class="about-photo" loading="lazy">
             </div>
 
-            <h2>Jossi Fresco</h2>
+            <h2>{% if lang == 'he' %}יוסי פרסקו{% else %}Jossi Fresco{% endif %}</h2>
 
             {% if lang == 'es' %}
 
@@ -110,6 +111,16 @@
             <p>Su trabajo se sit&uacute;a en la intersecci&oacute;n de lo t&eacute;cnico y lo intuitivo, an&aacute;lisis y percepci&oacute;n directa. Le interesa crear condiciones donde el significado pueda surgir con claridad, sin ser forzado ni reducido.</p>
 
             <p>Un hilo constante: c&oacute;mo el lenguaje configura nuestra comprensi&oacute;n de la realidad. Este proyecto naci&oacute; tras asistir a una conferencia de <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a> sobre la Peshitta, que abri&oacute; una l&iacute;nea de indagaci&oacute;n sobre la relaci&oacute;n entre lenguaje, estructura y sentido.</p>
+
+            {% elif lang == 'he' %}
+
+            <p>יוסי הוא טכנולוג, מוזיקאי וחוקר. פולימת מטבעו, הוא נע בזרימה בין תחומים לאורך חייו, ומשלב ניסיון טכני, יצירתי ואנושי.</p>
+
+            <p>מסלול זה חידד אינטואיציה: מערכות, בין אם בקוד ובין אם בשפה, מכילות דפוסים שחושפים משמעות כאשר מתבוננים בהם מתוך המבנה שלהם עצמם.</p>
+
+            <p>העבודה שלו ממוקמת בצומת שבין הטכני לאינטואיטיבי, ניתוח ותפיסה ישירה. הוא מעוניין ליצור תנאים שבהם משמעות יכולה לצוץ בבהירות, מבלי לכפות או לצמצם.</p>
+
+            <p>חוט מנחה קבוע: כיצד השפה מעצבת את הדרך שבה אנו מבינים את המציאות. הפרויקט הזה נולד לאחר השתתפות בהרצאה של <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">ויסנטה הייא</a> על הפשיטתא, שפתחה קו חקירה על הקשר בין שפה, מבנה ומשמעות.</p>
 
             {% else %}
 
@@ -124,10 +135,10 @@
             {% endif %}
 
             <div class="about-links-section">
-                <h3>{% if lang == 'es' %}Proyectos y expresiones{% else %}Projects &amp; expressions{% endif %}</h3>
+                <h3>{% if lang == 'es' %}Proyectos y expresiones{% elif lang == 'he' %}פרויקטים וביטויים{% else %}Projects &amp; expressions{% endif %}</h3>
                 <ul class="about-links-list">
                     <li><a href="https://podcasts.apple.com/us/podcast/palabras-de-luz/id1850475452" target="_blank" rel="noopener"><span class="material-symbols-outlined">podcasts</span> Palabras de Luz &mdash; Podcast</a></li>
-                    <li><a href="https://open.spotify.com/artist/6o9tQlVJKRbAyxmyY5D6hr" target="_blank" rel="noopener"><span class="material-symbols-outlined">music_note</span> {% if lang == 'es' %}M&uacute;sica en Spotify{% else %}Music on Spotify{% endif %}</a></li>
+                    <li><a href="https://open.spotify.com/artist/6o9tQlVJKRbAyxmyY5D6hr" target="_blank" rel="noopener"><span class="material-symbols-outlined">music_note</span> {% if lang == 'es' %}M&uacute;sica en Spotify{% elif lang == 'he' %}מוזיקה בספוטיפיי{% else %}Music on Spotify{% endif %}</a></li>
                     <li><a href="https://substack.com/@jossifrescobenaim403749" target="_blank" rel="noopener"><span class="material-symbols-outlined">edit_note</span> Substack</a></li>
                     <li><a href="https://cosmicoach.com" target="_blank" rel="noopener"><span class="material-symbols-outlined">auto_awesome</span> cosmicoach.com</a></li>
                     <li><a href="https://dar-a-luz.com" target="_blank" rel="noopener"><span class="material-symbols-outlined">light_mode</span> Dar a Luz</a></li>
@@ -138,7 +149,7 @@
         </div>
 
         <footer>
-            <div class="footer-line">{{ 'Por' if lang == 'es' else 'By' }} Jossi Fresco{{ ', inspirado por' if lang == 'es' else ', inspired by' }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
+            <div class="footer-line">{{ t.footer_by }} Jossi Fresco{{ t.footer_inspired }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
             <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a></div>
         </footer>
     </div>

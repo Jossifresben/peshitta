@@ -5,6 +5,7 @@
 {% block lang_links %}
 <a href="{{ url_for('help_page', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('help_page', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('help_page', lang='he', script=script, trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 {% endblock %}
 
 {% block content %}
@@ -29,6 +30,17 @@
                     <li><strong>Leer la Peshitta:</strong> Haz clic en "Lector de la Peshitta" para leer capítulo por capítulo con texto interlineal (siríaco, transliteración, traducción).</li>
                     <li><strong>Palabras con raíz:</strong> En el lector, las palabras subrayadas tienen una raíz identificada. Pasa el cursor para ver la raíz, o haz clic para ver todas las formas y ocurrencias.</li>
                 </ul>
+                {% elif lang == 'he' %}
+                <ul>
+                    <li><strong>חיפוש שורשים:</strong> הקלד שורש תלת-עיצורי בתיבת החיפוש בפורמט מופרד במקפים (לדוגמה K-TH-B).</li>
+                    <li><strong>חיפוש מילה:</strong> ניתן גם לחפש מילה ישירות בכל כתב או תעתיק (לדוגמה כתב, katav, كتب). החיפוש ימצא את השורש המשויך ויציג את כל צורותיו.</li>
+                    <li><strong>תוצאות:</strong> בעת חיפוש שורש או מילה, תוצג רשימת כל הצורות הנגזרות מאותו שורש, יחד עם הספרים בהם הן מופיעות ומספר המופעים. לחץ על כל הפניה לפסוק כדי לראות את הטקסט המלא.</li>
+                    <li><strong>פסוקי הקשר:</strong> בחלון הפסוק, השתמש בכפתורי הניווט כדי לראות עד 4 פסוקים קודמים ועוקבים כהקשר.</li>
+                    <li><strong>עיון בשורשים:</strong> לחץ על "עיין בכל השורשים" כדי לנווט בין 2,535 השורשים ממוינים לפי תדירות.</li>
+                    <li><strong>ממחיש שורשים:</strong> לחץ על הסמל <span class="material-symbols-outlined" style="font-size:16px;vertical-align:middle;">hub</span> ליד שורש כדי לראות דיאגרמה רדיאלית אינטראקטיבית עם קוגנטים עבריים וערביים. צמתים עם גבול זהב מקווקו הם <em>חריגים סמנטיים</em> &mdash; מילים שמשמעותן סטתה מהשדה הסמנטי המקורי של השורש. לחץ על חריג כדי לחקור את <em>הגשר הסמנטי</em> שלו למשפחת שורשים אחרת.</li>
+                    <li><strong>קרא את הפשיטתא:</strong> לחץ על "קורא הפשיטתא" כדי לקרוא פרק אחר פרק עם טקסט בין-שורי (סורית, תעתיק, תרגום).</li>
+                    <li><strong>מילים עם שורשים:</strong> בקורא, מילים מסומנות בקו תחתון שיש להן שורש מזוהה. העבר את העכבר כדי לראות את השורש, או לחץ כדי לראות את כל הצורות והמופעים.</li>
+                </ul>
                 {% else %}
                 <ul>
                     <li><strong>Search roots:</strong> Type a triliteral root in the search box using dash-separated format (e.g. K-TH-B).</li>
@@ -52,6 +64,13 @@
                     <li><strong>Traducción (⚙️):</strong> Elige el idioma de las traducciones de los versículos: English, Español, עברית (Hebreo), العربية (Árabe).</li>
                     <li><strong>Modo oscuro (☀️/🌙):</strong> Alterna entre modo claro y oscuro.</li>
                     <li><strong>Idioma de la interfaz:</strong> Usa el botón "English"/"Español" para cambiar el idioma de la interfaz.</li>
+                </ul>
+                {% elif lang == 'he' %}
+                <ul>
+                    <li><strong>תעתיק (⚙️):</strong> בחר מתוך 4 כתבים לתעתיק: לטיני (ABC), סורי אקדמי (ʾbg), עברי (אבג), ערבי (ابج). הבחירה שלך נשמרת אוטומטית.</li>
+                    <li><strong>תרגום (⚙️):</strong> בחר את שפת תרגום הפסוקים: English, Español, עברית, العربية.</li>
+                    <li><strong>מצב כהה (☀️/🌙):</strong> החלף בין מצב בהיר וכהה.</li>
+                    <li><strong>שפת ממשק:</strong> השתמש בכפתורי ES/EN/עב כדי להחליף את שפת הממשק.</li>
                 </ul>
                 {% else %}
                 <ul>
@@ -78,6 +97,19 @@
                     <li>Transliteración en 4 escrituras con correspondencia letra a letra</li>
                     <li>Lector interlineal capítulo por capítulo con palabras clicables</li>
                     <li>Glosario automático de significados para las raíces más frecuentes</li>
+                </ul>
+                {% elif lang == 'he' %}
+                <ul>
+                    <li>2,535 שורשים תלת-עיצוריים מזוהים מהברית החדשה של הפשיטתא (קודקס חבוריס)</li>
+                    <li>109,428 מילים נותחו ב-7,440 פסוקים, 22 ספרים</li>
+                    <li>397 שורשים עם קוגנטים שמיים: 1,929 מילים עבריות ו-1,851 מילים ערביות (3,780 קוגנטים בסך הכל)</li>
+                    <li>651 חריגים סמנטיים שזוהו באמצעות זיהוי סטייה סמנטית מבוסס AI</li>
+                    <li>גשרים סמנטיים בין משפחות שורשים &mdash; הדמיה אינטראקטיבית של קשרי משמעות בין שדות</li>
+                    <li>ממחיש רדיאלי אינטראקטיבי D3.js עם מסננים לפי שפה, זום וגרירה</li>
+                    <li>תרגומים ב-4 שפות (EN, ES, HE, AR) &mdash; עברית מודרנית וערבית Smith &amp; Van Dyke</li>
+                    <li>תעתיק ב-4 כתבים עם התאמה אות-באות</li>
+                    <li>קורא בין-שורי פרק אחר פרק עם מילים לחיצות</li>
+                    <li>מילון משמעויות אוטומטי לשורשים הנפוצים ביותר</li>
                 </ul>
                 {% else %}
                 <ul>
@@ -107,6 +139,16 @@
                     <li><strong>Traducción árabe:</strong> Smith &amp; Van Dyke (1865), obtenida de la API getBible v2 (dominio público).</li>
                     <li><strong>Cognados semíticos:</strong> Compilación propia basada en léxicos estándar de hebreo (BDB), árabe (Hans Wehr), acadio (CAD), arameo y etíope. ~394 raíces con correspondencias entre lenguas.</li>
                     <li><strong>Extracción de raíces:</strong> Algoritmo propio de análisis morfológico que identifica raíces trilíteras mediante eliminación de prefijos, sufijos y patrones de conjugación siríacos.</li>
+                </ul>
+                {% elif lang == 'he' %}
+                <ul>
+                    <li><strong>טקסט הפשיטתא:</strong> הברית החדשה הסורית מקודקס חבוריס, מדוגיטל על ידי Dukhrana Biblical Research. מכיל 22 ספרים בכתב סורי קלאסי (אסטרנגלא).</li>
+                    <li><strong>תרגום אנגלי:</strong> תרגום מרדוק של הפשיטתא (נחלת הכלל, המאה ה-19).</li>
+                    <li><strong>תרגום ספרדי:</strong> ריינה-ולרה 1909 (נחלת הכלל).</li>
+                    <li><strong>תרגום עברי:</strong> עברית מודרנית (המאה ה-19), זמין דרך Bible SuperSearch (נחלת הכלל).</li>
+                    <li><strong>תרגום ערבי:</strong> Smith &amp; Van Dyke (1865), התקבל מ-getBible v2 API (נחלת הכלל).</li>
+                    <li><strong>קוגנטים שמיים:</strong> אוסף מותאם אישית המבוסס על מילונים סטנדרטיים: עברית (BDB), ערבית (Hans Wehr), אכדית (CAD), ארמית ואתיופית. כ-394 שורשים עם התאמות בין-לשוניות.</li>
+                    <li><strong>חילוץ שורשים:</strong> אלגוריתם ניתוח מורפולוגי מותאם אישית המזהה שורשים תלת-עיצוריים על ידי הסרת תחיליות, סיומות ודפוסי הטיה סוריים.</li>
                 </ul>
                 {% else %}
                 <ul>
@@ -144,6 +186,27 @@
                 <details>
                     <summary>¿Se puede copiar el texto?</summary>
                     <div class="faq-answer">Sí, en el buscador haz clic en el botón ⧉ del modal de versículo para copiar el texto siríaco con transliteración y traducción.</div>
+                </details>
+                {% elif lang == 'he' %}
+                <details>
+                    <summary>מהו שורש תלת-עיצורי?</summary>
+                    <div class="faq-answer">בשפות השמיות, רוב המילים נגזרות משורש של שלושה עיצורים. לדוגמה, K-TH-B (<span class="syriac">ܟܬܒ</span>) פירושו "לכתוב" ומייצר צורות כמו <span class="syriac">ܟܬܒܐ</span> (ספר), <span class="syriac">ܟܬܒ</span> (כתב), <span class="syriac">ܡܟܬܒܢܘܬܐ</span> (כתב הקודש).</div>
+                </details>
+                <details>
+                    <summary>מהי הפשיטתא?</summary>
+                    <div class="faq-answer">הפשיטתא היא הגרסה הסטנדרטית של התנ"ך בסורית (ארמית). אתר זה מנתח את טקסט הברית החדשה מקודקס חבוריס.</div>
+                </details>
+                <details>
+                    <summary>מדוע חלק מהמילים אינן מסומנות בקו תחתון בקורא?</summary>
+                    <div class="faq-answer">רק מילים התואמות צורה ידועה של שורש תלת-עיצורי מסומנות. מילות יחס, מילות חיבור ומילים שלא זוהו אינן מסומנות בקו תחתון.</div>
+                </details>
+                <details>
+                    <summary>מהם קוגנטים?</summary>
+                    <div class="faq-answer">קוגנטים הם מילים בשפות שמיות שונות החולקות את אותו שורש קדום. לדוגמה, השורש K-TH-B קיים בעברית (<span class="hebrew">כתב</span>), בערבית (<span class="arabic">كتب</span>) ובסורית (<span class="syriac">ܟܬܒ</span>).</div>
+                </details>
+                <details>
+                    <summary>האם ניתן להעתיק טקסט?</summary>
+                    <div class="faq-answer">כן, בדף החיפוש לחץ על כפתור ⧉ בחלון הפסוק כדי להעתיק את הטקסט הסורי עם תעתיק ותרגום.</div>
                 </details>
                 {% else %}
                 <details>

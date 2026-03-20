@@ -5,6 +5,7 @@
 {% block lang_links %}
 <a href="{{ url_for('index', lang='es', q=query or '', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('index', lang='en', q=query or '', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('index', lang='he', q=query or '', script=script, trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 {% endblock %}
 
 {% block content %}
@@ -33,7 +34,7 @@
                 <button class="feature-tab" data-feature="method" onclick="switchFeature('method')">
                     <span class="material-symbols-outlined">auto_stories</span> {{ t.feature_tab_method }}
                 </button>
-                <button class="feature-close" onclick="toggleShowcase(true)" title="{% if lang == 'es' %}Ocultar{% else %}Hide{% endif %}">
+                <button class="feature-close" onclick="toggleShowcase(true)" title="{{ t.feature_close }}">
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>
@@ -45,7 +46,7 @@
                 <p>{{ t.feature_desc_roots }}</p>
                 <a href="{{ url_for('index', lang=lang, q='R-W-KH') }}#results" class="feature-cta">{{ t.feature_cta_roots }} &rarr;</a>
                 <span style="margin: 0 8px; color: var(--text-muted);">|</span>
-                <a href="{{ url_for('visualize', root_key='R-W-KH', lang=lang, script=script, trans=trans) }}" class="feature-cta">{% if lang == 'es' %}Visualizar{% else %}Visualize{% endif %} R-W-KH &rarr;</a>
+                <a href="{{ url_for('visualize', root_key='R-W-KH', lang=lang, script=script, trans=trans) }}" class="feature-cta">{{ t.viz_button }} R-W-KH &rarr;</a>
             </div>
             <div id="feature-constellation" class="feature-panel" style="display:none;">
                 <p>{{ t.feature_desc_constellation | replace('{{ICON}}', '<span class="material-symbols-outlined" style="font-size:1em; vertical-align:middle;">scatter_plot</span>') | safe }}</p>
@@ -165,7 +166,7 @@
                 <div class="root-meaning">{{ result.gloss }}</div>
                 {% endif %}
                 <div class="root-header-nav">
-                    <a href="{{ url_for('visualize', root_key=result.root_translit, lang=lang, script=script, trans=trans) }}" class="viz-btn viz-btn-primary" title="{% if lang == 'es' %}Visualizar familia de raíz{% else %}Visualize root family{% endif %}"><span class="material-symbols-outlined">hub</span> {% if lang == 'es' %}Visualizar{% else %}Visualize{% endif %}</a>
+                    <a href="{{ url_for('visualize', root_key=result.root_translit, lang=lang, script=script, trans=trans) }}" class="viz-btn viz-btn-primary" title="{{ t.viz_root_family }}"><span class="material-symbols-outlined">hub</span> {{ t.viz_button }}</a>
                     <a href="#section-peshitta" class="nav-btn">{{ t.results_peshitta }}</a>
                     <a href="#section-hebrew" class="nav-btn">{{ t.results_hebrew }}</a>
                     <a href="#section-arabic" class="nav-btn">{{ t.results_arabic }}</a>
@@ -271,7 +272,7 @@
         {% endif %}
 
         <footer>
-            <div class="footer-line">{{ 'Por' if lang == 'es' else 'By' }} <a href="{{ url_for('about_page', lang=lang) }}">Jossi Fresco</a>{{ ', inspirado por' if lang == 'es' else ', inspired by' }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
+            <div class="footer-line">{{ t.footer_by }} <a href="{{ url_for('about_page', lang=lang) }}">Jossi Fresco</a>{{ t.footer_inspired }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
             <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a></div>
         </footer>
     </div>

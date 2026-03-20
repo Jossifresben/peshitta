@@ -20,8 +20,6 @@
         var savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             applyTheme(savedTheme);
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            applyTheme('dark');
         }
 
         themeBtn.addEventListener('click', function() {
@@ -31,13 +29,6 @@
             applyTheme(next);
         });
 
-        if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-                if (!localStorage.getItem('theme')) {
-                    applyTheme(e.matches ? 'dark' : 'light');
-                }
-            });
-        }
     }
 
     // --- Language Dropdown ---

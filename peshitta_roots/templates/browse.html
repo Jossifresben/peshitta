@@ -5,6 +5,7 @@
 {% block lang_links %}
 <a href="{{ url_for('browse', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('browse', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('browse', lang='he', script=script, trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 {% endblock %}
 
 {% block content %}
@@ -17,7 +18,7 @@
             {% if page > 1 %}
             <a href="{{ url_for('browse', lang=lang, page=page-1) }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
             {% endif %}
-            <span class="browse-page-info">{{ t.browse_page_of.replace('{page}', page|string).replace('{total}', total_pages|string) }} ({{ total }} {{ t.browse_root|lower }}{{ 's' if lang == 'en' else '' }})</span>
+            <span class="browse-page-info">{{ t.browse_page_of.replace('{page}', page|string).replace('{total}', total_pages|string) }} ({{ total }} {{ t.browse_root|lower }})</span>
             {% if page < total_pages %}
             <a href="{{ url_for('browse', lang=lang, page=page+1) }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
             {% endif %}
@@ -44,7 +45,7 @@
                             <td class="gloss-cell">{{ root.gloss }}</td>
                             <td>{{ root.forms }}</td>
                             <td><span class="count-badge">{{ root.occurrences }}</span></td>
-                            <td><a href="{{ url_for('visualize', root_key=root.translit_key, lang=lang, script=script, trans=trans) }}" class="viz-btn" title="{% if lang == 'es' %}Visualizar{% else %}Visualize{% endif %}"><span class="material-symbols-outlined">hub</span></a></td>
+                            <td><a href="{{ url_for('visualize', root_key=root.translit_key, lang=lang, script=script, trans=trans) }}" class="viz-btn" title="{{ t.viz_button }}"><span class="material-symbols-outlined">hub</span></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -63,7 +64,7 @@
         </div>
 
         <footer>
-            <div class="footer-line">{{ 'Por' if lang == 'es' else 'By' }} <a href="{{ url_for('about_page', lang=lang) }}">Jossi Fresco</a>{{ ', inspirado por' if lang == 'es' else ', inspired by' }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
+            <div class="footer-line">{{ t.footer_by }} <a href="{{ url_for('about_page', lang=lang) }}">Jossi Fresco</a>{{ t.footer_inspired }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
             <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a></div>
         </footer>
     </div>

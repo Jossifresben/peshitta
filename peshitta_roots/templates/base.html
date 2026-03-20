@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ 'es' if lang == 'es' else 'en' }}" dir="ltr">
+<html lang="{{ lang }}" dir="{{ 'rtl' if lang in ('he', 'ar') else 'ltr' }}">
 <head>
     <meta charset="UTF-8">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8KTQRY55S"></script>
@@ -9,11 +9,12 @@
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
     {% block head_extra %}{% endblock %}
 </head>
 <body>
-    <a href="#main-content" class="skip-link">{% if lang == 'es' %}Ir al contenido{% else %}Skip to content{% endif %}</a>
+    <a href="#main-content" class="skip-link">{% if lang == 'es' %}Ir al contenido{% elif lang == 'he' %}דלג לתוכן{% else %}Skip to content{% endif %}</a>
 
     <div class="sticky-header" role="banner">
         <a href="{{ url_for('index', lang=lang) }}" class="nav-logo" title="Home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
@@ -23,6 +24,7 @@
                 {% block lang_links %}
                 <a href="?lang=es" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
                 <a href="?lang=en" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+                <a href="?lang=he" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
                 {% endblock %}
             </div>
         </div>
@@ -52,22 +54,22 @@
         {% endblock %}
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
         {% block header_share %}
-        <button class="share-toggle" id="share-toggle" aria-label="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}" title="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
+        <button class="share-toggle" id="share-toggle" aria-label="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% else %}Share{% endif %}" title="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
         {% endblock %}
     </div>
 
     {% block share_modal %}
-    <div id="share-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="{% if lang == 'es' %}Compartir{% else %}Share{% endif %}">
+    <div id="share-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% else %}Share{% endif %}">
         <div class="modal-content share-modal-content">
-            <button class="modal-close" onclick="document.getElementById('share-modal').classList.remove('active')" aria-label="{% if lang == 'es' %}Cerrar{% else %}Close{% endif %}">&times;</button>
-            <h3 class="share-modal-title">{% if lang == 'es' %}Compartir esta p&aacute;gina{% else %}Share this page{% endif %}</h3>
+            <button class="modal-close" onclick="document.getElementById('share-modal').classList.remove('active')" aria-label="{% if lang == 'es' %}Cerrar{% elif lang == 'he' %}סגור{% else %}Close{% endif %}">&times;</button>
+            <h3 class="share-modal-title">{% if lang == 'es' %}Compartir esta p&aacute;gina{% elif lang == 'he' %}שתף דף זה{% else %}Share this page{% endif %}</h3>
             <div class="share-qr-wrap">
                 <div id="share-qr"></div>
-                <p class="share-qr-hint">{% if lang == 'es' %}Escanea con tu dispositivo{% else %}Scan with your device{% endif %}</p>
+                <p class="share-qr-hint">{% if lang == 'es' %}Escanea con tu dispositivo{% elif lang == 'he' %}סרוק עם המכשיר שלך{% else %}Scan with your device{% endif %}</p>
             </div>
             <div class="share-url-wrap">
                 <input type="text" id="share-url" class="share-url-input" readonly aria-label="URL">
-                <button id="share-copy-btn" class="share-copy-btn" title="{% if lang == 'es' %}Copiar{% else %}Copy{% endif %}">
+                <button id="share-copy-btn" class="share-copy-btn" title="{% if lang == 'es' %}Copiar{% elif lang == 'he' %}העתק{% else %}Copy{% endif %}">
                     <span class="material-symbols-outlined">content_copy</span>
                 </button>
             </div>
@@ -81,6 +83,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+    <script>
+    (function(){
+        function show(){document.documentElement.classList.add('icons-ready')}
+        function poll(){
+            if(document.fonts.check('24px "Material Symbols Outlined"')){show()}
+            else{requestAnimationFrame(poll)}
+        }
+        poll();
+    })();
+    </script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

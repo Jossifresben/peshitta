@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}{% if lang == 'es' %}Un puente entre tradiciones{% else %}A bridge between traditions{% endif %} - {{ t.app_title }}{% endblock %}
+{% block title %}{{ t.methodology_title }} - {{ t.app_title }}{% endblock %}
 
 {% block lang_links %}
 <a href="{{ url_for('methodology_page', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('methodology_page', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('methodology_page', lang='he', script=script, trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 {% endblock %}
 
 {% block head_extra %}
@@ -109,8 +110,8 @@
 {% block content %}
     <div class="container">
         <header>
-            <h1>{% if lang == 'es' %}Un puente entre tradiciones{% else %}A bridge between traditions{% endif %}</h1>
-            <p style="font-style: italic; font-size: 1.15em; margin-top: -0.25em;">{% if lang == 'es' %}Sabe mejor en arameo{% else %}It tastes better in Aramaic{% endif %}</p>
+            <h1>{{ t.methodology_title }}</h1>
+            <p style="font-style: italic; font-size: 1.15em; margin-top: -0.25em;">{% if lang == 'es' %}Sabe mejor en arameo{% elif lang == 'he' %}טעים יותר בארמית{% else %}It tastes better in Aramaic{% endif %}</p>
         </header>
 
         <div class="methodology-content">
@@ -205,6 +206,96 @@
 
             <p>El texto siríaco que alimenta esta aplicación procede del <strong>corpus ETCBC/syrnt</strong> (Eep Talstra Centre for Bible and Computer, VU Ámsterdam), un texto plano en Unicode que cubre el canon tradicional de 22 libros del Nuevo Testamento en la Peshitta. Se trata de un texto consonántico: no incluye marcas supralineales como <em>syame</em> (puntos de plural), <em>rukkakha/qushshaya</em> ni vocales. Esta limitación es deliberada para el análisis de raíces trilíteras, donde el esqueleto consonántico es lo que importa, pero significa que el texto mostrado en la lectura interlineal carece de la puntuación completa que un lector de siríaco esperaría.</p>
 
+            {% elif lang == 'he' %}
+
+            <p>ארמית, עברית וערבית הן שפות אחיות. הן חולקות שורשים, מבנים והבנה יסודית של המילה ככוח חי ולא כמושג קבוע. משמעות הדבר היא שחקר הארמית של ישוע אינו שייך למסורת אחת בלבד. הוא שייך למשפחה השמית כולה. מוסלמי, יהודי ונוצרי יכולים לשבת מול אותו שורש ולזהות בו משהו משלהם. הגשר הבין-דתי אינו מבנה דיפלומטי: הוא כבר קיים בשפה.</p>
+
+            <h2>השיטה: קריאת הפשיטתא מהשורש</h2>
+
+            <p>השפות השמיות פועלות אחרת מהשפות שרוב הקוראים המערביים מכירים. אנגלית, יוונית, לטינית מגדירות. ארמית, עברית וערבית <em>מקרינות</em>. כל מילה צומחת משורש תלת-עיצורי &mdash; שלושה עיצורים המולידים משפחות שלמות של משמעויות קרובות. השורש אינו מספק מושג חתום. הוא פותח שדה כוח. מה שמילון מתרגם במילה אחת, בארמית פועם בעשרה כיוונים בו-זמנית.</p>
+
+            <p>הדבר חשוב במיוחד כאשר הטקסט הנדון הוא הבשורות. דבריו של ישוע נאמרו בארמית, נרשמו ביוונית, עברו ללטינית, תורגמו לשפות מודרניות. כל שכבת תרגום מרוויחה משהו ומאבדת משהו. מה שאובד, כמעט תמיד, הוא השורש &mdash; ואיתו גל ההתרחבות של המשמעות שהמילה המקורית הפעילה בשומע.</p>
+
+            <p>הרעיון מאחורי יישום זה הוא פשוט: <em>לחזור לפשיטתא</em>, הטקסט הסורי של הבשורות, ולקרוא מהשורש. השיטה, שמערכתה כאן על ידי <a href="{{ url_for('about_page', lang=lang) }}">יוסי פרסקו (Fresco)</a>, פותחה על ידי ויסנטה הייא (עבדלמומין איה), פילוסוף, היסטוריון וערביסט מאוניברסיטת סביליה.</p>
+
+            <h3>חמש המשימות</h3>
+
+            <p>השיטה בנויה על חמישה צעדים נגישים לכל מי שמוכן להתבונן מקרוב:</p>
+
+            <ul class="task-list">
+                <li><strong>1. השוואת תרגומים.</strong> תרגומים חולקים בדיוק בנקודות שבהן הארמית אומרת משהו שאף מתרגם לא הצליח לפתור. חילוקי הדעות הם המפה: הם מראים היכן לחפור.</li>
+                <li><strong>2. עיון בפשיטתא.</strong> ללכת לטקסט הסורי ולזהות את הצורה הפועלית או השמנית המדויקת.</li>
+                <li><strong>3. חיפוש קונקורדנציות מקראיות.</strong> היכן עוד מופיע אותו שורש בכתובים? דפוסים חוזרים חושפים משמעות עמוקה. לפרש את המקרא מתוך המקרא.</li>
+                <li><strong>4. חקירת המשפחה המלאה של השורש.</strong> לאסוף כל מילה שנולדה מאותם שלושה עיצורים. מתוך משפחה זו עולה <em>טעם השורש</em> &mdash; לא הגדרה, אלא שדה סמנטי חי, משהו שחווים יותר מאשר מבינים.</li>
+                <li><strong>5. יצירת הרחבת המשמעות.</strong> לא תרגום חלופי. <em>הרחבה</em> המאפשרת לקורא לשכון במרחב שהמילה הארמית פותחת.</li>
+            </ul>
+
+            <h3>מה שנגלה כשמתבוננים</h3>
+
+            <p>שתי דוגמאות מספיקות כדי להמחיש את ההבדל.</p>
+
+            <div class="example-block">
+                <p>ב<a href="{{ url_for('read', lang=lang, book='Luke', chapter=24, v_start=39, script=script, trans=trans) }}">לוקס כד:לט</a>, ישוע הקם לתחייה אומר לתלמידיו "געו בי." אבל הפועל הארמי אינו <span class="root-example">Q-R-B</span> &mdash; להתקרב בעדינות, כמי שמגיש מתנה. הפועל הוא <a href="{{ url_for('index', lang=lang, q='G-SH', script=script, trans=trans) }}#results"><span class="root-example">G-SH</span></a> (<span class="syriac">ܓܫ</span>): לחקור, למשש, לגשש, להתגושש בחושך. הוא לא אומר "התקרבו בחמלה." הוא אומר משהו גולמי ואינטימי יותר: <em>חקרו את בשרי בידיכם</em>. עולם שלם של משמעות שאף תרגום אינו משמר.</p>
+            </div>
+
+            <div class="example-block">
+                <p>כאשר ישוע אומר ללזרוס "צא החוצה" (<em>תא לבר</em>) ב<a href="{{ url_for('read', lang=lang, book='John', chapter=11, v_start=43, script=script, trans=trans) }}">יוחנן יא:מג</a>, השורש <a href="{{ url_for('index', lang=lang, q='A-T-Y', script=script, trans=trans) }}#results"><span class="root-example">'-T-Y</span></a> אינו רק "לצאת." הוא גם "לנצח החוצה," "להניב פרי החוצה," "להתמיר החוצה." תחיית המתים כאן אינה פועלת כאירוע רפואי. היא פועלת כהתפוצצות של משמעות.</p>
+            </div>
+
+            <h3>קונסטלציות של משמעות</h3>
+
+            <p>כלי מרכזי בשיטה זו הוא <em>קונסטלציית המשמעות</em>. קטע פועל כמו שמיים בלילה. השורשים התלת-עיצוריים שבתוכו יוצרים דפוסים &mdash; קונסטלציות &mdash; שמאירים זה את זה.</p>
+
+            <p><a href="{{ url_for('constellation', lang=lang, book='Luke', chapter=1, v_start=26, v_end=38, script=script, trans=trans) }}">הבשורה (לוקס א:כו-לח)</a> מכילה לפחות שלוש קונסטלציות מזוהות. קונסטלציית <strong>השמות</strong>: השורש <a href="{{ url_for('index', lang=lang, q='Q-R-A', script=script, trans=trans) }}#results"><span class="root-example">Q-R-A</span></a> ("לקרוא") מופיע חמש פעמים, <em>שמא</em> ("שם") ארבע. קונסטלציית <strong>ההריון והפוריות</strong>: בתולה, מאורסה, רחם, והפרט המדהים בשקט שזה קורה "בחודש השישי" &mdash; שבלוח הארמי מסמן את חודש ההשקיה, החודש שבו המים נכנסים לשדות להוציא חיים. קונסטלציית <strong>הכוח</strong>: כס מלוכה, ממלכה, עוצמה, אדון.</p>
+
+            <p>דפוסים אלה אינם דקורטיביים. הם מבניים. הפיכתם לגלויים משנה את אופן קריאת הטקסט.</p>
+
+            <h3>קונסטלציות הפשיטתא</h3>
+
+            <p>יישום זה מתרגם את השיטה לכלים עובדים. עמוד הבית מציע שני מצבי חיפוש:</p>
+
+            <ul class="tool-list">
+                <li><strong>חיפוש שורש</strong> &mdash; הקלד שורש תלת-עיצורי (לדוגמה, <a href="{{ url_for('index', lang=lang, q='SH-L-M', script=script, trans=trans) }}#results"><em>SH-L-M</em></a>) וקבל את כל צורותיו המאומתות בפשיטתא, עם מקורות מקראיים, קוגנטים עבריים וערביים, ושורשים אחיים. נסה <a href="{{ url_for('index', lang=lang, q='N-P-SH', script=script, trans=trans) }}#results"><em>N-P-SH</em></a>: השורש שבארמית שוזר "נשמה," "לנשום," "לנוח" ו"להתרבות" לשדה משמעות אחד.</li>
+                <li><strong>חיפוש מילה</strong> &mdash; חפש כל מילה באנגלית או בספרדית ומצא את השורשים הארמיים מאחוריה. לדוגמה, <a href="{{ url_for('index', lang=lang, cw='shalom', script=script, trans=trans) }}#results"><em>shalom</em></a>.</li>
+            </ul>
+
+            <p>מתוצאות החיפוש ניתן לגשת אל:</p>
+
+            <ul class="tool-list">
+                <li><a href="{{ url_for('visualize', root_key='SH-L-M', lang=lang, script=script, trans=trans) }}"><strong>הדמיית שורש</strong></a> &mdash; גרף אינטראקטיבי הפורש את המשפחה המלאה של שורש: כל צורה, משמעות וקשר ביניהן. <em>טעם השורש</em> שנעשה גלוי.</li>
+                <li><a href="{{ url_for('visualize', root_key='N-P-SH', lang=lang, script=script, trans=trans, tab='ficha') }}"><strong>כרטיס שורש</strong></a> &mdash; כל הצורות המאומתות של שורש, משמעויותיו, מקורות מקראיים, קוגנטים עבריים וערביים, ושורשים אחיים מרוכזים בתצוגה אחת.</li>
+                <li><a href="{{ url_for('read', lang=lang, book='John', chapter=1, v_start=1, script=script, trans=trans) }}"><strong>קריאה בין-שורית</strong></a> &mdash; טקסט הפשיטתא פסוק אחר פסוק עם תעתיק, פירוש ותרגום, נגיש מכל מקור מקראי.</li>
+                <li><a href="{{ url_for('constellation', lang=lang, book='Luke', chapter=1, v_start=26, v_end=38, script=script, trans=trans) }}"><strong>קונסטלציות</strong></a> &mdash; מפת הכוכבים של קטע: כל שורש תלת-עיצורי מוצג כצומת, עם הקשרים בין השורשים המאירים את המבנה העמוק של הטקסט.</li>
+            </ul>
+
+            <p>איננו מתיימרים להחליף לימוד מעמיק. אנו שואפים לתת לכל אדם סקרן את הכלים לצעדים הראשונים ולגלות, דרך החקירה שלו עצמו, שבארמית זה באמת טעים יותר.</p>
+
+            <h3>מקורות</h3>
+
+            <p>השיטה המערכתית כאן פותחה על ידי ויסנטה הייא (עבדלמומין איה), פילוסוף, היסטוריון וערביסט מאוניברסיטת סביליה. עבודותיו העיקריות בנושא:</p>
+
+            <ul class="references-list">
+                <li><em>El arameo en sus labios</em> (Fragmenta, 2013)</li>
+                <li><em>Belleza y profundidad</em> (Fragmenta, 2021)</li>
+                <li><em>Descolonizar a Jesucristo</em> (Akal, 2018)</li>
+                <li><em>El Padrenuestro en arameo</em> (Vaso Roto)</li>
+                <li><em>La Luz del arameo</em> (Almuzara, 2025)</li>
+            </ul>
+
+            <h3>מילונים מרכזיים</h3>
+
+            <p>נתוני הקוגנטים והשורשים ביישום זה נבדקים מול שלושה מילונים סמכותיים, אחד לכל שפה אחות:</p>
+
+            <ul class="references-list">
+                <li><strong>סורית:</strong> J. Payne Smith, <em>A Compendious Syriac Dictionary</em> (Oxford, 1903)</li>
+                <li><strong>עברית:</strong> Brown, Driver &amp; Briggs, <em>A Hebrew and English Lexicon of the Old Testament</em> (BDB) &mdash; זמין ב-<a href="https://www.sefaria.org/BDB" target="_blank">Sefaria</a></li>
+                <li><strong>ערבית:</strong> Edward William Lane, <em>An Arabic-English Lexicon</em> (London, 1863&ndash;1893)</li>
+            </ul>
+
+            <h3>קורפוס טקסטואלי</h3>
+
+            <p>הטקסט הסורי המניע יישום זה מגיע מ<strong>קורפוס ETCBC/syrnt</strong> (Eep Talstra Centre for Bible and Computer, VU Amsterdam), מערך נתונים טקסטואלי ביוניקוד המכסה את קנון 22 הספרים המסורתי של הברית החדשה בפשיטתא. זהו טקסט עיצורי: הוא אינו כולל סימנים על-שוריים כמו <em>סיאמה</em> (נקודות רבים), <em>רוככא/קושיא</em> או ניקוד. הגבלה זו מכוונת לניתוח שורשים תלת-עיצוריים, שבו השלד העיצורי הוא מה שחשוב, אך משמעותה שהטקסט המוצג בקורא הבין-שורי חסר את הניקוד המלא שקורא סורית היה מצפה לו.</p>
+
             {% else %}
 
             <p>Aramaic, Hebrew, and Arabic are sister languages. They share roots, structures, and a fundamental understanding of the word as living force rather than fixed concept. This means the study of the Aramaic Jesus belongs to no single tradition. It belongs to the entire Semitic family. A Muslim, a Jew, and a Christian can sit before the same root and recognize something of their own in it. The interreligious bridge is not a diplomatic construction. It already existed in the language.</p>
@@ -298,5 +389,10 @@
             {% endif %}
 
         </div>
+
+        <footer>
+            <div class="footer-line">{{ t.footer_by }} Jossi Fresco{{ t.footer_inspired }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
+            <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a></div>
+        </footer>
     </div>
 {% endblock %}

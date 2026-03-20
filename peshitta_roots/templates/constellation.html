@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}{{ t.app_title }} — {% if lang == 'es' %}Constelacion{% else %}Constellation{% endif %}{% endblock %}
+{% block title %}{{ t.app_title }} — {{ t.constellation_title }}{% endblock %}
 
 {% block lang_links %}
 <a href="?book={{ book }}&chapter={{ chapter }}&v_start={{ v_start }}&v_end={{ v_end }}&lang=es&script={{ script }}&trans=es" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="?book={{ book }}&chapter={{ chapter }}&v_start={{ v_start }}&v_end={{ v_end }}&lang=en&script={{ script }}&trans=en" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="?book={{ book }}&chapter={{ chapter }}&v_start={{ v_start }}&v_end={{ v_end }}&lang=he&script={{ script }}&trans=he" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 {% endblock %}
 
 {% block head_extra %}
@@ -206,11 +207,11 @@
 {% block content %}
     <div class="container">
         <header>
-            <h1 class="page-title">{% if lang == 'es' %}Constelacion del Pasaje{% else %}Passage Constellation{% endif %}</h1>
+            <h1 class="page-title">{{ t.constellation_title }}</h1>
         </header>
 
         <div id="constellation-loading" class="viz-loading">
-            <p>{% if lang == 'es' %}Cargando constelacion...{% else %}Loading constellation...{% endif %}</p>
+            <p>{{ t.constellation_loading }}</p>
         </div>
         <div id="constellation-error" class="viz-error" style="display:none;"></div>
 
@@ -222,9 +223,9 @@
                 <!-- Passage panel -->
                 <div class="constellation-passage" id="passage-panel">
                     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-                        <button id="prev-verse-btn" class="nav-btn" style="padding:4px 10px; font-size:0.85em;" title="{% if lang == 'es' %}Versiculo anterior{% else %}Previous verse{% endif %}">&larr;</button>
+                        <button id="prev-verse-btn" class="nav-btn" style="padding:4px 10px; font-size:0.85em;" title="{{ t.prev_verse }}">&larr;</button>
                         <h3 id="passage-panel-title" style="margin:0; flex:1; text-align:center;"></h3>
-                        <button id="next-verse-btn" class="nav-btn" style="padding:4px 10px; font-size:0.85em;" title="{% if lang == 'es' %}Versiculo siguiente{% else %}Next verse{% endif %}">&rarr;</button>
+                        <button id="next-verse-btn" class="nav-btn" style="padding:4px 10px; font-size:0.85em;" title="{{ t.next_verse }}">&rarr;</button>
                     </div>
                     <div id="passage-text"></div>
                 </div>
@@ -233,12 +234,12 @@
                 <div class="constellation-viz-wrap" id="constellation-viz-wrap">
                     <div class="constellation-controls">
                         <span class="constellation-legend">
-                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#8B4513;"></span> {% if lang == 'es' %}Raiz{% else %}Root{% endif %}</span>
-                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#2E5090;"></span> {% if lang == 'es' %}Hebreo{% else %}Hebrew{% endif %}</span>
-                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#2D7D46;"></span> {% if lang == 'es' %}Arabe{% else %}Arabic{% endif %}</span>
+                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#8B4513;"></span> {{ t.legend_root }}</span>
+                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#2E5090;"></span> {{ t.legend_hebrew }}</span>
+                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#2D7D46;"></span> {{ t.legend_arabic }}</span>
                             <span class="constellation-legend-item">
                                 <svg width="20" height="10"><line x1="0" y1="5" x2="20" y2="5" stroke="#DAA520" stroke-width="2" stroke-dasharray="4,2"/></svg>
-                                {% if lang == 'es' %}Puente{% else %}Bridge{% endif %}
+                                {{ t.legend_bridge }}
                             </span>
                         </span>
                         <div style="margin-left:auto; display:flex; align-items:center; gap:4px;">
@@ -260,6 +261,19 @@
                                     <div style="margin-top:6px;"><b>Palabras</b></div>
                                     <div>Click &mdash; fijar/soltar vista</div>
                                     <div>Doble click &mdash; abrir visualizador</div>
+                                    {% elif lang == 'he' %}
+                                    <div style="font-weight:600; margin-bottom:6px;">ניווט</div>
+                                    <div><b>עכבר</b></div>
+                                    <div>גלגלת &mdash; זום</div>
+                                    <div>גרירת רקע &mdash; הזזה</div>
+                                    <div>גרירת צומת &mdash; מיקום מחדש</div>
+                                    <div style="margin-top:6px;"><b>מקלדת</b></div>
+                                    <div>&larr; &uarr; &darr; &rarr; &mdash; הזזה</div>
+                                    <div>+ / &minus; &mdash; זום</div>
+                                    <div>Esc &mdash; איפוס תצוגה</div>
+                                    <div style="margin-top:6px;"><b>מילים</b></div>
+                                    <div>לחיצה &mdash; נעילה/שחרור תצוגה</div>
+                                    <div>לחיצה כפולה &mdash; פתיחת ממחיש</div>
                                     {% else %}
                                     <div style="font-weight:600; margin-bottom:6px;">Navigation</div>
                                     <div><b>Mouse</b></div>
@@ -276,7 +290,7 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            <button id="constellation-fullscreen" class="viz-fullscreen-btn" title="{% if lang == 'es' %}Pantalla completa{% else %}Fullscreen{% endif %}">
+                            <button id="constellation-fullscreen" class="viz-fullscreen-btn" title="{{ t.fullscreen }}">
                                 <span class="material-symbols-outlined" id="fullscreen-icon">fullscreen</span>
                             </button>
                         </div>
@@ -301,6 +315,23 @@
         var SCRIPT = {{ script|tojson }};
         var TRANS = {{ trans|tojson }};
         var BOOK_NAMES = {{ book_names|tojson }};
+
+        var STRINGS = {
+            rootsFound: {{ t.roots_found|tojson }},
+            connections: {{ t.connections_label|tojson }},
+            legendRoot: {{ t.legend_root|tojson }},
+            hebrewLabel: {{ t.hebrew_label|tojson }},
+            arabicLabel: {{ t.arabic_label|tojson }},
+            bridgeRoot: {{ t.bridge_root|tojson }},
+            bridgeLabel: {{ t.bridge_label|tojson }},
+            outlierLabel: {{ t.outlier_label|tojson }},
+            vizRootFamily: {{ t.viz_root_family|tojson }},
+            errorLoading: {{ t.error_loading|tojson }},
+            syriacLabel: {{ t.syriac_label|tojson }},
+            clickClose: {{ t.click_close|tojson }},
+            clickExplore: {{ t.click_explore|tojson }},
+            semanticOutlier: {{ t.semantic_outlier|tojson }}
+        };
 
         // Colors
         var ROOT_COLORS = [
@@ -352,9 +383,7 @@
             document.getElementById('passage-panel-title').textContent = data.reference;
 
             // Stats
-            var statsText = LANG === 'es'
-                ? data.total_roots + ' raices encontradas' + (data.connections.length ? ', ' + data.connections.length + ' conexiones' : '')
-                : data.total_roots + ' roots found' + (data.connections.length ? ', ' + data.connections.length + ' connections' : '');
+            var statsText = data.total_roots + ' ' + STRINGS.rootsFound + (data.connections.length ? ', ' + data.connections.length + ' ' + STRINGS.connections : '');
             document.getElementById('constellation-stats').textContent = statsText;
 
             // Build root tag list
@@ -820,22 +849,22 @@
             nodeEnter.on('mouseover', function(event, d) {
                 var langLabel;
                 if (d.type === 'root') {
-                    langLabel = LANG === 'es' ? 'Raiz' : 'Root';
+                    langLabel = STRINGS.legendRoot;
                 } else if (d.type === 'hebrew') {
-                    langLabel = LANG === 'es' ? 'Hebreo' : 'Hebrew';
+                    langLabel = STRINGS.hebrewLabel;
                 } else {
-                    langLabel = LANG === 'es' ? 'Arabe' : 'Arabic';
+                    langLabel = STRINGS.arabicLabel;
                 }
                 var html = '<strong>' + d.label + '</strong> <small>(' + langLabel + ')</small><br>' +
                            '<em>' + d.sublabel + '</em>';
                 if (d.detail) html += '<br>' + d.detail;
                 if (d.type === 'root') {
                     html += '<br><small style="color:var(--accent-gold);">' +
-                        (LANG === 'es' ? 'Click = abrir visualizador' : 'Click = open visualizer') + '</small>';
+                        STRINGS.clickExplore + '</small>';
                 }
                 if (d.outlier) {
                     html += '<br><span style="color:#DAA520;font-weight:bold;">' +
-                        (LANG === 'es' ? 'Divergente' : 'Outlier') + '</span>';
+                        STRINGS.semanticOutlier + '</span>';
                 }
                 tooltip.html(html)
                     .style('display', 'block')
