@@ -2719,6 +2719,12 @@ footer a:hover {
     line-height: 1.6;
     font-size: 0.95rem;
 }
+[dir="rtl"] .text-result-translation {
+    text-align: right;
+}
+[dir="rtl"] .text-result-translit {
+    text-align: right;
+}
 .text-result-syriac {
     font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif;
     direction: rtl;

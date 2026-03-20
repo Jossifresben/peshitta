@@ -694,7 +694,7 @@
         var resultsDiv = document.getElementById('text-search-results');
         if (!append) resultsDiv.innerHTML = '<p style="text-align:center; color:var(--text-muted);">...</p>';
 
-        fetch('/api/text-search?q=' + encodeURIComponent(textSearchQuery) + '&lang={{ lang }}&page=' + textSearchPage + '&per_page=20')
+        fetch('/api/text-search?q=' + encodeURIComponent(textSearchQuery) + '&lang=auto&page=' + textSearchPage + '&per_page=20&script={{ script }}')
             .then(function(r) { return r.json(); })
             .then(function(data) {
                 if (!append) resultsDiv.innerHTML = '';
@@ -724,13 +724,6 @@
                     refLink.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px;vertical-align:-2px;">menu_book</span> ' + escHtml(r.reference_display) + ' <span style="font-size:0.85em;">→</span>';
                     card.appendChild(refLink);
 
-                    if (r.match_type === 'translation' && r.translation) {
-                        var transEl = document.createElement('p');
-                        transEl.className = 'text-result-translation';
-                        transEl.innerHTML = highlightMatch(r.translation, r.match_positions);
-                        card.appendChild(transEl);
-                    }
-
                     // Syriac with cross-highlighting
                     var syrEl = document.createElement('p');
                     syrEl.className = 'text-result-syriac';
@@ -753,6 +746,19 @@
                             tlEl.textContent = r.words_translit.join(' ');
                         }
                         card.appendChild(tlEl);
+                    }
+
+                    // Translation with highlighting
+                    if (r.match_type === 'translation' && r.translation) {
+                        var transEl = document.createElement('p');
+                        transEl.className = 'text-result-translation';
+                        // Detect RTL translation languages
+                        if (data.search_lang === 'he' || data.search_lang === 'ar') {
+                            transEl.style.direction = 'rtl';
+                            transEl.style.textAlign = 'right';
+                        }
+                        transEl.innerHTML = highlightMatch(r.translation, r.match_positions);
+                        card.appendChild(transEl);
                     }
 
                     resultsDiv.appendChild(card);

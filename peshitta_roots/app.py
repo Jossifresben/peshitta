@@ -335,8 +335,36 @@ def api_text_search():
     if not query or len(query) < 2:
         return jsonify({'query': query, 'total': 0, 'results': []})
 
-    # Get book names for reference translation
-    lang_section = _i18n.get(lang, _i18n.get('en', {}))
+    # Auto-detect query language from script
+    if lang == 'auto':
+        # Check for Syriac, Hebrew, Arabic scripts; default to trying all Latin languages
+        if any('\u0710' <= ch <= '\u074f' for ch in query):
+            lang = 'syriac'  # will be handled by search_text
+        elif any('\u0590' <= ch <= '\u05ff' for ch in query):
+            lang = 'he'
+        elif any('\u0600' <= ch <= '\u06ff' for ch in query):
+            lang = 'ar'
+        else:
+            # Latin script — search all Latin-script languages, return first with results
+            lang = None
+
+    if lang is None:
+        # Search en and es, merge results by verse order
+        all_results = []
+        for try_lang in ('en', 'es'):
+            results = _corpus.search_text(query, try_lang)
+            if results:
+                all_results = results
+                lang = try_lang
+                break
+        if not all_results:
+            lang = 'en'
+    else:
+        all_results = _corpus.search_text(query, lang)
+
+    # Use detected lang for UI (book names)
+    ui_lang = _detect_lang()
+    lang_section = _i18n.get(ui_lang, _i18n.get('en', {}))
     book_names = lang_section.get('book_names', {})
 
     def translate_ref(ref):
