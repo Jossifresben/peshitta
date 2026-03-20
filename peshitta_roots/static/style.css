@@ -1028,6 +1028,19 @@ header p {
 .search-row .autocomplete-wrapper {
     flex: 1;
 }
+.search-row input[type="text"] {
+    padding: 12px 16px;
+    font-size: 1.1em;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    flex: 1;
+}
+.search-row input[type="text"]:focus {
+    border-color: var(--accent);
+    outline: none;
+}
 
 .search-row button {
     padding: 12px 24px;
@@ -2671,6 +2684,77 @@ footer a:hover {
     .viz-check {
         font-size: 0.82em;
     }
+}
+
+/* === Text Search Results === */
+.text-search-count {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0.75rem 0 0.5rem;
+}
+.text-result-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+}
+.text-result-ref {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    background: rgba(184, 134, 11, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid rgba(184, 134, 11, 0.2);
+}
+.text-result-ref:hover {
+    background: var(--accent);
+    color: #fff;
+}
+.text-result-translation {
+    margin: 0.4rem 0 0.25rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+.text-result-syriac {
+    font-family: 'Noto Sans Syriac', 'Estrangelo Edessa', serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin: 0.4rem 0 0.1rem;
+    line-height: 1.8;
+}
+.text-result-translit {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0 0 0;
+    letter-spacing: 0.02em;
+}
+.text-result-card mark {
+    background: rgba(184, 134, 11, 0.25);
+    color: inherit;
+    padding: 0.1em 0.15em;
+    border-radius: 2px;
+}
+.text-load-more {
+    display: block;
+    width: 100%;
+    margin: 0.75rem 0;
+    padding: 0.6rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--accent);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.text-load-more:hover {
+    background: var(--accent);
+    color: var(--bg-page);
 }
 
 /* === RTL Support (Hebrew / Arabic UI) === */

@@ -323,6 +323,93 @@ def api_verse():
     })
 
 
+@app.route('/api/text-search')
+def api_text_search():
+    """Search verse translations (or Syriac text) for a substring."""
+    _init()
+    query = request.args.get('q', '').strip()
+    lang = request.args.get('lang', 'en')
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 20, type=int)
+
+    if not query or len(query) < 2:
+        return jsonify({'query': query, 'total': 0, 'results': []})
+
+    # Get book names for reference translation
+    lang_section = _i18n.get(lang, _i18n.get('en', {}))
+    book_names = lang_section.get('book_names', {})
+
+    def translate_ref(ref):
+        for en_name, local_name in book_names.items():
+            if ref.startswith(en_name):
+                return ref.replace(en_name, local_name, 1)
+        return ref
+
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
+        script = 'latin'
+    translit_fn = _get_translit_fn(script)
+
+    all_results = _corpus.search_text(query, lang)
+    total = len(all_results)
+
+    # Paginate
+    start = (page - 1) * per_page
+    end = start + per_page
+    page_results = all_results[start:end]
+
+    # For translation searches, find which Syriac words match the query
+    # by checking their glosses
+    query_lower = query.lower()
+
+    # Parse references for reader links
+    out = []
+    for r in page_results:
+        ref = r['reference']
+        last_space = ref.rfind(' ')
+        book = ref[:last_space] if last_space != -1 else ref
+        ch_v = ref[last_space + 1:] if last_space != -1 else ''
+        chapter = ch_v.split(':')[0] if ':' in ch_v else ''
+        verse = ch_v.split(':')[1] if ':' in ch_v else ''
+
+        # Build per-word data with transliteration and gloss-based highlighting
+        syriac_words = r['syriac'].split()
+        translit_words = [translit_fn(w) for w in syriac_words]
+        highlight_indices = []
+
+        if r['match_type'] == 'translation':
+            for i, w in enumerate(syriac_words):
+                root = _extractor.lookup_word_root(w)
+                if root:
+                    gloss = _glosser.gloss(w, root, 'en').lower()
+                    if query_lower in gloss:
+                        highlight_indices.append(i)
+
+        out.append({
+            'reference': ref,
+            'reference_display': translate_ref(ref),
+            'syriac': r['syriac'],
+            'translation': r['translation'],
+            'match_positions': r['match_positions'],
+            'match_type': r['match_type'],
+            'book': book,
+            'chapter': chapter,
+            'verse': verse,
+            'words': syriac_words,
+            'words_translit': translit_words,
+            'highlight_indices': highlight_indices,
+        })
+
+    return jsonify({
+        'query': query,
+        'search_lang': lang,
+        'total': total,
+        'page': page,
+        'per_page': per_page,
+        'results': out,
+    })
+
+
 @app.route('/api/suggest')
 def api_suggest():
     """Return roots matching a Latin-letter prefix for autocomplete."""

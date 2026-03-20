@@ -68,6 +68,7 @@
             <div class="search-tabs">
                 <button class="search-tab active" id="tab-root" onclick="switchTab('root')">{{ t.search_tab_root }}</button>
                 <button class="search-tab" id="tab-cognate" onclick="switchTab('cognate')">{{ t.search_tab_cognate }}</button>
+                <button class="search-tab" id="tab-text" onclick="switchTab('text')">{{ t.search_tab_text }}</button>
             </div>
 
             <!-- Root search panel -->
@@ -124,6 +125,19 @@
                     </div>
                 </form>
                 <p class="search-help">{{ t.cognate_search_help }}</p>
+            </div>
+
+            <!-- Text search panel -->
+            <div id="panel-text" class="search-panel" style="display:none;">
+                <form id="text-search-form" onsubmit="return doTextSearch(event)">
+                    <div class="search-row">
+                        <input type="text" id="text-input" name="ts" value=""
+                               placeholder="{{ t.text_search_placeholder }}" autocomplete="off">
+                        <button type="submit">{{ t.search_button }}</button>
+                    </div>
+                </form>
+                <p class="search-help">{{ t.text_search_help }}</p>
+                <div id="text-search-results"></div>
             </div>
 
             <div class="home-cta-row">
@@ -298,21 +312,13 @@
     <script>
     // --- Search tab switching ---
     function switchTab(tab) {
-        var rootPanel = document.getElementById('panel-root');
-        var cognatePanel = document.getElementById('panel-cognate');
-        var rootTab = document.getElementById('tab-root');
-        var cognateTab = document.getElementById('tab-cognate');
-        if (tab === 'root') {
-            rootPanel.style.display = '';
-            cognatePanel.style.display = 'none';
-            rootTab.classList.add('active');
-            cognateTab.classList.remove('active');
-        } else {
-            rootPanel.style.display = 'none';
-            cognatePanel.style.display = '';
-            cognateTab.classList.add('active');
-            rootTab.classList.remove('active');
-        }
+        var tabs = ['root', 'cognate', 'text'];
+        tabs.forEach(function(t) {
+            var panel = document.getElementById('panel-' + t);
+            var btn = document.getElementById('tab-' + t);
+            if (panel) panel.style.display = (t === tab) ? '' : 'none';
+            if (btn) btn.classList.toggle('active', t === tab);
+        });
     }
     // --- Feature showcase ---
     function switchFeature(tab) {
@@ -665,6 +671,139 @@
             acList.innerHTML = '';
         }
     });
+
+    // --- Text search ---
+    var TEXT_STRINGS = {
+        noResults: {{ t.text_search_no_results|tojson }},
+        resultsCount: {{ t.text_search_results_count|tojson }},
+        readContext: {{ t.text_search_read_context|tojson }}
+    };
+    var textSearchPage = 1;
+    var textSearchQuery = '';
+
+    function doTextSearch(event) {
+        event.preventDefault();
+        textSearchPage = 1;
+        textSearchQuery = document.getElementById('text-input').value.trim();
+        if (!textSearchQuery) return false;
+        fetchTextResults(false);
+        return false;
+    }
+
+    function fetchTextResults(append) {
+        var resultsDiv = document.getElementById('text-search-results');
+        if (!append) resultsDiv.innerHTML = '<p style="text-align:center; color:var(--text-muted);">...</p>';
+
+        fetch('/api/text-search?q=' + encodeURIComponent(textSearchQuery) + '&lang={{ lang }}&page=' + textSearchPage + '&per_page=20')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (!append) resultsDiv.innerHTML = '';
+
+                if (data.total === 0) {
+                    resultsDiv.innerHTML = '<p class="no-results">' + TEXT_STRINGS.noResults + '</p>';
+                    return;
+                }
+
+                // Show count header (only on first page)
+                if (!append) {
+                    var countEl = document.createElement('p');
+                    countEl.className = 'text-search-count';
+                    countEl.textContent = data.total + ' ' + TEXT_STRINGS.resultsCount;
+                    resultsDiv.appendChild(countEl);
+                }
+
+                // Render result cards
+                for (var i = 0; i < data.results.length; i++) {
+                    var r = data.results[i];
+                    var card = document.createElement('div');
+                    card.className = 'text-result-card';
+
+                    var refLink = document.createElement('a');
+                    refLink.className = 'text-result-ref';
+                    refLink.href = '/read?book=' + encodeURIComponent(r.book) + '&chapter=' + r.chapter + '&lang={{ lang }}&script={{ script }}&trans={{ trans }}#verse-' + r.verse;
+                    refLink.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px;vertical-align:-2px;">menu_book</span> ' + escHtml(r.reference_display) + ' <span style="font-size:0.85em;">→</span>';
+                    card.appendChild(refLink);
+
+                    if (r.match_type === 'translation' && r.translation) {
+                        var transEl = document.createElement('p');
+                        transEl.className = 'text-result-translation';
+                        transEl.innerHTML = highlightMatch(r.translation, r.match_positions);
+                        card.appendChild(transEl);
+                    }
+
+                    // Syriac with cross-highlighting
+                    var syrEl = document.createElement('p');
+                    syrEl.className = 'text-result-syriac';
+                    if (r.match_type === 'syriac') {
+                        syrEl.innerHTML = highlightMatch(r.syriac, r.match_positions);
+                    } else if (r.words && r.highlight_indices && r.highlight_indices.length > 0) {
+                        syrEl.innerHTML = buildHighlightedWordLine(r.words, r.highlight_indices);
+                    } else {
+                        syrEl.textContent = r.syriac;
+                    }
+                    card.appendChild(syrEl);
+
+                    // Transliteration with cross-highlighting
+                    if (r.words_translit) {
+                        var tlEl = document.createElement('p');
+                        tlEl.className = 'text-result-translit';
+                        if (r.highlight_indices && r.highlight_indices.length > 0) {
+                            tlEl.innerHTML = buildHighlightedWordLine(r.words_translit, r.highlight_indices);
+                        } else {
+                            tlEl.textContent = r.words_translit.join(' ');
+                        }
+                        card.appendChild(tlEl);
+                    }
+
+                    resultsDiv.appendChild(card);
+                }
+
+                // Load more button
+                var oldMore = document.getElementById('text-load-more');
+                if (oldMore) oldMore.remove();
+                if (data.page * data.per_page < data.total) {
+                    var moreBtn = document.createElement('button');
+                    moreBtn.id = 'text-load-more';
+                    moreBtn.className = 'text-load-more';
+                    moreBtn.textContent = '+ ' + TEXT_STRINGS.resultsCount + ' (' + (data.total - data.page * data.per_page) + ')';
+                    moreBtn.onclick = function() {
+                        textSearchPage++;
+                        fetchTextResults(true);
+                    };
+                    resultsDiv.appendChild(moreBtn);
+                }
+            })
+            .catch(function() {
+                resultsDiv.innerHTML = '<p class="no-results">Error</p>';
+            });
+    }
+
+    function buildHighlightedWordLine(words, indices) {
+        var parts = [];
+        for (var i = 0; i < words.length; i++) {
+            if (indices.indexOf(i) !== -1) {
+                parts.push('<mark>' + escHtml(words[i]) + '</mark>');
+            } else {
+                parts.push(escHtml(words[i]));
+            }
+        }
+        return parts.join(' ');
+    }
+
+    function highlightMatch(text, positions) {
+        if (!positions || !positions.length) return escHtml(text);
+        var result = '';
+        var last = 0;
+        for (var i = 0; i < positions.length; i++) {
+            var start = positions[i][0];
+            var end = positions[i][1];
+            result += escHtml(text.substring(last, start));
+            result += '<mark>' + escHtml(text.substring(start, end)) + '</mark>';
+            last = end;
+        }
+        result += escHtml(text.substring(last));
+        return result;
+    }
 
     // --- Update feature CTA links with user's stored preferences ---
     (function() {

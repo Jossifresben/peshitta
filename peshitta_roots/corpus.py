@@ -172,3 +172,84 @@ class PeshittaCorpus:
             else:
                 self._translations[lang] = {}
         return self._translations.get(lang, {}).get(reference, '')
+
+    def _ensure_translations(self, lang: str) -> dict:
+        """Load and return the translations dict for a language."""
+        if lang not in self._translations:
+            lang_path = os.path.join(
+                os.path.dirname(os.path.dirname(__file__)),
+                'data', f'translations_{lang}.json'
+            )
+            if os.path.exists(lang_path):
+                with open(lang_path, 'r', encoding='utf-8') as f:
+                    self._translations[lang] = json.load(f)
+            else:
+                self._translations[lang] = {}
+        return self._translations.get(lang, {})
+
+    def search_text(self, query: str, lang: str = 'en') -> list[dict]:
+        """Search verse translations (or Syriac corpus) for a substring.
+
+        Returns list of {reference, syriac, translation, match_positions}.
+        Detects Syriac script automatically; otherwise searches the
+        translation file for the given language.
+        """
+        self.load()
+        results = []
+        query_lower = query.lower()
+
+        # Detect Syriac script (U+0710-U+074F)
+        is_syriac = any('\u0710' <= ch <= '\u074f' for ch in query)
+
+        if is_syriac:
+            # Search Syriac corpus directly
+            for ref in self._verse_order:
+                text = self._verses[ref]
+                pos = text.find(query)
+                if pos != -1:
+                    positions = []
+                    start = 0
+                    while True:
+                        idx = text.find(query, start)
+                        if idx == -1:
+                            break
+                        positions.append([idx, idx + len(query)])
+                        start = idx + 1
+                    results.append({
+                        'reference': ref,
+                        'syriac': text,
+                        'translation': '',
+                        'match_positions': positions,
+                        'match_type': 'syriac'
+                    })
+                    if len(results) >= 100:
+                        break
+        else:
+            # Search translations for the given language
+            translations = self._ensure_translations(lang)
+            for ref in self._verse_order:
+                trans_text = translations.get(ref, '')
+                if not trans_text:
+                    continue
+                trans_lower = trans_text.lower()
+                pos = trans_lower.find(query_lower)
+                if pos != -1:
+                    positions = []
+                    start = 0
+                    while True:
+                        idx = trans_lower.find(query_lower, start)
+                        if idx == -1:
+                            break
+                        positions.append([idx, idx + len(query_lower)])
+                        start = idx + 1
+                    results.append({
+                        'reference': ref,
+                        'syriac': self._verses.get(ref, ''),
+                        'translation': trans_text,
+                        'match_positions': positions,
+                        'match_type': 'translation'
+                    })
+                    if len(results) >= 100:
+                        break
+
+        return results
