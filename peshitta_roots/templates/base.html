@@ -14,7 +14,7 @@
     {% block head_extra %}{% endblock %}
 </head>
 <body>
-    <a href="#main-content" class="skip-link">{% if lang == 'es' %}Ir al contenido{% elif lang == 'he' %}דלג לתוכן{% else %}Skip to content{% endif %}</a>
+    <a href="#main-content" class="skip-link">{% if lang == 'es' %}Ir al contenido{% elif lang == 'he' %}דלג לתוכן{% elif lang == 'ar' %}انتقل إلى المحتوى{% else %}Skip to content{% endif %}</a>
 
     <div class="sticky-header" role="banner">
         <a href="{{ url_for('index', lang=lang) }}" class="nav-logo" title="Home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
@@ -25,6 +25,7 @@
                 <a href="?lang=es" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
                 <a href="?lang=en" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
                 <a href="?lang=he" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
+                <a href="?lang=ar" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
                 {% endblock %}
             </div>
         </div>
@@ -54,22 +55,22 @@
         {% endblock %}
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
         {% block header_share %}
-        <button class="share-toggle" id="share-toggle" aria-label="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% else %}Share{% endif %}" title="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
+        <button class="share-toggle" id="share-toggle" aria-label="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% elif lang == 'ar' %}مشاركة{% else %}Share{% endif %}" title="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% elif lang == 'ar' %}مشاركة{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
         {% endblock %}
     </div>
 
     {% block share_modal %}
-    <div id="share-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% else %}Share{% endif %}">
+    <div id="share-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% elif lang == 'ar' %}مشاركة{% else %}Share{% endif %}">
         <div class="modal-content share-modal-content">
-            <button class="modal-close" onclick="document.getElementById('share-modal').classList.remove('active')" aria-label="{% if lang == 'es' %}Cerrar{% elif lang == 'he' %}סגור{% else %}Close{% endif %}">&times;</button>
-            <h3 class="share-modal-title">{% if lang == 'es' %}Compartir esta p&aacute;gina{% elif lang == 'he' %}שתף דף זה{% else %}Share this page{% endif %}</h3>
+            <button class="modal-close" onclick="document.getElementById('share-modal').classList.remove('active')" aria-label="{% if lang == 'es' %}Cerrar{% elif lang == 'he' %}סגור{% elif lang == 'ar' %}إغلاق{% else %}Close{% endif %}">&times;</button>
+            <h3 class="share-modal-title">{% if lang == 'es' %}Compartir esta p&aacute;gina{% elif lang == 'he' %}שתף דף זה{% elif lang == 'ar' %}شارك هذه الصفحة{% else %}Share this page{% endif %}</h3>
             <div class="share-qr-wrap">
                 <div id="share-qr"></div>
-                <p class="share-qr-hint">{% if lang == 'es' %}Escanea con tu dispositivo{% elif lang == 'he' %}סרוק עם המכשיר שלך{% else %}Scan with your device{% endif %}</p>
+                <p class="share-qr-hint">{% if lang == 'es' %}Escanea con tu dispositivo{% elif lang == 'he' %}סרוק עם המכשיר שלך{% elif lang == 'ar' %}امسح بجهازك{% else %}Scan with your device{% endif %}</p>
             </div>
             <div class="share-url-wrap">
                 <input type="text" id="share-url" class="share-url-input" readonly aria-label="URL">
-                <button id="share-copy-btn" class="share-copy-btn" title="{% if lang == 'es' %}Copiar{% elif lang == 'he' %}העתק{% else %}Copy{% endif %}">
+                <button id="share-copy-btn" class="share-copy-btn" title="{% if lang == 'es' %}Copiar{% elif lang == 'he' %}העתק{% elif lang == 'ar' %}نسخ{% else %}Copy{% endif %}">
                     <span class="material-symbols-outlined">content_copy</span>
                 </button>
             </div>

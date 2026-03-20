@@ -5,7 +5,8 @@
 {% block lang_links %}
 <a href="{{ url_for('help_page', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('help_page', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
-<a href="{{ url_for('help_page', lang='he', script=script, trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
+<a href="{{ url_for('help_page', lang='he', script='syriac', trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
+<a href="{{ url_for('help_page', lang='ar', script='syriac', trans='ar') }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
 {% endblock %}
 
 {% block content %}
@@ -29,6 +30,17 @@
                     <li><strong>Visualizador de raíces:</strong> Haz clic en el icono <span class="material-symbols-outlined" style="font-size:16px;vertical-align:middle;">hub</span> junto a una raíz para ver un diagrama radial interactivo con los cognados hebreos y árabes. Los nodos con borde dorado punteado son <em>outliers semánticos</em> — palabras cuyo significado se ha alejado del campo semántico original de la raíz. Haz clic en un outlier para explorar su <em>puente semántico</em> hacia otra familia de raíces.</li>
                     <li><strong>Leer la Peshitta:</strong> Haz clic en "Lector de la Peshitta" para leer capítulo por capítulo con texto interlineal (siríaco, transliteración, traducción).</li>
                     <li><strong>Palabras con raíz:</strong> En el lector, las palabras subrayadas tienen una raíz identificada. Pasa el cursor para ver la raíz, o haz clic para ver todas las formas y ocurrencias.</li>
+                </ul>
+                {% elif lang == 'ar' %}
+                <ul>
+                    <li><strong>بحث الجذور:</strong> اكتب جذراً ثلاثياً في مربع البحث بصيغة مفصولة بشرطات (مثال K-TH-B).</li>
+                    <li><strong>بحث كلمة:</strong> يمكنك أيضاً البحث عن كلمة مباشرة بأي خط أو نقحرة (مثال כתב, katav, كتب). سيجد البحث الجذر المرتبط ويعرض جميع صيغه.</li>
+                    <li><strong>النتائج:</strong> عند البحث عن جذر أو كلمة، ستظهر قائمة بجميع الصيغ المشتقة من ذلك الجذر، مع الأسفار التي تظهر فيها وعدد الورود. انقر على أي مرجع لرؤية النص الكامل.</li>
+                    <li><strong>آيات السياق:</strong> في نافذة الآية، استخدم أزرار التنقل لعرض حتى 4 آيات سابقة ولاحقة كسياق.</li>
+                    <li><strong>تصفح الجذور:</strong> انقر على "تصفح جميع الجذور" للتنقل بين 2,535 جذراً مرتبة حسب التكرار.</li>
+                    <li><strong>مُصوّر الجذور:</strong> انقر على أيقونة <span class="material-symbols-outlined" style="font-size:16px;vertical-align:middle;">hub</span> بجانب جذر لرؤية رسم بياني شعاعي تفاعلي مع المشتركات العبرية والعربية. العقد ذات الإطار الذهبي المتقطع هي <em>شواذّ دلالية</em> — كلمات انحرف معناها عن الحقل الدلالي الأصلي للجذر. انقر على شاذّ لاستكشاف <em>جسره الدلالي</em> إلى عائلة جذور أخرى.</li>
+                    <li><strong>اقرأ الپشيطتا:</strong> انقر على "قارئ الپشيطتا" للقراءة إصحاحاً بإصحاح مع نص بين السطور (سرياني، نقحرة، ترجمة).</li>
+                    <li><strong>كلمات بجذور:</strong> في القارئ، الكلمات المسطّرة لها جذر محدد. مرّر المؤشر لرؤية الجذر، أو انقر لرؤية جميع الصيغ والورود.</li>
                 </ul>
                 {% elif lang == 'he' %}
                 <ul>
@@ -65,6 +77,13 @@
                     <li><strong>Modo oscuro (☀️/🌙):</strong> Alterna entre modo claro y oscuro.</li>
                     <li><strong>Idioma de la interfaz:</strong> Usa el botón "English"/"Español" para cambiar el idioma de la interfaz.</li>
                 </ul>
+                {% elif lang == 'ar' %}
+                <ul>
+                    <li><strong>النقحرة (⚙️):</strong> اختر من 4 خطوط للنقحرة: لاتيني (ABC)، سرياني أكاديمي (ʾbg)، عبري (אבג)، عربي (ابج). يُحفظ اختيارك تلقائياً.</li>
+                    <li><strong>الترجمة (⚙️):</strong> اختر لغة ترجمة الآيات: English, Español, עברית, العربية.</li>
+                    <li><strong>الوضع الداكن (☀️/🌙):</strong> التبديل بين الوضع الفاتح والداكن.</li>
+                    <li><strong>لغة الواجهة:</strong> استخدم أزرار ES/EN/עב/عر لتبديل لغة الواجهة.</li>
+                </ul>
                 {% elif lang == 'he' %}
                 <ul>
                     <li><strong>תעתיק (⚙️):</strong> בחר מתוך 4 כתבים לתעתיק: לטיני (ABC), סורי אקדמי (ʾbg), עברי (אבג), ערבי (ابج). הבחירה שלך נשמרת אוטומטית.</li>
@@ -97,6 +116,19 @@
                     <li>Transliteración en 4 escrituras con correspondencia letra a letra</li>
                     <li>Lector interlineal capítulo por capítulo con palabras clicables</li>
                     <li>Glosario automático de significados para las raíces más frecuentes</li>
+                </ul>
+                {% elif lang == 'ar' %}
+                <ul>
+                    <li>2,535 جذراً ثلاثياً محدداً من عهد الپشيطتا الجديد (مخطوطة خابوريس)</li>
+                    <li>109,428 كلمة محللة عبر 7,440 آية، 22 سفراً</li>
+                    <li>397 جذراً مع مشتركات سامية: 1,929 كلمة عبرية و1,851 كلمة عربية (3,780 مشتركاً إجمالاً)</li>
+                    <li>651 شاذّاً دلالياً محدداً باستخدام كشف الانحراف الدلالي بالذكاء الاصطناعي</li>
+                    <li>جسور دلالية بين عائلات الجذور — تصوّر تفاعلي لروابط المعنى بين الحقول</li>
+                    <li>مُصوّر شعاعي تفاعلي D3.js مع فلاتر اللغة والتكبير والسحب</li>
+                    <li>ترجمات بـ4 لغات (EN, ES, HE, AR) — عبرية حديثة وعربية Smith &amp; Van Dyke</li>
+                    <li>نقحرة بـ4 خطوط مع مطابقة حرف بحرف</li>
+                    <li>قارئ بين السطور إصحاحاً بإصحاح مع كلمات قابلة للنقر</li>
+                    <li>قاموس معانٍ آلي للجذور الأكثر تكراراً</li>
                 </ul>
                 {% elif lang == 'he' %}
                 <ul>
@@ -139,6 +171,16 @@
                     <li><strong>Traducción árabe:</strong> Smith &amp; Van Dyke (1865), obtenida de la API getBible v2 (dominio público).</li>
                     <li><strong>Cognados semíticos:</strong> Compilación propia basada en léxicos estándar de hebreo (BDB), árabe (Hans Wehr), acadio (CAD), arameo y etíope. ~394 raíces con correspondencias entre lenguas.</li>
                     <li><strong>Extracción de raíces:</strong> Algoritmo propio de análisis morfológico que identifica raíces trilíteras mediante eliminación de prefijos, sufijos y patrones de conjugación siríacos.</li>
+                </ul>
+                {% elif lang == 'ar' %}
+                <ul>
+                    <li><strong>نص الپشيطتا:</strong> العهد الجديد السرياني من مخطوطة خابوريس، رقمنة Dukhrana Biblical Research. يحتوي على 22 سفراً بالخط السرياني الكلاسيكي (إسطرنجيلا).</li>
+                    <li><strong>الترجمة الإنجليزية:</strong> ترجمة مردوك للپشيطتا (ملك عام، القرن 19).</li>
+                    <li><strong>الترجمة الإسبانية:</strong> رينا-فاليرا 1909 (ملك عام).</li>
+                    <li><strong>الترجمة العبرية:</strong> عبرية حديثة (القرن 19)، متاحة عبر Bible SuperSearch (ملك عام).</li>
+                    <li><strong>الترجمة العربية:</strong> Smith &amp; Van Dyke (1865)، من getBible v2 API (ملك عام).</li>
+                    <li><strong>المشتركات السامية:</strong> تجميع مخصص بناءً على معاجم معيارية: عبرية (BDB)، عربية (Hans Wehr)، أكدية (CAD)، آرامية وإثيوبية. نحو 394 جذراً مع تقابلات بين اللغات.</li>
+                    <li><strong>استخلاص الجذور:</strong> خوارزمية تحليل صرفي مخصصة تحدد الجذور الثلاثية بإزالة السوابق واللواحق وأنماط التصريف السريانية.</li>
                 </ul>
                 {% elif lang == 'he' %}
                 <ul>
@@ -186,6 +228,27 @@
                 <details>
                     <summary>¿Se puede copiar el texto?</summary>
                     <div class="faq-answer">Sí, en el buscador haz clic en el botón ⧉ del modal de versículo para copiar el texto siríaco con transliteración y traducción.</div>
+                </details>
+                {% elif lang == 'ar' %}
+                <details>
+                    <summary>ما هو الجذر الثلاثي؟</summary>
+                    <div class="faq-answer">في اللغات السامية، تُشتق معظم الكلمات من جذر ثلاثي الأحرف. مثلاً، K-TH-B (<span class="syriac">ܟܬܒ</span>) تعني "كتب" وتولّد صيغاً مثل <span class="syriac">ܟܬܒܐ</span> (كتاب)، <span class="syriac">ܟܬܒ</span> (كَتَب)، <span class="syriac">ܡܟܬܒܢܘܬܐ</span> (كتابة مقدسة).</div>
+                </details>
+                <details>
+                    <summary>ما هي الپشيطتا؟</summary>
+                    <div class="faq-answer">الپشيطتا هي النسخة المعيارية للكتاب المقدس بالسريانية (الآرامية). يحلل هذا الموقع نص العهد الجديد من مخطوطة خابوريس.</div>
+                </details>
+                <details>
+                    <summary>لماذا بعض الكلمات غير مسطّرة في القارئ؟</summary>
+                    <div class="faq-answer">فقط الكلمات المطابقة لصيغة معروفة من جذر ثلاثي تكون مُعلّمة. الأدوات وحروف الجر والكلمات غير المحددة لا تُسطّر.</div>
+                </details>
+                <details>
+                    <summary>ما هي المشتركات اللغوية؟</summary>
+                    <div class="faq-answer">المشتركات هي كلمات في لغات سامية مختلفة تتشارك نفس الجذر الأصلي. مثلاً، الجذر K-TH-B موجود في العبرية (<span class="hebrew">כתב</span>)، والعربية (<span class="arabic">كتب</span>)، والسريانية (<span class="syriac">ܟܬܒ</span>).</div>
+                </details>
+                <details>
+                    <summary>هل يمكنني نسخ النص؟</summary>
+                    <div class="faq-answer">نعم، في صفحة البحث انقر على زر ⧉ في نافذة الآية لنسخ النص السرياني مع النقحرة والترجمة.</div>
                 </details>
                 {% elif lang == 'he' %}
                 <details>

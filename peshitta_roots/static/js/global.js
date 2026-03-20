@@ -109,8 +109,16 @@
         });
     });
 
-    // --- Stored Preferences Redirect ---
+    // --- Sync stored preferences with URL params ---
     var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('trans')) {
+        localStorage.setItem('trans', urlParams.get('trans'));
+    }
+    if (urlParams.has('script')) {
+        localStorage.setItem('script', urlParams.get('script'));
+    }
+
+    // --- Stored Preferences Redirect ---
     var needsRedirect = false;
     if (!urlParams.has('script')) {
         var storedScript = localStorage.getItem('script');

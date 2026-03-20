@@ -1905,6 +1905,35 @@ footer a:hover {
     text-align: right;
 }
 
+.verse-tts-btn {
+    position: absolute;
+    right: -5px;
+    top: 6px;
+    background: none;
+    border: none;
+    color: var(--accent);
+    opacity: 0.6;
+    cursor: pointer;
+    padding: 2px;
+    transition: opacity 0.2s, color 0.2s;
+}
+.verse-tts-btn .material-symbols-outlined {
+    font-size: 18px;
+}
+.verse-tts-btn:hover {
+    opacity: 1;
+    color: var(--accent-gold);
+}
+
+/* TTS word highlight */
+.rw.tts-active {
+    background: var(--accent-gold);
+    color: var(--bg-page);
+    border-radius: 3px;
+    padding: 1px 2px;
+    transition: background 0.15s;
+}
+
 .verse-constellation-link {
     position: absolute;
     right: -5px;
@@ -2648,6 +2677,10 @@ footer a:hover {
 [dir="rtl"] {
     text-align: right;
 }
+[lang="ar"] body {
+    font-size: 1.25em;
+    line-height: 1.95;
+}
 [dir="rtl"] .sticky-header {
     direction: ltr;
     flex-direction: row-reverse;
@@ -2685,6 +2718,11 @@ footer a:hover {
 [dir="rtl"] .reader-line {
     margin-right: 0;
     margin-left: 32px;
+}
+[dir="rtl"] .verse-tts-btn,
+[dir="rtl"] .verse-constellation-link {
+    right: auto;
+    left: -5px;
 }
 [dir="rtl"] .ficha-sister {
     direction: rtl;

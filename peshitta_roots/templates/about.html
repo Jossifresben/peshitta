@@ -6,6 +6,7 @@
 <a href="{{ url_for('about_page', lang='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('about_page', lang='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
 <a href="{{ url_for('about_page', lang='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
+<a href="{{ url_for('about_page', lang='ar') }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
 {% endblock %}
 
 {% block header_settings %}{% endblock %}
@@ -20,6 +21,10 @@
         padding: 0 1rem 3rem;
         line-height: 1.8;
         font-size: 1.05rem;
+    }
+    [lang="ar"] .about-content {
+        font-size: 1.3rem;
+        line-height: 2;
     }
     .about-photo-wrap {
         display: flex;
@@ -100,7 +105,7 @@
                 <img src="{{ url_for('static', filename='author.jpg') }}" alt="Jossi Fresco" class="about-photo" loading="lazy">
             </div>
 
-            <h2>{% if lang == 'he' %}יוסי פרסקו{% else %}Jossi Fresco{% endif %}</h2>
+            <h2>{% if lang == 'he' %}יוסי פרסקו{% elif lang == 'ar' %}يوسي فرسكو{% else %}Jossi Fresco{% endif %}</h2>
 
             {% if lang == 'es' %}
 
@@ -111,6 +116,16 @@
             <p>Su trabajo se sit&uacute;a en la intersecci&oacute;n de lo t&eacute;cnico y lo intuitivo, an&aacute;lisis y percepci&oacute;n directa. Le interesa crear condiciones donde el significado pueda surgir con claridad, sin ser forzado ni reducido.</p>
 
             <p>Un hilo constante: c&oacute;mo el lenguaje configura nuestra comprensi&oacute;n de la realidad. Este proyecto naci&oacute; tras asistir a una conferencia de <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a> sobre la Peshitta, que abri&oacute; una l&iacute;nea de indagaci&oacute;n sobre la relaci&oacute;n entre lenguaje, estructura y sentido.</p>
+
+            {% elif lang == 'ar' %}
+
+            <p>يوسي تقنيّ وموسيقيّ ومستكشف. متعدد المواهب بطبعه، تنقّل بسلاسة بين التخصصات طوال حياته، دامجاً الخبرة التقنية والإبداعية والإنسانية.</p>
+
+            <p>صقل ذلك المسار حدساً: الأنظمة، سواء في الشيفرة أو في اللغة، تحتوي أنماطاً تكشف المعنى حين تُراقَب من داخل بنيتها ذاتها.</p>
+
+            <p>يقع عمله عند تقاطع التقني والحدسي، التحليل والإدراك المباشر. يهتم بخلق ظروف يستطيع فيها المعنى أن ينبثق بوضوح، دون إكراه أو اختزال.</p>
+
+            <p>خيط ثابت: كيف تُشكّل اللغة طريقة فهمنا للواقع. وُلد هذا المشروع بعد حضور محاضرة لـ<a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">بيثنته هايا</a> حول الپشيطتا، فتحت باب استقصاء في العلاقة بين اللغة والبنية والمعنى.</p>
 
             {% elif lang == 'he' %}
 
@@ -135,10 +150,10 @@
             {% endif %}
 
             <div class="about-links-section">
-                <h3>{% if lang == 'es' %}Proyectos y expresiones{% elif lang == 'he' %}פרויקטים וביטויים{% else %}Projects &amp; expressions{% endif %}</h3>
+                <h3>{% if lang == 'es' %}Proyectos y expresiones{% elif lang == 'he' %}פרויקטים וביטויים{% elif lang == 'ar' %}مشاريع وتعبيرات{% else %}Projects &amp; expressions{% endif %}</h3>
                 <ul class="about-links-list">
                     <li><a href="https://podcasts.apple.com/us/podcast/palabras-de-luz/id1850475452" target="_blank" rel="noopener"><span class="material-symbols-outlined">podcasts</span> Palabras de Luz &mdash; Podcast</a></li>
-                    <li><a href="https://open.spotify.com/artist/6o9tQlVJKRbAyxmyY5D6hr" target="_blank" rel="noopener"><span class="material-symbols-outlined">music_note</span> {% if lang == 'es' %}M&uacute;sica en Spotify{% elif lang == 'he' %}מוזיקה בספוטיפיי{% else %}Music on Spotify{% endif %}</a></li>
+                    <li><a href="https://open.spotify.com/artist/6o9tQlVJKRbAyxmyY5D6hr" target="_blank" rel="noopener"><span class="material-symbols-outlined">music_note</span> {% if lang == 'es' %}M&uacute;sica en Spotify{% elif lang == 'he' %}מוזיקה בספוטיפיי{% elif lang == 'ar' %}موسيقى على سبوتيفاي{% else %}Music on Spotify{% endif %}</a></li>
                     <li><a href="https://substack.com/@jossifrescobenaim403749" target="_blank" rel="noopener"><span class="material-symbols-outlined">edit_note</span> Substack</a></li>
                     <li><a href="https://cosmicoach.com" target="_blank" rel="noopener"><span class="material-symbols-outlined">auto_awesome</span> cosmicoach.com</a></li>
                     <li><a href="https://dar-a-luz.com" target="_blank" rel="noopener"><span class="material-symbols-outlined">light_mode</span> Dar a Luz</a></li>
