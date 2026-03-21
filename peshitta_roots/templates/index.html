@@ -111,6 +111,7 @@
             <div class="search-tabs">
                 <button class="search-tab active" id="tab-root" onclick="switchTab('root')">{{ t.search_tab_root }}</button>
                 <button class="search-tab" id="tab-cognate" onclick="switchTab('cognate')">{{ t.search_tab_cognate }}</button>
+                <button class="search-tab" id="tab-meaning" onclick="switchTab('meaning')">{{ t.search_tab_meaning }}</button>
                 <button class="search-tab" id="tab-text" onclick="switchTab('text')">{{ t.search_tab_text }}</button>
             </div>
 
@@ -168,6 +169,19 @@
                     </div>
                 </form>
                 <p class="search-help">{{ t.cognate_search_help }}</p>
+            </div>
+
+            <!-- Reverse / meaning search panel -->
+            <div id="panel-meaning" class="search-panel" style="display:none;">
+                <form id="meaning-search-form" onsubmit="return doMeaningSearch(event)">
+                    <div class="search-row">
+                        <input type="text" id="meaning-input" name="ms"
+                               placeholder="{{ t.meaning_search_placeholder }}" autocomplete="off">
+                        <button type="submit">{{ t.search_button }}</button>
+                    </div>
+                </form>
+                <p class="search-help">{{ t.meaning_search_help }}</p>
+                <div id="meaning-search-results"></div>
             </div>
 
             <!-- Text search panel -->
@@ -355,7 +369,7 @@
     <script>
     // --- Search tab switching ---
     function switchTab(tab) {
-        var tabs = ['root', 'cognate', 'text'];
+        var tabs = ['root', 'cognate', 'meaning', 'text'];
         tabs.forEach(function(t) {
             var panel = document.getElementById('panel-' + t);
             var btn = document.getElementById('tab-' + t);
@@ -714,6 +728,71 @@
             acList.innerHTML = '';
         }
     });
+
+    // --- Meaning / reverse search ---
+    var MEANING_STRINGS = {
+        noResults: {{ t.meaning_search_no_results|tojson }},
+        resultsCount: {{ t.meaning_search_results_count|tojson }},
+        occurrences: {{ t.browse_occurrences|tojson }}
+    };
+
+    function doMeaningSearch(event) {
+        event.preventDefault();
+        var query = document.getElementById('meaning-input').value.trim();
+        if (!query) return false;
+
+        var resultsDiv = document.getElementById('meaning-search-results');
+        resultsDiv.innerHTML = '<p style="text-align:center; color:var(--text-muted);">...</p>';
+
+        var searchLang = '{{ lang }}';
+        if (searchLang !== 'es') searchLang = 'en';
+
+        fetch('/api/reverse-search?q=' + encodeURIComponent(query) + '&lang=' + searchLang)
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                resultsDiv.innerHTML = '';
+                if (data.total === 0) {
+                    resultsDiv.innerHTML = '<p class="no-results">' + MEANING_STRINGS.noResults + '</p>';
+                    return;
+                }
+
+                var countEl = document.createElement('p');
+                countEl.className = 'text-search-count';
+                countEl.textContent = data.total + ' ' + MEANING_STRINGS.resultsCount;
+                resultsDiv.appendChild(countEl);
+
+                for (var i = 0; i < data.results.length; i++) {
+                    var r = data.results[i];
+                    var card = document.createElement('div');
+                    card.className = 'meaning-result-card';
+
+                    var rootLine = document.createElement('div');
+                    rootLine.className = 'meaning-result-root';
+                    rootLine.innerHTML = '<a href="/?q=' + encodeURIComponent(r.key) + '&lang={{ lang }}&script={{ script }}#results" class="meaning-root-link">'
+                        + '<span class="syriac">' + escHtml(r.root_syriac) + '</span> '
+                        + '<span class="ac-translit">' + escHtml(r.key) + '</span>'
+                        + '</a>'
+                        + ' <span class="meaning-gloss">— ' + escHtml(r.gloss) + '</span>'
+                        + ' <span class="count-badge">' + r.occurrences + '×</span>'
+                        + ' <a href="/visualize/' + encodeURIComponent(r.key) + '?lang={{ lang }}&script={{ script }}&trans={{ trans }}" class="viz-btn" title="' + escHtml(MEANING_STRINGS.occurrences) + '"><span class="material-symbols-outlined">hub</span></a>';
+                    card.appendChild(rootLine);
+
+                    if (r.sabor) {
+                        var saborEl = document.createElement('div');
+                        saborEl.className = 'meaning-result-sabor';
+                        saborEl.textContent = r.sabor;
+                        card.appendChild(saborEl);
+                    }
+
+                    resultsDiv.appendChild(card);
+                }
+            })
+            .catch(function() {
+                resultsDiv.innerHTML = '<p class="no-results">Error</p>';
+            });
+
+        return false;
+    }
 
     // --- Text search ---
     var TEXT_STRINGS = {

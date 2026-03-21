@@ -480,6 +480,145 @@ def api_verse():
     })
 
 
+_reverse_idx: dict = {}  # lang -> [{key, root_syriac, gloss, terms, sabor, occurrences}]
+
+
+def _build_reverse_index():
+    """Build a reverse search index: English/Spanish terms → Syriac roots."""
+    global _reverse_idx
+    if _reverse_idx:
+        return
+    cog_path = os.path.join(_get_data_dir(), 'cognates.json')
+    with open(cog_path, 'r', encoding='utf-8') as f:
+        cog_data = json.load(f)
+    roots = cog_data.get('roots', {})
+
+    for lang_code in ('en', 'es'):
+        entries = []
+        gloss_key = f'gloss_{lang_code}'
+        sabor_key = f'sabor_raiz_{lang_code}'
+        for key, data in roots.items():
+            gloss = data.get(gloss_key, '')
+            sabor = data.get(sabor_key, '')
+            root_syriac = data.get('root_syriac', '')
+
+            # Collect all searchable terms
+            terms = set()
+            # Root gloss
+            if gloss:
+                for w in gloss.lower().replace(',', ' ').replace(';', ' ').split():
+                    w = w.strip('()').strip()
+                    if len(w) > 1:
+                        terms.add(w)
+            # Sabor raiz
+            if sabor:
+                for w in sabor.lower().replace(',', ' ').replace(';', ' ').replace('.', ' ').split():
+                    w = w.strip('()').strip()
+                    if len(w) > 2:
+                        terms.add(w)
+            # Hebrew/Arabic cognate meanings
+            for cognate_list in (data.get('hebrew', []), data.get('arabic', [])):
+                for cog in cognate_list:
+                    meaning = cog.get(f'meaning_{lang_code}', '')
+                    if meaning:
+                        for w in meaning.lower().replace(',', ' ').replace(';', ' ').replace('(', ' ').replace(')', ' ').split():
+                            w = w.strip()
+                            if len(w) > 2:
+                                terms.add(w)
+            # Greek parallel meaning
+            gp = data.get('greek_parallel', {})
+            gp_meaning = gp.get(f'meaning_{lang_code}', '')
+            if gp_meaning:
+                for w in gp_meaning.lower().replace(',', ' ').replace(';', ' ').split():
+                    w = w.strip('()').strip()
+                    if len(w) > 2:
+                        terms.add(w)
+
+            # Get occurrence count from extractor
+            occ = 0
+            if root_syriac:
+                entry = _extractor.lookup_root(root_syriac)
+                if entry:
+                    occ = entry.total_occurrences
+
+            entries.append({
+                'key': key.upper(),
+                'root_syriac': root_syriac,
+                'gloss': gloss,
+                'sabor': sabor,
+                'terms': terms,
+                'terms_str': ' '.join(terms),  # for substring matching
+                'occurrences': occ,
+            })
+        _reverse_idx[lang_code] = entries
+
+
+@app.route('/api/reverse-search')
+def api_reverse_search():
+    """Search Syriac roots by English/Spanish meaning."""
+    _init()
+    _build_reverse_index()
+
+    query = request.args.get('q', '').strip().lower()
+    lang = request.args.get('lang', 'en')
+    if lang not in ('en', 'es'):
+        lang = 'en'
+
+    if not query or len(query) < 2:
+        return jsonify({'query': query, 'total': 0, 'results': []})
+
+    query_words = query.split()
+    entries = _reverse_idx.get(lang, [])
+
+    scored = []
+    for e in entries:
+        score = 0
+        # Exact gloss match (highest priority)
+        if query == e['gloss'].lower():
+            score += 100
+        # Gloss contains query
+        elif query in e['gloss'].lower():
+            score += 50
+        # Check individual query words against terms
+        matched_words = 0
+        for qw in query_words:
+            for term in e['terms']:
+                if qw == term:
+                    matched_words += 3
+                    break
+                elif qw in term or term.startswith(qw):
+                    matched_words += 1
+                    break
+        if matched_words:
+            score += matched_words * 10
+        # Sabor raiz contains query (lower priority)
+        if e['sabor'] and query in e['sabor'].lower():
+            score += 5
+
+        if score > 0:
+            scored.append((score, e))
+
+    # Sort by score desc, then by occurrences desc
+    scored.sort(key=lambda x: (-x[0], -x[1]['occurrences']))
+
+    results = []
+    for score, e in scored[:30]:
+        results.append({
+            'key': e['key'],
+            'root_syriac': e['root_syriac'],
+            'gloss': e['gloss'],
+            'sabor': e['sabor'],
+            'occurrences': e['occurrences'],
+            'score': score,
+        })
+
+    return jsonify({
+        'query': query,
+        'total': len(results),
+        'results': results,
+    })
+
+
 @app.route('/api/text-search')
 def api_text_search():
     """Search verse translations (or Syriac text) for a substring."""

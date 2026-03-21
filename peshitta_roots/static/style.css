@@ -2870,6 +2870,43 @@ footer a:hover {
     color: var(--bg-page);
 }
 
+/* === Meaning / Reverse Search Results === */
+.meaning-result-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+}
+.meaning-result-root {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.meaning-root-link {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+.meaning-root-link:hover {
+    color: var(--accent);
+}
+.meaning-root-link .syriac {
+    font-size: 1.3em;
+}
+.meaning-gloss {
+    color: var(--text-gloss);
+    font-style: italic;
+}
+.meaning-result-sabor {
+    margin-top: 0.35rem;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
 /* === RTL Support (Hebrew / Arabic UI) === */
 [dir="rtl"] {
     text-align: right;
