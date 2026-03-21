@@ -126,6 +126,25 @@ def _translit_to_dash(root_syriac: str) -> str:
     return '-'.join(parts)
 
 
+def _get_gloss(cognate_entry, lang, fallback_fn=None, root_syriac=None):
+    """Get localized gloss: ES/EN use gloss fields, HE/AR use cognate words."""
+    gloss = ''
+    if cognate_entry:
+        if lang == 'es':
+            gloss = cognate_entry.gloss_es
+        elif lang == 'he' and cognate_entry.hebrew:
+            hw = cognate_entry.hebrew[0]
+            gloss = hw.word + ' — ' + (hw.meaning_en or cognate_entry.gloss_en)
+        elif lang == 'ar' and cognate_entry.arabic:
+            aw = cognate_entry.arabic[0]
+            gloss = aw.word + ' — ' + (aw.meaning_en or cognate_entry.gloss_en)
+        else:
+            gloss = cognate_entry.gloss_en
+    if not gloss and fallback_fn and root_syriac:
+        gloss = fallback_fn(root_syriac)
+    return gloss
+
+
 class _Namespace:
     """Simple namespace to pass translations to templates."""
     def __init__(self, d):
@@ -258,21 +277,36 @@ def _root_of_the_day(lang):
     # Deterministic pick based on date
     day_hash = int(hashlib.md5(today.encode()).hexdigest(), 16)
     key, data = rich[day_hash % len(rich)]
-    gloss_key = 'gloss_es' if lang == 'es' else 'gloss_en'
-    sabor_key = f'sabor_raiz_{lang}' if lang in ('es', 'en') else 'sabor_raiz_en'
+
+    # Resolve language-specific fields (HE/AR use cognate words as gloss)
+    if lang == 'es':
+        gloss = data.get('gloss_es', data.get('gloss_en', ''))
+        sabor = data.get('sabor_raiz_es', data.get('sabor_raiz_en', ''))
+    elif lang == 'he':
+        heb_list = data.get('hebrew', [])
+        gloss = heb_list[0]['word'] + ' — ' + heb_list[0].get('meaning_en', '') if heb_list else data.get('gloss_en', '')
+        sabor = data.get('sabor_raiz_he', data.get('sabor_raiz_en', ''))
+    elif lang == 'ar':
+        arb_list = data.get('arabic', [])
+        gloss = arb_list[0]['word'] + ' — ' + arb_list[0].get('meaning_en', '') if arb_list else data.get('gloss_en', '')
+        sabor = data.get('sabor_raiz_ar', data.get('sabor_raiz_en', ''))
+    else:
+        gloss = data.get('gloss_en', '')
+        sabor = data.get('sabor_raiz_en', '')
+
     lost_key = f'lost_{lang}' if lang in ('es', 'en') else 'lost_en'
+    meaning_key = f'meaning_{lang}' if lang in ('es', 'en') else 'meaning_en'
     gp = data.get('greek_parallel', {})
     result = _Namespace({
         'key': key.upper(),
         'syriac': data.get('root_syriac', ''),
-        'gloss': data.get(gloss_key, data.get('gloss_en', '')),
-        'sabor': data.get(sabor_key, data.get('sabor_raiz_en', '')),
+        'gloss': gloss,
+        'sabor': sabor,
         'hebrew': data.get('hebrew', [])[:3],
         'arabic': data.get('arabic', [])[:3],
         'lost': gp.get(lost_key, gp.get('lost_en', ''))[:200],
         'greek_word': gp.get('word', ''),
-        'greek_meaning': gp.get(f'meaning_{lang}' if lang in ('es', 'en') else 'meaning_en',
-                                gp.get('meaning_en', '')),
+        'greek_meaning': gp.get(meaning_key, gp.get('meaning_en', '')),
     })
     with _cache_lock:
         _rotd_cache[cache_key] = result
@@ -323,11 +357,10 @@ def index():
             disambiguation = []
             for entry in cw_results:
                 dash_form = _translit_to_dash(entry.root_syriac)
-                gloss = entry.gloss_es if lang == 'es' else entry.gloss_en
                 disambiguation.append({
                     'root_syriac': entry.root_syriac,
                     'root_translit': dash_form,
-                    'gloss': gloss,
+                    'gloss': _get_gloss(entry, lang),
                 })
         else:
             error = t.cognate_no_results
@@ -356,11 +389,7 @@ def index():
                         break
 
             # Get gloss from cognates or known roots
-            gloss = ''
-            if cognate_entry:
-                gloss = cognate_entry.gloss_es if lang == 'es' else cognate_entry.gloss_en
-            if not gloss:
-                gloss = _extractor.get_root_gloss(root_syriac)
+            gloss = _get_gloss(cognate_entry, lang, _extractor.get_root_gloss, root_syriac)
 
             # Build result
             matches = []
@@ -878,8 +907,6 @@ def _build_semantic_fields(lang):
             return _fields_cache[cache_key]
 
     cog_roots = _cognates_raw.get('roots', {})
-    gloss_key = 'gloss_es' if lang == 'es' else 'gloss_en'
-    sabor_key = f'sabor_raiz_{lang}' if lang in ('es', 'en') else 'sabor_raiz_en'
 
     fields = {}
     for field_name in _SEMANTIC_FIELDS:
@@ -891,6 +918,20 @@ def _build_semantic_fields(lang):
             continue
         sabor_lower = sabor_en.lower()
         root_syriac = data.get('root_syriac', '')
+
+        # Resolve gloss for language (HE/AR use cognate words)
+        if lang == 'es':
+            gloss = data.get('gloss_es', data.get('gloss_en', ''))
+        elif lang == 'he':
+            heb = data.get('hebrew', [])
+            gloss = heb[0]['word'] + ' — ' + heb[0].get('meaning_en', '') if heb else data.get('gloss_en', '')
+        elif lang == 'ar':
+            arb = data.get('arabic', [])
+            gloss = arb[0]['word'] + ' — ' + arb[0].get('meaning_en', '') if arb else data.get('gloss_en', '')
+        else:
+            gloss = data.get('gloss_en', '')
+
+        sabor_key = f'sabor_raiz_{lang}'
 
         # Find matching field
         for field_name, keywords in _SEMANTIC_FIELDS.items():
@@ -909,7 +950,7 @@ def _build_semantic_fields(lang):
                 fields[field_name].append({
                     'key': key.upper(),
                     'root_syriac': root_syriac,
-                    'gloss': data.get(gloss_key, data.get('gloss_en', '')),
+                    'gloss': gloss,
                     'sabor': data.get(sabor_key, sabor_en),
                     'occurrences': occ,
                 })
@@ -1003,12 +1044,8 @@ def browse():
             translit_display = translit_fn(entry.root)
         else:
             translit_display = dash_form
-        gloss = ''
         cognate_entry = _cognate_lookup.lookup(entry.root)
-        if cognate_entry:
-            gloss = cognate_entry.gloss_es if lang == 'es' else cognate_entry.gloss_en
-        if not gloss:
-            gloss = _extractor.get_root_gloss(entry.root)
+        gloss = _get_gloss(cognate_entry, lang, _extractor.get_root_gloss, entry.root)
         # For rare roots without gloss, show first verse reference + word form
         context_ref = ''
         context_form = ''
@@ -1207,11 +1244,7 @@ def api_word_root():
     root_entry = _extractor.lookup_root(root)
     cognate_entry = _cognate_lookup.lookup(root)
 
-    gloss = ''
-    if cognate_entry:
-        gloss = cognate_entry.gloss_es if lang == 'es' else cognate_entry.gloss_en
-    if not gloss:
-        gloss = _extractor.get_root_gloss(root)
+    gloss = _get_gloss(cognate_entry, lang, _extractor.get_root_gloss, root)
 
     matches = []
     if root_entry:
