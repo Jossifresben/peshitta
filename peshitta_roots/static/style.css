@@ -2870,6 +2870,114 @@ footer a:hover {
     color: var(--bg-page);
 }
 
+/* === Browse View Toggle === */
+.browse-view-toggle {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.browse-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-card);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: all 0.2s;
+}
+.browse-view-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+.browse-view-btn.active {
+    background: var(--accent);
+    color: var(--bg-page);
+    border-color: var(--accent);
+}
+.browse-view-btn .material-symbols-outlined {
+    font-size: 18px;
+}
+
+/* === Semantic Fields Grid === */
+.fields-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.field-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.field-card.field-open {
+    border-color: var(--accent);
+}
+.field-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+}
+.field-header:hover {
+    background: rgba(107, 122, 94, 0.08);
+}
+.field-icon {
+    font-size: 22px;
+    color: var(--accent);
+}
+.field-name {
+    font-weight: 600;
+    font-size: 1rem;
+    flex: 1;
+}
+.field-count {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: var(--bg-page);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    min-width: 1.5rem;
+    text-align: center;
+}
+.field-chevron {
+    font-size: 22px;
+    color: var(--text-muted);
+    transition: transform 0.2s;
+}
+.field-body {
+    padding: 0 1rem 0.75rem;
+}
+.field-body table {
+    min-width: auto;
+}
+
+/* === Sortable columns === */
+.sortable-th {
+    white-space: nowrap;
+}
+.sort-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+.sort-link:hover {
+    color: var(--accent);
+}
+.sort-link.sort-active {
+    color: var(--accent);
+    font-weight: 700;
+}
+
 /* === Meaning / Reverse Search Results === */
 .meaning-result-card {
     background: var(--bg-card);

@@ -3,10 +3,10 @@
 {% block title %}{{ t.browse_title }} - {{ t.app_title }}{% endblock %}
 
 {% block lang_links %}
-<a href="{{ url_for('browse', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
-<a href="{{ url_for('browse', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
-<a href="{{ url_for('browse', lang='he', script='syriac', trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
-<a href="{{ url_for('browse', lang='ar', script='syriac', trans='ar') }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
+<a href="{{ url_for('browse', lang='es', script=script, trans='es', view=view) }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
+<a href="{{ url_for('browse', lang='en', script=script, trans='en', view=view) }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('browse', lang='he', script='syriac', trans='he', view=view) }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
+<a href="{{ url_for('browse', lang='ar', script='syriac', trans='ar', view=view) }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
 {% endblock %}
 
 {% block content %}
@@ -15,21 +15,70 @@
             <h1>{{ t.browse_title }}</h1>
         </header>
 
+        <!-- View toggle: Alphabetical / Semantic Fields -->
+        <div class="browse-view-toggle">
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, view='alpha') }}" class="browse-view-btn{% if view != 'fields' %} active{% endif %}">
+                <span class="material-symbols-outlined">sort_by_alpha</span> {{ t.browse_view_alpha }}
+            </a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, view='fields') }}" class="browse-view-btn{% if view == 'fields' %} active{% endif %}">
+                <span class="material-symbols-outlined">category</span> {{ t.browse_view_fields }}
+            </a>
+        </div>
+
+        {% if view == 'fields' %}
+        <!-- Semantic Fields View -->
+        <div class="fields-grid">
+            {% for field in fields %}
+            <div class="field-card" id="field-{{ loop.index }}">
+                <div class="field-header" onclick="toggleField({{ loop.index }})">
+                    <span class="material-symbols-outlined field-icon">{{ field.icon }}</span>
+                    <span class="field-name">{{ field.display_name }}</span>
+                    <span class="field-count">{{ field.count }}</span>
+                    <span class="material-symbols-outlined field-chevron">expand_more</span>
+                </div>
+                <div class="field-body" style="display:none;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ t.browse_root }}</th>
+                                <th>{{ t.browse_gloss }}</th>
+                                <th>{{ t.browse_occurrences }}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for root in field.roots %}
+                            <tr>
+                                <td class="syriac"><a href="{{ url_for('index', lang=lang, q=root.key) }}#results" style="text-decoration: none; color: inherit;">{{ root.root_syriac }} <span class="root-latin" dir="ltr">{{ root.key }}</span></a></td>
+                                <td class="gloss-cell">{{ root.gloss }}</td>
+                                <td><span class="count-badge">{{ root.occurrences }}</span></td>
+                                <td><a href="{{ url_for('visualize', root_key=root.key, lang=lang, script=script, trans=trans) }}" class="viz-btn" title="{{ t.viz_button }}"><span class="material-symbols-outlined">hub</span></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <!-- Alphabetical View -->
         <div class="browse-filters">
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans) }}" class="browse-filter{% if not freq %} active{% endif %}">All</a>
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='hapax') }}" class="browse-filter{% if freq == 'hapax' %} active{% endif %}">Hapax (1×)</a>
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='dis') }}" class="browse-filter{% if freq == 'dis' %} active{% endif %}">Dis (2×)</a>
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='tris') }}" class="browse-filter{% if freq == 'tris' %} active{% endif %}">Tris (3×)</a>
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='tetrakis') }}" class="browse-filter{% if freq == 'tetrakis' %} active{% endif %}">Tetrakis (4×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, sort=sort) }}" class="browse-filter{% if not freq %} active{% endif %}">All</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='hapax', sort=sort) }}" class="browse-filter{% if freq == 'hapax' %} active{% endif %}">Hapax (1×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='dis', sort=sort) }}" class="browse-filter{% if freq == 'dis' %} active{% endif %}">Dis (2×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='tris', sort=sort) }}" class="browse-filter{% if freq == 'tris' %} active{% endif %}">Tris (3×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='tetrakis', sort=sort) }}" class="browse-filter{% if freq == 'tetrakis' %} active{% endif %}">Tetrakis (4×)</a>
         </div>
 
         <div class="browse-pagination">
             {% if page > 1 %}
-            <a href="{{ url_for('browse', lang=lang, page=page-1, freq=freq or '') }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
+            <a href="{{ url_for('browse', lang=lang, page=page-1, freq=freq or '', sort=sort) }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
             {% endif %}
             <span class="browse-page-info">{{ t.browse_page_of.replace('{page}', page|string).replace('{total}', total_pages|string) }} ({{ total }} {{ t.browse_root|lower }}{% if lang == 'en' and total != 1 %}s{% elif lang == 'es' and total != 1 %}es{% endif %})</span>
             {% if page < total_pages %}
-            <a href="{{ url_for('browse', lang=lang, page=page+1, freq=freq or '') }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
+            <a href="{{ url_for('browse', lang=lang, page=page+1, freq=freq or '', sort=sort) }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
             {% endif %}
         </div>
 
@@ -41,8 +90,8 @@
                             <th>{{ t.browse_root }}</th>
                             <th>{{ t.browse_translit }}</th>
                             <th>{{ t.browse_gloss }}</th>
-                            <th>{{ t.browse_forms }}</th>
-                            <th>{{ t.browse_occurrences }}</th>
+                            <th class="sortable-th"><a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq=freq or '', sort=('-forms' if sort == 'forms' else 'forms')) }}" class="sort-link{% if sort in ('forms', '-forms') %} sort-active{% endif %}">{{ t.browse_forms }} {% if sort == 'forms' %}&#9650;{% elif sort == '-forms' %}&#9660;{% else %}&#8693;{% endif %}</a></th>
+                            <th class="sortable-th"><a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq=freq or '', sort=('-occ' if sort == 'occ' else 'occ')) }}" class="sort-link{% if sort in ('occ', '-occ') %} sort-active{% endif %}">{{ t.browse_occurrences }} {% if sort == 'occ' %}&#9650;{% elif sort == '-occ' %}&#9660;{% else %}&#8693;{% endif %}</a></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -64,17 +113,30 @@
 
         <div class="browse-pagination">
             {% if page > 1 %}
-            <a href="{{ url_for('browse', lang=lang, page=page-1, freq=freq or '') }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
+            <a href="{{ url_for('browse', lang=lang, page=page-1, freq=freq or '', sort=sort) }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
             {% endif %}
             <span class="browse-page-info">{{ t.browse_page_of.replace('{page}', page|string).replace('{total}', total_pages|string) }}</span>
             {% if page < total_pages %}
-            <a href="{{ url_for('browse', lang=lang, page=page+1, freq=freq or '') }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
+            <a href="{{ url_for('browse', lang=lang, page=page+1, freq=freq or '', sort=sort) }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
             {% endif %}
         </div>
+        {% endif %}
 
         <footer>
             <div class="footer-line">{{ t.footer_by }} <a href="{{ url_for('about_page', lang=lang) }}">Jossi Fresco</a>{{ t.footer_inspired }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
             <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-c09fa682-02cc-4bbb-b17a-7db83c67e00d?action=share&source=copy-link&creator=53219373" target="_blank" rel="noopener">API @Postman</a></div>
         </footer>
     </div>
+
+    <script>
+    function toggleField(idx) {
+        var card = document.getElementById('field-' + idx);
+        var body = card.querySelector('.field-body');
+        var chevron = card.querySelector('.field-chevron');
+        var isOpen = body.style.display !== 'none';
+        body.style.display = isOpen ? 'none' : '';
+        chevron.textContent = isOpen ? 'expand_more' : 'expand_less';
+        card.classList.toggle('field-open', !isOpen);
+    }
+    </script>
 {% endblock %}

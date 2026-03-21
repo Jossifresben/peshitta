@@ -810,6 +810,140 @@ def api_roots():
     })
 
 
+# Semantic field categories: category name → keyword list
+_SEMANTIC_FIELDS = {
+    'Speech & Word': ['utterance', 'voice', 'speech', 'word', 'invocation', 'recitation', 'proclamation', 'praise', 'oath', 'prayer', 'naming', 'calling', 'cry', 'confession', 'testimony', 'teaching', 'instruction', 'tongue', 'message', 'announce', 'singing', 'reading', 'music', 'song'],
+    'Sight & Knowledge': ['vision', 'sight', 'perception', 'revelation', 'clarity', 'knowledge', 'understanding', 'wisdom', 'discernment', 'beholding', 'appearance', 'sign', 'recognition', 'thought', 'mind', 'counting', 'reckoning', 'interpretation', 'proof', 'witness', 'remembrance', 'memory', 'learning', 'watchfulness', 'alertness', 'amazement', 'imagination'],
+    'Movement & Path': ['movement', 'motion', 'path', 'journey', 'passage', 'egress', 'entrance', 'approach', 'turning', 'walking', 'following', 'going', 'coming', 'return', 'departure', 'descent', 'ascent', 'sending', 'running', 'crossing', 'passing', 'transit', 'transmission', 'proximity', 'pursuit', 'chase', 'extension', 'arrival', 'progression', 'leading', 'directing'],
+    'Authority & Power': ['authority', 'power', 'dominion', 'sovereignty', 'reign', 'judgment', 'law', 'governance', 'rule', 'lordship', 'mastery', 'justice', 'righteousness', 'truth', 'obedience', 'subjection', 'primacy', 'preeminence', 'leadership', 'precedence'],
+    'Sacred & Ritual': ['sacred', 'ritual', 'consecration', 'purity', 'worship', 'offering', 'sacrifice', 'temple', 'blessing', 'holiness', 'priestly', 'baptism', 'anointing', 'cleansing', 'genuflection', 'grace', 'salvation', 'deliverance', 'rescue'],
+    'Life & Growth': ['life', 'generation', 'birth', 'growth', 'seed', 'fruit', 'resurrection', 'raising', 'nourishment', 'healing', 'health', 'offspring', 'vitality', 'animation', 'breath', 'existence', 'presence', 'being', 'rising', 'standing', 'establishment', 'sustenance', 'survival', 'identity', 'newness', 'renewal', 'emergence', 'cultivation', 'paradise', 'sprouting', 'branching', 'maturity'],
+    'Death & Loss': ['death', 'destruction', 'annihilation', 'loss', 'mourning', 'burial', 'perishing', 'corruption', 'disease', 'suffering', 'pain', 'wound', 'affliction', 'distress', 'tribulation', 'cessation', 'devastation', 'ruin', 'desolation', 'decay', 'emptiness', 'voidness', 'depletion', 'hunger', 'deprivation', 'grinding', 'crushing', 'suffocation'],
+    'Emotion & Desire': ['desire', 'love', 'affection', 'joy', 'fear', 'anger', 'sorrow', 'hope', 'trust', 'jealousy', 'zeal', 'grief', 'shame', 'pride', 'compassion', 'mercy', 'gratitude', 'pleasure', 'delight', 'astonishment', 'wonder', 'patience', 'waiting', 'longing', 'attachment', 'goodness', 'excellence', 'pleasantness', 'impulse', 'urgency'],
+    'Separation & Division': ['separation', 'division', 'distinction', 'otherness', 'exclusion', 'cutting', 'breaking', 'tearing', 'deviation', 'transgression', 'error', 'scattering', 'dispersal', 'rejection', 'expulsion', 'denial', 'stripping', 'removal', 'extraction', 'falsehood', 'deception', 'evil', 'guilt', 'insult', 'desecration', 'rigidity', 'resistance', 'obstinacy'],
+    'Unity & Wholeness': ['wholeness', 'completion', 'fullness', 'abundance', 'gathering', 'joining', 'unity', 'peace', 'rest', 'settlement', 'dwelling', 'permanence', 'marriage', 'communion', 'fellowship', 'assembly', 'companion', 'union', 'pairing', 'reception', 'acceptance', 'equalization', 'equivalence', 'balance', 'equilibrium', 'stillness', 'quietness', 'silence', 'repose', 'likeness', 'resemblance', 'comparison'],
+    'Light & Fire': ['light', 'fire', 'illumination', 'shining', 'burning', 'flame', 'brightness', 'dawn', 'darkness', 'shadow', 'night', 'glory', 'splendor', 'radiance'],
+    'Building & Making': ['building', 'construction', 'making', 'creation', 'inscription', 'mark', 'formation', 'craft', 'weaving', 'record', 'writing', 'placing', 'laying', 'founding', 'planting', 'arrangement', 'ordering', 'readiness', 'preparation', 'measure', 'proportion', 'weight', 'worth', 'dignity'],
+    'Possession & Exchange': ['possession', 'acquisition', 'treasure', 'inheritance', 'gift', 'debt', 'exchange', 'commerce', 'wealth', 'poverty', 'bestowal', 'transfer', 'giving', 'receiving', 'reward', 'wages', 'recompense', 'surplus', 'excess', 'advantage'],
+    'Body & Kinship': ['body', 'hand', 'head', 'face', 'flesh', 'bone', 'blood', 'eating', 'drinking', 'garment', 'clothing', 'inner self', 'touch', 'sensory', 'inhalation', 'consumption', 'absorption', 'humanity', 'mortality', 'kinship', 'fraternal', 'paternity', 'origin', 'lineage', 'tribal', 'duality'],
+    'Bondage & Freedom': ['bondage', 'slavery', 'liberation', 'release', 'captivity', 'freedom', 'redemption', 'exile', 'binding', 'labor', 'service', 'devotion', 'submission', 'yoke', 'demand', 'claim', 'necessity', 'pressure', 'constriction', 'testing', 'temptation', 'trial'],
+    'Strength & Firmness': ['strength', 'vigor', 'capability', 'potency', 'firmness', 'stability', 'endurance', 'fortification', 'prevailing', 'virility', 'magnitude', 'greatness', 'support', 'aid', 'victory'],
+    'Elevation & Depth': ['elevation', 'exaltation', 'height', 'falling', 'depth', 'lifting', 'projection', 'casting', 'lowliness', 'humility', 'smallness'],
+    'Concealment & Protection': ['concealment', 'hiding', 'secret', 'opening', 'uncovering', 'unveiling', 'exposure', 'sealing', 'covering', 'protection', 'guarding', 'refuge', 'shelter', 'custody', 'preservation', 'enclosure', 'boundary', 'armament', 'defense', 'hiddenness', 'enigma', 'veiled'],
+    'Space & Place': ['place', 'trace', 'territory', 'enclosure', 'circumscription', 'urban', 'boundary', 'terminus', 'convergence', 'mingling', 'sunset'],
+    'Cause & Reason': ['causality', 'justification', 'reason', 'response', 'attention', 'correspondence', 'substitution', 'succession', 'alternation', 'time'],
+}
+
+# Bilingual category names
+_FIELD_NAMES = {
+    'Speech & Word': {'es': 'Habla y Palabra', 'en': 'Speech & Word', 'he': 'דיבור ומילה', 'ar': 'الكلام والقول'},
+    'Sight & Knowledge': {'es': 'Visión y Conocimiento', 'en': 'Sight & Knowledge', 'he': 'ראייה וידע', 'ar': 'البصر والمعرفة'},
+    'Movement & Path': {'es': 'Movimiento y Camino', 'en': 'Movement & Path', 'he': 'תנועה ודרך', 'ar': 'الحركة والطريق'},
+    'Authority & Power': {'es': 'Autoridad y Poder', 'en': 'Authority & Power', 'he': 'סמכות וכוח', 'ar': 'السلطة والقوة'},
+    'Sacred & Ritual': {'es': 'Lo Sagrado y Ritual', 'en': 'Sacred & Ritual', 'he': 'קדושה וטקס', 'ar': 'المقدس والطقوس'},
+    'Life & Growth': {'es': 'Vida y Crecimiento', 'en': 'Life & Growth', 'he': 'חיים וצמיחה', 'ar': 'الحياة والنمو'},
+    'Death & Loss': {'es': 'Muerte y Pérdida', 'en': 'Death & Loss', 'he': 'מוות ואובדן', 'ar': 'الموت والفقدان'},
+    'Emotion & Desire': {'es': 'Emoción y Deseo', 'en': 'Emotion & Desire', 'he': 'רגש ותשוקה', 'ar': 'العاطفة والرغبة'},
+    'Separation & Division': {'es': 'Separación y División', 'en': 'Separation & Division', 'he': 'הפרדה וחלוקה', 'ar': 'الفصل والانقسام'},
+    'Unity & Wholeness': {'es': 'Unidad e Integridad', 'en': 'Unity & Wholeness', 'he': 'אחדות ושלמות', 'ar': 'الوحدة والكمال'},
+    'Light & Fire': {'es': 'Luz y Fuego', 'en': 'Light & Fire', 'he': 'אור ואש', 'ar': 'النور والنار'},
+    'Building & Making': {'es': 'Construcción y Creación', 'en': 'Building & Making', 'he': 'בנייה ויצירה', 'ar': 'البناء والصنع'},
+    'Possession & Exchange': {'es': 'Posesión e Intercambio', 'en': 'Possession & Exchange', 'he': 'רכוש וחילופין', 'ar': 'الملكية والتبادل'},
+    'Body & Kinship': {'es': 'Cuerpo y Parentesco', 'en': 'Body & Kinship', 'he': 'גוף וקרבה', 'ar': 'الجسد والقرابة'},
+    'Bondage & Freedom': {'es': 'Cautiverio y Libertad', 'en': 'Bondage & Freedom', 'he': 'שעבוד וחירות', 'ar': 'العبودية والحرية'},
+    'Strength & Firmness': {'es': 'Fuerza y Firmeza', 'en': 'Strength & Firmness', 'he': 'כוח ויציבות', 'ar': 'القوة والثبات'},
+    'Elevation & Depth': {'es': 'Elevación y Profundidad', 'en': 'Elevation & Depth', 'he': 'גובה ועומק', 'ar': 'الارتفاع والعمق'},
+    'Concealment & Protection': {'es': 'Ocultamiento y Protección', 'en': 'Concealment & Protection', 'he': 'הסתרה והגנה', 'ar': 'الإخفاء والحماية'},
+    'Space & Place': {'es': 'Espacio y Lugar', 'en': 'Space & Place', 'he': 'מרחב ומקום', 'ar': 'المكان والفضاء'},
+    'Cause & Reason': {'es': 'Causa y Razón', 'en': 'Cause & Reason', 'he': 'סיבה וטעם', 'ar': 'السبب والعلة'},
+}
+
+# Field icons (Material Symbols)
+_FIELD_ICONS = {
+    'Speech & Word': 'record_voice_over', 'Sight & Knowledge': 'visibility',
+    'Movement & Path': 'directions_walk', 'Authority & Power': 'gavel',
+    'Sacred & Ritual': 'church', 'Life & Growth': 'eco',
+    'Death & Loss': 'skull', 'Emotion & Desire': 'favorite',
+    'Separation & Division': 'call_split', 'Unity & Wholeness': 'handshake',
+    'Light & Fire': 'light_mode', 'Building & Making': 'construction',
+    'Possession & Exchange': 'swap_horiz', 'Body & Kinship': 'group',
+    'Bondage & Freedom': 'lock_open', 'Strength & Firmness': 'fitness_center',
+    'Elevation & Depth': 'trending_up', 'Concealment & Protection': 'shield',
+    'Space & Place': 'place', 'Cause & Reason': 'help_outline',
+}
+
+_fields_cache: dict = {}
+
+
+def _build_semantic_fields(lang):
+    """Build semantic field groupings from cognates.json sabor_raiz data."""
+    cache_key = lang
+    if cache_key in _fields_cache:
+        return _fields_cache[cache_key]
+
+    cog_path = os.path.join(_get_data_dir(), 'cognates.json')
+    with open(cog_path, 'r', encoding='utf-8') as f:
+        cog_data = json.load(f)
+    cog_roots = cog_data.get('roots', {})
+
+    gloss_key = 'gloss_es' if lang == 'es' else 'gloss_en'
+    sabor_key = f'sabor_raiz_{lang}' if lang in ('es', 'en') else 'sabor_raiz_en'
+    translit_fn = _get_translit_fn('latin')
+
+    fields = {}
+    for field_name in _SEMANTIC_FIELDS:
+        fields[field_name] = []
+
+    for key, data in cog_roots.items():
+        sabor_en = data.get('sabor_raiz_en', '')
+        if not sabor_en:
+            continue
+        sabor_lower = sabor_en.lower()
+        root_syriac = data.get('root_syriac', '')
+
+        # Find matching field
+        for field_name, keywords in _SEMANTIC_FIELDS.items():
+            matched = False
+            for kw in keywords:
+                if kw in sabor_lower:
+                    matched = True
+                    break
+            if matched:
+                # Get occurrence count
+                occ = 0
+                entry = _extractor.lookup_root(root_syriac) if root_syriac else None
+                if entry:
+                    occ = entry.total_occurrences
+
+                fields[field_name].append({
+                    'key': key.upper(),
+                    'root_syriac': root_syriac,
+                    'gloss': data.get(gloss_key, data.get('gloss_en', '')),
+                    'sabor': data.get(sabor_key, sabor_en),
+                    'occurrences': occ,
+                })
+                break  # Only assign to first matching field
+
+    # Sort roots within each field by occurrences desc
+    for field_name in fields:
+        fields[field_name].sort(key=lambda x: -x['occurrences'])
+
+    # Build ordered list of non-empty fields, sorted by root count desc
+    result = []
+    for field_name in sorted(fields.keys(), key=lambda f: -len(fields[f])):
+        if fields[field_name]:
+            result.append({
+                'name': field_name,
+                'display_name': _FIELD_NAMES.get(field_name, {}).get(lang, field_name),
+                'icon': _FIELD_ICONS.get(field_name, 'category'),
+                'roots': fields[field_name],
+                'count': len(fields[field_name]),
+            })
+
+    _fields_cache[cache_key] = result
+    return result
+
+
 @app.route('/browse')
 def browse():
     """Browse all roots with pagination."""
@@ -826,8 +960,24 @@ def browse():
         trans = lang
     translit_fn = _get_translit_fn(script)
 
+    view = request.args.get('view', 'alpha')  # 'alpha' or 'fields'
+
+    # Semantic fields view
+    if view == 'fields':
+        fields_data = _build_semantic_fields(lang)
+        cp = '/browse?view=fields'
+        return render_template('browse.html',
+                               t=t, lang=lang,
+                               roots=[], fields=fields_data,
+                               page=1, total_pages=1,
+                               total=0, script=script, trans=trans,
+                               freq='', view=view, sort='',
+                               meta_description=_i18n[lang].get('meta_browse', ''),
+                               canonical_path=cp)
+
     page = request.args.get('page', 1, type=int)
     freq = request.args.get('freq', '', type=str)
+    sort = request.args.get('sort', '', type=str)  # 'occ', 'forms', '-occ', '-forms'
     per_page = 50
 
     all_roots = _extractor.get_all_roots()
@@ -835,6 +985,17 @@ def browse():
     freq_max = {'hapax': 1, 'dis': 2, 'tris': 3, 'tetrakis': 4}.get(freq)
     if freq_max:
         all_roots = [r for r in all_roots if r.total_occurrences == freq_max]
+
+    # Sort
+    if sort == 'occ':
+        all_roots = sorted(all_roots, key=lambda r: r.total_occurrences)
+    elif sort == '-occ':
+        all_roots = sorted(all_roots, key=lambda r: -r.total_occurrences)
+    elif sort == 'forms':
+        all_roots = sorted(all_roots, key=lambda r: len(r.matches))
+    elif sort == '-forms':
+        all_roots = sorted(all_roots, key=lambda r: -len(r.matches))
+
     total = len(all_roots)
     total_pages = (total + per_page - 1) // per_page
     page = max(1, min(page, total_pages))
@@ -877,13 +1038,14 @@ def browse():
         })
 
     freq_param = f'&freq={freq}' if freq else ''
-    cp = f'/browse?page={page}{freq_param}' if page > 1 or freq else '/browse'
+    sort_param = f'&sort={sort}' if sort else ''
+    cp = f'/browse?page={page}{freq_param}{sort_param}' if page > 1 or freq or sort else '/browse'
     return render_template('browse.html',
                            t=t, lang=lang,
-                           roots=roots_data,
+                           roots=roots_data, fields=[],
                            page=page, total_pages=total_pages,
                            total=total, script=script, trans=trans,
-                           freq=freq,
+                           freq=freq, view=view, sort=sort,
                            meta_description=_i18n[lang].get('meta_browse', ''),
                            canonical_path=cp)
 
