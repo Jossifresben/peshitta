@@ -465,6 +465,7 @@ def index():
                            cognate_word=cognate_word,
                            disambiguation=disambiguation,
                            script=script, trans=trans, rotd=rotd,
+                           book_names=book_names,
                            meta_description=_i18n[lang].get('meta_index', ''),
                            canonical_path='/')
 
@@ -1271,6 +1272,64 @@ def about_page():
     return render_template('about.html', t=t, lang=lang,
                            meta_description=_i18n[lang].get('meta_about', ''),
                            canonical_path='/about')
+
+
+@app.route('/api/concordance')
+def api_concordance():
+    """Return KWIC (Key Word In Context) for a word form at given references."""
+    _init()
+    form = request.args.get('form', '').strip()
+    refs_str = request.args.get('refs', '').strip()
+    lang = request.args.get('lang', 'en')
+    trans = request.args.get('trans', lang)
+    if trans not in ('en', 'es', 'he', 'ar'):
+        trans = lang if lang in ('en', 'es', 'he', 'ar') else 'en'
+
+    if not form or not refs_str:
+        return jsonify({'error': 'Missing form or refs'}), 400
+
+    refs = [r.strip() for r in refs_str.split(',') if r.strip()][:30]
+    # Strip Syriac diacritics for flexible matching
+    import re
+    form_norm = re.sub(r'[\u0700-\u070F\u0730-\u074A]', '', form)
+
+    contexts = []
+    for ref in refs:
+        text = _corpus.get_verse_text(ref)
+        if not text:
+            continue
+        words = text.split()
+        # Find the target word (exact or diacritic-normalized match)
+        idx = -1
+        for i, w in enumerate(words):
+            w_norm = re.sub(r'[\u0700-\u070F\u0730-\u074A]', '', w)
+            if w == form or w_norm == form_norm:
+                idx = i
+                break
+        if idx == -1:
+            # Try substring match
+            for i, w in enumerate(words):
+                w_norm = re.sub(r'[\u0700-\u070F\u0730-\u074A]', '', w)
+                if form in w or form_norm in w_norm or w in form or w_norm in form_norm:
+                    idx = i
+                    break
+        if idx == -1:
+            idx = 0  # fallback: show start of verse
+
+        before = ' '.join(words[max(0, idx - 3):idx])
+        word = words[idx] if idx < len(words) else form
+        after = ' '.join(words[idx + 1:idx + 4])
+        translation = _corpus.get_verse_translation(ref, trans) or ''
+
+        contexts.append({
+            'ref': ref,
+            'before': before,
+            'word': word,
+            'after': after,
+            'translation': translation[:150],
+        })
+
+    return jsonify({'contexts': contexts})
 
 
 @app.route('/api/word-root')

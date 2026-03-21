@@ -250,10 +250,22 @@
 
             <!-- Peshitta occurrences -->
             <div id="section-peshitta" class="panel">
-                <div class="panel-header">{{ t.results_peshitta }}</div>
+                <div class="panel-header">{{ t.results_peshitta }}
+                    {% if result.matches %}
+                    <button class="export-btn" onclick="exportCSV()" title="{{ t.export_csv|default('Download CSV') }}">
+                        <span class="material-symbols-outlined">download</span> CSV
+                    </button>
+                    {% endif %}
+                </div>
                 <div class="panel-body">
                     {% if result.matches %}
-                    <table class="peshitta-table">
+                    <div class="book-filter" id="book-filter">
+                        <label class="book-filter-label">{{ t.filter_by_book|default('Filter by book') }}:</label>
+                        <select id="book-filter-select" onchange="filterByBook(this.value)">
+                            <option value="">{{ t.filter_all_books|default('All books') }}</option>
+                        </select>
+                    </div>
+                    <table class="peshitta-table" id="peshitta-table">
                         <thead>
                             <tr>
                                 <th>{{ t.results_form }}</th>
@@ -270,7 +282,7 @@
                                 <td class="gloss-cell">{{ match.gloss }}{% if match.stem %} <span class="stem-badge">{{ match.stem }}</span>{% endif %}</td>
                                 <td class="refs">
                                     {% for ref in match.references[:20] %}
-                                    <span class="ref-link" data-ref="{{ ref }}" data-form="{{ match.form }}" data-root="{{ result.root }}" data-root-translit="{{ result.root_translit }}" onclick="showVerse(this)">{{ translate_ref(ref) }}</span>
+                                    <span class="ref-link" data-ref="{{ ref }}" data-form="{{ match.form }}" data-root="{{ result.root }}" data-root-translit="{{ result.root_translit }}" onclick="toggleContext(this, '{{ match.form|e }}', '{{ ref|e }}', '{{ lang }}')">{{ translate_ref(ref) }}</span>
                                     {% endfor %}
                                     {% if match.references|length > 20 %}
                                     <span class="ref-more">... +{{ match.references|length - 20 }}</span>
@@ -412,6 +424,112 @@
     {% if cognate_word %}
     switchTab('cognate');
     {% endif %}
+
+    // --- Export CSV ---
+    function exportCSV() {
+        var table = document.getElementById('peshitta-table');
+        if (!table) return;
+        var rows = table.querySelectorAll('tbody tr');
+        var csv = 'form,transliteration,gloss,stem,count,references\n';
+        rows.forEach(function(row) {
+            var cells = row.querySelectorAll('td');
+            if (cells.length < 4) return;
+            var form = cells[0].textContent.trim();
+            var translit = cells[1] ? cells[1].querySelector('.translit-simple') : null;
+            translit = translit ? translit.textContent.trim() : '';
+            var glossCell = cells[2] ? cells[2].textContent.trim() : '';
+            // Split gloss and stem
+            var stemEl = cells[2] ? cells[2].querySelector('.stem-badge') : null;
+            var stem = stemEl ? stemEl.textContent.trim() : '';
+            var gloss = glossCell.replace(stem, '').trim();
+            // Count is in cells[3] if refs are in cells[3], but layout may vary
+            // Gather refs
+            var refEls = row.querySelectorAll('.ref-link');
+            var refs = [];
+            refEls.forEach(function(r) { refs.push(r.getAttribute('data-ref') || r.textContent.trim()); });
+            var count = refs.length;
+            // Check for +N more
+            var more = row.querySelector('.ref-more');
+            if (more) {
+                var m = more.textContent.match(/\+(\d+)/);
+                if (m) count += parseInt(m[1]);
+            }
+            csv += '"' + form + '","' + translit + '","' + gloss.replace(/"/g, '""') + '","' + stem + '",' + count + ',"' + refs.join('; ') + '"\n';
+        });
+        var blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = '{{ result.root_translit|default("peshitta") }}_forms.csv';
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    // --- Book filter ---
+    (function() {
+        var table = document.getElementById('peshitta-table');
+        var select = document.getElementById('book-filter-select');
+        if (!table || !select) return;
+
+        // Collect all unique books from ref-link data attributes
+        var books = {};
+        var bookOrder = [];
+        table.querySelectorAll('.ref-link').forEach(function(el) {
+            var ref = el.getAttribute('data-ref') || '';
+            // Book is everything before the last space (e.g., "1 Corinthians 3:5" → "1 Corinthians")
+            var lastSpace = ref.lastIndexOf(' ');
+            if (lastSpace === -1) return;
+            var book = ref.substring(0, lastSpace);
+            if (!books[book]) {
+                books[book] = 0;
+                bookOrder.push(book);
+            }
+            books[book]++;
+        });
+
+        // Populate select with book names and counts
+        var bookNames = {{ book_names | default({}) | tojson }};
+        bookOrder.forEach(function(book) {
+            var opt = document.createElement('option');
+            opt.value = book;
+            var displayName = bookNames[book] || book;
+            opt.textContent = displayName + ' (' + books[book] + ')';
+            select.appendChild(opt);
+        });
+
+        // Hide filter if only 1 book
+        if (bookOrder.length <= 1) {
+            document.getElementById('book-filter').style.display = 'none';
+        }
+    })();
+
+    function filterByBook(book) {
+        var table = document.getElementById('peshitta-table');
+        if (!table) return;
+        var rows = table.querySelectorAll('tbody tr');
+        rows.forEach(function(row) {
+            if (!book) {
+                row.style.display = '';
+                return;
+            }
+            var refs = row.querySelectorAll('.ref-link');
+            var hasMatch = false;
+            refs.forEach(function(el) {
+                var ref = el.getAttribute('data-ref') || '';
+                if (ref.indexOf(book + ' ') === 0) {
+                    hasMatch = true;
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+            // Also hide/show ref-more
+            var more = row.querySelector('.ref-more');
+            if (more) more.style.display = book ? 'none' : '';
+            // Show row if any matching ref, hide if none
+            row.style.display = hasMatch ? '' : 'none';
+        });
+    }
 
     // --- Verse modal state ---
     var modalVerses = [];    // array of verse data objects, in order

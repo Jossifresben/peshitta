@@ -249,7 +249,7 @@
                                     break;
                                 }
                             }
-                            html += '<span class="ref-link" onclick="closeRootModal(); window.location.href=\'/?q=' + encodeURIComponent(data.root_translit) + '&lang=' + currentLang + '&script=' + currentScript + '#results\'">' + escHtml(refDisplay) + '</span>';
+                            html += '<span class="ref-link" onclick="toggleContext(this, \'' + escHtml(m.form).replace(/'/g, "\\'") + '\', \'' + refs[i].replace(/'/g, "\\'") + '\', \'' + currentLang + '\')">' + escHtml(refDisplay) + '</span>';
                         }
                         if (refs.length > maxRefs) html += '<span class="ref-more">+' + (refs.length - maxRefs) + '</span>';
                         html += '</td></tr>';

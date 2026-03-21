@@ -24,8 +24,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/verse?ref=Matthew 1:1&lang=es&script=latin",
-							"host": ["{{base_url}}"],
-							"path": ["api", "verse"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"verse"
+							],
 							"query": [
 								{
 									"key": "ref",
@@ -54,8 +59,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/verse?ref=John 3:16&lang=en&script=hebrew",
-							"host": ["{{base_url}}"],
-							"path": ["api", "verse"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"verse"
+							],
 							"query": [
 								{
 									"key": "ref",
@@ -81,8 +91,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/verse?ref=Luke 2:10&lang=es&script=arabic",
-							"host": ["{{base_url}}"],
-							"path": ["api", "verse"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"verse"
+							],
 							"query": [
 								{
 									"key": "ref",
@@ -114,8 +129,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/suggest?prefix=K-TH",
-							"host": ["{{base_url}}"],
-							"path": ["api", "suggest"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"suggest"
+							],
 							"query": [
 								{
 									"key": "prefix",
@@ -134,8 +154,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/suggest?prefix=SH",
-							"host": ["{{base_url}}"],
-							"path": ["api", "suggest"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"suggest"
+							],
 							"query": [
 								{
 									"key": "prefix",
@@ -153,8 +178,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/word-root?word=ܟܬܒܐ&script=latin",
-							"host": ["{{base_url}}"],
-							"path": ["api", "word-root"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"word-root"
+							],
 							"query": [
 								{
 									"key": "word",
@@ -178,8 +208,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/word-root?word=ܡܠܟܐ&script=syriac",
-							"host": ["{{base_url}}"],
-							"path": ["api", "word-root"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"word-root"
+							],
 							"query": [
 								{
 									"key": "word",
@@ -197,6 +232,82 @@
 			]
 		},
 		{
+			"name": "Concordance",
+			"description": "KWIC (Key Word In Context) — get surrounding Syriac text for word occurrences at specific verse references.",
+			"item": [
+				{
+					"name": "Concordance (single ref)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/concordance?form=ܡܠܟܐ&refs=Matthew 2:2&lang=en",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"concordance"
+							],
+							"query": [
+								{
+									"key": "form",
+									"value": "ܡܠܟܐ",
+									"description": "Syriac word form to find in context"
+								},
+								{
+									"key": "refs",
+									"value": "Matthew 2:2",
+									"description": "Comma-separated verse references"
+								},
+								{
+									"key": "lang",
+									"value": "en",
+									"description": "Language for translation (en/es/he/ar)"
+								}
+							]
+						},
+						"description": "Returns KWIC (Key Word In Context) for a Syriac word form at the given references. Shows 3 words before/after the target word plus verse translation."
+					}
+				},
+				{
+					"name": "Concordance (multiple refs)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/concordance?form=ܡܠܟܐ&refs=Matthew 2:2,Matthew 27:11,John 18:37&lang=es",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"concordance"
+							],
+							"query": [
+								{
+									"key": "form",
+									"value": "ܡܠܟܐ",
+									"description": "Syriac word form"
+								},
+								{
+									"key": "refs",
+									"value": "Matthew 2:2,Matthew 27:11,John 18:37",
+									"description": "Multiple refs, comma-separated (max 30)"
+								},
+								{
+									"key": "lang",
+									"value": "es",
+									"description": "Translation language"
+								}
+							]
+						},
+						"description": "Returns KWIC context for multiple references at once. Useful for building concordance views."
+					}
+				}
+			]
+		},
+		{
 			"name": "Browse",
 			"description": "Browse all triliteral roots with pagination.",
 			"item": [
@@ -207,8 +318,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/roots?page=1&per_page=10",
-							"host": ["{{base_url}}"],
-							"path": ["api", "roots"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"roots"
+							],
 							"query": [
 								{
 									"key": "page",
@@ -232,8 +348,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/roots?page=2&per_page=50",
-							"host": ["{{base_url}}"],
-							"path": ["api", "roots"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"roots"
+							],
 							"query": [
 								{
 									"key": "page",
@@ -261,8 +382,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/reverse-search?q=love&lang=en",
-							"host": ["{{base_url}}"],
-							"path": ["api", "reverse-search"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reverse-search"
+							],
 							"query": [
 								{
 									"key": "q",
@@ -286,8 +412,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/reverse-search?q=luz&lang=es",
-							"host": ["{{base_url}}"],
-							"path": ["api", "reverse-search"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reverse-search"
+							],
 							"query": [
 								{
 									"key": "q",
@@ -309,8 +440,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/reverse-search?q=king&lang=en",
-							"host": ["{{base_url}}"],
-							"path": ["api", "reverse-search"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reverse-search"
+							],
 							"query": [
 								{
 									"key": "q",
@@ -338,8 +474,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/text-search?q=bread&lang=auto&page=1&per_page=10&script=latin",
-							"host": ["{{base_url}}"],
-							"path": ["api", "text-search"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"text-search"
+							],
 							"query": [
 								{
 									"key": "q",
@@ -378,8 +519,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/text-search?q=ܡܠܟܐ&lang=auto&page=1&per_page=10",
-							"host": ["{{base_url}}"],
-							"path": ["api", "text-search"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"text-search"
+							],
 							"query": [
 								{
 									"key": "q",
@@ -410,8 +556,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/text-search?q=amor&lang=auto&page=1&per_page=20",
-							"host": ["{{base_url}}"],
-							"path": ["api", "text-search"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"text-search"
+							],
 							"query": [
 								{
 									"key": "q",
@@ -447,8 +598,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/passage-constellation?book=Luke&chapter=1&v_start=28&v_end=28&lang=en&script=latin",
-							"host": ["{{base_url}}"],
-							"path": ["api", "passage-constellation"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"passage-constellation"
+							],
 							"query": [
 								{
 									"key": "book",
@@ -492,8 +648,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/passage-constellation?book=John&chapter=1&v_start=1&v_end=5&lang=es&script=syriac&trans=es",
-							"host": ["{{base_url}}"],
-							"path": ["api", "passage-constellation"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"passage-constellation"
+							],
 							"query": [
 								{
 									"key": "book",
@@ -542,8 +703,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/root-family?root=K-TH-B&lang=es",
-							"host": ["{{base_url}}"],
-							"path": ["api", "root-family"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"root-family"
+							],
 							"query": [
 								{
 									"key": "root",
@@ -567,8 +733,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/root-family?root=R-W-KH&lang=en&script=latin",
-							"host": ["{{base_url}}"],
-							"path": ["api", "root-family"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"root-family"
+							],
 							"query": [
 								{
 									"key": "root",
@@ -596,8 +767,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/api/root-family?root=S-L-M&lang=en",
-							"host": ["{{base_url}}"],
-							"path": ["api", "root-family"],
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"root-family"
+							],
 							"query": [
 								{
 									"key": "root",

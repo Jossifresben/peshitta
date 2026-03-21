@@ -1415,12 +1415,134 @@ th {
     color: var(--accent-dark);
 }
 
+/* Export button */
+.export-btn {
+    float: right;
+    background: var(--bg-ref);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 0.8em;
+    color: var(--text-body);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: background 0.15s;
+}
+
+.export-btn:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.export-btn .material-symbols-outlined {
+    font-size: 16px;
+}
+
+/* Book filter */
+.book-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+}
+
+.book-filter-label {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.book-filter select {
+    flex: 1;
+    max-width: 300px;
+    padding: 4px 8px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    background: var(--bg-card);
+    color: var(--text-body);
+    font-size: 0.9em;
+}
+
+.ref-link.ref-expanded {
+    background: var(--accent);
+    color: #fff;
+}
+
 .ref-more {
     display: inline-block;
     padding: 2px 6px;
     margin: 2px;
     font-size: 0.9em;
     color: var(--text-muted);
+}
+
+/* KWIC Concordance */
+.kwic-line {
+    display: block;
+    margin: 6px 0;
+    padding: 8px 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    direction: rtl;
+    text-align: right;
+    line-height: 1.8;
+    position: relative;
+}
+
+.kwic-before, .kwic-after {
+    color: var(--text-muted);
+    font-size: 1.1em;
+}
+
+.kwic-word {
+    color: var(--accent-dark);
+    font-weight: 700;
+    font-size: 1.15em;
+    background: rgba(107, 122, 94, 0.12);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.kwic-translation {
+    display: block;
+    direction: ltr;
+    text-align: left;
+    font-style: italic;
+    font-size: 0.85em;
+    color: var(--text-muted);
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kwic-actions {
+    display: flex;
+    gap: 10px;
+    direction: ltr;
+    margin-top: 4px;
+}
+
+.kwic-action {
+    font-size: 0.8em;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--bg-ref);
+    cursor: pointer;
+}
+
+.kwic-action:hover {
+    background: var(--accent);
+    color: #fff;
 }
 
 .count-badge {
