@@ -37,8 +37,10 @@ _extractor: RootExtractor | None = None
 _cognate_lookup: CognateLookup | None = None
 _glosser: WordGlosser | None = None
 _i18n: dict = {}
+_cognates_raw: dict = {}  # Raw cognates.json data, loaded once
 _initialized = False
 _init_lock = threading.Lock()
+_cache_lock = threading.Lock()
 
 
 def _get_data_dir():
@@ -53,7 +55,7 @@ def _get_csv_path():
 
 
 def _init():
-    global _corpus, _extractor, _cognate_lookup, _glosser, _i18n, _initialized
+    global _corpus, _extractor, _cognate_lookup, _glosser, _i18n, _cognates_raw, _initialized
     if _initialized:
         return
 
@@ -67,6 +69,11 @@ def _init():
         i18n_path = os.path.join(data_dir, 'i18n.json')
         with open(i18n_path, 'r', encoding='utf-8') as f:
             _i18n = json.load(f)
+
+        # Load raw cognates JSON (shared by ROTD, reverse index, semantic fields)
+        cog_path = os.path.join(data_dir, 'cognates.json')
+        with open(cog_path, 'r', encoding='utf-8') as f:
+            _cognates_raw = json.load(f)
 
         # Load corpus
         _corpus = PeshittaCorpus(_get_csv_path())
@@ -238,21 +245,18 @@ def _root_of_the_day(lang):
     _init()
     today = str(date.today())
     cache_key = f'{today}:{lang}'
-    if cache_key in _rotd_cache:
-        return _rotd_cache[cache_key]
+    with _cache_lock:
+        if cache_key in _rotd_cache:
+            return _rotd_cache[cache_key]
 
-    # Load raw cognates JSON
-    cog_path = os.path.join(_get_data_dir(), 'cognates.json')
-    with open(cog_path, 'r', encoding='utf-8') as f:
-        cog_data = json.load(f)
-    roots = cog_data.get('roots', {})
+    roots = _cognates_raw.get('roots', {})
     # Filter to roots with rich data (sabor_raiz + greek_parallel)
     rich = [(k, v) for k, v in roots.items()
             if v.get('sabor_raiz_en') and v.get('greek_parallel')]
     if not rich:
         return None
     # Deterministic pick based on date
-    day_hash = int(hashlib.md5(str(date.today()).encode()).hexdigest(), 16)
+    day_hash = int(hashlib.md5(today.encode()).hexdigest(), 16)
     key, data = rich[day_hash % len(rich)]
     gloss_key = 'gloss_es' if lang == 'es' else 'gloss_en'
     sabor_key = f'sabor_raiz_{lang}' if lang in ('es', 'en') else 'sabor_raiz_en'
@@ -270,7 +274,8 @@ def _root_of_the_day(lang):
         'greek_meaning': gp.get(f'meaning_{lang}' if lang in ('es', 'en') else 'meaning_en',
                                 gp.get('meaning_en', '')),
     })
-    _rotd_cache[cache_key] = result
+    with _cache_lock:
+        _rotd_cache[cache_key] = result
     return result
 
 
@@ -483,16 +488,27 @@ def api_verse():
 _reverse_idx: dict = {}  # lang -> [{key, root_syriac, gloss, terms, sabor, occurrences}]
 
 
+def _tokenize(text, min_len=2):
+    """Extract lowercase word tokens from text, stripping punctuation."""
+    tokens = set()
+    if not text:
+        return tokens
+    for w in text.lower().replace(',', ' ').replace(';', ' ').replace('.', ' ').replace('(', ' ').replace(')', ' ').split():
+        w = w.strip()
+        if len(w) >= min_len:
+            tokens.add(w)
+    return tokens
+
+
 def _build_reverse_index():
     """Build a reverse search index: English/Spanish terms → Syriac roots."""
     global _reverse_idx
-    if _reverse_idx:
-        return
-    cog_path = os.path.join(_get_data_dir(), 'cognates.json')
-    with open(cog_path, 'r', encoding='utf-8') as f:
-        cog_data = json.load(f)
-    roots = cog_data.get('roots', {})
+    with _cache_lock:
+        if _reverse_idx:
+            return
+    roots = _cognates_raw.get('roots', {})
 
+    idx = {}
     for lang_code in ('en', 'es'):
         entries = []
         gloss_key = f'gloss_{lang_code}'
@@ -503,36 +519,13 @@ def _build_reverse_index():
             root_syriac = data.get('root_syriac', '')
 
             # Collect all searchable terms
-            terms = set()
-            # Root gloss
-            if gloss:
-                for w in gloss.lower().replace(',', ' ').replace(';', ' ').split():
-                    w = w.strip('()').strip()
-                    if len(w) > 1:
-                        terms.add(w)
-            # Sabor raiz
-            if sabor:
-                for w in sabor.lower().replace(',', ' ').replace(';', ' ').replace('.', ' ').split():
-                    w = w.strip('()').strip()
-                    if len(w) > 2:
-                        terms.add(w)
-            # Hebrew/Arabic cognate meanings
+            terms = _tokenize(gloss, min_len=2)
+            terms |= _tokenize(sabor, min_len=3)
             for cognate_list in (data.get('hebrew', []), data.get('arabic', [])):
                 for cog in cognate_list:
-                    meaning = cog.get(f'meaning_{lang_code}', '')
-                    if meaning:
-                        for w in meaning.lower().replace(',', ' ').replace(';', ' ').replace('(', ' ').replace(')', ' ').split():
-                            w = w.strip()
-                            if len(w) > 2:
-                                terms.add(w)
-            # Greek parallel meaning
+                    terms |= _tokenize(cog.get(f'meaning_{lang_code}', ''), min_len=3)
             gp = data.get('greek_parallel', {})
-            gp_meaning = gp.get(f'meaning_{lang_code}', '')
-            if gp_meaning:
-                for w in gp_meaning.lower().replace(',', ' ').replace(';', ' ').split():
-                    w = w.strip('()').strip()
-                    if len(w) > 2:
-                        terms.add(w)
+            terms |= _tokenize(gp.get(f'meaning_{lang_code}', ''), min_len=3)
 
             # Get occurrence count from extractor
             occ = 0
@@ -547,10 +540,12 @@ def _build_reverse_index():
                 'gloss': gloss,
                 'sabor': sabor,
                 'terms': terms,
-                'terms_str': ' '.join(terms),  # for substring matching
                 'occurrences': occ,
             })
-        _reverse_idx[lang_code] = entries
+        idx[lang_code] = entries
+
+    with _cache_lock:
+        _reverse_idx.update(idx)
 
 
 @app.route('/api/reverse-search')
@@ -878,17 +873,13 @@ _fields_cache: dict = {}
 def _build_semantic_fields(lang):
     """Build semantic field groupings from cognates.json sabor_raiz data."""
     cache_key = lang
-    if cache_key in _fields_cache:
-        return _fields_cache[cache_key]
+    with _cache_lock:
+        if cache_key in _fields_cache:
+            return _fields_cache[cache_key]
 
-    cog_path = os.path.join(_get_data_dir(), 'cognates.json')
-    with open(cog_path, 'r', encoding='utf-8') as f:
-        cog_data = json.load(f)
-    cog_roots = cog_data.get('roots', {})
-
+    cog_roots = _cognates_raw.get('roots', {})
     gloss_key = 'gloss_es' if lang == 'es' else 'gloss_en'
     sabor_key = f'sabor_raiz_{lang}' if lang in ('es', 'en') else 'sabor_raiz_en'
-    translit_fn = _get_translit_fn('latin')
 
     fields = {}
     for field_name in _SEMANTIC_FIELDS:
@@ -940,7 +931,8 @@ def _build_semantic_fields(lang):
                 'count': len(fields[field_name]),
             })
 
-    _fields_cache[cache_key] = result
+    with _cache_lock:
+        _fields_cache[cache_key] = result
     return result
 
 
@@ -1020,11 +1012,22 @@ def browse():
         # For rare roots without gloss, show first verse reference + word form
         context_ref = ''
         context_form = ''
+        context_book = ''
+        context_chapter = ''
+        context_verse = ''
         if not gloss and entry.matches:
             m = entry.matches[0]
             context_form = m.form
             if m.references:
                 context_ref = m.references[0]
+                # Parse reference safely: "Book Ch:V"
+                last_space = context_ref.rfind(' ')
+                if last_space != -1 and ':' in context_ref[last_space:]:
+                    context_book = context_ref[:last_space]
+                    ch_v = context_ref[last_space + 1:]
+                    parts = ch_v.split(':')
+                    context_chapter = parts[0]
+                    context_verse = parts[1] if len(parts) > 1 else ''
 
         roots_data.append({
             'root': entry.root,
@@ -1035,6 +1038,9 @@ def browse():
             'gloss': gloss,
             'context_ref': context_ref,
             'context_form': context_form,
+            'context_book': context_book,
+            'context_chapter': context_chapter,
+            'context_verse': context_verse,
         })
 
     freq_param = f'&freq={freq}' if freq else ''
