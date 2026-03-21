@@ -48,10 +48,7 @@
             {% for v in verses %}
             <div class="reader-verse" id="verse-{{ v.number }}">
                 <span class="verse-num">{{ chapter }}:{{ v.number }}</span>
-                <button class="verse-tts-btn" data-verse="{{ v.number }}" title="{{ t.tts_listen|default('Listen') }}" aria-label="{{ t.tts_listen|default('Listen') }}">
-                    <span class="material-symbols-outlined">volume_up</span>
-                </button>
-                <a href="{{ url_for('constellation', book=book, chapter=chapter, v_start=v.number, v_end=v.number, lang=lang, script=script, trans=trans) }}"
+<a href="{{ url_for('constellation', book=book, chapter=chapter, v_start=v.number, v_end=v.number, lang=lang, script=script, trans=trans) }}"
                    class="verse-constellation-link" title="{{ t.read_constellation }}">
                     <span class="material-symbols-outlined">scatter_plot</span>
                 </a>
@@ -255,119 +252,6 @@
     });
 
     // --- Text-to-Speech (Aramaic via Hebrew voice) ---
-    (function() {
-        var activeTTS = null; // currently playing verse number
-
-        function getHebrewVoice() {
-            var voices = speechSynthesis.getVoices();
-            // Prefer a Hebrew voice
-            var heb = voices.find(function(v) { return v.lang.startsWith('he'); });
-            if (heb) return heb;
-            // Fallback: any voice that can handle Hebrew script
-            return null;
-        }
-
-        function stopTTS() {
-            speechSynthesis.cancel();
-            // Remove all highlights
-            document.querySelectorAll('.rw.tts-active').forEach(function(el) {
-                el.classList.remove('tts-active');
-            });
-            // Reset button icon
-            if (activeTTS !== null) {
-                var btn = document.querySelector('.verse-tts-btn[data-verse="' + activeTTS + '"]');
-                if (btn) btn.querySelector('.material-symbols-outlined').textContent = 'volume_up';
-            }
-            activeTTS = null;
-        }
-
-        function speakVerse(verseNum) {
-            // If already playing this verse, stop
-            if (activeTTS === verseNum) {
-                stopTTS();
-                return;
-            }
-            // Stop any previous playback
-            stopTTS();
-
-            var btn = document.querySelector('.verse-tts-btn[data-verse="' + verseNum + '"]');
-            if (btn) btn.querySelector('.material-symbols-outlined').textContent = 'stop_circle';
-            activeTTS = verseNum;
-
-            // Get word spans for highlighting
-            var verseEl = document.getElementById('verse-' + verseNum);
-            var syriacWords = verseEl.querySelectorAll('.reader-syriac .rw');
-            var translitWords = verseEl.querySelectorAll('.reader-translit .rw');
-
-            // Fetch Hebrew-script transliteration from API
-            var ref = currentBook + ' ' + currentChapter + ':' + verseNum;
-            fetch('/api/verse?ref=' + encodeURIComponent(ref) + '&script=hebrew')
-                .then(function(r) { return r.json(); })
-                .then(function(data) {
-                    if (!data.words_translit || data.words_translit.length === 0) {
-                        stopTTS();
-                        return;
-                    }
-
-                    var words = data.words_translit;
-                    var wordIndex = 0;
-
-                    // Speak word by word for highlighting sync
-                    function speakNext() {
-                        if (wordIndex >= words.length || activeTTS !== verseNum) {
-                            stopTTS();
-                            return;
-                        }
-
-                        // Highlight current word
-                        if (syriacWords[wordIndex]) syriacWords[wordIndex].classList.add('tts-active');
-                        if (translitWords[wordIndex]) translitWords[wordIndex].classList.add('tts-active');
-
-                        var utt = new SpeechSynthesisUtterance(words[wordIndex]);
-                        var voice = getHebrewVoice();
-                        if (voice) utt.voice = voice;
-                        utt.lang = 'he-IL';
-                        utt.rate = 0.8;
-                        utt.pitch = 1.0;
-
-                        utt.onend = function() {
-                            // Remove highlight
-                            if (syriacWords[wordIndex]) syriacWords[wordIndex].classList.remove('tts-active');
-                            if (translitWords[wordIndex]) translitWords[wordIndex].classList.remove('tts-active');
-                            wordIndex++;
-                            speakNext();
-                        };
-
-                        utt.onerror = function() {
-                            stopTTS();
-                        };
-
-                        speechSynthesis.speak(utt);
-                    }
-
-                    speakNext();
-                })
-                .catch(function() {
-                    stopTTS();
-                });
-        }
-
-        // Event delegation for play buttons
-        document.getElementById('reader-body').addEventListener('click', function(e) {
-            var btn = e.target.closest('.verse-tts-btn');
-            if (!btn) return;
-            e.preventDefault();
-            e.stopPropagation();
-            speakVerse(parseInt(btn.getAttribute('data-verse')));
-        });
-
-        // Load voices (some browsers need this)
-        speechSynthesis.getVoices();
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = function() { speechSynthesis.getVoices(); };
-        }
-    })();
-
     // Scroll to verse if v_start param is present
     (function() {
         var params = new URLSearchParams(window.location.search);
