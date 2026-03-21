@@ -52,6 +52,9 @@
                 <button class="feature-tab" data-feature="method" onclick="switchFeature('method')">
                     <span class="material-symbols-outlined">auto_stories</span> {{ t.feature_tab_method }}
                 </button>
+                <button class="feature-tab" onclick="startTour()">
+                    <span class="material-symbols-outlined">route</span> {{ t.tour_start }}
+                </button>
                 <button class="feature-close" onclick="toggleShowcase(true)" title="{{ t.feature_close }}">
                     <span class="material-symbols-outlined">close</span>
                 </button>
@@ -932,6 +935,80 @@
         result += escHtml(text.substring(last));
         return result;
     }
+
+    // --- Guided Tour ---
+    var TOUR_STRINGS = {
+        skip: {{ t.tour_skip|tojson }},
+        next: {{ t.tour_next|tojson }},
+        finish: {{ t.tour_finish|tojson }},
+        welcomeTitle: {{ t.tour_welcome_title|tojson }},
+        welcomeBody: {{ t.tour_welcome_body|tojson }},
+        rotdTitle: {{ t.tour_rotd_title|tojson }},
+        rotdBody: {{ t.tour_rotd_body|tojson }},
+        searchTitle: {{ t.tour_search_title|tojson }},
+        searchBody: {{ t.tour_search_body|tojson }},
+        meaningTitle: {{ t.tour_meaning_title|tojson }},
+        meaningBody: {{ t.tour_meaning_body|tojson }},
+        cognateTitle: {{ t.tour_cognate_title|tojson }},
+        cognateBody: {{ t.tour_cognate_body|tojson }},
+        textTitle: {{ t.tour_text_title|tojson }},
+        textBody: {{ t.tour_text_body|tojson }},
+        browseTitle: {{ t.tour_browse_title|tojson }},
+        browseBody: {{ t.tour_browse_body|tojson }},
+        readerTitle: {{ t.tour_reader_title|tojson }},
+        readerBody: {{ t.tour_reader_body|tojson }},
+        settingsTitle: {{ t.tour_settings_title|tojson }},
+        settingsBody: {{ t.tour_settings_body|tojson }},
+        langTitle: {{ t.tour_lang_title|tojson }},
+        langBody: {{ t.tour_lang_body|tojson }},
+        endTitle: {{ t.tour_end_title|tojson }},
+        endBody: {{ t.tour_end_body|tojson }}
+    };
+
+    function buildTourSteps() {
+        var steps = [];
+        // 1. Welcome (centered, no target)
+        steps.push({ target: null, title: TOUR_STRINGS.welcomeTitle, body: TOUR_STRINGS.welcomeBody });
+        // 2. Root of the Day
+        var rotdEl = document.querySelector('.rotd-card');
+        if (rotdEl) {
+            steps.push({ target: '.rotd-card', title: TOUR_STRINGS.rotdTitle, body: TOUR_STRINGS.rotdBody, position: 'bottom' });
+        }
+        // 3. Root search
+        steps.push({ target: '#panel-root', title: TOUR_STRINGS.searchTitle, body: TOUR_STRINGS.searchBody, position: 'bottom' });
+        // 4. Cognate search tab
+        steps.push({ target: '#tab-cognate', title: TOUR_STRINGS.cognateTitle, body: TOUR_STRINGS.cognateBody, position: 'bottom' });
+        // 5. Meaning search tab
+        steps.push({ target: '#tab-meaning', title: TOUR_STRINGS.meaningTitle, body: TOUR_STRINGS.meaningBody, position: 'bottom' });
+        // 6. Text search tab
+        steps.push({ target: '#tab-text', title: TOUR_STRINGS.textTitle, body: TOUR_STRINGS.textBody, position: 'bottom' });
+        // 7. Browse roots
+        steps.push({ target: '.home-cta-row', title: TOUR_STRINGS.browseTitle, body: TOUR_STRINGS.browseBody, position: 'top' });
+        // 8. Read the Peshitta
+        steps.push({ target: '.home-cta-row', title: TOUR_STRINGS.readerTitle, body: TOUR_STRINGS.readerBody, position: 'top' });
+        // 9. Settings
+        steps.push({ target: '.settings-wrapper', title: TOUR_STRINGS.settingsTitle, body: TOUR_STRINGS.settingsBody, position: 'bottom' });
+        // 10. Language
+        steps.push({ target: '.lang-wrapper', title: TOUR_STRINGS.langTitle, body: TOUR_STRINGS.langBody, position: 'bottom' });
+        // 11. Done (centered)
+        steps.push({ target: null, title: TOUR_STRINGS.endTitle, body: TOUR_STRINGS.endBody });
+        return steps;
+    }
+
+    window.startTour = function() {
+        PeshittaTour.start(buildTourSteps(), {
+            skipLabel: TOUR_STRINGS.skip,
+            nextLabel: TOUR_STRINGS.next,
+            finishLabel: TOUR_STRINGS.finish
+        });
+    };
+
+    // Auto-start tour on first visit
+    (function() {
+        if (!localStorage.getItem('tourCompleted')) {
+            setTimeout(startTour, 800);
+        }
+    })();
 
     // --- Update feature CTA links with user's stored preferences ---
     (function() {
