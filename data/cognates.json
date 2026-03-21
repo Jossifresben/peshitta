@@ -34981,7 +34981,13 @@
         "word": "πᾶς",
         "transliteration": "pas",
         "meaning_es": "todo",
-        "meaning_en": "all, every"
+        "meaning_en": "all, every",
+        "aramaic_range_en": "all, every, whole, totality, completeness, perfection",
+        "aramaic_range_es": "todo, cada, totalidad, completud, perfección",
+        "greek_range_en": "all, every, each — a quantifier without the Semitic resonance of cosmic wholeness",
+        "greek_range_es": "todo, cada — un cuantificador sin la resonancia semítica de totalidad cósmica",
+        "lost_en": "In Aramaic, ܟܠ (kol) carries the sense of organic wholeness, not mere enumeration. When the Peshitta says 'kol' it implies a completeness that contains no exception, a fullness that is qualitative, not just quantitative. The Greek πᾶς reduces this to a logical quantifier, losing the resonance with Hebrew כֹּל and Arabic كُلّ where 'all' touches the idea of cosmic perfection.",
+        "lost_es": "En arameo, ܟܠ (kol) porta el sentido de totalidad orgánica, no mera enumeración. Cuando la Peshitta dice 'kol' implica una completud sin excepción, una plenitud cualitativa, no solo cuantitativa. El griego πᾶς lo reduce a un cuantificador lógico, perdiendo la resonancia con el hebreo כֹּל y el árabe كُلّ donde 'todo' toca la idea de perfección cósmica."
       },
       "semantic_bridges": {
         "heb:kol": {
@@ -35013,7 +35019,13 @@
         "word": "εὑρίσκω",
         "transliteration": "heuriskō",
         "meaning_es": "encontrar",
-        "meaning_en": "find"
+        "meaning_en": "find",
+        "aramaic_range_en": "find, discover, be able, attain, encounter, be found worthy",
+        "aramaic_range_es": "encontrar, descubrir, poder, alcanzar, hallar, ser hallado digno",
+        "greek_range_en": "find, discover, come upon — focused on the act of locating something previously unknown",
+        "greek_range_es": "encontrar, descubrir — enfocado en el acto de localizar algo previamente desconocido",
+        "lost_en": "In Aramaic, ܫܟܚ (shkkh) merges 'to find' with 'to be able' — discovery and capacity are the same root. When you find something, you gain the power to act. Greek εὑρίσκω strips away this fusion, leaving only the cognitive act of finding without the existential empowerment that the Aramaic implies.",
+        "lost_es": "En arameo, ܫܟܚ (shkkh) fusiona 'encontrar' con 'poder' — descubrimiento y capacidad comparten raíz. Cuando encuentras algo, adquieres el poder de actuar. El griego εὑρίσκω elimina esta fusión, dejando solo el acto cognitivo de hallar sin el empoderamiento existencial que el arameo implica."
       },
       "semantic_bridges": {
         "syr:eshkakh": {
@@ -35038,7 +35050,13 @@
         "word": "ἰατρός",
         "transliteration": "iatros",
         "meaning_es": "médico",
-        "meaning_en": "physician"
+        "meaning_en": "physician",
+        "aramaic_range_en": "heal, cure, physician, remedy, restore to wholeness",
+        "aramaic_range_es": "sanar, curar, médico, remedio, restaurar la integridad",
+        "greek_range_en": "physician, healer — a professional title rooted in Greek medical tradition",
+        "greek_range_es": "médico, sanador — un título profesional arraigado en la tradición médica griega",
+        "lost_en": "In Aramaic, ܐܣܝ (asy) is not a profession but a restoration of being. The healer does not merely treat symptoms; they return a person to their original wholeness. Greek ἰατρός medicalizes this into a professional role, losing the Semitic understanding where healing is fundamentally about making whole what was broken.",
+        "lost_es": "En arameo, ܐܣܝ (asy) no es una profesión sino una restauración del ser. El sanador no solo trata síntomas; devuelve a la persona a su integridad original. El griego ἰατρός medicaliza esto en un rol profesional, perdiendo la comprensión semítica donde sanar es fundamentalmente restaurar lo que estaba roto."
       },
       "semantic_bridges": {
         "syr:asya": {
@@ -35077,7 +35095,13 @@
         "word": "μισθός",
         "transliteration": "misthos",
         "meaning_es": "salario",
-        "meaning_en": "wages, reward"
+        "meaning_en": "wages, reward",
+        "aramaic_range_en": "reward, hire, wages, letter, epistle, recompense",
+        "aramaic_range_es": "recompensa, salario, carta, epístola, retribución",
+        "greek_range_en": "wages, reward, pay — an economic term for compensation",
+        "greek_range_es": "salario, recompensa, pago — un término económico de compensación",
+        "lost_en": "In Aramaic, ܐܓܪ (agr) links 'reward' with 'letter/epistle' — the written word is itself a form of recompense, a covenant made visible. Greek μισθός narrows this to mere economic payment, severing the connection between the written covenant and its fulfillment.",
+        "lost_es": "En arameo, ܐܓܪ (agr) vincula 'recompensa' con 'carta/epístola' — la palabra escrita es en sí una forma de retribución, un pacto hecho visible. El griego μισθός estrecha esto a mero pago económico, cortando la conexión entre el pacto escrito y su cumplimiento."
       },
       "semantic_bridges": {
         "ar:ajr": {
@@ -35109,7 +35133,13 @@
         "word": "καρπός",
         "transliteration": "karpos",
         "meaning_es": "fruto",
-        "meaning_en": "fruit"
+        "meaning_en": "fruit",
+        "aramaic_range_en": "fruit, produce, offspring, result, consequence, yield",
+        "aramaic_range_es": "fruto, producir, descendencia, resultado, consecuencia, rendimiento",
+        "greek_range_en": "fruit, harvest, crop — primarily agricultural yield",
+        "greek_range_es": "fruto, cosecha — primariamente rendimiento agrícola",
+        "lost_en": "In Aramaic, ܦܐܪ (par) carries the full arc from seed to consequence — fruit is not just what grows on a tree but the visible manifestation of an invisible process. Greek καρπός retains the metaphorical use but loses the Semitic depth where 'fruit' is inseparable from 'offspring' and 'destiny.'",
+        "lost_es": "En arameo, ܦܐܪ (par) porta el arco completo desde semilla hasta consecuencia — el fruto no es solo lo que crece en un árbol sino la manifestación visible de un proceso invisible. El griego καρπός retiene el uso metafórico pero pierde la profundidad semítica donde 'fruto' es inseparable de 'descendencia' y 'destino.'"
       },
       "semantic_bridges": {
         "heb:peri": {
@@ -35160,7 +35190,13 @@
         "word": "ἄλλος",
         "transliteration": "allos",
         "meaning_es": "otro",
-        "meaning_en": "other"
+        "meaning_en": "other",
+        "aramaic_range_en": "another, other, last, end, behind, after, the one who comes after",
+        "aramaic_range_es": "otro, último, fin, detrás, después, el que viene después",
+        "greek_range_en": "other, another, different — a simple distinction of identity",
+        "greek_range_es": "otro, diferente — una simple distinción de identidad",
+        "lost_en": "In Aramaic, ܐܚܪ (akhr) fuses 'other' with 'last' and 'what comes after' — the other is always the one who follows, the end point of a sequence. This temporal-eschatological dimension is absent from Greek ἄλλος, which merely marks difference without implying destiny or finality.",
+        "lost_es": "En arameo, ܐܚܪ (akhr) fusiona 'otro' con 'último' y 'lo que viene después' — el otro es siempre el que sigue, el punto final de una secuencia. Esta dimensión temporal-escatológica está ausente del griego ἄλλος, que simplemente marca diferencia sin implicar destino ni finalidad."
       },
       "semantic_bridges": {
         "heb:akher": {
@@ -35198,7 +35234,13 @@
         "word": "σκότος",
         "transliteration": "skotos",
         "meaning_es": "oscuridad",
-        "meaning_en": "darkness"
+        "meaning_en": "darkness",
+        "aramaic_range_en": "dark, darkness, obscure, blind, withhold light",
+        "aramaic_range_es": "oscuro, oscuridad, obscurecer, cegar, retener la luz",
+        "greek_range_en": "darkness, gloom — the absence of light as a physical condition",
+        "greek_range_es": "oscuridad, tinieblas — la ausencia de luz como condición física",
+        "lost_en": "In Aramaic, ܚܫܟ (khshk) is not merely the absence of light but an active force — darkness that obscures, withholds, and blinds. The Hebrew cognate חָשַׁךְ carries the same weight. Greek σκότος reduces darkness to a passive state, losing the Semitic understanding of darkness as a cosmic agent.",
+        "lost_es": "En arameo, ܚܫܟ (khshk) no es meramente la ausencia de luz sino una fuerza activa — oscuridad que oculta, retiene y ciega. El cognado hebreo חָשַׁךְ porta el mismo peso. El griego σκότος reduce la oscuridad a un estado pasivo, perdiendo la comprensión semítica de la oscuridad como agente cósmico."
       },
       "semantic_bridges": {
         "heb:khoshekh": {
@@ -35223,7 +35265,13 @@
         "word": "τόπος",
         "transliteration": "topos",
         "meaning_es": "lugar",
-        "meaning_en": "place"
+        "meaning_en": "place",
+        "aramaic_range_en": "place, location, position, dwelling, standing ground",
+        "aramaic_range_es": "lugar, ubicación, posición, morada, terreno firme",
+        "greek_range_en": "place, spot, region — a geographic or spatial reference",
+        "greek_range_es": "lugar, punto, región — una referencia geográfica o espacial",
+        "lost_en": "In Aramaic, ܕܘܟ (dwk) implies a place where one stands, a ground of being. It is not merely coordinates but a station, a position in the order of things. Greek τόπος maps space geometrically, losing the existential weight of 'the place where you belong.'",
+        "lost_es": "En arameo, ܕܘܟ (dwk) implica un lugar donde uno se planta, un suelo del ser. No son meras coordenadas sino una estación, una posición en el orden de las cosas. El griego τόπος mapea el espacio geométricamente, perdiendo el peso existencial de 'el lugar donde perteneces.'"
       },
       "semantic_bridges": {
         "syr:dukta": {
@@ -35262,7 +35310,13 @@
         "word": "θερίζω",
         "transliteration": "therizō",
         "meaning_es": "cosechar",
-        "meaning_en": "reap"
+        "meaning_en": "reap",
+        "aramaic_range_en": "harvest, reap, cut down, gather what was sown",
+        "aramaic_range_es": "cosechar, segar, cortar, recoger lo sembrado",
+        "greek_range_en": "reap, harvest — the agricultural act of cutting grain",
+        "greek_range_es": "cosechar, segar — el acto agrícola de cortar grano",
+        "lost_en": "In Aramaic, ܚܨܕ (khtsad) carries the moral weight of consequence — you reap what you sow, and the harvest is a judgment. The Hebrew cognate קָצַר bears the same prophetic urgency. Greek θερίζω is agricultural vocabulary that can carry metaphor but lacks the intrinsic covenantal resonance.",
+        "lost_es": "En arameo, ܚܨܕ (khtsad) porta el peso moral de la consecuencia — cosechas lo que siembras, y la cosecha es un juicio. El cognado hebreo קָצַר porta la misma urgencia profética. El griego θερίζω es vocabulario agrícola que puede cargar metáfora pero carece de la resonancia pactual intrínseca."
       },
       "semantic_bridges": {
         "ar:hasada": {
@@ -35287,7 +35341,13 @@
         "word": "κοιμάομαι",
         "transliteration": "koimaomai",
         "meaning_es": "dormir",
-        "meaning_en": "sleep, fall asleep"
+        "meaning_en": "sleep, fall asleep",
+        "aramaic_range_en": "sleep, lie down, rest, fall asleep, die",
+        "aramaic_range_es": "dormir, acostarse, descansar, quedarse dormido, morir",
+        "greek_range_en": "sleep, fall asleep — both literal rest and euphemism for death",
+        "greek_range_es": "dormir, quedarse dormido — tanto descanso literal como eufemismo de muerte",
+        "lost_en": "In Aramaic, ܕܡܟ (dmk) holds sleep and death in the same breath without euphemism — the one who sleeps may not wake, and this uncertainty is woven into the root itself. Greek κοιμάομαι developed the death euphemism later, but in the Aramaic the ambiguity is original and theological.",
+        "lost_es": "En arameo, ܕܡܟ (dmk) sostiene sueño y muerte en el mismo aliento sin eufemismo — el que duerme puede no despertar, y esta incertidumbre está tejida en la raíz misma. El griego κοιμάομαι desarrolló el eufemismo de muerte posteriormente, pero en el arameo la ambigüedad es original y teológica."
       },
       "semantic_bridges": {
         "syr:demakh": {
@@ -35326,7 +35386,13 @@
         "word": "πάσχα",
         "transliteration": "paskha",
         "meaning_es": "Pascua",
-        "meaning_en": "Passover"
+        "meaning_en": "Passover",
+        "aramaic_range_en": "Passover, pass over, spare, skip, leap over",
+        "aramaic_range_es": "Pascua, pasar por alto, perdonar, saltar, sobresaltar",
+        "greek_range_en": "Passover — transliterated as a proper noun, losing verbal force",
+        "greek_range_es": "Pascua — transliterado como nombre propio, perdiendo fuerza verbal",
+        "lost_en": "In Aramaic, ܦܨܚ (ptskh) is a living verb — God actively passes over, leaps over, spares. The Hebrew פֶּסַח carries the same kinetic energy. Greek πάσχα is a frozen transliteration that became a calendar event, losing the dynamic image of God leaping over the houses of the faithful.",
+        "lost_es": "En arameo, ܦܨܚ (ptskh) es un verbo vivo — Dios activamente pasa por alto, salta, perdona. El hebreo פֶּסַח porta la misma energía cinética. El griego πάσχα es una transliteración congelada que se convirtió en evento calendárico, perdiendo la imagen dinámica de Dios saltando sobre las casas de los fieles."
       },
       "semantic_bridges": {
         "heb:pesakh": {
@@ -35365,7 +35431,13 @@
         "word": "ἀνάπαυσις",
         "transliteration": "anapausis",
         "meaning_es": "descanso",
-        "meaning_en": "rest"
+        "meaning_en": "rest",
+        "aramaic_range_en": "rest, calm, ease, comfort, settle, set down, cause to rest",
+        "aramaic_range_es": "descanso, calma, alivio, consuelo, asentar, hacer descansar",
+        "greek_range_en": "rest, cessation from work — primarily the end of labor",
+        "greek_range_es": "descanso, cese del trabajo — primariamente el fin del esfuerzo",
+        "lost_en": "In Aramaic, ܢܝܚ (nykh) is the rest that Noah's name embodies — not mere cessation but the settling of being into its proper place. The Hebrew cognate נוּחַ carries this same cosmic resonance. Greek ἀνάπαυσις defines rest as the opposite of work, losing the Semitic sense of rest as arrival at one's destined home.",
+        "lost_es": "En arameo, ܢܝܚ (nykh) es el descanso que encarna el nombre de Noé — no mero cese sino el asentamiento del ser en su lugar propio. El cognado hebreo נוּחַ porta esta misma resonancia cósmica. El griego ἀνάπαυσις define el descanso como opuesto al trabajo, perdiendo el sentido semítico del descanso como llegada al hogar destinado."
       },
       "semantic_bridges": {
         "heb:nuakh": {
@@ -35404,7 +35476,13 @@
         "word": "ὕδωρ",
         "transliteration": "hydōr",
         "meaning_es": "agua",
-        "meaning_en": "water"
+        "meaning_en": "water",
+        "aramaic_range_en": "water, waters, liquid, life-source, purification, chaos",
+        "aramaic_range_es": "agua, aguas, líquido, fuente de vida, purificación, caos",
+        "greek_range_en": "water — the physical substance H₂O",
+        "greek_range_es": "agua — la sustancia física H₂O",
+        "lost_en": "In Aramaic, ܡܝܐ (maya) echoes the primordial waters of creation — water is simultaneously life and chaos, purification and danger. The Hebrew מַיִם and Arabic ماء share this cosmic duality. Greek ὕδωρ is simply the substance, losing the mythic-theological weight of the Semitic 'waters.'",
+        "lost_es": "En arameo, ܡܝܐ (maya) evoca las aguas primordiales de la creación — el agua es simultáneamente vida y caos, purificación y peligro. El hebreo מַיִם y el árabe ماء comparten esta dualidad cósmica. El griego ὕδωρ es simplemente la sustancia, perdiendo el peso mítico-teológico de las 'aguas' semíticas."
       },
       "semantic_bridges": {
         "heb:mayim": {
@@ -35443,7 +35521,13 @@
         "word": "ὥρα",
         "transliteration": "hōra",
         "meaning_es": "hora",
-        "meaning_en": "hour"
+        "meaning_en": "hour",
+        "aramaic_range_en": "hour, time, moment, appointed time, decisive instant",
+        "aramaic_range_es": "hora, tiempo, momento, tiempo señalado, instante decisivo",
+        "greek_range_en": "hour — a unit of time measurement",
+        "greek_range_es": "hora — una unidad de medición del tiempo",
+        "lost_en": "In Aramaic, ܫܥܬ (shath) is not a clock hour but a kairos-like moment — the hour that arrives, the decisive instant appointed by God. Greek ὥρα can carry this weight but also simply means sixty minutes, an ambiguity the Aramaic does not have. In the Peshitta, 'the hour' is always charged with destiny.",
+        "lost_es": "En arameo, ܫܥܬ (shath) no es una hora de reloj sino un momento kairótico — la hora que llega, el instante decisivo señalado por Dios. El griego ὥρα puede portar este peso pero también simplemente significa sesenta minutos, una ambigüedad que el arameo no tiene. En la Peshitta, 'la hora' siempre está cargada de destino."
       },
       "semantic_bridges": {
         "heb:shaah": {
@@ -35468,7 +35552,13 @@
         "word": "μέλος",
         "transliteration": "melos",
         "meaning_es": "miembro",
-        "meaning_en": "member, limb"
+        "meaning_en": "member, limb",
+        "aramaic_range_en": "member, limb, body part, organ, component of a whole",
+        "aramaic_range_es": "miembro, extremidad, parte del cuerpo, órgano, componente de un todo",
+        "greek_range_en": "member, limb — an anatomical part of the body",
+        "greek_range_es": "miembro, extremidad — una parte anatómica del cuerpo",
+        "lost_en": "In Aramaic, ܗܕܡ (hdm) implies that each member belongs to a body — it cannot exist alone. The word carries the theological weight of Paul's 'body of Christ' metaphor more naturally than the Greek μέλος, which is simply anatomical vocabulary pressed into service as metaphor.",
+        "lost_es": "En arameo, ܗܕܡ (hdm) implica que cada miembro pertenece a un cuerpo — no puede existir solo. La palabra porta el peso teológico de la metáfora paulina del 'cuerpo de Cristo' más naturalmente que el griego μέλος, que es simplemente vocabulario anatómico puesto al servicio de la metáfora."
       },
       "semantic_bridges": {
         "syr:hadama": {
@@ -35507,7 +35597,13 @@
         "word": "τελώνης",
         "transliteration": "telōnēs",
         "meaning_es": "publicano",
-        "meaning_en": "tax collector"
+        "meaning_en": "tax collector",
+        "aramaic_range_en": "tax, tribute, tax collector, publican, levy",
+        "aramaic_range_es": "impuesto, tributo, recaudador de impuestos, publicano, gravamen",
+        "greek_range_en": "tax collector — a social role within the Roman system",
+        "greek_range_es": "recaudador de impuestos — un rol social dentro del sistema romano",
+        "lost_en": "In Aramaic, ܡܟܣ (mks) carries the full weight of oppression — the tax is not a neutral civic duty but an extraction, a wound inflicted by empire. Greek τελώνης professionalizes this into a job title, softening the raw experience of those who lived under the levy.",
+        "lost_es": "En arameo, ܡܟܣ (mks) porta el peso completo de la opresión — el impuesto no es un deber cívico neutral sino una extracción, una herida infligida por el imperio. El griego τελώνης profesionaliza esto en un título de empleo, suavizando la experiencia cruda de quienes vivían bajo el gravamen."
       },
       "semantic_bridges": {
         "heb:mekhes": {
@@ -35539,7 +35635,13 @@
         "word": "ἀρκέω",
         "transliteration": "arkeō",
         "meaning_es": "bastar",
-        "meaning_en": "suffice"
+        "meaning_en": "suffice",
+        "aramaic_range_en": "suffice, be enough, satisfy, provide, supply in abundance",
+        "aramaic_range_es": "bastar, ser suficiente, satisfacer, proveer, abastecer en abundancia",
+        "greek_range_en": "suffice, be enough — a minimal threshold of adequacy",
+        "greek_range_es": "bastar, ser suficiente — un umbral mínimo de adecuación",
+        "lost_en": "In Aramaic, ܣܦܩ (spq) implies not just 'enough' but provision that overflows — sufficiency as divine abundance, not bare minimum. Greek ἀρκέω sets a floor of adequacy, losing the Semitic sense that when God provides, there is always more than enough.",
+        "lost_es": "En arameo, ܣܦܩ (spq) implica no solo 'suficiente' sino provisión que desborda — suficiencia como abundancia divina, no mínimo indispensable. El griego ἀρκέω establece un piso de adecuación, perdiendo el sentido semítico de que cuando Dios provee, siempre hay más que suficiente."
       },
       "semantic_bridges": {
         "heb:safaq": {
@@ -35578,7 +35680,13 @@
         "word": "σκορπίζω",
         "transliteration": "skorpizō",
         "meaning_es": "dispersar",
-        "meaning_en": "scatter"
+        "meaning_en": "scatter",
+        "aramaic_range_en": "scatter, disperse, sow widely, spread abroad, disseminate",
+        "aramaic_range_es": "esparcir, dispersar, sembrar ampliamente, difundir, diseminar",
+        "greek_range_en": "scatter, disperse — to separate what was gathered",
+        "greek_range_es": "esparcir, dispersar — separar lo que estaba reunido",
+        "lost_en": "In Aramaic, ܒܕܪ (bdr) holds both judgment and generosity — to scatter can be to punish (diaspora) or to sow (the parable of the sower). Greek σκορπίζω emphasizes the violence of scattering, losing the creative ambiguity of the Semitic root.",
+        "lost_es": "En arameo, ܒܕܪ (bdr) sostiene tanto juicio como generosidad — esparcir puede ser castigar (diáspora) o sembrar (la parábola del sembrador). El griego σκορπίζω enfatiza la violencia de esparcir, perdiendo la ambigüedad creativa de la raíz semítica."
       },
       "semantic_bridges": {
         "heb:badar": {
@@ -35610,7 +35718,13 @@
         "word": "μισέω",
         "transliteration": "miseō",
         "meaning_es": "odiar",
-        "meaning_en": "hate"
+        "meaning_en": "hate",
+        "aramaic_range_en": "hate, enemy, adversary, oppose, reject",
+        "aramaic_range_es": "odiar, enemigo, adversario, oponerse, rechazar",
+        "greek_range_en": "hate, detest — an emotional state of intense dislike",
+        "greek_range_es": "odiar, detestar — un estado emocional de intenso rechazo",
+        "lost_en": "In Aramaic, ܣܢܐ (sna) is relational, not merely emotional — to hate is to act as an enemy, to stand in opposition. The Hebrew שָׂנֵא functions the same way. Greek μισέω psychologizes hatred into a feeling, losing the concrete Semitic sense of enmity as a stance, a position taken against another.",
+        "lost_es": "En arameo, ܣܢܐ (sna) es relacional, no meramente emocional — odiar es actuar como enemigo, ponerse en oposición. El hebreo שָׂנֵא funciona igual. El griego μισέω psicologiza el odio en un sentimiento, perdiendo el sentido semítico concreto de la enemistad como postura, una posición tomada contra otro."
       },
       "semantic_bridges": {
         "heb:sane": {
@@ -35649,7 +35763,13 @@
         "word": "χρυσός",
         "transliteration": "khrysos",
         "meaning_es": "oro",
-        "meaning_en": "gold"
+        "meaning_en": "gold",
+        "aramaic_range_en": "gold, golden, precious, pure, refined",
+        "aramaic_range_es": "oro, dorado, precioso, puro, refinado",
+        "greek_range_en": "gold — the precious metal",
+        "greek_range_es": "oro — el metal precioso",
+        "lost_en": "In Aramaic, ܕܗܒ (dhb) shares its root with the Hebrew זָהָב and Arabic ذَهَب. The Semitic 'gold' is not just a metal but a symbol of what endures, what has been tested by fire. Greek χρυσός borrows from an Indo-European root unrelated to purification, losing the Semitic link between gold and divine refining.",
+        "lost_es": "En arameo, ܕܗܒ (dhb) comparte raíz con el hebreo זָהָב y el árabe ذَهَب. El 'oro' semítico no es solo un metal sino un símbolo de lo que perdura, lo probado por el fuego. El griego χρυσός toma de una raíz indoeuropea sin relación con la purificación, perdiendo el vínculo semítico entre oro y refinamiento divino."
       },
       "semantic_bridges": {
         "heb:zahav": {
@@ -35687,7 +35807,13 @@
         "word": "ἄρωμα",
         "transliteration": "arōma",
         "meaning_es": "aroma",
-        "meaning_en": "spice, aroma"
+        "meaning_en": "spice, aroma",
+        "aramaic_range_en": "pleasant, sweet, fragrant, spice, aroma, delight",
+        "aramaic_range_es": "agradable, dulce, fragante, especia, aroma, deleite",
+        "greek_range_en": "spice, aroma — aromatic substances used in burial and worship",
+        "greek_range_es": "especia, aroma — sustancias aromáticas usadas en sepultura y culto",
+        "lost_en": "In Aramaic, ܒܣܡ (bsm) connects fragrance with goodness itself — what smells sweet is what is right. The Hebrew בֹּשֶׂם and Arabic بَلْسَم (balsam) share this root. Greek ἄρωμα is a sensory descriptor, losing the moral-aesthetic fusion where 'pleasant' means 'pleasing to God.'",
+        "lost_es": "En arameo, ܒܣܡ (bsm) conecta la fragancia con la bondad misma — lo que huele dulce es lo correcto. El hebreo בֹּשֶׂם y el árabe بَلْسَم (bálsamo) comparten esta raíz. El griego ἄρωμα es un descriptor sensorial, perdiendo la fusión moral-estética donde 'agradable' significa 'agradable a Dios.'"
       },
       "semantic_bridges": {
         "heb:bosem": {
@@ -35712,7 +35838,13 @@
         "word": "πείθω",
         "transliteration": "peithō",
         "meaning_es": "persuadir",
-        "meaning_en": "persuade"
+        "meaning_en": "persuade",
+        "aramaic_range_en": "persuade, convince, assure, win over, give confidence",
+        "aramaic_range_es": "persuadir, convencer, asegurar, ganar, dar confianza",
+        "greek_range_en": "persuade, convince — to change someone's mind through argument",
+        "greek_range_es": "persuadir, convencer — cambiar la opinión de alguien mediante argumento",
+        "lost_en": "In Aramaic, ܦܝܣ (pys) is about restoring trust, not winning an argument. To persuade is to give someone confidence, to make them secure. Greek πείθω is rhetorical — the art of convincing through logos. The Aramaic is relational, the Greek is intellectual.",
+        "lost_es": "En arameo, ܦܝܣ (pys) trata de restaurar la confianza, no ganar un argumento. Persuadir es dar seguridad a alguien, hacerlo sentir seguro. El griego πείθω es retórico — el arte de convencer mediante el logos. El arameo es relacional, el griego es intelectual."
       },
       "semantic_bridges": {
         "gr:peitho": {
@@ -35757,7 +35889,13 @@
         "word": "ἁλιεύω",
         "transliteration": "halieuō",
         "meaning_es": "pescar",
-        "meaning_en": "fish, catch"
+        "meaning_en": "fish, catch",
+        "aramaic_range_en": "hunt, catch, trap, fish, beside, provision obtained by hunting",
+        "aramaic_range_es": "cazar, atrapar, pescar, al lado de, provisión obtenida por caza",
+        "greek_range_en": "fish, catch — specifically catching fish",
+        "greek_range_es": "pescar, atrapar — específicamente atrapar peces",
+        "lost_en": "In Aramaic, ܨܝܕ (tsyd) encompasses all forms of catching — hunting, trapping, fishing. The Hebrew cognate צַיִד (tsayid) gives us Esau the hunter. Greek ἁλιεύω narrows this to fishing alone, losing the broader Semitic image of the human being as one who pursues and captures sustenance from the wild.",
+        "lost_es": "En arameo, ܨܝܕ (tsyd) abarca todas las formas de captura — caza, trampa, pesca. El cognado hebreo צַיִד (tsayid) nos da a Esaú el cazador. El griego ἁλιεύω estrecha esto solo a la pesca, perdiendo la imagen semítica más amplia del ser humano como el que persigue y captura sustento de lo salvaje."
       },
       "semantic_bridges": {
         "heb:tsayid": {
@@ -35795,7 +35933,13 @@
         "word": "καιρός",
         "transliteration": "kairos",
         "meaning_es": "tiempo oportuno",
-        "meaning_en": "right time, season"
+        "meaning_en": "right time, season",
+        "aramaic_range_en": "time, season, moment, appointed time, festival, opportunity",
+        "aramaic_range_es": "tiempo, estación, momento, tiempo señalado, festival, oportunidad",
+        "greek_range_en": "right time, season, opportune moment — qualitative time",
+        "greek_range_es": "tiempo oportuno, estación, momento propicio — tiempo cualitativo",
+        "lost_en": "In Aramaic, ܥܕܢ (edn) echoes the Garden of Eden (עֵדֶן) — a time of delight, an appointed moment of divine encounter. Greek καιρός partially captures this but through a philosophical lens of 'right timing' rather than the Semitic sense of a time saturated with divine presence.",
+        "lost_es": "En arameo, ܥܕܢ (edn) evoca el Jardín del Edén (עֵדֶן) — un tiempo de deleite, un momento señalado de encuentro divino. El griego καιρός captura esto parcialmente pero a través de una lente filosófica de 'momento oportuno' más que el sentido semítico de un tiempo saturado de presencia divina."
       },
       "semantic_bridges": {
         "heb:iddan": {
@@ -35827,7 +35971,13 @@
         "word": "σκληρός",
         "transliteration": "sklēros",
         "meaning_es": "duro",
-        "meaning_en": "hard, harsh"
+        "meaning_en": "hard, harsh",
+        "aramaic_range_en": "hard, difficult, harsh, severe, stubborn, stiff-necked",
+        "aramaic_range_es": "duro, difícil, áspero, severo, terco, de dura cerviz",
+        "greek_range_en": "hard, harsh, rough — a quality of texture or character",
+        "greek_range_es": "duro, áspero, rudo — una cualidad de textura o carácter",
+        "lost_en": "In Aramaic, ܩܘܫ (qwsh) connects hardness with stubbornness — the stiff-necked people of Exodus. It is a moral category, not just a physical one. Greek σκληρός can describe hard soil or a hard person, but the biblical-prophetic resonance of the Aramaic root is diminished.",
+        "lost_es": "En arameo, ܩܘܫ (qwsh) conecta dureza con terquedad — el pueblo de dura cerviz del Éxodo. Es una categoría moral, no solo física. El griego σκληρός puede describir suelo duro o persona dura, pero la resonancia bíblico-profética de la raíz aramea se pierde."
       },
       "semantic_bridges": {
         "heb:qasheh": {
@@ -35859,7 +36009,13 @@
         "word": "ὑπομένω",
         "transliteration": "hypomenō",
         "meaning_es": "resistir",
-        "meaning_en": "endure, persevere"
+        "meaning_en": "endure, persevere",
+        "aramaic_range_en": "endure, persist, wait, remain steadfast, hope, expect",
+        "aramaic_range_es": "resistir, persistir, esperar, permanecer firme, esperanza, expectativa",
+        "greek_range_en": "endure, persevere, remain under — bearing weight patiently",
+        "greek_range_es": "soportar, perseverar, permanecer bajo — cargar peso pacientemente",
+        "lost_en": "In Aramaic, ܩܘܝ (qwy) merges endurance with hope — to persist is to wait for something, not merely to survive. The Hebrew cognate קָוָה (qavah) means both 'to wait' and 'to hope.' Greek ὑπομένω is about bearing pressure, losing the luminous Semitic dimension where endurance is inseparable from expectation.",
+        "lost_es": "En arameo, ܩܘܝ (qwy) fusiona resistencia con esperanza — persistir es esperar algo, no meramente sobrevivir. El cognado hebreo קָוָה (qavah) significa tanto 'esperar' como 'tener esperanza.' El griego ὑπομένω trata de soportar presión, perdiendo la dimensión luminosa semítica donde la resistencia es inseparable de la expectativa."
       },
       "semantic_bridges": {
         "heb:qivvah": {
@@ -35904,7 +36060,13 @@
         "word": "μεταξύ",
         "transliteration": "metaxy",
         "meaning_es": "entre",
-        "meaning_en": "between"
+        "meaning_en": "between",
+        "aramaic_range_en": "between, understand, discern, perceive, distinguish",
+        "aramaic_range_es": "entre, comprender, discernir, percibir, distinguir",
+        "greek_range_en": "between — a spatial preposition",
+        "greek_range_es": "entre — una preposición espacial",
+        "lost_en": "In Aramaic, ܒܝܢ (byn) is both 'between' and 'to understand' — comprehension happens in the space between things. The Hebrew בִּינָה (binah, understanding) shares this root. Greek μεταξύ is pure spatial geometry, losing the profound Semitic insight that understanding is born in the gap between opposites.",
+        "lost_es": "En arameo, ܒܝܢ (byn) es tanto 'entre' como 'comprender' — la comprensión ocurre en el espacio entre las cosas. El hebreo בִּינָה (binah, entendimiento) comparte esta raíz. El griego μεταξύ es pura geometría espacial, perdiendo la profunda intuición semítica de que el entendimiento nace en el hueco entre opuestos."
       },
       "semantic_bridges": {
         "heb:binah": {
@@ -35936,7 +36098,13 @@
         "word": "φείδομαι",
         "transliteration": "pheidomai",
         "meaning_es": "perdonar",
-        "meaning_en": "spare"
+        "meaning_en": "spare",
+        "aramaic_range_en": "spare, pity, have compassion, withhold punishment",
+        "aramaic_range_es": "perdonar, tener piedad, compadecer, contener el castigo",
+        "greek_range_en": "spare, refrain from — to hold back an action",
+        "greek_range_es": "perdonar, abstenerse de — contener una acción",
+        "lost_en": "In Aramaic, ܚܘܣ (khws) is visceral mercy — the gut-level decision not to destroy what you have power over. Greek φείδομαι is a rational choice to refrain, losing the embodied Semitic compassion where 'sparing' costs something to the one who spares.",
+        "lost_es": "En arameo, ܚܘܣ (khws) es misericordia visceral — la decisión desde las entrañas de no destruir aquello sobre lo que tienes poder. El griego φείδομαι es una elección racional de abstenerse, perdiendo la compasión corpórea semítica donde 'perdonar' le cuesta algo al que perdona."
       },
       "semantic_bridges": {
         "heb:khus": {
@@ -35968,7 +36136,13 @@
         "word": "δένδρον",
         "transliteration": "dendron",
         "meaning_es": "árbol",
-        "meaning_en": "tree"
+        "meaning_en": "tree",
+        "aramaic_range_en": "tree, wood, timber, the living growing thing",
+        "aramaic_range_es": "árbol, madera, leño, lo vivo que crece",
+        "greek_range_en": "tree — a botanical organism",
+        "greek_range_es": "árbol — un organismo botánico",
+        "lost_en": "In Aramaic, ܝܠܢ (yln) is the tree as a living witness — trees mark covenants, provide shade for prophets, and their fruit reveals their nature. Greek δένδρον is botanical classification, losing the Semitic sense of the tree as a theological sign rooted in the earth and reaching toward heaven.",
+        "lost_es": "En arameo, ܝܠܢ (yln) es el árbol como testigo vivo — los árboles marcan pactos, dan sombra a profetas, y su fruto revela su naturaleza. El griego δένδρον es clasificación botánica, perdiendo el sentido semítico del árbol como signo teológico enraizado en la tierra y extendiéndose hacia el cielo."
       },
       "semantic_bridges": {
         "heb:ilan": {
@@ -36007,7 +36181,13 @@
         "word": "νύξ",
         "transliteration": "nyx",
         "meaning_es": "noche",
-        "meaning_en": "night"
+        "meaning_en": "night",
+        "aramaic_range_en": "night, darkness, the hours of vulnerability and revelation",
+        "aramaic_range_es": "noche, oscuridad, las horas de vulnerabilidad y revelación",
+        "greek_range_en": "night — the period between sunset and sunrise",
+        "greek_range_es": "noche — el período entre atardecer y amanecer",
+        "lost_en": "In Aramaic, ܠܝܠ (lyl) is not just a time period but a theological space — the night when Jacob wrestles, when Nicodemus comes, when Gethsemane unfolds. The Hebrew לַיְלָה carries the same weight. Greek νύξ is a clock designation, losing the Semitic sense of night as the arena of divine encounter.",
+        "lost_es": "En arameo, ܠܝܠ (lyl) no es solo un período de tiempo sino un espacio teológico — la noche en que Jacob lucha, en que Nicodemo viene, en que Getsemaní se despliega. El hebreo לַיְלָה porta el mismo peso. El griego νύξ es una designación horaria, perdiendo el sentido semítico de la noche como arena del encuentro divino."
       },
       "semantic_bridges": {
         "heb:laylah": {
@@ -36052,7 +36232,13 @@
         "word": "εὐχή",
         "transliteration": "eukhē",
         "meaning_es": "voto",
-        "meaning_en": "vow, prayer"
+        "meaning_en": "vow, prayer",
+        "aramaic_range_en": "vow, promise, pledge, consecrate, dedicate solemnly",
+        "aramaic_range_es": "voto, promesa, juramento, consagrar, dedicar solemnemente",
+        "greek_range_en": "vow, prayer — a religious commitment or petition",
+        "greek_range_es": "voto, oración — un compromiso religioso o petición",
+        "lost_en": "In Aramaic, ܢܕܪ (ndr) is a binding of the self to God — the vow creates an irrevocable bond between the human word and divine witness. The Hebrew נֶדֶר and Arabic نَذْر share this covenantal gravity. Greek εὐχή softens this to 'prayer/wish,' losing the irrevocable weight of the Semitic vow where your word becomes your chain.",
+        "lost_es": "En arameo, ܢܕܪ (ndr) es una atadura del ser a Dios — el voto crea un vínculo irrevocable entre la palabra humana y el testimonio divino. El hebreo נֶדֶר y el árabe نَذْر comparten esta gravedad pactual. El griego εὐχή lo suaviza a 'oración/deseo,' perdiendo el peso irrevocable del voto semítico donde tu palabra se convierte en tu cadena."
       },
       "semantic_bridges": {
         "heb:neder": {
@@ -36091,7 +36277,13 @@
         "word": "φυτεύω",
         "transliteration": "phyteuō",
         "meaning_es": "plantar",
-        "meaning_en": "plant"
+        "meaning_en": "plant",
+        "aramaic_range_en": "plant, set up, establish, fix in place, erect",
+        "aramaic_range_es": "plantar, establecer, fijar, erigir, implantar",
+        "greek_range_en": "plant — to put a seed or plant in the ground",
+        "greek_range_es": "plantar — poner una semilla o planta en la tierra",
+        "lost_en": "In Aramaic, ܢܨܒ (ntsb) fuses planting with establishing — to plant is to set something permanently in its place. The Hebrew נָצַב means 'to stand firm.' Greek φυτεύω is agricultural, losing the Semitic resonance where planting is an act of founding, of making something stand.",
+        "lost_es": "En arameo, ܢܨܒ (ntsb) fusiona plantar con establecer — plantar es fijar algo permanentemente en su lugar. El hebreo נָצַב significa 'estar firme.' El griego φυτεύω es agrícola, perdiendo la resonancia semítica donde plantar es un acto de fundar, de hacer que algo se sostenga."
       },
       "semantic_bridges": {
         "heb:natsav": {
@@ -36123,7 +36315,13 @@
         "word": "λιθάζω",
         "transliteration": "lithazō",
         "meaning_es": "apedrear",
-        "meaning_en": "stone"
+        "meaning_en": "stone",
+        "aramaic_range_en": "stone, stone to death, pelt with stones, execute by stoning",
+        "aramaic_range_es": "apedrear, lapidar, ejecutar a pedradas",
+        "greek_range_en": "stone — to throw stones as a form of execution",
+        "greek_range_es": "apedrear — lanzar piedras como forma de ejecución",
+        "lost_en": "In Aramaic, ܣܩܠ (sql) carries the full communal weight of covenantal punishment — stoning is not individual violence but collective judgment, where the entire community participates in purging transgression. Greek λιθάζω describes the physical act, losing the juridical-theological dimension of communal Torah enforcement.",
+        "lost_es": "En arameo, ܣܩܠ (sql) porta el peso comunal completo del castigo pactual — la lapidación no es violencia individual sino juicio colectivo, donde toda la comunidad participa en purgar la transgresión. El griego λιθάζω describe el acto físico, perdiendo la dimensión jurídico-teológica de la aplicación comunal de la Torah."
       },
       "semantic_bridges": {
         "heb:saqal": {
@@ -36162,7 +36360,13 @@
         "word": "ζύμη",
         "transliteration": "zymē",
         "meaning_es": "levadura",
-        "meaning_en": "leaven"
+        "meaning_en": "leaven",
+        "aramaic_range_en": "leaven, ferment, sour, transform from within",
+        "aramaic_range_es": "levadura, fermentar, agriar, transformar desde dentro",
+        "greek_range_en": "leaven, yeast — a baking ingredient",
+        "greek_range_es": "levadura — un ingrediente de panadería",
+        "lost_en": "In Aramaic, ܚܡܥ (khme) is transformation from within — the leaven changes the whole loaf invisibly. The Hebrew חָמֵץ is what must be purged at Passover. Greek ζύμη is a culinary term that can carry Jesus's metaphor but lacks the intrinsic Semitic tension between fermentation as life-giving and fermentation as corruption.",
+        "lost_es": "En arameo, ܚܡܥ (khme) es transformación desde dentro — la levadura cambia todo el pan invisiblemente. El hebreo חָמֵץ es lo que debe purgarse en Pascua. El griego ζύμη es un término culinario que puede cargar la metáfora de Jesús pero carece de la tensión semítica intrínseca entre fermentación como dadora de vida y fermentación como corrupción."
       },
       "semantic_bridges": {
         "heb:khamets": {
@@ -36200,7 +36404,13 @@
         "word": "ὕψος",
         "transliteration": "hypsos",
         "meaning_es": "altura",
-        "meaning_en": "height"
+        "meaning_en": "height",
+        "aramaic_range_en": "height, exalted, high, lift up, raise, pride",
+        "aramaic_range_es": "altura, exaltado, alto, elevar, levantar, orgullo",
+        "greek_range_en": "height, high place — vertical distance",
+        "greek_range_es": "altura, lugar alto — distancia vertical",
+        "lost_en": "In Aramaic, ܪܘܡ (rwm) holds exaltation and pride in the same root — to be raised can be glorification or arrogance. The Hebrew רוּם carries the same duality. Greek ὕψος measures vertical distance, losing the moral ambiguity of the Semitic root where height is both divine honor and human hubris.",
+        "lost_es": "En arameo, ܪܘܡ (rwm) sostiene exaltación y orgullo en la misma raíz — ser elevado puede ser glorificación o arrogancia. El hebreo רוּם porta la misma dualidad. El griego ὕψος mide distancia vertical, perdiendo la ambigüedad moral de la raíz semítica donde la altura es tanto honor divino como soberbia humana."
       },
       "semantic_bridges": {
         "heb:rum": {
@@ -36245,7 +36455,13 @@
         "word": "σκανδαλίζω",
         "transliteration": "skandalizō",
         "meaning_es": "hacer tropezar",
-        "meaning_en": "cause to stumble"
+        "meaning_en": "cause to stumble",
+        "aramaic_range_en": "weigh, heavy, stumble, stumbling block, cause to fall",
+        "aramaic_range_es": "pesar, pesado, tropezar, piedra de tropiezo, hacer caer",
+        "greek_range_en": "cause to stumble, offend, scandalize — a moral trap",
+        "greek_range_es": "hacer tropezar, escandalizar — una trampa moral",
+        "lost_en": "In Aramaic, ܬܩܠ (thql) means 'to weigh' — what makes you stumble is what weighs you down. The 'stumbling block' is literally a weight. Greek σκανδαλίζω is about traps and snares, losing the Semitic image of sin as heaviness, as the gravitational pull that drags you to the ground.",
+        "lost_es": "En arameo, ܬܩܠ (thql) significa 'pesar' — lo que te hace tropezar es lo que te pesa. La 'piedra de tropiezo' es literalmente un peso. El griego σκανδαλίζω trata de trampas y lazos, perdiendo la imagen semítica del pecado como pesadez, como la gravedad que te arrastra al suelo."
       },
       "semantic_bridges": {
         "heb:taqal": {
@@ -36270,7 +36486,13 @@
         "word": "ἀποκόπτω",
         "transliteration": "apokoptō",
         "meaning_es": "cortar",
-        "meaning_en": "cut off"
+        "meaning_en": "cut off",
+        "aramaic_range_en": "cut off, amputate, sever, shorten, cut down",
+        "aramaic_range_es": "cortar, amputar, cercenar, acortar, talar",
+        "greek_range_en": "cut off — to sever a part from the whole",
+        "greek_range_es": "cortar — separar una parte del todo",
+        "lost_en": "In Aramaic, ܓܕܡ (gdm) implies irreversible separation — what is cut off cannot be reattached. It carries the weight of covenant curses and divine judgment. Greek ἀποκόπτω is surgical vocabulary, losing the theological finality of the Semitic root where 'cutting off' is excommunication from the body of the people.",
+        "lost_es": "En arameo, ܓܕܡ (gdm) implica separación irreversible — lo cortado no puede reintegrarse. Porta el peso de las maldiciones del pacto y el juicio divino. El griego ἀποκόπτω es vocabulario quirúrgico, perdiendo la finalidad teológica de la raíz semítica donde 'cortar' es excomunión del cuerpo del pueblo."
       },
       "semantic_bridges": {
         "syr:gadam": {
@@ -36295,7 +36517,13 @@
         "word": "ὑπόστασις",
         "transliteration": "hypostasis",
         "meaning_es": "hipóstasis",
-        "meaning_en": "hypostasis, substance"
+        "meaning_en": "hypostasis, substance",
+        "aramaic_range_en": "person, individual, hypostasis, substance, self, being",
+        "aramaic_range_es": "persona, individuo, hipóstasis, sustancia, ser",
+        "greek_range_en": "hypostasis, substance, being — a philosophical term for underlying reality",
+        "greek_range_es": "hipóstasis, sustancia, ser — un término filosófico para la realidad subyacente",
+        "lost_en": "In Aramaic, ܩܢܡ (qnm) means simply 'person' — a concrete individual standing before you. Greek ὑπόστασις abstracts this into philosophical ontology: 'that which stands under.' The entire Trinitarian debate about three 'hypostases' loses the Aramaic simplicity where qnoma means 'this person, here, now.'",
+        "lost_es": "En arameo, ܩܢܡ (qnm) significa simplemente 'persona' — un individuo concreto delante de ti. El griego ὑπόστασις lo abstrae en ontología filosófica: 'lo que subyace.' Todo el debate trinitario sobre tres 'hipóstasis' pierde la simplicidad aramea donde qnoma significa 'esta persona, aquí, ahora.'"
       },
       "semantic_bridges": {
         "gr:hypostasis": {
@@ -36334,7 +36562,13 @@
         "word": "ἐθνικός",
         "transliteration": "ethnikos",
         "meaning_es": "gentil",
-        "meaning_en": "Gentile, pagan"
+        "meaning_en": "Gentile, pagan",
+        "aramaic_range_en": "pagan, heathen, godless, profane, impious",
+        "aramaic_range_es": "pagano, gentil, impío, profano",
+        "greek_range_en": "Gentile, pagan — one of the nations, non-Jewish",
+        "greek_range_es": "gentil, pagano — uno de las naciones, no judío",
+        "lost_en": "In Aramaic, ܚܢܦ (khnp) carries moral judgment — the pagan is not merely 'non-Jewish' but 'profane, godless.' It is a statement about one's relationship to the sacred, not an ethnic category. Greek ἐθνικός neutralizes this to 'of the nations,' an ethnic-political designation that softens the spiritual urgency.",
+        "lost_es": "En arameo, ܚܢܦ (khnp) porta juicio moral — el pagano no es meramente 'no judío' sino 'profano, sin Dios.' Es una declaración sobre la relación con lo sagrado, no una categoría étnica. El griego ἐθνικός lo neutraliza a 'de las naciones,' una designación étnico-política que suaviza la urgencia espiritual."
       },
       "semantic_bridges": {
         "ar:hanif": {
@@ -36372,7 +36606,13 @@
         "word": "ἀκροβυστία",
         "transliteration": "akrobystia",
         "meaning_es": "incircuncisión",
-        "meaning_en": "uncircumcision"
+        "meaning_en": "uncircumcision",
+        "aramaic_range_en": "uncircumcised, uncovenanted, exposed, naked before God",
+        "aramaic_range_es": "incircunciso, sin pacto, expuesto, desnudo ante Dios",
+        "greek_range_en": "uncircumcision — the state of not being circumcised",
+        "greek_range_es": "incircuncisión — el estado de no estar circuncidado",
+        "lost_en": "In Aramaic, ܥܪܠ (arl) is not just a physical state but a covenantal one — to be uncircumcised is to stand outside the covenant, exposed and unprotected. The Hebrew עָרֵל carries the same theological weight. Greek ἀκροβυστία is a medical term, losing the profound Semitic sense of covenant exclusion.",
+        "lost_es": "En arameo, ܥܪܠ (arl) no es solo un estado físico sino pactual — ser incircunciso es estar fuera del pacto, expuesto y sin protección. El hebreo עָרֵל porta el mismo peso teológico. El griego ἀκροβυστία es un término médico, perdiendo el profundo sentido semítico de exclusión del pacto."
       },
       "semantic_bridges": {
         "heb:arel": {
@@ -36404,7 +36644,13 @@
         "word": "ἄμμος",
         "transliteration": "ammos",
         "meaning_es": "arena",
-        "meaning_en": "sand"
+        "meaning_en": "sand",
+        "aramaic_range_en": "sand, grains, innumerable, the uncountable multitude",
+        "aramaic_range_es": "arena, granos, innumerable, la multitud incontable",
+        "greek_range_en": "sand — granular mineral material",
+        "greek_range_es": "arena — material mineral granular",
+        "lost_en": "In Aramaic, ܪܡܠ (rml) evokes the Abrahamic promise — 'as numerous as the sand.' Sand in the Semitic imagination is not geology but theology: the innumerable descendants, the covenant beyond counting. Greek ἄμμος is beach material, losing the patriarchal resonance that every grain of sand is a promised life.",
+        "lost_es": "En arameo, ܪܡܠ (rml) evoca la promesa abrahámica — 'tan numerosos como la arena.' La arena en la imaginación semítica no es geología sino teología: los descendientes innumerables, el pacto más allá del conteo. El griego ἄμμος es material de playa, perdiendo la resonancia patriarcal de que cada grano de arena es una vida prometida."
       },
       "semantic_bridges": {
         "ar:raml": {
@@ -36443,7 +36689,13 @@
         "word": "εὐαγγέλιον",
         "transliteration": "euangelion",
         "meaning_es": "evangelio",
-        "meaning_en": "gospel"
+        "meaning_en": "gospel",
+        "aramaic_range_en": "gospel, good news, glad tidings, announcement of victory",
+        "aramaic_range_es": "evangelio, buena noticia, buenas nuevas, anuncio de victoria",
+        "greek_range_en": "gospel, good news — a proclamation of glad tidings",
+        "greek_range_es": "evangelio, buena noticia — una proclamación de buenas nuevas",
+        "lost_en": "In Aramaic, ܣܒܪܬ (sbarth) comes from the root S-B-R meaning 'to hope, to expect' — the gospel is not just news but the fulfillment of hope, the thing that was waited for. Greek εὐαγγέλιον is 'good message' from a herald, losing the Semitic dimension where the good news is the arrival of what was hoped for since the beginning.",
+        "lost_es": "En arameo, ܣܒܪܬ (sbarth) viene de la raíz S-B-R que significa 'esperar, tener esperanza' — el evangelio no es solo noticia sino el cumplimiento de la esperanza, lo que se aguardaba. El griego εὐαγγέλιον es 'buen mensaje' de un heraldo, perdiendo la dimensión semítica donde la buena noticia es la llegada de lo esperado desde el principio."
       },
       "semantic_bridges": {
         "heb:besorah": {

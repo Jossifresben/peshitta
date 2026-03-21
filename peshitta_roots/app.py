@@ -1204,14 +1204,16 @@ def audio_timestamps_tool():
             break
     chapter = max(1, min(chapter, max_chapter))
     chapter_verses = _corpus.get_chapter_verses(book, chapter)
-    translit_fn = _get_translit_fn('hebrew')
+    translit_he = _get_translit_fn('hebrew')
+    translit_la = _get_translit_fn('latin')
     verses_data = []
     for verse_num, ref, syriac_text in chapter_verses:
         words = syriac_text.split()
         verses_data.append({
             'number': verse_num,
             'syriac': syriac_text,
-            'translit': ' '.join(translit_fn(w) for w in words),
+            'translit_he': ' '.join(translit_he(w) for w in words),
+            'translit_la': ' '.join(translit_la(w) for w in words),
         })
     audio_file = f'audio/{book}/{chapter}.mp3'
     return render_template('audio_timestamps.html',
