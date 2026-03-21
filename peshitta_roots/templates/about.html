@@ -9,6 +9,20 @@
 <a href="{{ url_for('about_page', lang='ar') }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
 {% endblock %}
 
+{% block jsonld %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jossi Fresco",
+    "url": "https://peshitta.onrender.com/about",
+    "image": "https://peshitta.onrender.com/static/author.jpg",
+    "jobTitle": "Musician, Writer, Peshitta Researcher",
+    "knowsAbout": ["Syriac Aramaic", "Peshitta", "Semitic Linguistics", "Hebrew", "Arabic"]
+}
+</script>
+{% endblock %}
+
 {% block header_settings %}{% endblock %}
 {% block header_share %}{% endblock %}
 {% block share_modal %}{% endblock %}

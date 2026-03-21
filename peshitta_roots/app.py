@@ -4,7 +4,9 @@ import json
 import os
 import threading
 
-from flask import Flask, render_template, request, jsonify
+import time
+
+from flask import Flask, render_template, request, jsonify, Response
 
 from .characters import (parse_root_input, transliterate_syriac, transliterate_syriac_academic,
                          transliterate_syriac_to_hebrew, transliterate_syriac_to_arabic,
@@ -120,6 +122,110 @@ class _Namespace:
     def __init__(self, d):
         self.__dict__.update(d)
 
+
+
+@app.route('/robots.txt')
+def robots_txt():
+    content = "User-agent: *\nAllow: /\n\nSitemap: https://peshitta.onrender.com/sitemap.xml\n"
+    return Response(content, mimetype='text/plain')
+
+
+_sitemap_cache = {'xml': None, 'ts': 0}
+
+
+@app.route('/sitemap.xml')
+def sitemap():
+    _init()
+    now = time.time()
+    if _sitemap_cache['xml'] and now - _sitemap_cache['ts'] < 86400:
+        return Response(_sitemap_cache['xml'], mimetype='application/xml')
+
+    base = 'https://peshitta.onrender.com'
+    langs = ['es', 'en', 'he', 'ar']
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+             '        xmlns:xhtml="http://www.w3.org/1999/xhtml">']
+
+    def _add_url(path, priority='0.5', changefreq='weekly'):
+        lines.append('  <url>')
+        lines.append(f'    <loc>{base}{path}</loc>')
+        lines.append(f'    <changefreq>{changefreq}</changefreq>')
+        lines.append(f'    <priority>{priority}</priority>')
+        for lg in langs:
+            sep = '&amp;' if '?' in path else '?'
+            lines.append(f'    <xhtml:link rel="alternate" hreflang="{lg}" href="{base}{path}{sep}lang={lg}"/>')
+        lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{base}{path}"/>')
+        lines.append('  </url>')
+
+    # Static pages
+    _add_url('/', '1.0', 'weekly')
+    _add_url('/browse', '0.8', 'weekly')
+    _add_url('/read', '0.8', 'daily')
+    _add_url('/help', '0.5', 'monthly')
+    _add_url('/about', '0.5', 'monthly')
+    _add_url('/methodology', '0.6', 'monthly')
+    _add_url('/constellation', '0.7', 'weekly')
+
+    # Dynamic root pages
+    all_roots = _extractor.get_all_roots()
+    for entry in all_roots:
+        dash_form = _translit_to_dash(entry.root)
+        _add_url(f'/visualize/{dash_form}', '0.6', 'monthly')
+
+    lines.append('</urlset>')
+    xml = '\n'.join(lines)
+    _sitemap_cache['xml'] = xml
+    _sitemap_cache['ts'] = now
+    return Response(xml, mimetype='application/xml')
+
+
+@app.route('/llms.txt')
+def llms_txt():
+    content = """# Peshitta Constellations
+> Explore the New Testament from its Aramaic roots
+
+## What this tool does
+- Searches triliteral and biliteral Aramaic (Syriac) roots in the Peshitta New Testament
+- Shows Hebrew (via BDB lexicon) and Arabic (via Lane's lexicon) cognates for each root
+- Provides an interlinear reader with Syriac text, transliteration, and translation
+- Visualizes root families as interactive constellation graphs
+- Maps passage constellations showing root connections within a Bible passage
+- Full text search across verse translations in all supported languages
+
+## API Endpoints
+- GET /?q=K-TH-B — Search for a root (returns HTML page with results)
+- GET /api/verse?ref=Matthew+1:1&script=latin&trans=en — Get verse data (JSON)
+- GET /api/text-search?q=love&lang=en — Search verse translations (JSON)
+- GET /api/suggest?q=ktb — Root autocomplete suggestions (JSON)
+- GET /api/roots?page=1&per_page=50 — Paginated root list (JSON)
+- GET /api/root-family?root=K-TH-B&lang=en — Full root family with cognates (JSON)
+- GET /api/word-root?form=ܟܬܒ — Look up root for a Syriac word form (JSON)
+- GET /api/passage-constellation?book=Matthew&chapter=1&v_start=1&v_end=5 — Passage root map (JSON)
+
+## Languages
+UI available in: Spanish (es), English (en), Hebrew (he), Arabic (ar).
+Use ?lang=XX query parameter on any page or API endpoint.
+
+## Data Sources
+- Text corpus: ETCBC syrnt (Peshitta New Testament, traditional 22-book canon)
+- Hebrew cognates: Brown-Driver-Briggs (BDB) lexicon
+- Arabic cognates: Lane's Arabic-English Lexicon
+- Syriac lexicon: Payne Smith's Compendious Syriac Dictionary
+
+## Coverage
+- Full Peshitta New Testament (27 books)
+- 1400+ triliteral and biliteral roots indexed
+- Hebrew and Arabic cognate mappings for each root
+
+## Author
+Jossi Fresco — https://peshitta.onrender.com/about
+Inspired by the Semitic exegesis methodology of Vicente Haya.
+
+## License
+Apache 2.0 with attribution requirement — see LICENSE file.
+Source: https://github.com/Jossifresben/peshitta
+"""
+    return Response(content, mimetype='text/plain; charset=utf-8')
 
 
 @app.route('/')
@@ -259,7 +365,9 @@ def index():
                            translate_ref=translate_ref,
                            cognate_word=cognate_word,
                            disambiguation=disambiguation,
-                           script=script, trans=trans)
+                           script=script, trans=trans,
+                           meta_description=_i18n[lang].get('meta_index', ''),
+                           canonical_path='/')
 
 
 @app.route('/api/verse')
@@ -564,11 +672,14 @@ def browse():
             'gloss': gloss,
         })
 
+    cp = '/browse' if page <= 1 else f'/browse?page={page}'
     return render_template('browse.html',
                            t=t, lang=lang,
                            roots=roots_data,
                            page=page, total_pages=total_pages,
-                           total=total, script=script, trans=trans)
+                           total=total, script=script, trans=trans,
+                           meta_description=_i18n[lang].get('meta_browse', ''),
+                           canonical_path=cp)
 
 
 @app.route('/read')
@@ -634,6 +745,7 @@ def read():
     prev_chapter = chapter - 1 if chapter > 1 else None
     next_chapter = chapter + 1 if chapter < max_chapter else None
 
+    cp = f'/read?book={book}&chapter={chapter}'
     return render_template('read.html',
                            t=t, lang=lang, script=script, trans=trans,
                            books=books, book=book,
@@ -642,7 +754,9 @@ def read():
                            book_names=book_names,
                            books_json=books_json,
                            prev_chapter=prev_chapter,
-                           next_chapter=next_chapter)
+                           next_chapter=next_chapter,
+                           meta_description=_i18n[lang].get('meta_read', ''),
+                           canonical_path=cp)
 
 
 @app.route('/help')
@@ -659,7 +773,9 @@ def help_page():
     trans = request.args.get('trans', lang)
     if trans not in ('en', 'es', 'he', 'ar'):
         trans = lang
-    return render_template('help.html', t=t, lang=lang, script=script, trans=trans)
+    return render_template('help.html', t=t, lang=lang, script=script, trans=trans,
+                           meta_description=_i18n[lang].get('meta_help', ''),
+                           canonical_path='/help')
 
 
 @app.route('/methodology')
@@ -676,7 +792,9 @@ def methodology_page():
     trans = request.args.get('trans', lang)
     if trans not in ('en', 'es', 'he', 'ar'):
         trans = lang
-    return render_template('methodology.html', t=t, lang=lang, script=script, trans=trans)
+    return render_template('methodology.html', t=t, lang=lang, script=script, trans=trans,
+                           meta_description=_i18n[lang].get('meta_methodology', ''),
+                           canonical_path='/methodology')
 
 
 @app.route('/about')
@@ -687,7 +805,9 @@ def about_page():
     if lang not in _i18n:
         lang = 'es'
     t = _Namespace(_i18n[lang])
-    return render_template('about.html', t=t, lang=lang)
+    return render_template('about.html', t=t, lang=lang,
+                           meta_description=_i18n[lang].get('meta_about', ''),
+                           canonical_path='/about')
 
 
 @app.route('/api/word-root')
@@ -776,7 +896,9 @@ def visualize(root_key):
     if display_key.startswith('A-'):
         display_key = "'" + display_key[1:]
     return render_template('visualize.html', t=t, lang=lang, script=script,
-                           trans=trans, root_key=display_key)
+                           trans=trans, root_key=display_key,
+                           meta_description=_i18n[lang].get('meta_visualize', ''),
+                           canonical_path=f'/visualize/{root_key}')
 
 
 @app.route('/api/root-family')
@@ -1024,10 +1146,13 @@ def constellation():
     v_start = request.args.get('v_start', 1, type=int)
     v_end = request.args.get('v_end', v_start, type=int)
     book_names = _i18n[lang].get('book_names', {})
+    cp = f'/constellation?book={book}&chapter={chapter}&v_start={v_start}&v_end={v_end}'
     return render_template('constellation.html', t=t, lang=lang, script=script,
                            trans=trans, book=book, chapter=chapter,
                            v_start=v_start, v_end=v_end,
-                           book_names=book_names)
+                           book_names=book_names,
+                           meta_description=_i18n[lang].get('meta_constellation', ''),
+                           canonical_path=cp)
 
 
 @app.route('/api/passage-constellation')

@@ -6,11 +6,44 @@
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S8KTQRY55S');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ t.app_title }}{% endblock %}</title>
+    <meta name="description" content="{{ meta_description|default(t.app_subtitle) }}">
+    <link rel="canonical" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}">
+    <link rel="alternate" hreflang="es" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=es">
+    <link rel="alternate" hreflang="en" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=en">
+    <link rel="alternate" hreflang="he" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=he">
+    <link rel="alternate" hreflang="ar" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=ar">
+    <link rel="alternate" hreflang="x-default" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}">
+    <meta property="og:title" content="{% block og_title %}{{ t.app_title }}{% endblock %}">
+    <meta property="og:description" content="{{ meta_description|default(t.app_subtitle) }}">
+    <meta property="og:url" content="https://peshitta.onrender.com{{ canonical_path|default('/') }}">
+    <meta property="og:type" content="{{ og_type|default('website') }}">
+    <meta property="og:image" content="https://peshitta.onrender.com{{ url_for('static', filename='og-image.png') }}">
+    <meta property="og:locale" content="{{ 'es_ES' if lang == 'es' else ('he_IL' if lang == 'he' else ('ar_SA' if lang == 'ar' else 'en_US')) }}">
+    <meta property="og:site_name" content="Peshitta Constellations">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ self.og_title() }}">
+    <meta name="twitter:description" content="{{ meta_description|default(t.app_subtitle) }}">
+    <meta name="twitter:image" content="https://peshitta.onrender.com{{ url_for('static', filename='og-image.png') }}">
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&display=block" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+    {% block jsonld %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Peshitta Constellations",
+        "url": "https://peshitta.onrender.com",
+        "description": "{{ meta_description|default(t.app_subtitle) }}",
+        "applicationCategory": "EducationalApplication",
+        "inLanguage": ["syr", "en", "es", "he", "ar"],
+        "operatingSystem": "Web",
+        "offers": {"@type": "Offer", "price": "0"}
+    }
+    </script>
+    {% endblock %}
     {% block head_extra %}{% endblock %}
 </head>
 <body>

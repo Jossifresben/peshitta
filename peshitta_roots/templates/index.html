@@ -9,6 +9,23 @@
 <a href="{{ url_for('index', lang='ar', q=query or '', script='syriac', trans='ar') }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
 {% endblock %}
 
+{% block jsonld %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Peshitta Constellations",
+    "url": "https://peshitta.onrender.com",
+    "description": "{{ meta_description|default(t.app_subtitle) }}",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://peshitta.onrender.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <header>
