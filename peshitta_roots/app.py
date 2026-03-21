@@ -4,7 +4,9 @@ import json
 import os
 import threading
 
+import hashlib
 import time
+from datetime import date
 
 from flask import Flask, render_template, request, jsonify, Response
 
@@ -228,6 +230,50 @@ Source: https://github.com/Jossifresben/peshitta
     return Response(content, mimetype='text/plain; charset=utf-8')
 
 
+_rotd_cache: dict = {}
+
+
+def _root_of_the_day(lang):
+    """Pick a deterministic 'root of the day' based on today's date."""
+    _init()
+    today = str(date.today())
+    cache_key = f'{today}:{lang}'
+    if cache_key in _rotd_cache:
+        return _rotd_cache[cache_key]
+
+    # Load raw cognates JSON
+    cog_path = os.path.join(_get_data_dir(), 'cognates.json')
+    with open(cog_path, 'r', encoding='utf-8') as f:
+        cog_data = json.load(f)
+    roots = cog_data.get('roots', {})
+    # Filter to roots with rich data (sabor_raiz + greek_parallel)
+    rich = [(k, v) for k, v in roots.items()
+            if v.get('sabor_raiz_en') and v.get('greek_parallel')]
+    if not rich:
+        return None
+    # Deterministic pick based on date
+    day_hash = int(hashlib.md5(str(date.today()).encode()).hexdigest(), 16)
+    key, data = rich[day_hash % len(rich)]
+    gloss_key = 'gloss_es' if lang == 'es' else 'gloss_en'
+    sabor_key = f'sabor_raiz_{lang}' if lang in ('es', 'en') else 'sabor_raiz_en'
+    lost_key = f'lost_{lang}' if lang in ('es', 'en') else 'lost_en'
+    gp = data.get('greek_parallel', {})
+    result = _Namespace({
+        'key': key.upper(),
+        'syriac': data.get('root_syriac', ''),
+        'gloss': data.get(gloss_key, data.get('gloss_en', '')),
+        'sabor': data.get(sabor_key, data.get('sabor_raiz_en', '')),
+        'hebrew': data.get('hebrew', [])[:3],
+        'arabic': data.get('arabic', [])[:3],
+        'lost': gp.get(lost_key, gp.get('lost_en', ''))[:200],
+        'greek_word': gp.get('word', ''),
+        'greek_meaning': gp.get(f'meaning_{lang}' if lang in ('es', 'en') else 'meaning_en',
+                                gp.get('meaning_en', '')),
+    })
+    _rotd_cache[cache_key] = result
+    return result
+
+
 @app.route('/')
 def index():
     _init()
@@ -257,6 +303,9 @@ def index():
         'words': _corpus.total_words(),
         'unique': _corpus.total_unique(),
     })
+
+    # Root of the day
+    rotd = _root_of_the_day(lang)
 
     # Handle cognate word lookup
     if cognate_word and not query:
@@ -365,7 +414,7 @@ def index():
                            translate_ref=translate_ref,
                            cognate_word=cognate_word,
                            disambiguation=disambiguation,
-                           script=script, trans=trans,
+                           script=script, trans=trans, rotd=rotd,
                            meta_description=_i18n[lang].get('meta_index', ''),
                            canonical_path='/')
 
@@ -639,9 +688,14 @@ def browse():
     translit_fn = _get_translit_fn(script)
 
     page = request.args.get('page', 1, type=int)
+    freq = request.args.get('freq', '', type=str)
     per_page = 50
 
     all_roots = _extractor.get_all_roots()
+    # Filter by frequency category
+    freq_max = {'hapax': 1, 'dis': 2, 'tris': 3, 'tetrakis': 4}.get(freq)
+    if freq_max:
+        all_roots = [r for r in all_roots if r.total_occurrences == freq_max]
     total = len(all_roots)
     total_pages = (total + per_page - 1) // per_page
     page = max(1, min(page, total_pages))
@@ -663,6 +717,15 @@ def browse():
             gloss = cognate_entry.gloss_es if lang == 'es' else cognate_entry.gloss_en
         if not gloss:
             gloss = _extractor.get_root_gloss(entry.root)
+        # For rare roots without gloss, show first verse reference + word form
+        context_ref = ''
+        context_form = ''
+        if not gloss and entry.matches:
+            m = entry.matches[0]
+            context_form = m.form
+            if m.references:
+                context_ref = m.references[0]
+
         roots_data.append({
             'root': entry.root,
             'translit': translit_display,
@@ -670,14 +733,18 @@ def browse():
             'forms': len(entry.matches),
             'occurrences': entry.total_occurrences,
             'gloss': gloss,
+            'context_ref': context_ref,
+            'context_form': context_form,
         })
 
-    cp = '/browse' if page <= 1 else f'/browse?page={page}'
+    freq_param = f'&freq={freq}' if freq else ''
+    cp = f'/browse?page={page}{freq_param}' if page > 1 or freq else '/browse'
     return render_template('browse.html',
                            t=t, lang=lang,
                            roots=roots_data,
                            page=page, total_pages=total_pages,
                            total=total, script=script, trans=trans,
+                           freq=freq,
                            meta_description=_i18n[lang].get('meta_browse', ''),
                            canonical_path=cp)
 

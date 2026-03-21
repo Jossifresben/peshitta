@@ -80,6 +80,32 @@
             </div>
         </div>
 
+        <!-- Root of the Day -->
+        {% if rotd %}
+        <div class="rotd-card">
+            <div class="rotd-header">
+                <span class="material-symbols-outlined rotd-icon">auto_awesome</span>
+                <span class="rotd-label">{{ t.rotd_title }}</span>
+            </div>
+            <div class="rotd-root">
+                <span class="rotd-syriac">{{ rotd.syriac }}</span>
+                <span class="rotd-key">{{ rotd.key }}</span>
+                <span class="rotd-gloss">— {{ rotd.gloss }}</span>
+            </div>
+            {% if rotd.sabor %}
+            <div class="rotd-sabor"><strong>{{ t.rotd_semantic }}:</strong> {{ rotd.sabor }}</div>
+            {% endif %}
+            {% if rotd.lost %}
+            <div class="rotd-lost"><strong>{{ t.rotd_lost }}:</strong> {{ rotd.lost }}{% if rotd.lost|length >= 200 %}… <a href="{{ url_for('visualize', root_key=rotd.key, lang=lang, script=script, trans=trans) }}&tab=ficha" class="rotd-readmore">{{ t.rotd_explore }} &rarr;</a>{% endif %}</div>
+            {% endif %}
+            <div class="rotd-cognates">
+                {% for h in rotd.hebrew %}<span class="rotd-cognate heb">{{ h.word }} <small>{{ h.transliteration }}</small></span>{% endfor %}
+                {% for a in rotd.arabic %}<span class="rotd-cognate arb">{{ a.word }} <small>{{ a.transliteration }}</small></span>{% endfor %}
+            </div>
+            <a href="{{ url_for('visualize', root_key=rotd.key, lang=lang, script=script, trans=trans) }}" class="rotd-cta">{{ t.rotd_visualize }} &rarr;</a>
+        </div>
+        {% endif %}
+
         <!-- Search -->
         <div class="search-section search-section-hero">
             <div class="search-tabs">

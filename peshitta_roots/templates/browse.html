@@ -15,13 +15,21 @@
             <h1>{{ t.browse_title }}</h1>
         </header>
 
+        <div class="browse-filters">
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans) }}" class="browse-filter{% if not freq %} active{% endif %}">All</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='hapax') }}" class="browse-filter{% if freq == 'hapax' %} active{% endif %}">Hapax (1×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='dis') }}" class="browse-filter{% if freq == 'dis' %} active{% endif %}">Dis (2×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='tris') }}" class="browse-filter{% if freq == 'tris' %} active{% endif %}">Tris (3×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='tetrakis') }}" class="browse-filter{% if freq == 'tetrakis' %} active{% endif %}">Tetrakis (4×)</a>
+        </div>
+
         <div class="browse-pagination">
             {% if page > 1 %}
-            <a href="{{ url_for('browse', lang=lang, page=page-1) }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
+            <a href="{{ url_for('browse', lang=lang, page=page-1, freq=freq or '') }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
             {% endif %}
-            <span class="browse-page-info">{{ t.browse_page_of.replace('{page}', page|string).replace('{total}', total_pages|string) }} ({{ total }} {{ t.browse_root|lower }})</span>
+            <span class="browse-page-info">{{ t.browse_page_of.replace('{page}', page|string).replace('{total}', total_pages|string) }} ({{ total }} {{ t.browse_root|lower }}{% if lang == 'en' and total != 1 %}s{% elif lang == 'es' and total != 1 %}es{% endif %})</span>
             {% if page < total_pages %}
-            <a href="{{ url_for('browse', lang=lang, page=page+1) }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
+            <a href="{{ url_for('browse', lang=lang, page=page+1, freq=freq or '') }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
             {% endif %}
         </div>
 
@@ -43,7 +51,7 @@
                         <tr>
                             <td class="syriac"><a href="{{ url_for('index', lang=lang, q=root.translit_key) }}#results" style="text-decoration: none; color: inherit;">{{ root.root }} <span class="root-latin" dir="ltr">{{ root.translit_key }}</span></a></td>
                             <td class="{% if script == 'hebrew' %}hebrew{% elif script == 'arabic' %}arabic{% else %}ac-translit{% endif %}"><a href="{{ url_for('index', lang=lang, q=root.translit_key) }}#results" style="text-decoration: none; color: inherit;">{{ root.translit }}</a></td>
-                            <td class="gloss-cell">{{ root.gloss }}</td>
+                            <td class="gloss-cell">{% if root.gloss %}{{ root.gloss }}{% elif root.context_ref %}<span class="browse-context"><span class="syriac">{{ root.context_form }}</span> <a href="{{ url_for('read', lang=lang, script=script, trans=trans, book=root.context_ref.split(' ')[0], chapter=root.context_ref.split(' ')[1].split(':')[0], v_start=root.context_ref.split(':')[1], hw=root.context_form) }}" class="browse-ref">{{ root.context_ref }}</a></span>{% endif %}</td>
                             <td>{{ root.forms }}</td>
                             <td><span class="count-badge">{{ root.occurrences }}</span></td>
                             <td><a href="{{ url_for('visualize', root_key=root.translit_key, lang=lang, script=script, trans=trans) }}" class="viz-btn" title="{{ t.viz_button }}"><span class="material-symbols-outlined">hub</span></a></td>
@@ -56,11 +64,11 @@
 
         <div class="browse-pagination">
             {% if page > 1 %}
-            <a href="{{ url_for('browse', lang=lang, page=page-1) }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
+            <a href="{{ url_for('browse', lang=lang, page=page-1, freq=freq or '') }}" class="nav-btn">&larr; {{ t.browse_prev }}</a>
             {% endif %}
             <span class="browse-page-info">{{ t.browse_page_of.replace('{page}', page|string).replace('{total}', total_pages|string) }}</span>
             {% if page < total_pages %}
-            <a href="{{ url_for('browse', lang=lang, page=page+1) }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
+            <a href="{{ url_for('browse', lang=lang, page=page+1, freq=freq or '') }}" class="nav-btn">{{ t.browse_next }} &rarr;</a>
             {% endif %}
         </div>
 

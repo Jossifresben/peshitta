@@ -388,6 +388,97 @@ header p {
 }
 
 
+/* === Root of the Day === */
+.rotd-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--accent-gold, #b8860b);
+}
+[dir="rtl"] .rotd-card {
+    border-left: none;
+    border-right: 3px solid var(--accent-gold, #b8860b);
+}
+.rotd-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-gold, #b8860b);
+    font-weight: 600;
+}
+.rotd-icon { font-size: 18px !important; }
+.rotd-root {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+.rotd-syriac {
+    font-family: var(--syriac-font, 'Noto Sans Syriac'), serif;
+    font-size: 1.6rem;
+    color: var(--text-primary);
+}
+.rotd-key {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.rotd-gloss {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+.rotd-sabor, .rotd-lost {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+.rotd-cognates {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0.6rem 0;
+}
+.rotd-cognate {
+    font-size: 0.85rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-page);
+}
+.rotd-cognate.heb { border-left: 2px solid #4a90d9; }
+.rotd-cognate.arb { border-left: 2px solid #d94a4a; }
+[dir="rtl"] .rotd-cognate.heb { border-left: none; border-right: 2px solid #4a90d9; }
+[dir="rtl"] .rotd-cognate.arb { border-left: none; border-right: 2px solid #d94a4a; }
+.rotd-cognate small {
+    color: var(--text-secondary);
+    margin-left: 0.3rem;
+}
+.rotd-cta {
+    display: inline-block;
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+    color: var(--accent-gold, #b8860b);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+}
+.rotd-cta:hover { opacity: 0.7; }
+.rotd-readmore {
+    color: var(--accent-gold, #b8860b);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+    white-space: nowrap;
+    font-size: 0.85rem;
+}
+.rotd-readmore:hover { opacity: 0.7; }
+
 /* === Search form === */
 .search-section {
     background: var(--bg-card);
@@ -1754,6 +1845,50 @@ th {
 .disambiguation-item .syriac {
     font-size: 1.5em;
 }
+
+/* === Browse filters === */
+.browse-filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.browse-filter {
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color, rgba(128,128,128,0.2));
+    transition: all 0.15s;
+}
+.browse-filter:hover {
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+.browse-filter.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.browse-context {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+.browse-context .syriac {
+    font-family: var(--syriac-font, 'Noto Sans Syriac'), serif;
+    font-size: 0.95rem;
+}
+.browse-ref {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
+}
+.browse-ref:hover { text-decoration: underline; }
 
 /* === Browse pagination === */
 .browse-pagination {

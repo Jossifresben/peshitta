@@ -252,10 +252,11 @@
     });
 
     // --- Text-to-Speech (Aramaic via Hebrew voice) ---
-    // Scroll to verse if v_start param is present
+    // Scroll to verse and highlight word if params present
     (function() {
         var params = new URLSearchParams(window.location.search);
         var vStart = params.get('v_start');
+        var hw = params.get('hw'); // highlight word (Syriac form)
         if (vStart) {
             var el = document.getElementById('verse-' + vStart);
             if (el) {
@@ -264,6 +265,25 @@
                     el.style.transition = 'background 0.3s';
                     el.style.background = 'rgba(107,122,94,0.12)';
                     setTimeout(function() { el.style.background = ''; }, 2500);
+                    // Highlight matching word spans
+                    if (hw) {
+                        var hwNorm = hw.replace(/[\u0700-\u070F\u0730-\u074A]/g, '');
+                        el.querySelectorAll('.rw').forEach(function(span) {
+                            var spanText = span.textContent.trim();
+                            var spanNorm = spanText.replace(/[\u0700-\u070F\u0730-\u074A]/g, '');
+                            if (spanText === hw || spanNorm === hwNorm || spanText.indexOf(hw) !== -1 || hw.indexOf(spanText) !== -1) {
+                                span.style.background = 'var(--accent-gold, #b8860b)';
+                                span.style.color = '#fff';
+                                span.style.borderRadius = '3px';
+                                span.style.padding = '1px 3px';
+                                setTimeout(function() {
+                                    span.style.transition = 'background 1s, color 1s';
+                                    span.style.background = '';
+                                    span.style.color = '';
+                                }, 3000);
+                            }
+                        });
+                    }
                 }, 300);
             }
         }
