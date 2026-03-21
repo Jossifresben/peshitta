@@ -1,0 +1,619 @@
+{
+	"info": {
+		"_postman_id": "peshitta-api-collection",
+		"name": "Peshitta Root Finder API",
+		"description": "API for the Peshitta Triliteral Root Finder — search Syriac roots, look up verses, explore cognates with semantic bridges, and visualize root families.\n\nBase URL: https://peshitta.onrender.com\n\nNo authentication required. All endpoints return JSON.\n\n**Key features:**\n- 2,535 triliteral roots extracted from 134,000 word tokens\n- Hebrew & Arabic cognates (3,780 words across 397 roots)\n- Semantic outlier detection (651 outliers) and bridges (363 cross-root connections)\n- 4 transliteration scripts (Latin, Syriac, Hebrew, Arabic)\n- 4 translation languages (English, Spanish, Hebrew Modern, Arabic SVD)\n- Semitic sound correspondence fallback (S↔SH, TH↔T, D↔TH, TS↔S)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://peshitta.onrender.com",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Verse",
+			"description": "Look up individual verses with Syriac text, transliteration, and translations in 4 languages.",
+			"item": [
+				{
+					"name": "Get Verse (default)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/verse?ref=Matthew 1:1&lang=es&script=latin",
+							"host": ["{{base_url}}"],
+							"path": ["api", "verse"],
+							"query": [
+								{
+									"key": "ref",
+									"value": "Matthew 1:1",
+									"description": "Verse reference (e.g. Matthew 1:1, John 3:16)"
+								},
+								{
+									"key": "lang",
+									"value": "es",
+									"description": "Language for book name display: es, en"
+								},
+								{
+									"key": "script",
+									"value": "latin",
+									"description": "Transliteration script: latin, hebrew, arabic, syriac"
+								}
+							]
+						},
+						"description": "Returns verse text with Syriac, transliteration, word-level data, and translations in English, Spanish, Hebrew, and Arabic.\n\n**Response fields:**\n- `syriac` — Full verse in Syriac script\n- `transliteration` — Full verse transliterated\n- `words` / `words_translit` — Word-level arrays\n- `translation_en`, `translation_es`, `translation_he`, `translation_ar` — Translations\n- `prev_ref`, `next_ref` — Navigation references"
+					}
+				},
+				{
+					"name": "Get Verse (Hebrew script)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/verse?ref=John 3:16&lang=en&script=hebrew",
+							"host": ["{{base_url}}"],
+							"path": ["api", "verse"],
+							"query": [
+								{
+									"key": "ref",
+									"value": "John 3:16"
+								},
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "script",
+									"value": "hebrew"
+								}
+							]
+						},
+						"description": "Verse with Hebrew-script transliteration."
+					}
+				},
+				{
+					"name": "Get Verse (Arabic script)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/verse?ref=Luke 2:10&lang=es&script=arabic",
+							"host": ["{{base_url}}"],
+							"path": ["api", "verse"],
+							"query": [
+								{
+									"key": "ref",
+									"value": "Luke 2:10"
+								},
+								{
+									"key": "lang",
+									"value": "es"
+								},
+								{
+									"key": "script",
+									"value": "arabic"
+								}
+							]
+						},
+						"description": "Verse with Arabic-script transliteration."
+					}
+				}
+			]
+		},
+		{
+			"name": "Search",
+			"description": "Search for roots by prefix or look up the root of a specific Syriac word.",
+			"item": [
+				{
+					"name": "Autocomplete Suggestions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/suggest?prefix=K-TH",
+							"host": ["{{base_url}}"],
+							"path": ["api", "suggest"],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "K-TH",
+									"description": "Dash-separated Latin prefix (e.g. K, K-TH, SH-L)"
+								}
+							]
+						},
+						"description": "Returns up to 20 roots matching the given prefix, sorted by frequency.\n\nEach result includes: `root` (Syriac), `translit` (Latin), `count` (occurrences).\n\nNote: Input `O` is normalized to `E` (both represent Ayin ܥ)."
+					}
+				},
+				{
+					"name": "Autocomplete (single letter)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/suggest?prefix=SH",
+							"host": ["{{base_url}}"],
+							"path": ["api", "suggest"],
+							"query": [
+								{
+									"key": "prefix",
+									"value": "SH"
+								}
+							]
+						},
+						"description": "Broader search with just a single consonant prefix."
+					}
+				},
+				{
+					"name": "Word Root Lookup",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/word-root?word=ܟܬܒܐ&script=latin",
+							"host": ["{{base_url}}"],
+							"path": ["api", "word-root"],
+							"query": [
+								{
+									"key": "word",
+									"value": "ܟܬܒܐ",
+									"description": "Syriac word form (e.g. ܟܬܒܐ, ܡܠܟܐ)"
+								},
+								{
+									"key": "script",
+									"value": "latin",
+									"description": "Transliteration script: latin, hebrew, arabic, syriac"
+								}
+							]
+						},
+						"description": "Given a Syriac word, returns its triliteral root and Latin transliteration.\n\n**Response:** `word`, `root`, `root_translit`"
+					}
+				},
+				{
+					"name": "Word Root Lookup (Syriac script)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/word-root?word=ܡܠܟܐ&script=syriac",
+							"host": ["{{base_url}}"],
+							"path": ["api", "word-root"],
+							"query": [
+								{
+									"key": "word",
+									"value": "ܡܠܟܐ"
+								},
+								{
+									"key": "script",
+									"value": "syriac"
+								}
+							]
+						},
+						"description": "Look up the root of ܡܠܟܐ (king) with Syriac-script transliteration."
+					}
+				}
+			]
+		},
+		{
+			"name": "Browse",
+			"description": "Browse all triliteral roots with pagination.",
+			"item": [
+				{
+					"name": "List Roots (page 1)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/roots?page=1&per_page=10",
+							"host": ["{{base_url}}"],
+							"path": ["api", "roots"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (starts at 1)"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "Results per page (max 100, default 50)"
+								}
+							]
+						},
+						"description": "Returns all roots sorted by frequency (most common first).\n\n**Response fields:**\n- `page`, `per_page`, `total`, `total_pages` — Pagination metadata\n- `roots[]` — Array of root objects with: `root` (Syriac), `translit` (Latin), `forms` (count), `occurrences` (count), `gloss` (English meaning)"
+					}
+				},
+				{
+					"name": "List Roots (page 2, 50 per page)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/roots?page=2&per_page=50",
+							"host": ["{{base_url}}"],
+							"path": ["api", "roots"],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "per_page",
+									"value": "50"
+								}
+							]
+						},
+						"description": "Second page with default page size."
+					}
+				}
+			]
+		},
+		{
+			"name": "Reverse Search",
+			"description": "Find Syriac roots by English or Spanish meaning. Returns roots ranked by relevance.",
+			"item": [
+				{
+					"name": "Search by meaning (English)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reverse-search?q=love&lang=en",
+							"host": ["{{base_url}}"],
+							"path": ["api", "reverse-search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "love",
+									"description": "Search term (concept or meaning to find)"
+								},
+								{
+									"key": "lang",
+									"value": "en",
+									"description": "Language for glosses: en, es"
+								}
+							]
+						},
+						"description": "Search for all Syriac roots expressing the concept 'love'. Returns up to 30 results ranked by relevance.\n\n**Scoring:** Exact gloss match (100pts) > gloss contains (50pts) > term match (10pts/word) > sabor mention (5pts).\n\n**Response fields:**\n- `key` — Root transliteration (e.g. R-KH-M)\n- `root_syriac` — Syriac script\n- `gloss` — English/Spanish meaning\n- `sabor` — Semantic field description\n- `occurrences` — NT occurrence count\n- `score` — Relevance score"
+					}
+				},
+				{
+					"name": "Search by meaning (Spanish)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reverse-search?q=luz&lang=es",
+							"host": ["{{base_url}}"],
+							"path": ["api", "reverse-search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "luz"
+								},
+								{
+									"key": "lang",
+									"value": "es"
+								}
+							]
+						},
+						"description": "Search for Syriac roots expressing 'luz' (light) using Spanish glosses."
+					}
+				},
+				{
+					"name": "Search by meaning (king/reign)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reverse-search?q=king&lang=en",
+							"host": ["{{base_url}}"],
+							"path": ["api", "reverse-search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "king"
+								},
+								{
+									"key": "lang",
+									"value": "en"
+								}
+							]
+						},
+						"description": "Find roots related to kingship and reign."
+					}
+				}
+			]
+		},
+		{
+			"name": "Text Search",
+			"description": "Full-text search across NT verse translations and Syriac text. Supports auto-detection of query language (Syriac, Hebrew, Arabic, Latin scripts).",
+			"item": [
+				{
+					"name": "Search translations (English)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/text-search?q=bread&lang=auto&page=1&per_page=10&script=latin",
+							"host": ["{{base_url}}"],
+							"path": ["api", "text-search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "bread",
+									"description": "Search term (word or phrase)"
+								},
+								{
+									"key": "lang",
+									"value": "auto",
+									"description": "Language: auto (detect from script), en, es, he, ar, syriac"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (starts at 1)"
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "Results per page (default 20)"
+								},
+								{
+									"key": "script",
+									"value": "latin",
+									"description": "Transliteration script: latin, hebrew, arabic, syriac"
+								}
+							]
+						},
+						"description": "Search for 'bread' in English NT translations.\n\n**Response fields:**\n- `query`, `search_lang`, `total`, `page`, `per_page` — Metadata\n- `results[]` — Array of matching verses:\n  - `reference` — Verse reference (e.g. Matthew 4:3)\n  - `reference_display` — Localized reference\n  - `syriac` — Full Syriac text\n  - `translation` — Translation text\n  - `match_positions` — Array of [start, end] for highlighting\n  - `match_type` — 'translation' or 'syriac'\n  - `words` / `words_translit` — Word-level arrays\n  - `highlight_indices` — Which Syriac words match the concept\n  - `book`, `chapter`, `verse` — Parsed for reader links"
+					}
+				},
+				{
+					"name": "Search Syriac text",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/text-search?q=ܡܠܟܐ&lang=auto&page=1&per_page=10",
+							"host": ["{{base_url}}"],
+							"path": ["api", "text-search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "ܡܠܟܐ",
+									"description": "Syriac word to search (auto-detected)"
+								},
+								{
+									"key": "lang",
+									"value": "auto"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Search directly in Syriac text. Language is auto-detected from the script."
+					}
+				},
+				{
+					"name": "Search translations (Spanish)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/text-search?q=amor&lang=auto&page=1&per_page=20",
+							"host": ["{{base_url}}"],
+							"path": ["api", "text-search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "amor"
+								},
+								{
+									"key": "lang",
+									"value": "auto"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Search for 'amor' (love) — auto-detects as Latin script and searches English/Spanish translations."
+					}
+				}
+			]
+		},
+		{
+			"name": "Passage Constellation",
+			"description": "Semantic constellation data for a passage — returns roots, cognates, and inter-root connections for a range of verses.",
+			"item": [
+				{
+					"name": "Constellation (single verse)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/passage-constellation?book=Luke&chapter=1&v_start=28&v_end=28&lang=en&script=latin",
+							"host": ["{{base_url}}"],
+							"path": ["api", "passage-constellation"],
+							"query": [
+								{
+									"key": "book",
+									"value": "Luke",
+									"description": "Book name (English, e.g. Matthew, Mark, Luke, John)"
+								},
+								{
+									"key": "chapter",
+									"value": "1",
+									"description": "Chapter number"
+								},
+								{
+									"key": "v_start",
+									"value": "28",
+									"description": "Starting verse number"
+								},
+								{
+									"key": "v_end",
+									"value": "28",
+									"description": "Ending verse number (defaults to v_start)"
+								},
+								{
+									"key": "lang",
+									"value": "en",
+									"description": "Language for glosses: en, es, he, ar"
+								},
+								{
+									"key": "script",
+									"value": "latin",
+									"description": "Transliteration script: latin, hebrew, arabic, syriac"
+								}
+							]
+						},
+						"description": "Returns constellation data for Luke 1:28 — all roots present in the verse with their cognates and semantic bridges.\n\n**Response fields:**\n- `verses[]` — Verse objects with word-level root identification\n- `roots[]` — Unique roots found in the passage with cognates\n- `connections[]` — Semantic bridges between roots in the passage"
+					}
+				},
+				{
+					"name": "Constellation (verse range)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/passage-constellation?book=John&chapter=1&v_start=1&v_end=5&lang=es&script=syriac&trans=es",
+							"host": ["{{base_url}}"],
+							"path": ["api", "passage-constellation"],
+							"query": [
+								{
+									"key": "book",
+									"value": "John"
+								},
+								{
+									"key": "chapter",
+									"value": "1"
+								},
+								{
+									"key": "v_start",
+									"value": "1"
+								},
+								{
+									"key": "v_end",
+									"value": "5"
+								},
+								{
+									"key": "lang",
+									"value": "es"
+								},
+								{
+									"key": "script",
+									"value": "syriac"
+								},
+								{
+									"key": "trans",
+									"value": "es",
+									"description": "Translation language: en, es, he, ar"
+								}
+							]
+						},
+						"description": "Constellation for John 1:1-5 (prologue) with Spanish glosses and Syriac script."
+					}
+				}
+			]
+		},
+		{
+			"name": "Visualizer",
+			"description": "Root family visualization data — returns cognates, Syriac word forms, semantic outliers, and cross-root bridges for the D3.js force-directed graph.",
+			"item": [
+				{
+					"name": "Root Family (basic)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/root-family?root=K-TH-B&lang=es",
+							"host": ["{{base_url}}"],
+							"path": ["api", "root-family"],
+							"query": [
+								{
+									"key": "root",
+									"value": "K-TH-B",
+									"description": "Root in dash-separated Latin (e.g. K-TH-B, SH-L-M, R-W-KH)"
+								},
+								{
+									"key": "lang",
+									"value": "es",
+									"description": "Language for meanings/glosses: es, en"
+								}
+							]
+						},
+						"description": "Returns the full root family for visualization.\n\n**Response fields:**\n- `root` — Syriac Unicode root\n- `root_translit` — Latin transliteration (e.g. K-TH-B)\n- `gloss` — Root meaning\n- `sabor_raiz` — Root flavor/essence text\n- `syriac_words[]` — Peshitta word forms with `word`, `translit`, `meaning`, `references`\n- `hebrew[]` — Hebrew cognates with `word`, `translit`, `meaning`, optional `outlier: true`\n- `arabic[]` — Arabic cognates with `word`, `translit`, `meaning`, optional `outlier: true`\n- `semantic_bridges[]` — Cross-root connections with `outlier_key`, `target_root`, `relationship`, `bridge_concept`"
+					}
+				},
+				{
+					"name": "Root Family (with outliers & bridges)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/root-family?root=R-W-KH&lang=en&script=latin",
+							"host": ["{{base_url}}"],
+							"path": ["api", "root-family"],
+							"query": [
+								{
+									"key": "root",
+									"value": "R-W-KH",
+									"description": "R-W-KH (spirit/wind) — has semantic outliers and bridges"
+								},
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "script",
+									"value": "latin",
+									"description": "Transliteration script: latin, hebrew, arabic, syriac"
+								}
+							]
+						},
+						"description": "Example with semantic outliers and bridges. R-W-KH (spirit/wind) has cognates that drifted semantically (e.g. Arabic 'raha' = rest/comfort), with bridges linking to related root families.\n\n**Outlier fields:** Cognates with `outlier: true` have semantically diverged from the root's core meaning.\n\n**Bridge fields:**\n- `outlier_key` — Identifies which outlier (e.g. `ar:raha`)\n- `target_root` — Root where the outlier's meaning is central (e.g. `sh-b-th`)\n- `relationship` — `semantic_neighbor`, `antonym_root`, `metonymic_shift`, or `functional_drift`\n- `bridge_concept` — Human-readable explanation of the semantic connection"
+					}
+				},
+				{
+					"name": "Root Family (sound correspondence fallback)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/root-family?root=S-L-M&lang=en",
+							"host": ["{{base_url}}"],
+							"path": ["api", "root-family"],
+							"query": [
+								{
+									"key": "root",
+									"value": "S-L-M",
+									"description": "S-L-M will fallback to SH-L-M via Semitic sound correspondence (Arabic s ↔ Hebrew/Syriac sh)"
+								},
+								{
+									"key": "lang",
+									"value": "en"
+								}
+							]
+						},
+						"description": "Demonstrates the Semitic sound correspondence fallback. Searching for S-L-M (Arabic form) automatically finds SH-L-M (peace/wholeness) because Arabic 's' regularly corresponds to Hebrew/Syriac 'sh'.\n\nSupported correspondences: S↔SH, TH↔T, D↔TH, TS↔S."
+					}
+				}
+			]
+		}
+	]
+}
