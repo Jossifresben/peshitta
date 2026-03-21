@@ -47,6 +47,22 @@ def _get_data_dir():
     return os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
 
 
+def _load_audio_timestamps(book, chapter):
+    """Load verse timestamps for a chapter's audio, or None if unavailable."""
+    ts_path = os.path.join(_get_data_dir(), 'audio_timestamps', f'{book}.json')
+    if not os.path.exists(ts_path):
+        return None
+    try:
+        with open(ts_path, 'r', encoding='utf-8') as f:
+            book_data = json.load(f)
+        chapter_data = book_data.get(str(chapter))
+        if not chapter_data:
+            return None
+        return chapter_data
+    except (json.JSONDecodeError, IOError):
+        return None
+
+
 def _get_csv_path():
     return os.path.join(
         os.path.dirname(os.path.dirname(__file__)),
@@ -1156,6 +1172,9 @@ def read():
     prev_chapter = chapter - 1 if chapter > 1 else None
     next_chapter = chapter + 1 if chapter < max_chapter else None
 
+    # Load audio timestamps if available
+    audio_data = _load_audio_timestamps(book, chapter)
+
     cp = f'/read?book={book}&chapter={chapter}'
     return render_template('read.html',
                            t=t, lang=lang, script=script, trans=trans,
@@ -1166,8 +1185,39 @@ def read():
                            books_json=books_json,
                            prev_chapter=prev_chapter,
                            next_chapter=next_chapter,
+                           audio_data=audio_data,
                            meta_description=_i18n[lang].get('meta_read', ''),
                            canonical_path=cp)
+
+
+@app.route('/audio-timestamps')
+def audio_timestamps_tool():
+    """Dev tool: mark verse timestamps while listening to chapter audio."""
+    _init()
+    book = request.args.get('book', 'Matthew')
+    chapter = request.args.get('chapter', 1, type=int)
+    books = _corpus.get_books()
+    max_chapter = 1
+    for b_name, b_max in books:
+        if b_name == book:
+            max_chapter = b_max
+            break
+    chapter = max(1, min(chapter, max_chapter))
+    chapter_verses = _corpus.get_chapter_verses(book, chapter)
+    translit_fn = _get_translit_fn('hebrew')
+    verses_data = []
+    for verse_num, ref, syriac_text in chapter_verses:
+        words = syriac_text.split()
+        verses_data.append({
+            'number': verse_num,
+            'syriac': syriac_text,
+            'translit': ' '.join(translit_fn(w) for w in words),
+        })
+    audio_file = f'audio/{book}/{chapter}.mp3'
+    return render_template('audio_timestamps.html',
+                           book=book, chapter=chapter,
+                           books=books, max_chapter=max_chapter,
+                           verses=verses_data, audio_file=audio_file)
 
 
 @app.route('/help')

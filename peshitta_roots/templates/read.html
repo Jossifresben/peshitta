@@ -41,6 +41,24 @@
             </div>
         </div>
 
+        {% if audio_data %}
+        <div class="audio-chapter-bar" id="audio-chapter-bar">
+            <button class="audio-btn audio-chapter-play" id="chapter-play-btn"
+                    title="{{ t.audio_play_chapter|default('Play chapter') }}">
+                <span class="material-symbols-outlined">play_arrow</span>
+            </button>
+            <div class="audio-progress-wrap" id="audio-progress-wrap">
+                <div class="audio-progress-bar" id="audio-progress-bar"></div>
+            </div>
+            <span class="audio-time" id="audio-time">0:00 / {{ '%d:%02d' | format(audio_data.duration // 60, audio_data.duration % 60) }}</span>
+            <select class="audio-speed" id="audio-speed" title="{{ t.audio_speed|default('Speed') }}">
+                <option value="0.75">0.75×</option>
+                <option value="1" selected>1×</option>
+                <option value="1.25">1.25×</option>
+            </select>
+        </div>
+        {% endif %}
+
         <p class="reader-hint">{{ t.read_click_hint }}</p>
 
         <!-- Verses -->
@@ -48,6 +66,12 @@
             {% for v in verses %}
             <div class="reader-verse" id="verse-{{ v.number }}">
                 <span class="verse-num">{{ chapter }}:{{ v.number }}</span>
+{% if audio_data and v.number|string in audio_data.verses %}
+                <button class="audio-btn audio-verse-play" data-verse="{{ v.number }}"
+                        title="{{ t.audio_play_verse|default('Play verse') }}">
+                    <span class="material-symbols-outlined">volume_up</span>
+                </button>
+{% endif %}
 <a href="{{ url_for('constellation', book=book, chapter=chapter, v_start=v.number, v_end=v.number, lang=lang, script=script, trans=trans) }}"
                    class="verse-constellation-link" title="{{ t.read_constellation }}">
                     <span class="material-symbols-outlined">scatter_plot</span>
@@ -288,5 +312,16 @@
             }
         }
     })();
+
+    {% if audio_data %}
+    var audioConfig = {
+        src: "{{ url_for('static', filename='audio/' + audio_data.file) }}",
+        verses: {{ audio_data.verses | tojson }},
+        duration: {{ audio_data.duration }}
+    };
+    {% endif %}
     </script>
+    {% if audio_data %}
+    <script src="{{ url_for('static', filename='js/audio-player.js') }}"></script>
+    {% endif %}
 {% endblock %}

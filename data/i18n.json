@@ -235,7 +235,11 @@
     "tour_cognate_title": "Búsqueda por cognado",
     "tour_cognate_body": "Escribe una palabra en hebreo o árabe (ej. מלך, كتب) y encuentra la raíz siríaca emparentada.",
     "tour_text_title": "Búsqueda en texto",
-    "tour_text_body": "Busca palabras o frases en las traducciones del Nuevo Testamento, o directamente en siríaco."
+    "tour_text_body": "Busca palabras o frases en las traducciones del Nuevo Testamento, o directamente en siríaco.",
+    "audio_play_chapter": "Reproducir capítulo",
+    "audio_pause": "Pausar",
+    "audio_play_verse": "Reproducir este versículo",
+    "audio_speed": "Velocidad"
   },
   "en": {
     "app_title": "Peshitta Constellations",
@@ -473,7 +477,11 @@
     "tour_cognate_title": "Cognate search",
     "tour_cognate_body": "Type a Hebrew or Arabic word (e.g. מלך, كتب) and find the related Syriac root.",
     "tour_text_title": "Text search",
-    "tour_text_body": "Search for words or phrases in the NT translations, or directly in Syriac text."
+    "tour_text_body": "Search for words or phrases in the NT translations, or directly in Syriac text.",
+    "audio_play_chapter": "Play chapter",
+    "audio_pause": "Pause",
+    "audio_play_verse": "Play this verse",
+    "audio_speed": "Playback speed"
   },
   "he": {
     "app_title": "קונסטלציות הפשיטתא",
@@ -711,7 +719,11 @@
     "tour_cognate_title": "חיפוש לפי מילה קרובה",
     "tour_cognate_body": "הקלד מילה בעברית או בערבית (למשל מלך, كتب) ומצא את השורש הסורי הקשור.",
     "tour_text_title": "חיפוש בטקסט",
-    "tour_text_body": "חפש מילים או ביטויים בתרגומי הברית החדשה, או ישירות בטקסט הסורי."
+    "tour_text_body": "חפש מילים או ביטויים בתרגומי הברית החדשה, או ישירות בטקסט הסורי.",
+    "audio_play_chapter": "נגן פרק",
+    "audio_pause": "השהה",
+    "audio_play_verse": "נגן פסוק זה",
+    "audio_speed": "מהירות"
   },
   "ar": {
     "app_title": "أبراج الپشيطتا",
@@ -949,6 +961,10 @@
     "tour_cognate_title": "البحث بكلمة قريبة",
     "tour_cognate_body": "اكتب كلمة بالعبرية أو العربية (مثل מלך، كتب) وابحث عن الجذر السرياني المرتبط.",
     "tour_text_title": "البحث في النص",
-    "tour_text_body": "ابحث عن كلمات أو عبارات في ترجمات العهد الجديد، أو مباشرة في النص السرياني."
+    "tour_text_body": "ابحث عن كلمات أو عبارات في ترجمات العهد الجديد، أو مباشرة في النص السرياني.",
+    "audio_play_chapter": "تشغيل الإصحاح",
+    "audio_pause": "إيقاف مؤقت",
+    "audio_play_verse": "تشغيل هذه الآية",
+    "audio_speed": "السرعة"
   }
 }
