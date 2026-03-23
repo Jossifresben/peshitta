@@ -2,8 +2,19 @@
 <html lang="{{ lang }}" dir="{{ 'rtl' if lang in ('he', 'ar') else 'ltr' }}">
 <head>
     <meta charset="UTF-8">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8KTQRY55S"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S8KTQRY55S');</script>
+    <script>
+    // GA loads only after cookie consent
+    function loadGA(){
+        if(document.getElementById('ga-script'))return;
+        var s=document.createElement('script');s.id='ga-script';s.async=true;
+        s.src='https://www.googletagmanager.com/gtag/js?id=G-S8KTQRY55S';
+        document.head.appendChild(s);
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag=gtag;gtag('js',new Date());gtag('config','G-S8KTQRY55S');
+    }
+    if(document.cookie.indexOf('cookie_consent=accepted')!==-1){loadGA();}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ t.app_title }}{% endblock %}</title>
     <meta name="description" content="{{ meta_description|default(t.app_subtitle) }}">
@@ -131,5 +142,41 @@
     })();
     </script>
     {% block scripts %}{% endblock %}
+
+    <!-- GDPR Cookie Consent Banner -->
+    <div id="cookie-banner" class="cookie-banner" style="display:none;">
+        <div class="cookie-text">
+            {% if lang == 'es' %}Esta web usa cookies de Google Analytics para mejorar la experiencia. No se recopilan datos personales.
+            {% elif lang == 'he' %}אתר זה משתמש בעוגיות Google Analytics לשיפור החוויה. לא נאספים נתונים אישיים.
+            {% elif lang == 'ar' %}يستخدم هذا الموقع ملفات تعريف ارتباط Google Analytics لتحسين التجربة. لا يتم جمع بيانات شخصية.
+            {% else %}This site uses Google Analytics cookies to improve the experience. No personal data is collected.
+            {% endif %}
+            <a href="{{ url_for('methodology_page', lang=lang) }}#privacy" class="cookie-link">{% if lang == 'es' %}Más info{% elif lang == 'he' %}מידע נוסף{% elif lang == 'ar' %}المزيد{% else %}Learn more{% endif %}</a>
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-reject" onclick="cookieConsent('rejected')">{% if lang == 'es' %}Rechazar{% elif lang == 'he' %}דחה{% elif lang == 'ar' %}رفض{% else %}Reject{% endif %}</button>
+            <button class="cookie-btn cookie-accept" onclick="cookieConsent('accepted')">{% if lang == 'es' %}Aceptar{% elif lang == 'he' %}אשר{% elif lang == 'ar' %}قبول{% else %}Accept{% endif %}</button>
+        </div>
+    </div>
+    <script>
+    function cookieConsent(choice) {
+        document.cookie = 'cookie_consent=' + choice + ';path=/;max-age=31536000;SameSite=Lax';
+        document.getElementById('cookie-banner').style.display = 'none';
+        if (choice === 'accepted') { loadGA(); }
+        else {
+            // Clear any existing GA cookies
+            var gaCookies = document.cookie.split(';').filter(function(c){return c.trim().match(/^_ga/);});
+            gaCookies.forEach(function(c){
+                var name = c.split('=')[0].trim();
+                document.cookie = name + '=;path=/;max-age=0;domain=.' + location.hostname;
+                document.cookie = name + '=;path=/;max-age=0';
+            });
+        }
+    }
+    // Show banner if no consent yet
+    if (document.cookie.indexOf('cookie_consent=') === -1) {
+        document.getElementById('cookie-banner').style.display = '';
+    }
+    </script>
 </body>
 </html>
