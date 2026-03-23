@@ -244,7 +244,18 @@
     "filter_all_books": "Todos los libros",
     "export_csv": "Descargar CSV",
     "canon_22_note": "Canon tradicional de la Peshitta: 22 libros. 2 Pedro, 2-3 Juan, Judas y Apocalipsis no forman parte del canon siríaco original.",
-    "settings_trans_gr": "Ελληνικά (SBLGNT)"
+    "settings_trans_gr": "Ελληνικά (SBLGNT)",
+    "bookmarks_title": "Marcadores",
+    "bookmarks_subtitle": "Tus versículos y raíces guardados. Se almacenan localmente en tu navegador.",
+    "bookmarks_verses": "Versículos",
+    "bookmarks_roots": "Raíces",
+    "bookmarks_export": "Exportar",
+    "bookmarks_clear": "Borrar todo",
+    "bookmarks_empty_verses": "Aún no tienes versículos guardados. Haz clic en el icono de marcador en cualquier versículo del lector.",
+    "bookmarks_empty_roots": "Aún no tienes raíces guardadas. Haz clic en el icono de marcador en cualquier raíz en los resultados.",
+    "bookmarks_add_note": "Agregar nota...",
+    "bookmarks_confirm_clear": "¿Borrar todos los marcadores?",
+    "bookmarks_toggle": "Marcar"
   },
   "en": {
     "app_title": "Peshitta Constellations",
@@ -491,7 +502,18 @@
     "filter_all_books": "All books",
     "export_csv": "Download CSV",
     "canon_22_note": "Traditional Peshitta canon: 22 books. 2 Peter, 2-3 John, Jude, and Revelation are not part of the original Syriac canon.",
-    "settings_trans_gr": "Ελληνικά (SBLGNT)"
+    "settings_trans_gr": "Ελληνικά (SBLGNT)",
+    "bookmarks_title": "Bookmarks",
+    "bookmarks_subtitle": "Your saved verses and roots. Stored locally in your browser.",
+    "bookmarks_verses": "Verses",
+    "bookmarks_roots": "Roots",
+    "bookmarks_export": "Export",
+    "bookmarks_clear": "Clear all",
+    "bookmarks_empty_verses": "No saved verses yet. Click the bookmark icon on any verse in the reader to save it.",
+    "bookmarks_empty_roots": "No saved roots yet. Click the bookmark icon on any root in search results to save it.",
+    "bookmarks_add_note": "Add a note...",
+    "bookmarks_confirm_clear": "Delete all bookmarks?",
+    "bookmarks_toggle": "Bookmark"
   },
   "he": {
     "app_title": "קונסטלציות הפשיטתא",
@@ -738,7 +760,18 @@
     "filter_all_books": "כל הספרים",
     "export_csv": "הורד CSV",
     "canon_22_note": "קנון הפשיטתא המסורתי: 22 ספרים. 2 פטרוס, 2-3 יוחנן, יהודה והתגלות אינם חלק מהקנון הסורי המקורי.",
-    "settings_trans_gr": "Ελληνικά (SBLGNT)"
+    "settings_trans_gr": "Ελληνικά (SBLGNT)",
+    "bookmarks_title": "סימניות",
+    "bookmarks_subtitle": "הפסוקים והשורשים ששמרת. מאוחסנים מקומית בדפדפן שלך.",
+    "bookmarks_verses": "פסוקים",
+    "bookmarks_roots": "שורשים",
+    "bookmarks_export": "ייצוא",
+    "bookmarks_clear": "מחק הכל",
+    "bookmarks_empty_verses": "עדיין אין פסוקים שמורים. לחץ על סמל הסימנייה בכל פסוק בקורא.",
+    "bookmarks_empty_roots": "עדיין אין שורשים שמורים. לחץ על סמל הסימנייה בכל שורש בתוצאות.",
+    "bookmarks_add_note": "הוסף הערה...",
+    "bookmarks_confirm_clear": "למחוק את כל הסימניות?",
+    "bookmarks_toggle": "סימנייה"
   },
   "ar": {
     "app_title": "أبراج الپشيطتا",
@@ -985,6 +1018,17 @@
     "filter_all_books": "جميع الكتب",
     "export_csv": "تحميل CSV",
     "canon_22_note": "القانون التقليدي للپشيطتا: 22 سفراً. 2 بطرس، 2-3 يوحنا، يهوذا والرؤيا ليست جزءاً من القانون السرياني الأصلي.",
-    "settings_trans_gr": "Ελληνικά (SBLGNT)"
+    "settings_trans_gr": "Ελληνικά (SBLGNT)",
+    "bookmarks_title": "إشارات مرجعية",
+    "bookmarks_subtitle": "الآيات والجذور المحفوظة. مخزّنة محلياً في متصفحك.",
+    "bookmarks_verses": "آيات",
+    "bookmarks_roots": "جذور",
+    "bookmarks_export": "تصدير",
+    "bookmarks_clear": "مسح الكل",
+    "bookmarks_empty_verses": "لا توجد آيات محفوظة بعد. انقر على أيقونة الإشارة المرجعية على أي آية في القارئ.",
+    "bookmarks_empty_roots": "لا توجد جذور محفوظة بعد. انقر على أيقونة الإشارة المرجعية على أي جذر في النتائج.",
+    "bookmarks_add_note": "أضف ملاحظة...",
+    "bookmarks_confirm_clear": "حذف جميع الإشارات المرجعية؟",
+    "bookmarks_toggle": "إشارة مرجعية"
   }
 }

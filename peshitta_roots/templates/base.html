@@ -63,6 +63,7 @@
             </div>
         </div>
         <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}" aria-label="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
+        <a href="{{ url_for('bookmarks_page', lang=lang) }}" class="bookmarks-toggle" id="bookmarks-toggle" title="{{ t.bookmarks_title|default('Bookmarks') }}" aria-label="{{ t.bookmarks_title|default('Bookmarks') }}"><span class="material-symbols-outlined">bookmark</span></a>
         {% block header_settings %}
         <div class="settings-wrapper">
             <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">settings</span></button>

@@ -1274,6 +1274,18 @@ def about_page():
                            canonical_path='/about')
 
 
+@app.route('/bookmarks')
+def bookmarks_page():
+    """Bookmarks page — all data stored in localStorage."""
+    _init()
+    lang = _detect_lang()
+    if lang not in _i18n:
+        lang = 'es'
+    t = _Namespace(_i18n[lang])
+    return render_template('bookmarks.html', t=t, lang=lang,
+                           canonical_path='/bookmarks')
+
+
 @app.route('/api/concordance')
 def api_concordance():
     """Return KWIC (Key Word In Context) for a word form at given references."""

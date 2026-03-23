@@ -25,9 +25,6 @@
                         <option value="{{ b_name }}" data-chapters="{{ b_max }}" {% if b_name == book %}selected{% endif %}>{{ book_names.get(b_name, b_name) }}</option>
                         {% endfor %}
                     </select>
-                    <span class="canon-info" title="{{ t.canon_22_note|default('Traditional Peshitta canon: 22 books. 2 Peter, 2-3 John, Jude, and Revelation are not part of the original Syriac canon.') }}">
-                        <span class="material-symbols-outlined" style="font-size:16px; color:var(--text-muted); cursor:help; vertical-align:middle;">info</span>
-                    </span>
                 </label>
                 <label>
                     <span class="reader-label">{{ t.read_chapter }}</span>
@@ -69,6 +66,7 @@
             {% for v in verses %}
             <div class="reader-verse" id="verse-{{ v.number }}">
                 <span class="verse-num">{{ chapter }}:{{ v.number }}</span>
+                <button class="bm-verse-btn" data-ref="{{ v.reference }}" data-book="{{ book }}" data-chapter="{{ chapter }}" data-verse="{{ v.number }}" title="{{ t.bookmarks_toggle|default('Bookmark') }}"><span class="material-symbols-outlined">bookmark_border</span></button>
 {% if audio_data and v.number|string in audio_data.verses %}
                 <button class="audio-btn audio-verse-play" data-verse="{{ v.number }}"
                         title="{{ t.audio_play_verse|default('Play verse') }}">
@@ -127,6 +125,56 @@
     var currentBook = '{{ book }}';
     var currentChapter = {{ chapter }};
     var bookNames = {{ book_names | tojson }};
+    var verseData = {{ verses | tojson }};
+
+    // --- Bookmarks ---
+    function getBookmarks() {
+        try { return JSON.parse(localStorage.getItem('peshitta_bookmarks') || '{"verses":[],"roots":[]}'); }
+        catch(e) { return {verses:[], roots:[]}; }
+    }
+    function isVerseBookmarked(ref) {
+        return getBookmarks().verses.some(function(v) { return v.ref === ref; });
+    }
+    function toggleVerseBookmark(btn) {
+        var ref = btn.getAttribute('data-ref');
+        var verseNum = parseInt(btn.getAttribute('data-verse'));
+        var bm = getBookmarks();
+        var idx = -1;
+        for (var i = 0; i < bm.verses.length; i++) {
+            if (bm.verses[i].ref === ref) { idx = i; break; }
+        }
+        if (idx >= 0) {
+            bm.verses.splice(idx, 1);
+            btn.querySelector('.material-symbols-outlined').textContent = 'bookmark_border';
+            btn.classList.remove('bookmarked');
+        } else {
+            var vd = null;
+            for (var j = 0; j < verseData.length; j++) {
+                if (verseData[j].number === verseNum) { vd = verseData[j]; break; }
+            }
+            var syriac = vd ? vd.words.map(function(w) { return w.syriac; }).join(' ') : '';
+            var translation = vd ? (vd.translation || '') : '';
+            bm.verses.push({
+                ref: ref,
+                book: btn.getAttribute('data-book'),
+                chapter: parseInt(btn.getAttribute('data-chapter')),
+                verse: verseNum,
+                syriac: syriac,
+                translation: translation,
+                date: new Date().toISOString().slice(0, 10)
+            });
+            btn.querySelector('.material-symbols-outlined').textContent = 'bookmark';
+            btn.classList.add('bookmarked');
+        }
+        localStorage.setItem('peshitta_bookmarks', JSON.stringify(bm));
+    }
+    // Initialize bookmark icons
+    document.querySelectorAll('.bm-verse-btn').forEach(function(btn) {
+        if (isVerseBookmarked(btn.getAttribute('data-ref'))) {
+            btn.querySelector('.material-symbols-outlined').textContent = 'bookmark';
+            btn.classList.add('bookmarked');
+        }
+    });
 
     // --- Navigation ---
     function navigate(book, chapter) {
@@ -173,8 +221,17 @@
         return d.innerHTML;
     }
 
-    // --- Clickable words → root modal ---
+    // --- Clickable words → root modal + bookmark buttons ---
     document.getElementById('reader-body').addEventListener('click', function(e) {
+        // Bookmark button
+        var bmBtn = e.target.closest('.bm-verse-btn');
+        if (bmBtn) {
+            e.stopPropagation();
+            e.preventDefault();
+            toggleVerseBookmark(bmBtn);
+            return;
+        }
+        // Clickable word → root modal
         var el = e.target.closest('.clickable');
         if (!el) return;
         var form = el.getAttribute('data-form');
