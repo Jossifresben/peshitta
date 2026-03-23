@@ -1282,7 +1282,9 @@ def bookmarks_page():
     if lang not in _i18n:
         lang = 'es'
     t = _Namespace(_i18n[lang])
+    book_names = _i18n[lang].get('book_names', {})
     return render_template('bookmarks.html', t=t, lang=lang,
+                           book_names=book_names,
                            canonical_path='/bookmarks')
 
 

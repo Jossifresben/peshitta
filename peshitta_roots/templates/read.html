@@ -125,13 +125,9 @@
     var currentBook = '{{ book }}';
     var currentChapter = {{ chapter }};
     var bookNames = {{ book_names | tojson }};
-    var verseData = {{ verses | tojson }};
+    var verseData = [{% for v in verses %}{"number":{{ v.number }},"syriac":"{{ v.words|map(attribute='syriac')|join(' ')|e }}","translation":{{ v.translation|tojson }}}{% if not loop.last %},{% endif %}{% endfor %}];
 
-    // --- Bookmarks ---
-    function getBookmarks() {
-        try { return JSON.parse(localStorage.getItem('peshitta_bookmarks') || '{"verses":[],"roots":[]}'); }
-        catch(e) { return {verses:[], roots:[]}; }
-    }
+    // --- Bookmarks --- (getBookmarks/saveBookmarks in global.js)
     function isVerseBookmarked(ref) {
         return getBookmarks().verses.some(function(v) { return v.ref === ref; });
     }
@@ -152,7 +148,7 @@
             for (var j = 0; j < verseData.length; j++) {
                 if (verseData[j].number === verseNum) { vd = verseData[j]; break; }
             }
-            var syriac = vd ? vd.words.map(function(w) { return w.syriac; }).join(' ') : '';
+            var syriac = vd ? (vd.syriac || '') : '';
             var translation = vd ? (vd.translation || '') : '';
             bm.verses.push({
                 ref: ref,

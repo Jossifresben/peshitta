@@ -11,12 +11,12 @@
 
         <div class="bookmarks-toolbar">
             <div class="bookmarks-tabs">
-                <button class="bm-tab active" onclick="switchBmTab('verses')">
+                <button class="bm-tab active" onclick="switchBmTab('verses', this)">
                     <span class="material-symbols-outlined">menu_book</span>
                     {{ t.bookmarks_verses|default('Verses') }}
                     <span class="bm-count" id="verse-count">0</span>
                 </button>
-                <button class="bm-tab" onclick="switchBmTab('roots')">
+                <button class="bm-tab" onclick="switchBmTab('roots', this)">
                     <span class="material-symbols-outlined">hub</span>
                     {{ t.bookmarks_roots|default('Roots') }}
                     <span class="bm-count" id="root-count">0</span>
@@ -53,16 +53,9 @@
 {% block scripts %}
 <script>
 var currentLang = '{{ lang }}';
-var bookNames = {{ t.book_names|default('{}')|tojson }};
+var bookNames = {{ book_names|default({})|tojson }};
 
-function getBookmarks() {
-    try { return JSON.parse(localStorage.getItem('peshitta_bookmarks') || '{"verses":[],"roots":[]}'); }
-    catch(e) { return {verses:[], roots:[]}; }
-}
-
-function saveBookmarks(bm) {
-    localStorage.setItem('peshitta_bookmarks', JSON.stringify(bm));
-}
+// getBookmarks/saveBookmarks defined in global.js
 
 function escHtml(s) {
     var d = document.createElement('div'); d.textContent = s; return d.innerHTML;
@@ -106,9 +99,9 @@ function renderBookmarks() {
     bm.roots.forEach(function(r, i) {
         rh += '<div class="bm-card">';
         rh += '<div class="bm-card-header">';
-        rh += '<a class="bm-ref" href="/?q=' + encodeURIComponent(r.translit) + '&lang=' + currentLang + '#results">';
+        rh += '<a class="bm-ref" href="/?q=' + encodeURIComponent(r.key) + '&lang=' + currentLang + '#results">';
         if (r.syriac) rh += '<span class="syriac">' + escHtml(r.syriac) + '</span> ';
-        rh += escHtml(r.translit) + '</a>';
+        rh += escHtml(r.key) + '</a>';
         if (r.gloss) rh += '<span class="bm-gloss"> — ' + escHtml(r.gloss) + '</span>';
         rh += '<span class="bm-date">' + (r.date || '') + '</span>';
         rh += '<button class="bm-remove" onclick="removeBookmark(\'roots\',' + i + ')" title="Remove"><span class="material-symbols-outlined">close</span></button>';
@@ -133,11 +126,11 @@ function updateNote(type, idx, note) {
     saveBookmarks(bm);
 }
 
-function switchBmTab(tab) {
+function switchBmTab(tab, btn) {
     document.querySelectorAll('.bm-tab').forEach(function(t) { t.classList.remove('active'); });
     document.getElementById('bm-verses-panel').style.display = tab === 'verses' ? '' : 'none';
     document.getElementById('bm-roots-panel').style.display = tab === 'roots' ? '' : 'none';
-    event.target.closest('.bm-tab').classList.add('active');
+    btn.classList.add('active');
 }
 
 function exportBookmarks() {

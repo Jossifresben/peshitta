@@ -257,3 +257,10 @@ function escHtml(str) {
     d.textContent = str;
     return d.innerHTML;
 }
+
+// --- Shared bookmark utilities ---
+function getBookmarks() {
+    try { return JSON.parse(localStorage.getItem('peshitta_bookmarks') || '{"verses":[],"roots":[]}'); }
+    catch(e) { return {verses:[], roots:[]}; }
+}
+function saveBookmarks(bm) { localStorage.setItem('peshitta_bookmarks', JSON.stringify(bm)); }

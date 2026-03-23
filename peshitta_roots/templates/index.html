@@ -1027,7 +1027,9 @@
                 if (data.gloss2) html += ' <span class="prox-root-gloss">' + escHtml(data.gloss2) + '</span>';
                 html += '</div>';
                 html += '</div>';
-                html += '<p style="margin:8px 0 12px;font-weight:600;color:var(--text-muted);">' + data.count + ' ' + (scope === 'verse' ? '{{ t.proximity_verses|default("verses") }}' : '{{ t.proximity_chapters|default("chapters") }}') + '</p>';
+                html += '<p style="margin:8px 0 12px;font-weight:600;color:var(--text-muted);">' + data.count + ' ' + (scope === 'verse' ? '{{ t.proximity_verses|default("verses") }}' : '{{ t.proximity_chapters|default("chapters") }}');
+                if (data.count > 100) html += ' ({{ t.proximity_showing_first|default("showing first 100") }})';
+                html += '</p>';
 
                 for (var i = 0; i < data.results.length; i++) {
                     var r = data.results[i];
@@ -1286,13 +1288,7 @@
         }
     })();
 
-    // --- Root bookmarks ---
-    function getBookmarks() {
-        try { return JSON.parse(localStorage.getItem('peshitta_bookmarks') || '{"verses":[],"roots":[]}'); }
-        catch(e) { return {verses:[], roots:[]}; }
-    }
-    function saveBookmarks(bm) { localStorage.setItem('peshitta_bookmarks', JSON.stringify(bm)); }
-
+    // --- Root bookmarks --- (getBookmarks/saveBookmarks in global.js)
     function toggleRootBookmark(btn) {
         var key = btn.getAttribute('data-root-key');
         var syriac = btn.getAttribute('data-root-syriac');
@@ -1307,7 +1303,7 @@
             icon.style.fontVariationSettings = '';
             btn.style.color = '';
         } else {
-            bm.roots.push({key: key, syriac: syriac, gloss: gloss, note: '', date: new Date().toISOString()});
+            bm.roots.push({key: key, syriac: syriac, gloss: gloss, note: '', date: new Date().toISOString().slice(0, 10)});
             icon.textContent = 'bookmark';
             icon.style.fontVariationSettings = "'FILL' 1";
             btn.style.color = '#d4a843';

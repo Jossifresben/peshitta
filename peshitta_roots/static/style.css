@@ -2229,7 +2229,6 @@ footer a:hover {
 }
 .bm-root-btn .material-symbols-outlined { font-size: 28px; }
 .bm-root-btn:hover { color: #fff; }
-.bm-root-btn[style*="FILL"] { color: var(--accent-gold, #d4a843); }
 
 /* Proximity search results */
 .proximity-result {
