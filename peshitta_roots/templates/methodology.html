@@ -97,6 +97,22 @@
             text-indent: -1.5em;
             font-style: italic;
         }
+        .translit-table {
+            margin: 1em 0 1.5em;
+            font-size: 0.95rem;
+            border-collapse: collapse;
+            max-width: 480px;
+        }
+        .translit-table th,
+        .translit-table td {
+            padding: 6px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light, #e0ddd4);
+        }
+        .translit-table th {
+            font-weight: 600;
+            border-bottom-width: 2px;
+        }
         .methodology-content .root-example {
             font-weight: 600;
             letter-spacing: 0.04em;
@@ -211,6 +227,56 @@
 
             <p>El texto siríaco que alimenta esta aplicación procede del <strong>corpus ETCBC/syrnt</strong> (Eep Talstra Centre for Bible and Computer, VU Ámsterdam), un texto plano en Unicode que cubre el canon tradicional de 22 libros del Nuevo Testamento en la Peshitta. Se trata de un texto consonántico: no incluye marcas supralineales como <em>syame</em> (puntos de plural), <em>rukkakha/qushshaya</em> ni vocales. Esta limitación es deliberada para el análisis de raíces trilíteras, donde el esqueleto consonántico es lo que importa, pero significa que el texto mostrado en la lectura interlineal carece de la puntuación completa que un lector de siríaco esperaría.</p>
 
+            <p><strong>Nota:</strong> Este corpus no constituye una edición crítica. No incluye aparato crítico ni variantes textuales. Para trabajo de crítica textual académica, consúltese la edición del Peshitta Institute de Leiden o la edición comparativa de George Kiraz (<em>Comparative Edition of the Syriac Gospels</em>).</p>
+
+            <p>El canon tradicional de la Peshitta contiene 22 libros. Cinco libros (2 Pedro, 2 Juan, 3 Juan, Judas y Apocalipsis) no formaban parte del canon siríaco original y están excluidos de este corpus. Su ausencia no es un error de la aplicación, sino un reflejo fiel de la tradición textual de la Peshitta.</p>
+
+            <h3>Convención de transliteración</h3>
+
+            <p>Esta aplicación utiliza una romanización simplificada orientada a la accesibilidad, no la transliteración académica SBL. La siguiente tabla muestra las correspondencias:</p>
+
+            <table class="translit-table">
+                <thead><tr><th>Siríaco</th><th>Nombre</th><th>Romanización</th><th>IPA</th></tr></thead>
+                <tbody>
+                    <tr><td style="font-style:italic; font-size:0.85em;">ʾ</td><td>Aleph</td><td>'</td><td>ʔ</td></tr>
+                    <tr><td>ܒ</td><td>Beth</td><td>b</td><td>b</td></tr>
+                    <tr><td>ܓ</td><td>Gamal</td><td>g</td><td>ɡ</td></tr>
+                    <tr><td>ܕ</td><td>Dalath</td><td>d</td><td>d</td></tr>
+                    <tr><td>ܗ</td><td>He</td><td>h</td><td>h</td></tr>
+                    <tr><td>ܘ</td><td>Waw</td><td>w</td><td>w</td></tr>
+                    <tr><td>ܙ</td><td>Zayn</td><td>z</td><td>z</td></tr>
+                    <tr><td>ܚ</td><td>Heth</td><td>kh</td><td>ħ</td></tr>
+                    <tr><td>ܛ</td><td>Teth</td><td>T</td><td>tˤ</td></tr>
+                    <tr><td>ܝ</td><td>Yod</td><td>y</td><td>j</td></tr>
+                    <tr><td>ܟ</td><td>Kaph</td><td>k</td><td>k</td></tr>
+                    <tr><td>ܠ</td><td>Lamadh</td><td>l</td><td>l</td></tr>
+                    <tr><td>ܡ</td><td>Mim</td><td>m</td><td>m</td></tr>
+                    <tr><td>ܢ</td><td>Nun</td><td>n</td><td>n</td></tr>
+                    <tr><td>ܣ</td><td>Semkath</td><td>s</td><td>s</td></tr>
+                    <tr><td>ܥ</td><td>Ayin</td><td>e</td><td>ʕ</td></tr>
+                    <tr><td>ܦ</td><td>Pe</td><td>p</td><td>p</td></tr>
+                    <tr><td>ܨ</td><td>Tsade</td><td>ts</td><td>sˤ</td></tr>
+                    <tr><td>ܩ</td><td>Qoph</td><td>q</td><td>q</td></tr>
+                    <tr><td>ܪ</td><td>Resh</td><td>r</td><td>r</td></tr>
+                    <tr><td>ܫ</td><td>Shin</td><td>sh</td><td>ʃ</td></tr>
+                    <tr><td>ܬ</td><td>Taw</td><td>th</td><td>t</td></tr>
+                </tbody>
+            </table>
+
+            <p>Para la transliteración académica estándar, véase las convenciones de la <em>Society of Biblical Literature</em> (SBL) en su <em>Handbook of Style</em>.</p>
+
+            <h3>Bibliografía complementaria</h3>
+
+            <p>Las siguientes obras de referencia son lecturas recomendadas para profundizar en la gramática y el léxico siríaco:</p>
+
+            <ul class="references-list">
+                <li>Nöldeke, Theodor. <em>Compendious Syriac Grammar</em>. London: Williams &amp; Norgate, 1904.</li>
+                <li>Brockelmann, Carl. <em>Lexicon Syriacum</em>. 2nd ed. Halle: Max Niemeyer, 1928.</li>
+                <li>Sokoloff, Michael. <em>A Syriac Lexicon: A Translation from the Latin, Correction, Expansion, and Update of C. Brockelmann's Lexicon Syriacum</em>. Winona Lake: Eisenbrauns/Gorgias Press, 2009.</li>
+                <li>Costaz, Louis. <em>Dictionnaire Syriaque-Français / Syriac-English Dictionary</em>. 3rd ed. Beirut: Dar el-Machreq, 2002.</li>
+                <li>Kiraz, George A. <em>Comparative Edition of the Syriac Gospels</em>. 4 vols. Leiden: Brill, 1996.</li>
+            </ul>
+
             {% elif lang == 'ar' %}
 
             <p>الآرامية والعبرية والعربية لغات شقيقة. تتشارك الجذور والبنى وفهماً جوهرياً للكلمة بوصفها قوة حيّة لا مفهوماً جامداً. هذا يعني أن دراسة آرامية يسوع لا تنتمي إلى تقليد واحد. إنها تنتمي إلى الأسرة السامية بأسرها. يستطيع المسلم واليهودي والمسيحي أن يجلسوا أمام الجذر نفسه ويتعرّفوا فيه على شيء من ذاتهم. الجسر بين الأديان ليس بناءً دبلوماسياً: لقد كان موجوداً أصلاً في اللغة.</p>
@@ -300,6 +366,20 @@
             <h3>المتن النصي</h3>
 
             <p>النص السرياني الذي يُغذّي هذا التطبيق مصدره <strong>متن ETCBC/syrnt</strong> (مركز إيب تالسترا للكتاب المقدس والحاسوب، جامعة أمستردام الحرة)، مجموعة بيانات نصية بيونيكود تغطي قانون 22 سفراً التقليدي للعهد الجديد في الپشيطتا. وهو نص صامتي: لا يتضمن علامات فوق السطر مثل <em>سيامِه</em> (نقاط الجمع)، <em>روكّاخا/قوشّايا</em> أو التشكيل. هذا القيد مقصود لتحليل الجذور الثلاثية، حيث الهيكل الصامتي هو ما يهم، لكنه يعني أن النص المعروض في القارئ البين سطري يفتقر إلى التشكيل الكامل الذي يتوقعه قارئ السريانية.</p>
+
+            <p><strong>ملاحظة:</strong> هذا المتن لا يُشكّل طبعة نقدية. لا يتضمن جهازاً نقدياً أو قراءات مختلفة. للعمل الأكاديمي في النقد النصي، يُرجع إلى طبعة معهد الپشيطتا في ليدن أو الطبعة المقارنة لجورج كيراز.</p>
+
+            <p>يحتوي القانون التقليدي للپشيطتا على 22 سفراً. خمسة أسفار (2 بطرس، 2 يوحنا، 3 يوحنا، يهوذا، والرؤيا) لم تكن جزءاً من القانون السرياني الأصلي وهي مستبعدة من هذا المتن. غيابها ليس خطأً في التطبيق بل انعكاس أمين للتقليد النصي للپشيطتا.</p>
+
+            <h3>قراءات إضافية</h3>
+
+            <ul class="references-list">
+                <li>Nöldeke, Theodor. <em>Compendious Syriac Grammar</em>. London: Williams &amp; Norgate, 1904.</li>
+                <li>Brockelmann, Carl. <em>Lexicon Syriacum</em>. 2nd ed. Halle: Max Niemeyer, 1928.</li>
+                <li>Sokoloff, Michael. <em>A Syriac Lexicon</em>. Winona Lake: Eisenbrauns/Gorgias Press, 2009.</li>
+                <li>Costaz, Louis. <em>Dictionnaire Syriaque-Français / Syriac-English Dictionary</em>. 3rd ed. Beirut, 2002.</li>
+                <li>Kiraz, George A. <em>Comparative Edition of the Syriac Gospels</em>. 4 vols. Leiden: Brill, 1996.</li>
+            </ul>
 
             {% elif lang == 'he' %}
 
@@ -391,6 +471,20 @@
 
             <p>הטקסט הסורי המניע יישום זה מגיע מ<strong>קורפוס ETCBC/syrnt</strong> (Eep Talstra Centre for Bible and Computer, VU Amsterdam), מערך נתונים טקסטואלי ביוניקוד המכסה את קנון 22 הספרים המסורתי של הברית החדשה בפשיטתא. זהו טקסט עיצורי: הוא אינו כולל סימנים על-שוריים כמו <em>סיאמה</em> (נקודות רבים), <em>רוככא/קושיא</em> או ניקוד. הגבלה זו מכוונת לניתוח שורשים תלת-עיצוריים, שבו השלד העיצורי הוא מה שחשוב, אך משמעותה שהטקסט המוצג בקורא הבין-שורי חסר את הניקוד המלא שקורא סורית היה מצפה לו.</p>
 
+            <p><strong>הערה:</strong> קורפוס זה אינו מהדורה ביקורתית. הוא אינו כולל אפרטוס ביקורתי או גרסאות טקסט. לעבודה אקדמית בביקורת טקסט, יש לעיין במהדורת מכון הפשיטתא של ליידן או במהדורה ההשוואתית של ג'ורג' קיראז.</p>
+
+            <p>הקנון המסורתי של הפשיטתא מכיל 22 ספרים. חמישה ספרים (2 פטרוס, 2 יוחנן, 3 יוחנן, יהודה והתגלות) לא היו חלק מהקנון הסורי המקורי ואינם כלולים בקורפוס זה. היעדרם אינו שגיאה ביישום אלא שיקוף נאמן של המסורת הטקסטואלית של הפשיטתא.</p>
+
+            <h3>קריאה נוספת</h3>
+
+            <ul class="references-list">
+                <li>Nöldeke, Theodor. <em>Compendious Syriac Grammar</em>. London: Williams &amp; Norgate, 1904.</li>
+                <li>Brockelmann, Carl. <em>Lexicon Syriacum</em>. 2nd ed. Halle: Max Niemeyer, 1928.</li>
+                <li>Sokoloff, Michael. <em>A Syriac Lexicon</em>. Winona Lake: Eisenbrauns/Gorgias Press, 2009.</li>
+                <li>Costaz, Louis. <em>Dictionnaire Syriaque-Français / Syriac-English Dictionary</em>. 3rd ed. Beirut, 2002.</li>
+                <li>Kiraz, George A. <em>Comparative Edition of the Syriac Gospels</em>. 4 vols. Leiden: Brill, 1996.</li>
+            </ul>
+
             {% else %}
 
             <p>Aramaic, Hebrew, and Arabic are sister languages. They share roots, structures, and a fundamental understanding of the word as living force rather than fixed concept. This means the study of the Aramaic Jesus belongs to no single tradition. It belongs to the entire Semitic family. A Muslim, a Jew, and a Christian can sit before the same root and recognize something of their own in it. The interreligious bridge is not a diplomatic construction. It already existed in the language.</p>
@@ -480,6 +574,55 @@
             <h3>Text corpus</h3>
 
             <p>The Syriac text powering this application comes from the <strong>ETCBC/syrnt corpus</strong> (Eep Talstra Centre for Bible and Computer, VU Amsterdam), a plain-text Unicode dataset covering the traditional 22-book Peshitta New Testament canon. It is a consonantal text: it does not include supralinear marks such as <em>syame</em> (plural dots), <em>rukkakha/qushshaya</em>, or vowel points. This limitation is intentional for triliteral root analysis, where the consonantal skeleton is what matters, but it means the text shown in the interlinear reader lacks the full pointing a Syriac reader would expect.</p>
+
+            <p><strong>Note:</strong> This corpus does not constitute a critical edition. It includes no textual apparatus or variant readings. For academic text-critical work, consult the Leiden Peshitta Institute edition or George Kiraz's <em>Comparative Edition of the Syriac Gospels</em>.</p>
+
+            <p>The traditional Peshitta NT canon contains 22 books. Five books (2 Peter, 2 John, 3 John, Jude, and Revelation) were not part of the original Syriac canon and are excluded from this corpus. Their absence is not an application error but a faithful reflection of the Peshitta textual tradition.</p>
+
+            <h3>Transliteration convention</h3>
+
+            <p>This application uses a simplified romanization for accessibility, not SBL academic transliteration. The following table shows the mappings:</p>
+
+            <table class="translit-table">
+                <tbody>
+                    <tr><td style="font-style:italic; font-size:0.85em;">ʾ</td><td>Aleph</td><td>'</td><td>ʔ</td></tr>
+                    <tr><td>ܒ</td><td>Beth</td><td>b</td><td>b</td></tr>
+                    <tr><td>ܓ</td><td>Gamal</td><td>g</td><td>ɡ</td></tr>
+                    <tr><td>ܕ</td><td>Dalath</td><td>d</td><td>d</td></tr>
+                    <tr><td>ܗ</td><td>He</td><td>h</td><td>h</td></tr>
+                    <tr><td>ܘ</td><td>Waw</td><td>w</td><td>w</td></tr>
+                    <tr><td>ܙ</td><td>Zayn</td><td>z</td><td>z</td></tr>
+                    <tr><td>ܚ</td><td>Heth</td><td>kh</td><td>ħ</td></tr>
+                    <tr><td>ܛ</td><td>Teth</td><td>T</td><td>tˤ</td></tr>
+                    <tr><td>ܝ</td><td>Yod</td><td>y</td><td>j</td></tr>
+                    <tr><td>ܟ</td><td>Kaph</td><td>k</td><td>k</td></tr>
+                    <tr><td>ܠ</td><td>Lamadh</td><td>l</td><td>l</td></tr>
+                    <tr><td>ܡ</td><td>Mim</td><td>m</td><td>m</td></tr>
+                    <tr><td>ܢ</td><td>Nun</td><td>n</td><td>n</td></tr>
+                    <tr><td>ܣ</td><td>Semkath</td><td>s</td><td>s</td></tr>
+                    <tr><td>ܥ</td><td>Ayin</td><td>e</td><td>ʕ</td></tr>
+                    <tr><td>ܦ</td><td>Pe</td><td>p</td><td>p</td></tr>
+                    <tr><td>ܨ</td><td>Tsade</td><td>ts</td><td>sˤ</td></tr>
+                    <tr><td>ܩ</td><td>Qoph</td><td>q</td><td>q</td></tr>
+                    <tr><td>ܪ</td><td>Resh</td><td>r</td><td>r</td></tr>
+                    <tr><td>ܫ</td><td>Shin</td><td>sh</td><td>ʃ</td></tr>
+                    <tr><td>ܬ</td><td>Taw</td><td>th</td><td>t</td></tr>
+                </tbody>
+            </table>
+
+            <p>For standard academic transliteration, see the <em>Society of Biblical Literature</em> (SBL) conventions in their <em>Handbook of Style</em>.</p>
+
+            <h3>Further reading</h3>
+
+            <p>The following reference works are recommended for deeper study of Syriac grammar and lexicography:</p>
+
+            <ul class="references-list">
+                <li>Nöldeke, Theodor. <em>Compendious Syriac Grammar</em>. London: Williams &amp; Norgate, 1904.</li>
+                <li>Brockelmann, Carl. <em>Lexicon Syriacum</em>. 2nd ed. Halle: Max Niemeyer, 1928.</li>
+                <li>Sokoloff, Michael. <em>A Syriac Lexicon: A Translation from the Latin, Correction, Expansion, and Update of C. Brockelmann's Lexicon Syriacum</em>. Winona Lake: Eisenbrauns/Gorgias Press, 2009.</li>
+                <li>Costaz, Louis. <em>Dictionnaire Syriaque-Français / Syriac-English Dictionary</em>. 3rd ed. Beirut: Dar el-Machreq, 2002.</li>
+                <li>Kiraz, George A. <em>Comparative Edition of the Syriac Gospels</em>. 4 vols. Leiden: Brill, 1996.</li>
+            </ul>
 
             {% endif %}
 

@@ -25,6 +25,9 @@
                         <option value="{{ b_name }}" data-chapters="{{ b_max }}" {% if b_name == book %}selected{% endif %}>{{ book_names.get(b_name, b_name) }}</option>
                         {% endfor %}
                     </select>
+                    <span class="canon-info" title="{{ t.canon_22_note|default('Traditional Peshitta canon: 22 books. 2 Peter, 2-3 John, Jude, and Revelation are not part of the original Syriac canon.') }}">
+                        <span class="material-symbols-outlined" style="font-size:16px; color:var(--text-muted); cursor:help; vertical-align:middle;">info</span>
+                    </span>
                 </label>
                 <label>
                     <span class="reader-label">{{ t.read_chapter }}</span>
