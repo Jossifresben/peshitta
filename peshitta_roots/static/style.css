@@ -508,7 +508,11 @@ header p {
     gap: 0;
     margin-bottom: 18px;
     border-bottom: 2px solid var(--border);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
 }
+.search-tabs::-webkit-scrollbar { display: none; }
 
 .search-tab {
     padding: 10px 20px;
@@ -521,6 +525,8 @@ header p {
     font-weight: 600;
     color: var(--text-secondary);
     transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .search-tab:hover {
@@ -2585,6 +2591,19 @@ footer a:hover {
         font-size: 0.95em;
     }
 
+    .search-tabs {
+        flex-wrap: wrap;
+        overflow-x: visible;
+    }
+    .search-tab {
+        padding: 8px 14px;
+        font-size: 0.85em;
+    }
+
+    .feature-tabs {
+        flex-wrap: wrap;
+        overflow-x: visible;
+    }
     .feature-tab {
         padding: 10px 8px;
         font-size: 0.8em;
