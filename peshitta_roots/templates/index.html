@@ -115,6 +115,7 @@
                 <button class="search-tab active" id="tab-root" onclick="switchTab('root')">{{ t.search_tab_root }}</button>
                 <button class="search-tab" id="tab-cognate" onclick="switchTab('cognate')">{{ t.search_tab_cognate }}</button>
                 <button class="search-tab" id="tab-meaning" onclick="switchTab('meaning')">{{ t.search_tab_meaning }}</button>
+                <button class="search-tab" id="tab-proximity" onclick="switchTab('proximity')">{{ t.search_tab_proximity|default('Co-occurrence') }}</button>
                 <button class="search-tab" id="tab-text" onclick="switchTab('text')">{{ t.search_tab_text }}</button>
             </div>
 
@@ -185,6 +186,30 @@
                 </form>
                 <p class="search-help">{{ t.meaning_search_help }}</p>
                 <div id="meaning-search-results"></div>
+            </div>
+
+            <!-- Proximity search panel -->
+            <div id="panel-proximity" class="search-panel" style="display:none;">
+                <form id="proximity-search-form" onsubmit="return doProximitySearch(event)">
+                    <div class="search-row" style="gap:8px;">
+                        <div class="autocomplete-wrapper" style="flex:1;">
+                            <input type="text" id="prox-root1" placeholder="{{ t.proximity_root1|default('First root (e.g. M-L-K)') }}" autocomplete="off">
+                            <div id="prox-ac1" class="autocomplete-list"></div>
+                        </div>
+                        <span style="color:var(--text-muted);font-weight:600;">+</span>
+                        <div class="autocomplete-wrapper" style="flex:1;">
+                            <input type="text" id="prox-root2" placeholder="{{ t.proximity_root2|default('Second root (e.g. SH-L-M)') }}" autocomplete="off">
+                            <div id="prox-ac2" class="autocomplete-list"></div>
+                        </div>
+                        <select id="prox-scope" style="padding:8px;">
+                            <option value="verse">{{ t.proximity_same_verse|default('Same verse') }}</option>
+                            <option value="chapter">{{ t.proximity_same_chapter|default('Same chapter') }}</option>
+                        </select>
+                        <button type="submit">{{ t.search_button }}</button>
+                    </div>
+                </form>
+                <p class="search-help">{{ t.proximity_help|default('Find verses where two roots appear together. Use transliterated roots (e.g. M-L-K, SH-L-M).') }}</p>
+                <div id="proximity-search-results"></div>
             </div>
 
             <!-- Text search panel -->
@@ -385,7 +410,7 @@
     <script>
     // --- Search tab switching ---
     function switchTab(tab) {
-        var tabs = ['root', 'cognate', 'meaning', 'text'];
+        var tabs = ['root', 'cognate', 'meaning', 'proximity', 'text'];
         tabs.forEach(function(t) {
             var panel = document.getElementById('panel-' + t);
             var btn = document.getElementById('tab-' + t);
@@ -851,6 +876,60 @@
         }
     });
 
+    // --- Attach autocomplete to proximity inputs ---
+    function setupRootAutocomplete(inputEl, listEl) {
+        var acTimer = null;
+        inputEl.addEventListener('keydown', function(e) { if (e.key === '-') e.preventDefault(); });
+        inputEl.addEventListener('input', function(e) {
+            var v = this.value.toUpperCase();
+            if (e.inputType && e.inputType.indexOf('delete') !== -1) { this.value = v; doFetch(v); return; }
+            var clean = v.replace(/-+$/, '');
+            var parts = clean.split('-').filter(function(p) { return p.length > 0; });
+            var last = parts[parts.length - 1] || '';
+            var digraphs = ['SH', 'KH', 'TH', 'TS'];
+            var digraphStarts = ['S', 'K', 'T'];
+            var isComplete = (last.length === 2 && digraphs.indexOf(last) !== -1) || (last.length === 1 && digraphStarts.indexOf(last) === -1);
+            var isInvalidDigraph = (last.length === 2 && digraphs.indexOf(last) === -1);
+            var completedParts = parts.length - (last.length > 0 ? 1 : 0);
+            if (isComplete && completedParts < 2) { this.value = v + '-'; }
+            else if (isInvalidDigraph && completedParts < 2) {
+                var newParts = parts.slice(0, -1).concat([last[0], last[1]]);
+                var fixed = newParts.join('-');
+                if (newParts.length < 3) fixed += '-';
+                this.value = fixed;
+            } else { this.value = v; }
+            doFetch(this.value.replace(/-+$/, ''));
+        });
+        function doFetch(prefix) {
+            clearTimeout(acTimer);
+            if (!prefix) { listEl.innerHTML = ''; return; }
+            acTimer = setTimeout(function() {
+                fetch('/api/suggest?prefix=' + encodeURIComponent(prefix))
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        listEl.innerHTML = '';
+                        if (!data.length) return;
+                        for (var i = 0; i < data.length; i++) {
+                            var item = document.createElement('div');
+                            item.className = 'autocomplete-item';
+                            item.innerHTML = '<span class="ac-syriac">' + escHtml(data[i].root) + '</span> <span class="ac-translit">' + escHtml(data[i].translit) + '</span> <span class="ac-count">(' + data[i].count + ')</span>';
+                            item.setAttribute('data-value', data[i].translit);
+                            item.addEventListener('click', function() {
+                                inputEl.value = this.getAttribute('data-value');
+                                listEl.innerHTML = '';
+                            });
+                            listEl.appendChild(item);
+                        }
+                    });
+            }, 150);
+        }
+        document.addEventListener('click', function(e) {
+            if (!inputEl.contains(e.target) && !listEl.contains(e.target)) listEl.innerHTML = '';
+        });
+    }
+    setupRootAutocomplete(document.getElementById('prox-root1'), document.getElementById('prox-ac1'));
+    setupRootAutocomplete(document.getElementById('prox-root2'), document.getElementById('prox-ac2'));
+
     // --- Meaning / reverse search ---
     var MEANING_STRINGS = {
         noResults: {{ t.meaning_search_no_results|tojson }},
@@ -913,6 +992,84 @@
                 resultsDiv.innerHTML = '<p class="no-results">Error</p>';
             });
 
+        return false;
+    }
+
+    // --- Proximity search ---
+    function doProximitySearch(event) {
+        event.preventDefault();
+        var root1 = document.getElementById('prox-root1').value.trim();
+        var root2 = document.getElementById('prox-root2').value.trim();
+        var scope = document.getElementById('prox-scope').value;
+        if (!root1 || !root2) return false;
+
+        var resultsDiv = document.getElementById('proximity-search-results');
+        resultsDiv.innerHTML = '<p style="color:var(--text-muted);">{{ t.modal_loading|default("Loading...") }}</p>';
+
+        fetch('/api/proximity-search?root1=' + encodeURIComponent(root1) + '&root2=' + encodeURIComponent(root2) + '&scope=' + scope + '&lang={{ lang }}&trans=' + (localStorage.getItem('trans') || '{{ lang }}'))
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data.error) {
+                    resultsDiv.innerHTML = '<p class="no-results">' + escHtml(data.error) + '</p>';
+                    return;
+                }
+                if (!data.results || !data.results.length) {
+                    resultsDiv.innerHTML = '<p class="no-results">{{ t.proximity_no_results|default("No co-occurrences found for these roots.") }}</p>';
+                    return;
+                }
+
+                var html = '<div class="prox-roots-header">';
+                html += '<div class="prox-root-card"><span class="prox-root-syriac syriac prox-hl1">' + escHtml(data.root1_syriac) + '</span> <span class="prox-root-translit">' + escHtml(data.root1) + '</span>';
+                if (data.gloss1) html += ' <span class="prox-root-gloss">' + escHtml(data.gloss1) + '</span>';
+                html += '</div>';
+                html += '<span class="prox-plus">+</span>';
+                html += '<div class="prox-root-card"><span class="prox-root-syriac syriac prox-hl2">' + escHtml(data.root2_syriac) + '</span> <span class="prox-root-translit">' + escHtml(data.root2) + '</span>';
+                if (data.gloss2) html += ' <span class="prox-root-gloss">' + escHtml(data.gloss2) + '</span>';
+                html += '</div>';
+                html += '</div>';
+                html += '<p style="margin:8px 0 12px;font-weight:600;color:var(--text-muted);">' + data.count + ' ' + (scope === 'verse' ? '{{ t.proximity_verses|default("verses") }}' : '{{ t.proximity_chapters|default("chapters") }}') + '</p>';
+
+                for (var i = 0; i < data.results.length; i++) {
+                    var r = data.results[i];
+                    html += '<div class="proximity-result">';
+                    html += '<div class="proximity-ref">';
+                    if (scope === 'verse') {
+                        var parts = r.ref.split(' ');
+                        var bookCh = r.ref.substring(0, r.ref.lastIndexOf(':'));
+                        var verse = r.ref.substring(r.ref.lastIndexOf(':') + 1);
+                        html += '<a href="/read?book=' + encodeURIComponent(parts.slice(0, -1).join(' ')) + '&chapter=' + bookCh.split(' ').pop() + '&v_start=' + verse + '&lang={{ lang }}' + '">' + escHtml(r.ref) + '</a>';
+                    } else {
+                        // Chapter scope: r.ref is like "Matthew 5"
+                        var chParts = r.ref.split(' ');
+                        var chNum = chParts.pop();
+                        var chBook = chParts.join(' ');
+                        html += '<a href="/read?book=' + encodeURIComponent(chBook) + '&chapter=' + chNum + '&lang={{ lang }}">' + escHtml(r.ref) + '</a>';
+                    }
+                    html += '</div>';
+                    if (r.syriac) {
+                        var words = r.syriac.split(' ');
+                        var highlighted = words.map(function(w) {
+                            var isRoot1 = r.forms1 && r.forms1.indexOf(w) !== -1;
+                            var isRoot2 = r.forms2 && r.forms2.indexOf(w) !== -1;
+                            if (isRoot1) return '<span class="prox-hl1">' + escHtml(w) + '</span>';
+                            if (isRoot2) return '<span class="prox-hl2">' + escHtml(w) + '</span>';
+                            return escHtml(w);
+                        }).join(' ');
+                        html += '<div class="proximity-syriac syriac">' + highlighted + '</div>';
+                    }
+                    if (r.translit) {
+                        html += '<div class="proximity-translit">' + escHtml(r.translit) + '</div>';
+                    }
+                    if (r.translation) {
+                        html += '<div class="proximity-translation">' + escHtml(r.translation) + '</div>';
+                    }
+                    html += '</div>';
+                }
+                resultsDiv.innerHTML = html;
+            })
+            .catch(function() {
+                resultsDiv.innerHTML = '<p class="no-results">Error</p>';
+            });
         return false;
     }
 

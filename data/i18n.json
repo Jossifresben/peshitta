@@ -255,7 +255,17 @@
     "bookmarks_empty_roots": "Aún no tienes raíces guardadas. Haz clic en el icono de marcador en cualquier raíz en los resultados.",
     "bookmarks_add_note": "Agregar nota...",
     "bookmarks_confirm_clear": "¿Borrar todos los marcadores?",
-    "bookmarks_toggle": "Marcar"
+    "bookmarks_toggle": "Marcar",
+    "search_tab_proximity": "Co-ocurrencia",
+    "proximity_root1": "Primera raíz (ej. M-L-K)",
+    "proximity_root2": "Segunda raíz (ej. SH-L-M)",
+    "proximity_same_verse": "Mismo versículo",
+    "proximity_same_chapter": "Mismo capítulo",
+    "proximity_help": "Encuentra versículos donde dos raíces aparecen juntas. Usa raíces transliteradas (ej. M-L-K, SH-L-M).",
+    "proximity_no_results": "No se encontraron co-ocurrencias para estas raíces.",
+    "proximity_verses": "versículos",
+    "proximity_chapters": "capítulos",
+    "proximity_contain": "contienen ambas"
   },
   "en": {
     "app_title": "Peshitta Constellations",
@@ -513,7 +523,17 @@
     "bookmarks_empty_roots": "No saved roots yet. Click the bookmark icon on any root in search results to save it.",
     "bookmarks_add_note": "Add a note...",
     "bookmarks_confirm_clear": "Delete all bookmarks?",
-    "bookmarks_toggle": "Bookmark"
+    "bookmarks_toggle": "Bookmark",
+    "search_tab_proximity": "Co-occurrence",
+    "proximity_root1": "First root (e.g. M-L-K)",
+    "proximity_root2": "Second root (e.g. SH-L-M)",
+    "proximity_same_verse": "Same verse",
+    "proximity_same_chapter": "Same chapter",
+    "proximity_help": "Find verses where two roots appear together. Use transliterated roots (e.g. M-L-K, SH-L-M).",
+    "proximity_no_results": "No co-occurrences found for these roots.",
+    "proximity_verses": "verses",
+    "proximity_chapters": "chapters",
+    "proximity_contain": "contain both"
   },
   "he": {
     "app_title": "קונסטלציות הפשיטתא",
@@ -771,7 +791,17 @@
     "bookmarks_empty_roots": "עדיין אין שורשים שמורים. לחץ על סמל הסימנייה בכל שורש בתוצאות.",
     "bookmarks_add_note": "הוסף הערה...",
     "bookmarks_confirm_clear": "למחוק את כל הסימניות?",
-    "bookmarks_toggle": "סימנייה"
+    "bookmarks_toggle": "סימנייה",
+    "search_tab_proximity": "שיתוף הופעה",
+    "proximity_root1": "שורש ראשון (למשל M-L-K)",
+    "proximity_root2": "שורש שני (למשל SH-L-M)",
+    "proximity_same_verse": "אותו פסוק",
+    "proximity_same_chapter": "אותו פרק",
+    "proximity_help": "מצא פסוקים בהם שני שורשים מופיעים יחד. השתמש בשורשים בתעתיק (למשל M-L-K, SH-L-M).",
+    "proximity_no_results": "לא נמצאו הופעות משותפות לשורשים אלה.",
+    "proximity_verses": "פסוקים",
+    "proximity_chapters": "פרקים",
+    "proximity_contain": "מכילים את שניהם"
   },
   "ar": {
     "app_title": "أبراج الپشيطتا",
@@ -1029,6 +1059,16 @@
     "bookmarks_empty_roots": "لا توجد جذور محفوظة بعد. انقر على أيقونة الإشارة المرجعية على أي جذر في النتائج.",
     "bookmarks_add_note": "أضف ملاحظة...",
     "bookmarks_confirm_clear": "حذف جميع الإشارات المرجعية؟",
-    "bookmarks_toggle": "إشارة مرجعية"
+    "bookmarks_toggle": "إشارة مرجعية",
+    "search_tab_proximity": "تواجد مشترك",
+    "proximity_root1": "الجذر الأول (مثلاً M-L-K)",
+    "proximity_root2": "الجذر الثاني (مثلاً SH-L-M)",
+    "proximity_same_verse": "نفس الآية",
+    "proximity_same_chapter": "نفس الإصحاح",
+    "proximity_help": "ابحث عن آيات يظهر فيها جذران معاً. استخدم الجذور بالحرف اللاتيني (مثلاً M-L-K, SH-L-M).",
+    "proximity_no_results": "لم يُعثر على تواجد مشترك لهذين الجذرين.",
+    "proximity_verses": "آيات",
+    "proximity_chapters": "إصحاحات",
+    "proximity_contain": "يحتويان على كلا"
   }
 }

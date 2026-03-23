@@ -1344,6 +1344,124 @@ def api_concordance():
     return jsonify({'contexts': contexts})
 
 
+@app.route('/api/proximity-search')
+def api_proximity_search():
+    """Find verses where two roots co-occur."""
+    _init()
+    root1_str = request.args.get('root1', '').strip()
+    root2_str = request.args.get('root2', '').strip()
+    scope = request.args.get('scope', 'verse')  # 'verse' or 'chapter'
+    lang = request.args.get('lang', 'en')
+    trans = request.args.get('trans', lang)
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
+        trans = lang if lang in ('en', 'es', 'he', 'ar') else 'en'
+
+    if not root1_str or not root2_str:
+        return jsonify({'error': 'Two roots required'}), 400
+
+    root1_syriac = parse_root_input(root1_str)
+    root2_syriac = parse_root_input(root2_str)
+    if not root1_syriac or not root2_syriac:
+        return jsonify({'error': 'Invalid root input'}), 400
+
+    entry1 = _extractor.lookup_root(root1_syriac)
+    entry2 = _extractor.lookup_root(root2_syriac)
+
+    # Try sound correspondence fallback
+    if not entry1:
+        for v in semitic_root_variants(root1_syriac):
+            entry1 = _extractor.lookup_root(v)
+            if entry1:
+                root1_syriac = v
+                break
+    if not entry2:
+        for v in semitic_root_variants(root2_syriac):
+            entry2 = _extractor.lookup_root(v)
+            if entry2:
+                root2_syriac = v
+                break
+
+    if not entry1 or not entry2:
+        missing = root1_str if not entry1 else root2_str
+        return jsonify({'error': f'Root not found: {missing}', 'results': []})
+
+    # Collect references for each root
+    refs1 = set()
+    forms1 = {}  # ref -> list of forms
+    for m in entry1.matches:
+        for ref in m.references:
+            refs1.add(ref)
+            forms1.setdefault(ref, []).append(m.form)
+
+    refs2 = set()
+    forms2 = {}
+    for m in entry2.matches:
+        for ref in m.references:
+            refs2.add(ref)
+            forms2.setdefault(ref, []).append(m.form)
+
+    if scope == 'chapter':
+        # Group by book+chapter
+        def ref_to_chapter(r):
+            parts = r.rsplit(' ', 1)
+            if len(parts) == 2:
+                cv = parts[1].split(':')
+                return f'{parts[0]} {cv[0]}'
+            return r
+        ch1 = set(ref_to_chapter(r) for r in refs1)
+        ch2 = set(ref_to_chapter(r) for r in refs2)
+        common_chapters = sorted(ch1 & ch2)
+        results = []
+        for ch in common_chapters[:50]:
+            results.append({'ref': ch, 'type': 'chapter'})
+        return jsonify({
+            'root1': _translit_to_dash(root1_syriac),
+            'root2': _translit_to_dash(root2_syriac),
+            'scope': scope,
+            'count': len(common_chapters),
+            'results': results,
+        })
+
+    # Same verse
+    script = request.args.get('script', 'latin')
+    if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
+        script = 'latin'
+    translit_fn = _get_translit_fn(script)
+
+    common = sorted(refs1 & refs2)
+    results = []
+    for ref in common[:100]:
+        text = _corpus.get_verse_text(ref) or ''
+        translit = ' '.join(translit_fn(w) for w in text.split()) if text else ''
+        translation = _corpus.get_verse_translation(ref, trans) or ''
+        r1_forms = forms1.get(ref, [])
+        r2_forms = forms2.get(ref, [])
+        results.append({
+            'ref': ref,
+            'syriac': text,
+            'translit': translit,
+            'translation': translation[:200],
+            'forms1': list(set(r1_forms)),
+            'forms2': list(set(r2_forms)),
+        })
+
+    # Get glosses for display
+    gloss1 = _get_gloss(_cognate_lookup.lookup(root1_syriac), lang) if _cognate_lookup else ''
+    gloss2 = _get_gloss(_cognate_lookup.lookup(root2_syriac), lang) if _cognate_lookup else ''
+
+    return jsonify({
+        'root1': _translit_to_dash(root1_syriac),
+        'root2': _translit_to_dash(root2_syriac),
+        'root1_syriac': root1_syriac,
+        'root2_syriac': root2_syriac,
+        'gloss1': gloss1,
+        'gloss2': gloss2,
+        'scope': scope,
+        'count': len(common),
+        'results': results,
+    })
+
+
 @app.route('/api/word-root')
 def api_word_root():
     """Return root info for a given word form."""
