@@ -196,7 +196,8 @@ var PeshittaTour = (function() {
     }
 
     function clampLeft(left) {
-        var maxLeft = window.innerWidth - 360;
+        var tw = window.innerWidth < 600 ? window.innerWidth - 24 : 340;
+        var maxLeft = window.innerWidth - tw - 12;
         if (left < 12) return 12;
         if (left > maxLeft) return maxLeft;
         return left;
