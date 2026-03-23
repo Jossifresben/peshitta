@@ -241,6 +241,7 @@
                 <div class="root-meaning">{{ result.gloss }}</div>
                 {% endif %}
                 <div class="root-header-nav">
+                    <button class="bm-root-btn" data-root-key="{{ result.root_translit }}" data-root-syriac="{{ result.root }}" data-gloss="{{ result.gloss|e }}" onclick="toggleRootBookmark(this)" title="{{ t.bookmarks_title|default('Bookmark') }}"><span class="material-symbols-outlined">bookmark_border</span></button>
                     <a href="{{ url_for('visualize', root_key=result.root_translit, lang=lang, script=script, trans=trans) }}" class="viz-btn viz-btn-primary" title="{{ t.viz_root_family }}"><span class="material-symbols-outlined">hub</span> {{ t.viz_button }}</a>
                     <a href="#section-peshitta" class="nav-btn">{{ t.results_peshitta }}</a>
                     <a href="#section-hebrew" class="nav-btn">{{ t.results_hebrew }}</a>
@@ -1126,6 +1127,51 @@
         if (!localStorage.getItem('tourCompleted')) {
             setTimeout(startTour, 800);
         }
+    })();
+
+    // --- Root bookmarks ---
+    function getBookmarks() {
+        try { return JSON.parse(localStorage.getItem('peshitta_bookmarks') || '{"verses":[],"roots":[]}'); }
+        catch(e) { return {verses:[], roots:[]}; }
+    }
+    function saveBookmarks(bm) { localStorage.setItem('peshitta_bookmarks', JSON.stringify(bm)); }
+
+    function toggleRootBookmark(btn) {
+        var key = btn.getAttribute('data-root-key');
+        var syriac = btn.getAttribute('data-root-syriac');
+        var gloss = btn.getAttribute('data-gloss');
+        var bm = getBookmarks();
+        if (!bm.roots) bm.roots = [];
+        var idx = bm.roots.findIndex(function(r) { return r.key === key; });
+        var icon = btn.querySelector('.material-symbols-outlined');
+        if (idx >= 0) {
+            bm.roots.splice(idx, 1);
+            icon.textContent = 'bookmark_border';
+            icon.style.fontVariationSettings = '';
+            btn.style.color = '';
+        } else {
+            bm.roots.push({key: key, syriac: syriac, gloss: gloss, note: '', date: new Date().toISOString()});
+            icon.textContent = 'bookmark';
+            icon.style.fontVariationSettings = "'FILL' 1";
+            btn.style.color = '#d4a843';
+        }
+        saveBookmarks(bm);
+    }
+
+    // Init: mark already-bookmarked roots
+    (function() {
+        var bm = getBookmarks();
+        if (!bm.roots || !bm.roots.length) return;
+        var keys = {};
+        bm.roots.forEach(function(r) { keys[r.key] = true; });
+        document.querySelectorAll('.bm-root-btn').forEach(function(btn) {
+            if (keys[btn.getAttribute('data-root-key')]) {
+                var icon = btn.querySelector('.material-symbols-outlined');
+                icon.textContent = 'bookmark';
+                icon.style.fontVariationSettings = "'FILL' 1";
+                btn.style.color = '#d4a843';
+            }
+        });
     })();
 
     // --- Update feature CTA links with user's stored preferences ---
