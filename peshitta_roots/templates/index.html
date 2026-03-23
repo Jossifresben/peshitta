@@ -49,9 +49,9 @@
                 <button class="feature-tab" data-feature="constellation" onclick="switchFeature('constellation')">
                     <span class="material-symbols-outlined">scatter_plot</span> {{ t.feature_tab_constellation }}
                 </button>
-                <button class="feature-tab" data-feature="method" onclick="switchFeature('method')">
+                <a class="feature-tab" href="{{ url_for('methodology_page', lang=lang, script=script, trans=trans) }}">
                     <span class="material-symbols-outlined">auto_stories</span> {{ t.feature_tab_method }}
-                </button>
+                </a>
                 <button class="feature-tab" onclick="startTour()">
                     <span class="material-symbols-outlined">route</span> {{ t.tour_start }}
                 </button>
