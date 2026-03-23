@@ -243,7 +243,8 @@
     "filter_by_book": "Filtrar por libro",
     "filter_all_books": "Todos los libros",
     "export_csv": "Descargar CSV",
-    "canon_22_note": "Canon tradicional de la Peshitta: 22 libros. 2 Pedro, 2-3 Juan, Judas y Apocalipsis no forman parte del canon siríaco original."
+    "canon_22_note": "Canon tradicional de la Peshitta: 22 libros. 2 Pedro, 2-3 Juan, Judas y Apocalipsis no forman parte del canon siríaco original.",
+    "settings_trans_gr": "Ελληνικά (SBLGNT)"
   },
   "en": {
     "app_title": "Peshitta Constellations",
@@ -489,7 +490,8 @@
     "filter_by_book": "Filter by book",
     "filter_all_books": "All books",
     "export_csv": "Download CSV",
-    "canon_22_note": "Traditional Peshitta canon: 22 books. 2 Peter, 2-3 John, Jude, and Revelation are not part of the original Syriac canon."
+    "canon_22_note": "Traditional Peshitta canon: 22 books. 2 Peter, 2-3 John, Jude, and Revelation are not part of the original Syriac canon.",
+    "settings_trans_gr": "Ελληνικά (SBLGNT)"
   },
   "he": {
     "app_title": "קונסטלציות הפשיטתא",
@@ -735,7 +737,8 @@
     "filter_by_book": "סנן לפי ספר",
     "filter_all_books": "כל הספרים",
     "export_csv": "הורד CSV",
-    "canon_22_note": "קנון הפשיטתא המסורתי: 22 ספרים. 2 פטרוס, 2-3 יוחנן, יהודה והתגלות אינם חלק מהקנון הסורי המקורי."
+    "canon_22_note": "קנון הפשיטתא המסורתי: 22 ספרים. 2 פטרוס, 2-3 יוחנן, יהודה והתגלות אינם חלק מהקנון הסורי המקורי.",
+    "settings_trans_gr": "Ελληνικά (SBLGNT)"
   },
   "ar": {
     "app_title": "أبراج الپشيطتا",
@@ -981,6 +984,7 @@
     "filter_by_book": "تصفية حسب الكتاب",
     "filter_all_books": "جميع الكتب",
     "export_csv": "تحميل CSV",
-    "canon_22_note": "القانون التقليدي للپشيطتا: 22 سفراً. 2 بطرس، 2-3 يوحنا، يهوذا والرؤيا ليست جزءاً من القانون السرياني الأصلي."
+    "canon_22_note": "القانون التقليدي للپشيطتا: 22 سفراً. 2 بطرس، 2-3 يوحنا، يهوذا والرؤيا ليست جزءاً من القانون السرياني الأصلي.",
+    "settings_trans_gr": "Ελληνικά (SBLGNT)"
   }
 }

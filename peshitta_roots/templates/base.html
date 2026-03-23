@@ -78,6 +78,7 @@
                 <button class="settings-option{% if trans|default(lang) == 'es' %} active{% endif %}" data-trans="es" role="menuitemradio" aria-checked="{{ 'true' if trans|default(lang) == 'es' else 'false' }}">{{ t.settings_trans_es }}</button>
                 <button class="settings-option{% if trans|default(lang) == 'he' %} active{% endif %}" data-trans="he" role="menuitemradio" aria-checked="{{ 'true' if trans|default(lang) == 'he' else 'false' }}">{{ t.settings_trans_he }}</button>
                 <button class="settings-option{% if trans|default(lang) == 'ar' %} active{% endif %}" data-trans="ar" role="menuitemradio" aria-checked="{{ 'true' if trans|default(lang) == 'ar' else 'false' }}">{{ t.settings_trans_ar }}</button>
+                <button class="settings-option{% if trans|default(lang) == 'gr' %} active{% endif %}" data-trans="gr" role="menuitemradio" aria-checked="{{ 'true' if trans|default(lang) == 'gr' else 'false' }}">{{ t.settings_trans_gr|default('Ελληνικά (SBLGNT)') }}</button>
                 <div class="settings-divider"></div>
                 <div class="settings-label">{{ t.settings_syriac_font }}</div>
                 <button class="settings-option syriac-font-option" data-syriac-font="estrangela" role="menuitemradio">{{ t.settings_font_estrangela }}</button>

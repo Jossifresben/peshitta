@@ -345,7 +345,7 @@ def index():
     if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
         script = 'latin'
     trans = request.args.get('trans', lang)
-    if trans not in ('en', 'es', 'he', 'ar'):
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
         trans = lang
     translit_fn = _get_translit_fn(script)
     error = None
@@ -1006,7 +1006,7 @@ def browse():
     if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
         script = 'latin'
     trans = request.args.get('trans', lang)
-    if trans not in ('en', 'es', 'he', 'ar'):
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
         trans = lang
     translit_fn = _get_translit_fn(script)
 
@@ -1124,7 +1124,7 @@ def read():
         script = 'latin'
     translit_fn = _get_translit_fn(script)
     trans = request.args.get('trans', lang)
-    if trans not in ('en', 'es', 'he', 'ar'):
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
         trans = lang
 
     books = _corpus.get_books()
@@ -1235,7 +1235,7 @@ def help_page():
     if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
         script = 'latin'
     trans = request.args.get('trans', lang)
-    if trans not in ('en', 'es', 'he', 'ar'):
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
         trans = lang
     return render_template('help.html', t=t, lang=lang, script=script, trans=trans,
                            meta_description=_i18n[lang].get('meta_help', ''),
@@ -1254,7 +1254,7 @@ def methodology_page():
     if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
         script = 'latin'
     trans = request.args.get('trans', lang)
-    if trans not in ('en', 'es', 'he', 'ar'):
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
         trans = lang
     return render_template('methodology.html', t=t, lang=lang, script=script, trans=trans,
                            meta_description=_i18n[lang].get('meta_methodology', ''),
@@ -1282,7 +1282,7 @@ def api_concordance():
     refs_str = request.args.get('refs', '').strip()
     lang = request.args.get('lang', 'en')
     trans = request.args.get('trans', lang)
-    if trans not in ('en', 'es', 'he', 'ar'):
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
         trans = lang if lang in ('en', 'es', 'he', 'ar') else 'en'
 
     if not form or not refs_str:
@@ -1408,7 +1408,7 @@ def visualize(root_key):
     if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
         script = 'latin'
     trans = request.args.get('trans', lang)
-    if trans not in ('en', 'es', 'he', 'ar'):
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
         trans = lang
     display_key = root_key.upper()
     if display_key.startswith('A-'):
@@ -1433,7 +1433,7 @@ def api_root_family():
     translit_fn = _get_translit_fn(script)
 
     trans = request.args.get('trans', lang)
-    if trans not in ('en', 'es', 'he', 'ar'):
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
         trans = lang
     # For cognate meanings, use trans if es/en; fall back to lang for he/ar (no meanings in those)
     meaning_lang = trans if trans in ('es', 'en') else lang
@@ -1657,7 +1657,7 @@ def constellation():
     if script not in ('latin', 'hebrew', 'arabic', 'syriac'):
         script = 'latin'
     trans = request.args.get('trans', lang)
-    if trans not in ('en', 'es', 'he', 'ar'):
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
         trans = lang
     book = request.args.get('book', 'Matthew')
     chapter = request.args.get('chapter', 1, type=int)
@@ -1693,7 +1693,7 @@ def api_passage_constellation():
         script = 'latin'
     translit_fn = _get_translit_fn(script)
     trans = request.args.get('trans', lang)
-    if trans not in ('en', 'es', 'he', 'ar'):
+    if trans not in ('en', 'es', 'he', 'ar', 'gr'):
         trans = lang
     meaning_lang = trans if trans in ('es', 'en') else lang
 
