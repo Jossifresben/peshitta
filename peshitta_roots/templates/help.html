@@ -5,6 +5,7 @@
 {% block lang_links %}
 <a href="{{ url_for('help_page', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('help_page', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('help_page', lang='nl', script=script, trans='en') }}" class="lang-option{% if lang == 'nl' %} active{% endif %}" role="menuitem">NL</a>
 <a href="{{ url_for('help_page', lang='he', script='syriac', trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 <a href="{{ url_for('help_page', lang='ar', script='syriac', trans='ar') }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
 {% endblock %}
@@ -296,5 +297,10 @@
             </div>
 
         </div>
-    </div>
+    
+        <footer>
+            <div class="footer-line">{{ t.footer_by }} <a href="{{ url_for('about_page', lang=lang) }}">Jossi Fresco</a>{{ t.footer_inspired }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
+            <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-1aac69e2-78f1-42cb-bc59-cb303e97eb72" target="_blank" rel="noopener">API @Postman</a></div>
+        </footer>
+</div>
 {% endblock %}

@@ -24,10 +24,10 @@ app = Flask(__name__)
 def _detect_lang():
     """Detect UI language from query param or browser Accept-Language header."""
     lang = request.args.get('lang', '').strip()
-    if lang in ('es', 'en', 'he', 'ar'):
+    if lang in ('es', 'en', 'he', 'ar', 'nl'):
         return lang
     # Sniff browser Accept-Language
-    best = request.accept_languages.best_match(['es', 'en', 'he', 'ar'], default='en')
+    best = request.accept_languages.best_match(['es', 'en', 'he', 'ar', 'nl'], default='en')
     return best
 
 
@@ -185,7 +185,7 @@ def sitemap():
         return Response(_sitemap_cache['xml'], mimetype='application/xml')
 
     base = 'https://peshitta.onrender.com'
-    langs = ['es', 'en', 'he', 'ar']
+    langs = ['es', 'en', 'he', 'ar', 'nl']
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
              '        xmlns:xhtml="http://www.w3.org/1999/xhtml">']

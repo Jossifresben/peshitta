@@ -1405,6 +1405,7 @@ th {
     color: var(--text-gloss);
     max-height: 100px;
     overflow-y: auto;
+    max-width: 550px;
 }
 
 .ref-link {
@@ -1502,6 +1503,8 @@ th {
     text-align: right;
     line-height: 1.8;
     position: relative;
+    max-width: 500px;
+    overflow: hidden;
 }
 
 .kwic-before, .kwic-after {

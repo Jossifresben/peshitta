@@ -5,6 +5,7 @@
 {% block lang_links %}
 <a href="{{ url_for('methodology_page', lang='es', script=script, trans='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('methodology_page', lang='en', script=script, trans='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('methodology_page', lang='nl', script=script, trans='en') }}" class="lang-option{% if lang == 'nl' %} active{% endif %}" role="menuitem">NL</a>
 <a href="{{ url_for('methodology_page', lang='he', script='syriac', trans='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 <a href="{{ url_for('methodology_page', lang='ar', script='syriac', trans='ar') }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
 {% endblock %}
@@ -132,7 +133,7 @@
     <div class="container">
         <header>
             <h1>{{ t.methodology_title }}</h1>
-            <p style="font-style: italic; font-size: 1.15em; margin-top: -0.25em;">{% if lang == 'es' %}Sabe mejor en arameo{% elif lang == 'he' %}טעים יותר בארמית{% elif lang == 'ar' %}طعمها أفضل بالآرامية{% else %}It tastes better in Aramaic{% endif %}</p>
+            <p style="font-style: italic; font-size: 1.15em; margin-top: -0.25em;">{% if lang == 'es' %}Sabe mejor en arameo{% elif lang == 'he' %}טעים יותר בארמית{% elif lang == 'ar' %}طعمها أفضل بالآرامية{% elif lang == 'nl' %}Het smaakt beter in het Aramees{% else %}It tastes better in Aramaic{% endif %}</p>
         </header>
 
         <div class="methodology-content">
@@ -548,6 +549,106 @@
                 <li>Sokoloff, Michael. <em>A Syriac Lexicon</em>. Winona Lake: Eisenbrauns/Gorgias Press, 2009.</li>
                 <li>Costaz, Louis. <em>Dictionnaire Syriaque-Français / Syriac-English Dictionary</em>. 3rd ed. Beirut, 2002.</li>
                 <li>Kiraz, George A. <em>Comparative Edition of the Syriac Gospels</em>. 4 vols. Leiden: Brill, 1996.</li>
+            </ul>
+
+            {% elif lang == 'nl' %}
+
+            <p>Aramees, Hebreeuws en Arabisch zijn zustertalen. Ze delen wortels, structuren en een fundamenteel begrip van het woord als levende kracht in plaats van vaststaand concept. Dit betekent dat de studie van de Aramese Jezus niet tot één traditie behoort. Het behoort tot de hele Semitische familie. Een moslim, een jood en een christen kunnen voor dezelfde wortel zitten en er iets van zichzelf in herkennen. De interreligieuze brug is geen diplomatieke constructie. Die bestond al in de taal.</p>
+
+            <h2>De methode: de Peshitta lezen vanuit de wortel</h2>
+
+            <p>Het Syrisch Aramees is een <strong>drieletterwortel-taal</strong>. Elk woord groeit uit een kern van drie medeklinkers — de wortel — die een heel semantisch veld draagt. De wortel <strong>Sh-L-M</strong> (ܫܠܡ) draagt vrede, heelheid, overgave, voltooiing en begroeting. Geen enkel modern woord vangt dit bereik.</p>
+
+            <p>Wanneer we het Nieuwe Testament in het Grieks of in vertaling lezen, zien we woorden. Wanneer we het in het Aramees lezen, zien we <strong>wortels</strong> — en elke wortel vertakt zich in richtingen die de vertaling niet kan volgen.</p>
+
+            <h3>De vijf taken</h3>
+
+            <ol>
+                <li><strong>Wortelzoeken</strong> — Typ een drieletterworttel (bijv. <a href="{{ url_for('index', lang=lang, q='SH-L-M', script=script, trans=trans) }}#results"><em>SH-L-M</em></a>) en krijg alle geattesteerde vormen in de Peshitta, met Bijbelverwijzingen en Hebreeuwse en Arabische cognaten en zusterwortels. Probeer <a href="{{ url_for('index', lang=lang, q='N-P-SH', script=script, trans=trans) }}#results"><em>N-P-SH</em></a>: de wortel die in het Aramees "ziel", "adem", "rust" en "vermenigvuldiging" verweeft in één enkel semantisch veld.</li>
+                <li><a href="{{ url_for('browse', lang=lang, script=script, trans=trans) }}"><strong>Blader door wortels</strong></a> — Verken meer dan 1400 wortels, gefilterd op frequentie (hapax legomenon, dis legomenon…), op semantisch veld, of in alfabetische volgorde.</li>
+                <li><a href="{{ url_for('visualize', root_key='N-P-SH', lang=lang, script=script, trans=trans) }}"><strong>Wortelvisualisatie</strong></a> — Interactieve grafiek die de morfologische familie van een wortel toont naast Hebreeuwse en Arabische cognaten, met semantische brugdetectie en uitbijtermarkering.</li>
+                <li><a href="{{ url_for('visualize', root_key='N-P-SH', lang=lang, script=script, trans=trans, tab='ficha') }}"><strong>Wortelkaart</strong></a> — Alle geattesteerde vormen van een wortel, betekenissen, Bijbelverwijzingen, Hebreeuwse en Arabische cognaten, en zusterwortels bij elkaar in één weergave.</li>
+                <li><a href="{{ url_for('read', lang=lang, book='John', chapter=1, v_start=1, script=script, trans=trans) }}"><strong>Interlineair lezen</strong></a> — De Peshitta-tekst vers voor vers met transliteratie, gloss en vertaling, toegankelijk vanuit elke Bijbelverwijzing.</li>
+            </ol>
+
+            <h3>Wat verschijnt als je kijkt</h3>
+
+            <p>Neem het Onze Vader (<a href="{{ url_for('read', lang=lang, book='Matthew', chapter=6, v_start=9, script=script, trans=trans) }}">Matteüs 6:9-13</a>). In het Grieks zijn "dagelijks brood" en "vergeef ons" onafhankelijke zinnen. In het Aramees onthult de wortel <a href="{{ url_for('index', lang=lang, q='SH-B-Q', script=script, trans=trans) }}#results"><em>Sh-B-Q</em></a> (ܫܒܩ) dat "vergeven" ook "loslaten", "verlaten" en "toelaten" betekent. Vergiffenis is geen juridisch pardon — het is het openen van iets dat gesloten was.</p>
+
+            <p>Dit soort ontdekking is waar de tool voor is. Niet om het Grieks te vervangen, maar om een laag te onthullen die onzichtbaar is voor elke niet-Semitische lezing.</p>
+
+            <h3>Constellaties van betekenis</h3>
+
+            <p>Wanneer meerdere wortels in dezelfde passage verschijnen, vormen hun relaties een <strong>constellatie</strong>. De <a href="{{ url_for('constellation', lang=lang, book='Luke', chapter=1, v_start=28, v_end=38, script=script, trans=trans) }}">Aankondiging (Lucas 1:28-38)</a> bevat wortels voor genade, vrede, kracht en overschaduwing — die in het Aramees netwerken van resonantie onthullen die niet zichtbaar zijn in vertaling.</p>
+
+            <h3>Peshitta Constellaties</h3>
+
+            <p>Deze toepassing is gebouwd om elk van deze taken toegankelijk te maken vanuit een enkele interface. De Syrische tekst, de Hebreeuwse en Arabische cognaten, de semantische bruggen en de vertaalverschuivingen zijn allemaal verbonden in één verkenningsstroom.</p>
+            <p>De volgende tools zijn beschikbaar:</p>
+            <ul>
+                <li><a href="{{ url_for('index', lang=lang, q='SH-L-M', script=script, trans=trans) }}#results"><strong>Wortelzoeken</strong></a> — Voer een drieletterworttel in en zie alle geattesteerde vormen, cognaten en referenties.</li>
+                <li><a href="{{ url_for('browse', lang=lang, script=script, trans=trans) }}"><strong>Blader door wortels</strong></a> — Verken de volledige wortelindex op alfabet, frequentie of semantisch veld.</li>
+                <li><a href="{{ url_for('visualize', root_key='N-P-SH', lang=lang, script=script, trans=trans) }}"><strong>Wortelvisualisatie</strong></a> — Interactieve grafiek van de wortelfamilie met cognaten en bruggen.</li>
+                <li><a href="{{ url_for('constellation', lang=lang, book='Luke', chapter=1, v_start=28, v_end=38, script=script, trans=trans) }}"><strong>Passageconstellatie</strong></a> — Selecteer een passage en zie alle wortels als een onderling verbonden netwerk.</li>
+                <li><a href="{{ url_for('read', lang=lang, book='John', chapter=1, v_start=1, script=script, trans=trans) }}"><strong>Interlineair lezen</strong></a> — De Peshitta-tekst vers voor vers met transliteratie, gloss en vertaling.</li>
+            </ul>
+
+            <h3>Referenties</h3>
+            <ul>
+                <li>Haya, Vicente. <em>El arameo en sus labios</em> (Het Aramees op zijn lippen). Madrid, 2019.</li>
+                <li>Haya, Vicente. <em>Jesús y el islam</em> (Jezus en de islam). Fragmenta Editorial, 2022.</li>
+            </ul>
+
+            <h3>Referentiewoordenboeken</h3>
+            <ul>
+                <li>Payne Smith, R. <em>A Compendious Syriac Dictionary</em>. Oxford, 1903.</li>
+                <li>Sokoloff, M. <em>A Syriac Lexicon</em>. Winona Lake: Eisenbrauns, 2009.</li>
+                <li>Brown, F.; Driver, S. R.; Briggs, C. A. <em>A Hebrew and English Lexicon of the Old Testament</em>. Oxford: Clarendon Press, 1906.</li>
+                <li>Lane, E. W. <em>An Arabic-English Lexicon</em>. London: Williams and Norgate, 1863.</li>
+            </ul>
+
+            <h3>Tekstcorpus</h3>
+            <p>De Syrische tekst in deze toepassing is afkomstig van het <strong>ETCBC/syrnt corpus</strong> (Eep Talstra Centre for Bible and Computer, VU Amsterdam), een platte-tekst Unicode-dataset die de traditionele 22-boeken canon van het Peshitta Nieuwe Testament dekt. Het is een consonantentekst: het bevat geen supralineaire markeringen zoals <em>syame</em> (meervoudspunten), <em>rukkakha/qushshaya</em> of klinkermarkeringen. Deze beperking is opzettelijk voor drieletterworttelanalyse, waarbij het consonantengeraamte relevant is, maar het betekent dat de weergegeven tekst in de interlineaire lezer de volledige vocalisatie mist die een lezer van het Syrisch zou verwachten.</p>
+
+            <p>De traditionele Peshitta-canon bevat 22 boeken. Vijf boeken (2 Petrus, 2 Johannes, 3 Johannes, Judas en Openbaring) maakten geen deel uit van de oorspronkelijke Syrische canon en zijn uitgesloten van dit corpus. Hun afwezigheid is geen fout van de applicatie, maar een getrouwe weergave van de tekstuele traditie van de Peshitta.</p>
+
+            <h3>Transliteratieconventie</h3>
+            <p>Deze toepassing gebruikt een vereenvoudigde romanisering voor toegankelijkheid, niet de academische SBL-transliteratie. De volgende tabel toont de toewijzingen:</p>
+            <table class="translit-table">
+                <tbody>
+                    <tr><td style="font-style:italic; font-size:0.85em;">ʾ</td><td>Aleph</td><td>'</td><td>ʔ</td></tr>
+                    <tr><td>ܒ</td><td>Beth</td><td>b</td><td>b</td></tr>
+                    <tr><td>ܓ</td><td>Gamal</td><td>g</td><td>g</td></tr>
+                    <tr><td>ܕ</td><td>Dalath</td><td>d</td><td>d</td></tr>
+                    <tr><td>ܗ</td><td>He</td><td>h</td><td>h</td></tr>
+                    <tr><td>ܘ</td><td>Waw</td><td>w</td><td>w</td></tr>
+                    <tr><td>ܙ</td><td>Zayn</td><td>z</td><td>z</td></tr>
+                    <tr><td>ܚ</td><td>Heth</td><td>kh</td><td>ħ</td></tr>
+                    <tr><td>ܛ</td><td>Teth</td><td>T</td><td>tˤ</td></tr>
+                    <tr><td>ܝ</td><td>Yod</td><td>y</td><td>j</td></tr>
+                    <tr><td>ܟ</td><td>Kaph</td><td>k</td><td>k</td></tr>
+                    <tr><td>ܠ</td><td>Lamad</td><td>l</td><td>l</td></tr>
+                    <tr><td>ܡ</td><td>Mim</td><td>m</td><td>m</td></tr>
+                    <tr><td>ܢ</td><td>Nun</td><td>n</td><td>n</td></tr>
+                    <tr><td>ܣ</td><td>Semkath</td><td>s</td><td>s</td></tr>
+                    <tr><td>ܥ</td><td>Ayin</td><td>e</td><td>ʕ</td></tr>
+                    <tr><td>ܦ</td><td>Pe</td><td>p</td><td>p</td></tr>
+                    <tr><td>ܨ</td><td>Tsade</td><td>ts</td><td>sˤ</td></tr>
+                    <tr><td>ܩ</td><td>Qoph</td><td>q</td><td>q</td></tr>
+                    <tr><td>ܪ</td><td>Resh</td><td>r</td><td>r</td></tr>
+                    <tr><td>ܫ</td><td>Shin</td><td>sh</td><td>ʃ</td></tr>
+                    <tr><td>ܬ</td><td>Taw</td><td>th</td><td>t</td></tr>
+                </tbody>
+            </table>
+            <p>Voor standaard academische transliteratie, zie de <em>Society of Biblical Literature</em> (SBL) conventies in hun <em>Handbook of Style</em>.</p>
+
+            <h3>Verdere lectuur</h3>
+            <ul>
+                <li>Nöldeke, Theodor. <em>Compendious Syriac Grammar</em>. Vertaald door James A. Crichton. London: Williams &amp; Norgate, 1904.</li>
+                <li>Brockelmann, Carl. <em>Lexicon Syriacum</em>. 2de ed. Halle: Max Niemeyer, 1928.</li>
+                <li>Sokoloff, Michael. <em>A Syriac Lexicon: A Translation from the Latin, Correction, Expansion, and Update of C. Brockelmann's Lexicon Syriacum</em>. Winona Lake: Eisenbrauns / Piscataway: Gorgias Press, 2009.</li>
+                <li>Costaz, Louis. <em>Dictionnaire Syriaque-Français / Syriac-English Dictionary</em>. 3de ed. Beiroet, 2002.</li>
+                <li>Kiraz, George A. <em>Comparative Edition of the Syriac Gospels</em>. 4 dln. Leiden: Brill, 1996.</li>
             </ul>
 
             {% else %}

@@ -5,6 +5,7 @@
 {% block lang_links %}
 <a href="{{ url_for('about_page', lang='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('about_page', lang='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('about_page', lang='nl') }}" class="lang-option{% if lang == 'nl' %} active{% endif %}" role="menuitem">NL</a>
 <a href="{{ url_for('about_page', lang='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 <a href="{{ url_for('about_page', lang='ar') }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
 {% endblock %}
@@ -151,6 +152,16 @@
 
             <p>חוט מנחה קבוע: כיצד השפה מעצבת את הדרך שבה אנו מבינים את המציאות. הפרויקט הזה נולד לאחר השתתפות בהרצאה של <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">ויסנטה הייא</a> על הפשיטתא, שפתחה קו חקירה על הקשר בין שפה, מבנה ומשמעות.</p>
 
+            {% elif lang == 'nl' %}
+
+            <p>Jossi is technoloog, muzikant en ontdekkingsreiziger. Van nature een polymath, heeft hij zich zijn hele leven vloeiend door disciplines bewogen en technische, creatieve en menselijke ervaring geïntegreerd.</p>
+
+            <p>Dat traject verscherpte een intuïtie: systemen, of het nu in code of taal is, bevatten patronen die betekenis onthullen wanneer ze van binnenuit hun eigen structuur worden waargenomen.</p>
+
+            <p>Zijn werk bevindt zich op het snijvlak van het technische en het intuïtieve, analyse en directe waarneming. Hij is geïnteresseerd in het creëren van omstandigheden waarin betekenis met helderheid kan ontstaan, zonder te worden geforceerd of gereduceerd.</p>
+
+            <p>Een constante rode draad: hoe taal de manier waarop we de werkelijkheid begrijpen vormgeeft. Dit project ontstond na het bijwonen van een lezing van <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a> over de Peshitta, die een onderzoekslijn opende naar de relatie tussen taal, structuur en betekenis.</p>
+
             {% else %}
 
             <p>Jossi is a technologist, musician, and explorer. A polymath by nature, he has moved fluidly across disciplines throughout his life, integrating technical, creative, and human experience.</p>
@@ -164,7 +175,7 @@
             {% endif %}
 
             <div class="about-links-section">
-                <p><a href="https://jossifresco.com" target="_blank" rel="noopener"><span class="material-symbols-outlined">person</span> {% if lang == 'es' %}Mas sobre Jossi{% elif lang == 'he' %}עוד על ג'וסי{% elif lang == 'ar' %}المزيد عن جوسي{% else %}More about Jossi{% endif %}</a></p>
+                <p><a href="https://jossifresco.com" target="_blank" rel="noopener"><span class="material-symbols-outlined">person</span> {% if lang == 'es' %}Mas sobre Jossi{% elif lang == 'he' %}עוד על ג'וסי{% elif lang == 'ar' %}المزيد عن جوسي{% elif lang == 'nl' %}Meer over Jossi{% else %}More about Jossi{% endif %}</a></p>
             </div>
 
         </div>

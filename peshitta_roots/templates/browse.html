@@ -5,6 +5,7 @@
 {% block lang_links %}
 <a href="{{ url_for('browse', lang='es', script=script, trans='es', view=view) }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
 <a href="{{ url_for('browse', lang='en', script=script, trans='en', view=view) }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('browse', lang='nl', script=script, trans='en', view=view) }}" class="lang-option{% if lang == 'nl' %} active{% endif %}" role="menuitem">NL</a>
 <a href="{{ url_for('browse', lang='he', script='syriac', trans='he', view=view) }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
 <a href="{{ url_for('browse', lang='ar', script='syriac', trans='ar', view=view) }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
 {% endblock %}
