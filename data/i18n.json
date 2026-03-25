@@ -265,7 +265,10 @@
     "proximity_no_results": "No se encontraron co-ocurrencias para estas raíces.",
     "proximity_verses": "versículos",
     "proximity_chapters": "capítulos",
-    "proximity_contain": "contienen ambas"
+    "proximity_contain": "contienen ambas",
+    "support_project": "Apoyar este proyecto",
+    "help_related_projects": "Proyectos relacionados",
+    "help_aramaic_atlas_desc": "El Aramaic Root Atlas es un explorador de raíces trilíteras que abarca aproximadamente 1.500 años de historia literaria aramea. Reúne cuatro corpus — la Peshitta (NT y AT), el arameo bíblico y el Targum Onkelos — bajo un único índice de raíces consonánticas, permitiendo a los investigadores rastrear una sola raíz semítica a través de tradiciones textuales, escrituras y siglos, con cognados hebreos y árabes visibles en cada capa."
   },
   "en": {
     "app_title": "Peshitta Constellations",
@@ -533,7 +536,10 @@
     "proximity_no_results": "No co-occurrences found for these roots.",
     "proximity_verses": "verses",
     "proximity_chapters": "chapters",
-    "proximity_contain": "contain both"
+    "proximity_contain": "contain both",
+    "support_project": "Support this project",
+    "help_related_projects": "Related projects",
+    "help_aramaic_atlas_desc": "The Aramaic Root Atlas is a cross-corpus triliteral root explorer spanning roughly 1,500 years of Aramaic literary history. It brings four corpora — the Peshitta (NT and OT), Biblical Aramaic, and Targum Onkelos — under a single consonantal root index, enabling scholars to trace a single Semitic root across textual traditions, scripts, and centuries, with Hebrew and Arabic cognates visible at every layer."
   },
   "he": {
     "app_title": "קונסטלציות הפשיטתא",
@@ -801,7 +807,10 @@
     "proximity_no_results": "לא נמצאו הופעות משותפות לשורשים אלה.",
     "proximity_verses": "פסוקים",
     "proximity_chapters": "פרקים",
-    "proximity_contain": "מכילים את שניהם"
+    "proximity_contain": "מכילים את שניהם",
+    "support_project": "תמוך בפרויקט",
+    "help_related_projects": "פרויקטים קשורים",
+    "help_aramaic_atlas_desc": "אטלס השורשים הארמיים הוא סייר שורשים תלת-עיצוריים חוצה-קורפוסים המשתרע על פני כ-1,500 שנות היסטוריה ספרותית ארמית. הוא מאגד ארבעה קורפוסים — הפשיטתא (ברית חדשה וישנה), ארמית מקראית ותרגום אונקלוס — תחת אינדקס שורשים עיצורי אחד, ומאפשר לחוקרים לעקוב אחר שורש שמי בודד לאורך מסורות טקסטואליות, כתבים ומאות שנים, עם קוגנטים עבריים וערביים גלויים בכל שכבה."
   },
   "ar": {
     "app_title": "أبراج الپشيطتا",
@@ -1069,7 +1078,10 @@
     "proximity_no_results": "لم يُعثر على تواجد مشترك لهذين الجذرين.",
     "proximity_verses": "آيات",
     "proximity_chapters": "إصحاحات",
-    "proximity_contain": "يحتويان على كلا"
+    "proximity_contain": "يحتويان على كلا",
+    "support_project": "ادعم هذا المشروع",
+    "help_related_projects": "مشاريع ذات صلة",
+    "help_aramaic_atlas_desc": "أطلس الجذور الآرامية هو مستكشف جذور ثلاثية عبر المتون يمتد على مدى نحو 1500 عام من التاريخ الأدبي الآرامي. يجمع أربعة متون — الپشيطتا (العهد الجديد والقديم)، والآرامية التوراتية، وترجوم أونكلوس — تحت فهرس جذور صامتي واحد، مما يتيح للباحثين تتبع جذر سامي واحد عبر التقاليد النصية والخطوط والقرون، مع مشتركات عبرية وعربية مرئية في كل طبقة."
   },
   "nl": {
     "app_title": "Peshitta Constellaties",
@@ -1337,6 +1349,9 @@
     "proximity_no_results": "Geen co-voorkomens gevonden voor deze wortels.",
     "proximity_verses": "verzen",
     "proximity_chapters": "hoofdstukken",
-    "proximity_contain": "bevatten beide"
+    "proximity_contain": "bevatten beide",
+    "support_project": "Steun dit project",
+    "help_related_projects": "Gerelateerde projecten",
+    "help_aramaic_atlas_desc": "De Aramaic Root Atlas is een corpus-overstijgende drieletterwortelsverkenner die ongeveer 1.500 jaar Aramese literatuurgeschiedenis beslaat. Het brengt vier corpora samen — de Peshitta (NT en OT), Bijbels Aramees en Targum Onkelos — onder één consonantenwortelindex, waardoor onderzoekers een enkele Semitische wortel kunnen traceren over tekstuele tradities, schriften en eeuwen, met Hebreeuwse en Arabische cognaten zichtbaar op elke laag."
   }
 }
