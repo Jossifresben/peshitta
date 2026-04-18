@@ -1155,6 +1155,10 @@ def read():
         trans = lang
 
     books = _corpus.get_books()
+    books_by_testament = {'nt': [], 'ot': []}
+    for b_name, b_max in books:
+        t_key = _corpus.get_testament(b_name)
+        books_by_testament[t_key].append((b_name, b_max))
     book = request.args.get('book', books[0][0] if books else 'Matthew')
     # Find max chapter for selected book
     max_chapter = 1
@@ -1207,6 +1211,7 @@ def read():
     return render_template('read.html',
                            t=t, lang=lang, script=script, trans=trans,
                            books=books, book=book,
+                           books_by_testament=books_by_testament,
                            chapter=chapter, max_chapter=max_chapter,
                            verses=verses_data,
                            book_names=book_names,
