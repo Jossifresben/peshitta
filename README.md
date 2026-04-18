@@ -2,7 +2,7 @@
 
 A bilingual (Spanish/English) web application for researching the Syriac Peshitta New Testament through its triliteral root system. Enter a Syriac root in simplified Latin transliteration and find every word form and verse occurrence in the 22-book traditional canon, along with Hebrew and Arabic cognates, semantic outlier detection, interactive cross-root semantic bridges, passage constellation visualizer, and a methodology page documenting the Semitic exegesis approach.
 
-![Python](https://img.shields.io/badge/Python-3.11+-blue) ![Flask](https://img.shields.io/badge/Flask-3.0+-green) ![License](https://img.shields.io/badge/License-Apache%202.0-blue) [![DOI](https://zenodo.org/badge/1181983621.svg)](https://doi.org/10.5281/zenodo.19358529)
+![Python](https://img.shields.io/badge/Python-3.11+-blue) ![Flask](https://img.shields.io/badge/Flask-3.0+-green) ![License](https://img.shields.io/badge/License-Apache%202.0-blue) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19358529.svg)](https://doi.org/10.5281/zenodo.19358529)
 
 ## Features
 
