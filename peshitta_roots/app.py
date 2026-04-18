@@ -534,6 +534,7 @@ def api_verse():
 
 
 _reverse_idx: dict = {}  # lang -> [{key, root_syriac, gloss, terms, sabor, occurrences}]
+_greek_idx: dict = {}  # greek_word -> [{ key, root_syriac, gloss_en, gloss_es, transliteration, meaning_en, meaning_es, occurrences, sabor }]
 
 
 def _tokenize(text, min_len=2):
@@ -594,6 +595,47 @@ def _build_reverse_index():
 
     with _cache_lock:
         _reverse_idx.update(idx)
+
+
+def _build_greek_index():
+    """Build reverse index: Greek word -> Syriac roots that translate it."""
+    global _greek_idx
+    with _cache_lock:
+        if _greek_idx:
+            return
+    roots = _cognates_raw.get('roots', {})
+    idx = {}
+    for key, data in roots.items():
+        gp = data.get('greek_parallel')
+        if not gp or not gp.get('word'):
+            continue
+        greek_word = gp['word']
+        root_syriac = data.get('root_syriac', '')
+        occ = 0
+        if root_syriac:
+            entry = _extractor.lookup_root(root_syriac)
+            if entry:
+                occ = entry.total_occurrences
+        record = {
+            'key': key,
+            'root_syriac': root_syriac,
+            'gloss_en': data.get('gloss_en', ''),
+            'gloss_es': data.get('gloss_es', ''),
+            'transliteration': gp.get('transliteration', ''),
+            'meaning_en': gp.get('meaning_en', gp.get('meaning', '')),
+            'meaning_es': gp.get('meaning_es', ''),
+            'occurrences': occ,
+            'sabor': data.get('sabor_raiz_en', ''),
+        }
+        if greek_word not in idx:
+            idx[greek_word] = []
+        idx[greek_word].append(record)
+
+    for gw in idx:
+        idx[gw].sort(key=lambda x: -x['occurrences'])
+
+    with _cache_lock:
+        _greek_idx.update(idx)
 
 
 @app.route('/api/reverse-search')
@@ -659,6 +701,61 @@ def api_reverse_search():
         'query': query,
         'total': len(results),
         'results': results,
+    })
+
+
+@app.route('/api/greek-concordance')
+def api_greek_concordance():
+    """Return Syriac roots that translate a given Greek word."""
+    _init()
+    _build_greek_index()
+    lang = _detect_lang()
+
+    q = request.args.get('q', '').strip()
+    if not q:
+        # Browse mode: return all Greek words
+        words = []
+        for gw, entries in sorted(_greek_idx.items()):
+            words.append({
+                'word': gw,
+                'transliteration': entries[0]['transliteration'] if entries else '',
+                'meaning': entries[0].get(f'meaning_{lang}') or entries[0].get('meaning_en', ''),
+                'root_count': len(entries),
+            })
+        return jsonify({'browse': True, 'words': words, 'total': len(words)})
+
+    # Search: exact match first, then substring
+    results = _greek_idx.get(q)
+    matched_word = q
+    if not results:
+        for gw, entries in _greek_idx.items():
+            if q.lower() in gw.lower():
+                results = entries
+                matched_word = gw
+                break
+
+    if not results:
+        return jsonify({'query': q, 'roots': [], 'total': 0})
+
+    gloss_key = 'gloss_es' if lang == 'es' else 'gloss_en'
+    meaning_key = f'meaning_{lang}' if lang in ('en', 'es') else 'meaning_en'
+
+    out = []
+    for r in results:
+        out.append({
+            'key': r['key'].upper(),
+            'root_syriac': r['root_syriac'],
+            'gloss': r.get(gloss_key) or r.get('gloss_en', ''),
+            'occurrences': r['occurrences'],
+            'sabor': r['sabor'],
+        })
+
+    return jsonify({
+        'query': matched_word,
+        'transliteration': results[0]['transliteration'] if results else '',
+        'meaning': results[0].get(meaning_key) or results[0].get('meaning_en', ''),
+        'roots': out,
+        'total': len(out),
     })
 
 
