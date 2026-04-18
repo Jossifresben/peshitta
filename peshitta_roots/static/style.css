@@ -2587,6 +2587,49 @@ footer a:hover {
     transition: background 0.3s ease, border-left 0.3s ease;
 }
 
+/* Greek concordance */
+.greek-result-header {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 12px;
+}
+.greek-result-card {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.greek-root-link {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+}
+.greek-root-link:hover { color: var(--accent); }
+.greek-gloss { color: var(--text-muted); font-style: italic; }
+.greek-sabor { font-size: 0.85em; color: var(--text-muted); width: 100%; margin-top: 2px; }
+.greek-browse-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+.greek-browse-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 4px;
+}
+.greek-browse-item:hover { background: var(--bg-highlight); }
+.greek-browse-item .greek-word { font-weight: 600; min-width: 100px; }
+.greek-browse-item .greek-translit { font-style: italic; color: var(--text-muted); min-width: 80px; }
+.greek-browse-item .greek-meaning { flex: 1; }
+
 /* === Mobile Responsive === */
 @media (max-width: 768px) {
     .container {

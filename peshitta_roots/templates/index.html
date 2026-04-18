@@ -118,6 +118,7 @@
                 <button class="search-tab" id="tab-meaning" onclick="switchTab('meaning')">{{ t.search_tab_meaning }}</button>
                 <button class="search-tab" id="tab-proximity" onclick="switchTab('proximity')">{{ t.search_tab_proximity|default('Co-occurrence') }}</button>
                 <button class="search-tab" id="tab-text" onclick="switchTab('text')">{{ t.search_tab_text }}</button>
+                <button class="search-tab" id="tab-greek" onclick="switchTab('greek')">{{ t.search_tab_greek }}</button>
             </div>
 
             <!-- Root search panel -->
@@ -224,6 +225,21 @@
                 </form>
                 <p class="search-help">{{ t.text_search_help }}</p>
                 <div id="text-search-results"></div>
+            </div>
+
+            <!-- Greek concordance search panel -->
+            <div id="panel-greek" class="search-panel" style="display:none;">
+                <form onsubmit="return doGreekSearch()">
+                    <div class="search-row">
+                        <input type="text" id="greek-input" placeholder="{{ t.greek_search_placeholder }}" autocomplete="off">
+                        <button type="submit" class="search-btn">{{ t.search_button }}</button>
+                    </div>
+                    <p class="search-help">{{ t.greek_search_help }}</p>
+                </form>
+                <div style="margin-top:12px;">
+                    <a href="#" onclick="event.preventDefault(); browseGreekWords();" style="color:var(--accent); font-size:0.9em;">{{ t.greek_browse_all }} &rarr;</a>
+                </div>
+                <div id="greek-search-results"></div>
             </div>
 
             <div class="home-cta-row">
@@ -412,9 +428,10 @@
 
 {% block scripts %}
     <script>
+    var currentLang = '{{ lang }}';
     // --- Search tab switching ---
     function switchTab(tab) {
-        var tabs = ['root', 'cognate', 'meaning', 'proximity', 'text'];
+        var tabs = ['root', 'cognate', 'meaning', 'proximity', 'text', 'greek'];
         tabs.forEach(function(t) {
             var panel = document.getElementById('panel-' + t);
             var btn = document.getElementById('tab-' + t);
@@ -1347,5 +1364,74 @@
             a.href = url.pathname + '?' + url.searchParams.toString() + url.hash;
         });
     })();
+
+    // --- Greek concordance search ---
+    function doGreekSearch() {
+        var q = document.getElementById('greek-input').value.trim();
+        var resultsDiv = document.getElementById('greek-search-results');
+        if (!q) return false;
+        resultsDiv.innerHTML = '<p class="search-loading">Loading...</p>';
+        fetch('/api/greek-concordance?q=' + encodeURIComponent(q) + '&lang=' + currentLang)
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (!data.roots || !data.roots.length) {
+                    resultsDiv.innerHTML = '<p class="no-results">' + escHtml('{{ t.greek_no_results }}') + '</p>';
+                    return;
+                }
+                var html = '<div class="greek-result-header">';
+                html += '<span style="font-size:1.4em;">' + escHtml(data.query) + '</span> ';
+                html += '<span style="font-style:italic;">' + escHtml(data.transliteration) + '</span> ';
+                html += '<span style="color:var(--text-muted);">' + escHtml(data.meaning) + '</span>';
+                html += '</div>';
+                html += '<p style="margin:8px 0; font-weight:600;">' + data.total + ' Syriac root' + (data.total > 1 ? 's' : '') + '</p>';
+                for (var i = 0; i < data.roots.length; i++) {
+                    var r = data.roots[i];
+                    html += '<div class="greek-result-card">';
+                    html += '<a href="/?q=' + encodeURIComponent(r.key) + '&lang=' + currentLang + '#results" class="greek-root-link">';
+                    html += '<span class="syriac">' + escHtml(r.root_syriac) + '</span> ';
+                    html += '<span class="root-key">' + escHtml(r.key) + '</span>';
+                    html += '</a>';
+                    html += ' <span class="greek-gloss">' + escHtml(r.gloss) + '</span>';
+                    html += ' <span class="count-badge">' + r.occurrences + '</span>';
+                    if (r.sabor) html += '<div class="greek-sabor">' + escHtml(r.sabor) + '</div>';
+                    html += '<a href="/visualize/' + encodeURIComponent(r.key) + '?lang=' + currentLang + '" class="viz-btn" style="margin-left:8px;" title="Visualize"><span class="material-symbols-outlined">hub</span></a>';
+                    html += '</div>';
+                }
+                resultsDiv.innerHTML = html;
+            })
+            .catch(function() {
+                resultsDiv.innerHTML = '<p class="no-results">Error</p>';
+            });
+        return false;
+    }
+
+    function browseGreekWords() {
+        var resultsDiv = document.getElementById('greek-search-results');
+        resultsDiv.innerHTML = '<p class="search-loading">Loading...</p>';
+        fetch('/api/greek-concordance?lang=' + currentLang)
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (!data.words || !data.words.length) {
+                    resultsDiv.innerHTML = '<p class="no-results">No data</p>';
+                    return;
+                }
+                var html = '<p style="margin:8px 0; font-weight:600;">' + data.total + ' Greek words mapped to Syriac roots</p>';
+                html += '<div class="greek-browse-list">';
+                for (var i = 0; i < data.words.length; i++) {
+                    var w = data.words[i];
+                    html += '<a href="#" class="greek-browse-item" onclick="event.preventDefault(); document.getElementById(\'greek-input\').value=this.getAttribute(\'data-word\'); doGreekSearch();" data-word="' + w.word.replace(/"/g, '&quot;') + '">';
+                    html += '<span class="greek-word">' + escHtml(w.word) + '</span> ';
+                    html += '<span class="greek-translit">' + escHtml(w.transliteration) + '</span> ';
+                    html += '<span class="greek-meaning">' + escHtml(w.meaning) + '</span> ';
+                    html += '<span class="count-badge">' + w.root_count + '</span>';
+                    html += '</a>';
+                }
+                html += '</div>';
+                resultsDiv.innerHTML = html;
+            })
+            .catch(function() {
+                resultsDiv.innerHTML = '<p class="no-results">Error</p>';
+            });
+    }
     </script>
 {% endblock %}
