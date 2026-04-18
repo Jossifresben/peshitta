@@ -1024,12 +1024,16 @@ def browse():
                                page=1, total_pages=1,
                                total=0, script=script, trans=trans,
                                freq='', view=view, sort='',
+                               testament='',
                                meta_description=_i18n[lang].get('meta_browse', ''),
                                canonical_path=cp)
 
     page = request.args.get('page', 1, type=int)
     freq = request.args.get('freq', '', type=str)
     sort = request.args.get('sort', '', type=str)  # 'occ', 'forms', '-occ', '-forms'
+    testament = request.args.get('testament', '')
+    if testament not in ('nt', 'ot', ''):
+        testament = ''
     per_page = 50
 
     all_roots = _extractor.get_all_roots()
@@ -1037,6 +1041,25 @@ def browse():
     freq_max = {'hapax': 1, 'dis': 2, 'tris': 3, 'tetrakis': 4}.get(freq)
     if freq_max:
         all_roots = [r for r in all_roots if r.total_occurrences == freq_max]
+
+    # Filter by testament
+    if testament:
+        filtered = []
+        for r in all_roots:
+            found = False
+            for m in r.matches:
+                for ref in m.references:
+                    last_sp = ref.rfind(' ')
+                    if last_sp != -1:
+                        book = ref[:last_sp]
+                        if _corpus.get_testament(book) == testament:
+                            found = True
+                            break
+                if found:
+                    break
+            if found:
+                filtered.append(r)
+        all_roots = filtered
 
     # Sort
     if sort == 'occ':
@@ -1101,13 +1124,15 @@ def browse():
 
     freq_param = f'&freq={freq}' if freq else ''
     sort_param = f'&sort={sort}' if sort else ''
-    cp = f'/browse?page={page}{freq_param}{sort_param}' if page > 1 or freq or sort else '/browse'
+    testament_param = f'&testament={testament}' if testament else ''
+    cp = f'/browse?page={page}{freq_param}{sort_param}{testament_param}' if page > 1 or freq or sort or testament else '/browse'
     return render_template('browse.html',
                            t=t, lang=lang,
                            roots=roots_data, fields=[],
                            page=page, total_pages=total_pages,
                            total=total, script=script, trans=trans,
                            freq=freq, view=view, sort=sort,
+                           testament=testament,
                            meta_description=_i18n[lang].get('meta_browse', ''),
                            canonical_path=cp)
 
