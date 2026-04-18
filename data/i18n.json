@@ -268,7 +268,21 @@
     "proximity_contain": "contienen ambas",
     "support_project": "Apoyar este proyecto",
     "help_related_projects": "Proyectos relacionados",
-    "help_aramaic_atlas_desc": "El Aramaic Root Atlas es un explorador de raíces trilíteras que abarca aproximadamente 1.500 años de historia literaria aramea. Reúne cuatro corpus — la Peshitta (NT y AT), el arameo bíblico y el Targum Onkelos — bajo un único índice de raíces consonánticas, permitiendo a los investigadores rastrear una sola raíz semítica a través de tradiciones textuales, escrituras y siglos, con cognados hebreos y árabes visibles en cada capa."
+    "help_aramaic_atlas_desc": "El Aramaic Root Atlas es un explorador de raíces trilíteras que abarca aproximadamente 1.500 años de historia literaria aramea. Reúne cuatro corpus — la Peshitta (NT y AT), el arameo bíblico y el Targum Onkelos — bajo un único índice de raíces consonánticas, permitiendo a los investigadores rastrear una sola raíz semítica a través de tradiciones textuales, escrituras y siglos, con cognados hebreos y árabes visibles en cada capa.",
+    "testament_all": "Todos",
+    "testament_nt": "Nuevo Testamento",
+    "testament_ot": "Antiguo Testamento",
+    "search_tab_greek": "Por griego",
+    "greek_search_placeholder": "Palabra griega (ej. βασιλεύς)",
+    "greek_search_help": "Busca una palabra griega para ver qué raíces siríacas la traducen.",
+    "greek_no_results": "No se encontraron raíces siríacas para esta palabra griega.",
+    "greek_browse_all": "Todas las palabras griegas",
+    "book_names": {
+      "Psalms": "Salmos",
+      "Isaiah": "Isaías",
+      "Ezekiel": "Ezequiel",
+      "Proverbs": "Proverbios"
+    }
   },
   "en": {
     "app_title": "Peshitta Constellations",
@@ -539,7 +553,21 @@
     "proximity_contain": "contain both",
     "support_project": "Support this project",
     "help_related_projects": "Related projects",
-    "help_aramaic_atlas_desc": "The Aramaic Root Atlas is a cross-corpus triliteral root explorer spanning roughly 1,500 years of Aramaic literary history. It brings four corpora — the Peshitta (NT and OT), Biblical Aramaic, and Targum Onkelos — under a single consonantal root index, enabling scholars to trace a single Semitic root across textual traditions, scripts, and centuries, with Hebrew and Arabic cognates visible at every layer."
+    "help_aramaic_atlas_desc": "The Aramaic Root Atlas is a cross-corpus triliteral root explorer spanning roughly 1,500 years of Aramaic literary history. It brings four corpora — the Peshitta (NT and OT), Biblical Aramaic, and Targum Onkelos — under a single consonantal root index, enabling scholars to trace a single Semitic root across textual traditions, scripts, and centuries, with Hebrew and Arabic cognates visible at every layer.",
+    "testament_all": "All",
+    "testament_nt": "New Testament",
+    "testament_ot": "Old Testament",
+    "search_tab_greek": "By Greek",
+    "greek_search_placeholder": "Greek word (e.g. βασιλεύς)",
+    "greek_search_help": "Search a Greek word to see which Syriac roots translate it.",
+    "greek_no_results": "No Syriac roots found for this Greek word.",
+    "greek_browse_all": "All Greek words",
+    "book_names": {
+      "Psalms": "Psalms",
+      "Isaiah": "Isaiah",
+      "Ezekiel": "Ezekiel",
+      "Proverbs": "Proverbs"
+    }
   },
   "he": {
     "app_title": "קונסטלציות הפשיטתא",
@@ -810,7 +838,21 @@
     "proximity_contain": "מכילים את שניהם",
     "support_project": "תמוך בפרויקט",
     "help_related_projects": "פרויקטים קשורים",
-    "help_aramaic_atlas_desc": "אטלס השורשים הארמיים הוא סייר שורשים תלת-עיצוריים חוצה-קורפוסים המשתרע על פני כ-1,500 שנות היסטוריה ספרותית ארמית. הוא מאגד ארבעה קורפוסים — הפשיטתא (ברית חדשה וישנה), ארמית מקראית ותרגום אונקלוס — תחת אינדקס שורשים עיצורי אחד, ומאפשר לחוקרים לעקוב אחר שורש שמי בודד לאורך מסורות טקסטואליות, כתבים ומאות שנים, עם קוגנטים עבריים וערביים גלויים בכל שכבה."
+    "help_aramaic_atlas_desc": "אטלס השורשים הארמיים הוא סייר שורשים תלת-עיצוריים חוצה-קורפוסים המשתרע על פני כ-1,500 שנות היסטוריה ספרותית ארמית. הוא מאגד ארבעה קורפוסים — הפשיטתא (ברית חדשה וישנה), ארמית מקראית ותרגום אונקלוס — תחת אינדקס שורשים עיצורי אחד, ומאפשר לחוקרים לעקוב אחר שורש שמי בודד לאורך מסורות טקסטואליות, כתבים ומאות שנים, עם קוגנטים עבריים וערביים גלויים בכל שכבה.",
+    "testament_all": "הכל",
+    "testament_nt": "הברית החדשה",
+    "testament_ot": "התנ\"ך",
+    "search_tab_greek": "ביוונית",
+    "greek_search_placeholder": "מילה יוונית (למשל βασιλεύς)",
+    "greek_search_help": "חפש מילה יוונית כדי לראות אילו שורשים סוריים מתרגמים אותה.",
+    "greek_no_results": "לא נמצאו שורשים סוריים למילה יוונית זו.",
+    "greek_browse_all": "כל המילים היווניות",
+    "book_names": {
+      "Psalms": "תהלים",
+      "Isaiah": "ישעיהו",
+      "Ezekiel": "יחזקאל",
+      "Proverbs": "משלי"
+    }
   },
   "ar": {
     "app_title": "أبراج الپشيطتا",
@@ -1081,7 +1123,21 @@
     "proximity_contain": "يحتويان على كلا",
     "support_project": "ادعم هذا المشروع",
     "help_related_projects": "مشاريع ذات صلة",
-    "help_aramaic_atlas_desc": "أطلس الجذور الآرامية هو مستكشف جذور ثلاثية عبر المتون يمتد على مدى نحو 1500 عام من التاريخ الأدبي الآرامي. يجمع أربعة متون — الپشيطتا (العهد الجديد والقديم)، والآرامية التوراتية، وترجوم أونكلوس — تحت فهرس جذور صامتي واحد، مما يتيح للباحثين تتبع جذر سامي واحد عبر التقاليد النصية والخطوط والقرون، مع مشتركات عبرية وعربية مرئية في كل طبقة."
+    "help_aramaic_atlas_desc": "أطلس الجذور الآرامية هو مستكشف جذور ثلاثية عبر المتون يمتد على مدى نحو 1500 عام من التاريخ الأدبي الآرامي. يجمع أربعة متون — الپشيطتا (العهد الجديد والقديم)، والآرامية التوراتية، وترجوم أونكلوس — تحت فهرس جذور صامتي واحد، مما يتيح للباحثين تتبع جذر سامي واحد عبر التقاليد النصية والخطوط والقرون، مع مشتركات عبرية وعربية مرئية في كل طبقة.",
+    "testament_all": "الكل",
+    "testament_nt": "العهد الجديد",
+    "testament_ot": "العهد القديم",
+    "search_tab_greek": "باليونانية",
+    "greek_search_placeholder": "كلمة يونانية (مثل βασιλεύς)",
+    "greek_search_help": "ابحث عن كلمة يونانية لمعرفة أي جذور سريانية تترجمها.",
+    "greek_no_results": "لم يتم العثور على جذور سريانية لهذه الكلمة اليونانية.",
+    "greek_browse_all": "كل الكلمات اليونانية",
+    "book_names": {
+      "Psalms": "المزامير",
+      "Isaiah": "إشعياء",
+      "Ezekiel": "حزقيال",
+      "Proverbs": "الأمثال"
+    }
   },
   "nl": {
     "app_title": "Peshitta Constellaties",
@@ -1352,6 +1408,20 @@
     "proximity_contain": "bevatten beide",
     "support_project": "Steun dit project",
     "help_related_projects": "Gerelateerde projecten",
-    "help_aramaic_atlas_desc": "De Aramaic Root Atlas is een corpus-overstijgende drieletterwortelsverkenner die ongeveer 1.500 jaar Aramese literatuurgeschiedenis beslaat. Het brengt vier corpora samen — de Peshitta (NT en OT), Bijbels Aramees en Targum Onkelos — onder één consonantenwortelindex, waardoor onderzoekers een enkele Semitische wortel kunnen traceren over tekstuele tradities, schriften en eeuwen, met Hebreeuwse en Arabische cognaten zichtbaar op elke laag."
+    "help_aramaic_atlas_desc": "De Aramaic Root Atlas is een corpus-overstijgende drieletterwortelsverkenner die ongeveer 1.500 jaar Aramese literatuurgeschiedenis beslaat. Het brengt vier corpora samen — de Peshitta (NT en OT), Bijbels Aramees en Targum Onkelos — onder één consonantenwortelindex, waardoor onderzoekers een enkele Semitische wortel kunnen traceren over tekstuele tradities, schriften en eeuwen, met Hebreeuwse en Arabische cognaten zichtbaar op elke laag.",
+    "testament_all": "Alles",
+    "testament_nt": "Nieuw Testament",
+    "testament_ot": "Oud Testament",
+    "search_tab_greek": "Op Grieks",
+    "greek_search_placeholder": "Grieks woord (bijv. βασιλεύς)",
+    "greek_search_help": "Zoek een Grieks woord om te zien welke Syrische wortels het vertalen.",
+    "greek_no_results": "Geen Syrische wortels gevonden voor dit Griekse woord.",
+    "greek_browse_all": "Alle Griekse woorden",
+    "book_names": {
+      "Psalms": "Psalmen",
+      "Isaiah": "Jesaja",
+      "Ezekiel": "Ezechiël",
+      "Proverbs": "Spreuken"
+    }
   }
 }
