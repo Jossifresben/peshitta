@@ -7,50 +7,71 @@ from collections import Counter
 
 
 class PeshittaCorpus:
-    """Loads the Peshitta NT CSV and builds searchable word indexes."""
+    """Loads the Peshitta NT/OT CSV files and builds searchable word indexes."""
 
-    def __init__(self, csv_path: str | None = None):
+    _NT_BOOKS: set[str] = {
+        'Matthew', 'Mark', 'Luke', 'John', 'Acts', 'Romans',
+        '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians',
+        'Philippians', 'Colossians', '1 Thessalonians', '2 Thessalonians',
+        '1 Timothy', '2 Timothy', 'Titus', 'Philemon', 'Hebrews',
+        'James', '1 Peter', '1 John',
+    }
+
+    def __init__(self, csv_path: str | None = None,
+                 extra_csv_paths: list[str] | None = None):
         if csv_path is None:
             csv_path = os.path.join(
                 os.path.dirname(os.path.dirname(__file__)),
                 'syriac_nt_traditional22_unicode.csv'
             )
         self.csv_path = csv_path
+        self._extra_csv_paths = extra_csv_paths or []
         self._occurrences: dict[str, list[str]] = {}  # word -> [reference, ...]
         self._total_words: int = 0
         self._verses: dict[str, str] = {}  # reference -> syriac text
         self._verse_order: list[str] = []  # ordered references for book iteration
         self._translations: dict[str, dict] = {}  # lang -> {ref: text}, lazy-loaded per language
+        self._testament: dict[str, str] = {}  # book name -> 'nt' or 'ot'
         self._loaded = False
 
     def load(self) -> None:
-        """Parse the CSV and build the word index."""
+        """Parse the CSV file(s) and build the word index."""
         if self._loaded:
             return
 
-        with open(self.csv_path, 'r', encoding='utf-8') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                syriac_text = row['syriac'].strip()
-                if not syriac_text:
-                    continue
+        all_paths = [self.csv_path] + self._extra_csv_paths
+        for path in all_paths:
+            if not os.path.exists(path):
+                continue
 
-                reference = row['reference']
-
-                self._verses[reference] = syriac_text
-                self._verse_order.append(reference)
-
-                words = syriac_text.split()
-                for word in words:
-                    clean_word = word.strip()
-                    if not clean_word:
+            with open(path, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    syriac_text = row['syriac'].strip()
+                    if not syriac_text:
                         continue
 
-                    self._total_words += 1
+                    reference = row['reference']
 
-                    if clean_word not in self._occurrences:
-                        self._occurrences[clean_word] = []
-                    self._occurrences[clean_word].append(reference)
+                    # Extract book name and tag testament
+                    last_space = reference.rfind(' ')
+                    book = reference[:last_space] if last_space != -1 else reference
+                    self._testament[book] = 'nt' if book in self._NT_BOOKS else 'ot'
+
+                    self._verses[reference] = syriac_text
+                    self._verse_order.append(reference)
+
+                    words = syriac_text.split()
+                    for word in words:
+                        clean_word = word.strip()
+                        if not clean_word:
+                            continue
+
+                        self._total_words += 1
+
+                        if clean_word not in self._occurrences:
+                            self._occurrences[clean_word] = []
+                        self._occurrences[clean_word].append(reference)
 
         self._loaded = True
 
@@ -98,6 +119,10 @@ class PeshittaCorpus:
             # Update max chapters
             self._books_cache = [(b, books_max_ch[b]) for b, _ in book_list]
         return self._books_cache
+
+    def get_testament(self, book: str) -> str:
+        """Return 'nt' or 'ot' for the given book name."""
+        return self._testament.get(book, 'nt')
 
     def get_chapter_verses(self, book: str, chapter: int) -> list[tuple[int, str, str]]:
         """Return list of (verse_number, reference, syriac_text) for a chapter."""
