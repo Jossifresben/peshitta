@@ -92,7 +92,9 @@ def _init():
             _cognates_raw = json.load(f)
 
         # Load corpus
-        _corpus = PeshittaCorpus(_get_csv_path())
+        ot_csv = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'syriac_ot_selected_unicode.csv')
+        ot_paths = [ot_csv] if os.path.exists(ot_csv) else []
+        _corpus = PeshittaCorpus(_get_csv_path(), extra_csv_paths=ot_paths)
         _corpus.load()
 
         # Build root index
