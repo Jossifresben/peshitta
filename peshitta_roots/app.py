@@ -9,6 +9,8 @@ import time
 from datetime import date
 
 from flask import Flask, render_template, request, jsonify, Response
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 from .characters import (parse_root_input, transliterate_syriac, transliterate_syriac_academic,
                          transliterate_syriac_to_hebrew, transliterate_syriac_to_arabic,
@@ -23,6 +25,13 @@ from .exporters import osis as osis_exporter
 from .exporters import text_fabric as tf_exporter
 
 app = Flask(__name__)
+
+limiter = Limiter(
+    app=app,
+    key_func=get_remote_address,
+    default_limits=[],
+    storage_uri="memory://",
+)
 
 
 def _detect_lang():
@@ -461,6 +470,7 @@ def index():
 
 
 @app.route('/api/verse')
+@limiter.limit("60 per minute")
 def api_verse():
     """Return verse text in Syriac and transliteration for a given reference."""
     _init()
@@ -627,6 +637,7 @@ def _build_greek_index():
 
 
 @app.route('/api/reverse-search')
+@limiter.limit("60 per minute")
 def api_reverse_search():
     """Search Syriac roots by English/Spanish meaning."""
     _init()
@@ -693,6 +704,7 @@ def api_reverse_search():
 
 
 @app.route('/api/greek-concordance')
+@limiter.limit("60 per minute")
 def api_greek_concordance():
     """Return Syriac roots that translate a given Greek word."""
     _init()
@@ -748,6 +760,7 @@ def api_greek_concordance():
 
 
 @app.route('/api/citation')
+@limiter.limit("120 per minute")
 def api_citation():
     """Return citation strings in 5 styles for a given view.
 
@@ -768,6 +781,7 @@ def api_citation():
 
 
 @app.route('/api/export/usfm')
+@limiter.limit("10 per minute")
 def api_export_usfm():
     """Export book or chapter as USFM 3.0."""
     _init()
@@ -795,6 +809,7 @@ def api_export_usfm():
 
 
 @app.route('/api/export/osis')
+@limiter.limit("10 per minute")
 def api_export_osis():
     """Export book or full corpus as OSIS 2.1.1 XML."""
     _init()
@@ -813,6 +828,7 @@ def api_export_osis():
 
 
 @app.route('/api/export/text-fabric')
+@limiter.limit("10 per minute")
 def api_export_text_fabric():
     """Export book or full corpus as Text-Fabric ZIP dataset."""
     _init()
@@ -853,6 +869,7 @@ def openapi_json():
 
 
 @app.route('/api/text-search')
+@limiter.limit("60 per minute")
 def api_text_search():
     """Search verse translations (or Syriac text) for a substring."""
     _init()
@@ -968,6 +985,7 @@ def api_text_search():
 
 
 @app.route('/api/suggest')
+@limiter.limit("60 per minute")
 def api_suggest():
     """Return roots matching a Latin-letter prefix for autocomplete."""
     _init()
@@ -1002,6 +1020,7 @@ def api_suggest():
 
 
 @app.route('/api/roots')
+@limiter.limit("60 per minute")
 def api_roots():
     """Return a paginated list of all roots sorted by frequency."""
     _init()
@@ -1475,6 +1494,7 @@ def bookmarks_page():
 
 
 @app.route('/api/concordance')
+@limiter.limit("60 per minute")
 def api_concordance():
     """Return KWIC (Key Word In Context) for a word form at given references."""
     _init()
@@ -1533,6 +1553,7 @@ def api_concordance():
 
 
 @app.route('/api/proximity-search')
+@limiter.limit("60 per minute")
 def api_proximity_search():
     """Find verses where two roots co-occur."""
     _init()
@@ -1651,6 +1672,7 @@ def api_proximity_search():
 
 
 @app.route('/api/word-root')
+@limiter.limit("60 per minute")
 def api_word_root():
     """Return root info for a given word form."""
     _init()
@@ -1738,6 +1760,7 @@ def visualize(root_key):
 
 
 @app.route('/api/root-family')
+@limiter.limit("60 per minute")
 def api_root_family():
     """Return full root family data for the visualizer."""
     _init()
@@ -1992,6 +2015,7 @@ def constellation():
 
 
 @app.route('/api/passage-constellation')
+@limiter.limit("60 per minute")
 def api_passage_constellation():
     """Return constellation data for a passage: roots, cognates, and inter-root connections."""
     _init()
