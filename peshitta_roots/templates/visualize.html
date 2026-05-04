@@ -14,6 +14,9 @@
     <div class="container">
         <header>
             <h1 class="page-title">{{ t.viz_title }}</h1>
+            <button type="button" class="cite-btn" onclick="openCiteModal('root', '{{ root_key }}')">
+                <span class="material-symbols-outlined">format_quote</span> {{ t.cite_button|default('Cite') }}
+            </button>
         </header>
 
         <div id="viz-loading" class="viz-loading">

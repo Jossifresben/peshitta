@@ -210,6 +210,9 @@
     <div class="container">
         <header>
             <h1 class="page-title">{{ t.constellation_title }}</h1>
+            <button type="button" class="cite-btn" onclick="openCiteModal('passage', '{{ book }} {{ chapter }}:{{ v_start }}{% if v_end and v_end != v_start %}-{{ v_end }}{% endif %}')">
+                <span class="material-symbols-outlined">format_quote</span> {{ t.cite_button|default('Cite') }}
+            </button>
         </header>
 
         <div id="constellation-loading" class="viz-loading">

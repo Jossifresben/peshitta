@@ -276,6 +276,9 @@
 
         {% if result %}
         <div id="results" class="results-section">
+            <button type="button" class="cite-btn" onclick="openCiteModal('search', '{{ query }}')" style="margin-bottom: 8px;">
+                <span class="material-symbols-outlined">format_quote</span> {{ t.cite_button|default('Cite') }}
+            </button>
             <!-- Root header -->
             <div class="root-header">
                 <div class="root-header-top">
