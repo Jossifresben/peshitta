@@ -19,6 +19,38 @@
     <title>{% block title %}{{ t.app_title }}{% endblock %}</title>
     <meta name="description" content="{{ meta_description|default(t.app_subtitle) }}">
     <link rel="canonical" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}">
+    <!-- Citation metadata for Zotero (Highwire Press tags) -->
+    <meta name="citation_title" content="Peshitta Constellations">
+    <meta name="citation_author" content="Fresco, Jossi">
+    <meta name="citation_author_orcid" content="https://orcid.org/0009-0000-2026-0836">
+    <meta name="citation_publication_date" content="2026">
+    <meta name="citation_doi" content="10.5281/zenodo.19358529">
+    <meta name="citation_public_url" content="https://peshitta.onrender.com{{ canonical_path|default('/') }}">
+    <meta name="citation_language" content="{{ lang }}">
+
+    <!-- schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "Peshitta Constellations",
+      "description": "An open-source web tool for exploring the Syriac Peshitta New Testament through its triliteral root system.",
+      "codeRepository": "https://github.com/Jossifresben/peshitta",
+      "programmingLanguage": "Python",
+      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+      "url": "https://peshitta.onrender.com",
+      "version": "1.2.0",
+      "identifier": "https://doi.org/10.5281/zenodo.19358529",
+      "author": {
+        "@type": "Person",
+        "name": "Jossi Fresco",
+        "givenName": "Jossi",
+        "familyName": "Fresco",
+        "identifier": "https://orcid.org/0009-0000-2026-0836",
+        "sameAs": "https://orcid.org/0009-0000-2026-0836"
+      }
+    }
+    </script>
     <link rel="alternate" hreflang="es" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=es">
     <link rel="alternate" hreflang="en" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=en">
     <link rel="alternate" hreflang="he" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=he">
