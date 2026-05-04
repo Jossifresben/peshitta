@@ -1516,68 +1516,84 @@ header p {
     scroll-margin-top: 70px;
 }
 
+/* Search-result root header (parchment palette) */
 .root-header {
-    background: var(--bg-header);
-    color: #fff;
-    padding: 15px 20px 12px;
-    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    background: var(--bg-card);
+    color: var(--ink);
+    padding: 18px 22px 16px;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--r-lg);
+    margin-bottom: var(--space-lg);
 }
 
 .root-header-top {
     display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 12px;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
 }
 
 .root-header .root-syriac {
     font-size: 2.2em;
     direction: rtl;
     font-family: var(--syriac-font);
+    color: var(--ink);
+    line-height: 1;
 }
 
 .root-header .root-latin {
-    font-size: 1.4em;
-    font-family: monospace;
-    letter-spacing: 2px;
+    font-size: 1.1em;
+    font-family: var(--mono);
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 600;
 }
 
 td .root-latin {
-    font-family: monospace;
+    font-family: var(--mono);
     font-size: 0.85em;
     letter-spacing: 1px;
-    color: var(--text-secondary);
+    color: var(--ink-3);
     margin-left: 6px;
 }
 
 .root-meaning {
-    font-size: 1.15em;
-    opacity: 0.9;
+    font-family: var(--serif);
+    font-size: 1.05em;
     font-style: italic;
-    margin-bottom: 12px;
+    color: var(--ink-2);
+    margin-bottom: 14px;
 }
 
 .root-header-nav {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .nav-btn {
-    display: inline-block;
-    padding: 6px 14px;
-    background: var(--accent-gold, #8b4513);
-    color: #fff;
-    border: 1px solid var(--accent-gold, #8b4513);
-    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: transparent;
+    color: var(--olive);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-sm);
     text-decoration: none;
+    font-family: var(--sans);
     font-size: 0.85em;
-    transition: background 0.15s, opacity 0.15s;
+    font-weight: 600;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
 .nav-btn:hover {
-    opacity: 0.85;
+    background: var(--bg-sunk);
+    color: var(--olive-3);
+    border-color: var(--gold);
 }
 
 /* === Section panels === */
@@ -1817,11 +1833,14 @@ th {
 
 .count-badge {
     display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    padding: 2px 8px;
+    background: var(--bg-sunk);
+    color: var(--ink-2);
+    padding: 2px 10px;
     border-radius: 10px;
-    font-size: 0.85em;
+    font-family: var(--mono);
+    font-size: 0.82em;
+    font-weight: 500;
+    border: 1px solid var(--rule);
 }
 
 .no-results {
@@ -2542,14 +2561,14 @@ footer a:hover {
 .prox-hl1 { background: rgba(107, 122, 94, 0.25); border-radius: 3px; padding: 1px 3px; }
 .prox-hl2 { background: rgba(180, 140, 50, 0.3); border-radius: 3px; padding: 1px 3px; }
 
-/* Cookie consent banner */
+/* Cookie consent banner — dark olive bar */
 .cookie-banner {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--bg-header);
-    color: #fff;
+    background: var(--olive-3);
+    color: #f4efe4;
     padding: 14px 20px;
     display: flex;
     align-items: center;
@@ -2558,21 +2577,24 @@ footer a:hover {
     z-index: 9999;
     box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
     font-size: 0.9em;
+    font-family: var(--sans);
 }
 .cookie-text { flex: 1; line-height: 1.4; }
-.cookie-link { color: var(--accent-gold, #d4a843); margin-left: 6px; }
+.cookie-link { color: var(--gold-2); margin-left: 6px; text-decoration: underline; }
+.cookie-link:hover { color: var(--gold-soft); }
 .cookie-buttons { display: flex; gap: 8px; flex-shrink: 0; }
 .cookie-btn {
     padding: 8px 18px;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--r-sm);
     cursor: pointer;
     font-weight: 600;
     font-size: 0.9em;
+    font-family: var(--sans);
 }
-.cookie-accept { background: var(--accent); color: #fff; }
-.cookie-accept:hover { background: var(--accent-dark); }
-.cookie-reject { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.3); }
+.cookie-accept { background: var(--gold); color: var(--olive-3); }
+.cookie-accept:hover { background: var(--gold-2); }
+.cookie-reject { background: transparent; color: rgba(244,239,228,0.7); border: 1px solid rgba(244,239,228,0.3); }
 .cookie-reject:hover { color: #fff; border-color: #fff; }
 @media (max-width: 600px) {
     .cookie-banner { flex-direction: column; text-align: center; padding: 12px 16px; }
