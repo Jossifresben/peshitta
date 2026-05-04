@@ -19,6 +19,7 @@ from .cognates import CognateLookup
 from .glosser import WordGlosser
 from . import citations
 from .exporters import usfm as usfm_exporter
+from .exporters import osis as osis_exporter
 
 app = Flask(__name__)
 
@@ -788,6 +789,24 @@ def api_export_usfm():
     return Response(
         text,
         mimetype='text/plain; charset=utf-8',
+        headers={'Content-Disposition': f'attachment; filename="{fname}"'}
+    )
+
+
+@app.route('/api/export/osis')
+def api_export_osis():
+    """Export book or full corpus as OSIS 2.1.1 XML."""
+    _init()
+    book = request.args.get('book', '').strip() or None
+
+    xml_bytes = osis_exporter.export_book(_corpus, book)
+    fname_book = book.replace(' ', '_').lower() if book else 'full'
+    fname = f"peshitta-{fname_book}-v{citations.VERSION}.osis.xml"
+
+    from flask import Response
+    return Response(
+        xml_bytes,
+        mimetype='application/xml; charset=utf-8',
         headers={'Content-Disposition': f'attachment; filename="{fname}"'}
     )
 
