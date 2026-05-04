@@ -17,6 +17,7 @@ from .corpus import PeshittaCorpus
 from .extractor import RootExtractor
 from .cognates import CognateLookup
 from .glosser import WordGlosser
+from . import citations
 
 app = Flask(__name__)
 
@@ -740,6 +741,26 @@ def api_greek_concordance():
         'meaning': results[0].get(meaning_key) or results[0].get('meaning_en', ''),
         'roots': out,
         'total': len(out),
+    })
+
+
+@app.route('/api/citation')
+def api_citation():
+    """Return citation strings in 5 styles for a given view.
+
+    Query params:
+      view: 'app' | 'root' | 'passage' | 'search' (default 'app')
+      label: optional resource label (e.g. 'M-L-K', 'Matthew 1:1-5')
+      url: optional canonical URL of the view being cited
+    """
+    view = request.args.get('view', 'app')
+    if view not in ('app', 'root', 'passage', 'search'):
+        view = 'app'
+    label = request.args.get('label') or None
+    url = request.args.get('url') or None
+    return jsonify({
+        'metadata': citations.metadata(),
+        'styles': citations.all_styles(view, label, url),
     })
 
 
