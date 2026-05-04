@@ -4013,3 +4013,425 @@ footer a:hover {
 }
 .cite-btn:hover { background: var(--accent); color: #fff; }
 .cite-btn .material-symbols-outlined { font-size: 16px; }
+
+
+/* ======================================================================
+   PHASE 2 — Parchment Home Page
+   Hero, stats strip, cog-chips, ROTD aside, top-cited roots, editorial.
+   ====================================================================== */
+
+/* === Hero ============================================================= */
+.home-hero {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    align-items: start;
+    margin: 32px 0 36px;
+}
+@media (max-width: 900px) {
+    .home-hero { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.home-hero-left {
+    min-width: 0;
+}
+
+.home-eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 12px;
+}
+
+.home-headline {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 18px;
+    text-wrap: balance;
+}
+@media (max-width: 900px) {
+    .home-headline { font-size: 34px; }
+}
+@media (max-width: 600px) {
+    .home-headline { font-size: 28px; }
+}
+
+.home-deck {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0 0 24px;
+    text-wrap: pretty;
+    max-width: 60ch;
+}
+@media (max-width: 600px) {
+    .home-deck { font-size: 16px; }
+}
+
+/* === Stats strip ====================================================== */
+.stats-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-md);
+    padding: 14px 8px;
+    margin-bottom: 20px;
+}
+@media (max-width: 600px) {
+    .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 12px 0; padding: 16px 8px; }
+}
+
+.stat-cell {
+    text-align: center;
+    padding: 0 10px;
+    border-right: 1px solid var(--rule);
+}
+.stat-cell:last-child { border-right: none; }
+@media (max-width: 600px) {
+    .stat-cell:nth-child(2) { border-right: none; }
+}
+
+.stat-num {
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+}
+.stat-lbl {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+}
+
+/* === ROTD aside (refined parchment look) ============================== */
+.home-hero-aside.rotd-card {
+    margin-bottom: 0;
+    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-2) 100%);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--r-lg);
+    padding: 20px 22px;
+    box-shadow: 0 1px 2px rgba(60,50,30,0.04);
+}
+.home-hero-aside .rotd-header {
+    color: var(--ink-3);
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.home-hero-aside .rotd-icon {
+    color: var(--gold);
+}
+.home-hero-aside .rotd-syriac {
+    font-size: 36px;
+    color: var(--ink);
+}
+.home-hero-aside .rotd-key {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-3);
+    letter-spacing: 0.05em;
+}
+.home-hero-aside .rotd-gloss-line {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-2);
+    margin: 4px 0 10px;
+}
+.home-hero-aside .rotd-sabor {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin-bottom: 14px;
+    text-wrap: pretty;
+}
+.home-hero-aside .rotd-cognates {
+    margin: 4px 0 14px;
+}
+.home-hero-aside .rotd-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--olive);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+}
+.home-hero-aside .rotd-cta:hover {
+    color: var(--olive-3);
+    border-bottom-color: var(--gold);
+    opacity: 1;
+}
+
+/* === Cognate chips (Heb / Arb / Syr) ================================== */
+.cog-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--r-sm);
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    font-size: 13px;
+    line-height: 1.3;
+}
+.cog-chip .cog-script {
+    font-size: 16px;
+    color: var(--ink);
+}
+.cog-chip .cog-meaning {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+}
+.cog-chip.heb { border-left: 2px solid var(--lapis); }
+.cog-chip.arb { border-left: 2px solid var(--terracotta); }
+.cog-chip.syr { border-left: 2px solid var(--gold); }
+[dir="rtl"] .cog-chip.heb { border-left: 1px solid var(--rule); border-right: 2px solid var(--lapis); }
+[dir="rtl"] .cog-chip.arb { border-left: 1px solid var(--rule); border-right: 2px solid var(--terracotta); }
+[dir="rtl"] .cog-chip.syr { border-left: 1px solid var(--rule); border-right: 2px solid var(--gold); }
+
+/* === Section heads (shared) =========================================== */
+.home-section {
+    margin: 36px 0;
+}
+.section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+}
+.h-section {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.005em;
+}
+.section-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--olive);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+}
+.section-link:hover {
+    color: var(--olive-3);
+    border-bottom-color: var(--gold);
+}
+
+/* === Top-cited roots table ============================================ */
+.root-table {
+    display: flex;
+    flex-direction: column;
+}
+.root-row {
+    display: grid;
+    grid-template-columns: 60px 100px 1fr 90px 24px;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--rule);
+    color: inherit;
+    text-decoration: none;
+    transition: background 0.12s;
+}
+.root-row:hover {
+    background: var(--bg-card);
+}
+.root-row:last-child { border-bottom: none; }
+.root-row-syriac {
+    font-family: var(--syriac-font);
+    font-size: 24px;
+    color: var(--ink);
+    line-height: 1;
+}
+.root-row-key {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    font-weight: 600;
+}
+.root-row-gloss {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink-2);
+}
+.root-row-noglo {
+    color: var(--ink-4);
+    font-style: italic;
+}
+.root-row-count {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-2);
+    text-align: right;
+}
+.root-row-arrow {
+    font-size: 18px !important;
+    color: var(--ink-4);
+}
+.root-row:hover .root-row-arrow {
+    color: var(--olive);
+}
+@media (max-width: 600px) {
+    .root-row {
+        grid-template-columns: 50px 1fr 60px;
+        gap: 10px;
+    }
+    .root-row-key, .root-row-arrow { display: none; }
+    .root-row-syriac { font-size: 22px; }
+    .root-row-gloss { font-size: 14px; }
+}
+
+/* === Editorial closing + cite-card =================================== */
+.home-method {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+@media (max-width: 900px) {
+    .home-method { grid-template-columns: 1fr; gap: 28px; }
+}
+
+.home-method-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+}
+@media (max-width: 600px) {
+    .home-method-title { font-size: 26px; }
+}
+
+.home-method-p {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin: 0 0 14px;
+    text-wrap: pretty;
+}
+.home-method-p-italic {
+    font-style: italic;
+    color: var(--ink-3);
+    font-size: 16px;
+    margin-bottom: 22px;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: var(--olive);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: var(--r-sm);
+    text-decoration: none;
+    transition: background 0.15s, transform 0.05s;
+}
+.btn-primary:hover {
+    background: var(--olive-3);
+}
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+.cite-card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--r-lg);
+    padding: 22px 24px;
+    box-shadow: 0 1px 2px rgba(60,50,30,0.04);
+}
+.cite-syr {
+    font-family: var(--syriac-font);
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--ink);
+    direction: rtl;
+    text-align: right;
+    margin-bottom: 12px;
+}
+.cite-hl {
+    background: var(--hl);
+    padding: 0 4px;
+    border-radius: 3px;
+}
+.cite-translit {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-3);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+.cite-tx {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin-bottom: 16px;
+    text-wrap: pretty;
+}
+.cite-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+}
+.cite-foot a {
+    color: var(--olive);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+.cite-foot a:hover {
+    color: var(--olive-3);
+    border-bottom-color: var(--gold);
+}
