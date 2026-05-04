@@ -264,7 +264,12 @@
     "nav_language": "Idioma",
     "nav_settings": "Configuración",
     "nav_theme": "Cambiar tema",
-    "nav_share": "Compartir"
+    "nav_share": "Compartir",
+    "nav_subtitle": "Constelaciones de raíces",
+    "nav_read": "Leer",
+    "nav_browse": "Explorar",
+    "nav_constellation": "Constelación",
+    "nav_method": "Método"
   },
   "en": {
     "app_title": "Peshitta Constellations",
@@ -531,7 +536,12 @@
     "nav_language": "Language",
     "nav_settings": "Settings",
     "nav_theme": "Toggle theme",
-    "nav_share": "Share"
+    "nav_share": "Share",
+    "nav_subtitle": "Root Constellations",
+    "nav_read": "Read",
+    "nav_browse": "Browse",
+    "nav_constellation": "Constellation",
+    "nav_method": "Method"
   },
   "he": {
     "app_title": "קונסטלציות הפשיטתא",
@@ -798,7 +808,12 @@
     "nav_language": "שפה",
     "nav_settings": "הגדרות",
     "nav_theme": "החלף מצב",
-    "nav_share": "שתף"
+    "nav_share": "שתף",
+    "nav_subtitle": "קונסטלציות של שורשים",
+    "nav_read": "קרא",
+    "nav_browse": "עיון",
+    "nav_constellation": "קונסטלציה",
+    "nav_method": "שיטה"
   },
   "ar": {
     "app_title": "أبراج الپشيطتا",
@@ -1065,7 +1080,12 @@
     "nav_language": "اللغة",
     "nav_settings": "الإعدادات",
     "nav_theme": "تبديل الوضع",
-    "nav_share": "مشاركة"
+    "nav_share": "مشاركة",
+    "nav_subtitle": "كوكبات الجذور",
+    "nav_read": "اقرأ",
+    "nav_browse": "تصفح",
+    "nav_constellation": "كوكبة",
+    "nav_method": "المنهج"
   },
   "nl": {
     "app_title": "Peshitta Constellaties",
@@ -1332,6 +1352,11 @@
     "nav_language": "Taal",
     "nav_settings": "Instellingen",
     "nav_theme": "Thema wisselen",
-    "nav_share": "Delen"
+    "nav_share": "Delen",
+    "nav_subtitle": "Wortelconstellaties",
+    "nav_read": "Lees",
+    "nav_browse": "Bladeren",
+    "nav_constellation": "Constellatie",
+    "nav_method": "Methode"
   }
 }
