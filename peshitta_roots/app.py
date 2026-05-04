@@ -18,6 +18,7 @@ from .extractor import RootExtractor
 from .cognates import CognateLookup
 from .glosser import WordGlosser
 from . import citations
+from .exporters import usfm as usfm_exporter
 
 app = Flask(__name__)
 
@@ -762,6 +763,33 @@ def api_citation():
         'metadata': citations.metadata(),
         'styles': citations.all_styles(view, label, url),
     })
+
+
+@app.route('/api/export/usfm')
+def api_export_usfm():
+    """Export book or chapter as USFM 3.0."""
+    _init()
+    book = request.args.get('book', '').strip()
+    if not book:
+        return jsonify({'error': 'book parameter required'}), 400
+    chapter = request.args.get('chapter', type=int)
+    start_verse = request.args.get('start_verse', type=int)
+    end_verse = request.args.get('end_verse', type=int)
+
+    text = usfm_exporter.export_book_or_range(
+        _corpus, book, chapter, start_verse, end_verse
+    )
+    fname = f"peshitta-{book.replace(' ', '_').lower()}"
+    if chapter:
+        fname += f"-ch{chapter}"
+    fname += f"-v{citations.VERSION}.usfm"
+
+    from flask import Response
+    return Response(
+        text,
+        mimetype='text/plain; charset=utf-8',
+        headers={'Content-Disposition': f'attachment; filename="{fname}"'}
+    )
 
 
 @app.route('/docs')
