@@ -20,6 +20,7 @@ from .glosser import WordGlosser
 from . import citations
 from .exporters import usfm as usfm_exporter
 from .exporters import osis as osis_exporter
+from .exporters import text_fabric as tf_exporter
 
 app = Flask(__name__)
 
@@ -807,6 +808,30 @@ def api_export_osis():
     return Response(
         xml_bytes,
         mimetype='application/xml; charset=utf-8',
+        headers={'Content-Disposition': f'attachment; filename="{fname}"'}
+    )
+
+
+@app.route('/api/export/text-fabric')
+def api_export_text_fabric():
+    """Export book or full corpus as Text-Fabric ZIP dataset."""
+    _init()
+    book = request.args.get('book', '').strip() or None
+    all_flag = request.args.get('all', 'false').lower() == 'true'
+
+    if all_flag:
+        zip_bytes = tf_exporter.export_zip(_corpus, _extractor, None)
+        fname = f"peshitta-tf-full-v{citations.VERSION}.zip"
+    else:
+        if not book:
+            return jsonify({'error': 'book parameter required (or all=true for full corpus)'}), 400
+        zip_bytes = tf_exporter.export_zip(_corpus, _extractor, book)
+        fname = f"peshitta-tf-{book.replace(' ', '_').lower()}-v{citations.VERSION}.zip"
+
+    from flask import Response
+    return Response(
+        zip_bytes,
+        mimetype='application/zip',
         headers={'Content-Disposition': f'attachment; filename="{fname}"'}
     )
 
