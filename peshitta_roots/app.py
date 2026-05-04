@@ -764,6 +764,22 @@ def api_citation():
     })
 
 
+@app.route('/docs')
+def swagger_ui():
+    """Swagger UI for the OpenAPI spec."""
+    return render_template('swagger.html')
+
+
+@app.route('/openapi.json')
+def openapi_json():
+    """JSON form of the OpenAPI spec (converted from YAML)."""
+    import yaml as _yaml
+    spec_path = os.path.join(os.path.dirname(__file__), 'static', 'openapi.yaml')
+    with open(spec_path, 'r', encoding='utf-8') as f:
+        spec = _yaml.safe_load(f)
+    return jsonify(spec)
+
+
 @app.route('/api/text-search')
 def api_text_search():
     """Search verse translations (or Syriac text) for a substring."""

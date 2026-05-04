@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Peshitta Constellations API — Swagger UI</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.10.5/swagger-ui.css">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <style>
+        body { margin: 0; font-family: sans-serif; }
+        .topbar { display: none; }
+        #peshitta-header {
+            padding: 16px 24px;
+            background: #6b7a5e;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        #peshitta-header img { height: 32px; }
+        #peshitta-header h1 { margin: 0; font-size: 1.2em; flex: 1; }
+        #peshitta-header a {
+            color: #fff;
+            opacity: 0.85;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        #peshitta-header a:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+    <div id="peshitta-header">
+        <a href="/"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
+        <h1>Peshitta Constellations API</h1>
+        <a href="/api">Docs</a>
+        <a href="/static/openapi.yaml">openapi.yaml</a>
+        <a href="/openapi.json">openapi.json</a>
+        <a href="https://doi.org/10.5281/zenodo.19358529" target="_blank" rel="noopener">DOI</a>
+    </div>
+    <div id="swagger-ui"></div>
+    <script src="https://unpkg.com/swagger-ui-dist@5.10.5/swagger-ui-bundle.js"></script>
+    <script>
+        window.onload = function() {
+            SwaggerUIBundle({
+                url: '/static/openapi.yaml',
+                dom_id: '#swagger-ui',
+                presets: [SwaggerUIBundle.presets.apis],
+                deepLinking: true,
+                docExpansion: 'list',
+                tryItOutEnabled: true
+            });
+        };
+    </script>
+</body>
+</html>
