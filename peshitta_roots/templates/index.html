@@ -39,7 +39,7 @@
             <span class="material-symbols-outlined" style="font-size:16px; vertical-align:-3px;">explore</span>
             {{ t.feature_reopen }}
         </a>
-        <div class="feature-showcase" id="feature-showcase">
+        <div class="feature-showcase" id="feature-showcase" data-eyebrow="{{ t.feature_eyebrow|default('Discover features') }}">
             <div class="feature-tabs">
                 <button class="feature-tab active" data-feature="read" onclick="switchFeature('read')">
                     <span class="material-symbols-outlined">menu_book</span> {{ t.feature_tab_read }}
