@@ -93,9 +93,9 @@
     <a href="#main-content" class="skip-link">{% if lang == 'es' %}Ir al contenido{% elif lang == 'he' %}דלג לתוכן{% elif lang == 'ar' %}انتقل إلى المحتوى{% else %}Skip to content{% endif %}</a>
 
     <div class="sticky-header" role="banner">
-        <a href="{{ url_for('index', lang=lang) }}" class="nav-logo" title="Home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
+        <a href="{{ url_for('index', lang=lang) }}" class="nav-logo" title="{{ t.nav_home|default('Home') }}" aria-label="{{ t.nav_home|default('Home') }}"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
         <div class="lang-wrapper">
-            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">captive_portal</span></button>
+            <button class="lang-toggle" id="lang-toggle" aria-label="{{ t.nav_language|default('Language') }}" title="{{ t.nav_language|default('Language') }}" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">captive_portal</span></button>
             <div class="lang-dropdown" id="lang-dropdown" role="menu">
                 {% block lang_links %}
                 <a href="?lang=es" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
@@ -108,10 +108,9 @@
         </div>
         <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}" aria-label="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
         <a href="{{ url_for('bookmarks_page', lang=lang) }}" class="bookmarks-toggle" id="bookmarks-toggle" title="{{ t.bookmarks_title|default('Bookmarks') }}" aria-label="{{ t.bookmarks_title|default('Bookmarks') }}"><span class="material-symbols-outlined">bookmark</span></a>
-        <a href="{{ url_for('api_docs', lang=lang) }}" class="api-toggle" title="{{ t.nav_api|default('API') }}" aria-label="API"><span class="material-symbols-outlined">api</span></a>
         {% block header_settings %}
         <div class="settings-wrapper">
-            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">settings</span></button>
+            <button class="settings-toggle" id="settings-toggle" aria-label="{{ t.nav_settings|default('Settings') }}" title="{{ t.nav_settings|default('Settings') }}" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">settings</span></button>
             <div class="settings-dropdown" id="settings-dropdown" role="menu">
                 <div class="settings-label">{{ t.settings_script }}</div>
                 <button class="settings-option{% if script|default('latin') == 'latin' %} active{% endif %}" data-script="latin" role="menuitemradio" aria-checked="{{ 'true' if script|default('latin') == 'latin' else 'false' }}">{{ t.settings_latin }}</button>
@@ -133,10 +132,11 @@
             </div>
         </div>
         {% endblock %}
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="{{ t.nav_theme|default('Toggle theme') }}" title="{{ t.nav_theme|default('Toggle theme') }}"><span class="material-symbols-outlined">sunny</span></button>
         {% block header_share %}
-        <button class="share-toggle" id="share-toggle" aria-label="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% elif lang == 'ar' %}مشاركة{% else %}Share{% endif %}" title="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% elif lang == 'ar' %}مشاركة{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
+        <button class="share-toggle" id="share-toggle" aria-label="{{ t.nav_share|default('Share') }}" title="{{ t.nav_share|default('Share') }}"><span class="material-symbols-outlined">qr_code_2</span></button>
         {% endblock %}
+        <a href="{{ url_for('api_docs', lang=lang) }}" class="api-toggle" title="{{ t.nav_api|default('API') }}" aria-label="{{ t.nav_api|default('API') }}"><span class="material-symbols-outlined">api</span></a>
     </div>
 
     {% block share_modal %}

@@ -259,7 +259,12 @@
     "cite_loading": "Cargando...",
     "cite_copy": "Copiar",
     "cite_button": "Citar",
-    "nav_api": "API"
+    "nav_api": "API",
+    "nav_home": "Inicio",
+    "nav_language": "Idioma",
+    "nav_settings": "Configuración",
+    "nav_theme": "Cambiar tema",
+    "nav_share": "Compartir"
   },
   "en": {
     "app_title": "Peshitta Constellations",
@@ -521,7 +526,12 @@
     "cite_loading": "Loading...",
     "cite_copy": "Copy",
     "cite_button": "Cite",
-    "nav_api": "API"
+    "nav_api": "API",
+    "nav_home": "Home",
+    "nav_language": "Language",
+    "nav_settings": "Settings",
+    "nav_theme": "Toggle theme",
+    "nav_share": "Share"
   },
   "he": {
     "app_title": "קונסטלציות הפשיטתא",
@@ -783,7 +793,12 @@
     "cite_loading": "טוען...",
     "cite_copy": "העתק",
     "cite_button": "ציטוט",
-    "nav_api": "API"
+    "nav_api": "API",
+    "nav_home": "בית",
+    "nav_language": "שפה",
+    "nav_settings": "הגדרות",
+    "nav_theme": "החלף מצב",
+    "nav_share": "שתף"
   },
   "ar": {
     "app_title": "أبراج الپشيطتا",
@@ -1045,7 +1060,12 @@
     "cite_loading": "جارٍ التحميل...",
     "cite_copy": "نسخ",
     "cite_button": "استشهاد",
-    "nav_api": "API"
+    "nav_api": "API",
+    "nav_home": "الرئيسية",
+    "nav_language": "اللغة",
+    "nav_settings": "الإعدادات",
+    "nav_theme": "تبديل الوضع",
+    "nav_share": "مشاركة"
   },
   "nl": {
     "app_title": "Peshitta Constellaties",
@@ -1307,6 +1327,11 @@
     "cite_loading": "Laden...",
     "cite_copy": "Kopiëren",
     "cite_button": "Citeer",
-    "nav_api": "API"
+    "nav_api": "API",
+    "nav_home": "Home",
+    "nav_language": "Taal",
+    "nav_settings": "Instellingen",
+    "nav_theme": "Thema wisselen",
+    "nav_share": "Delen"
   }
 }
