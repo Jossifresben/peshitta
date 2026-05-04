@@ -780,13 +780,142 @@ paths:
         '429':
           description: Rate limit exceeded
 
+  /api/proximity-search:
+    get:
+      tags: [Search, Concordance]
+      summary: Find verses or chapters where two roots co-occur
+      description: |
+        Searches for two Syriac roots co-occurring within the same verse or
+        chapter. Accepts dash-form transliteration or Syriac for each root.
+        Falls back through Semitic sound-correspondence variants if a literal
+        match is not found.
+      parameters:
+        - name: root1
+          in: query
+          required: true
+          description: First root (dash form e.g. "M-L-K" or Syriac)
+          schema: { type: string, example: "M-L-K" }
+        - name: root2
+          in: query
+          required: true
+          description: Second root (dash form e.g. "B-R-K" or Syriac)
+          schema: { type: string, example: "B-R-K" }
+        - name: scope
+          in: query
+          required: false
+          description: Co-occurrence scope
+          schema:
+            type: string
+            enum: [verse, chapter]
+            default: verse
+        - name: lang
+          in: query
+          required: false
+          description: UI language for glosses
+          schema:
+            type: string
+            enum: [en, es, he, ar]
+            default: en
+        - name: trans
+          in: query
+          required: false
+          description: Translation language for verse text
+          schema: { type: string, enum: [en, es, he, ar, gr] }
+        - name: script
+          in: query
+          required: false
+          description: Transliteration target script (verse scope only)
+          schema:
+            type: string
+            enum: [latin, hebrew, arabic, syriac]
+            default: latin
+      responses:
+        '200':
+          description: Proximity matches (verse or chapter scope)
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    description: Verse scope
+                    properties:
+                      root1: { type: string, description: "Dash-form translit" }
+                      root2: { type: string, description: "Dash-form translit" }
+                      root1_syriac: { type: string }
+                      root2_syriac: { type: string }
+                      gloss1: { type: string }
+                      gloss2: { type: string }
+                      scope: { type: string, enum: [verse] }
+                      count: { type: integer }
+                      results:
+                        type: array
+                        description: Up to 100 verses where both roots occur
+                        items:
+                          type: object
+                          properties:
+                            ref: { type: string }
+                            syriac: { type: string }
+                            translit: { type: string }
+                            translation: { type: string, description: "Truncated to 200 chars" }
+                            forms1:
+                              type: array
+                              items: { type: string }
+                            forms2:
+                              type: array
+                              items: { type: string }
+                  - type: object
+                    description: Chapter scope
+                    properties:
+                      root1: { type: string }
+                      root2: { type: string }
+                      scope: { type: string, enum: [chapter] }
+                      count: { type: integer }
+                      results:
+                        type: array
+                        description: Up to 50 chapters where both roots occur
+                        items:
+                          type: object
+                          properties:
+                            ref: { type: string, description: "e.g. 'Matthew 1'" }
+                            type: { type: string, enum: [chapter] }
+              example:
+                root1: "M-L-K"
+                root2: "B-R-K"
+                root1_syriac: "ܡܠܟ"
+                root2_syriac: "ܒܪܟ"
+                gloss1: "king, to rule"
+                gloss2: "to bless, kneel"
+                scope: "verse"
+                count: 1
+                results:
+                  - ref: "Matthew 25:34"
+                    syriac: "ܗܝܕܝܢ ܢܐܡܪ ܡܠܟܐ ܠܗܢܘܢ ܕܡܢ ܝܡܝܢܗ ܬܘ ܒܪܝܟܘܗܝ ܕܐܒܝ"
+                    translit: "haydein nemar malka l'hanon dman yamineh tau brikuhi d'abi"
+                    translation: "Then the king will say to those at his right hand: Come, blessed of my Father..."
+                    forms1: ["ܡܠܟܐ"]
+                    forms2: ["ܒܪܝܟܘܗܝ"]
+        '400':
+          description: Missing root1/root2, or root not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
+                  results:
+                    type: array
+                    items: { type: object }
+              example: { error: "Two roots required" }
+        '429':
+          description: Rate limit exceeded
+
   /api/citation:
     get:
       tags: [Citation]
       summary: Citation strings in 5 styles
       description: |
         Returns citation metadata and the formatted citation in 5 styles
-        (APA, MLA, Chicago, BibTeX, RIS) for a given view.
+        (BibTeX, Chicago, MLA, APA, SBL) for a given view.
       parameters:
         - name: view
           in: query
@@ -820,24 +949,24 @@ paths:
                     type: object
                     description: Map of style name to formatted string
                     properties:
-                      apa: { type: string }
-                      mla: { type: string }
-                      chicago: { type: string }
                       bibtex: { type: string }
-                      ris: { type: string }
+                      chicago: { type: string }
+                      mla: { type: string }
+                      apa: { type: string }
+                      sbl: { type: string }
               example:
                 metadata:
-                  author: "Fresco, J."
+                  author: "Jossi Fresco"
                   year: 2026
                   doi: "10.5281/zenodo.19358529"
                   orcid: "0009-0000-2026-0836"
                   version: "1.3.0"
                 styles:
-                  apa: "Fresco, J. (2026). Peshitta Constellations. Zenodo. https://doi.org/10.5281/zenodo.19358529"
-                  mla: "Fresco, Jossi. \"Peshitta Constellations.\" Zenodo, 2026."
-                  chicago: "Fresco, Jossi. 2026. Peshitta Constellations. Zenodo."
-                  bibtex: "@misc{fresco2026peshitta, ...}"
-                  ris: "TY  - COMP\nAU  - Fresco, J.\n..."
+                  bibtex: "@misc{fresco2026peshitta, author = {Fresco, Jossi}, title = {Peshitta Constellations}, year = {2026}, doi = {10.5281/zenodo.19358529}, ...}"
+                  chicago: "Fresco, Jossi. 2026. \"Peshitta Constellations.\" Version 1.3.0. https://doi.org/10.5281/zenodo.19358529."
+                  mla: "Fresco, Jossi. \"Peshitta Constellations.\" Version 1.3.0, 2026, doi.org/10.5281/zenodo.19358529."
+                  apa: "Fresco, J. (2026). Peshitta Constellations (Version 1.3.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.19358529"
+                  sbl: "Fresco, Jossi. Peshitta Constellations. Version 1.3.0. 2026. https://doi.org/10.5281/zenodo.19358529."
         '429':
           description: Rate limit exceeded
 
