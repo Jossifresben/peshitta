@@ -258,7 +258,8 @@
     "cite_title": "Citar este recurso",
     "cite_loading": "Cargando...",
     "cite_copy": "Copiar",
-    "cite_button": "Citar"
+    "cite_button": "Citar",
+    "nav_api": "API"
   },
   "en": {
     "app_title": "Peshitta Constellations",
@@ -519,7 +520,8 @@
     "cite_title": "Cite this",
     "cite_loading": "Loading...",
     "cite_copy": "Copy",
-    "cite_button": "Cite"
+    "cite_button": "Cite",
+    "nav_api": "API"
   },
   "he": {
     "app_title": "קונסטלציות הפשיטתא",
@@ -780,7 +782,8 @@
     "cite_title": "ציטוט",
     "cite_loading": "טוען...",
     "cite_copy": "העתק",
-    "cite_button": "ציטוט"
+    "cite_button": "ציטוט",
+    "nav_api": "API"
   },
   "ar": {
     "app_title": "أبراج الپشيطتا",
@@ -1041,7 +1044,8 @@
     "cite_title": "استشهاد",
     "cite_loading": "جارٍ التحميل...",
     "cite_copy": "نسخ",
-    "cite_button": "استشهاد"
+    "cite_button": "استشهاد",
+    "nav_api": "API"
   },
   "nl": {
     "app_title": "Peshitta Constellaties",
@@ -1302,6 +1306,7 @@
     "cite_title": "Citeer dit",
     "cite_loading": "Laden...",
     "cite_copy": "Kopiëren",
-    "cite_button": "Citeer"
+    "cite_button": "Citeer",
+    "nav_api": "API"
   }
 }

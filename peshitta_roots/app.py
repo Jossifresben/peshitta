@@ -1479,6 +1479,19 @@ def about_page():
                            canonical_path='/about')
 
 
+@app.route('/api')
+def api_docs():
+    """Public API documentation page."""
+    _init()
+    lang = _detect_lang()
+    if lang not in _i18n:
+        lang = 'es'
+    t = _Namespace(_i18n[lang])
+    return render_template('api_docs.html', t=t, lang=lang,
+                           canonical_path='/api',
+                           meta_description='Public API for the Peshitta Constellations root explorer.')
+
+
 @app.route('/bookmarks')
 def bookmarks_page():
     """Bookmarks page — all data stored in localStorage."""

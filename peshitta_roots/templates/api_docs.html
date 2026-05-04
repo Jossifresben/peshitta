@@ -1,0 +1,547 @@
+{% extends "base.html" %}
+
+{% block title %}Peshitta Constellations API - {{ t.app_title }}{% endblock %}
+
+{% block lang_links %}
+<a href="{{ url_for('api_docs', lang='es') }}" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
+<a href="{{ url_for('api_docs', lang='en') }}" class="lang-option{% if lang == 'en' %} active{% endif %}" role="menuitem">EN</a>
+<a href="{{ url_for('api_docs', lang='nl') }}" class="lang-option{% if lang == 'nl' %} active{% endif %}" role="menuitem">NL</a>
+<a href="{{ url_for('api_docs', lang='he') }}" class="lang-option{% if lang == 'he' %} active{% endif %}" role="menuitem">עב</a>
+<a href="{{ url_for('api_docs', lang='ar') }}" class="lang-option{% if lang == 'ar' %} active{% endif %}" role="menuitem">عر</a>
+{% endblock %}
+
+{% block head_extra %}
+    <style>
+        .api-docs-content {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        .api-docs-content h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid var(--border-light, #e0ddd4);
+            padding-bottom: 0.3em;
+        }
+        .api-docs-content h3 {
+            margin-top: 1.75rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+            color: var(--accent, #b8860b);
+        }
+        .api-docs-content p { margin-bottom: 1em; }
+        .api-docs-content a { color: var(--accent, #b8860b); text-decoration: underline; text-underline-offset: 2px; }
+        .api-docs-content a:hover { opacity: 0.8; }
+
+        .api-cite-box {
+            background: var(--card-bg, rgba(0,0,0,0.04));
+            border: 1px solid var(--border-light, #e0ddd4);
+            border-left: 4px solid var(--accent, #b8860b);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem 1.25rem;
+            justify-content: space-between;
+        }
+        .api-cite-box .cite-meta { font-size: 0.95rem; line-height: 1.5; }
+        .api-cite-box .cite-meta strong { display: block; margin-bottom: 0.15em; font-size: 1.05em; }
+        .api-cite-box .cite-meta .cite-meta-row { font-size: 0.88em; color: var(--text-muted, #777); margin-top: 0.2em; }
+        .api-cite-box .cite-meta a { color: var(--accent); }
+
+        .api-quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.75rem;
+            margin: 1.25rem 0 2rem;
+        }
+        .api-quick-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4em;
+            padding: 0.45em 0.85em;
+            background: var(--card-bg, rgba(0,0,0,0.04));
+            border: 1px solid var(--border-light, #e0ddd4);
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text, inherit);
+        }
+        .api-quick-links a:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            opacity: 1;
+        }
+        .api-quick-links .material-symbols-outlined { font-size: 18px; }
+
+        .api-group {
+            margin: 1.5rem 0 2rem;
+        }
+        .api-group h3 .group-desc {
+            font-size: 0.78rem;
+            font-weight: 400;
+            color: var(--text-muted, #777);
+            margin-left: 0.5em;
+        }
+        .api-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            margin: 0.5em 0 0;
+        }
+        .api-table th,
+        .api-table td {
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light, #e0ddd4);
+            vertical-align: top;
+        }
+        .api-table th {
+            font-weight: 600;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted, #777);
+            border-bottom-width: 2px;
+        }
+        .api-table .api-method {
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: #2d8659;
+            color: #fff;
+            padding: 2px 7px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .api-table .api-path {
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.88rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .api-table .api-try {
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        .api-table .api-try a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25em;
+        }
+        .api-table .api-try .material-symbols-outlined { font-size: 14px; }
+
+        .api-example {
+            margin: 1.5rem 0 2rem;
+        }
+        .api-example h3 { margin-bottom: 0.4em; }
+        .api-example .example-path {
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.92rem;
+            color: var(--text-muted, #777);
+            margin-bottom: 0.75em;
+        }
+        .api-tabs {
+            display: flex;
+            gap: 0.25em;
+            margin-bottom: -1px;
+            flex-wrap: wrap;
+        }
+        .api-tab {
+            background: var(--card-bg, rgba(0,0,0,0.04));
+            border: 1px solid var(--border-light, #e0ddd4);
+            border-bottom: none;
+            border-radius: 6px 6px 0 0;
+            padding: 0.4em 1em;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text, inherit);
+        }
+        .api-tab.active {
+            background: #1e1e2a;
+            color: #f5f5f5;
+            border-color: #1e1e2a;
+        }
+        .api-code {
+            background: #1e1e2a;
+            color: #f5f5f5;
+            border-radius: 0 8px 8px 8px;
+            padding: 1em 1.2em;
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            overflow-x: auto;
+            white-space: pre;
+            position: relative;
+        }
+        .api-code-wrap { position: relative; }
+        .api-code-copy {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255,255,255,0.1);
+            color: #f5f5f5;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25em;
+        }
+        .api-code-copy:hover { background: rgba(255,255,255,0.2); }
+        .api-code-copy .material-symbols-outlined { font-size: 14px; }
+        .api-code-pane { display: none; }
+        .api-code-pane.active { display: block; }
+
+        .rate-table {
+            width: auto;
+            min-width: 360px;
+            border-collapse: collapse;
+            margin: 0.75em 0 1.5em;
+            font-size: 0.92rem;
+        }
+        .rate-table th,
+        .rate-table td {
+            padding: 8px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light, #e0ddd4);
+        }
+        .rate-table th { font-weight: 600; border-bottom-width: 2px; }
+        .rate-table code {
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.88em;
+        }
+
+        .api-license {
+            margin-top: 2rem;
+            padding: 0.75em 1em;
+            background: var(--card-bg, rgba(0,0,0,0.04));
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <header>
+            <h1>Peshitta Constellations API</h1>
+            <p style="font-style: italic; font-size: 1.05em; margin-top: -0.25em;">
+                {% if lang == 'es' %}Una API pública y abierta para explorar el Nuevo Testamento de la Peshitta desde sus raíces trilíteras.
+                {% elif lang == 'he' %}API פתוח וציבורי לחקר הברית החדשה של הפשיטתא דרך השורשים התלת-עיצוריים.
+                {% elif lang == 'ar' %}واجهة برمجة تطبيقات عامة ومفتوحة لاستكشاف العهد الجديد للبشيطتا من خلال جذورها الثلاثية.
+                {% elif lang == 'nl' %}Een publieke, open API om het Peshitta Nieuwe Testament via zijn triliterale wortels te verkennen.
+                {% else %}A public, open API for exploring the Peshitta New Testament through its triliteral roots.
+                {% endif %}
+            </p>
+        </header>
+
+        <div class="api-docs-content">
+
+            <div class="api-cite-box">
+                <div class="cite-meta">
+                    <strong>Fresco, J. (2026). <em>Peshitta Constellations</em>.</strong>
+                    <div class="cite-meta-row">ORCID: <a href="https://orcid.org/0009-0000-2026-0836" target="_blank" rel="noopener">0009-0000-2026-0836</a></div>
+                    <div class="cite-meta-row">DOI: <a href="https://doi.org/10.5281/zenodo.19358529" target="_blank" rel="noopener">10.5281/zenodo.19358529</a></div>
+                </div>
+                <button type="button" class="cite-btn" onclick="openCiteModal('app')">
+                    <span class="material-symbols-outlined">format_quote</span>
+                    {{ t.cite_btn|default('Cite') }}
+                </button>
+            </div>
+
+            <h2>{% if lang == 'es' %}Enlaces rápidos{% elif lang == 'he' %}קישורים מהירים{% elif lang == 'ar' %}روابط سريعة{% elif lang == 'nl' %}Snelle links{% else %}Quick links{% endif %}</h2>
+
+            <div class="api-quick-links">
+                <a href="/docs"><span class="material-symbols-outlined">api</span>Swagger UI</a>
+                <a href="{{ url_for('static', filename='openapi.yaml') }}"><span class="material-symbols-outlined">description</span>OpenAPI YAML</a>
+                <a href="/openapi.json"><span class="material-symbols-outlined">data_object</span>OpenAPI JSON</a>
+                <a href="https://github.com/Jossifresben/peshitta/blob/main/docs/MCP_INSTALL.md" target="_blank" rel="noopener"><span class="material-symbols-outlined">extension</span>MCP install</a>
+                <a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener"><span class="material-symbols-outlined">code</span>GitHub repo</a>
+            </div>
+
+            <h2>{% if lang == 'es' %}Endpoints{% elif lang == 'he' %}נקודות קצה{% elif lang == 'ar' %}نقاط الوصول{% else %}Endpoints{% endif %}</h2>
+
+            <p>
+                {% if lang == 'es' %}Todos los endpoints viven bajo <code>https://peshitta.onrender.com</code> y devuelven JSON salvo los exportadores. No requieren autenticación.
+                {% elif lang == 'he' %}כל נקודות הקצה תחת <code>https://peshitta.onrender.com</code> ומחזירות JSON מלבד המייצאים. אין צורך באימות.
+                {% elif lang == 'ar' %}جميع نقاط الوصول تحت <code>https://peshitta.onrender.com</code> وتعيد JSON باستثناء المصدّرين. لا حاجة للمصادقة.
+                {% else %}All endpoints live under <code>https://peshitta.onrender.com</code> and return JSON (except the exporters). No authentication required.
+                {% endif %}
+            </p>
+
+            <div class="api-group">
+                <h3>Read <span class="group-desc">{% if lang == 'es' %}Recuperar versículos individuales{% else %}Single-verse retrieval{% endif %}</span></h3>
+                <table class="api-table">
+                    <thead><tr><th>{% if lang == 'es' %}Método{% else %}Method{% endif %}</th><th>{% if lang == 'es' %}Ruta{% else %}Path{% endif %}</th><th>{% if lang == 'es' %}Resumen{% else %}Summary{% endif %}</th><th></th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="api-method">GET</span></td>
+                            <td class="api-path">/api/verse</td>
+                            <td>{% if lang == 'es' %}Versículo único con texto siríaco, transliteración y traducciones.{% else %}Single verse with Syriac text, transliteration, and translations.{% endif %}</td>
+                            <td class="api-try"><a href="/docs#/Read" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="api-group">
+                <h3>Search <span class="group-desc">{% if lang == 'es' %}Búsqueda por raíz, texto y proximidad{% else %}Root, text, and proximity search{% endif %}</span></h3>
+                <table class="api-table">
+                    <thead><tr><th>{% if lang == 'es' %}Método{% else %}Method{% endif %}</th><th>{% if lang == 'es' %}Ruta{% else %}Path{% endif %}</th><th>{% if lang == 'es' %}Resumen{% else %}Summary{% endif %}</th><th></th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/suggest</td><td>{% if lang == 'es' %}Autocompletado de raíces, palabras y referencias.{% else %}Autocomplete for roots, words, and references.{% endif %}</td><td class="api-try"><a href="/docs#/Search" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/text-search</td><td>{% if lang == 'es' %}Búsqueda de texto en transliteración o traducción.{% else %}Free-text search in transliteration or translation.{% endif %}</td><td class="api-try"><a href="/docs#/Search" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/reverse-search</td><td>{% if lang == 'es' %}Encuentra raíces a partir de un cognado HE/AR/EN/ES.{% else %}Find roots from a Hebrew/Arabic/English/Spanish cognate.{% endif %}</td><td class="api-try"><a href="/docs#/Search" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/proximity-search</td><td>{% if lang == 'es' %}Pares de raíces que coocurren dentro de N versículos.{% else %}Pairs of roots that co-occur within N verses.{% endif %}</td><td class="api-try"><a href="/docs#/Search" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="api-group">
+                <h3>Roots <span class="group-desc">{% if lang == 'es' %}Datos de raíces y familias{% else %}Root and family data{% endif %}</span></h3>
+                <table class="api-table">
+                    <thead><tr><th>{% if lang == 'es' %}Método{% else %}Method{% endif %}</th><th>{% if lang == 'es' %}Ruta{% else %}Path{% endif %}</th><th>{% if lang == 'es' %}Resumen{% else %}Summary{% endif %}</th><th></th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/word-root</td><td>{% if lang == 'es' %}Resuelve una palabra siríaca a su raíz trilítera.{% else %}Resolve a Syriac word to its triliteral root.{% endif %}</td><td class="api-try"><a href="/docs#/Roots" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/roots</td><td>{% if lang == 'es' %}Lista todas las raíces atestiguadas con sus frecuencias.{% else %}List every attested root with frequency counts.{% endif %}</td><td class="api-try"><a href="/docs#/Roots" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/root-family</td><td>{% if lang == 'es' %}Familia completa de una raíz: formas, glosas y cognados.{% else %}Full family for a root: forms, glosses, and cognates.{% endif %}</td><td class="api-try"><a href="/docs#/Roots" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="api-group">
+                <h3>Concordance <span class="group-desc">{% if lang == 'es' %}Concordancias KWIC siríacas y griegas{% else %}Syriac and Greek KWIC concordances{% endif %}</span></h3>
+                <table class="api-table">
+                    <thead><tr><th>{% if lang == 'es' %}Método{% else %}Method{% endif %}</th><th>{% if lang == 'es' %}Ruta{% else %}Path{% endif %}</th><th>{% if lang == 'es' %}Resumen{% else %}Summary{% endif %}</th><th></th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/concordance</td><td>{% if lang == 'es' %}Líneas KWIC para una raíz en toda la Peshitta.{% else %}KWIC lines for a root across the whole Peshitta.{% endif %}</td><td class="api-try"><a href="/docs#/Concordance" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/greek-concordance</td><td>{% if lang == 'es' %}Concordancia griega (SBLGNT) para un lema o raíz.{% else %}Greek (SBLGNT) concordance for a lemma or root.{% endif %}</td><td class="api-try"><a href="/docs#/Concordance" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="api-group">
+                <h3>Passage <span class="group-desc">{% if lang == 'es' %}Constelaciones de raíces por pasaje{% else %}Per-passage root constellations{% endif %}</span></h3>
+                <table class="api-table">
+                    <thead><tr><th>{% if lang == 'es' %}Método{% else %}Method{% endif %}</th><th>{% if lang == 'es' %}Ruta{% else %}Path{% endif %}</th><th>{% if lang == 'es' %}Resumen{% else %}Summary{% endif %}</th><th></th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/passage-constellation</td><td>{% if lang == 'es' %}Mapa estelar: nodos (raíces) y enlaces para un pasaje.{% else %}Star map: nodes (roots) and links for a passage.{% endif %}</td><td class="api-try"><a href="/docs#/Search" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="api-group">
+                <h3>Citation <span class="group-desc">{% if lang == 'es' %}Citas BibTeX, Chicago, MLA, APA, SBL{% else %}BibTeX, Chicago, MLA, APA, SBL citations{% endif %}</span></h3>
+                <table class="api-table">
+                    <thead><tr><th>{% if lang == 'es' %}Método{% else %}Method{% endif %}</th><th>{% if lang == 'es' %}Ruta{% else %}Path{% endif %}</th><th>{% if lang == 'es' %}Resumen{% else %}Summary{% endif %}</th><th></th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/citation</td><td>{% if lang == 'es' %}Genera una cita en cinco estilos para cualquier vista.{% else %}Generates a citation in five styles for any view.{% endif %}</td><td class="api-try"><a href="/docs#/Citation" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="api-group">
+                <h3>Export <span class="group-desc">{% if lang == 'es' %}Volcado masivo en formatos académicos{% else %}Bulk export in academic formats{% endif %}</span></h3>
+                <table class="api-table">
+                    <thead><tr><th>{% if lang == 'es' %}Método{% else %}Method{% endif %}</th><th>{% if lang == 'es' %}Ruta{% else %}Path{% endif %}</th><th>{% if lang == 'es' %}Resumen{% else %}Summary{% endif %}</th><th></th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/export/usfm</td><td>{% if lang == 'es' %}Exporta un libro o todo el corpus en USFM 3.0.{% else %}Export a book or the full corpus in USFM 3.0.{% endif %}</td><td class="api-try"><a href="/docs#/Export" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/export/osis</td><td>{% if lang == 'es' %}Exporta en OSIS 2.1.1 XML.{% else %}Export in OSIS 2.1.1 XML.{% endif %}</td><td class="api-try"><a href="/docs#/Export" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                        <tr><td><span class="api-method">GET</span></td><td class="api-path">/api/export/text-fabric</td><td>{% if lang == 'es' %}Paquete Text-Fabric (.zip) con todas las features.{% else %}Text-Fabric package (.zip) with all features.{% endif %}</td><td class="api-try"><a href="/docs#/Export" target="_blank" rel="noopener">Try it <span class="material-symbols-outlined">open_in_new</span></a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>{% if lang == 'es' %}Ejemplos{% elif lang == 'he' %}דוגמאות{% elif lang == 'ar' %}أمثلة{% elif lang == 'nl' %}Voorbeelden{% else %}Examples{% endif %}</h2>
+
+            <p>
+                {% if lang == 'es' %}Tres llamadas comunes en <code>curl</code>, Python y JavaScript. Reemplaza el host por <code>http://localhost:5000</code> si trabajas en local.
+                {% else %}Three common calls in <code>curl</code>, Python, and JavaScript. Replace the host with <code>http://localhost:5000</code> for local work.
+                {% endif %}
+            </p>
+
+            <div class="api-example">
+                <h3>1. {% if lang == 'es' %}Recuperar un versículo{% else %}Fetch a verse{% endif %}</h3>
+                <div class="example-path">GET /api/verse?book=John&amp;chapter=1&amp;verse=1</div>
+                <div class="api-tabs">
+                    <button type="button" class="api-tab active" data-pane="ex1-curl">curl</button>
+                    <button type="button" class="api-tab" data-pane="ex1-py">Python</button>
+                    <button type="button" class="api-tab" data-pane="ex1-js">JavaScript</button>
+                </div>
+                <div class="api-code-wrap">
+                    <button type="button" class="api-code-copy" data-target="ex1-active"><span class="material-symbols-outlined">content_copy</span> Copy</button>
+                    <pre class="api-code api-code-pane active" id="ex1-curl">curl "https://peshitta.onrender.com/api/verse?book=John&amp;chapter=1&amp;verse=1"</pre>
+                    <pre class="api-code api-code-pane" id="ex1-py">import requests
+
+r = requests.get(
+    "https://peshitta.onrender.com/api/verse",
+    params={"book": "John", "chapter": 1, "verse": 1},
+)
+data = r.json()
+print(data["syriac"], data["translit"])</pre>
+                    <pre class="api-code api-code-pane" id="ex1-js">const url = new URL("https://peshitta.onrender.com/api/verse");
+url.search = new URLSearchParams({ book: "John", chapter: 1, verse: 1 });
+
+const res = await fetch(url);
+const data = await res.json();
+console.log(data.syriac, data.translit);</pre>
+                </div>
+            </div>
+
+            <div class="api-example">
+                <h3>2. {% if lang == 'es' %}Buscar la raíz de una palabra{% else %}Look up a word's root{% endif %}</h3>
+                <div class="example-path">GET /api/word-root?word=ܡܠܟܘܬܐ</div>
+                <div class="api-tabs">
+                    <button type="button" class="api-tab active" data-pane="ex2-curl">curl</button>
+                    <button type="button" class="api-tab" data-pane="ex2-py">Python</button>
+                    <button type="button" class="api-tab" data-pane="ex2-js">JavaScript</button>
+                </div>
+                <div class="api-code-wrap">
+                    <button type="button" class="api-code-copy" data-target="ex2-active"><span class="material-symbols-outlined">content_copy</span> Copy</button>
+                    <pre class="api-code api-code-pane active" id="ex2-curl">curl --get "https://peshitta.onrender.com/api/word-root" \
+     --data-urlencode "word=ܡܠܟܘܬܐ"</pre>
+                    <pre class="api-code api-code-pane" id="ex2-py">import requests
+
+r = requests.get(
+    "https://peshitta.onrender.com/api/word-root",
+    params={"word": "ܩܠܒܝܬܐ"},
+)
+print(r.json()["root_key"])  # e.g. "M-L-K"</pre>
+                    <pre class="api-code api-code-pane" id="ex2-js">const params = new URLSearchParams({ word: "ܩܠܒܝܬܐ" });
+const res = await fetch(
+  `https://peshitta.onrender.com/api/word-root?${params}`
+);
+const { root_key } = await res.json();
+console.log(root_key); // e.g. "M-L-K"</pre>
+                </div>
+            </div>
+
+            <div class="api-example">
+                <h3>3. {% if lang == 'es' %}Generar una cita académica{% else %}Generate an academic citation{% endif %}</h3>
+                <div class="example-path">GET /api/citation?style=bibtex&amp;view=root&amp;ref=N-P-SH</div>
+                <div class="api-tabs">
+                    <button type="button" class="api-tab active" data-pane="ex3-curl">curl</button>
+                    <button type="button" class="api-tab" data-pane="ex3-py">Python</button>
+                    <button type="button" class="api-tab" data-pane="ex3-js">JavaScript</button>
+                </div>
+                <div class="api-code-wrap">
+                    <button type="button" class="api-code-copy" data-target="ex3-active"><span class="material-symbols-outlined">content_copy</span> Copy</button>
+                    <pre class="api-code api-code-pane active" id="ex3-curl">curl "https://peshitta.onrender.com/api/citation?style=bibtex&amp;view=root&amp;ref=N-P-SH"</pre>
+                    <pre class="api-code api-code-pane" id="ex3-py">import requests
+
+r = requests.get(
+    "https://peshitta.onrender.com/api/citation",
+    params={"style": "bibtex", "view": "root", "ref": "N-P-SH"},
+)
+print(r.json()["citation"])</pre>
+                    <pre class="api-code api-code-pane" id="ex3-js">const url = new URL("https://peshitta.onrender.com/api/citation");
+url.search = new URLSearchParams({
+  style: "bibtex", view: "root", ref: "N-P-SH",
+});
+const res = await fetch(url);
+const { citation } = await res.json();
+console.log(citation);</pre>
+                </div>
+            </div>
+
+            <h2>{% if lang == 'es' %}Límites de uso{% elif lang == 'he' %}מגבלות שימוש{% elif lang == 'ar' %}حدود الاستخدام{% elif lang == 'nl' %}Snelheidslimieten{% else %}Rate limits{% endif %}</h2>
+
+            <p>
+                {% if lang == 'es' %}Los límites se aplican por dirección IP. Si necesitas más, abre un issue en GitHub.
+                {% else %}Limits are applied per IP. Open a GitHub issue if you need more.
+                {% endif %}
+            </p>
+
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>{% if lang == 'es' %}Endpoint{% else %}Endpoint{% endif %}</th>
+                        <th>{% if lang == 'es' %}Límite{% else %}Limit{% endif %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>/api/citation</code></td><td>120 / {% if lang == 'es' %}min{% else %}minute{% endif %}</td></tr>
+                    <tr><td><code>/api/export/*</code></td><td>10 / {% if lang == 'es' %}min{% else %}minute{% endif %}</td></tr>
+                    <tr><td>{% if lang == 'es' %}Resto de <code>/api/*</code>{% else %}All other <code>/api/*</code>{% endif %}</td><td>60 / {% if lang == 'es' %}min{% else %}minute{% endif %}</td></tr>
+                </tbody>
+            </table>
+
+            <h2>{% if lang == 'es' %}Servidor MCP{% else %}MCP Server{% endif %}</h2>
+
+            <p>
+                {% if lang == 'es' %}Las constelaciones también están disponibles como un servidor <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">MCP</a> que cualquier cliente compatible (Claude Desktop, Cursor, etc.) puede consumir directamente. Sigue las instrucciones de instalación en <a href="https://github.com/Jossifresben/peshitta/blob/main/docs/MCP_INSTALL.md" target="_blank" rel="noopener">docs/MCP_INSTALL.md</a> en el repositorio.
+                {% else %}The constellations are also available as a <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">Model Context Protocol</a> server that any compatible client (Claude Desktop, Cursor, etc.) can consume directly. Follow the install instructions in <a href="https://github.com/Jossifresben/peshitta/blob/main/docs/MCP_INSTALL.md" target="_blank" rel="noopener">docs/MCP_INSTALL.md</a> in the repository.
+                {% endif %}
+            </p>
+
+            <h2>{% if lang == 'es' %}Licencia{% elif lang == 'he' %}רישיון{% elif lang == 'ar' %}الترخيص{% elif lang == 'nl' %}Licentie{% else %}License{% endif %}</h2>
+
+            <div class="api-license">
+                {% if lang == 'es' %}<strong>Apache 2.0</strong> &mdash; uso libre con cita.
+                {% elif lang == 'he' %}<strong>Apache 2.0</strong> &mdash; שימוש חופשי עם ציטוט.
+                {% elif lang == 'ar' %}<strong>Apache 2.0</strong> &mdash; استخدام مجاني مع الاستشهاد.
+                {% elif lang == 'nl' %}<strong>Apache 2.0</strong> &mdash; vrij gebruik met citatie.
+                {% else %}<strong>Apache 2.0</strong> &mdash; free to use with citation.
+                {% endif %}
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="footer-line">{{ t.footer_by }} <a href="{{ url_for('about_page', lang=lang) }}">Jossi Fresco</a>{{ t.footer_inspired }} <a href="https://www.youtube.com/@VicenteHaya" target="_blank" rel="noopener">Vicente Haya</a></div>
+            <div class="footer-repo"><a href="https://github.com/Jossifresben/peshitta" target="_blank" rel="noopener">repo @GitHub</a> <span class="footer-sep">|</span> Apache 2.0 License <span class="footer-sep">|</span> <a href="https://www.postman.com/jossifresben-1795134/peshitta/collection/53219373-1aac69e2-78f1-42cb-bc59-cb303e97eb72" target="_blank" rel="noopener">API @Postman</a> <span class="footer-sep">|</span> <a href="https://doi.org/10.5281/zenodo.19358529" target="_blank" rel="noopener"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.19358529.svg" alt="DOI" style="vertical-align: middle; height: 18px;"></a></div>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function(){
+    // Tab switching for code examples
+    document.querySelectorAll('.api-example').forEach(function(ex){
+        var tabs = ex.querySelectorAll('.api-tab');
+        var panes = ex.querySelectorAll('.api-code-pane');
+        tabs.forEach(function(tab){
+            tab.addEventListener('click', function(){
+                var target = tab.getAttribute('data-pane');
+                tabs.forEach(function(t){ t.classList.remove('active'); });
+                panes.forEach(function(p){ p.classList.remove('active'); });
+                tab.classList.add('active');
+                var pane = ex.querySelector('#' + target);
+                if(pane) pane.classList.add('active');
+            });
+        });
+    });
+
+    // Copy buttons
+    document.querySelectorAll('.api-code-copy').forEach(function(btn){
+        btn.addEventListener('click', function(){
+            var wrap = btn.closest('.api-code-wrap');
+            if(!wrap) return;
+            var active = wrap.querySelector('.api-code-pane.active');
+            if(!active) return;
+            var text = active.textContent;
+            if(navigator.clipboard && navigator.clipboard.writeText){
+                navigator.clipboard.writeText(text).then(function(){
+                    var orig = btn.innerHTML;
+                    btn.innerHTML = '<span class="material-symbols-outlined">check</span> Copied';
+                    setTimeout(function(){ btn.innerHTML = orig; }, 1500);
+                });
+            }
+        });
+    });
+})();
+</script>
+{% endblock %}
