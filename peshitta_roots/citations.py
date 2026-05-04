@@ -18,7 +18,7 @@ DOI_URL = "https://doi.org/10.5281/zenodo.19358529"
 APP_TITLE = "Peshitta Constellations"
 APP_URL = "https://peshitta.onrender.com"
 REPO_URL = "https://github.com/Jossifresben/peshitta"
-VERSION = "1.2.0"
+VERSION = "1.3.0"
 YEAR = 2026
 
 
