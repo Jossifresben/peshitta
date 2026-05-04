@@ -4,6 +4,17 @@ A bilingual (Spanish/English) web application for researching the Syriac Peshitt
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue) ![Flask](https://img.shields.io/badge/Flask-3.0+-green) ![License](https://img.shields.io/badge/License-Apache%202.0-blue) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19358529.svg)](https://doi.org/10.5281/zenodo.19358529)
 
+## What's new in v1.3 — Open Doors
+
+- **OpenAPI 3.0 spec** at `/static/openapi.yaml` and `/openapi.json`
+- **Swagger UI** at [/docs](https://peshitta.onrender.com/docs)
+- **API documentation page** at [/api](https://peshitta.onrender.com/api)
+- **USFM 3.0 export** — `/api/export/usfm?book=Matthew&chapter=1`
+- **OSIS 2.1.1 XML export** — `/api/export/osis?book=Matthew`
+- **Text-Fabric ZIP export** — `/api/export/text-fabric?book=Matthew`
+- **MCP server** for AI agents (Claude Desktop/Code) — see [docs/MCP_INSTALL.md](docs/MCP_INSTALL.md)
+- **Rate limiting** — 60/min for queries, 10/min for exports, 120/min for citations
+
 ## Features
 
 - **Root search** — Enter a triliteral root (e.g., `K-T-B`) and find all derived word forms across 7,440 verses
@@ -248,6 +259,18 @@ Matthew, Mark, Luke, John, Acts, Romans, 1–2 Corinthians, Galatians, Ephesians
 - **15,261** unique surface word forms
 - **7,440** verses across 22 books
 - **4** verse translation tracks (Spanish, English, Hebrew, Arabic)
+
+## MCP Server
+
+For AI agent integration (Claude Desktop, Claude Code), see [docs/MCP_INSTALL.md](docs/MCP_INSTALL.md).
+The MCP server exposes 6 tools: search roots, get verses, concordance, Greek concordance, passage analysis, and citation generation.
+
+## Citation
+
+Fresco, J. (2026). *Peshitta Constellations* (Version 1.3.0). Zenodo.
+https://doi.org/10.5281/zenodo.19358529 — ORCID: 0009-0000-2026-0836
+
+See `CITATION.cff` or use the "Cite this" button on any page in the app.
 
 ## License
 
