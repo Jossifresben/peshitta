@@ -211,5 +211,8 @@
         document.getElementById('cookie-banner').style.display = '';
     }
     </script>
+
+    {% include '_cite_modal.html' %}
+    <script src="{{ url_for('static', filename='js/cite.js') }}"></script>
 </body>
 </html>

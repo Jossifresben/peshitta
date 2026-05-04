@@ -1,0 +1,26 @@
+<!-- Citation modal (shared) -->
+<div id="cite-modal" class="modal-overlay" onclick="if(event.target===this)closeCiteModal()">
+    <div class="modal-content cite-modal-content">
+        <button class="modal-close" onclick="closeCiteModal()" aria-label="Close">&times;</button>
+        <h2 class="cite-modal-title">{{ t.cite_title|default('Cite this') }}</h2>
+
+        <div class="cite-style-tabs">
+            <button class="cite-style-tab active" data-style="bibtex" onclick="switchCiteStyle('bibtex')">BibTeX</button>
+            <button class="cite-style-tab" data-style="chicago" onclick="switchCiteStyle('chicago')">Chicago</button>
+            <button class="cite-style-tab" data-style="mla" onclick="switchCiteStyle('mla')">MLA</button>
+            <button class="cite-style-tab" data-style="apa" onclick="switchCiteStyle('apa')">APA</button>
+            <button class="cite-style-tab" data-style="sbl" onclick="switchCiteStyle('sbl')">SBL</button>
+        </div>
+
+        <pre class="cite-output" id="cite-output">{{ t.cite_loading|default('Loading...') }}</pre>
+
+        <div class="cite-actions">
+            <button class="cite-copy-btn" onclick="copyCitation()"><span class="material-symbols-outlined">content_copy</span> {{ t.cite_copy|default('Copy') }}</button>
+            <a id="cite-doi-link" href="https://doi.org/10.5281/zenodo.19358529" target="_blank" rel="noopener" class="cite-doi-link">
+                <span class="material-symbols-outlined">link</span> DOI: 10.5281/zenodo.19358529
+            </a>
+        </div>
+
+        <p class="cite-orcid">ORCID: <a href="https://orcid.org/0009-0000-2026-0836" target="_blank" rel="noopener">0009-0000-2026-0836</a></p>
+    </div>
+</div>

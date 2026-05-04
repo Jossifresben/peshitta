@@ -3659,3 +3659,92 @@ footer a:hover {
         right: 12px !important;
     }
 }
+
+/* Citation modal */
+.cite-modal-content { max-width: 720px; }
+.cite-modal-title { margin-top: 0; margin-bottom: 12px; font-size: 1.3em; color: var(--accent-dark); }
+.cite-style-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-light);
+    overflow-x: auto;
+}
+.cite-style-tab {
+    padding: 8px 14px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9em;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+.cite-style-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+.cite-style-tab:hover { color: var(--accent); }
+.cite-output {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 12px;
+    font-family: monospace;
+    font-size: 0.85em;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    max-height: 240px;
+    overflow-y: auto;
+}
+.cite-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+.cite-copy-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+.cite-copy-btn:hover { background: var(--accent-dark); }
+.cite-doi-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.cite-doi-link:hover { color: var(--accent); }
+.cite-orcid { font-size: 0.8em; color: var(--text-muted); margin-top: 8px; margin-bottom: 0; }
+.cite-orcid a { color: var(--accent); text-decoration: none; }
+
+/* Cite button (used on visualizer, search, constellation, reader) */
+.cite-btn {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-decoration: none;
+}
+.cite-btn:hover { background: var(--accent); color: #fff; }
+.cite-btn .material-symbols-outlined { font-size: 16px; }
