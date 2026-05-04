@@ -26,6 +26,11 @@ from .exporters import text_fabric as tf_exporter
 
 app = Flask(__name__)
 
+# Enable permissive CORS on /api/* so external scholarly tools, AI agents,
+# and Swagger UI clients can call the public read-only API from any origin.
+from flask_cors import CORS
+CORS(app, resources={r"/api/*": {"origins": "*"}, r"/openapi.json": {"origins": "*"}, r"/static/openapi.yaml": {"origins": "*"}})
+
 limiter = Limiter(
     app=app,
     key_func=get_remote_address,

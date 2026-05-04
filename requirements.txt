@@ -1,5 +1,6 @@
 flask>=3.0
 gunicorn>=21.2
 flask-limiter>=3.5
+flask-cors>=4.0
 pyyaml>=6.0
 mcp>=1.0
