@@ -1,0 +1,963 @@
+openapi: 3.0.3
+info:
+  title: Peshitta Constellations API
+  description: |
+    Public read-only API for the Peshitta NT root explorer.
+    All responses include citation metadata. Cite as:
+    Fresco, J. (2026). Peshitta Constellations. Zenodo.
+    https://doi.org/10.5281/zenodo.19358529
+  version: "1.3.0"
+  contact:
+    name: Jossi Fresco
+    url: https://orcid.org/0009-0000-2026-0836
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-doi: 10.5281/zenodo.19358529
+  x-orcid: "0009-0000-2026-0836"
+
+servers:
+  - url: https://peshitta.onrender.com
+    description: Production
+  - url: http://localhost:5009
+    description: Local development
+
+tags:
+  - name: Search
+    description: Root and text search
+  - name: Read
+    description: Verse retrieval
+  - name: Roots
+    description: Root browsing and family data
+  - name: Cognates
+    description: Hebrew/Arabic/Greek cognate lookup
+  - name: Concordance
+    description: KWIC and concordance data
+  - name: Citation
+    description: Citation generation
+  - name: Export
+    description: Bulk data export (USFM, OSIS, Text-Fabric)
+
+paths:
+  /api/verse:
+    get:
+      tags: [Read]
+      summary: Get a single verse with translations
+      description: |
+        Returns Syriac text, transliteration, and translations (en/es/he/ar) for
+        a single verse reference, plus adjacent verse refs for navigation.
+      parameters:
+        - name: ref
+          in: query
+          required: true
+          description: Verse reference, e.g. "Matthew 1:1"
+          schema:
+            type: string
+            example: "Matthew 1:1"
+        - name: script
+          in: query
+          required: false
+          description: Transliteration target script
+          schema:
+            type: string
+            enum: [latin, hebrew, arabic, syriac]
+            default: latin
+      responses:
+        '200':
+          description: Verse data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reference: { type: string }
+                  reference_display: { type: string }
+                  syriac: { type: string }
+                  transliteration: { type: string }
+                  words:
+                    type: array
+                    items: { type: string }
+                  words_translit:
+                    type: array
+                    items: { type: string }
+                  words_translit_academic:
+                    type: array
+                    items: { type: string }
+                  translation_en: { type: string, nullable: true }
+                  translation_es: { type: string, nullable: true }
+                  translation_he: { type: string, nullable: true }
+                  translation_ar: { type: string, nullable: true }
+                  prev_ref: { type: string, nullable: true }
+                  next_ref: { type: string, nullable: true }
+                  script: { type: string }
+              example:
+                reference: "Matthew 1:1"
+                reference_display: "Matthew 1:1"
+                syriac: "ܟܬܒܐ ܕܝܠܝܕܘܬܗ ܕܝܫܘܥ ܡܫܝܚܐ"
+                transliteration: "ktaba dyalidoteh dyeshu' meshikha"
+                words: ["ܟܬܒܐ", "ܕܝܠܝܕܘܬܗ", "ܕܝܫܘܥ", "ܡܫܝܚܐ"]
+                words_translit: ["ktaba", "dyalidoteh", "dyeshu'", "meshikha"]
+                words_translit_academic: ["ktaba", "dyalidoteh", "dyeshu'", "meshikha"]
+                translation_en: "The book of the genealogy of Jesus the Messiah..."
+                translation_es: "El libro de la genealogía de Yeshua el Mesías..."
+                translation_he: null
+                translation_ar: null
+                prev_ref: null
+                next_ref: "Matthew 1:2"
+                script: "latin"
+        '400':
+          description: Missing ref parameter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
+              example: { error: "Missing ref parameter" }
+        '404':
+          description: Verse not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
+              example: { error: "Verse not found" }
+        '429':
+          description: Rate limit exceeded
+
+  /api/suggest:
+    get:
+      tags: [Search]
+      summary: Autocomplete root suggestions
+      description: Returns roots whose dash-form transliteration starts with the given prefix.
+      parameters:
+        - name: prefix
+          in: query
+          required: true
+          description: Latin-letter prefix (e.g. "M-L" or "MLK")
+          schema:
+            type: string
+            example: "M-L"
+      responses:
+        '200':
+          description: Up to 20 matching roots
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    root: { type: string, description: "Syriac form" }
+                    translit: { type: string, description: "Dash-form transliteration" }
+                    count: { type: integer, description: "Total occurrences in corpus" }
+              example:
+                - root: "ܡܠܟ"
+                  translit: "M-L-K"
+                  count: 487
+                - root: "ܡܠܠ"
+                  translit: "M-L-L"
+                  count: 312
+        '429':
+          description: Rate limit exceeded
+
+  /api/word-root:
+    get:
+      tags: [Roots]
+      summary: Look up the root of a word form
+      description: Given a Syriac word, return its root and all sibling forms with glosses.
+      parameters:
+        - name: form
+          in: query
+          required: true
+          description: Syriac word form
+          schema:
+            type: string
+            example: "ܡܠܟܐ"
+        - name: script
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [latin, hebrew, arabic, syriac]
+            default: latin
+      responses:
+        '200':
+          description: Root info plus matches
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  form: { type: string }
+                  root: { type: string }
+                  root_translit: { type: string }
+                  gloss: { type: string }
+                  matches:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        form: { type: string }
+                        transliteration: { type: string }
+                        gloss: { type: string }
+                        stem: { type: string }
+                        count: { type: integer }
+                        references:
+                          type: array
+                          items: { type: string }
+                  degradation:
+                    type: object
+                    nullable: true
+                    properties:
+                      greek_word: { type: string }
+                      greek_translit: { type: string }
+                      meaning: { type: string }
+                      aramaic_range: { type: string }
+                      lost: { type: string }
+              example:
+                form: "ܡܠܟܐ"
+                root: "ܡܠܟ"
+                root_translit: "M-L-K"
+                gloss: "king, to rule"
+                matches:
+                  - form: "ܡܠܟܐ"
+                    transliteration: "malka"
+                    gloss: "the king"
+                    stem: "malk"
+                    count: 142
+                    references: ["Matthew 1:6", "Matthew 2:1"]
+                degradation: null
+        '400':
+          description: Missing form parameter
+        '404':
+          description: No root found for that form
+        '429':
+          description: Rate limit exceeded
+
+  /api/roots:
+    get:
+      tags: [Roots]
+      summary: Paginated list of all roots
+      description: Returns roots sorted by frequency (descending), with gloss and form count.
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema: { type: integer, default: 1, example: 1 }
+        - name: per_page
+          in: query
+          required: false
+          description: Page size (max 100)
+          schema: { type: integer, default: 50, maximum: 100, example: 50 }
+      responses:
+        '200':
+          description: Paginated roots list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page: { type: integer }
+                  per_page: { type: integer }
+                  total: { type: integer }
+                  total_pages: { type: integer }
+                  roots:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        root: { type: string }
+                        translit: { type: string }
+                        forms: { type: integer }
+                        occurrences: { type: integer }
+                        gloss: { type: string }
+              example:
+                page: 1
+                per_page: 50
+                total: 2418
+                total_pages: 49
+                roots:
+                  - root: "ܐܡܪ"
+                    translit: "'-M-R"
+                    forms: 87
+                    occurrences: 5312
+                    gloss: "to say, speak"
+        '429':
+          description: Rate limit exceeded
+
+  /api/root-family:
+    get:
+      tags: [Roots, Cognates]
+      summary: Full root family with cognates and bridges
+      description: |
+        Returns the root entry plus Syriac word forms, Hebrew/Arabic cognates,
+        Greek parallel, semantic bridges, sister roots, and a paradigmatic citation.
+      parameters:
+        - name: root
+          in: query
+          required: true
+          description: Root in dash form (e.g. "M-L-K") or Syriac
+          schema: { type: string, example: "M-L-K" }
+        - name: script
+          in: query
+          required: false
+          schema: { type: string, enum: [latin, hebrew, arabic, syriac], default: latin }
+        - name: trans
+          in: query
+          required: false
+          description: Translation language for verse text
+          schema: { type: string, enum: [en, es, he, ar, gr] }
+      responses:
+        '200':
+          description: Root family payload
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  root: { type: string }
+                  root_translit: { type: string }
+                  gloss: { type: string }
+                  sabor_raiz: { type: string }
+                  syriac_words:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        word: { type: string }
+                        translit: { type: string }
+                        meaning: { type: string }
+                        references:
+                          type: array
+                          items: { type: string }
+                  hebrew:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        word: { type: string }
+                        translit: { type: string }
+                        meaning: { type: string }
+                        outlier: { type: boolean }
+                  arabic:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        word: { type: string }
+                        translit: { type: string }
+                        meaning: { type: string }
+                        outlier: { type: boolean }
+                  semantic_bridges:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        outlier_key: { type: string }
+                        target_root: { type: string }
+                        relationship: { type: string }
+                        bridge_concept: { type: string }
+                  paradigmatic_ref: { type: string }
+                  paradigmatic_verse: { type: string }
+                  paradigmatic_syriac: { type: string }
+                  paradigmatic_translit: { type: string }
+                  paradigmatic_form: { type: string }
+                  paradigmatic_form_translit: { type: string }
+                  paradigmatic_note: { type: string }
+                  sister_roots:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        root_translit: { type: string }
+                        root_syriac: { type: string }
+                        gloss: { type: string }
+                        shared: { type: integer }
+                  greek_parallel:
+                    type: object
+                    nullable: true
+                    properties:
+                      word: { type: string }
+                      transliteration: { type: string }
+                      meaning: { type: string }
+                      aramaic_range: { type: string }
+                      greek_range: { type: string }
+                      lost: { type: string }
+              example:
+                root: "ܡܠܟ"
+                root_translit: "M-L-K"
+                gloss: "king, to rule"
+                sabor_raiz: "sovereignty, counsel"
+                syriac_words: []
+                hebrew: [{ word: "מלך", translit: "melek", meaning: "king", outlier: false }]
+                arabic: [{ word: "ملك", translit: "malik", meaning: "king", outlier: false }]
+                semantic_bridges: []
+                paradigmatic_ref: "Matthew 2:2"
+                paradigmatic_verse: "Where is the king of the Jews who has been born?"
+                paradigmatic_syriac: ""
+                paradigmatic_translit: ""
+                paradigmatic_form: "ܡܠܟܐ"
+                paradigmatic_form_translit: "malka"
+                paradigmatic_note: ""
+                sister_roots: []
+                greek_parallel: null
+        '400':
+          description: Missing or invalid root parameter
+        '429':
+          description: Rate limit exceeded
+
+  /api/passage-constellation:
+    get:
+      tags: [Search, Roots]
+      summary: Root network for a passage
+      description: |
+        Returns all roots in a passage with their cognates, frequency, word forms,
+        and inter-root connections (semantic bridges and sister roots).
+      parameters:
+        - name: book
+          in: query
+          required: true
+          description: Book name in English (e.g. "Matthew")
+          schema: { type: string, example: "Matthew" }
+        - name: chapter
+          in: query
+          required: true
+          schema: { type: integer, example: 1 }
+        - name: v_start
+          in: query
+          required: true
+          schema: { type: integer, example: 1 }
+        - name: v_end
+          in: query
+          required: false
+          description: Defaults to v_start (single-verse range)
+          schema: { type: integer, example: 5 }
+        - name: script
+          in: query
+          required: false
+          schema: { type: string, enum: [latin, hebrew, arabic, syriac], default: latin }
+        - name: trans
+          in: query
+          required: false
+          schema: { type: string, enum: [en, es, he, ar, gr] }
+      responses:
+        '200':
+          description: Constellation payload
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reference: { type: string }
+                  verses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ref: { type: string }
+                        verse_num: { type: integer }
+                        words:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              syriac: { type: string }
+                              translit: { type: string }
+                              root: { type: string, nullable: true }
+                              root_syriac: { type: string, nullable: true }
+                        translation: { type: string }
+                  roots:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        root_translit: { type: string }
+                        root_syriac: { type: string }
+                        gloss: { type: string }
+                        frequency: { type: integer }
+                        word_forms:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              syriac: { type: string }
+                              translit: { type: string }
+                              verse_ref: { type: string }
+                        hebrew: { type: array, items: { type: object } }
+                        arabic: { type: array, items: { type: object } }
+                        bridges: { type: array, items: { type: object } }
+                  connections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        source: { type: string }
+                        target: { type: string }
+                        concept: { type: string }
+                        type: { type: string, nullable: true }
+                  total_roots: { type: integer }
+              example:
+                reference: "Matthew 1:1-5"
+                verses: []
+                roots: []
+                connections: []
+                total_roots: 0
+        '400':
+          description: Missing/invalid book, chapter, or v_start
+        '404':
+          description: No verses found for that range
+        '429':
+          description: Rate limit exceeded
+
+  /api/reverse-search:
+    get:
+      tags: [Search, Cognates]
+      summary: Find Syriac roots by English/Spanish meaning
+      description: |
+        Searches glosses, sabor-raiz notes, and cognate meanings (Hebrew, Arabic,
+        Greek) for query terms. Returns up to 30 ranked matches.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search term (min 2 chars)
+          schema: { type: string, example: "peace" }
+        - name: lang
+          in: query
+          required: false
+          schema: { type: string, enum: [en, es], default: en }
+      responses:
+        '200':
+          description: Ranked root matches
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query: { type: string }
+                  total: { type: integer }
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key: { type: string }
+                        root_syriac: { type: string }
+                        gloss: { type: string }
+                        sabor: { type: string }
+                        occurrences: { type: integer }
+                        score: { type: integer }
+              example:
+                query: "peace"
+                total: 3
+                results:
+                  - key: "SH-L-M"
+                    root_syriac: "ܫܠܡ"
+                    gloss: "peace, wholeness"
+                    sabor: "completion, rest, settlement"
+                    occurrences: 412
+                    score: 153
+        '429':
+          description: Rate limit exceeded
+
+  /api/text-search:
+    get:
+      tags: [Search, Read]
+      summary: Full-text search across verses
+      description: |
+        Searches verse translations (or Syriac text) for a substring.
+        Supports auto-detection of query script (Syriac, Hebrew, Arabic, Latin).
+        Results are paginated.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search query (min 2 chars)
+          schema: { type: string, example: "kingdom" }
+        - name: lang
+          in: query
+          required: false
+          description: "Translation lang to search; 'auto' detects from script"
+          schema:
+            type: string
+            enum: [auto, en, es, he, ar, syriac]
+            default: en
+        - name: page
+          in: query
+          required: false
+          schema: { type: integer, default: 1 }
+        - name: per_page
+          in: query
+          required: false
+          schema: { type: integer, default: 20 }
+        - name: script
+          in: query
+          required: false
+          schema: { type: string, enum: [latin, hebrew, arabic, syriac], default: latin }
+      responses:
+        '200':
+          description: Paginated matches with KWIC positions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query: { type: string }
+                  search_lang: { type: string }
+                  total: { type: integer }
+                  page: { type: integer }
+                  per_page: { type: integer }
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        reference: { type: string }
+                        reference_display: { type: string }
+                        syriac: { type: string }
+                        translation: { type: string }
+                        match_positions:
+                          type: array
+                          items: { type: integer }
+                        match_type: { type: string }
+                        book: { type: string }
+                        chapter: { type: string }
+                        verse: { type: string }
+                        words:
+                          type: array
+                          items: { type: string }
+                        words_translit:
+                          type: array
+                          items: { type: string }
+                        highlight_indices:
+                          type: array
+                          items: { type: integer }
+              example:
+                query: "kingdom"
+                search_lang: "en"
+                total: 1
+                page: 1
+                per_page: 20
+                results:
+                  - reference: "Matthew 3:2"
+                    reference_display: "Matthew 3:2"
+                    syriac: "..."
+                    translation: "Repent, for the kingdom of heaven is at hand."
+                    match_positions: [13]
+                    match_type: "translation"
+                    book: "Matthew"
+                    chapter: "3"
+                    verse: "2"
+                    words: []
+                    words_translit: []
+                    highlight_indices: []
+        '429':
+          description: Rate limit exceeded
+
+  /api/concordance:
+    get:
+      tags: [Concordance]
+      summary: KWIC concordance for a word form across references
+      description: |
+        Given a Syriac word form and a list of references, returns key-word-in-context
+        snippets (3 words before, 3 after) plus the verse translation.
+      parameters:
+        - name: form
+          in: query
+          required: true
+          description: Syriac word form to highlight
+          schema: { type: string, example: "ܡܠܟܐ" }
+        - name: refs
+          in: query
+          required: true
+          description: Comma-separated list of refs (max 30)
+          schema:
+            type: string
+            example: "Matthew 1:6,Matthew 2:1,Matthew 2:2"
+        - name: lang
+          in: query
+          required: false
+          schema: { type: string, enum: [en, es, he, ar], default: en }
+        - name: trans
+          in: query
+          required: false
+          description: Translation language for context
+          schema: { type: string, enum: [en, es, he, ar, gr] }
+      responses:
+        '200':
+          description: KWIC contexts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contexts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ref: { type: string }
+                        before: { type: string }
+                        word: { type: string }
+                        after: { type: string }
+                        translation: { type: string, description: "Truncated to 150 chars" }
+              example:
+                contexts:
+                  - ref: "Matthew 2:2"
+                    before: "ܐܝܟܘ ܡܠܟܐ"
+                    word: "ܕܝܗܘܕܝܐ"
+                    after: "ܕܐܬܝܠܕ ܚܙܝܢ ܓܝܪ"
+                    translation: "Where is the king of the Jews who has been born?"
+        '400':
+          description: Missing form or refs parameter
+        '429':
+          description: Rate limit exceeded
+
+  /api/greek-concordance:
+    get:
+      tags: [Cognates, Concordance]
+      summary: Greek lemma to Syriac roots
+      description: |
+        Returns the Syriac roots that translate a given Greek word in the Peshitta.
+        With no `q`, returns a browse list of all Greek words in the index.
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: Greek word; if omitted, returns the full browse list
+          schema: { type: string, example: "λόγος" }
+      responses:
+        '200':
+          description: Greek-to-Syriac mapping or browse list
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    description: Browse mode (no q)
+                    properties:
+                      browse: { type: boolean }
+                      total: { type: integer }
+                      words:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            word: { type: string }
+                            transliteration: { type: string }
+                            meaning: { type: string }
+                            root_count: { type: integer }
+                  - type: object
+                    description: Search mode
+                    properties:
+                      query: { type: string }
+                      transliteration: { type: string }
+                      meaning: { type: string }
+                      total: { type: integer }
+                      roots:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            key: { type: string }
+                            root_syriac: { type: string }
+                            gloss: { type: string }
+                            occurrences: { type: integer }
+                            sabor: { type: string }
+              example:
+                query: "λόγος"
+                transliteration: "logos"
+                meaning: "word, reason, discourse"
+                total: 2
+                roots:
+                  - key: "M-L-L"
+                    root_syriac: "ܡܠܠ"
+                    gloss: "to speak, utter"
+                    occurrences: 312
+                    sabor: "speech, utterance"
+        '429':
+          description: Rate limit exceeded
+
+  /api/citation:
+    get:
+      tags: [Citation]
+      summary: Citation strings in 5 styles
+      description: |
+        Returns citation metadata and the formatted citation in 5 styles
+        (APA, MLA, Chicago, BibTeX, RIS) for a given view.
+      parameters:
+        - name: view
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [app, root, passage, search]
+            default: app
+        - name: label
+          in: query
+          required: false
+          description: Resource label (e.g. "M-L-K", "Matthew 1:1-5")
+          schema: { type: string }
+        - name: url
+          in: query
+          required: false
+          description: Canonical URL of the view being cited
+          schema: { type: string, format: uri }
+      responses:
+        '200':
+          description: Citation payload
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    description: Author, DOI, ORCID, version, year
+                  styles:
+                    type: object
+                    description: Map of style name to formatted string
+                    properties:
+                      apa: { type: string }
+                      mla: { type: string }
+                      chicago: { type: string }
+                      bibtex: { type: string }
+                      ris: { type: string }
+              example:
+                metadata:
+                  author: "Fresco, J."
+                  year: 2026
+                  doi: "10.5281/zenodo.19358529"
+                  orcid: "0009-0000-2026-0836"
+                  version: "1.3.0"
+                styles:
+                  apa: "Fresco, J. (2026). Peshitta Constellations. Zenodo. https://doi.org/10.5281/zenodo.19358529"
+                  mla: "Fresco, Jossi. \"Peshitta Constellations.\" Zenodo, 2026."
+                  chicago: "Fresco, Jossi. 2026. Peshitta Constellations. Zenodo."
+                  bibtex: "@misc{fresco2026peshitta, ...}"
+                  ris: "TY  - COMP\nAU  - Fresco, J.\n..."
+        '429':
+          description: Rate limit exceeded
+
+  /api/export/usfm:
+    get:
+      tags: [Export]
+      summary: Export verse range as USFM 3.0
+      description: |
+        Returns the requested book or verse range serialized as USFM 3.0 plain text.
+        Useful for import into Paratext, Logos, and other Bible software.
+      parameters:
+        - name: book
+          in: query
+          required: true
+          description: Book name in English (e.g. "Matthew")
+          schema: { type: string, example: "Matthew" }
+        - name: chapter
+          in: query
+          required: false
+          description: If omitted, exports the entire book
+          schema: { type: integer, example: 1 }
+        - name: start_verse
+          in: query
+          required: false
+          schema: { type: integer, example: 1 }
+        - name: end_verse
+          in: query
+          required: false
+          schema: { type: integer, example: 25 }
+      responses:
+        '200':
+          description: USFM 3.0 text
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |
+                \id MAT Peshitta NT
+                \h Matthew
+                \toc1 The Gospel According to Matthew
+                \toc2 Matthew
+                \mt1 Matthew
+                \c 1
+                \v 1 ܟܬܒܐ ܕܝܠܝܕܘܬܗ ܕܝܫܘܥ ܡܫܝܚܐ
+        '400':
+          description: Missing or invalid book parameter
+        '404':
+          description: Book/chapter/verse range not found
+        '429':
+          description: Rate limit exceeded
+
+  /api/export/osis:
+    get:
+      tags: [Export]
+      summary: Export book or full corpus as OSIS 2.1.1 XML
+      description: |
+        Returns OSIS-formatted XML. With no `book`, exports the full Peshitta NT
+        corpus as a single OSIS document.
+      parameters:
+        - name: book
+          in: query
+          required: false
+          description: If omitted, exports the full corpus
+          schema: { type: string, example: "Matthew" }
+      responses:
+        '200':
+          description: OSIS 2.1.1 XML
+          content:
+            application/xml:
+              schema:
+                type: string
+              example: |
+                <?xml version="1.0" encoding="UTF-8"?>
+                <osis xmlns="http://www.bibletechnologies.net/2003/OSIS/namespace">
+                  <osisText osisIDWork="Peshitta" xml:lang="syc">
+                    <header>
+                      <work osisWork="Peshitta">
+                        <title>Peshitta New Testament</title>
+                      </work>
+                    </header>
+                    <div type="book" osisID="Matt">
+                      <chapter osisID="Matt.1">
+                        <verse osisID="Matt.1.1">ܟܬܒܐ ܕܝܠܝܕܘܬܗ ܕܝܫܘܥ ܡܫܝܚܐ</verse>
+                      </chapter>
+                    </div>
+                  </osisText>
+                </osis>
+        '400':
+          description: Invalid book parameter
+        '429':
+          description: Rate limit exceeded
+
+  /api/export/text-fabric:
+    get:
+      tags: [Export]
+      summary: Export book or full corpus as a Text-Fabric dataset
+      description: |
+        Returns a ZIP archive containing a Text-Fabric (TF) dataset for the requested
+        book, or for the full corpus when `all=true`. Suitable for use with the
+        Text-Fabric Python library (https://annotation.github.io/text-fabric/).
+      parameters:
+        - name: book
+          in: query
+          required: false
+          description: Book name to export (mutually exclusive with `all`)
+          schema: { type: string, example: "Matthew" }
+        - name: all
+          in: query
+          required: false
+          description: When true, exports the full corpus
+          schema: { type: boolean, example: true }
+      responses:
+        '200':
+          description: Text-Fabric dataset (ZIP)
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Must supply either `book` or `all=true`
+        '429':
+          description: Rate limit exceeded
