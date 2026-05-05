@@ -530,7 +530,7 @@ header p {
     opacity: 1;
 }
 
-.lang-toggle, .theme-toggle, .help-toggle, .settings-toggle, .share-toggle {
+.lang-toggle, .theme-toggle, .help-toggle, .settings-toggle, .share-toggle, .bookmarks-toggle, .api-toggle {
     background: transparent;
     color: var(--text-secondary);
     border: 1px solid var(--border);
@@ -545,7 +545,7 @@ header p {
     transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
-.lang-toggle:hover, .theme-toggle:hover, .help-toggle:hover, .settings-toggle:hover, .share-toggle:hover {
+.lang-toggle:hover, .theme-toggle:hover, .help-toggle:hover, .settings-toggle:hover, .share-toggle:hover, .bookmarks-toggle:hover, .api-toggle:hover {
     background: var(--bg-ref);
     color: var(--accent);
     border-color: var(--accent);
@@ -555,7 +555,9 @@ header p {
 .theme-toggle .material-symbols-outlined,
 .help-toggle .material-symbols-outlined,
 .settings-toggle .material-symbols-outlined,
-.share-toggle .material-symbols-outlined {
+.share-toggle .material-symbols-outlined,
+.bookmarks-toggle .material-symbols-outlined,
+.api-toggle .material-symbols-outlined {
     font-size: 22px;
 }
 
@@ -2675,8 +2677,8 @@ footer a:hover {
     .cookie-buttons { width: 100%; justify-content: center; }
 }
 
-.bookmarks-toggle { color: var(--text-body); text-decoration: none; display: flex; align-items: center; }
-.bookmarks-toggle .material-symbols-outlined { font-size: 22px; }
+/* .bookmarks-toggle and .api-toggle now share the unified outlined-icon
+   button rule above (search for ".lang-toggle, .theme-toggle, ..."). */
 
 .bookmarks-toolbar {
     display: flex;
