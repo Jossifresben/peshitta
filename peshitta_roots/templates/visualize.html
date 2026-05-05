@@ -24,6 +24,13 @@
         </div>
         <div id="viz-error" class="viz-error" style="display:none;"></div>
         <div id="viz-container" class="viz-container" style="display:none;">
+            <!-- Persistent root identity header — visible across both tabs -->
+            <div class="viz-root-header">
+                <span class="viz-root-syriac" id="ficha-root-syriac"></span>
+                <span class="viz-root-key" id="ficha-root-translit"></span>
+                <p class="viz-root-meaning" id="ficha-sabor"></p>
+            </div>
+
             <!-- Grafo / Ficha tabs -->
             <div class="viz-view-tabs">
                 <button class="viz-view-tab active" id="tab-graph" onclick="switchVizTab('graph')">
@@ -62,15 +69,6 @@
             <!-- Ficha (Root Card) view -->
             <div id="view-ficha" style="display:none;">
                 <div class="root-ficha">
-                    <!-- Semantic field -->
-                    <div class="ficha-section ficha-semantic">
-                        <div class="ficha-root-header">
-                            <span class="ficha-root-syriac" id="ficha-root-syriac"></span>
-                            <span class="ficha-root-translit" id="ficha-root-translit"></span>
-                        </div>
-                        <p class="ficha-semantic-text" id="ficha-sabor"></p>
-                    </div>
-
                     <!-- Paradigmatic citation -->
                     <div class="ficha-section ficha-citation-section">
                         <h3 class="ficha-section-title">
