@@ -71,7 +71,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&display=block" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Spectral:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Syriac&family=Noto+Sans+Syriac+Eastern&family=Noto+Sans+Syriac+Western&family=Noto+Sans+Hebrew&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
     {% block jsonld %}
     <script type="application/ld+json">
     {
@@ -92,10 +92,42 @@
 <body>
     <a href="#main-content" class="skip-link">{% if lang == 'es' %}Ir al contenido{% elif lang == 'he' %}דלג לתוכן{% elif lang == 'ar' %}انتقل إلى المحتوى{% else %}Skip to content{% endif %}</a>
 
-    <div class="sticky-header" role="banner">
-        <a href="{{ url_for('index', lang=lang) }}" class="nav-logo" title="Home"><img src="{{ url_for('static', filename='logo.svg') }}" alt="Peshitta"></a>
+    <header class="menubar sticky-header" role="banner">
+      <div class="menubar-row">
+        <a href="{{ url_for('index', lang=lang) }}" class="brand" title="{{ t.nav_home|default('Home') }}" aria-label="{{ t.nav_home|default('Home') }}">
+            <div class="brand-mark">ܐ</div>
+            <div class="brand-text">
+                <div class="brand-name">Peshitta</div>
+                <div class="brand-sub">{{ t.nav_subtitle|default('Root Constellations') }}</div>
+            </div>
+        </a>
+
+        <nav class="menu-nav" id="menuNav" aria-label="Primary">
+            <a class="menu-link {% if request.endpoint == 'index' %}active{% endif %}"
+               href="{{ url_for('index', lang=lang) }}">
+                <span class="material-symbols-outlined">cottage</span><span class="menu-label">{{ t.nav_home|default('Home') }}</span>
+            </a>
+            <a class="menu-link {% if request.endpoint == 'read' %}active{% endif %}"
+               href="{{ url_for('read', lang=lang, book='Matthew', chapter=1) }}">
+                <span class="material-symbols-outlined">menu_book</span><span class="menu-label">{{ t.nav_read|default('Read') }}</span>
+            </a>
+            <a class="menu-link {% if request.endpoint == 'browse' %}active{% endif %}"
+               href="{{ url_for('browse', lang=lang) }}">
+                <span class="material-symbols-outlined">view_list</span><span class="menu-label">{{ t.nav_browse|default('Browse') }}</span>
+            </a>
+            <a class="menu-link {% if request.endpoint == 'methodology_page' %}active{% endif %}"
+               href="{{ url_for('methodology_page', lang=lang) }}">
+                <span class="material-symbols-outlined">school</span><span class="menu-label">{{ t.nav_method|default('Method') }}</span>
+            </a>
+        </nav>
+
+        <div class="menu-spacer"></div>
+
+        <div class="menu-utility">
+        {# Strategic order: personalization → content → share → support → dev #}
+        {# 1. Language (UI personalization) #}
         <div class="lang-wrapper">
-            <button class="lang-toggle" id="lang-toggle" aria-label="Language" title="Language" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">captive_portal</span></button>
+            <button class="lang-toggle" id="lang-toggle" aria-label="{{ t.nav_language|default('Language') }}" title="{{ t.nav_language|default('Language') }}" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">captive_portal</span></button>
             <div class="lang-dropdown" id="lang-dropdown" role="menu">
                 {% block lang_links %}
                 <a href="?lang=es" class="lang-option{% if lang == 'es' %} active{% endif %}" role="menuitem">ES</a>
@@ -106,12 +138,12 @@
                 {% endblock %}
             </div>
         </div>
-        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}" aria-label="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
-        <a href="{{ url_for('bookmarks_page', lang=lang) }}" class="bookmarks-toggle" id="bookmarks-toggle" title="{{ t.bookmarks_title|default('Bookmarks') }}" aria-label="{{ t.bookmarks_title|default('Bookmarks') }}"><span class="material-symbols-outlined">bookmark</span></a>
-        <a href="{{ url_for('api_docs', lang=lang) }}" class="api-toggle" title="{{ t.nav_api|default('API') }}" aria-label="API"><span class="material-symbols-outlined">api</span></a>
+        {# 2. Theme (UI personalization) #}
+        <button class="theme-toggle" id="theme-toggle" aria-label="{{ t.nav_theme|default('Toggle theme') }}" title="{{ t.nav_theme|default('Toggle theme') }}"><span class="material-symbols-outlined">sunny</span></button>
+        {# 3. Settings (UI personalization — script & translation) #}
         {% block header_settings %}
         <div class="settings-wrapper">
-            <button class="settings-toggle" id="settings-toggle" aria-label="Settings" title="{{ t.settings_script }}" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">settings</span></button>
+            <button class="settings-toggle" id="settings-toggle" aria-label="{{ t.nav_settings|default('Settings') }}" title="{{ t.nav_settings|default('Settings') }}" aria-haspopup="true" aria-expanded="false"><span class="material-symbols-outlined">settings</span></button>
             <div class="settings-dropdown" id="settings-dropdown" role="menu">
                 <div class="settings-label">{{ t.settings_script }}</div>
                 <button class="settings-option{% if script|default('latin') == 'latin' %} active{% endif %}" data-script="latin" role="menuitemradio" aria-checked="{{ 'true' if script|default('latin') == 'latin' else 'false' }}">{{ t.settings_latin }}</button>
@@ -133,11 +165,23 @@
             </div>
         </div>
         {% endblock %}
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"><span class="material-symbols-outlined">sunny</span></button>
+        {# 4. Bookmarks (user content) #}
+        <a href="{{ url_for('bookmarks_page', lang=lang) }}" class="bookmarks-toggle" id="bookmarks-toggle" title="{{ t.bookmarks_title|default('Bookmarks') }}" aria-label="{{ t.bookmarks_title|default('Bookmarks') }}"><span class="material-symbols-outlined">bookmark</span></a>
+        {# 5. Share (export current view) #}
         {% block header_share %}
-        <button class="share-toggle" id="share-toggle" aria-label="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% elif lang == 'ar' %}مشاركة{% else %}Share{% endif %}" title="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% elif lang == 'ar' %}مشاركة{% else %}Share{% endif %}"><span class="material-symbols-outlined">qr_code_2</span></button>
+        <button class="share-toggle" id="share-toggle" aria-label="{{ t.nav_share|default('Share') }}" title="{{ t.nav_share|default('Share') }}"><span class="material-symbols-outlined">qr_code_2</span></button>
         {% endblock %}
-    </div>
+        {# 6. Help (support) #}
+        <a href="{{ url_for('help_page', lang=lang) }}" class="help-toggle" title="{{ t.help_link }}" aria-label="{{ t.help_link }}"><span class="material-symbols-outlined">help</span></a>
+        {# 7. API (developer-facing, last) #}
+        <a href="{{ url_for('api_docs', lang=lang) }}" class="api-toggle" title="{{ t.nav_api|default('API') }}" aria-label="{{ t.nav_api|default('API') }}"><span class="material-symbols-outlined">api</span></a>
+        </div><!-- /menu-utility -->
+
+        <button class="menu-mobile-btn" id="menuMobileBtn" aria-label="Menu" title="{{ t.nav_home|default('Menu') }}">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div><!-- /menubar-row -->
+    </header>
 
     {% block share_modal %}
     <div id="share-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="{% if lang == 'es' %}Compartir{% elif lang == 'he' %}שתף{% elif lang == 'ar' %}مشاركة{% else %}Share{% endif %}">

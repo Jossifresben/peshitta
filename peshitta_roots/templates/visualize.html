@@ -12,18 +12,21 @@
 
 {% block content %}
     <div class="container">
-        <header>
-            <h1 class="page-title">{{ t.viz_title }}</h1>
-            <button type="button" class="cite-btn" onclick="openCiteModal('root', '{{ root_key }}')">
-                <span class="material-symbols-outlined">format_quote</span> {{ t.cite_button|default('Cite') }}
-            </button>
-        </header>
-
         <div id="viz-loading" class="viz-loading">
             <p>{{ t.viz_loading }}</p>
         </div>
         <div id="viz-error" class="viz-error" style="display:none;"></div>
         <div id="viz-container" class="viz-container" style="display:none;">
+            <!-- Persistent root identity header — visible across both tabs -->
+            <div class="viz-root-header">
+                <span class="viz-root-syriac" id="ficha-root-syriac"></span>
+                <span class="viz-root-key" id="ficha-root-translit"></span>
+                <button type="button" class="viz-cite-btn" onclick="openCiteModal('root', '{{ root_key }}')" title="{{ t.cite_button|default('Cite') }}" aria-label="{{ t.cite_button|default('Cite') }}">
+                    <span class="material-symbols-outlined">format_quote</span>
+                </button>
+                <p class="viz-root-meaning" id="ficha-sabor"></p>
+            </div>
+
             <!-- Grafo / Ficha tabs -->
             <div class="viz-view-tabs">
                 <button class="viz-view-tab active" id="tab-graph" onclick="switchVizTab('graph')">
@@ -62,15 +65,6 @@
             <!-- Ficha (Root Card) view -->
             <div id="view-ficha" style="display:none;">
                 <div class="root-ficha">
-                    <!-- Semantic field -->
-                    <div class="ficha-section ficha-semantic">
-                        <div class="ficha-root-header">
-                            <span class="ficha-root-syriac" id="ficha-root-syriac"></span>
-                            <span class="ficha-root-translit" id="ficha-root-translit"></span>
-                        </div>
-                        <p class="ficha-semantic-text" id="ficha-sabor"></p>
-                    </div>
-
                     <!-- Paradigmatic citation -->
                     <div class="ficha-section ficha-citation-section">
                         <h3 class="ficha-section-title">

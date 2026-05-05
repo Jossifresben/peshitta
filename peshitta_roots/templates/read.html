@@ -58,11 +58,11 @@
             {% for v in verses %}
             <div class="reader-verse" id="verse-{{ v.number }}">
                 <span class="verse-num">{{ chapter }}:{{ v.number }}</span>
-                <button class="bm-verse-btn" data-ref="{{ v.reference }}" data-book="{{ book }}" data-chapter="{{ chapter }}" data-verse="{{ v.number }}" title="{{ t.bookmarks_toggle|default('Bookmark') }}"><span class="material-symbols-outlined">bookmark_border</span></button>
                 <a href="{{ url_for('constellation', book=book, chapter=chapter, v_start=v.number, v_end=v.number, lang=lang, script=script, trans=trans) }}"
                    class="verse-constellation-link" title="{{ t.read_constellation }}">
                     <span class="material-symbols-outlined">scatter_plot</span>
                 </a>
+                <button class="bm-verse-btn" data-ref="{{ v.reference }}" data-book="{{ book }}" data-chapter="{{ chapter }}" data-verse="{{ v.number }}" title="{{ t.bookmarks_toggle|default('Bookmark') }}"><span class="material-symbols-outlined">bookmark_border</span></button>
                 <div class="reader-line reader-syriac">
                     {% for w in v.words %}
                     <span class="rw{% if w.has_root %} clickable{% endif %}" {% if w.has_root %}data-form="{{ w.syriac }}" data-root="{{ w.root }}" data-root-translit="{{ w.root_translit }}" title="{{ w.root_translit }}"{% endif %}>{{ w.syriac }}</span>

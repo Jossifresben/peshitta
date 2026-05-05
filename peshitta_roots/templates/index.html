@@ -29,17 +29,67 @@
 
 {% block content %}
     <div class="container">
-        <header>
-            <h1>{{ t.app_title }}</h1>
-            <p>{{ t.app_subtitle }}</p>
-        </header>
+        <!-- ============================================================
+             Hero — eyebrow, headline, deck, stats strip, ROTD aside
+             ============================================================ -->
+        <section class="home-hero" aria-label="Introduction">
+            <div class="home-hero-left">
+                <div class="home-eyebrow">{{ t.home_eyebrow|default('ARAMAIC NEW TESTAMENT') }}</div>
+                <h1 class="home-headline">{{ t.home_headline|default(t.app_title) }}</h1>
+                <p class="home-deck">{{ t.home_deck|default(t.app_subtitle) }}</p>
+
+                <div class="stats-strip" aria-label="Corpus statistics">
+                    <div class="stat-cell">
+                        <div class="stat-num">{{ '{:,}'.format(stats.roots) }}</div>
+                        <div class="stat-lbl">{{ t.stat_roots|default('Root patterns') }}</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-num">{{ '{:,}'.format(stats.words) }}</div>
+                        <div class="stat-lbl">{{ t.stat_words|default('Word forms') }}</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-num">{{ '{:,}'.format(stats.cognates) }}</div>
+                        <div class="stat-lbl">{{ t.stat_cognates|default('Cognates') }}</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-num">{{ '{:,}'.format(stats.bridges) }}</div>
+                        <div class="stat-lbl">{{ t.stat_bridges|default('Semantic bridges') }}</div>
+                    </div>
+                </div>
+            </div>
+
+            {% if rotd %}
+            <aside class="rotd-card home-hero-aside">
+                <div class="rotd-header">
+                    <span class="material-symbols-outlined rotd-icon">auto_awesome</span>
+                    <span class="rotd-label">{{ t.rotd_title }}</span>
+                </div>
+                <div class="rotd-root">
+                    <span class="rotd-syriac">{{ rotd.syriac }}</span>
+                    <span class="rotd-key">{{ rotd.key }}</span>
+                </div>
+                <div class="rotd-gloss-line">{{ rotd.gloss }}</div>
+                {% if rotd.sabor %}
+                <div class="rotd-sabor">{{ rotd.sabor }}</div>
+                {% endif %}
+                <div class="rotd-cognates">
+                    {% for h in rotd.hebrew %}<span class="cog-chip heb"><span class="cog-script">{{ h.word }}</span> <span class="cog-meaning">{{ h.transliteration }}</span></span>{% endfor %}
+                    {% for a in rotd.arabic %}<span class="cog-chip arb"><span class="cog-script">{{ a.word }}</span> <span class="cog-meaning">{{ a.transliteration }}</span></span>{% endfor %}
+                </div>
+                <a href="{{ url_for('visualize', root_key=rotd.key, lang=lang, script=script, trans=trans) }}" class="rotd-cta">
+                    {{ t.rotd_visualize }}
+                    <span class="material-symbols-outlined" style="font-size:14px;">arrow_forward</span>
+                </a>
+            </aside>
+            {% endif %}
+        </section>
 
         <!-- Feature showcase (collapsible, cached in localStorage) -->
         <a href="#" id="feature-show-link" class="feature-reopen-link" style="display:none;" onclick="event.preventDefault(); toggleShowcase(false);">
             <span class="material-symbols-outlined" style="font-size:16px; vertical-align:-3px;">explore</span>
             {{ t.feature_reopen }}
         </a>
-        <div class="feature-showcase" id="feature-showcase">
+        <div class="feature-showcase" id="feature-showcase" data-eyebrow="{{ t.feature_eyebrow|default('Discover features') }}">
             <div class="feature-tabs">
                 <button class="feature-tab active" data-feature="read" onclick="switchFeature('read')">
                     <span class="material-symbols-outlined">menu_book</span> {{ t.feature_tab_read }}
@@ -83,32 +133,6 @@
                 </a>
             </div>
         </div>
-
-        <!-- Root of the Day -->
-        {% if rotd %}
-        <div class="rotd-card">
-            <div class="rotd-header">
-                <span class="material-symbols-outlined rotd-icon">auto_awesome</span>
-                <span class="rotd-label">{{ t.rotd_title }}</span>
-            </div>
-            <div class="rotd-root">
-                <span class="rotd-syriac">{{ rotd.syriac }}</span>
-                <span class="rotd-key">{{ rotd.key }}</span>
-                <span class="rotd-gloss">— {{ rotd.gloss }}</span>
-            </div>
-            {% if rotd.sabor %}
-            <div class="rotd-sabor"><strong>{{ t.rotd_semantic }}:</strong> {{ rotd.sabor }}</div>
-            {% endif %}
-            {% if rotd.lost %}
-            <div class="rotd-lost"><strong>{{ t.rotd_lost }}:</strong> {{ rotd.lost }}{% if rotd.lost|length >= 200 %}… <a href="{{ url_for('visualize', root_key=rotd.key, lang=lang, script=script, trans=trans) }}&tab=ficha" class="rotd-readmore">{{ t.rotd_explore }} &rarr;</a>{% endif %}</div>
-            {% endif %}
-            <div class="rotd-cognates">
-                {% for h in rotd.hebrew %}<span class="rotd-cognate heb">{{ h.word }} <small>{{ h.transliteration }}</small></span>{% endfor %}
-                {% for a in rotd.arabic %}<span class="rotd-cognate arb">{{ a.word }} <small>{{ a.transliteration }}</small></span>{% endfor %}
-            </div>
-            <a href="{{ url_for('visualize', root_key=rotd.key, lang=lang, script=script, trans=trans) }}" class="rotd-cta">{{ t.rotd_visualize }} &rarr;</a>
-        </div>
-        {% endif %}
 
         <!-- Search -->
         <div class="search-section search-section-hero">
@@ -254,6 +278,63 @@
                 <script src="https://tiptopjar.com/widget.js" data-username="jossif" data-mode="button" data-button-text="{{ t.support_project }}" data-button-color="white" data-button-size="sm"></script>
             </div>
         </div>
+
+        {% if not result and not disambiguation and top_roots %}
+        <!-- ============================================================
+             Top-cited roots — only shown on the "fresh" home view
+             ============================================================ -->
+        <section class="home-section" aria-label="Top-cited roots">
+            <div class="section-head">
+                <h2 class="h-section">{{ t.top_roots_title|default('Most-cited roots in the corpus') }}</h2>
+                <a class="section-link" href="{{ url_for('browse', lang=lang) }}">
+                    {{ (t.top_roots_browse_all|default('Browse all {n} roots')).replace('{n}', '{:,}'.format(stats.roots)) }}
+                    <span class="material-symbols-outlined" style="font-size:14px;">arrow_forward</span>
+                </a>
+            </div>
+            <div class="root-table">
+                {% for r in top_roots %}
+                <a class="root-row" href="{{ url_for('index', lang=lang, q=r.key) }}#results">
+                    <span class="root-row-syriac">{{ r.syriac }}</span>
+                    <span class="root-row-key">{{ r.key }}</span>
+                    <span class="root-row-gloss">{% if r.gloss %}{{ r.gloss }}{% else %}<span class="root-row-noglo">—</span>{% endif %}</span>
+                    <span class="root-row-count">{{ '{:,}'.format(r.count) }}</span>
+                    <span class="root-row-arrow material-symbols-outlined">arrow_forward</span>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- ============================================================
+             Editorial closing — method blurb + Luke 24:39 cite-card
+             ============================================================ -->
+        <section class="home-section home-method">
+            <div class="home-method-text">
+                <div class="home-eyebrow" style="margin-bottom:14px;">{{ t.home_method_eyebrow|default('THE METHOD') }}</div>
+                <h2 class="home-method-title">{{ t.home_method_title|default('It tastes better in Aramaic.') }}</h2>
+                <p class="home-method-p">{{ t.home_method_p1|default('Aramaic, Hebrew and Arabic share a triliteral grammar.') }}</p>
+                <p class="home-method-p home-method-p-italic">{{ t.home_method_p2|default('Each entry aims to widen the original.') }}</p>
+                <a href="{{ url_for('methodology_page', lang=lang, script=script, trans=trans) }}" class="btn-primary">
+                    {{ t.home_method_cta|default('Read the methodology') }}
+                    <span class="material-symbols-outlined" style="font-size:18px;">arrow_forward</span>
+                </a>
+            </div>
+            {% if editorial_card %}
+            <aside class="cite-card" aria-label="{{ editorial_card.ref }}">
+                {# Highlight the paradigmatic word form inside the Syriac line #}
+                {% set syr_parts = editorial_card.syriac.split(editorial_card.form, 1) %}
+                <div class="cite-syr">{{ syr_parts[0] }}{% if syr_parts|length > 1 %}<span class="cite-hl">{{ editorial_card.form }}</span>{{ syr_parts[1] }}{% endif %}</div>
+                {# Highlight the same form in the transliteration #}
+                {% set tr_parts = editorial_card.translit.split(editorial_card.form_translit, 1) %}
+                <div class="cite-translit">{{ tr_parts[0] }}{% if tr_parts|length > 1 %}<b>{{ editorial_card.form_translit }}</b>{{ tr_parts[1] }}{% endif %}</div>
+                <div class="cite-tx">"{{ editorial_card.verse }}" — {{ editorial_card.ref }}</div>
+                <div class="cite-foot">
+                    <span>{{ editorial_card.root_key }}{% if editorial_card.gloss %} · {{ editorial_card.gloss }}{% endif %}</span>
+                    <a href="{{ url_for('visualize', root_key=editorial_card.root_key, lang=lang, script=script, trans=trans, tab='ficha') }}">{{ t.cite_card_open|default('Open card →') }}</a>
+                </div>
+            </aside>
+            {% endif %}
+        </section>
+        {% endif %}
 
         {% if disambiguation %}
         <div class="search-section">

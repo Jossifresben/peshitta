@@ -277,6 +277,108 @@ Source: https://github.com/Jossifresben/peshitta
 
 
 _rotd_cache: dict = {}
+_corpus_stats_cache: dict = {}
+_top_roots_cache: list | None = None
+
+
+def _compute_corpus_stats() -> dict:
+    """Compute corpus-wide stats once, cache them. Drives the home hero
+    stats-strip: total roots, word forms, cognates, semantic bridges.
+    """
+    global _corpus_stats_cache
+    if _corpus_stats_cache:
+        return _corpus_stats_cache
+    _init()
+    cog_count = 0
+    bridge_count = 0
+    for entry in _cognate_lookup._cognates.values():
+        cog_count += len(entry.hebrew) + len(entry.arabic)
+        bridge_count += len(getattr(entry, 'semantic_bridges', []) or [])
+    _corpus_stats_cache = {
+        'roots': _extractor.get_root_count(),
+        'words': _corpus.total_words(),
+        'unique': _corpus.total_unique(),
+        'cognates': cog_count,
+        'bridges': bridge_count,
+    }
+    return _corpus_stats_cache
+
+
+def _get_paradigmatic_card(root_translit: str, lang: str, trans: str = 'en') -> dict | None:
+    """Build a paradigmatic citation card for a given root.
+
+    Used for the home page editorial cite-card so the verse displayed
+    matches what the Ficha (root card) shows. Returns None if the root
+    has no matches in the corpus.
+    """
+    _init()
+    from .characters import parse_root_input
+    root_syriac = parse_root_input(root_translit)
+    if not root_syriac:
+        return None
+    root_entry = _extractor.lookup_root(root_syriac)
+    if not root_entry or not root_entry.matches:
+        return None
+    cognate_entry = _cognate_lookup.lookup(root_syriac)
+
+    best_match = max(root_entry.matches, key=lambda m: m.count)
+    form = best_match.form
+
+    override_ref = cognate_entry.paradigmatic_ref_override if cognate_entry else ''
+    ref = override_ref or (best_match.references[0] if best_match.references else '')
+    if not ref:
+        return None
+
+    syriac = _corpus.get_verse_text(ref) or ''
+    verse = _corpus.get_verse_translation(ref, trans) or ''
+    translit_fn = _get_translit_fn('latin')
+    translit = ' '.join(translit_fn(w) for w in syriac.split()) if syriac else ''
+    form_translit = translit_fn(form)
+
+    # Translate book name for display
+    book_names = _i18n.get(trans, {}).get('book_names', {}) or _i18n.get(lang, {}).get('book_names', {})
+    ref_display = ref
+    for en_name, local_name in book_names.items():
+        if ref.startswith(en_name):
+            ref_display = ref.replace(en_name, local_name, 1)
+            break
+
+    gloss = ''
+    if cognate_entry:
+        gloss = cognate_entry.gloss_es if lang == 'es' else cognate_entry.gloss_en
+
+    return {
+        'root_key': root_translit,
+        'root_syriac': root_syriac,
+        'ref': ref_display,
+        'form': form,
+        'form_translit': form_translit,
+        'syriac': syriac,
+        'translit': translit,
+        'verse': verse,
+        'gloss': gloss,
+    }
+
+
+def _compute_top_roots(n: int = 8) -> list:
+    """Compute the top-N most-cited roots once, cache them. Drives the
+    home 'Most-cited roots' table.
+    """
+    global _top_roots_cache
+    if _top_roots_cache is not None:
+        return _top_roots_cache[:n]
+    _init()
+    rows = []
+    for r in _extractor.get_all_roots()[:n]:
+        gloss = _extractor.get_root_gloss(r.root)
+        rows.append({
+            'syriac': r.root,
+            'key': _translit_to_dash(r.root),
+            'gloss': gloss,
+            'count': r.total_occurrences,
+        })
+    _top_roots_cache = rows
+    return rows
 
 
 def _root_of_the_day(lang):
@@ -356,12 +458,12 @@ def index():
     result = None
     disambiguation = None
 
-    # Stats
-    stats = _Namespace({
-        'roots': _extractor.get_root_count(),
-        'words': _corpus.total_words(),
-        'unique': _corpus.total_unique(),
-    })
+    # Stats (cached)
+    stats = _Namespace(_compute_corpus_stats())
+    top_roots = _compute_top_roots(8)
+
+    # Editorial cite-card — paradigmatic verse for R-G-L (matches Ficha)
+    editorial_card = _get_paradigmatic_card('R-G-L', lang, trans)
 
     # Root of the day
     rotd = _root_of_the_day(lang)
@@ -465,6 +567,8 @@ def index():
     return render_template('index.html',
                            t=t, lang=lang, query=query,
                            error=error, result=result, stats=stats,
+                           top_roots=top_roots,
+                           editorial_card=editorial_card,
                            translate_ref=translate_ref,
                            cognate_word=cognate_word,
                            disambiguation=disambiguation,

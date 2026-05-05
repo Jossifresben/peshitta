@@ -12,66 +12,87 @@
 
 {% block head_extra %}
     <style>
+        /* === Constellation page (parchment palette) ===================== */
         .constellation-layout {
             display: flex;
-            gap: 16px;
-            margin-top: 12px;
+            gap: 20px;
+            margin-top: 16px;
         }
         .constellation-passage {
-            flex: 0 0 320px;
+            flex: 0 0 340px;
             max-height: calc(100vh - 200px);
             overflow-y: auto;
-            padding: 16px;
-            background: var(--card-bg, #fff);
-            border-radius: 12px;
-            border: 1px solid var(--border-color, #e0d5c8);
+            padding: 18px 20px;
+            background: var(--bg-card);
+            border-radius: var(--r-lg);
+            border: 1px solid var(--rule);
+            box-shadow: 0 1px 2px rgba(60,50,30,0.04);
         }
         .constellation-passage h3 {
-            margin: 0 0 12px;
-            font-size: 1em;
-            color: var(--accent-dark, #5c3a1e);
+            margin: 0 0 14px;
+            font-family: var(--serif);
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--ink);
+            letter-spacing: -0.005em;
         }
         .constellation-verse {
-            margin-bottom: 16px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .constellation-verse:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
         }
         .constellation-verse-num {
-            font-weight: bold;
-            color: var(--accent-gold, #B8860B);
-            margin-right: 4px;
-            font-size: 0.85em;
+            font-family: var(--mono);
+            font-weight: 600;
+            color: var(--gold);
+            margin-right: 6px;
+            font-size: 11px;
+            letter-spacing: 0.05em;
         }
         .constellation-word {
             display: inline;
             cursor: default;
-            padding: 1px 2px;
+            padding: 1px 3px;
             border-radius: 3px;
-            transition: background 0.2s;
-            font-family: 'Noto Sans Syriac', serif;
-            font-size: 1.2em;
+            transition: background 0.15s;
+            font-family: var(--syriac-font);
+            font-size: 1.25em;
+            color: var(--ink);
         }
         .constellation-word.has-root {
             cursor: pointer;
-            border-bottom: 2px solid transparent;
+            border-bottom: 1px dotted var(--ink-4);
         }
         .constellation-word.has-root:hover {
-            background: rgba(184, 134, 11, 0.15);
+            background: var(--hl);
+            border-bottom-color: var(--gold);
         }
         .constellation-word.highlighted {
-            background: rgba(184, 134, 11, 0.25);
+            background: var(--hl);
         }
         .constellation-translit {
             display: block;
-            font-size: 0.85em;
-            color: var(--text-secondary, #8a7560);
-            margin-top: 4px;
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--ink-3);
+            margin-top: 6px;
             direction: ltr;
+            line-height: 1.5;
         }
         .constellation-translation {
             display: block;
-            font-size: 0.85em;
-            color: var(--text-secondary, #8a7560);
+            font-family: var(--serif);
+            font-size: 14px;
+            color: var(--ink-2);
             font-style: italic;
-            margin-top: 4px;
+            margin-top: 6px;
+            line-height: 1.5;
+            text-wrap: pretty;
         }
         .constellation-viz-wrap {
             flex: 1;
@@ -79,10 +100,12 @@
         }
         .constellation-svg-wrap {
             width: 100%;
-            min-height: 500px;
-            background: var(--card-bg, #fff);
-            border-radius: 12px;
-            border: 1px solid var(--border-color, #e0d5c8);
+            min-height: 540px;
+            background:
+                radial-gradient(ellipse at center, var(--bg-elev) 0%, var(--bg-card) 60%, var(--bg-2) 100%);
+            border-radius: var(--r-lg);
+            border: 1px solid var(--rule);
+            box-shadow: inset 0 1px 2px rgba(60,50,30,0.04);
             position: relative;
         }
         .constellation-help-wrap {
@@ -93,16 +116,17 @@
             display: none;
             position: absolute;
             right: 0;
-            top: 28px;
+            top: 32px;
             z-index: 100;
-            background: var(--card-bg, #fff);
-            border: 1px solid var(--border-color, #e0d5c8);
-            border-radius: 8px;
+            background: var(--bg-elev);
+            border: 1px solid var(--rule);
+            border-radius: var(--r-md);
             padding: 12px 16px;
-            font-size: 0.78em;
-            line-height: 1.6;
-            color: var(--text-color, #333);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            font-family: var(--sans);
+            font-size: 12px;
+            line-height: 1.65;
+            color: var(--ink-2);
+            box-shadow: 0 4px 16px rgba(60,50,30,0.10);
             white-space: nowrap;
             min-width: 200px;
         }
@@ -112,68 +136,78 @@
         .constellation-legend {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            padding: 10px 16px;
-            font-size: 0.8em;
-            color: var(--text-secondary, #8a7560);
+            gap: 14px;
+            padding: 8px 0;
+            font-family: var(--sans);
+            font-size: 12px;
+            color: var(--ink-3);
             align-items: center;
         }
         .constellation-legend-item {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
         }
         .constellation-legend-dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             display: inline-block;
         }
         .constellation-stats {
-            font-size: 0.85em;
-            color: var(--text-secondary, #8a7560);
-            margin-top: 6px;
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-top: 12px;
+            margin-bottom: 8px;
         }
         .constellation-root-list {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin-top: 12px;
+            margin-bottom: 12px;
         }
         .constellation-root-tag {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            padding: 4px 10px;
-            border-radius: 16px;
-            font-size: 0.8em;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
             cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.2s;
-            background: var(--card-bg, #fff);
-            color: var(--text-primary, #2c1810);
-            border-color: var(--border-color, #e0d5c8);
+            border: 1px solid var(--rule);
+            background: var(--bg-card);
+            color: var(--ink-2);
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
         }
         .constellation-root-tag:hover {
-            border-color: var(--accent-gold, #B8860B);
+            border-color: var(--gold);
+            color: var(--ink);
+            background: var(--bg-elev);
         }
         .constellation-root-tag .freq {
-            font-size: 0.75em;
-            opacity: 0.6;
+            font-size: 10px;
+            color: var(--ink-3);
         }
         .constellation-controls {
             display: flex;
             gap: 12px;
             align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         /* Inter-root connection line animation */
         @keyframes dash-flow {
             to { stroke-dashoffset: -20; }
         }
         .inter-root-link {
-            animation: dash-flow 1.5s linear infinite;
+            animation: dash-flow 2.5s linear infinite;
         }
         /* Fullscreen support */
         .constellation-viz-wrap.is-fullscreen {
@@ -182,7 +216,7 @@
             width: 100vw;
             height: 100vh;
             z-index: 9999;
-            background: var(--bg-color, #faf6f1);
+            background: var(--bg-page);
             border-radius: 0;
             display: flex;
             flex-direction: column;
@@ -193,6 +227,10 @@
             border: none;
             min-height: 0;
         }
+        /* Bridge label tweak */
+        .bridge-label-text {
+            font-family: var(--serif);
+        }
         /* Mobile responsive */
         @media (max-width: 768px) {
             .constellation-layout {
@@ -200,7 +238,7 @@
             }
             .constellation-passage {
                 flex: none;
-                max-height: 200px;
+                max-height: 220px;
             }
         }
     </style>
@@ -208,13 +246,6 @@
 
 {% block content %}
     <div class="container">
-        <header>
-            <h1 class="page-title">{{ t.constellation_title }}</h1>
-            <button type="button" class="cite-btn" onclick="openCiteModal('passage', '{{ book }} {{ chapter }}:{{ v_start }}{% if v_end and v_end != v_start %}-{{ v_end }}{% endif %}')">
-                <span class="material-symbols-outlined">format_quote</span> {{ t.cite_button|default('Cite') }}
-            </button>
-        </header>
-
         <div id="constellation-loading" class="viz-loading">
             <p>{{ t.constellation_loading }}</p>
         </div>
@@ -227,9 +258,12 @@
             <div class="constellation-layout">
                 <!-- Passage panel -->
                 <div class="constellation-passage" id="passage-panel">
-                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:8px;">
                         <button id="prev-verse-btn" class="nav-btn" style="padding:4px 10px; font-size:0.85em;" title="{{ t.prev_verse }}">&larr;</button>
                         <h3 id="passage-panel-title" style="margin:0; flex:1; text-align:center;"></h3>
+                        <button type="button" class="viz-cite-btn" onclick="openCiteModal('passage', '{{ book }} {{ chapter }}:{{ v_start }}{% if v_end and v_end != v_start %}-{{ v_end }}{% endif %}')" title="{{ t.cite_button|default('Cite') }}" aria-label="{{ t.cite_button|default('Cite') }}">
+                            <span class="material-symbols-outlined">format_quote</span>
+                        </button>
                         <button id="next-verse-btn" class="nav-btn" style="padding:4px 10px; font-size:0.85em;" title="{{ t.next_verse }}">&rarr;</button>
                     </div>
                     <div id="passage-text"></div>
@@ -239,11 +273,11 @@
                 <div class="constellation-viz-wrap" id="constellation-viz-wrap">
                     <div class="constellation-controls">
                         <span class="constellation-legend">
-                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#8B4513;"></span> {{ t.legend_root }}</span>
-                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#2E5090;"></span> {{ t.legend_hebrew }}</span>
-                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#2D7D46;"></span> {{ t.legend_arabic }}</span>
+                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#4d5a3e;"></span> {{ t.legend_root }}</span>
+                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#2e4a6b;"></span> {{ t.legend_hebrew }}</span>
+                            <span class="constellation-legend-item"><span class="constellation-legend-dot" style="background:#a8593a;"></span> {{ t.legend_arabic }}</span>
                             <span class="constellation-legend-item">
-                                <svg width="20" height="10"><line x1="0" y1="5" x2="20" y2="5" stroke="#DAA520" stroke-width="2" stroke-dasharray="4,2"/></svg>
+                                <svg width="22" height="10"><line x1="0" y1="5" x2="22" y2="5" stroke="#a88536" stroke-width="2" stroke-dasharray="4,3"/></svg>
                                 {{ t.legend_bridge }}
                             </span>
                         </span>
@@ -357,16 +391,31 @@
         };
 
         // Colors
+        // Parchment-palette starmap colors. Each root family gets a hue
+        // from this 16-color earthy/jewel-tone wheel, designed to read
+        // against the warm cream background.
         var ROOT_COLORS = [
-            '#8B4513', '#2E5090', '#2D7D46', '#9B2335', '#6B4C9A',
-            '#CC7722', '#20706B', '#8B2252', '#4A6741', '#B85C38',
-            '#3A5FCD', '#CD6839', '#458B74', '#8B6508', '#5D478B',
-            '#2F4F4F', '#CD3333', '#228B22', '#6959CD', '#CD9B1D'
+            '#4d5a3e', // olive
+            '#2e4a6b', // lapis
+            '#a8593a', // terracotta
+            '#a88536', // gold
+            '#6b4c9a', // mulberry
+            '#7a6240', // burnt sienna
+            '#3a6e5a', // verdigris
+            '#8b3a52', // claret
+            '#5a6b3e', // moss
+            '#b87340', // copper
+            '#46568a', // indigo
+            '#8a5a36', // chestnut
+            '#3a6855', // teal-olive
+            '#a08a3a', // antique gold
+            '#5d4a72', // amethyst
+            '#4a5a4a'  // slate
         ];
-        var COLOR_HEBREW = '#2E5090';
-        var COLOR_ARABIC = '#2D7D46';
-        var COLOR_BRIDGE = '#DAA520';
-        var COLOR_LINE = '#ccc';
+        var COLOR_HEBREW = '#2e4a6b';   // lapis
+        var COLOR_ARABIC = '#a8593a';   // terracotta
+        var COLOR_BRIDGE = '#a88536';   // gold
+        var COLOR_LINE   = '#c8bd9f';   // rule-2 (warm gray)
 
         var width, height;
         function updateSize() {
