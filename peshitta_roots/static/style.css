@@ -2481,19 +2481,22 @@ footer a:hover {
     opacity: 1;
 }
 
-/* === Bookmarks === */
+/* === Bookmarks ===
+   In the reader, .bm-verse-btn (the per-verse bookmark) sits in the
+   same right rail as .verse-num and .verse-constellation-link, stacked
+   below the constellation icon.
+*/
 .bm-verse-btn {
     background: none;
     border: none;
     cursor: pointer;
     color: var(--text-muted);
     padding: 0;
-    margin-right: 4px;
     vertical-align: middle;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     transition: color 0.15s;
-    position: relative;
     z-index: 2;
     min-width: 24px;
     min-height: 24px;
@@ -2502,6 +2505,20 @@ footer a:hover {
 .bm-verse-btn:hover, .bm-verse-btn.bookmarked { color: var(--accent); }
 .bm-verse-btn.bookmarked .material-symbols-outlined {
     font-variation-settings: 'FILL' 1;
+}
+
+/* Reader-specific: stack the bookmark button on the right rail under
+   the constellation icon. Other surfaces (results table, etc.) keep
+   the inline default above. */
+.reader-verse > .bm-verse-btn {
+    position: absolute;
+    right: -7px;
+    top: 58px;
+    margin: 0;
+}
+[dir="rtl"] .reader-verse > .bm-verse-btn {
+    right: auto;
+    left: -7px;
 }
 
 .bm-root-btn {
