@@ -246,13 +246,6 @@
 
 {% block content %}
     <div class="container">
-        <header>
-            <h1 class="page-title">{{ t.constellation_title }}</h1>
-            <button type="button" class="cite-btn" onclick="openCiteModal('passage', '{{ book }} {{ chapter }}:{{ v_start }}{% if v_end and v_end != v_start %}-{{ v_end }}{% endif %}')">
-                <span class="material-symbols-outlined">format_quote</span> {{ t.cite_button|default('Cite') }}
-            </button>
-        </header>
-
         <div id="constellation-loading" class="viz-loading">
             <p>{{ t.constellation_loading }}</p>
         </div>
@@ -265,9 +258,12 @@
             <div class="constellation-layout">
                 <!-- Passage panel -->
                 <div class="constellation-passage" id="passage-panel">
-                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:8px;">
                         <button id="prev-verse-btn" class="nav-btn" style="padding:4px 10px; font-size:0.85em;" title="{{ t.prev_verse }}">&larr;</button>
                         <h3 id="passage-panel-title" style="margin:0; flex:1; text-align:center;"></h3>
+                        <button type="button" class="viz-cite-btn" onclick="openCiteModal('passage', '{{ book }} {{ chapter }}:{{ v_start }}{% if v_end and v_end != v_start %}-{{ v_end }}{% endif %}')" title="{{ t.cite_button|default('Cite') }}" aria-label="{{ t.cite_button|default('Cite') }}">
+                            <span class="material-symbols-outlined">format_quote</span>
+                        </button>
                         <button id="next-verse-btn" class="nav-btn" style="padding:4px 10px; font-size:0.85em;" title="{{ t.next_verse }}">&rarr;</button>
                     </div>
                     <div id="passage-text"></div>
