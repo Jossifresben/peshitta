@@ -57,4 +57,4 @@ Restart your client. The 6 tools will appear under the `peshitta` namespace.
 
 ## Citation
 
-Fresco, J. (2026). _Peshitta Constellations_ (Version 1.3.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.19358529
+Fresco, J. (2026). _Peshitta Constellations_ (Version 1.4.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.19358529

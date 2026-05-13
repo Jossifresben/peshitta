@@ -47,7 +47,7 @@ peshitta/
 │   ├── fix_bridge_concepts.py   # Fix mismatched bridge concept text
 │   ├── fetch_translations.py    # Utility to fetch translations
 │   ├── generate_sabor_raiz.py   # Generate "sabor de raiz" flavor text for roots
-│   ├── generate_greek_parallels.py  # Generate Greek parallel & translation degradation data
+│   ├── generate_greek_parallels.py  # Generate Greek parallel & cross-translation comparison data
 │   ├── generate_hebrew_parallels.py # Generate Hebrew parallel data
 │   ├── generate_new_cognates.py # Add new cognate entries
 │   ├── apply_priority1_fixes.py # Apply priority 1 cognate audit corrections
@@ -206,8 +206,8 @@ The `_init()` function uses double-checked locking:
 | Total word tokens | ~134,000 |
 | Unique surface forms | ~15,261 |
 | Extracted triliteral roots | ~2,535 |
-| Cognate entries | 394 |
-| Greek parallels | 394 (translation degradation data) |
+| Cognate entries | 436 |
+| Greek parallels | 436 (cross-translation comparison data) |
 | Sabor raiz entries | 356 (evocative root flavor descriptions) |
 | Paradigmatic notes | 7 (deep exegetical key-verse notes) |
 | Manual gloss overrides | 1,015 |

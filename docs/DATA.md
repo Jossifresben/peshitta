@@ -125,9 +125,9 @@ Hebrew and Arabic cognates for Syriac roots, with bilingual glosses, semantic ou
 | `sabor_raiz_es` | Short poetic phrase (3-5 words) capturing the root's semantic field in Spanish (e.g., `"inscripción, marca permanente, registro"`) |
 | `sabor_raiz_en` | Same in English (e.g., `"inscription, permanent mark, record"`) |
 
-**Greek parallel / translation degradation:**
+**Greek parallel / cross-translation comparison:**
 
-Each root may have a `greek_parallel` object showing the Greek NT equivalent and a prose analysis of what was lost in the Aramaic -> Greek -> modern translation chain.
+Each root may have a `greek_parallel` object showing the Greek NT source word and a prose analysis of comparative nuance across the Greek source → Syriac (Peshitta) translation → modern translation chain. The internal field name `aramaic_range_*` is preserved for backward compatibility; conceptually it carries the Syriac semantic range.
 
 | Field | Description |
 |-------|-------------|

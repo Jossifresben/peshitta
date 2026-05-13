@@ -157,7 +157,7 @@ python scripts/fix_bridge_concepts.py --dry-run  # Preview only
 ```
 
 ### generate_greek_parallels.py
-Generates `greek_parallel` (translation degradation) data for each root. Uses Claude Haiku to produce the Greek NT equivalent and a prose analysis of what semantic nuance was lost in the Aramaic -> Greek -> modern translation chain.
+Generates `greek_parallel` (cross-translation comparison) data for each root. Uses Claude Haiku to produce the Greek NT source word and a prose analysis of comparative semantic nuance across the Greek source → Syriac (Peshitta) translation → modern translation chain. The generated `aramaic_range_*` field carries the Syriac semantic range; the field name is preserved for backward compatibility.
 
 ```bash
 python scripts/generate_greek_parallels.py             # Process all

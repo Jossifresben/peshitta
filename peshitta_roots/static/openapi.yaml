@@ -6,7 +6,7 @@ info:
     All responses include citation metadata. Cite as:
     Fresco, J. (2026). Peshitta Constellations. Zenodo.
     https://doi.org/10.5281/zenodo.19358529
-  version: "1.3.0"
+  version: "1.4.0"
   contact:
     name: Jossi Fresco
     url: https://orcid.org/0009-0000-2026-0836
@@ -960,13 +960,13 @@ paths:
                   year: 2026
                   doi: "10.5281/zenodo.19358529"
                   orcid: "0009-0000-2026-0836"
-                  version: "1.3.0"
+                  version: "1.4.0"
                 styles:
                   bibtex: "@misc{fresco2026peshitta, author = {Fresco, Jossi}, title = {Peshitta Constellations}, year = {2026}, doi = {10.5281/zenodo.19358529}, ...}"
-                  chicago: "Fresco, Jossi. 2026. \"Peshitta Constellations.\" Version 1.3.0. https://doi.org/10.5281/zenodo.19358529."
-                  mla: "Fresco, Jossi. \"Peshitta Constellations.\" Version 1.3.0, 2026, doi.org/10.5281/zenodo.19358529."
-                  apa: "Fresco, J. (2026). Peshitta Constellations (Version 1.3.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.19358529"
-                  sbl: "Fresco, Jossi. Peshitta Constellations. Version 1.3.0. 2026. https://doi.org/10.5281/zenodo.19358529."
+                  chicago: "Fresco, Jossi. 2026. \"Peshitta Constellations.\" Version 1.4.0. https://doi.org/10.5281/zenodo.19358529."
+                  mla: "Fresco, Jossi. \"Peshitta Constellations.\" Version 1.4.0, 2026, doi.org/10.5281/zenodo.19358529."
+                  apa: "Fresco, J. (2026). Peshitta Constellations (Version 1.4.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.19358529"
+                  sbl: "Fresco, Jossi. Peshitta Constellations. Version 1.4.0. 2026. https://doi.org/10.5281/zenodo.19358529."
         '429':
           description: Rate limit exceeded
 
