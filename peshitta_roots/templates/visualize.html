@@ -351,26 +351,18 @@
                 sistersEmpty.style.display = '';
             }
 
-            // Translation degradation — ¿Qué se perdió?
+            // Cross-translation comparison: Greek (NT source) → Syriac (Peshitta) → Modern
             var degSection = document.getElementById('ficha-degradation-section');
             var degChain = document.getElementById('ficha-degradation-chain');
             var degLost = document.getElementById('ficha-degradation-lost');
             if (data.greek_parallel) {
                 var gp = data.greek_parallel;
                 degSection.style.display = '';
-                var aramLabel = STRINGS.degradationAramaic;
+                // i18n key `degradationAramaic` retained for stability; user-facing string now reads "Syriac (Peshitta)"
+                var syriacLabel = STRINGS.degradationAramaic;
                 var greekLabel = STRINGS.degradationGreek;
                 var modernLabel = STRINGS.degradationModern;
                 degChain.innerHTML =
-                    '<div class="deg-step-wrap">' +
-                        '<div class="deg-step deg-aramaic">' +
-                            '<div class="deg-word">' + escHtml(data.root || '') + '</div>' +
-                            '<div class="deg-translit">' + escHtml((data.root_translit || '').toLowerCase()) + '</div>' +
-                            '<div class="deg-range">' + escHtml(gp.aramaic_range || '') + '</div>' +
-                        '</div>' +
-                        '<div class="deg-label">' + aramLabel + '</div>' +
-                    '</div>' +
-                    '<div class="deg-arrow-wrap"><span class="deg-arrow">\u2192</span></div>' +
                     '<div class="deg-step-wrap">' +
                         '<div class="deg-step deg-greek">' +
                             '<div class="deg-word">' + escHtml(gp.word) + '</div>' +
@@ -378,6 +370,15 @@
                             '<div class="deg-range">' + escHtml(gp.greek_range || '') + '</div>' +
                         '</div>' +
                         '<div class="deg-label">' + greekLabel + '</div>' +
+                    '</div>' +
+                    '<div class="deg-arrow-wrap"><span class="deg-arrow">\u2192</span></div>' +
+                    '<div class="deg-step-wrap">' +
+                        '<div class="deg-step deg-aramaic">' +
+                            '<div class="deg-word">' + escHtml(data.root || '') + '</div>' +
+                            '<div class="deg-translit">' + escHtml((data.root_translit || '').toLowerCase()) + '</div>' +
+                            '<div class="deg-range">' + escHtml(gp.aramaic_range || '') + '</div>' +
+                        '</div>' +
+                        '<div class="deg-label">' + syriacLabel + '</div>' +
                     '</div>' +
                     '<div class="deg-arrow-wrap"><span class="deg-arrow">\u2192</span></div>' +
                     '<div class="deg-step-wrap">' +

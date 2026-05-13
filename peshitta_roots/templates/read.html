@@ -245,16 +245,16 @@
                 html += {{ t.viz_root_family|tojson }};
                 html += '</a>';
 
-                // Compact degradation chain
+                // Compact cross-translation comparison: Greek (NT source) \u2192 Syriac (Peshitta) \u2192 Modern
                 if (data.degradation) {
                     var deg = data.degradation;
                     var seeMore = '{{ t.degradation_see_more|default("see full analysis") }}';
                     var firstSentence = deg.lost ? deg.lost.split('. ')[0] + '.' : '';
                     html += '<div class="modal-degradation">';
                     html += '<div class="modal-deg-chain">';
-                    html += '<span class="modal-deg-step modal-deg-aramaic">' + escHtml(data.root) + ' ' + escHtml(data.root_translit.toLowerCase()) + '</span>';
-                    html += '<span class="modal-deg-arrow">\u2192</span>';
                     html += '<span class="modal-deg-step modal-deg-greek">' + escHtml(deg.greek_word) + ' ' + escHtml(deg.greek_translit) + '</span>';
+                    html += '<span class="modal-deg-arrow">\u2192</span>';
+                    html += '<span class="modal-deg-step modal-deg-aramaic">' + escHtml(data.root) + ' ' + escHtml(data.root_translit.toLowerCase()) + '</span>';
                     html += '<span class="modal-deg-arrow">\u2192</span>';
                     html += '<span class="modal-deg-step modal-deg-modern">' + escHtml(deg.meaning) + '</span>';
                     html += '</div>';
