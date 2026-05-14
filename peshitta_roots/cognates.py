@@ -14,6 +14,9 @@ class CognateWord:
     meaning_es: str
     meaning_en: str
     outlier: bool = False
+    # Optional editorial tag (one of peshitta_roots.domain_tags.VALID_DOMAINS).
+    # None means the cognate has not been tagged.
+    domain: str | None = None
 
 
 @dataclass
@@ -95,6 +98,7 @@ class CognateLookup:
                     meaning_es=hw.get('meaning_es', ''),
                     meaning_en=hw.get('meaning_en', ''),
                     outlier=hw.get('outlier', False),
+                    domain=hw.get('domain'),
                 ))
 
             arabic_words = []
@@ -105,6 +109,7 @@ class CognateLookup:
                     meaning_es=aw.get('meaning_es', ''),
                     meaning_en=aw.get('meaning_en', ''),
                     outlier=aw.get('outlier', False),
+                    domain=aw.get('domain'),
                 ))
 
             bridges = []

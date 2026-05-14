@@ -376,3 +376,20 @@ def test_jinja_filter_domain_class_registered(client):
     assert "domain-badge" in js_body, (
         "cognateDomainClass should produce a 'domain-badge ...' CSS class string"
     )
+
+
+def test_api_root_family_passes_through_domain_field(client):
+    """If a cognate has a `domain` field in cognates.json, the
+    /api/root-family endpoint must include it in the response."""
+    response = client.get("/api/root-family?root=K-TH-B")
+    payload = json.loads(response.data)
+    # Find at least one cognate with a domain field in either language
+    all_cognates = (payload.get("hebrew") or []) + (payload.get("arabic") or [])
+    tagged = [c for c in all_cognates if "domain" in c]
+    assert tagged, (
+        "Expected at least one tagged cognate in K-TH-B response; "
+        "domain passthrough may be broken"
+    )
+    assert tagged[0]["domain"] == "material", (
+        f"Expected 'material' tag on the seeded cognate, got {tagged[0]['domain']!r}"
+    )

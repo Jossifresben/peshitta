@@ -1996,6 +1996,8 @@ def api_root_family():
             }
             if hw.outlier:
                 h['outlier'] = True
+            if hw.domain:
+                h['domain'] = hw.domain
             hebrew.append(h)
         for aw in cognate_entry.arabic:
             a = {
@@ -2005,6 +2007,8 @@ def api_root_family():
             }
             if aw.outlier:
                 a['outlier'] = True
+            if aw.domain:
+                a['domain'] = aw.domain
             arabic.append(a)
 
     # Semantic bridges
