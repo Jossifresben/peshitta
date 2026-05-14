@@ -1,6 +1,6 @@
 # Peshitta Triliteral Root Finder
 
-A bilingual (Spanish/English) web application for researching the Syriac Peshitta New Testament through its triliteral root system. Enter a Syriac root in simplified Latin transliteration and find every word form and verse occurrence in the 22-book traditional canon, along with Hebrew and Arabic cognates, semantic outlier detection, interactive cross-root semantic bridges, passage constellation visualizer, and a methodology page documenting the Semitic exegesis approach.
+A bilingual (Spanish/English) web application for researching the Syriac Peshitta New Testament through its triliteral root system. Enter a Syriac root in simplified Latin transliteration and find every word form and verse occurrence in the 22-book historical Peshitta canon (Matthew through 1 John, excluding the later-added Western Five), along with Hebrew and Arabic cognates, semantic outlier detection, interactive cross-root semantic bridges, passage constellation visualizer, and a methodology page documenting the Semitic exegesis approach.
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue) ![Flask](https://img.shields.io/badge/Flask-3.0+-green) ![License](https://img.shields.io/badge/License-Apache%202.0-blue) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19358529.svg)](https://doi.org/10.5281/zenodo.19358529)
 
@@ -96,6 +96,17 @@ python -m peshitta_roots
 ```
 
 The app will start on `http://localhost:8080` and open your browser automatically.
+
+### Running tests
+
+A pytest smoke suite covers the routes, version metadata, methodology framing, and visualizer chain order. Install dev dependencies and run:
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+The suite uses Flask's test client (no network calls; runs in under a second) and is the same set of assertions the production deploy smoke test runs against `peshitta.onrender.com`.
 
 ## Project Structure
 
@@ -235,11 +246,22 @@ Paginated list of all roots sorted by frequency.
 
 ## Corpus
 
-The corpus is a UTF-8 Unicode Syriac dataset derived from the ETCBC/syrnt plain-text corpus, restricted to the traditional 22-book Peshitta NT canon:
+The corpus is a UTF-8 Unicode Syriac dataset derived from the [ETCBC/syrnt](https://github.com/ETCBC/syrnt) corpus (MIT-licensed; ultimately derived from the SEDRA database by George A. Kiraz and James W. Bennett). It is restricted to the **22-book historical Peshitta NT canon** — that is, the 22 books accepted by the original Peshitta tradition, *excluding* the so-called Western Five (2 Peter, 2 John, 3 John, Jude, Revelation), which were added to the printed Peshitta canon from later Syriac witnesses and are not included here:
 
 Matthew, Mark, Luke, John, Acts, Romans, 1–2 Corinthians, Galatians, Ephesians, Philippians, Colossians, 1–2 Thessalonians, 1–2 Timothy, Titus, Philemon, Hebrews, James, 1 Peter, 1 John.
 
-**Important:** This is NOT a diplomatic transcription of the Khabouris manuscript. It is a Unicode Syriac dataset for search, NLP, and indexing purposes.
+**What this corpus is and is not.** This dataset is a Unicode Syriac word/lemma index suitable for search, NLP, and morphological indexing. It is *not* a diplomatic transcription of any single manuscript (such as the Khabouris codex or the Mosul edition), and it does not encode editorial apparatus, vowels with full pointing, or variant readings. Scholars working with manuscript-level questions should consult the underlying ETCBC/syrnt source and a critical edition.
+
+## How the cognate, outlier, bridge, and Greek-parallel data was generated
+
+The structured datasets in `data/cognates.json` — Hebrew and Arabic cognates, semantic-outlier flags, cross-root semantic bridges, and Greek New Testament parallels — were produced by a two-stage pipeline:
+
+1. **LLM-assisted generation.** Each root was sent through a Claude API script (`scripts/expand_cognates.py`, `tag_outliers.py`, `generate_bridges.py`, `generate_greek_parallels.py`) with a Semitic-linguistics system prompt and structured-JSON output. Prompts and seed entries are versioned in this repository.
+2. **Lexicographic audit against print sources.** A subsequent audit reviewed 403 roots against Payne Smith (Syriac), BDB (Hebrew), and Lane (Arabic). The audit identified 205 issues — 54 classified as critical (e.g., inverted glosses, phantom roots, mis-assigned cognates) and 151 as refinements — which were corrected in `cognates.json`. The audit report is in [`docs/informe-auditoria-cognados.md`](docs/informe-auditoria-cognados.md) and the corrections are tracked in `scripts/apply_priority1_fixes.py`.
+
+**What this means for users.** This is not a hand-curated lexicographic project on the order of HALOT or Sokoloff. It is a structured machine-generated dataset that has been audited against three standard print lexicons and corrected. Treat individual cognate claims as starting points for verification, not as final lexicographic authorities. Scholarly citations should reference both this tool and the underlying print sources where appropriate.
+
+**Known limitations.** No formal precision/recall against a held-out hand-curated test set has been published. Identification of "true cognates" (inherited from a common Proto-Semitic ancestor) versus chance triliteral matches or later borrowings is not formally distinguished — both surface as "cognate" entries. Reviewers working on diachronic Semitic philology should consult Brockelmann's *Lexicon Syriacum* and Klein's *Comprehensive Etymological Dictionary of the Hebrew Language* for genuine etymological provenance.
 
 ## Verse Translations
 
@@ -275,3 +297,5 @@ See `CITATION.cff` or use the "Cite this" button on any page in the app.
 ## License
 
 Apache License 2.0 — Copyright (c) 2026 Jose Fresco Benaim
+
+Third-party data — including the ETCBC/syrnt corpus (MIT, Vlaardingerbroek & Roorda, ETCBC at VU Amsterdam, derived from SEDRA by Kiraz & Bennett), public-domain verse translations, and the standard reference lexicons (Payne Smith, BDB, Lane) — is acknowledged in [`NOTICE`](NOTICE). If you redistribute this project or its derived data, please preserve the NOTICE file alongside the LICENSE.

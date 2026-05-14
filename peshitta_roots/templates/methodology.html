@@ -202,9 +202,20 @@
 
             <p>No pretendemos sustituir el estudio riguroso. Pretendemos que cualquier persona curiosa pueda dar los primeros pasos y descubrir, por sí misma, que en arameo sabe mejor.</p>
 
+            <h3>Cómo se generaron los datos de cognados, atípicos y paralelos griegos</h3>
+
+            <p>Los conjuntos estructurados detrás de las tablas de cognados, las marcas de atípicos semánticos, los puentes entre raíces y los paralelos del Nuevo Testamento griego se produjeron en dos fases:</p>
+
+            <ol>
+                <li><strong>Generación asistida por LLM.</strong> Cada raíz siríaca se procesó mediante scripts de la API de Claude con un <em>system prompt</em> de lingüística semítica y salida JSON estructurada, generando candidatos de cognados hebreos y árabes, marcas de atípicos y paralelos griegos.</li>
+                <li><strong>Auditoría lexicográfica contra fuentes impresas.</strong> Una auditoría posterior revisó 403 raíces contra Payne Smith (siríaco), BDB (hebreo) y Lane (árabe), identificando 205 incidencias —54 críticas y 151 refinamientos— que se corrigieron en el conjunto de datos.</li>
+            </ol>
+
+            <p><strong>Qué significa esto.</strong> Esto no es un proyecto lexicográfico hecho a mano al nivel de HALOT o de Sokoloff. Es un conjunto estructurado generado por máquina, auditado contra tres léxicos impresos estándar y corregido. Trate cada cognado individual como punto de partida para la verificación, no como autoridad lexicográfica final. No se ha publicado una medida formal de precisión/exhaustividad contra un conjunto de prueba curado a mano, y los "cognados verdaderos" heredados de un ancestro protosemita común no se distinguen formalmente de coincidencias triliterales casuales o préstamos posteriores —ambos aparecen aquí como entradas de "cognado". Quienes trabajen en filología semítica diacrónica deberían consultar el <em>Lexicon Syriacum</em> de Brockelmann y el <em>Comprehensive Etymological Dictionary of the Hebrew Language</em> de Klein para procedencia etimológica genuina.</p>
+
             <h3>Referencias</h3>
 
-            <p>El método sistematizado aquí fue desarrollado por Vicente Haya (Abdelmumin Aya), filósofo, historiador y arabista de la Universidad de Sevilla. Sus obras principales sobre el tema:</p>
+            <p>El método hermenéutico que inspira esta herramienta se debe al trabajo de Vicente Haya (Abdelmumin Aya), filósofo y arabista de la Universidad de Sevilla. Sus obras principales sobre el tema:</p>
 
             <ul class="references-list">
                 <li><em>El arameo en sus labios</em> (Fragmenta, 2013)</li>
@@ -223,6 +234,8 @@
                 <li><strong>Hebreo:</strong> Brown, Driver &amp; Briggs, <em>A Hebrew and English Lexicon of the Old Testament</em> (BDB) — disponible en <a href="https://www.sefaria.org/BDB" target="_blank">Sefaria</a></li>
                 <li><strong>Árabe:</strong> Edward William Lane, <em>An Arabic-English Lexicon</em> (London, 1863–1893)</li>
             </ul>
+
+            <p><strong>Por qué estos tres.</strong> Payne Smith sigue siendo la referencia siríaca práctica estándar para lectores no especialistas; la actualización de Sokoloff (2009) sobre el <em>Lexicon Syriacum</em> de Brockelmann es el sucesor académico moderno, recomendable para trabajo riguroso. BDB y Lane se eligieron por accesibilidad (ambos son de dominio público, libres en línea y ampliamente referenciados); para lexicografía hebrea actual la mayor parte del trabajo académico cita HALOT (Koehler-Baumgartner), y para el árabe clásico muchos especialistas usan ahora Wehr o el <em>Lisan al-Arab</em>. Tanto HALOT como Wehr siguen bajo derechos de autor y no se utilizan aquí.</p>
 
             <h3>Corpus textual</h3>
 
@@ -715,9 +728,20 @@
 
             <p>We do not claim to replace careful study. We aim to give any curious person the tools to take the first steps and discover, through their own exploration, that it truly does taste better in Aramaic.</p>
 
+            <h3>How the cognate, outlier, and Greek-parallel data was generated</h3>
+
+            <p>The structured datasets behind the cognate tables, semantic-outlier flags, cross-root semantic bridges, and Greek New Testament parallels were produced in two stages:</p>
+
+            <ol>
+                <li><strong>LLM-assisted generation.</strong> Each Syriac root was processed through Claude API scripts with a Semitic-linguistics system prompt and structured-JSON output, generating candidate Hebrew and Arabic cognates, outlier flags, and Greek parallels.</li>
+                <li><strong>Lexicographic audit against print sources.</strong> A subsequent audit reviewed 403 roots against Payne Smith (Syriac), BDB (Hebrew), and Lane (Arabic), identifying 205 issues — 54 critical and 151 refinements — which were corrected in the dataset.</li>
+            </ol>
+
+            <p><strong>What this means.</strong> This is not a hand-curated lexicographic project on the order of HALOT or Sokoloff. It is a structured machine-generated dataset that has been audited against three standard print lexicons and corrected. Treat individual cognate claims as starting points for verification, not as final lexicographic authority. No formal precision/recall against a hand-curated test set has been published, and "true cognates" inherited from a common Proto-Semitic ancestor are not formally distinguished from chance triliteral matches or later borrowings — both surface here as "cognate" entries. Scholarly users working on diachronic Semitic philology should consult Brockelmann's <em>Lexicon Syriacum</em> and Klein's <em>Comprehensive Etymological Dictionary of the Hebrew Language</em> for genuine etymological provenance.</p>
+
             <h3>References</h3>
 
-            <p>The method systematized here was developed by Vicente Haya (Abdelmumin Aya), philosopher, historian, and Arabist at the University of Seville. His principal works on the subject:</p>
+            <p>The hermeneutic method underlying this tool draws on the work of Vicente Haya (Abdelmumin Aya), philosopher and Arabist at the University of Seville. His principal works on the subject:</p>
 
             <ul class="references-list">
                 <li><em>El arameo en sus labios</em> (Fragmenta, 2013)</li>
@@ -736,6 +760,8 @@
                 <li><strong>Hebrew:</strong> Brown, Driver &amp; Briggs, <em>A Hebrew and English Lexicon of the Old Testament</em> (BDB) — available at <a href="https://www.sefaria.org/BDB" target="_blank">Sefaria</a></li>
                 <li><strong>Arabic:</strong> Edward William Lane, <em>An Arabic-English Lexicon</em> (London, 1863–1893)</li>
             </ul>
+
+            <p><strong>Why these three.</strong> Payne Smith remains the standard practical Syriac reference for non-specialist readers; Sokoloff's 2009 update of Brockelmann is the modern scholarly successor and is recommended for academic work. BDB and Lane were chosen for accessibility (both are public-domain, freely available online, and widely cross-referenced); for current Hebrew lexicography most academic work cites HALOT (Koehler-Baumgartner), and for classical Arabic many scholars now use Wehr or <em>Lisan al-Arab</em>. Both HALOT and Wehr remain in copyright and were not used here.</p>
 
             <h3>Text corpus</h3>
 

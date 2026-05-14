@@ -1,0 +1,115 @@
+Peshitta Constellations
+Copyright 2026 Jose Fresco Benaim
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this work except in compliance with the License.
+A copy of the License is in the file LICENSE at the root of this
+repository or at http://www.apache.org/licenses/LICENSE-2.0
+
+
+Third-party data and acknowledgements
+=====================================
+
+This project incorporates or derives from the following third-party
+works. The licenses of those works are preserved here in compliance
+with their terms.
+
+----------------------------------------------------------------------
+1. ETCBC/syrnt — Syriac New Testament corpus
+----------------------------------------------------------------------
+
+Source:        https://github.com/ETCBC/syrnt
+License:       MIT License
+Authors:       Hannes Vlaardingerbroek, Dirk Roorda
+Institution:   Eep Talstra Centre for Bible and Computer (ETCBC),
+               Vrije Universiteit Amsterdam
+Upstream of upstream: SEDRA database export by George A. Kiraz and
+               James W. Bennett.
+
+The Syriac word forms, lemmas, and morphological information used by
+this project's root extractor are derived from the ETCBC/syrnt corpus.
+The corpus's MIT license is reproduced here in full:
+
+    MIT License
+
+    Copyright (c) 2019 Dirk Roorda
+
+    Permission is hereby granted, free of charge, to any person
+    obtaining a copy of this software and associated documentation
+    files (the "Software"), to deal in the Software without
+    restriction, including without limitation the rights to use,
+    copy, modify, merge, publish, distribute, sublicense, and/or
+    sell copies of the Software, and to furnish to persons to whom
+    the Software is furnished to do so, subject to the following
+    conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+    OTHER DEALINGS IN THE SOFTWARE.
+
+If you use this project in academic work, please also cite the
+ETCBC/syrnt corpus directly. The recommended citation is in the
+ETCBC/syrnt repository.
+
+----------------------------------------------------------------------
+2. Verse translations
+----------------------------------------------------------------------
+
+The following translations are bundled in `data/translations.json` for
+display alongside the Syriac text:
+
+  English: World English Bible (WEB) — public domain
+  Spanish: Reina-Valera 1909 — public domain
+  Arabic:  Smith & Van Dyke (SVD), 1865 — public domain
+  Hebrew:  Modern Hebrew translation; please consult upstream source
+           for redistribution terms before reusing this dataset.
+
+----------------------------------------------------------------------
+3. Reference lexicons
+----------------------------------------------------------------------
+
+The Hebrew and Arabic cognate glosses draw on the following standard
+public-domain lexicons. No text is reproduced verbatim from these
+works in this repository; only short glosses are derived. See the
+methodology page for detail.
+
+  Syriac:  Payne Smith, R. (1903). A Compendious Syriac Dictionary.
+  Hebrew:  Brown, F., Driver, S. R., & Briggs, C. A. (1906). BDB
+           Hebrew Lexicon. Public domain.
+  Arabic:  Lane, E. W. (1863). Arabic-English Lexicon. Public domain.
+
+For currently maintained alternatives, scholars may also wish to
+consult HALOT (Koehler-Baumgartner) for Hebrew and Wehr / Lisan
+al-Arab for Arabic; those works are still in copyright and are not
+used in this project.
+
+----------------------------------------------------------------------
+4. Greek New Testament parallel
+----------------------------------------------------------------------
+
+Greek lemmas referenced in cross-translation comparison data are
+drawn from the SBL Greek New Testament (SBLGNT), distributed under
+the SBL Press / Logos Bible Software license, free for personal
+and academic use.
+
+  https://sblgnt.com/
+
+----------------------------------------------------------------------
+5. Fonts and icons
+----------------------------------------------------------------------
+
+  Spectral, Inter, JetBrains Mono — Google Fonts, OFL / Apache 2.0.
+  Material Symbols — Google, Apache 2.0.
+  Noto Sans Syriac — Google, OFL.
+
+----------------------------------------------------------------------
+End of NOTICE
+----------------------------------------------------------------------
