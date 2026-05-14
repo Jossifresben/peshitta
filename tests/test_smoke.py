@@ -344,3 +344,35 @@ def test_sort_cognates_by_domain_handles_missing_field():
     cogs = [{"transliteration": "x"}, {"transliteration": "y", "domain": "material"}]
     sorted_cogs = sort_cognates_by_domain(cogs)
     assert [c["transliteration"] for c in sorted_cogs] == ["y", "x"]
+
+
+def test_jinja_filter_domain_class_registered(client):
+    """The Jinja filter `domain_priority` must be registered on the app and
+    the JS sibling helper `cognateDomainClass` must be served by global.js.
+
+    The visualizer page itself must still render. Phase C tightens this by
+    asserting the visualizer template actually calls the helper; here we
+    just lock in that the foundation wiring is in place.
+    """
+    # 1. Visualizer page still loads end-to-end
+    response = client.get("/visualize/H-M-N?lang=en&trans=en")
+    assert response.status_code == 200
+
+    # 2. Jinja filter is registered on the Flask app
+    from peshitta_roots.app import app
+    assert "domain_priority" in app.jinja_env.filters, (
+        "Jinja filter `domain_priority` should be registered on the app"
+    )
+
+    # 3. JS sibling helper is served by global.js (the canonical contract;
+    #    visualize.html will call it in Phase C)
+    js_response = client.get("/static/js/global.js")
+    assert js_response.status_code == 200
+    js_body = js_response.data.decode("utf-8")
+    assert "cognateDomainClass" in js_body, (
+        "global.js should define window.cognateDomainClass as the JS sibling "
+        "to peshitta_roots.domain_tags"
+    )
+    assert "domain-badge" in js_body, (
+        "cognateDomainClass should produce a 'domain-badge ...' CSS class string"
+    )

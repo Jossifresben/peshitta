@@ -15,6 +15,7 @@ from flask_limiter.util import get_remote_address
 from .characters import (parse_root_input, transliterate_syriac, transliterate_syriac_academic,
                          transliterate_syriac_to_hebrew, transliterate_syriac_to_arabic,
                          semitic_root_variants, display_root_key)
+from .domain_tags import domain_priority, validate_domain
 from .corpus import PeshittaCorpus
 from .extractor import RootExtractor
 from .cognates import CognateLookup
@@ -29,6 +30,10 @@ app = Flask(__name__)
 # Jinja filter: render root keys with ʿ for ayin (display only; URL/data
 # keys stay ASCII-E). See peshitta_roots.characters.display_root_key.
 app.add_template_filter(display_root_key, name='display_root')
+
+# Jinja filter: domain priority for sorting cognates by editorial preference
+# (material first, religious last). See peshitta_roots.domain_tags.
+app.add_template_filter(domain_priority, name='domain_priority')
 
 # Enable permissive CORS on /api/* so external scholarly tools, AI agents,
 # and Swagger UI clients can call the public read-only API from any origin.

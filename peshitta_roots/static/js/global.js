@@ -12,6 +12,17 @@ window.displayRoot = function(key) {
     return String(key).replace(/E/g, 'ʿ').replace(/e/g, 'ʿ');
 };
 
+// Cognate domain → CSS class. Mirrors peshitta_roots.domain_tags on the server.
+// Returns the empty string for unknown / missing domains (so callers can safely
+// concatenate without producing a stray "domain-badge-undefined").
+window.cognateDomainClass = function(domain) {
+    var valid = {
+        material: 1, religious: 1, nature: 1,
+        kinship: 1, abstract: 1, neutral: 1
+    };
+    return (domain && valid[domain]) ? 'domain-badge domain-' + domain : '';
+};
+
 (function() {
     'use strict';
 
