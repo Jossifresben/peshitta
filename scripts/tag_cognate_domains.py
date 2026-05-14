@@ -76,6 +76,8 @@ Respond with ONLY valid JSON. No prose. Schema:
 }
 
 Include EVERY cognate from the input. Do not omit, add, or rename.
+
+Copy the `transliteration` field VERBATIM from the input - do not re-transliterate, normalize, or correct it. The downstream code matches by exact string equality.
 """
 
 
@@ -221,11 +223,14 @@ def main():
             n = apply_tags(cognates["roots"][key], tags)
             total_tagged += n
             print(f"  [{i}/{len(targets)}] {key} - tagged {n} cognates")
-            time.sleep(0.5)  # mild rate-limit
+            if n > 0:
+                # Checkpoint immediately so a crash mid-batch doesn't lose paid work.
+                with open(COGNATES_PATH, 'w', encoding='utf-8') as f:
+                    json.dump(cognates, f, indent=2, ensure_ascii=False)
+        if not args.dry_run:
+            time.sleep(0.5)  # mild rate-limit (also gates failed/unparsed roots)
 
     if not args.dry_run:
-        with open(COGNATES_PATH, 'w', encoding='utf-8') as f:
-            json.dump(cognates, f, indent=2, ensure_ascii=False)
         print(f"\nWrote {COGNATES_PATH}; {total_tagged} cognates tagged total.")
 
 
