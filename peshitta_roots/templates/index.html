@@ -111,7 +111,7 @@
                 </button>
             </div>
             <div id="feature-read" class="feature-panel">
-                <p>{{ t.feature_desc_read }}</p>
+                <p>{{ t.feature_desc_read | replace('{{ICON}}', '<span class="material-symbols-outlined" style="font-size:1em; vertical-align:middle;">settings</span>') | safe }}</p>
                 <a href="{{ url_for('read', lang=lang, book='Luke', chapter=1, v_start=28) }}" class="feature-cta">{{ t.feature_cta_read }} &rarr;</a>
             </div>
             <div id="feature-roots" class="feature-panel" style="display:none;">
@@ -178,7 +178,7 @@
                     <div class="tt-cell"><span class="tt-syriac">ܡ</span><span class="tt-latin">M</span></div>
                     <div class="tt-cell"><span class="tt-syriac">ܢ</span><span class="tt-latin">N</span></div>
                     <div class="tt-cell"><span class="tt-syriac">ܣ</span><span class="tt-latin">S</span></div>
-                    <div class="tt-cell"><span class="tt-syriac">ܥ</span><span class="tt-latin">E / O</span></div>
+                    <div class="tt-cell"><span class="tt-syriac">ܥ</span><span class="tt-latin">E / O <span style="opacity:.7;">(ʿ)</span></span></div>
                     <div class="tt-cell"><span class="tt-syriac">ܦ</span><span class="tt-latin">P</span></div>
                     <div class="tt-cell"><span class="tt-syriac">ܨ</span><span class="tt-latin">TS</span></div>
                     <div class="tt-cell"><span class="tt-syriac">ܩ</span><span class="tt-latin">Q</span></div>
