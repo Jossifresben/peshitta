@@ -295,3 +295,52 @@ def test_url_form_for_ayin_root_stays_ascii_E(client):
     assert AYIN_GLYPH not in payload["root_translit"], (
         "API canonical root_translit must not contain the display glyph"
     )
+
+
+# ---------------------------------------------------------------------------
+# 7. Cognate domain tagging
+# ---------------------------------------------------------------------------
+
+def test_valid_domains_set():
+    """The valid-domains set is the locked 6-value enum."""
+    from peshitta_roots.domain_tags import VALID_DOMAINS
+    assert VALID_DOMAINS == {
+        "material", "religious", "nature", "kinship", "abstract", "neutral"
+    }
+
+
+def test_validate_domain_accepts_valid_values():
+    from peshitta_roots.domain_tags import validate_domain
+    for d in ("material", "religious", "nature", "kinship", "abstract", "neutral"):
+        assert validate_domain(d) is True
+
+
+def test_validate_domain_rejects_invalid_values():
+    from peshitta_roots.domain_tags import validate_domain
+    for d in ("Material", "  material  ", "everyday", "", None, 42):
+        assert validate_domain(d) is False, (
+            f"validate_domain({d!r}) should be False"
+        )
+
+
+def test_sort_cognates_by_domain_priority():
+    """Material cognates come first, religious last, with stable order within."""
+    from peshitta_roots.domain_tags import sort_cognates_by_domain
+    cogs = [
+        {"transliteration": "qodesh", "domain": "religious"},
+        {"transliteration": "amana", "domain": "material"},
+        {"transliteration": "ruakh", "domain": "nature"},
+        {"transliteration": "(no_tag)"},
+    ]
+    sorted_cogs = sort_cognates_by_domain(cogs)
+    assert [c["transliteration"] for c in sorted_cogs] == [
+        "amana", "ruakh", "(no_tag)", "qodesh"
+    ]
+
+
+def test_sort_cognates_by_domain_handles_missing_field():
+    """Cognates with no `domain` field sort between abstract and religious."""
+    from peshitta_roots.domain_tags import sort_cognates_by_domain
+    cogs = [{"transliteration": "x"}, {"transliteration": "y", "domain": "material"}]
+    sorted_cogs = sort_cognates_by_domain(cogs)
+    assert [c["transliteration"] for c in sorted_cogs] == ["y", "x"]
