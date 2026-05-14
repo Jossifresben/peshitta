@@ -6649,8 +6649,8 @@
     },
     "h-m-n": {
       "root_syriac": "ܗܡܢ",
-      "gloss_es": "creer, fe",
-      "gloss_en": "believe, faith",
+      "gloss_es": "confiar, depositar, creer",
+      "gloss_en": "trust, entrust, believe",
       "hebrew": [
         {
           "word": "הֶאֱמִין",
@@ -6703,8 +6703,8 @@
           "meaning_en": "believer"
         }
       ],
-      "sabor_raiz_es": "confianza, fidelidad, certeza",
-      "sabor_raiz_en": "trust, faithfulness, certainty",
+      "sabor_raiz_es": "seguridad, protección, depósito de confianza, lealtad probada",
+      "sabor_raiz_en": "security, protection, entrusted deposit, proven loyalty",
       "greek_parallel": {
         "word": "πιστεύω",
         "transliteration": "pisteuō",
@@ -6714,11 +6714,11 @@
         "aramaic_range_en": "to trust, be faithful, be firm, give certainty, sustain, confirm",
         "greek_range_es": "creer, confiar, ser persuadido — influido por la epistemología platónica y aristotélica donde πίστις es un grado inferior de conocimiento frente a ἐπιστήμη",
         "greek_range_en": "to believe, trust, be persuaded — shaped by Platonic and Aristotelian epistemology where πίστις is a lower grade of knowledge compared to ἐπιστήμη",
-        "lost_es": "En arameo, ܗܝܡܢ (haymēn) y su campo semítico (hebreo אמן, árabe آمن) parten de una raíz que significa ser firme, sólido, inamovible — como una columna que sostiene un edificio o una nodriza (ōmēn) que sostiene a un niño. Creer no era un acto mental de aceptar proposiciones, sino un acto corporal de apoyarse en algo sólido, de depositar el peso entero de la vida en lo que es fiel y estable. De ahí que 'amén' signifique 'así es, firme está': es una declaración de solidez, no de opinión. Cuando se tradujo al griego como πιστεύω, el término se desplazó hacia el terreno de la persuasión y la convicción intelectual; en la filosofía griega, πίστις ocupaba un escalón inferior al conocimiento verdadero (ἐπιστήμη), algo más cercano a la opinión que a la certeza. Al llegar al español como 'creer' y al inglés como 'to believe', el vaciamiento es casi total: creer hoy implica incertidumbre ('creo que sí, pero no estoy seguro'), exactamente lo opuesto a la firmeza rocosa del original. Se perdió la fidelidad relacional, la solidez física, el compromiso existencial de quien se apoya con todo su ser en lo que es ne'eman — fiel, firme, digno de confianza.",
-        "lost_en": "In Aramaic, ܗܝܡܢ (haymēn) and its broader Semitic field (Hebrew אמן, Arabic آمن) spring from a root meaning to be firm, solid, immovable — like a pillar holding up a building or a nurse (ōmēn) cradling a child. To believe was not a mental act of accepting propositions but a bodily act of leaning one's full weight on something stable and faithful. Hence 'amen' means 'so it stands, firm it is': a declaration of solidity, not of opinion. When translated into Greek as πιστεύω, the word migrated into the terrain of persuasion and intellectual conviction; in Greek philosophy, πίστις occupied a rung below true knowledge (ἐπιστήμη), closer to opinion than to certainty. By the time it reached English as 'to believe', the hollowing out is nearly complete: to believe today implies uncertainty ('I believe so, but I'm not sure'), the exact opposite of the rock-solid firmness of the original. Lost entirely are the relational faithfulness, the physical solidity, and the existential commitment of one who leans with their whole being on what is ne'eman — faithful, firm, worthy of trust."
+        "lost_es": "En arameo, ܗܝܡܢ (haymēn) y su campo semítico parten de una raíz cuyo núcleo no es 'fe' sino seguridad: lo firme, lo sólido, aquello sobre lo que se puede depositar el peso entero de la vida sin que ceda. El árabe lo conserva con una claridad inmediata: amân es la protección que concede quien tiene poder para destruirte; amâna es el depósito que se confía al cuidado de alguien; amîn es aquel con quien sabes que estás a salvo; amn es la seguridad sin más, y de la misma raíz nace at-ta'mîn al-iÿtimâ‘î, la 'seguridad social' del árabe moderno. El hebreo sigue el mismo eje: ne'eman es quien se ha probado como roca confiable, emunah es la fidelidad demostrada en la duración. Creer no era un acto mental de aceptar proposiciones, sino un acto corporal: apoyarse en lo que sostiene, entregar el peso a un refugio que no se quiebra. Cuando se tradujo al griego como πιστεύω, el término se desplazó hacia el terreno de la persuasión y la convicción intelectual; en la filosofía griega, πίστις ocupaba un escalón inferior al conocimiento verdadero (ἐπιστήμη), algo más cercano a la opinión que a la certeza. Al llegar al español como 'creer' y al inglés como 'to believe', el vaciamiento es casi total: creer hoy implica incertidumbre ('creo que sí, pero no estoy seguro'), exactamente lo opuesto a la seguridad inquebrantable del original. Se perdió la protección, el refugio, el depósito confiado, la solidez relacional — todo lo que el campo semítico de A-M-N nombra antes de hablar siquiera de fe.",
+        "lost_en": "In Aramaic, ܗܝܡܢ (haymēn) and its broader Semitic field spring from a root whose core sense is not 'faith' but security: that which is firm, solid, on which one can place the full weight of life without it giving way. Arabic preserves this with immediate clarity: amân is the protection granted by one who has the power to destroy you; amâna is a deposit entrusted to someone's care; amîn is the one with whom you know you are safe; amn is security itself, and from the same root comes at-ta'mîn al-ijtimā'ī, modern Arabic's 'social security.' Hebrew runs along the same axis: ne'eman is one who has proven themselves to be reliable bedrock; emunah is faithfulness demonstrated over time. To believe was not a mental act of accepting propositions but a bodily act: leaning on what holds, surrendering one's weight to a refuge that does not break. When translated into Greek as πιστεύω, the word migrated into the terrain of persuasion and intellectual conviction; in Greek philosophy, πίστις occupied a rung below true knowledge (ἐπιστήμη), closer to opinion than to certainty. By the time it reached English as 'to believe', the hollowing out is nearly complete: to believe today implies uncertainty ('I believe so, but I'm not sure'), the exact opposite of the unshakable security of the original. Lost are the protection, the refuge, the entrusted deposit, the relational solidity — everything the Semitic field of A-M-N names before it speaks of faith at all."
       },
-      "sabor_raiz_he": "אמון, נאמנות, certainty",
-      "sabor_raiz_ar": "ثقة, إخلاص, certainty",
+      "sabor_raiz_he": "ביטחון, הגנה, פיקדון אמון, נאמנות מוכחת",
+      "sabor_raiz_ar": "أمان, حماية, أمانة, ولاء مُجرَّب",
       "semantic_bridges": {
         "ar:amana": {
           "target_root": "th-kh-l",
@@ -15035,8 +15035,8 @@
           "bridge_concept_es": "El arte como una habilidad/oficio especializada, que es el significado central de S-P-R (contar, relatar)"
         }
       },
-      "sabor_raiz_es": "confianza, fidelidad, seguridad",
-      "sabor_raiz_en": "trust, faithfulness, security",
+      "sabor_raiz_es": "seguridad, protección, depósito de confianza, refugio firme",
+      "sabor_raiz_en": "security, protection, entrusted deposit, firm refuge",
       "greek_parallel": {
         "word": "πιστεύω",
         "transliteration": "pisteuō",
@@ -15049,8 +15049,8 @@
         "lost_es": "En arameo, ܐܡܢ (A-M-N) es una raíz que evoca solidez física: lo que es firme, estable, lo que sostiene peso sin quebrarse. De ahí nace la confianza como experiencia corporal — apoyarse en algo que no cede. El hebreo emunah no es 'fe' como asentimiento mental, sino fidelidad probada, la firmeza del suelo bajo los pies; ne'eman es quien ha demostrado ser roca confiable. En árabe, aman es seguridad, refugio, paz — el lugar donde uno está protegido. Cuando se vertió al griego como πιστεύω, el campo semántico migró hacia la persuasión intelectual: pistis en el marco platónico es una forma de opinión, un escalón por debajo del verdadero conocimiento. Se perdió el cuerpo, la roca, el refugio. Al llegar al español como 'creer' y al inglés como 'to believe', la degradación se completó: 'creer' sugiere un acto mental individual, una opinión que puede ser incierta — exactamente lo opuesto a la firmeza inquebrantable que la raíz aramea transmitía. El 'amén' litúrgico conserva un eco fósil de esa solidez, pero ya casi nadie percibe que al decirlo está declarando 'esto es roca firme'.",
         "lost_en": "In Aramaic, ܐܡܢ (A-M-N) is a root that evokes physical solidity: that which is firm, stable, what bears weight without breaking. Trust grows from this bodily experience — leaning on something that does not give way. Hebrew emunah is not 'faith' as mental assent but proven faithfulness, the firmness of ground beneath one's feet; ne'eman describes someone who has shown themselves to be reliable bedrock. In Arabic, aman means safety, refuge, peace — the place where one is sheltered and protected. When this was rendered into Greek as πιστεύω, the semantic field migrated toward intellectual persuasion: pistis within the Platonic framework is a form of opinion, a rung below true knowledge (epistēmē). The body, the rock, the refuge were all lost. By the time it reached English as 'to believe,' the degradation was complete: 'believe' suggests an individual mental act, an opinion that may well be uncertain — precisely the opposite of the unshakable firmness the Aramaic root conveyed. The liturgical 'amen' preserves a fossil echo of that solidity, but almost no one perceives that in saying it they are declaring 'this is firm ground.'"
       },
-      "sabor_raiz_he": "אמון, נאמנות, security",
-      "sabor_raiz_ar": "ثقة, إخلاص, security"
+      "sabor_raiz_he": "ביטחון, הגנה, פיקדון אמון, מקלט יציב",
+      "sabor_raiz_ar": "أمان, حماية, أمانة, ملاذ آمن"
     },
     "k-r-z": {
       "root_syriac": "ܟܪܙ",
@@ -30710,8 +30710,8 @@
     },
     "h-y-m-n": {
       "root_syriac": "ܗܝܡܢ",
-      "gloss_es": "creer, fe",
-      "gloss_en": "believe, faith",
+      "gloss_es": "confiar, depositar, creer",
+      "gloss_en": "trust, entrust, believe",
       "hebrew": [
         {
           "word": "הֶאֱמִין",
@@ -30764,8 +30764,8 @@
           "meaning_en": "believer"
         }
       ],
-      "sabor_raiz_es": "confianza, lealtad, firmeza",
-      "sabor_raiz_en": "trust, loyalty, steadfastness",
+      "sabor_raiz_es": "seguridad, protección, depósito de confianza, lealtad probada",
+      "sabor_raiz_en": "security, protection, entrusted deposit, proven loyalty",
       "greek_parallel": {
         "word": "πιστεύω",
         "transliteration": "pisteuō",
@@ -30775,11 +30775,11 @@
         "aramaic_range_en": "to trust, be loyal, be firm, be faithful, lean upon, confirm as true",
         "greek_range_es": "creer, confiar, ser persuadido — influido por la epistemología griega donde pistis es un grado inferior de conocimiento frente a epistēmē (Platón, República)",
         "greek_range_en": "to believe, trust, be persuaded — shaped by Greek epistemology where pistis is a lower grade of knowledge beneath epistēmē (Plato, Republic)",
-        "lost_es": "En arameo, ܗܝܡܢ (haymen) proviene de la misma raíz que 'amén': su núcleo es la firmeza, la solidez de quien se planta sobre roca. No describe una opinión mental, sino una postura existencial: apoyarse completamente en alguien, ser leal con todo el cuerpo, mantenerse firme como un pilar. Los cognados semíticos lo confirman: el hebreo emunah es la fidelidad inquebrantable de Dios, y el árabe īmān implica entrega total, no mero asentimiento intelectual. Cuando se tradujo al griego como πιστεύω, el término entró en un campo filosófico donde Platón había clasificado pistis como una forma de creencia inferior al conocimiento verdadero (epistēmē), mera opinión sobre el mundo visible. Así, lo que en arameo era compromiso corporal y lealtad relacional se tiñó de connotación cognitiva: creer algo, asentir a una proposición. Al llegar al español como 'creer' o al inglés como 'to believe', la degradación se completó: hoy 'creer' sugiere incertidumbre ('creo que sí, pero no estoy seguro'), exactamente lo opuesto a la firmeza inamovible que el arameo expresaba. Se perdió el cuerpo que se apoya, la lealtad que no se quiebra y el 'amén' que resuena como compromiso total.",
-        "lost_en": "In Aramaic, ܗܝܡܢ (haymен) shares its root with 'amen': at its core is firmness, the solidity of one who stands planted on rock. It does not describe a mental opinion but an existential stance — to lean one's full weight upon someone, to be loyal with one's whole being, to stand firm like a pillar. The Semitic cognates confirm this: Hebrew emunah is the unbreakable faithfulness of God, and Arabic īmān implies total surrender and commitment, not mere intellectual assent. When translated into Greek as πιστεύω, the term entered a philosophical landscape where Plato had classified pistis as a lower form of belief beneath true knowledge (epistēmē) — mere opinion about the visible world. What was bodily commitment and relational loyalty in Aramaic became tinged with cognitive connotation: to believe something, to assent to a proposition. By the time it reached English as 'to believe', the degradation was complete: today 'believe' often implies uncertainty ('I believe so, but I'm not sure'), which is precisely the opposite of the immovable firmness the Aramaic expressed. Lost is the body that leans in, the loyalty that does not break, and the 'amen' that resounds as total commitment."
+        "lost_es": "En arameo, ܗܝܡܢ (haymen) comparte raíz con 'amén' y con todo el campo semítico cuyo núcleo es la seguridad: lo firme, lo que sostiene, el lugar en el que uno está protegido. El árabe lo articula con precisión cotidiana: amân es la protección que concede quien tiene poder para destruirte; amâna es el depósito que se confía al cuidado de alguien; amîn es aquel con quien sabes que estás a salvo; amn es la seguridad sin más, y de la misma raíz nace at-ta'mîn al-iÿtimâ‘î, la 'seguridad social' del árabe moderno. El hebreo confirma el mismo eje: ne'eman es quien se ha probado como roca confiable, emunah es la fidelidad demostrada en la duración. No se trata de una opinión mental sino de una postura existencial: apoyarse completamente en alguien, depositar el peso entero del cuerpo en lo que no se quiebra. Cuando se tradujo al griego como πιστεύω, el término entró en un campo filosófico donde Platón había clasificado pistis como una forma de creencia inferior al conocimiento verdadero (epistēmē), mera opinión sobre el mundo visible. Así, lo que en arameo era refugio, depósito de confianza y lealtad relacional se tiñó de connotación cognitiva: creer algo, asentir a una proposición. Al llegar al español como 'creer' o al inglés como 'to believe', la degradación se completó: hoy 'creer' sugiere incertidumbre ('creo que sí, pero no estoy seguro'), exactamente lo opuesto a la seguridad inquebrantable que el arameo expresaba. Se perdió la protección, el refugio, el depósito confiado — todo lo que el campo semítico de A-M-N nombra antes de hablar siquiera de fe.",
+        "lost_en": "In Aramaic, ܗܝܡܢ (haymen) shares its root with 'amen' and with the broader Semitic field whose core is security: that which is firm, that which holds, the place where one is protected. Arabic articulates this with everyday precision: amân is the protection granted by one who has the power to destroy you; amâna is a deposit entrusted to someone's care; amîn is the one with whom you know you are safe; amn is security itself, and from the same root comes at-ta'mîn al-ijtimā'ī, modern Arabic's 'social security.' Hebrew confirms the same axis: ne'eman is one who has proven themselves to be reliable bedrock; emunah is faithfulness demonstrated over time. This is not a mental opinion but an existential stance — to lean one's full weight upon someone, to surrender the body's whole weight to what does not break. When translated into Greek as πιστεύω, the term entered a philosophical landscape where Plato had classified pistis as a lower form of belief beneath true knowledge (epistēmē) — mere opinion about the visible world. What was refuge, entrusted deposit, and relational loyalty in Aramaic became tinged with cognitive connotation: to believe something, to assent to a proposition. By the time it reached English as 'to believe', the degradation was complete: today 'believe' often implies uncertainty ('I believe so, but I'm not sure'), which is precisely the opposite of the unshakable security the Aramaic expressed. Lost are the protection, the refuge, the entrusted deposit — everything the Semitic field of A-M-N names before it speaks of faith at all."
       },
-      "sabor_raiz_he": "אמון, נאמנות, steadfastness",
-      "sabor_raiz_ar": "ثقة, ولاء, steadfastness",
+      "sabor_raiz_he": "ביטחון, הגנה, פיקדון אמון, נאמנות מוכחת",
+      "sabor_raiz_ar": "أمان, حماية, أمانة, ولاء مُجرَّب",
       "semantic_bridges": {
         "syr:haymen": {
           "target_root": "h-m-n",
