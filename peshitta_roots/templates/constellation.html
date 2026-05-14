@@ -361,7 +361,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="{{ url_for('static', filename='js/d3.v7.min.js') }}"></script>
     <script>
     (function() {
         var BOOK = {{ book|tojson }};
