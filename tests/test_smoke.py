@@ -133,6 +133,33 @@ def test_methodology_es_contains_corrected_framing(client):
 
 
 # ---------------------------------------------------------------------------
+# 3b. Home-page Discovery Features framing — same correction as methodology
+# ---------------------------------------------------------------------------
+
+# Old framings (and the bare gear emoji) that must NOT appear in the home page
+# feature_desc_read panel after the EN/ES/HE/AR/NL correction.
+HOME_FEATURE_PROBLEM_PHRASES = [
+    ("he", "בארמית המקורית", "Hebrew 'in the original Aramaic' framing"),
+    ("ar", "بالآرامية الأصلية", "Arabic 'in the original Aramaic' framing"),
+    ("nl", "het oorspronkelijke Aramees", "Dutch 'the original Aramaic' framing"),
+    ("he", "⚙️", "Hebrew bare gear emoji (should be Material Symbols icon)"),
+    ("ar", "⚙️", "Arabic bare gear emoji (should be Material Symbols icon)"),
+    ("nl", "⚙", "Dutch bare gear emoji (should be Material Symbols icon)"),
+]
+
+
+@pytest.mark.parametrize("lang,phrase,desc", HOME_FEATURE_PROBLEM_PHRASES)
+def test_home_feature_desc_read_does_not_contain_old_framing(client, lang, phrase, desc):
+    """The corrected home-page Discovery Features panel should not contain the
+    old 'original Aramaic' framing or the bare gear emoji."""
+    response = client.get(f"/?lang={lang}")
+    body = response.data.decode("utf-8")
+    assert phrase not in body, (
+        f"{desc}: still finds {phrase!r} on /?lang={lang}"
+    )
+
+
+# ---------------------------------------------------------------------------
 # 4. Visualizer chain order — Greek must render BEFORE Syriac BEFORE Modern
 # ---------------------------------------------------------------------------
 
