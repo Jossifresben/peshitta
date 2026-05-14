@@ -486,7 +486,7 @@
                 var tag = document.createElement('span');
                 tag.className = 'constellation-root-tag';
                 tag.style.borderColor = ROOT_COLORS[idx % ROOT_COLORS.length];
-                tag.innerHTML = '<strong>' + r.root_translit + '</strong> <span class="freq">x' + r.frequency + '</span>';
+                tag.innerHTML = '<strong>' + displayRoot(r.root_translit) + '</strong> <span class="freq">x' + r.frequency + '</span>';
                 tag.title = r.gloss || '';
                 tag.addEventListener('click', function() {
                     var wasLocked = _lockedRoot === r.root_translit;
@@ -695,7 +695,7 @@
                 nodes.push({
                     id: 'root-' + r.root_translit,
                     label: r.root_syriac,
-                    sublabel: r.root_translit,
+                    sublabel: displayRoot(r.root_translit),
                     detail: r.gloss || '',
                     type: 'root',
                     rootParent: r.root_translit,

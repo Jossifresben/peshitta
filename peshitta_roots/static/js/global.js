@@ -3,6 +3,15 @@
  * Settings, theme, language, share, Syriac font variant
  */
 
+// Display helper: render a root key with ʿ for ayin.
+// Storage form keeps "E" so URLs, search input, JSON keys, and MCP tool calls
+// stay ASCII and stable. Use this only when rendering a root for display.
+// Mirrors peshitta_roots.characters.display_root_key on the server.
+window.displayRoot = function(key) {
+    if (!key) return '';
+    return String(key).replace(/E/g, 'ʿ').replace(/e/g, 'ʿ');
+};
+
 (function() {
     'use strict';
 

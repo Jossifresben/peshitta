@@ -65,12 +65,12 @@
                 <button class="bm-verse-btn" data-ref="{{ v.reference }}" data-book="{{ book }}" data-chapter="{{ chapter }}" data-verse="{{ v.number }}" title="{{ t.bookmarks_toggle|default('Bookmark') }}"><span class="material-symbols-outlined">bookmark_border</span></button>
                 <div class="reader-line reader-syriac">
                     {% for w in v.words %}
-                    <span class="rw{% if w.has_root %} clickable{% endif %}" {% if w.has_root %}data-form="{{ w.syriac }}" data-root="{{ w.root }}" data-root-translit="{{ w.root_translit }}" title="{{ w.root_translit }}"{% endif %}>{{ w.syriac }}</span>
+                    <span class="rw{% if w.has_root %} clickable{% endif %}" {% if w.has_root %}data-form="{{ w.syriac }}" data-root="{{ w.root }}" data-root-translit="{{ w.root_translit }}" title="{{ w.root_translit|display_root }}"{% endif %}>{{ w.syriac }}</span>
                     {% endfor %}
                 </div>
                 <div class="reader-line reader-translit {% if script == 'hebrew' %}hebrew{% elif script == 'arabic' %}arabic{% endif %}">
                     {% for w in v.words %}
-                    <span class="rw{% if w.has_root %} clickable{% endif %}" {% if w.has_root %}data-form="{{ w.syriac }}" data-root="{{ w.root }}" data-root-translit="{{ w.root_translit }}" title="{{ w.root_translit }}"{% endif %}>{{ w.translit }}</span>
+                    <span class="rw{% if w.has_root %} clickable{% endif %}" {% if w.has_root %}data-form="{{ w.syriac }}" data-root="{{ w.root }}" data-root-translit="{{ w.root_translit }}" title="{{ w.root_translit|display_root }}"{% endif %}>{{ w.translit }}</span>
                     {% endfor %}
                 </div>
                 <div class="reader-line reader-translation{% if trans in ('he', 'ar') %} rtl-text{% endif %}">{{ v.translation }}</div>
@@ -237,7 +237,7 @@
                 var html = '';
                 html += '<div class="modal-ref">';
                 html += '<span class="syriac" style="font-size:1.8em;">' + escHtml(data.root) + '</span> ';
-                html += '<span style="font-family:monospace; font-size:1.3em; letter-spacing:2px;">' + escHtml(data.root_translit) + '</span>';
+                html += '<span style="font-family:monospace; font-size:1.3em; letter-spacing:2px;">' + escHtml(displayRoot(data.root_translit)) + '</span>';
                 if (data.gloss) html += ' <span style="font-style:italic; color:var(--text-gloss);">— ' + escHtml(data.gloss) + '</span>';
                 html += '</div>';
                 html += '<a href="/visualize/' + encodeURIComponent(data.root_translit) + '?lang=' + currentLang + '&script=' + currentScript + '" class="modal-viz-btn">';
@@ -254,7 +254,7 @@
                     html += '<div class="modal-deg-chain">';
                     html += '<span class="modal-deg-step modal-deg-greek">' + escHtml(deg.greek_word) + ' ' + escHtml(deg.greek_translit) + '</span>';
                     html += '<span class="modal-deg-arrow">\u2192</span>';
-                    html += '<span class="modal-deg-step modal-deg-aramaic">' + escHtml(data.root) + ' ' + escHtml(data.root_translit.toLowerCase()) + '</span>';
+                    html += '<span class="modal-deg-step modal-deg-aramaic">' + escHtml(data.root) + ' ' + escHtml(displayRoot(data.root_translit.toLowerCase())) + '</span>';
                     html += '<span class="modal-deg-arrow">\u2192</span>';
                     html += '<span class="modal-deg-step modal-deg-modern">' + escHtml(deg.meaning) + '</span>';
                     html += '</div>';

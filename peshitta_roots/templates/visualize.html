@@ -273,7 +273,7 @@
         function buildFicha(data) {
             // Root header (Syriac + transliteration)
             document.getElementById('ficha-root-syriac').textContent = data.root || '';
-            document.getElementById('ficha-root-translit').textContent = data.root_translit || '';
+            document.getElementById('ficha-root-translit').textContent = displayRoot(data.root_translit || '');
 
             // Semantic field (sabor_raiz)
             var saborEl = document.getElementById('ficha-sabor');
@@ -340,7 +340,7 @@
                     pill.className = 'ficha-sister';
                     pill.href = '/visualize/' + sr.root_translit + '?lang=' + LANG +
                         '&script=' + SCRIPT + '&trans=' + TRANS;
-                    var label = sr.root_translit;
+                    var label = displayRoot(sr.root_translit);
                     if (sr.root_syriac) label = sr.root_syriac + ' ' + label;
                     pill.innerHTML = '<span class="ficha-sister-root">' + escHtml(label) + '</span>' +
                         '<span class="ficha-sister-gloss">' + escHtml(sr.gloss || '') + '</span>' +
@@ -375,7 +375,7 @@
                     '<div class="deg-step-wrap">' +
                         '<div class="deg-step deg-aramaic">' +
                             '<div class="deg-word">' + escHtml(data.root || '') + '</div>' +
-                            '<div class="deg-translit">' + escHtml((data.root_translit || '').toLowerCase()) + '</div>' +
+                            '<div class="deg-translit">' + escHtml(displayRoot((data.root_translit || '').toLowerCase())) + '</div>' +
                             '<div class="deg-range">' + escHtml(gp.aramaic_range || '') + '</div>' +
                         '</div>' +
                         '<div class="deg-label">' + syriacLabel + '</div>' +
@@ -560,7 +560,7 @@
             _nodes.push({
                 id: 'center',
                 label: data.root,
-                sublabel: data.root_translit,
+                sublabel: displayRoot(data.root_translit),
                 detail: data.sabor_raiz,
                 type: 'center',
                 r: 64,
@@ -920,7 +920,7 @@
                 var centerNode = {
                     id: prefix + 'center',
                     label: targetData.root,
-                    sublabel: targetData.root_translit,
+                    sublabel: displayRoot(targetData.root_translit),
                     detail: targetData.sabor_raiz || targetData.gloss,
                     type: 'bridge-center',
                     outlier: false,

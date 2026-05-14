@@ -101,7 +101,7 @@ function renderBookmarks() {
         rh += '<div class="bm-card-header">';
         rh += '<a class="bm-ref" href="/?q=' + encodeURIComponent(r.key) + '&lang=' + currentLang + '#results">';
         if (r.syriac) rh += '<span class="syriac">' + escHtml(r.syriac) + '</span> ';
-        rh += escHtml(r.key) + '</a>';
+        rh += escHtml(displayRoot(r.key)) + '</a>';
         if (r.gloss) rh += '<span class="bm-gloss"> — ' + escHtml(r.gloss) + '</span>';
         rh += '<span class="bm-date">' + (r.date || '') + '</span>';
         rh += '<button class="bm-remove" onclick="removeBookmark(\'roots\',' + i + ')" title="Remove"><span class="material-symbols-outlined">close</span></button>';

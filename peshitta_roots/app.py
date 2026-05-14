@@ -14,7 +14,7 @@ from flask_limiter.util import get_remote_address
 
 from .characters import (parse_root_input, transliterate_syriac, transliterate_syriac_academic,
                          transliterate_syriac_to_hebrew, transliterate_syriac_to_arabic,
-                         semitic_root_variants)
+                         semitic_root_variants, display_root_key)
 from .corpus import PeshittaCorpus
 from .extractor import RootExtractor
 from .cognates import CognateLookup
@@ -25,6 +25,10 @@ from .exporters import osis as osis_exporter
 from .exporters import text_fabric as tf_exporter
 
 app = Flask(__name__)
+
+# Jinja filter: render root keys with ʿ for ayin (display only; URL/data
+# keys stay ASCII-E). See peshitta_roots.characters.display_root_key.
+app.add_template_filter(display_root_key, name='display_root')
 
 # Enable permissive CORS on /api/* so external scholarly tools, AI agents,
 # and Swagger UI clients can call the public read-only API from any origin.

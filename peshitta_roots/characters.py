@@ -307,6 +307,41 @@ def transliterate_arabic(text: str) -> str:
     return ''.join(result)
 
 
+# --- Display vs storage form for ayin ---
+# In the simplified-Latin transliteration, ayin (ܥ / ע / ع — a voiced pharyngeal
+# consonant) is keyed as the ASCII letter "E" so that root keys remain
+# typable, URL-safe, and stable across releases. But "E" reads visually as a
+# vowel to non-Semitists. For DISPLAY only we render it as ʿ (U+02BF, the
+# standard SBL "modifier letter left half ring" for ayin), which any reader
+# of academic transliteration recognises and which non-specialists at least
+# don't mistake for a Latin vowel.
+#
+# Storage / URL / API / search keys all stay as "E". Display swaps to ʿ.
+AYIN_DISPLAY = 'ʿ'  # ʿ
+
+
+def display_root_key(key: str | None) -> str:
+    """Render a root key for display: swap E → ʿ for ayin.
+
+    The storage form keeps "E" so URLs, search input, JSON keys, MCP tool
+    calls, and Zenodo-archived data stay ASCII and stable. Use this helper
+    only for user-facing rendering (templates, UI labels, table cells).
+
+    Examples:
+        >>> display_root_key('Y-D-E')
+        'Y-D-ʿ'
+        >>> display_root_key('y-d-e')
+        'y-d-ʿ'
+        >>> display_root_key('K-T-B')
+        'K-T-B'
+        >>> display_root_key(None)
+        ''
+    """
+    if not key:
+        return ''
+    return key.replace('E', AYIN_DISPLAY).replace('e', AYIN_DISPLAY)
+
+
 def parse_root_input(user_input: str) -> str | None:
     """Parse user input like 'K-T-B' or 'k t b' into Syriac root string.
 
@@ -315,12 +350,17 @@ def parse_root_input(user_input: str) -> str | None:
       - Space-separated: K T B or G SH
       - Digraphs: SH-L-M, KH-T-B, TH-Q-N, TS-L-M
       - Case-insensitive (except T for Teth)
+      - The display glyph ʿ (U+02BF) for ayin — normalised to "E" so users
+        who copy a root from the UI can paste it back into search.
 
     Returns Syriac root string (2 or 3 chars) or None if invalid.
     """
     user_input = user_input.strip()
     if not user_input:
         return None
+
+    # Normalise display glyph for ayin back to its storage form
+    user_input = user_input.replace(AYIN_DISPLAY, 'E')
 
     # Split by dash or space
     if '-' in user_input:

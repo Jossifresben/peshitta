@@ -66,7 +66,7 @@
                 </div>
                 <div class="rotd-root">
                     <span class="rotd-syriac">{{ rotd.syriac }}</span>
-                    <span class="rotd-key">{{ rotd.key }}</span>
+                    <span class="rotd-key">{{ rotd.key|display_root }}</span>
                 </div>
                 <div class="rotd-gloss-line">{{ rotd.gloss }}</div>
                 {% if rotd.sabor %}
@@ -295,7 +295,7 @@
                 {% for r in top_roots %}
                 <a class="root-row" href="{{ url_for('index', lang=lang, q=r.key) }}#results">
                     <span class="root-row-syriac">{{ r.syriac }}</span>
-                    <span class="root-row-key">{{ r.key }}</span>
+                    <span class="root-row-key">{{ r.key|display_root }}</span>
                     <span class="root-row-gloss">{% if r.gloss %}{{ r.gloss }}{% else %}<span class="root-row-noglo">—</span>{% endif %}</span>
                     <span class="root-row-count">{{ '{:,}'.format(r.count) }}</span>
                     <span class="root-row-arrow material-symbols-outlined">arrow_forward</span>
@@ -328,7 +328,7 @@
                 <div class="cite-translit">{{ tr_parts[0] }}{% if tr_parts|length > 1 %}<b>{{ editorial_card.form_translit }}</b>{{ tr_parts[1] }}{% endif %}</div>
                 <div class="cite-tx">"{{ editorial_card.verse }}" — {{ editorial_card.ref }}</div>
                 <div class="cite-foot">
-                    <span>{{ editorial_card.root_key }}{% if editorial_card.gloss %} · {{ editorial_card.gloss }}{% endif %}</span>
+                    <span>{{ editorial_card.root_key|display_root }}{% if editorial_card.gloss %} · {{ editorial_card.gloss }}{% endif %}</span>
                     <a href="{{ url_for('visualize', root_key=editorial_card.root_key, lang=lang, script=script, trans=trans, tab='ficha') }}">{{ t.cite_card_open|default('Open card →') }}</a>
                 </div>
             </aside>
@@ -343,7 +343,7 @@
                 {% for item in disambiguation %}
                 <a href="{{ url_for('index', lang=lang, q=item.root_translit) }}" class="disambiguation-item">
                     <span class="syriac">{{ item.root_syriac }}</span>
-                    <span class="ac-translit">{{ item.root_translit }}</span>
+                    <span class="ac-translit">{{ item.root_translit|display_root }}</span>
                     {% if item.gloss %}<span class="text-muted">— {{ item.gloss }}</span>{% endif %}
                 </a>
                 {% endfor %}
@@ -364,7 +364,7 @@
             <div class="root-header">
                 <div class="root-header-top">
                     <span class="root-syriac">{{ result.root }}</span>
-                    <span class="root-latin">{{ result.root_translit }}</span>
+                    <span class="root-latin">{{ result.root_translit|display_root }}</span>
                 </div>
                 {% if result.gloss %}
                 <div class="root-meaning">{{ result.gloss }}</div>
@@ -1076,7 +1076,7 @@
                     rootLine.className = 'meaning-result-root';
                     rootLine.innerHTML = '<a href="/?q=' + encodeURIComponent(r.key) + '&lang={{ lang }}&script={{ script }}#results" class="meaning-root-link">'
                         + '<span class="syriac">' + escHtml(r.root_syriac) + '</span> '
-                        + '<span class="ac-translit">' + escHtml(r.key) + '</span>'
+                        + '<span class="ac-translit">' + escHtml(displayRoot(r.key)) + '</span>'
                         + '</a>'
                         + ' <span class="meaning-gloss">— ' + escHtml(r.gloss) + '</span>'
                         + ' <span class="count-badge">' + r.occurrences + '×</span>'
@@ -1473,7 +1473,7 @@
                     html += '<div class="greek-result-card">';
                     html += '<a href="/?q=' + encodeURIComponent(r.key) + '&lang=' + currentLang + '#results" class="greek-root-link">';
                     html += '<span class="syriac">' + escHtml(r.root_syriac) + '</span> ';
-                    html += '<span class="root-key">' + escHtml(r.key) + '</span>';
+                    html += '<span class="root-key">' + escHtml(displayRoot(r.key)) + '</span>';
                     html += '</a>';
                     html += ' <span class="greek-gloss">' + escHtml(r.gloss) + '</span>';
                     html += ' <span class="count-badge">' + r.occurrences + '</span>';
