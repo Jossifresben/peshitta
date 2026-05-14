@@ -289,7 +289,7 @@ The MCP server exposes 6 tools: search roots, get verses, concordance, Greek con
 
 ## Citation
 
-Fresco, J. (2026). *Peshitta Constellations* (Version 1.4.0). Zenodo.
+Fresco, J. (2026). *Peshitta Constellations* (Version 1.4.1). Zenodo.
 https://doi.org/10.5281/zenodo.19358529 — ORCID: 0009-0000-2026-0836
 
 See `CITATION.cff` or use the "Cite this" button on any page in the app.
