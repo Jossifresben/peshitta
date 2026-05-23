@@ -157,31 +157,33 @@ var PeshittaTour = (function() {
     function positionTooltip(el, pos) {
         var rect = el.getBoundingClientRect();
         var pad = 16;
-        var ttWidth = 340;
+        var ttWidth = window.innerWidth < 600 ? window.innerWidth - 24 : 340;
 
         tooltip.className = 'tour-tooltip active tour-pos-' + pos;
         tooltip.style.transform = 'none';
+        tooltip.style.right = 'auto';
+        tooltip.style.bottom = 'auto';
+
+        // Measure rendered tooltip height (content already populated in show()
+        // before positionTooltip runs, so offsetHeight is current).
+        var ttHeight = tooltip.offsetHeight;
 
         var top, left;
         switch (pos) {
             case 'top':
-                top = rect.top + window.scrollY - pad;
+                top = rect.top + window.scrollY - ttHeight - pad;
                 left = rect.left + window.scrollX + rect.width / 2 - ttWidth / 2;
-                tooltip.style.top = 'auto';
-                tooltip.style.bottom = (window.innerHeight - rect.top - window.scrollY + pad) + 'px';
-                tooltip.style.left = clampLeft(left) + 'px';
-                tooltip.style.right = 'auto';
-                return;
+                break;
             case 'bottom':
                 top = rect.bottom + window.scrollY + pad;
                 left = rect.left + window.scrollX + rect.width / 2 - ttWidth / 2;
                 break;
             case 'left':
-                top = rect.top + window.scrollY + rect.height / 2 - 60;
+                top = rect.top + window.scrollY + rect.height / 2 - ttHeight / 2;
                 left = rect.left + window.scrollX - ttWidth - pad;
                 break;
             case 'right':
-                top = rect.top + window.scrollY + rect.height / 2 - 60;
+                top = rect.top + window.scrollY + rect.height / 2 - ttHeight / 2;
                 left = rect.right + window.scrollX + pad;
                 break;
             default:
@@ -189,10 +191,20 @@ var PeshittaTour = (function() {
                 left = rect.left + window.scrollX;
         }
 
-        tooltip.style.top = top + 'px';
+        // If the bottom-anchored tooltip would extend off-viewport but there's
+        // room above the target, flip to top placement so the user sees the
+        // whole tooltip without scrolling.
+        var viewportBottom = window.scrollY + window.innerHeight;
+        var viewportTop = window.scrollY;
+        if (pos === 'bottom' && top + ttHeight + pad > viewportBottom) {
+            var aboveTop = rect.top + window.scrollY - ttHeight - pad;
+            if (aboveTop > viewportTop + pad) {
+                top = aboveTop;
+            }
+        }
+
+        tooltip.style.top = clampTop(top, ttHeight) + 'px';
         tooltip.style.left = clampLeft(left) + 'px';
-        tooltip.style.right = 'auto';
-        tooltip.style.bottom = 'auto';
     }
 
     function clampLeft(left) {
@@ -201,6 +213,20 @@ var PeshittaTour = (function() {
         if (left < 12) return 12;
         if (left > maxLeft) return maxLeft;
         return left;
+    }
+
+    function clampTop(top, height) {
+        // Keep the whole tooltip within the current viewport (relative to the
+        // document, since the tooltip is position:absolute). Pad 12px from each
+        // viewport edge. If the tooltip is taller than the viewport itself,
+        // pin to viewport top so the title/body are at least visible.
+        var pad = 12;
+        var viewportTop = window.scrollY + pad;
+        var viewportBottom = window.scrollY + window.innerHeight - height - pad;
+        if (viewportBottom < viewportTop) return viewportTop;
+        if (top < viewportTop) return viewportTop;
+        if (top > viewportBottom) return viewportBottom;
+        return top;
     }
 
     return { start: start, finish: finish };
