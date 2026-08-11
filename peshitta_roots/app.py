@@ -270,9 +270,9 @@ Use ?lang=XX query parameter on any page or API endpoint.
 - Syriac lexicon: Payne Smith's Compendious Syriac Dictionary
 
 ## Coverage
-- Full Peshitta New Testament (27 books)
-- 1400+ triliteral and biliteral roots indexed
-- Hebrew and Arabic cognate mappings for each root
+- Full Peshitta New Testament, traditional 22-book canon (7,440 verses), plus selected OT books (Psalms, Isaiah, Ezekiel, Proverbs)
+- 2,535 machine-extracted root patterns from ~15,000 surface forms
+- 436 curated root families with Hebrew and Arabic cognate mappings, 589 semantic bridges
 
 ## Author
 Jossi Fresco — https://peshitta.onrender.com/about
