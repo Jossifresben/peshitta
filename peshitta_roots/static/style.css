@@ -4042,10 +4042,18 @@ footer a:hover {
 }
 
 @media (max-width: 600px) {
-    .tour-tooltip {
+    /* Anchored tooltips (positioned relative to a target) get pinned to
+       viewport edges. Center-mode tooltips (welcome/farewell) MUST be
+       excluded — they use transform: translate(-50%, -50%) for centering,
+       and forcing left:12px on top of that would shift them off-screen. */
+    .tour-tooltip:not(.tour-tooltip-center) {
         width: calc(100vw - 24px);
         left: 12px !important;
         right: 12px !important;
+    }
+    .tour-tooltip.tour-tooltip-center {
+        width: calc(100vw - 24px);
+        max-width: calc(100vw - 24px);
     }
 }
 

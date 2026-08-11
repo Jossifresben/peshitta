@@ -129,14 +129,22 @@ var PeshittaTour = (function() {
                 positionTooltip(el, step.position || 'bottom');
             }, 350);
         } else {
-            // Center mode (no target)
+            // Center mode (no target). Uses position:fixed + explicit left/top
+            // rather than transform-based centering, so a mobile CSS rule that
+            // pins left/right can't fight the transform and push it off-screen.
             spotlight.style.display = 'none';
             tooltip.className = 'tour-tooltip tour-tooltip-center';
-            tooltip.style.top = '50%';
-            tooltip.style.left = '50%';
-            tooltip.style.transform = 'translate(-50%, -50%)';
+            tooltip.style.transform = 'none';
+            tooltip.style.position = 'fixed';
             tooltip.style.right = 'auto';
             tooltip.style.bottom = 'auto';
+
+            var cw = window.innerWidth < 600 ? window.innerWidth - 24 : 340;
+            tooltip.style.width = cw + 'px';
+            tooltip.style.left = Math.max(12, (window.innerWidth - cw) / 2) + 'px';
+
+            var ch = tooltip.offsetHeight;
+            tooltip.style.top = Math.max(12, (window.innerHeight - ch) / 2) + 'px';
         }
 
         // Animate in
@@ -163,6 +171,10 @@ var PeshittaTour = (function() {
         tooltip.style.transform = 'none';
         tooltip.style.right = 'auto';
         tooltip.style.bottom = 'auto';
+        // Reset anything center mode may have set (it uses position:fixed and
+        // an explicit width; anchored steps are absolute and CSS-sized).
+        tooltip.style.position = 'absolute';
+        tooltip.style.width = '';
 
         // Measure rendered tooltip height (content already populated in show()
         // before positionTooltip runs, so offsetHeight is current).
