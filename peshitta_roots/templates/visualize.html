@@ -396,12 +396,38 @@
             var tbody = document.getElementById('ficha-table-body');
             tbody.innerHTML = '';
             var syriac = data.syriac_words || [];
-            var hebrew = (data.hebrew || []).filter(function(h) { return !h.outlier; });
-            var arabic = (data.arabic || []).filter(function(a) { return !a.outlier; });
+            // Show ALL cognates — the section header promises "all derivatives".
+            // Outliers used to be filtered out here, which blanked entire
+            // language columns on roots where every cognate happens to be
+            // flagged. They are now shown last and visually marked, matching
+            // the dashed-ring treatment the graph view already gives them.
+            function outlierLast(list) {
+                return (list || []).slice().sort(function(a, b) {
+                    return (a.outlier ? 1 : 0) - (b.outlier ? 1 : 0);
+                });
+            }
+            var hebrew = outlierLast(data.hebrew);
+            var arabic = outlierLast(data.arabic);
+
+            function cognateCell(item, scriptClass) {
+                var td = document.createElement('td');
+                if (!item) return td;
+                var dot = '';
+                if (item.outlier) {
+                    td.className = 'ficha-cognate-outlier';
+                    td.title = STRINGS.semanticOutlier || '';
+                    dot = '<span class="ficha-outlier-dot" aria-hidden="true"></span>';
+                }
+                td.innerHTML = '<span class="ficha-word ' + scriptClass + '">' + dot + escHtml(item.word) + '</span>' +
+                    '<span class="ficha-translit">' + escHtml(item.translit) + '</span>' +
+                    '<span class="ficha-meaning">' + escHtml(item.meaning || '') + '</span>';
+                return td;
+            }
+
             var maxRows = Math.max(syriac.length, hebrew.length, arabic.length);
             for (var i = 0; i < maxRows; i++) {
                 var tr = document.createElement('tr');
-                // Syriac column
+                // Syriac column (corpus word forms — never outlier-flagged)
                 var tdS = document.createElement('td');
                 if (i < syriac.length) {
                     tdS.innerHTML = '<span class="ficha-word ficha-word-syriac">' + escHtml(syriac[i].word) + '</span>' +
@@ -409,22 +435,8 @@
                         '<span class="ficha-meaning">' + escHtml(syriac[i].meaning || '') + '</span>';
                 }
                 tr.appendChild(tdS);
-                // Hebrew column
-                var tdH = document.createElement('td');
-                if (i < hebrew.length) {
-                    tdH.innerHTML = '<span class="ficha-word ficha-word-hebrew">' + escHtml(hebrew[i].word) + '</span>' +
-                        '<span class="ficha-translit">' + escHtml(hebrew[i].translit) + '</span>' +
-                        '<span class="ficha-meaning">' + escHtml(hebrew[i].meaning || '') + '</span>';
-                }
-                tr.appendChild(tdH);
-                // Arabic column
-                var tdA = document.createElement('td');
-                if (i < arabic.length) {
-                    tdA.innerHTML = '<span class="ficha-word ficha-word-arabic">' + escHtml(arabic[i].word) + '</span>' +
-                        '<span class="ficha-translit">' + escHtml(arabic[i].translit) + '</span>' +
-                        '<span class="ficha-meaning">' + escHtml(arabic[i].meaning || '') + '</span>';
-                }
-                tr.appendChild(tdA);
+                tr.appendChild(cognateCell(hebrew[i], 'ficha-word-hebrew'));
+                tr.appendChild(cognateCell(arabic[i], 'ficha-word-arabic'));
                 tbody.appendChild(tr);
             }
         }

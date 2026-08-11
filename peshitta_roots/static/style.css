@@ -1455,6 +1455,27 @@ header p {
     margin-top: 2px;
 }
 
+/* Semantic outliers in the derivatives table.
+   The graph view marks these with a dashed gold ring; the table used to drop
+   them entirely, which left whole language columns blank on 37 roots under a
+   header that reads "All derivatives". Now they are shown, marked, and sorted
+   after the primary cognates. */
+.ficha-outlier-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-inline-end: 5px;
+    border-radius: 50%;
+    border: 1.5px dashed var(--gold, #DAA520);
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+.ficha-cognate-outlier .ficha-word,
+.ficha-cognate-outlier .ficha-translit,
+.ficha-cognate-outlier .ficha-meaning {
+    opacity: 0.72;
+}
+
 .search-section label {
     display: block;
     font-weight: bold;
