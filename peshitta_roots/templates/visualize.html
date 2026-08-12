@@ -687,7 +687,7 @@
 
             // Show keys
             var hasOutliers = _nodes.some(function(d) { return d.outlier; });
-            var hasBridges = _nodes.some(function(d) { return d.outlier && d.bridge; });
+            var hasBridges = _nodes.some(function(d) { return d.bridge; });
             var outlierKey = document.getElementById('viz-outlier-key');
             var bridgeKey = document.getElementById('viz-bridge-key');
             if (outlierKey) outlierKey.style.display = hasOutliers ? 'inline-flex' : 'none';
@@ -726,7 +726,7 @@
                     .on('end', dragend));
 
             // Pulsing outer ring for bridge-outliers (rendered BEFORE main circle so it's behind)
-            nodeEnter.filter(function(d) { return d.outlier && d.bridge; })
+            nodeEnter.filter(function(d) { return d.bridge; })
                 .append('circle')
                 .attr('class', 'bridge-outlier-ring')
                 .attr('r', function(d) { return d.r + 5; })
@@ -738,29 +738,29 @@
 
             // Circle
             nodeEnter.append('circle')
-                .attr('class', function(d) { return 'node-circle' + (d.outlier && d.bridge ? ' bridge-clickable' : ''); })
+                .attr('class', function(d) { return 'node-circle' + (d.bridge ? ' bridge-clickable' : ''); })
                 .attr('r', function(d) { return d.r; })
                 .attr('fill', function(d) {
-                    if (d.outlier && d.bridge) return nodeColor(d);  // full color for bridge outliers
+                    if (d.bridge) return nodeColor(d);  // full color for bridge outliers
                     if (d.outlier) return nodeColor(d) + '99';       // muted for plain outliers
                     return nodeColor(d);
                 })
                 .attr('stroke', function(d) {
-                    if (d.outlier && d.bridge) return '#DAA520';
+                    if (d.bridge) return '#DAA520';
                     if (d.outlier) return '#DAA520';
                     return '#fff';
                 })
                 .attr('stroke-width', function(d) {
-                    if (d.outlier && d.bridge) return 3.5;
+                    if (d.bridge) return 3.5;
                     if (d.outlier) return 3;
                     return 2;
                 })
                 .attr('stroke-dasharray', function(d) {
-                    if (d.outlier && d.bridge) return 'none';  // solid gold border for bridge outliers
+                    if (d.bridge) return 'none';  // solid gold border for bridge outliers
                     if (d.outlier) return '6,3';                // dashed for plain outliers
                     return 'none';
                 })
-                .style('cursor', function(d) { return (d.outlier && d.bridge) ? 'pointer' : 'default'; });
+                .style('cursor', function(d) { return (d.bridge) ? 'pointer' : 'default'; });
 
             // Label: main word
             nodeEnter.append('text')
@@ -799,7 +799,7 @@
                 });
 
             // Bridge icon below bubble for bridge-outliers
-            nodeEnter.filter(function(d) { return d.outlier && d.bridge && !d.type.startsWith('bridge-'); })
+            nodeEnter.filter(function(d) { return d.bridge && !d.type.startsWith('bridge-'); })
                 .append('text')
                 .attr('text-anchor', 'middle')
                 .attr('dy', function(d) { return d.r + 16; })
@@ -826,7 +826,7 @@
             var allNodes = nodeEnter.merge(nodeSel);
 
             // Click handler for outliers with bridges
-            allNodes.filter(function(d) { return d.outlier && d.bridge && !d.type.startsWith('bridge-'); })
+            allNodes.filter(function(d) { return d.bridge && !d.type.startsWith('bridge-'); })
                 .on('click', function(event, d) {
                     event.stopPropagation();
                     toggleBridge(d);

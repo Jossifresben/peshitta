@@ -529,8 +529,7 @@
           "word": "أَمَارَة",
           "transliteration": "'amārah",
           "meaning_es": "señal, indicio",
-          "meaning_en": "sign, indication",
-          "outlier": true
+          "meaning_en": "sign, indication"
         }
       ],
       "semantic_bridges": {
@@ -591,8 +590,7 @@
           "word": "מוֹלֶדֶת",
           "transliteration": "moledet",
           "meaning_es": "patria",
-          "meaning_en": "homeland",
-          "outlier": true
+          "meaning_en": "homeland"
         },
         {
           "word": "יוּלַד",
@@ -715,8 +713,7 @@
           "word": "עִבּוּד",
           "transliteration": "i'bud",
           "meaning_es": "procesamiento, elaboración",
-          "meaning_en": "processing, preparation",
-          "outlier": true
+          "meaning_en": "processing, preparation"
         }
       ],
       "arabic": [
@@ -964,8 +961,7 @@
           "word": "נָפַק",
           "transliteration": "nafaq",
           "meaning_es": "salir (arameo bíblico)",
-          "meaning_en": "to go out (biblical Aramaic)",
-          "outlier": true
+          "meaning_en": "to go out (biblical Aramaic)"
         }
       ],
       "arabic": [
@@ -973,15 +969,13 @@
           "word": "نَفَقَ",
           "transliteration": "nafaqa",
           "meaning_es": "gastar",
-          "meaning_en": "to spend",
-          "outlier": true
+          "meaning_en": "to spend"
         },
         {
           "word": "نَفَق",
           "transliteration": "nafaq",
           "meaning_es": "túnel",
-          "meaning_en": "tunnel",
-          "outlier": true
+          "meaning_en": "tunnel"
         },
         {
           "word": "مَخْرَج",
@@ -1100,8 +1094,7 @@
           "word": "סָבַר",
           "transliteration": "savar",
           "meaning_es": "pensar/suponer",
-          "meaning_en": "to think/suppose",
-          "outlier": true
+          "meaning_en": "to think/suppose"
         },
         {
           "word": "סִבֵּר",
@@ -1597,22 +1590,19 @@
           "word": "إقَامَة",
           "transliteration": "iqama",
           "meaning_es": "residencia",
-          "meaning_en": "residence",
-          "outlier": true
+          "meaning_en": "residence"
         },
         {
           "word": "قُوَّمَ",
           "transliteration": "quwaama",
           "meaning_es": "enderezar",
-          "meaning_en": "to straighten",
-          "outlier": true
+          "meaning_en": "to straighten"
         },
         {
           "word": "اِسْتَقَامَ",
           "transliteration": "istaqaama",
           "meaning_es": "estar recto",
-          "meaning_en": "to be upright",
-          "outlier": true
+          "meaning_en": "to be upright"
         },
         {
           "word": "قِيَّامَة",
@@ -1781,8 +1771,7 @@
           "word": "جَبْر",
           "transliteration": "jabr",
           "meaning_es": "álgebra/coerción",
-          "meaning_en": "algebra/coercion",
-          "outlier": true
+          "meaning_en": "algebra/coercion"
         },
         {
           "word": "جَبَرُوت",
@@ -1925,8 +1914,7 @@
           "word": "דָּחַל",
           "transliteration": "dakhal",
           "meaning_es": "temer (arameo bíblico)",
-          "meaning_en": "to fear (biblical Aramaic)",
-          "outlier": true
+          "meaning_en": "to fear (biblical Aramaic)"
         }
       ],
       "arabic": [
@@ -2006,8 +1994,7 @@
           "word": "حِيلَة",
           "transliteration": "hila",
           "meaning_es": "astucia/estratagema",
-          "meaning_en": "trick/stratagem",
-          "outlier": true
+          "meaning_en": "trick/stratagem"
         },
         {
           "word": "حَوْل",
@@ -2026,8 +2013,7 @@
           "word": "حِيلَة",
           "transliteration": "hilatun",
           "meaning_es": "estratagema, truco",
-          "meaning_en": "stratagem, trick",
-          "outlier": true
+          "meaning_en": "stratagem, trick"
         }
       ],
       "semantic_bridges": {
@@ -2318,15 +2304,13 @@
           "word": "وَهِيب",
           "transliteration": "wahīb",
           "meaning_es": "generoso",
-          "meaning_en": "generous",
-          "outlier": true
+          "meaning_en": "generous"
         },
         {
           "word": "مَوْهُوب",
           "transliteration": "mawḥūb",
           "meaning_es": "talentoso/dotado",
-          "meaning_en": "talented/gifted",
-          "outlier": true
+          "meaning_en": "talented/gifted"
         }
       ],
       "semantic_bridges": {
@@ -2510,22 +2494,19 @@
           "word": "שָׁדַר",
           "transliteration": "shadar",
           "meaning_es": "enviar (arameo)",
-          "meaning_en": "to send (Aramaic)",
-          "outlier": true
+          "meaning_en": "to send (Aramaic)"
         },
         {
           "word": "שוֹלֵחַ",
           "transliteration": "sho'leiach",
           "meaning_es": "el que envía",
-          "meaning_en": "the one who sends",
-          "outlier": true
+          "meaning_en": "the one who sends"
         },
         {
           "word": "שִׁלּוּחַ",
           "transliteration": "shilú'ach",
           "meaning_es": "envío, despacho",
-          "meaning_en": "sending, dispatch",
-          "outlier": true
+          "meaning_en": "sending, dispatch"
         }
       ],
       "arabic": [
@@ -2539,8 +2520,7 @@
           "word": "مَصْدَر",
           "transliteration": "masdar",
           "meaning_es": "fuente/infinitivo",
-          "meaning_en": "source/infinitive",
-          "outlier": true
+          "meaning_en": "source/infinitive"
         },
         {
           "word": "مُرْسِل",
@@ -2558,8 +2538,7 @@
           "word": "مَصْدَر",
           "transliteration": "maṣdar",
           "meaning_es": "fuente, origen",
-          "meaning_en": "source, origin",
-          "outlier": true
+          "meaning_en": "source, origin"
         }
       ],
       "sabor_raiz_es": "envío, emisión, transmisión",
@@ -2861,8 +2840,7 @@
           "word": "مَخْطَأَة",
           "transliteration": "makhtá'a",
           "meaning_es": "error",
-          "meaning_en": "mistake",
-          "outlier": true
+          "meaning_en": "mistake"
         }
       ],
       "sabor_raiz_es": "transgresión, error, desviación",
@@ -2899,8 +2877,7 @@
           "word": "נָסַב",
           "transliteration": "nasav",
           "meaning_es": "tomar (arameo)",
-          "meaning_en": "to take (Aramaic)",
-          "outlier": true
+          "meaning_en": "to take (Aramaic)"
         },
         {
           "word": "נְסִיָּה",
@@ -3072,8 +3049,7 @@
           "word": "נִפְשִׁי",
           "transliteration": "nifšî",
           "meaning_es": "mi alma, mi ser",
-          "meaning_en": "my soul, my being",
-          "outlier": true
+          "meaning_en": "my soul, my being"
         }
       ],
       "arabic": [
@@ -3194,15 +3170,13 @@
           "word": "رَاحَة",
           "transliteration": "raha",
           "meaning_es": "descanso/comodidad",
-          "meaning_en": "rest/comfort",
-          "outlier": true
+          "meaning_en": "rest/comfort"
         },
         {
           "word": "رَاوَحَ",
           "transliteration": "rāwaḥa",
           "meaning_es": "descansar, tener reposo",
-          "meaning_en": "to rest, take ease",
-          "outlier": true
+          "meaning_en": "to rest, take ease"
         },
         {
           "word": "رَائِحَة",
@@ -3376,29 +3350,25 @@
           "word": "كَاهِن",
           "transliteration": "kahin",
           "meaning_es": "adivino/sacerdote",
-          "meaning_en": "soothsayer/priest",
-          "outlier": true
+          "meaning_en": "soothsayer/priest"
         },
         {
           "word": "كَهَانَة",
           "transliteration": "kahana",
           "meaning_es": "adivinación",
-          "meaning_en": "divination",
-          "outlier": true
+          "meaning_en": "divination"
         },
         {
           "word": "كَاهِنَة",
           "transliteration": "kaahina",
           "meaning_es": "sacerdotisa",
-          "meaning_en": "priestess",
-          "outlier": true
+          "meaning_en": "priestess"
         },
         {
           "word": "تَكَهَّنَ",
           "transliteration": "takahhan-na",
           "meaning_es": "adivinar",
-          "meaning_en": "to divine/foretell",
-          "outlier": true
+          "meaning_en": "to divine/foretell"
         }
       ],
       "semantic_bridges": {
@@ -3528,8 +3498,7 @@
           "word": "עִבְרִי",
           "transliteration": "ivri",
           "meaning_es": "hebreo",
-          "meaning_en": "Hebrew",
-          "outlier": true
+          "meaning_en": "Hebrew"
         },
         {
           "word": "עֵבֶר",
@@ -3549,8 +3518,7 @@
           "word": "عِبْرَة",
           "transliteration": "ibra",
           "meaning_es": "lección/moraleja",
-          "meaning_en": "lesson/moral",
-          "outlier": true
+          "meaning_en": "lesson/moral"
         },
         {
           "word": "عَرَبِيّ",
@@ -3818,8 +3786,7 @@
           "word": "كَنْز",
           "transliteration": "kanz",
           "meaning_es": "tesoro, acumulación",
-          "meaning_en": "treasure, hoard",
-          "outlier": true
+          "meaning_en": "treasure, hoard"
         },
         {
           "word": "كِنْسُ",
@@ -3999,15 +3966,13 @@
           "word": "فَرَشَ",
           "transliteration": "farasha",
           "meaning_es": "extender/esparcir",
-          "meaning_en": "to spread",
-          "outlier": true
+          "meaning_en": "to spread"
         },
         {
           "word": "فَرْشٌ",
           "transliteration": "farsh",
           "meaning_es": "alfombra, tapete",
-          "meaning_en": "carpet, mat",
-          "outlier": true
+          "meaning_en": "carpet, mat"
         },
         {
           "word": "فَرَّشَ",
@@ -4754,8 +4719,7 @@
           "word": "جُلَّاء",
           "transliteration": "jullā'",
           "meaning_es": "muy claro, evidente",
-          "meaning_en": "very clear, evident",
-          "outlier": true
+          "meaning_en": "very clear, evident"
         },
         {
           "word": "تَجَلِّي",
@@ -4943,8 +4907,7 @@
           "word": "إِنْفِلَال",
           "transliteration": "infíllal",
           "meaning_es": "caer",
-          "meaning_en": "to fall",
-          "outlier": true
+          "meaning_en": "to fall"
         }
       ],
       "semantic_bridges": {
@@ -5120,8 +5083,7 @@
           "word": "فَلاَحَة",
           "transliteration": "falāḥah",
           "meaning_es": "agricultura, labranza",
-          "meaning_en": "agriculture, plowing",
-          "outlier": true
+          "meaning_en": "agriculture, plowing"
         }
       ],
       "semantic_bridges": {
@@ -5300,8 +5262,7 @@
           "word": "مَوْضِب",
           "transliteration": "mawḍib",
           "meaning_es": "que permanece en su sitio",
-          "meaning_en": "one who remains in his place",
-          "outlier": true
+          "meaning_en": "one who remains in his place"
         }
       ],
       "semantic_bridges": {
@@ -5632,8 +5593,7 @@
           "word": "مَطْلُوب",
           "transliteration": "maṭlūb",
           "meaning_es": "buscado, requerido",
-          "meaning_en": "sought, required",
-          "outlier": true
+          "meaning_en": "sought, required"
         },
         {
           "word": "بِغَاء",
@@ -5688,8 +5648,7 @@
           "word": "מִשְׁמָע",
           "transliteration": "mishma",
           "meaning_es": "significado",
-          "meaning_en": "meaning/implication",
-          "outlier": true
+          "meaning_en": "meaning/implication"
         },
         {
           "word": "שַׁמָּע",
@@ -5707,8 +5666,7 @@
           "word": "נִשְׁמַע",
           "transliteration": "nish'má",
           "meaning_es": "sonar, resonar",
-          "meaning_en": "to be heard, to sound",
-          "outlier": true
+          "meaning_en": "to be heard, to sound"
         }
       ],
       "arabic": [
@@ -6098,15 +6056,13 @@
           "word": "بِيَات",
           "transliteration": "biyát",
           "meaning_es": "pernoctación",
-          "meaning_en": "overnight stay",
-          "outlier": true
+          "meaning_en": "overnight stay"
         },
         {
           "word": "بِيَوِي",
           "transliteration": "biyawíy",
           "meaning_es": "casero",
-          "meaning_en": "homely",
-          "outlier": true
+          "meaning_en": "homely"
         }
       ],
       "sabor_raiz_es": "morada, hogar, espacio doméstico",
@@ -6194,8 +6150,7 @@
           "word": "وَحِيد",
           "transliteration": "waḥīd",
           "meaning_es": "único, solitario",
-          "meaning_en": "unique, solitary",
-          "outlier": true
+          "meaning_en": "unique, solitary"
         },
         {
           "word": "وَحْدَة",
@@ -6301,8 +6256,7 @@
           "word": "اِسْتِيجَاء",
           "transliteration": "istījāʾ",
           "meaning_es": "abundancia, riqueza",
-          "meaning_en": "abundance, wealth",
-          "outlier": true
+          "meaning_en": "abundance, wealth"
         },
         {
           "word": "مَسْجَى",
@@ -6359,7 +6313,6 @@
           "transliteration": "mari",
           "meaning_es": "mi señor (arameo, no hebreo)",
           "meaning_en": "my lord (Aramaic, not Hebrew)",
-          "outlier": true,
           "period": "biblical_aramaic"
         },
         {
@@ -6367,7 +6320,6 @@
           "transliteration": "maran",
           "meaning_es": "nuestro señor (arameo, no hebreo)",
           "meaning_en": "our lord (Aramaic, not Hebrew)",
-          "outlier": true,
           "period": "biblical_aramaic"
         },
         {
@@ -6499,8 +6451,7 @@
           "word": "مَلَّ",
           "transliteration": "malla",
           "meaning_es": "aburrirse/dictar",
-          "meaning_en": "to be bored/dictate",
-          "outlier": true
+          "meaning_en": "to be bored/dictate"
         },
         {
           "word": "إِمْلَاء",
@@ -6601,8 +6552,7 @@
           "word": "يَوْمَ القِيَامَة",
           "transliteration": "yawm al-qiyama",
           "meaning_es": "Día del Juicio",
-          "meaning_en": "Day of Judgment",
-          "outlier": true
+          "meaning_en": "Day of Judgment"
         },
         {
           "word": "يَوْمِيَّة",
@@ -6790,8 +6740,7 @@
           "word": "مَدِينَة",
           "transliteration": "madina",
           "meaning_es": "ciudad",
-          "meaning_en": "city",
-          "outlier": true
+          "meaning_en": "city"
         },
         {
           "word": "دَيِّن",
@@ -6803,8 +6752,7 @@
           "word": "دِينَة",
           "transliteration": "dīnah",
           "meaning_es": "ciudad",
-          "meaning_en": "city",
-          "outlier": true
+          "meaning_en": "city"
         },
         {
           "word": "دَايَن",
@@ -7121,29 +7069,25 @@
           "word": "זִמֵּן",
           "transliteration": "zimmen",
           "meaning_es": "invitar/preparar",
-          "meaning_en": "to invite/prepare",
-          "outlier": true
+          "meaning_en": "to invite/prepare"
         },
         {
           "word": "זִמּוֹן",
           "transliteration": "zīmūn",
           "meaning_es": "preparación, cita",
-          "meaning_en": "preparation, appointment",
-          "outlier": true
+          "meaning_en": "preparation, appointment"
         },
         {
           "word": "זוֹמֵן",
           "transliteration": "zōmēn",
           "meaning_es": "invitar, organizar",
-          "meaning_en": "to invite, arrange",
-          "outlier": true
+          "meaning_en": "to invite, arrange"
         },
         {
           "word": "זִמְנוּת",
           "transliteration": "zimnūt",
           "meaning_es": "temporalidad, carácter temporal",
-          "meaning_en": "temporality, transient nature",
-          "outlier": true
+          "meaning_en": "temporality, transient nature"
         }
       ],
       "arabic": [
@@ -7157,8 +7101,7 @@
           "word": "زَبُون",
           "transliteration": "zabun",
           "meaning_es": "cliente",
-          "meaning_en": "customer",
-          "outlier": true
+          "meaning_en": "customer"
         },
         {
           "word": "زَمَّنَ",
@@ -7170,15 +7113,13 @@
           "word": "زَبَائِن",
           "transliteration": "zabā'in",
           "meaning_es": "clientes, compradores",
-          "meaning_en": "customers, buyers",
-          "outlier": true
+          "meaning_en": "customers, buyers"
         },
         {
           "word": "زَبِين",
           "transliteration": "zabīn",
           "meaning_es": "cliente, comprador",
-          "meaning_en": "customer, buyer",
-          "outlier": true
+          "meaning_en": "customer, buyer"
         }
       ],
       "semantic_bridges": {
@@ -7228,8 +7169,7 @@
           "word": "שָׁאוּל",
           "transliteration": "Shaul",
           "meaning_es": "Saúl (pedido)",
-          "meaning_en": "Saul (asked for)",
-          "outlier": true
+          "meaning_en": "Saul (asked for)"
         },
         {
           "word": "מִשְׁאָל",
@@ -7253,8 +7193,7 @@
           "word": "מַשְׁאִיל",
           "transliteration": "mash'il",
           "meaning_es": "el que presta",
-          "meaning_en": "the one who lends",
-          "outlier": true
+          "meaning_en": "the one who lends"
         }
       ],
       "arabic": [
@@ -7274,8 +7213,7 @@
           "word": "مَسْأَلَة",
           "transliteration": "mas'ala",
           "meaning_es": "cuestión/asunto",
-          "meaning_en": "matter/issue",
-          "outlier": true
+          "meaning_en": "matter/issue"
         },
         {
           "word": "سَائِل",
@@ -7287,8 +7225,7 @@
           "word": "مَسْؤُول",
           "transliteration": "mas'ul",
           "meaning_es": "responsable",
-          "meaning_en": "responsible",
-          "outlier": true
+          "meaning_en": "responsible"
         }
       ],
       "semantic_bridges": {
@@ -7355,8 +7292,7 @@
           "word": "מְבֻיָּשׁ",
           "transliteration": "mevuyash",
           "meaning_es": "avergonzado, abochornado",
-          "meaning_en": "ashamed, embarrassed",
-          "outlier": true
+          "meaning_en": "ashamed, embarrassed"
         }
       ],
       "arabic": [
@@ -7569,8 +7505,7 @@
           "word": "عَامّ",
           "transliteration": "'amm",
           "meaning_es": "general/público",
-          "meaning_en": "general/public",
-          "outlier": true
+          "meaning_en": "general/public"
         },
         {
           "word": "أُمَّة",
@@ -7669,15 +7604,13 @@
           "word": "مُعَايَنَة",
           "transliteration": "mu'ayana",
           "meaning_es": "inspección",
-          "meaning_en": "inspection",
-          "outlier": true
+          "meaning_en": "inspection"
         },
         {
           "word": "عَيَّان",
           "transliteration": "'ayyaan",
           "meaning_es": "vigilante, observador",
-          "meaning_en": "watcher, observer",
-          "outlier": true
+          "meaning_en": "watcher, observer"
         }
       ],
       "sabor_raiz_es": "apertura, mirada, brotación",
@@ -7744,8 +7677,7 @@
           "word": "מַטֹּבָה",
           "transliteration": "mattovah",
           "meaning_es": "lo mejor",
-          "meaning_en": "the best",
-          "outlier": true
+          "meaning_en": "the best"
         }
       ],
       "arabic": [
@@ -8136,8 +8068,7 @@
           "word": "فَقَدَ",
           "transliteration": "faqada",
           "meaning_es": "perder/echar de menos",
-          "meaning_en": "to lose/miss",
-          "outlier": true
+          "meaning_en": "to lose/miss"
         },
         {
           "word": "تَفَقَّدَ",
@@ -8149,29 +8080,25 @@
           "word": "مُفْتَقَد",
           "transliteration": "muftaqad",
           "meaning_es": "extrañado",
-          "meaning_en": "missed",
-          "outlier": true
+          "meaning_en": "missed"
         },
         {
           "word": "فَقِيد",
           "transliteration": "faqid",
           "meaning_es": "el desaparecido, el fallecido",
-          "meaning_en": "the missing, the deceased",
-          "outlier": true
+          "meaning_en": "the missing, the deceased"
         },
         {
           "word": "فَقَدَان",
           "transliteration": "faqadān",
           "meaning_es": "pérdida, ausencia",
-          "meaning_en": "loss, absence",
-          "outlier": true
+          "meaning_en": "loss, absence"
         },
         {
           "word": "افْتَقَدَ",
           "transliteration": "iftaqada",
           "meaning_es": "echar de menos, extrañar",
-          "meaning_en": "to miss, to long for",
-          "outlier": true
+          "meaning_en": "to miss, to long for"
         }
       ],
       "semantic_bridges": {
@@ -8246,15 +8173,13 @@
           "word": "حِوَار",
           "transliteration": "hiwar",
           "meaning_es": "diálogo",
-          "meaning_en": "dialogue",
-          "outlier": true
+          "meaning_en": "dialogue"
         },
         {
           "word": "حُورِيَّة",
           "transliteration": "huriyya",
           "meaning_es": "hurí (mujer de ojos claros)",
-          "meaning_en": "houri (fair-eyed woman)",
-          "outlier": true
+          "meaning_en": "houri (fair-eyed woman)"
         },
         {
           "word": "حَيَّر",
@@ -8335,8 +8260,7 @@
           "word": "עַנְוָה",
           "transliteration": "'an'vah",
           "meaning_es": "humildad",
-          "meaning_en": "humility",
-          "outlier": true
+          "meaning_en": "humility"
         }
       ],
       "arabic": [
@@ -8369,8 +8293,7 @@
           "word": "أَنِيْنٌ",
           "transliteration": "'aniinun",
           "meaning_es": "gemido",
-          "meaning_en": "groan",
-          "outlier": true
+          "meaning_en": "groan"
         },
         {
           "word": "إِنَاءٌ",
@@ -8470,43 +8393,37 @@
           "word": "نَظَرَ",
           "transliteration": "nazara",
           "meaning_es": "mirar/observar",
-          "meaning_en": "to look/observe",
-          "outlier": true
+          "meaning_en": "to look/observe"
         },
         {
           "word": "نَظَر",
           "transliteration": "nazar",
           "meaning_es": "vista/mirada",
-          "meaning_en": "sight/gaze",
-          "outlier": true
+          "meaning_en": "sight/gaze"
         },
         {
           "word": "مَنْظَر",
           "transliteration": "manzar",
           "meaning_es": "vista/panorama",
-          "meaning_en": "view/scenery",
-          "outlier": true
+          "meaning_en": "view/scenery"
         },
         {
           "word": "نَاظِر",
           "transliteration": "naẓir",
           "meaning_es": "observador",
-          "meaning_en": "observer",
-          "outlier": true
+          "meaning_en": "observer"
         },
         {
           "word": "مُنْتَظِر",
           "transliteration": "muntaẓir",
           "meaning_es": "vigilante",
-          "meaning_en": "guard, watchman",
-          "outlier": true
+          "meaning_en": "guard, watchman"
         },
         {
           "word": "مَنْظَر",
           "transliteration": "manẓar",
           "meaning_es": "vista, aspecto",
-          "meaning_en": "view, appearance",
-          "outlier": true
+          "meaning_en": "view, appearance"
         }
       ],
       "semantic_bridges": {
@@ -8680,8 +8597,7 @@
           "word": "מַעֲלָה",
           "transliteration": "ma'alah",
           "meaning_es": "grado/escalón",
-          "meaning_en": "degree/step",
-          "outlier": true
+          "meaning_en": "degree/step"
         },
         {
           "word": "עֲלִיָּה",
@@ -8794,22 +8710,19 @@
           "word": "خِلَاف",
           "transliteration": "khilaf",
           "meaning_es": "desacuerdo",
-          "meaning_en": "disagreement",
-          "outlier": true
+          "meaning_en": "disagreement"
         },
         {
           "word": "اِخْتِلَاف",
           "transliteration": "ikhtilaf",
           "meaning_es": "diferencia",
-          "meaning_en": "difference",
-          "outlier": true
+          "meaning_en": "difference"
         },
         {
           "word": "مُخَالَفَة",
           "transliteration": "mukhalifah",
           "meaning_es": "oposición, desacuerdo",
-          "meaning_en": "opposition, disagreement",
-          "outlier": true
+          "meaning_en": "opposition, disagreement"
         },
         {
           "word": "تَخَلُّف",
@@ -8952,29 +8865,25 @@
           "word": "תַּרְעָא",
           "transliteration": "tar'a",
           "meaning_es": "puerta (arameo)",
-          "meaning_en": "door (Aramaic)",
-          "outlier": true
+          "meaning_en": "door (Aramaic)"
         },
         {
           "word": "תַּרְעִיל",
           "transliteration": "tar'il",
           "meaning_es": "puerta grande",
-          "meaning_en": "large door",
-          "outlier": true
+          "meaning_en": "large door"
         },
         {
           "word": "תְּרִיעָה",
           "transliteration": "t'riya",
           "meaning_es": "acto de abrir una puerta",
-          "meaning_en": "act of opening a door",
-          "outlier": true
+          "meaning_en": "act of opening a door"
         },
         {
           "word": "תַּרְפָּף",
           "transliteration": "tarpef",
           "meaning_es": "umbral de puerta",
-          "meaning_en": "door threshold",
-          "outlier": true
+          "meaning_en": "door threshold"
         }
       ],
       "arabic": [
@@ -8988,8 +8897,7 @@
           "word": "دَرْب",
           "transliteration": "darb",
           "meaning_es": "camino/puerta",
-          "meaning_en": "path/door",
-          "outlier": true
+          "meaning_en": "path/door"
         },
         {
           "word": "تَرِيعَة",
@@ -9007,8 +8915,7 @@
           "word": "مَتْرُوك",
           "transliteration": "matrūk",
           "meaning_es": "dejado abierto (como una puerta)",
-          "meaning_en": "left open (as a door)",
-          "outlier": true
+          "meaning_en": "left open (as a door)"
         }
       ],
       "semantic_bridges": {
@@ -9194,8 +9101,7 @@
           "word": "אַרְקָא",
           "transliteration": "arká",
           "meaning_es": "suelo, superficie de la tierra",
-          "meaning_en": "ground, surface of the earth",
-          "outlier": true
+          "meaning_en": "ground, surface of the earth"
         }
       ],
       "arabic": [
@@ -9227,15 +9133,13 @@
           "word": "مَأْرَضَة",
           "transliteration": "ma'radah",
           "meaning_es": "lugar de la tierra, terreno",
-          "meaning_en": "place of the earth, plot of land",
-          "outlier": true
+          "meaning_en": "place of the earth, plot of land"
         },
         {
           "word": "أَرْضِيَّة",
           "transliteration": "ardíyyah",
           "meaning_es": "planta baja, piso bajo",
-          "meaning_en": "ground floor, first floor",
-          "outlier": true
+          "meaning_en": "ground floor, first floor"
         }
       ],
       "semantic_bridges": {
@@ -9304,8 +9208,7 @@
           "word": "رَجَزَ",
           "transliteration": "rajaza",
           "meaning_es": "temblar/recitar",
-          "meaning_en": "to tremble/recite",
-          "outlier": true
+          "meaning_en": "to tremble/recite"
         },
         {
           "word": "رِجْز",
@@ -9331,8 +9234,7 @@
           "word": "رَجِيز",
           "transliteration": "rajíz",
           "meaning_es": "furioso, airado",
-          "meaning_en": "furious, wrathful",
-          "outlier": true
+          "meaning_en": "furious, wrathful"
         }
       ],
       "semantic_bridges": {
@@ -9830,8 +9732,7 @@
           "word": "בְּרִיא",
           "transliteration": "bri'",
           "meaning_es": "sano, saludable",
-          "meaning_en": "healthy, sound",
-          "outlier": true
+          "meaning_en": "healthy, sound"
         }
       ],
       "arabic": [
@@ -10043,15 +9944,13 @@
           "word": "נְבוּאָה",
           "transliteration": "n'vu'ah",
           "meaning_es": "profecía",
-          "meaning_en": "prophecy",
-          "outlier": true
+          "meaning_en": "prophecy"
         },
         {
           "word": "נִבְּאָה",
           "transliteration": "nib'ah",
           "meaning_es": "predicción",
-          "meaning_en": "prediction",
-          "outlier": true
+          "meaning_en": "prediction"
         },
         {
           "word": "נַבְיָא",
@@ -10089,8 +9988,7 @@
           "word": "نَبْأٌ",
           "transliteration": "nab'un",
           "meaning_es": "noticia, información",
-          "meaning_en": "news, information",
-          "outlier": true
+          "meaning_en": "news, information"
         },
         {
           "word": "نَبْوَةٌ",
@@ -10108,8 +10006,7 @@
           "word": "اِنْبَاءٌ",
           "transliteration": "inbāʾun",
           "meaning_es": "anuncio",
-          "meaning_en": "announcement",
-          "outlier": true
+          "meaning_en": "announcement"
         }
       ],
       "semantic_bridges": {
@@ -10170,8 +10067,7 @@
           "word": "אָדָם",
           "transliteration": "adam",
           "meaning_es": "hombre/Adán",
-          "meaning_en": "man/Adam",
-          "outlier": true
+          "meaning_en": "man/Adam"
         },
         {
           "word": "דְּמוּת",
@@ -10197,8 +10093,7 @@
           "word": "آدَم",
           "transliteration": "Adam",
           "meaning_es": "Adán",
-          "meaning_en": "Adam",
-          "outlier": true
+          "meaning_en": "Adam"
         },
         {
           "word": "دَمَى",
@@ -10291,8 +10186,7 @@
           "word": "جَزِيرَة",
           "transliteration": "jazira",
           "meaning_es": "isla (cortada del continente)",
-          "meaning_en": "island (cut from mainland)",
-          "outlier": true
+          "meaning_en": "island (cut from mainland)"
         },
         {
           "word": "جَزَّار",
@@ -10304,8 +10198,7 @@
           "word": "جَزْر",
           "transliteration": "jazr",
           "meaning_es": "reflujo, marea baja",
-          "meaning_en": "ebb (tide)",
-          "outlier": true
+          "meaning_en": "ebb (tide)"
         }
       ],
       "semantic_bridges": {
@@ -10594,8 +10487,7 @@
           "word": "فَرَّقَ",
           "transliteration": "farraqa",
           "meaning_es": "separar/dividir",
-          "meaning_en": "to separate/divide",
-          "outlier": true
+          "meaning_en": "to separate/divide"
         },
         {
           "word": "فَرْس",
@@ -10608,8 +10500,7 @@
           "word": "فَرَّاش",
           "transliteration": "farrrash",
           "meaning_es": "personal de limpieza",
-          "meaning_en": "cleaning staff",
-          "outlier": true
+          "meaning_en": "cleaning staff"
         },
         {
           "word": "افْتَرَس",
@@ -10677,8 +10568,7 @@
           "word": "רִבּוֹא",
           "transliteration": "ribbo",
           "meaning_es": "miríada",
-          "meaning_en": "myriad",
-          "outlier": true
+          "meaning_en": "myriad"
         },
         {
           "word": "רַבָּן",
@@ -10728,8 +10618,7 @@
           "word": "رَبِيب",
           "transliteration": "rabib",
           "meaning_es": "hijastro, criado",
-          "meaning_en": "stepson, foster child",
-          "outlier": true
+          "meaning_en": "stepson, foster child"
         },
         {
           "word": "رَبِيع",
@@ -10835,15 +10724,13 @@
           "word": "أَسْرَة",
           "transliteration": "'asrah",
           "meaning_es": "familia, linaje",
-          "meaning_en": "family, lineage",
-          "outlier": true
+          "meaning_en": "family, lineage"
         },
         {
           "word": "إِسَارَة",
           "transliteration": "'isārah",
           "meaning_es": "cautiverio, esclavitud",
-          "meaning_en": "captivity, slavery",
-          "outlier": true
+          "meaning_en": "captivity, slavery"
         }
       ],
       "semantic_bridges": {
@@ -10930,8 +10817,7 @@
           "word": "حَبَلَ",
           "transliteration": "habala",
           "meaning_es": "estar embarazada",
-          "meaning_en": "to be pregnant",
-          "outlier": true
+          "meaning_en": "to be pregnant"
         },
         {
           "word": "حِبَال",
@@ -10955,8 +10841,7 @@
           "word": "حَبَل",
           "transliteration": "ḥabal",
           "meaning_es": "quedar embarazada",
-          "meaning_en": "to become pregnant",
-          "outlier": true
+          "meaning_en": "to become pregnant"
         }
       ],
       "semantic_bridges": {
@@ -11011,8 +10896,7 @@
           "word": "מָעוֹז",
           "transliteration": "ma'oz",
           "meaning_es": "fortaleza/refugio",
-          "meaning_en": "fortress/refuge",
-          "outlier": true
+          "meaning_en": "fortress/refuge"
         },
         {
           "word": "עָז",
@@ -11246,8 +11130,7 @@
           "word": "إِجْمَار",
           "transliteration": "ʾijmār",
           "meaning_es": "conclusión, finalización",
-          "meaning_en": "conclusion, finalization",
-          "outlier": true
+          "meaning_en": "conclusion, finalization"
         }
       ],
       "semantic_bridges": {
@@ -11639,8 +11522,7 @@
           "word": "عُمْر",
           "transliteration": "'umr",
           "meaning_es": "vida/edad",
-          "meaning_en": "life/age",
-          "outlier": true
+          "meaning_en": "life/age"
         },
         {
           "word": "عِمَارَة",
@@ -11652,8 +11534,7 @@
           "word": "عُمَر",
           "transliteration": "'Umar",
           "meaning_es": "Omar (nombre)",
-          "meaning_en": "Omar (name)",
-          "outlier": true
+          "meaning_en": "Omar (name)"
         },
         {
           "word": "عِمَارَة",
@@ -11751,8 +11632,7 @@
           "word": "פְּלִיגָה",
           "transliteration": "pəlīgāh",
           "meaning_es": "escisión, disensión",
-          "meaning_en": "schism, dissension",
-          "outlier": true
+          "meaning_en": "schism, dissension"
         }
       ],
       "arabic": [
@@ -12083,8 +11963,7 @@
           "word": "سُبَات",
           "transliteration": "subat",
           "meaning_es": "letargo/sueño profundo",
-          "meaning_en": "lethargy/deep sleep",
-          "outlier": true
+          "meaning_en": "lethargy/deep sleep"
         },
         {
           "word": "اِسْتِراحَة",
@@ -12102,8 +11981,7 @@
           "word": "مَسْبُوت",
           "transliteration": "masbūt",
           "meaning_es": "paralizado, inactivo",
-          "meaning_en": "paralyzed, inactive",
-          "outlier": true
+          "meaning_en": "paralyzed, inactive"
         }
       ],
       "semantic_bridges": {
@@ -12386,8 +12264,7 @@
           "word": "تَذْكِرَة",
           "transliteration": "tadhkira",
           "meaning_es": "billete/recordatorio",
-          "meaning_en": "ticket/reminder",
-          "outlier": true
+          "meaning_en": "ticket/reminder"
         },
         {
           "word": "ذَاكِرَة",
@@ -12673,8 +12550,7 @@
           "word": "مَشْهَد",
           "transliteration": "mashhad",
           "meaning_es": "escena/lugar de martirio",
-          "meaning_en": "scene/place of martyrdom",
-          "outlier": true
+          "meaning_en": "scene/place of martyrdom"
         },
         {
           "word": "شَهَادَة",
@@ -13050,8 +12926,7 @@
           "word": "חֵרֵשׁ",
           "transliteration": "kheresh",
           "meaning_es": "sordo",
-          "meaning_en": "deaf",
-          "outlier": true
+          "meaning_en": "deaf"
         },
         {
           "word": "חָרַשׁ",
@@ -13113,8 +12988,7 @@
           "word": "أَحْرَشَ",
           "transliteration": "aḥ·ra·sha",
           "meaning_es": "quedar sordo",
-          "meaning_en": "to become deaf",
-          "outlier": true
+          "meaning_en": "to become deaf"
         }
       ],
       "greek_parallel": {
@@ -13406,15 +13280,13 @@
           "word": "رَجُول",
           "transliteration": "rajūl",
           "meaning_es": "viril",
-          "meaning_en": "virile",
-          "outlier": true
+          "meaning_en": "virile"
         },
         {
           "word": "رَجَّل",
           "transliteration": "rajjala",
           "meaning_es": "ir a pie",
-          "meaning_en": "to go on foot",
-          "outlier": true
+          "meaning_en": "to go on foot"
         }
       ],
       "semantic_bridges": {
@@ -13579,8 +13451,7 @@
           "word": "אִישׁ",
           "transliteration": "ish",
           "meaning_es": "hombre",
-          "meaning_en": "man",
-          "outlier": true
+          "meaning_en": "man"
         },
         {
           "word": "אֱנוֹשִׁי",
@@ -13998,8 +13869,7 @@
           "word": "حَدِيث",
           "transliteration": "hadith",
           "meaning_es": "relato/hadiz",
-          "meaning_en": "narration/hadith",
-          "outlier": true
+          "meaning_en": "narration/hadith"
         },
         {
           "word": "حَدِيثَة",
@@ -14011,8 +13881,7 @@
           "word": "حُدَثَاء",
           "transliteration": "ḥudathā'",
           "meaning_es": "modernos, jóvenes",
-          "meaning_en": "moderns, young people",
-          "outlier": true
+          "meaning_en": "moderns, young people"
         },
         {
           "word": "حَدَاثَة",
@@ -14024,8 +13893,7 @@
           "word": "مُحَدَّث",
           "transliteration": "muḥaddath",
           "meaning_es": "reciente, moderno",
-          "meaning_en": "recent, modern",
-          "outlier": true
+          "meaning_en": "recent, modern"
         }
       ],
       "semantic_bridges": {
@@ -14101,8 +13969,7 @@
           "word": "عَلِيل",
           "transliteration": "'alīl",
           "meaning_es": "enfermo, débil, afligido",
-          "meaning_en": "sick, weak, afflicted",
-          "outlier": true
+          "meaning_en": "sick, weak, afflicted"
         },
         {
           "word": "تَعْلِيل",
@@ -14427,8 +14294,7 @@
           "word": "تَصْفِيْر",
           "transliteration": "tasfeer",
           "meaning_es": "silbar",
-          "meaning_en": "to whistle",
-          "outlier": true
+          "meaning_en": "to whistle"
         },
         {
           "word": "مُصَفَّر",
@@ -14540,8 +14406,7 @@
           "word": "حُكْم",
           "transliteration": "hukm",
           "meaning_es": "juicio/gobierno",
-          "meaning_en": "judgment/rule",
-          "outlier": true
+          "meaning_en": "judgment/rule"
         },
         {
           "word": "حَكَّمَ",
@@ -14559,15 +14424,13 @@
           "word": "حُكُومَة",
           "transliteration": "ḥukúmah",
           "meaning_es": "gobierno",
-          "meaning_en": "government",
-          "outlier": true
+          "meaning_en": "government"
         },
         {
           "word": "حَاكِم",
           "transliteration": "ḥákim",
           "meaning_es": "gobernante, juez",
-          "meaning_en": "ruler, judge",
-          "outlier": true
+          "meaning_en": "ruler, judge"
         }
       ],
       "semantic_bridges": {
@@ -14672,15 +14535,13 @@
           "word": "دَارِس",
           "transliteration": "daris",
           "meaning_es": "estudiante",
-          "meaning_en": "student",
-          "outlier": true
+          "meaning_en": "student"
         },
         {
           "word": "دُرُوس",
           "transliteration": "durūs",
           "meaning_es": "estudios",
-          "meaning_en": "studies",
-          "outlier": true
+          "meaning_en": "studies"
         }
       ],
       "sabor_raiz_es": "búsqueda inquiridora, interpretación profunda, investigación",
@@ -14753,8 +14614,7 @@
           "word": "זִמּוּן",
           "transliteration": "zimún",
           "meaning_es": "invitación, convocatoria",
-          "meaning_en": "invitation, summons",
-          "outlier": true
+          "meaning_en": "invitation, summons"
         }
       ],
       "arabic": [
@@ -14957,8 +14817,7 @@
           "word": "אָמַן",
           "transliteration": "aman",
           "meaning_es": "ser fiel/confiar",
-          "meaning_en": "to be faithful/trust",
-          "outlier": true
+          "meaning_en": "to be faithful/trust"
         },
         {
           "word": "אָמֵן",
@@ -15373,8 +15232,7 @@
           "word": "بَاطِل",
           "transliteration": "batil",
           "meaning_es": "falso/vano",
-          "meaning_en": "false/vain",
-          "outlier": true
+          "meaning_en": "false/vain"
         },
         {
           "word": "إِبْطَال",
@@ -15404,8 +15262,7 @@
           "word": "بَاطِل",
           "transliteration": "baatil",
           "meaning_es": "falso, vano",
-          "meaning_en": "false, vain",
-          "outlier": true
+          "meaning_en": "false, vain"
         }
       ],
       "semantic_bridges": {
@@ -15735,8 +15592,7 @@
           "word": "مَحِلّ",
           "transliteration": "mahíll",
           "meaning_es": "lugar, sitio",
-          "meaning_en": "place, location",
-          "outlier": true
+          "meaning_en": "place, location"
         }
       ],
       "semantic_bridges": {
@@ -15837,8 +15693,7 @@
           "word": "مَنَاشِق",
           "transliteration": "manāshiq",
           "meaning_es": "orificios nasales",
-          "meaning_en": "nasal passages",
-          "outlier": true
+          "meaning_en": "nasal passages"
         }
       ],
       "semantic_bridges": {
@@ -15949,8 +15804,7 @@
           "word": "سُكُون",
           "transliteration": "sukun",
           "meaning_es": "quietud",
-          "meaning_en": "stillness",
-          "outlier": true
+          "meaning_en": "stillness"
         },
         {
           "word": "مَسْكُون",
@@ -16194,15 +16048,13 @@
           "word": "קִיּוּם",
           "transliteration": "qiyum",
           "meaning_es": "existencia",
-          "meaning_en": "existence",
-          "outlier": true
+          "meaning_en": "existence"
         },
         {
           "word": "קוֹמָה",
           "transliteration": "qomah",
           "meaning_es": "estatura, altura",
-          "meaning_en": "stature, height",
-          "outlier": true
+          "meaning_en": "stature, height"
         },
         {
           "word": "קָיָם",
@@ -16214,8 +16066,7 @@
           "word": "הֲקָמָה",
           "transliteration": "haqamah",
           "meaning_es": "establecimiento, fundación",
-          "meaning_en": "establishment, founding",
-          "outlier": true
+          "meaning_en": "establishment, founding"
         }
       ],
       "arabic": [
@@ -16241,8 +16092,7 @@
           "word": "قَيَّم",
           "transliteration": "qayyim",
           "meaning_es": "supervisor, director",
-          "meaning_en": "supervisor, director",
-          "outlier": true
+          "meaning_en": "supervisor, director"
         }
       ],
       "semantic_bridges": {
@@ -16753,8 +16603,7 @@
           "word": "تَقْدِيم",
           "transliteration": "taqdím",
           "meaning_es": "presentación, ofrecimiento",
-          "meaning_en": "presentation, offering",
-          "outlier": true
+          "meaning_en": "presentation, offering"
         }
       ],
       "semantic_bridges": {
@@ -16905,8 +16754,7 @@
           "word": "تَأَبَّى",
           "transliteration": "ta'abbā",
           "meaning_es": "ser benévolo, comportarse bien",
-          "meaning_en": "to be benevolent, behave well",
-          "outlier": true
+          "meaning_en": "to be benevolent, behave well"
         }
       ],
       "semantic_bridges": {
@@ -16994,8 +16842,7 @@
           "word": "آثَرِي",
           "transliteration": "ʾāthārī",
           "meaning_es": "arqueológico",
-          "meaning_en": "archaeological",
-          "outlier": true
+          "meaning_en": "archaeological"
         }
       ],
       "semantic_bridges": {
@@ -17306,15 +17153,13 @@
           "word": "لِحَام",
           "transliteration": "liḥām",
           "meaning_es": "soldadura",
-          "meaning_en": "welding",
-          "outlier": true
+          "meaning_en": "welding"
         },
         {
           "word": "مُلَاحِم",
           "transliteration": "mulāḥim",
           "meaning_es": "épica, narración heroica",
-          "meaning_en": "epic, heroic narrative",
-          "outlier": true
+          "meaning_en": "epic, heroic narrative"
         }
       ],
       "semantic_bridges": {
@@ -17419,8 +17264,7 @@
           "word": "رَبِيب",
           "transliteration": "rabīb",
           "meaning_es": "hijastro, entenado",
-          "meaning_en": "stepson, foster child",
-          "outlier": true
+          "meaning_en": "stepson, foster child"
         }
       ],
       "semantic_bridges": {
@@ -17497,8 +17341,7 @@
           "word": "رَمَّة",
           "transliteration": "rammah",
           "meaning_es": "montaña, collina",
-          "meaning_en": "mountain, hill",
-          "outlier": true
+          "meaning_en": "mountain, hill"
         }
       ],
       "semantic_bridges": {
@@ -17580,8 +17423,7 @@
           "word": "قَلِيل",
           "transliteration": "qalíl",
           "meaning_es": "poco, escaso",
-          "meaning_en": "little, scarce",
-          "outlier": true
+          "meaning_en": "little, scarce"
         }
       ],
       "sabor_raiz_es": "voz, expresión audible, proclamación",
@@ -17662,8 +17504,7 @@
           "word": "مَخْطُوْء",
           "transliteration": "makhṭū'",
           "meaning_es": "erróneo",
-          "meaning_en": "erroneous",
-          "outlier": true
+          "meaning_en": "erroneous"
         }
       ],
       "sabor_raiz_es": "transgresión, error moral, culpa",
@@ -17788,22 +17629,19 @@
           "word": "עָוַל",
           "transliteration": "ʿāval",
           "meaning_es": "ser injusto, ser inicuo",
-          "meaning_en": "to be unjust, to be iniquitous",
-          "outlier": true
+          "meaning_en": "to be unjust, to be iniquitous"
         },
         {
           "word": "עֶוֶל",
           "transliteration": "ʿevel",
           "meaning_es": "injusticia, iniquidad",
-          "meaning_en": "injustice, iniquity",
-          "outlier": true
+          "meaning_en": "injustice, iniquity"
         },
         {
           "word": "עַוְלָה",
           "transliteration": "ʿavlā",
           "meaning_es": "injusticia, agravio",
-          "meaning_en": "injustice, wrong",
-          "outlier": true
+          "meaning_en": "injustice, wrong"
         }
       ],
       "arabic": [
@@ -17817,8 +17655,7 @@
           "word": "عَوْلٌ",
           "transliteration": "ʿawl",
           "meaning_es": "injusticia, parcialidad",
-          "meaning_en": "injustice, partiality",
-          "outlier": true
+          "meaning_en": "injustice, partiality"
         },
         {
           "word": "عَائِلٌ",
@@ -18161,8 +17998,7 @@
           "word": "אַלִּיף",
           "transliteration": "allīf",
           "meaning_es": "domesticado, dócil",
-          "meaning_en": "tamed, docile",
-          "outlier": true
+          "meaning_en": "tamed, docile"
         },
         {
           "word": "לְהָאֵלִיף",
@@ -18182,22 +18018,19 @@
           "word": "تَأَلَّفَ",
           "transliteration": "ta'allafa",
           "meaning_es": "estar familiarizado, asociarse",
-          "meaning_en": "to be familiar, associate",
-          "outlier": true
+          "meaning_en": "to be familiar, associate"
         },
         {
           "word": "مَأْلُوف",
           "transliteration": "ma'lūf",
           "meaning_es": "común, habitual",
-          "meaning_en": "common, customary",
-          "outlier": true
+          "meaning_en": "common, customary"
         },
         {
           "word": "تَأَلِيف",
           "transliteration": "ta'līf",
           "meaning_es": "composición, compilación",
-          "meaning_en": "composition, compilation",
-          "outlier": true
+          "meaning_en": "composition, compilation"
         }
       ],
       "greek_parallel": {
@@ -18252,8 +18085,7 @@
           "word": "מְכֻסֶּה",
           "transliteration": "mékhusseh",
           "meaning_es": "escondido, oculto",
-          "meaning_en": "hidden, concealed",
-          "outlier": true
+          "meaning_en": "hidden, concealed"
         }
       ],
       "arabic": [
@@ -18342,15 +18174,13 @@
           "word": "سَكَّل",
           "transliteration": "sakkala",
           "meaning_es": "engañar",
-          "meaning_en": "to deceive",
-          "outlier": true
+          "meaning_en": "to deceive"
         },
         {
           "word": "سُكَّال",
           "transliteration": "sukkāl",
           "meaning_es": "tonto",
-          "meaning_en": "foolish person",
-          "outlier": true
+          "meaning_en": "foolish person"
         }
       ],
       "semantic_bridges": {
@@ -18432,8 +18262,7 @@
           "word": "مَشْرَأ",
           "transliteration": "mashra'",
           "meaning_es": "punto de partida, fuente",
-          "meaning_en": "starting point, source",
-          "outlier": true
+          "meaning_en": "starting point, source"
         },
         {
           "word": "تَشَرِّي",
@@ -18570,8 +18399,7 @@
           "word": "حَاجَة",
           "transliteration": "ḥājah",
           "meaning_es": "necesidad",
-          "meaning_en": "need",
-          "outlier": true
+          "meaning_en": "need"
         },
         {
           "word": "مُحْتَاج",
@@ -19092,15 +18920,13 @@
           "word": "نَكِير",
           "transliteration": "nakīr",
           "meaning_es": "rechazo, negación",
-          "meaning_en": "rejection, denial",
-          "outlier": true
+          "meaning_en": "rejection, denial"
         },
         {
           "word": "نِكَارَة",
           "transliteration": "nikārah",
           "meaning_es": "extranjerismo",
-          "meaning_en": "foreignness",
-          "outlier": true
+          "meaning_en": "foreignness"
         }
       ],
       "semantic_bridges": {
@@ -19329,15 +19155,13 @@
           "word": "خَارِف",
           "transliteration": "khārif",
           "meaning_es": "criticón, censor",
-          "meaning_en": "critic, censorious person",
-          "outlier": true
+          "meaning_en": "critic, censorious person"
         },
         {
           "word": "خُرْفَة",
           "transliteration": "khurfah",
           "meaning_es": "oprobio, vergüenza",
-          "meaning_en": "reproach, shame",
-          "outlier": true
+          "meaning_en": "reproach, shame"
         }
       ],
       "semantic_bridges": {
@@ -19507,8 +19331,7 @@
           "word": "כָּנָה",
           "transliteration": "kana",
           "meaning_es": "dar título",
-          "meaning_en": "to give title",
-          "outlier": true
+          "meaning_en": "to give title"
         },
         {
           "word": "קִנָּה",
@@ -19534,22 +19357,19 @@
           "word": "كَنَى",
           "transliteration": "kanā",
           "meaning_es": "llamar",
-          "meaning_en": "to surname",
-          "outlier": true
+          "meaning_en": "to surname"
         },
         {
           "word": "تَكَنَّى",
           "transliteration": "takanná",
           "meaning_es": "llamarse por un apodo o sobrenombre",
-          "meaning_en": "to be called by a nickname or surname",
-          "outlier": true
+          "meaning_en": "to be called by a nickname or surname"
         },
         {
           "word": "كِنْيَة",
           "transliteration": "kinyah",
           "meaning_es": "apodo, sobrenombre",
-          "meaning_en": "nickname, surname",
-          "outlier": true
+          "meaning_en": "nickname, surname"
         },
         {
           "word": "اِكْتَنَى",
@@ -19862,15 +19682,13 @@
           "word": "بُكْرَة",
           "transliteration": "bukrah",
           "meaning_es": "mañana",
-          "meaning_en": "morning",
-          "outlier": true
+          "meaning_en": "morning"
         },
         {
           "word": "بَاكِر",
           "transliteration": "bākir",
           "meaning_es": "temprano",
-          "meaning_en": "early",
-          "outlier": true
+          "meaning_en": "early"
         },
         {
           "word": "اِبْتَكَرَ",
@@ -20146,8 +19964,7 @@
           "word": "גָּבִיב",
           "transliteration": "gaviv",
           "meaning_es": "depósito, reserva",
-          "meaning_en": "reservoir, storage",
-          "outlier": true
+          "meaning_en": "reservoir, storage"
         }
       ],
       "arabic": [
@@ -20326,15 +20143,13 @@
           "word": "رَشَاوَة",
           "transliteration": "rašāwah",
           "meaning_es": "soborno",
-          "meaning_en": "bribery",
-          "outlier": true
+          "meaning_en": "bribery"
         },
         {
           "word": "رِشْوَة",
           "transliteration": "riŝwah",
           "meaning_es": "soborno",
-          "meaning_en": "bribery",
-          "outlier": true
+          "meaning_en": "bribery"
         }
       ],
       "semantic_bridges": {
@@ -20626,15 +20441,13 @@
           "word": "حَبَرَ",
           "transliteration": "ḥabara",
           "meaning_es": "unir, juntar",
-          "meaning_en": "to join, connect",
-          "outlier": true
+          "meaning_en": "to join, connect"
         },
         {
           "word": "حَبِيْر",
           "transliteration": "ḥabīr",
           "meaning_es": "experto, entendido",
-          "meaning_en": "expert, knowledgeable",
-          "outlier": true
+          "meaning_en": "expert, knowledgeable"
         },
         {
           "word": "حُبَرَاء",
@@ -20931,15 +20744,13 @@
           "word": "نَصْر",
           "transliteration": "naṣr",
           "meaning_es": "victoria, ayuda",
-          "meaning_en": "victory, help",
-          "outlier": true
+          "meaning_en": "victory, help"
         },
         {
           "word": "مَنْصُور",
           "transliteration": "manṣūr",
           "meaning_es": "victorioso, triunfante",
-          "meaning_en": "victorious, triumphant",
-          "outlier": true
+          "meaning_en": "victorious, triumphant"
         }
       ],
       "semantic_bridges": {
@@ -21010,22 +20821,19 @@
           "word": "خَارِج",
           "transliteration": "khārij",
           "meaning_es": "exterior, externo",
-          "meaning_en": "exterior, external",
-          "outlier": true
+          "meaning_en": "exterior, external"
         },
         {
           "word": "خَرَج",
           "transliteration": "kharaja",
           "meaning_es": "salir, irse",
-          "meaning_en": "to go out, leave",
-          "outlier": true
+          "meaning_en": "to go out, leave"
         },
         {
           "word": "خُرُوج",
           "transliteration": "khuruuj",
           "meaning_es": "salida, éxodo",
-          "meaning_en": "exit, exodus",
-          "outlier": true
+          "meaning_en": "exit, exodus"
         }
       ],
       "semantic_bridges": {
@@ -21260,8 +21068,7 @@
           "word": "יוֹבֵל",
           "transliteration": "yovel",
           "meaning_es": "año del jubileo",
-          "meaning_en": "jubilee year",
-          "outlier": true
+          "meaning_en": "jubilee year"
         }
       ],
       "arabic": [
@@ -21651,15 +21458,13 @@
           "word": "طَاعُونٌ",
           "transliteration": "ṭāʿūn",
           "meaning_es": "peste",
-          "meaning_en": "plague",
-          "outlier": true
+          "meaning_en": "plague"
         },
         {
           "word": "طَاعِنٌ",
           "transliteration": "ṭāʿin",
           "meaning_es": "atacante, crítico",
-          "meaning_en": "attacker, critic",
-          "outlier": true
+          "meaning_en": "attacker, critic"
         },
         {
           "word": "مَطْعُونٌ",
@@ -21852,8 +21657,7 @@
           "word": "לְיַרֵחַ",
           "transliteration": "leyarêkha",
           "meaning_es": "menstruar",
-          "meaning_en": "to menstruate",
-          "outlier": true
+          "meaning_en": "to menstruate"
         },
         {
           "word": "יַרְחִי",
@@ -21960,15 +21764,13 @@
           "word": "خَلِيق",
           "transliteration": "khaliiQ",
           "meaning_es": "apropiado, digno",
-          "meaning_en": "suitable, worthy",
-          "outlier": true
+          "meaning_en": "suitable, worthy"
         },
         {
           "word": "خَلَّاق",
           "transliteration": "khallaaQ",
           "meaning_es": "creativo, imaginativo",
-          "meaning_en": "creative, imaginative",
-          "outlier": true
+          "meaning_en": "creative, imaginative"
         }
       ],
       "semantic_bridges": {
@@ -22763,8 +22565,7 @@
           "word": "غَرِيب",
           "transliteration": "ḡaríb",
           "meaning_es": "extranjero, raro",
-          "meaning_en": "foreigner, strange",
-          "outlier": true
+          "meaning_en": "foreigner, strange"
         }
       ],
       "semantic_bridges": {
@@ -22954,8 +22755,7 @@
           "word": "قَلْسَ",
           "transliteration": "qals",
           "meaning_es": "burla, mofa",
-          "meaning_en": "mockery, derision",
-          "outlier": true
+          "meaning_en": "mockery, derision"
         }
       ],
       "greek_parallel": {
@@ -23036,8 +22836,7 @@
           "word": "قَسَاوَة",
           "transliteration": "qasāwah",
           "meaning_es": "dureza, crueldad",
-          "meaning_en": "hardness, cruelty",
-          "outlier": true
+          "meaning_en": "hardness, cruelty"
         }
       ],
       "semantic_bridges": {
@@ -23086,8 +22885,7 @@
           "word": "נָחַשׁ",
           "transliteration": "nāḥaš",
           "meaning_es": "adivinar, pronosticar",
-          "meaning_en": "to divine, predict",
-          "outlier": true
+          "meaning_en": "to divine, predict"
         }
       ],
       "arabic": [
@@ -23113,8 +22911,7 @@
           "word": "نَحَسَ",
           "transliteration": "naḥasa",
           "meaning_es": "pronosticar, adivinar",
-          "meaning_en": "to predict, divine",
-          "outlier": true
+          "meaning_en": "to predict, divine"
         }
       ],
       "semantic_bridges": {
@@ -23794,8 +23591,7 @@
           "word": "חֲרוּם",
           "transliteration": "ḥaru'm",
           "meaning_es": "prohibición, veto",
-          "meaning_en": "prohibition, ban",
-          "outlier": true
+          "meaning_en": "prohibition, ban"
         },
         {
           "word": "חֵרֶם",
@@ -24032,22 +23828,19 @@
           "word": "שָׂרַר",
           "transliteration": "shārar",
           "meaning_es": "comandar, gobernar",
-          "meaning_en": "to command, rule",
-          "outlier": true
+          "meaning_en": "to command, rule"
         },
         {
           "word": "שָׂרִיר",
           "transliteration": "shārīr",
           "meaning_es": "oficial, comandante",
-          "meaning_en": "official, commander",
-          "outlier": true
+          "meaning_en": "official, commander"
         },
         {
           "word": "שָׂרוֹת",
           "transliteration": "shārōt",
           "meaning_es": "liderazgo, comando",
-          "meaning_en": "leadership, command",
-          "outlier": true
+          "meaning_en": "leadership, command"
         }
       ],
       "arabic": [
@@ -24997,8 +24790,7 @@
           "word": "קָרַשׁ",
           "transliteration": "qarash",
           "meaning_es": "congelar",
-          "meaning_en": "to congeal",
-          "outlier": true
+          "meaning_en": "to congeal"
         },
         {
           "word": "קַרְחָן",
@@ -25249,8 +25041,7 @@
           "word": "جُنَّة",
           "transliteration": "junna",
           "meaning_es": "paraíso",
-          "meaning_en": "paradise",
-          "outlier": true
+          "meaning_en": "paradise"
         },
         {
           "word": "جَنَان",
@@ -25401,8 +25192,7 @@
           "word": "زَكَاة",
           "transliteration": "zakāt",
           "meaning_es": "limosna, caridad",
-          "meaning_en": "alms, charity",
-          "outlier": true
+          "meaning_en": "alms, charity"
         },
         {
           "word": "تَزْكِيَة",
@@ -25550,8 +25340,7 @@
           "word": "חֲפִיצָה",
           "transliteration": "khafiytsa",
           "meaning_es": "apetencia, ansia",
-          "meaning_en": "appetite, craving",
-          "outlier": true
+          "meaning_en": "appetite, craving"
         }
       ],
       "arabic": [
@@ -25646,22 +25435,19 @@
           "word": "وَاجِب",
           "transliteration": "wa-jib",
           "meaning_es": "obligatorio, debido",
-          "meaning_en": "obligatory, due",
-          "outlier": true
+          "meaning_en": "obligatory, due"
         },
         {
           "word": "مَوْجُوب",
           "transliteration": "maw-jub",
           "meaning_es": "obligado, requerido",
-          "meaning_en": "obliged, required",
-          "outlier": true
+          "meaning_en": "obliged, required"
         },
         {
           "word": "مَحْيُوب",
           "transliteration": "mah-yub",
           "meaning_es": "culpable, responsable",
-          "meaning_en": "guilty, responsible",
-          "outlier": true
+          "meaning_en": "guilty, responsible"
         }
       ],
       "semantic_bridges": {
@@ -25773,8 +25559,7 @@
           "word": "פִּיּוּט",
           "transliteration": "piyyut",
           "meaning_es": "poema litúrgico",
-          "meaning_en": "liturgical poem",
-          "outlier": true
+          "meaning_en": "liturgical poem"
         },
         {
           "word": "פּוּם",
@@ -26190,8 +25975,7 @@
           "word": "רְעוּת",
           "transliteration": "rə'ut",
           "meaning_es": "voluntad, deseo",
-          "meaning_en": "will, desire",
-          "outlier": true
+          "meaning_en": "will, desire"
         }
       ],
       "arabic": [
@@ -26293,8 +26077,7 @@
           "word": "دُمْيَة",
           "transliteration": "dumyah",
           "meaning_es": "muñeca, figura",
-          "meaning_en": "doll, figurine",
-          "outlier": true
+          "meaning_en": "doll, figurine"
         }
       ],
       "sabor_raiz_es": "semejanza, forma visual, similitud",
@@ -26370,15 +26153,13 @@
           "word": "مَنِيَّة",
           "transliteration": "maniyyah",
           "meaning_es": "destino, sino",
-          "meaning_en": "destiny, fate",
-          "outlier": true
+          "meaning_en": "destiny, fate"
         },
         {
           "word": "مَنُون",
           "transliteration": "manūn",
           "meaning_es": "predestinado, designado",
-          "meaning_en": "predestined, designated",
-          "outlier": true
+          "meaning_en": "predestined, designated"
         }
       ],
       "sabor_raiz_es": "numeración, designación, dotación",
@@ -26747,8 +26528,7 @@
           "word": "بَهَتَ",
           "transliteration": "bahata",
           "meaning_es": "calumniar; quedarse atónito",
-          "meaning_en": "to slander; to be astonished",
-          "outlier": true
+          "meaning_en": "to slander; to be astonished"
         },
         {
           "word": "بَهَّتَ",
@@ -26760,15 +26540,13 @@
           "word": "بَهِتَ",
           "transliteration": "bahita",
           "meaning_es": "estar atónito",
-          "meaning_en": "to be astounded",
-          "outlier": true
+          "meaning_en": "to be astounded"
         },
         {
           "word": "بُهْتَان",
           "transliteration": "buhtān",
           "meaning_es": "calumnia",
-          "meaning_en": "slander",
-          "outlier": true
+          "meaning_en": "slander"
         }
       ],
       "semantic_bridges": {
@@ -27479,29 +27257,25 @@
           "word": "سَرَقَ",
           "transliteration": "saraqa",
           "meaning_es": "robar (vaciar)",
-          "meaning_en": "to steal (to empty)",
-          "outlier": true
+          "meaning_en": "to steal (to empty)"
         },
         {
           "word": "سَرَاقَة",
           "transliteration": "sarāqah",
           "meaning_es": "robo, hurto",
-          "meaning_en": "theft, stealing",
-          "outlier": true
+          "meaning_en": "theft, stealing"
         },
         {
           "word": "سُرْقَة",
           "transliteration": "surqah",
           "meaning_es": "hurto, robo",
-          "meaning_en": "theft, stealing",
-          "outlier": true
+          "meaning_en": "theft, stealing"
         },
         {
           "word": "إِسْرَاق",
           "transliteration": "isrāq",
           "meaning_es": "saqueo, despojo",
-          "meaning_en": "plundering, looting",
-          "outlier": true
+          "meaning_en": "plundering, looting"
         }
       ],
       "semantic_bridges": {
@@ -27568,8 +27342,7 @@
           "word": "ראשית",
           "transliteration": "rē'shît",
           "meaning_es": "comienzo, principio",
-          "meaning_en": "beginning, origin",
-          "outlier": true
+          "meaning_en": "beginning, origin"
         },
         {
           "word": "רישאי",
@@ -27650,15 +27423,13 @@
           "word": "קָרָן",
           "transliteration": "karan",
           "meaning_es": "irradiar, brillar",
-          "meaning_en": "to radiate, shine",
-          "outlier": true
+          "meaning_en": "to radiate, shine"
         },
         {
           "word": "קֶרֶן",
           "transliteration": "keren",
           "meaning_es": "rayo de luz, cuerno",
-          "meaning_en": "ray of light, horn",
-          "outlier": true
+          "meaning_en": "ray of light, horn"
         },
         {
           "word": "קַרְנַיִם",
@@ -27678,15 +27449,13 @@
           "word": "قَرَن",
           "transliteration": "qaran",
           "meaning_es": "emparejarse, juntarse",
-          "meaning_en": "to pair, join",
-          "outlier": true
+          "meaning_en": "to pair, join"
         },
         {
           "word": "مُقَرَّن",
           "transliteration": "muqarran",
           "meaning_es": "cornudo, con cuernos",
-          "meaning_en": "horned, having horns",
-          "outlier": true
+          "meaning_en": "horned, having horns"
         }
       ],
       "semantic_bridges": {
@@ -27846,8 +27615,7 @@
           "word": "عَرْش",
           "transliteration": "ʿarsh",
           "meaning_es": "trono",
-          "meaning_en": "throne",
-          "outlier": true
+          "meaning_en": "throne"
         },
         {
           "word": "عَرِيش",
@@ -27860,8 +27628,7 @@
           "word": "عَرَّاش",
           "transliteration": "ʿarrāsh",
           "meaning_es": "tapicero, acolchador",
-          "meaning_en": "upholsterer, quilter",
-          "outlier": true
+          "meaning_en": "upholsterer, quilter"
         }
       ],
       "semantic_bridges": {
@@ -27922,8 +27689,7 @@
           "word": "לְבָנָה",
           "transliteration": "levānāh",
           "meaning_es": "luna",
-          "meaning_en": "moon",
-          "outlier": true
+          "meaning_en": "moon"
         },
         {
           "word": "לַבְנֶה",
@@ -27937,8 +27703,7 @@
           "word": "لَبَن",
           "transliteration": "laban",
           "meaning_es": "leche; ladrillo",
-          "meaning_en": "milk; brick",
-          "outlier": true
+          "meaning_en": "milk; brick"
         },
         {
           "word": "لَبَنَة",
@@ -27950,8 +27715,7 @@
           "word": "لُبْنَى",
           "transliteration": "lubnā",
           "meaning_es": "tipo de jazmín blanco",
-          "meaning_en": "type of white jasmine",
-          "outlier": true
+          "meaning_en": "type of white jasmine"
         }
       ],
       "semantic_bridges": {
@@ -28296,29 +28060,25 @@
           "word": "كَوْن",
           "transliteration": "kawn",
           "meaning_es": "universo, ser",
-          "meaning_en": "universe, being",
-          "outlier": true
+          "meaning_en": "universe, being"
         },
         {
           "word": "كَوِنِي",
           "transliteration": "kawini",
           "meaning_es": "ser, existir",
-          "meaning_en": "to be, to exist",
-          "outlier": true
+          "meaning_en": "to be, to exist"
         },
         {
           "word": "كَائِن",
           "transliteration": "ka'in",
           "meaning_es": "ser, entidad",
-          "meaning_en": "being, entity",
-          "outlier": true
+          "meaning_en": "being, entity"
         },
         {
           "word": "تَكَوُّن",
           "transliteration": "takawwun",
           "meaning_es": "formación, desarrollo",
-          "meaning_en": "formation, development",
-          "outlier": true
+          "meaning_en": "formation, development"
         }
       ],
       "semantic_bridges": {
@@ -28380,8 +28140,7 @@
           "word": "יַמָּה",
           "transliteration": "yammah",
           "meaning_es": "hacia el mar",
-          "meaning_en": "seaward",
-          "outlier": true
+          "meaning_en": "seaward"
         }
       ],
       "arabic": [
@@ -28452,8 +28211,7 @@
           "word": "שׁוּק",
           "transliteration": "shuq",
           "meaning_es": "mercado, calle",
-          "meaning_en": "market, street",
-          "outlier": true
+          "meaning_en": "market, street"
         },
         {
           "word": "שָׁאוֹק",
@@ -28482,8 +28240,7 @@
           "word": "سُوق",
           "transliteration": "suq",
           "meaning_es": "mercado",
-          "meaning_en": "market",
-          "outlier": true
+          "meaning_en": "market"
         },
         {
           "word": "شَوْق",
@@ -28846,8 +28603,7 @@
           "word": "حَسِيم",
           "transliteration": "ḥaṣīm",
           "meaning_es": "envidiado",
-          "meaning_en": "envied, envious",
-          "outlier": true
+          "meaning_en": "envied, envious"
         }
       ],
       "greek_parallel": {
@@ -28983,8 +28739,7 @@
           "word": "חֲדָרָה",
           "transliteration": "ḥadarah",
           "meaning_es": "envoltura",
-          "meaning_en": "envelope",
-          "outlier": true
+          "meaning_en": "envelope"
         }
       ],
       "arabic": [
@@ -28992,15 +28747,13 @@
           "word": "حَدَرَ",
           "transliteration": "ḥadara",
           "meaning_es": "descender, rodear",
-          "meaning_en": "to descend, to surround",
-          "outlier": true
+          "meaning_en": "to descend, to surround"
         },
         {
           "word": "حَادِر",
           "transliteration": "ḥādir",
           "meaning_es": "que rodea",
-          "meaning_en": "surrounding",
-          "outlier": true
+          "meaning_en": "surrounding"
         }
       ],
       "semantic_bridges": {
@@ -29233,8 +28986,7 @@
           "word": "اِصْطِغَار",
           "transliteration": "istighār",
           "meaning_es": "menosprecio, desdén",
-          "meaning_en": "contempt, disdain",
-          "outlier": true
+          "meaning_en": "contempt, disdain"
         },
         {
           "word": "صَغِير",
@@ -29350,8 +29102,7 @@
           "word": "رَدَى",
           "transliteration": "rada",
           "meaning_es": "perecer; ir",
-          "meaning_en": "to perish; to go",
-          "outlier": true
+          "meaning_en": "to perish; to go"
         },
         {
           "word": "رَوْدَة",
@@ -29418,15 +29169,13 @@
           "word": "מַטֶּה",
           "transliteration": "maṭṭeh",
           "meaning_es": "vara, bastón",
-          "meaning_en": "rod, staff",
-          "outlier": true
+          "meaning_en": "rod, staff"
         },
         {
           "word": "מַטָּה",
           "transliteration": "maṭṭā",
           "meaning_es": "hacia abajo, descendente",
-          "meaning_en": "downward, descending",
-          "outlier": true
+          "meaning_en": "downward, descending"
         },
         {
           "word": "הִתְמַטֵּא",
@@ -29452,15 +29201,13 @@
           "word": "مَطِي",
           "transliteration": "maṭiyy",
           "meaning_es": "de larga distancia, alejado",
-          "meaning_en": "of long distance, far away",
-          "outlier": true
+          "meaning_en": "of long distance, far away"
         },
         {
           "word": "مَطِيَّة",
           "transliteration": "maṭiyyah",
           "meaning_es": "montura, bestia de carga",
-          "meaning_en": "mount, beast of burden",
-          "outlier": true
+          "meaning_en": "mount, beast of burden"
         }
       ],
       "semantic_bridges": {
@@ -29824,15 +29571,13 @@
           "word": "תְּבִיאָה",
           "transliteration": "t'via",
           "meaning_es": "traer, llevar",
-          "meaning_en": "to bring, to carry",
-          "outlier": true
+          "meaning_en": "to bring, to carry"
         },
         {
           "word": "בִּיאָה",
           "transliteration": "bi'a",
           "meaning_es": "llegada, venida",
-          "meaning_en": "arrival, coming",
-          "outlier": true
+          "meaning_en": "arrival, coming"
         },
         {
           "word": "בָּא",
@@ -29858,22 +29603,19 @@
           "word": "مَآب",
           "transliteration": "ma'ab",
           "meaning_es": "regreso, vuelta",
-          "meaning_en": "return, coming back",
-          "outlier": true
+          "meaning_en": "return, coming back"
         },
         {
           "word": "آتٍ",
           "transliteration": "'atin",
           "meaning_es": "que viene, futuro",
-          "meaning_en": "one who comes, future",
-          "outlier": true
+          "meaning_en": "one who comes, future"
         },
         {
           "word": "إِيتَاء",
           "transliteration": "ītā'",
           "meaning_es": "traer, entregar",
-          "meaning_en": "to bring, to deliver",
-          "outlier": true
+          "meaning_en": "to bring, to deliver"
         }
       ],
       "semantic_bridges": {
@@ -29954,29 +29696,25 @@
           "word": "هُوَ",
           "transliteration": "huwa",
           "meaning_es": "él (pronombre)",
-          "meaning_en": "he (pronoun)",
-          "outlier": true
+          "meaning_en": "he (pronoun)"
         },
         {
           "word": "هَوِيَّة",
           "transliteration": "hawiyya",
           "meaning_es": "identidad",
-          "meaning_en": "identity",
-          "outlier": true
+          "meaning_en": "identity"
         },
         {
           "word": "هَوِيَّة",
           "transliteration": "hawiyyah",
           "meaning_es": "identidad",
-          "meaning_en": "identity",
-          "outlier": true
+          "meaning_en": "identity"
         },
         {
           "word": "مَهْوًى",
           "transliteration": "mahwan",
           "meaning_es": "lugar donde algo se convierte en",
-          "meaning_en": "place where something becomes",
-          "outlier": true
+          "meaning_en": "place where something becomes"
         },
         {
           "word": "اِنْهَاء",
@@ -30578,8 +30316,7 @@
           "word": "تَخَرَّنَ",
           "transliteration": "takharrara",
           "meaning_es": "separarse, apartarse",
-          "meaning_en": "to separate, depart",
-          "outlier": true
+          "meaning_en": "to separate, depart"
         },
         {
           "word": "خِرْنَة",
@@ -30660,36 +30397,31 @@
           "word": "عَلَّمَ",
           "transliteration": "'allama",
           "meaning_es": "enseñar",
-          "meaning_en": "to teach",
-          "outlier": true
+          "meaning_en": "to teach"
         },
         {
           "word": "مُعَلِّم",
           "transliteration": "mu'allim",
           "meaning_es": "maestro",
-          "meaning_en": "teacher",
-          "outlier": true
+          "meaning_en": "teacher"
         },
         {
           "word": "مُتَعَلِّم",
           "transliteration": "mutaʿallim",
           "meaning_es": "estudiante, aprendiz",
-          "meaning_en": "student, learner",
-          "outlier": true
+          "meaning_en": "student, learner"
         },
         {
           "word": "مَعْلوم",
           "transliteration": "maʿlūm",
           "meaning_es": "conocido, sabido",
-          "meaning_en": "known, well-known",
-          "outlier": true
+          "meaning_en": "known, well-known"
         },
         {
           "word": "تَعْليم",
           "transliteration": "taʿlīm",
           "meaning_es": "educación, instrucción",
-          "meaning_en": "education, instruction",
-          "outlier": true
+          "meaning_en": "education, instruction"
         }
       ],
       "semantic_bridges": {
@@ -31195,8 +30927,7 @@
           "word": "مَصْبُور",
           "transliteration": "maṣbūr",
           "meaning_es": "paciente, que tiene paciencia",
-          "meaning_en": "patient, forbearing",
-          "outlier": true
+          "meaning_en": "patient, forbearing"
         }
       ],
       "semantic_bridges": {
@@ -31730,8 +31461,7 @@
           "word": "عِيد",
           "transliteration": "'īd",
           "meaning_es": "fiesta, festividad",
-          "meaning_en": "feast, holiday",
-          "outlier": true
+          "meaning_en": "feast, holiday"
         },
         {
           "word": "عَادَة",
@@ -31819,8 +31549,7 @@
           "word": "שָׁדַד",
           "transliteration": "shadad",
           "meaning_es": "destruir, devastar",
-          "meaning_en": "to destroy, devastate",
-          "outlier": true
+          "meaning_en": "to destroy, devastate"
         }
       ],
       "arabic": [
@@ -31852,8 +31581,7 @@
           "word": "شَدْ",
           "transliteration": "shad",
           "meaning_es": "opresión, tiranía",
-          "meaning_en": "oppression, tyranny",
-          "outlier": true
+          "meaning_en": "oppression, tyranny"
         }
       ],
       "semantic_bridges": {
@@ -31908,29 +31636,25 @@
           "word": "רֹבַע",
           "transliteration": "rova'",
           "meaning_es": "cuarto, barrio",
-          "meaning_en": "quarter, district",
-          "outlier": true
+          "meaning_en": "quarter, district"
         },
         {
           "word": "רַבַּעַת",
           "transliteration": "rabba'at",
           "meaning_es": "cuarteta",
-          "meaning_en": "quartet",
-          "outlier": true
+          "meaning_en": "quartet"
         },
         {
           "word": "רִבּוּעַ",
           "transliteration": "ribu'a",
           "meaning_es": "cuadrado",
-          "meaning_en": "square",
-          "outlier": true
+          "meaning_en": "square"
         },
         {
           "word": "מְרֻבָּע",
           "transliteration": "merubba'",
           "meaning_es": "cuadrado, rectangular",
-          "meaning_en": "square, rectangular",
-          "outlier": true
+          "meaning_en": "square, rectangular"
         }
       ],
       "arabic": [
@@ -31944,8 +31668,7 @@
           "word": "رُبْع",
           "transliteration": "rub'",
           "meaning_es": "cuarto",
-          "meaning_en": "quarter",
-          "outlier": true
+          "meaning_en": "quarter"
         },
         {
           "word": "أَرْبَعَة",
@@ -31963,8 +31686,7 @@
           "word": "رُبَاعِي",
           "transliteration": "ruba'i",
           "meaning_es": "cuadruple, cuaternario",
-          "meaning_en": "quadruple, quaternary",
-          "outlier": true
+          "meaning_en": "quadruple, quaternary"
         }
       ],
       "semantic_bridges": {
@@ -32007,8 +31729,7 @@
           "word": "הֶפֶךְ",
           "transliteration": "hefekh",
           "meaning_es": "opuesto, contrario",
-          "meaning_en": "opposite, contrary",
-          "outlier": true
+          "meaning_en": "opposite, contrary"
         },
         {
           "word": "מַהְפֵּכָה",
@@ -32032,8 +31753,7 @@
           "word": "הֶפְךְ",
           "transliteration": "hepekh",
           "meaning_es": "oposición, contrario",
-          "meaning_en": "opposition, contrary",
-          "outlier": true
+          "meaning_en": "opposition, contrary"
         }
       ],
       "arabic": [
@@ -32217,22 +31937,19 @@
           "word": "كَرِهَ",
           "transliteration": "kariha",
           "meaning_es": "detestar, aborrecer",
-          "meaning_en": "to hate, to detest",
-          "outlier": true
+          "meaning_en": "to hate, to detest"
         },
         {
           "word": "مَكْرُوه",
           "transliteration": "makrūh",
           "meaning_es": "detestable",
-          "meaning_en": "detestable, reprehensible",
-          "outlier": true
+          "meaning_en": "detestable, reprehensible"
         },
         {
           "word": "كَرِيه",
           "transliteration": "karīh",
           "meaning_es": "repulsivo, desagradable",
-          "meaning_en": "repulsive, unpleasant",
-          "outlier": true
+          "meaning_en": "repulsive, unpleasant"
         }
       ],
       "semantic_bridges": {
@@ -32299,8 +32016,7 @@
           "word": "כּוֹפֵר",
           "transliteration": "kofér",
           "meaning_es": "incrédulo, escéptico",
-          "meaning_en": "unbeliever, skeptic",
-          "outlier": true
+          "meaning_en": "unbeliever, skeptic"
         }
       ],
       "arabic": [
@@ -32332,8 +32048,7 @@
           "word": "كَافِرَة",
           "transliteration": "kāfira",
           "meaning_es": "mujer incrédula",
-          "meaning_en": "female unbeliever",
-          "outlier": true
+          "meaning_en": "female unbeliever"
         },
         {
           "word": "تَكْفِير",
@@ -32674,8 +32389,7 @@
           "word": "לֵשִׁין",
           "transliteration": "lēshīn",
           "meaning_es": "acusar, delatar",
-          "meaning_en": "to accuse, denounce",
-          "outlier": true
+          "meaning_en": "to accuse, denounce"
         },
         {
           "word": "לִישָׁנִי",
@@ -32859,8 +32573,7 @@
           "word": "خَسِرَ",
           "transliteration": "khasira",
           "meaning_es": "perder",
-          "meaning_en": "to lose",
-          "outlier": true
+          "meaning_en": "to lose"
         },
         {
           "word": "خَسَارَة",
@@ -32872,15 +32585,13 @@
           "word": "خَاسِر",
           "transliteration": "khasir",
           "meaning_es": "perdedor",
-          "meaning_en": "loser",
-          "outlier": true
+          "meaning_en": "loser"
         },
         {
           "word": "مَخْسُور",
           "transliteration": "makshur",
           "meaning_es": "empobrecido, perdido",
-          "meaning_en": "impoverished, lost",
-          "outlier": true
+          "meaning_en": "impoverished, lost"
         }
       ],
       "semantic_bridges": {
@@ -33022,8 +32733,7 @@
           "word": "שְׁכִינָה",
           "transliteration": "shekhinah",
           "meaning_es": "presencia divina",
-          "meaning_en": "divine presence",
-          "outlier": true
+          "meaning_en": "divine presence"
         },
         {
           "word": "שָׁכוּן",
@@ -33061,8 +32771,7 @@
           "word": "سَكِينَة",
           "transliteration": "sakīna",
           "meaning_es": "tranquilidad, presencia divina",
-          "meaning_en": "tranquility, divine presence",
-          "outlier": true
+          "meaning_en": "tranquility, divine presence"
         },
         {
           "word": "سُكَّان",
@@ -33147,8 +32856,7 @@
           "word": "מַרְעֶה",
           "transliteration": "mar'eh",
           "meaning_es": "pastizal, pradera",
-          "meaning_en": "pasture, meadow",
-          "outlier": true
+          "meaning_en": "pasture, meadow"
         },
         {
           "word": "רַעְיָה",
@@ -33180,8 +32888,7 @@
           "word": "مَرْعًى",
           "transliteration": "mar'ā",
           "meaning_es": "pasto, pradera",
-          "meaning_en": "pasture, grazing land",
-          "outlier": true
+          "meaning_en": "pasture, grazing land"
         }
       ],
       "semantic_bridges": {
@@ -33269,15 +32976,13 @@
           "word": "عَجِيل",
           "transliteration": "'ajiil",
           "meaning_es": "acelerado, rápido",
-          "meaning_en": "hasty, quick",
-          "outlier": true
+          "meaning_en": "hasty, quick"
         },
         {
           "word": "عُجُول",
           "transliteration": "'ujuul",
           "meaning_es": "apresurarse, precipitarse",
-          "meaning_en": "to hurry, to rush",
-          "outlier": true
+          "meaning_en": "to hurry, to rush"
         }
       ],
       "greek_parallel": {
@@ -33503,8 +33208,7 @@
           "word": "מָהוֹל",
           "transliteration": "mahol",
           "meaning_es": "danzarín",
-          "meaning_en": "dancer",
-          "outlier": true
+          "meaning_en": "dancer"
         },
         {
           "word": "תַּהֲלוּכָה",
@@ -33598,8 +33302,7 @@
           "word": "מֻלְמָד",
           "transliteration": "mul'mad",
           "meaning_es": "erudito, docto",
-          "meaning_en": "erudite, learned",
-          "outlier": true
+          "meaning_en": "erudite, learned"
         },
         {
           "word": "לוֹמֵד",
@@ -34260,8 +33963,7 @@
           "word": "تَعَهُّد",
           "transliteration": "ta'ahhud",
           "meaning_es": "compromiso",
-          "meaning_en": "commitment",
-          "outlier": true
+          "meaning_en": "commitment"
         },
         {
           "word": "ذَكَرَ",
@@ -34373,8 +34075,7 @@
           "word": "انْفِصَال",
           "transliteration": "infiṣāl",
           "meaning_es": "separación",
-          "meaning_en": "separation",
-          "outlier": true
+          "meaning_en": "separation"
         },
         {
           "word": "قَاطَع",
@@ -34468,8 +34169,7 @@
           "word": "رَدْف",
           "transliteration": "radaf",
           "meaning_es": "parte trasera, retaguardia",
-          "meaning_en": "rear, backend",
-          "outlier": true
+          "meaning_en": "rear, backend"
         },
         {
           "word": "اِرْتِداد",
@@ -34571,8 +34271,7 @@
           "word": "مَدْهُوشٌ",
           "transliteration": "madhúsh",
           "meaning_es": "atónito, asombrado",
-          "meaning_en": "stunned, amazed",
-          "outlier": true
+          "meaning_en": "stunned, amazed"
         }
       ],
       "semantic_bridges": {
@@ -34706,8 +34405,7 @@
           "word": "إِحْسَاس",
           "transliteration": "ikhsās",
           "meaning_es": "sensación, percepción",
-          "meaning_en": "sensation, perception",
-          "outlier": true
+          "meaning_en": "sensation, perception"
         }
       ],
       "sabor_raiz_es": "sensación, padecimiento, sentir profundo",
