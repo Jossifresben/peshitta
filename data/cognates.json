@@ -6657,25 +6657,29 @@
           "word": "הֶאֱמִין",
           "transliteration": "he'emin",
           "meaning_es": "creer",
-          "meaning_en": "to believe"
+          "meaning_en": "to believe",
+          "domain": "abstract"
         },
         {
           "word": "אֱמוּנָה",
           "transliteration": "emunah",
           "meaning_es": "fe",
-          "meaning_en": "faith"
+          "meaning_en": "faith",
+          "domain": "abstract"
         },
         {
           "word": "נֶאֱמָן",
           "transliteration": "ne'eman",
           "meaning_es": "fiel",
-          "meaning_en": "faithful"
+          "meaning_en": "faithful",
+          "domain": "material"
         },
         {
           "word": "אָמֵן",
           "transliteration": "amen",
           "meaning_es": "amén",
-          "meaning_en": "amen"
+          "meaning_en": "amen",
+          "domain": "religious"
         }
       ],
       "arabic": [
@@ -6683,25 +6687,29 @@
           "word": "آمَنَ",
           "transliteration": "amana",
           "meaning_es": "creer",
-          "meaning_en": "to believe"
+          "meaning_en": "to believe",
+          "domain": "abstract"
         },
         {
           "word": "إِيمَان",
           "transliteration": "iman",
           "meaning_es": "fe",
-          "meaning_en": "faith"
+          "meaning_en": "faith",
+          "domain": "religious"
         },
         {
           "word": "أَمِين",
           "transliteration": "amin",
           "meaning_es": "fiel/amén",
-          "meaning_en": "faithful/amen"
+          "meaning_en": "faithful/amen",
+          "domain": "material"
         },
         {
           "word": "مُؤْمِن",
           "transliteration": "mu'min",
           "meaning_es": "creyente",
-          "meaning_en": "believer"
+          "meaning_en": "believer",
+          "domain": "religious"
         }
       ],
       "sabor_raiz_es": "seguridad, protección, depósito de confianza, lealtad probada",
