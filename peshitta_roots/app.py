@@ -8,7 +8,9 @@ import hashlib
 import time
 from datetime import date
 
-from flask import Flask, render_template, request, jsonify, Response
+from urllib.parse import urlencode
+
+from flask import Flask, render_template, request, jsonify, Response, redirect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
@@ -181,9 +183,48 @@ class _Namespace:
 
 
 
+@app.before_request
+def _collapse_nested_query():
+    """301 out of the crawler trap: /browse?sort=-occ?lang=ar?lang=he?lang=ar...
+
+    Some crawlers read a bare `?lang=xx` alternate link as a suffix to append
+    rather than a full query string, so each fetch produces a longer, apparently
+    novel URL and the loop never terminates. A '?' inside a query VALUE is always
+    malformed, so truncate each value at the first '?' and redirect once to the
+    clean form. `q` is exempt — a search term may legitimately contain '?'.
+
+    Terminates: the redirect target has no '?' left in any value, so the second
+    request falls straight through.
+    """
+    if request.method != 'GET':
+        return None
+    pairs = list(request.args.items(multi=True))
+    if not any('?' in v for k, v in pairs if k != 'q'):
+        return None
+    cleaned = [(k, v if k == 'q' else v.split('?', 1)[0]) for k, v in pairs]
+    qs = urlencode(cleaned)
+    return redirect(f'{request.path}?{qs}' if qs else request.path, code=301)
+
+
 @app.route('/robots.txt')
 def robots_txt():
-    content = "User-agent: *\nAllow: /\n\nSitemap: https://peshitta.onrender.com/sitemap.xml\n"
+    content = (
+        # Bytespider ignores crawl-delay and was the single largest source of
+        # the looping /browse requests.
+        "User-agent: Bytespider\n"
+        "Disallow: /\n"
+        "\n"
+        "User-agent: *\n"
+        "Allow: /\n"
+        # Faceted browse params generate combinatorial URLs with no unique
+        # content; the unparameterised /browse is still crawlable.
+        "Disallow: /browse?*sort=\n"
+        "Disallow: /browse?*freq=\n"
+        "Disallow: /browse?*testament=\n"
+        "Disallow: /api/\n"
+        "\n"
+        "Sitemap: https://peshitta.onrender.com/sitemap.xml\n"
+    )
     return Response(content, mimetype='text/plain')
 
 
@@ -1356,8 +1397,14 @@ def browse():
                                canonical_path=cp)
 
     page = request.args.get('page', 1, type=int)
+    # Whitelist freq/sort: both are echoed into canonical_path, so an unvalidated
+    # value becomes a self-referencing canonical URL that crawlers will re-index.
     freq = request.args.get('freq', '', type=str)
-    sort = request.args.get('sort', '', type=str)  # 'occ', 'forms', '-occ', '-forms'
+    if freq not in ('hapax', 'dis', 'tris', 'tetrakis'):
+        freq = ''
+    sort = request.args.get('sort', '', type=str)
+    if sort not in ('occ', '-occ', 'forms', '-forms'):
+        sort = ''
     testament = request.args.get('testament', '')
     if testament not in ('nt', 'ot', ''):
         testament = ''

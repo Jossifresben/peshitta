@@ -27,9 +27,9 @@
         </div>
 
         <div class="browse-filters" style="margin-bottom: 8px;">
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, view=view, sort=sort, freq=freq or '') }}" class="browse-filter{% if not testament %} active{% endif %}">{{ t.testament_all }}</a>
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, view=view, sort=sort, freq=freq or '', testament='nt') }}" class="browse-filter{% if testament == 'nt' %} active{% endif %}">{{ t.testament_nt }}</a>
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, view=view, sort=sort, freq=freq or '', testament='ot') }}" class="browse-filter{% if testament == 'ot' %} active{% endif %}">{{ t.testament_ot }}</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, view=view, sort=sort, freq=freq or '') }}" class="browse-filter{% if not testament %} active{% endif %}" rel="nofollow">{{ t.testament_all }}</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, view=view, sort=sort, freq=freq or '', testament='nt') }}" class="browse-filter{% if testament == 'nt' %} active{% endif %}" rel="nofollow">{{ t.testament_nt }}</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, view=view, sort=sort, freq=freq or '', testament='ot') }}" class="browse-filter{% if testament == 'ot' %} active{% endif %}" rel="nofollow">{{ t.testament_ot }}</a>
         </div>
 
         {% if view == 'fields' %}
@@ -72,11 +72,11 @@
         {% else %}
         <!-- Alphabetical View -->
         <div class="browse-filters">
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, sort=sort, testament=testament or '') }}" class="browse-filter{% if not freq %} active{% endif %}">All</a>
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='hapax', sort=sort, testament=testament or '') }}" class="browse-filter{% if freq == 'hapax' %} active{% endif %}">Hapax (1×)</a>
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='dis', sort=sort, testament=testament or '') }}" class="browse-filter{% if freq == 'dis' %} active{% endif %}">Dis (2×)</a>
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='tris', sort=sort, testament=testament or '') }}" class="browse-filter{% if freq == 'tris' %} active{% endif %}">Tris (3×)</a>
-            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='tetrakis', sort=sort, testament=testament or '') }}" class="browse-filter{% if freq == 'tetrakis' %} active{% endif %}">Tetrakis (4×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, sort=sort, testament=testament or '') }}" class="browse-filter{% if not freq %} active{% endif %}" rel="nofollow">All</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='hapax', sort=sort, testament=testament or '') }}" class="browse-filter{% if freq == 'hapax' %} active{% endif %}" rel="nofollow">Hapax (1×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='dis', sort=sort, testament=testament or '') }}" class="browse-filter{% if freq == 'dis' %} active{% endif %}" rel="nofollow">Dis (2×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='tris', sort=sort, testament=testament or '') }}" class="browse-filter{% if freq == 'tris' %} active{% endif %}" rel="nofollow">Tris (3×)</a>
+            <a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq='tetrakis', sort=sort, testament=testament or '') }}" class="browse-filter{% if freq == 'tetrakis' %} active{% endif %}" rel="nofollow">Tetrakis (4×)</a>
         </div>
 
         <div class="browse-pagination">
@@ -97,8 +97,8 @@
                             <th>{{ t.browse_root }}</th>
                             <th>{{ t.browse_translit }}</th>
                             <th>{{ t.browse_gloss }}</th>
-                            <th class="sortable-th"><a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq=freq or '', sort=('-forms' if sort == 'forms' else 'forms'), testament=testament or '') }}" class="sort-link{% if sort in ('forms', '-forms') %} sort-active{% endif %}">{{ t.browse_forms }} {% if sort == 'forms' %}&#9650;{% elif sort == '-forms' %}&#9660;{% else %}&#8693;{% endif %}</a></th>
-                            <th class="sortable-th"><a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq=freq or '', sort=('-occ' if sort == 'occ' else 'occ'), testament=testament or '') }}" class="sort-link{% if sort in ('occ', '-occ') %} sort-active{% endif %}">{{ t.browse_occurrences }} {% if sort == 'occ' %}&#9650;{% elif sort == '-occ' %}&#9660;{% else %}&#8693;{% endif %}</a></th>
+                            <th class="sortable-th"><a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq=freq or '', sort=('-forms' if sort == 'forms' else 'forms'), testament=testament or '') }}" class="sort-link{% if sort in ('forms', '-forms') %} sort-active{% endif %}" rel="nofollow">{{ t.browse_forms }} {% if sort == 'forms' %}&#9650;{% elif sort == '-forms' %}&#9660;{% else %}&#8693;{% endif %}</a></th>
+                            <th class="sortable-th"><a href="{{ url_for('browse', lang=lang, script=script, trans=trans, freq=freq or '', sort=('-occ' if sort == 'occ' else 'occ'), testament=testament or '') }}" class="sort-link{% if sort in ('occ', '-occ') %} sort-active{% endif %}" rel="nofollow">{{ t.browse_occurrences }} {% if sort == 'occ' %}&#9650;{% elif sort == '-occ' %}&#9660;{% else %}&#8693;{% endif %}</a></th>
                             <th></th>
                         </tr>
                     </thead>

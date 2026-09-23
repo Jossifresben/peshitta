@@ -51,10 +51,10 @@
       }
     }
     </script>
-    <link rel="alternate" hreflang="es" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=es">
-    <link rel="alternate" hreflang="en" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=en">
-    <link rel="alternate" hreflang="he" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=he">
-    <link rel="alternate" hreflang="ar" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}?lang=ar">
+    <link rel="alternate" hreflang="es" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}{{ '&' if '?' in canonical_path|default('/') else '?' }}lang=es">
+    <link rel="alternate" hreflang="en" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}{{ '&' if '?' in canonical_path|default('/') else '?' }}lang=en">
+    <link rel="alternate" hreflang="he" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}{{ '&' if '?' in canonical_path|default('/') else '?' }}lang=he">
+    <link rel="alternate" hreflang="ar" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}{{ '&' if '?' in canonical_path|default('/') else '?' }}lang=ar">
     <link rel="alternate" hreflang="x-default" href="https://peshitta.onrender.com{{ canonical_path|default('/') }}">
     <meta property="og:title" content="{% block og_title %}{{ t.app_title }}{% endblock %}">
     <meta property="og:description" content="{{ meta_description|default(t.app_subtitle) }}">
